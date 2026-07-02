@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fantasy Football Reference</title>
+    <link rel="stylesheet" href="css/site.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Fantasy Football Reference</h1>
+        <p>Custom stats and rankings — half-PPR scoring</p>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="charts/example-trend.html">Example Trend Chart</a>
+          <a href="tables/example-rankings.html">Example Rankings</a>
+        </nav>
+      </header>
+
+      <p class="meta" data-manifest="summary">Loading data info…</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <h2>Example Trend Chart</h2>
+          <p>Weekly half-PPR points for the top wide receivers.</p>
+          <a href="charts/example-trend.html">View chart →</a>
+        </div>
+        <div class="card">
+          <h2>Example Rankings</h2>
+          <p>Top skill players ranked by season half-PPR points.</p>
+          <a href="tables/example-rankings.html">View table →</a>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import { loadManifest } from "./js/config.js";
+      loadManifest().catch((err) => {
+        document.querySelector("[data-manifest='summary']").textContent =
+          "Unable to load data manifest.";
+        console.error(err);
+      });
+    </script>
+  </body>
+</html>

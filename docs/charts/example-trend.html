@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Example Trend Chart — Fantasy Reference</title>
+    <link rel="stylesheet" href="../css/site.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Example Trend Chart</h1>
+        <p id="chart-title">Loading…</p>
+        <nav>
+          <a href="../index.html">Home</a>
+          <a href="example-trend.html">Example Trend Chart</a>
+          <a href="../tables/example-rankings.html">Example Rankings</a>
+        </nav>
+      </header>
+
+      <p class="meta" data-manifest="summary">Loading data info…</p>
+
+      <div id="chart-container" class="chart-wrap">
+        <canvas id="trend-chart"></canvas>
+      </div>
+    </div>
+
+    <script type="module">
+      import { loadManifest } from "../js/config.js";
+      import { renderTrendChart } from "../js/charts.js";
+
+      loadManifest();
+      renderTrendChart("trend-chart", "examples/trend-chart.json");
+    </script>
+  </body>
+</html>

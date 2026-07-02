@@ -1,0 +1,413 @@
+{
+  "title": "Example Rankings \u2014 Half-PPR (through Week 18)",
+  "columns": [
+    "rank",
+    "player",
+    "team",
+    "position",
+    "half_ppr_pts",
+    "custom_score"
+  ],
+  "rows": [
+    [
+      1,
+      "Christian McCaffrey",
+      "SF",
+      "RB",
+      365.6,
+      1.234
+    ],
+    [
+      2,
+      "Josh Allen",
+      "BUF",
+      "QB",
+      364.6,
+      0.997
+    ],
+    [
+      3,
+      "Drake Maye",
+      "NE",
+      "QB",
+      351.5,
+      0.963
+    ],
+    [
+      4,
+      "Matthew Stafford",
+      "LA",
+      "QB",
+      350.4,
+      0.958
+    ],
+    [
+      5,
+      "Jonathan Taylor",
+      "IND",
+      "RB",
+      339.3,
+      1.03
+    ],
+    [
+      6,
+      "Trevor Lawrence",
+      "JAX",
+      "QB",
+      338.2,
+      0.925
+    ],
+    [
+      7,
+      "Bijan Robinson",
+      "ATL",
+      "RB",
+      331.3,
+      1.085
+    ],
+    [
+      8,
+      "Jahmyr Gibbs",
+      "DET",
+      "RB",
+      328.4,
+      1.043
+    ],
+    [
+      9,
+      "Caleb Williams",
+      "CHI",
+      "QB",
+      317.2,
+      0.871
+    ],
+    [
+      10,
+      "Dak Prescott",
+      "DAL",
+      "QB",
+      313.8,
+      0.858
+    ],
+    [
+      11,
+      "Puka Nacua",
+      "LA",
+      "WR",
+      310.5,
+      1.105
+    ],
+    [
+      12,
+      "Bo Nix",
+      "DEN",
+      "QB",
+      304.8,
+      0.835
+    ],
+    [
+      13,
+      "Jalen Hurts",
+      "PHI",
+      "QB",
+      301.1,
+      0.823
+    ],
+    [
+      14,
+      "Jaxon Smith-Njigba",
+      "SEA",
+      "WR",
+      300.4,
+      1.124
+    ],
+    [
+      15,
+      "Jared Goff",
+      "DET",
+      "QB",
+      297.1,
+      0.813
+    ],
+    [
+      16,
+      "De'Von Achane",
+      "MIA",
+      "RB",
+      289.3,
+      0.94
+    ],
+    [
+      17,
+      "Justin Herbert",
+      "LAC",
+      "QB",
+      286.9,
+      0.785
+    ],
+    [
+      18,
+      "James Cook",
+      "BUF",
+      "RB",
+      285.7,
+      0.845
+    ],
+    [
+      19,
+      "Patrick Mahomes",
+      "KC",
+      "QB",
+      285.2,
+      0.782
+    ],
+    [
+      20,
+      "Derrick Henry",
+      "BAL",
+      "RB",
+      272.0,
+      0.78
+    ],
+    [
+      21,
+      "Baker Mayfield",
+      "TB",
+      "QB",
+      271.9,
+      0.744
+    ],
+    [
+      22,
+      "Amon-Ra St. Brown",
+      "DET",
+      "WR",
+      265.5,
+      0.956
+    ],
+    [
+      23,
+      "Trey McBride",
+      "ARI",
+      "TE",
+      252.9,
+      0.885
+    ],
+    [
+      24,
+      "Ja'Marr Chase",
+      "CIN",
+      "WR",
+      251.1,
+      0.907
+    ],
+    [
+      25,
+      "Chase Brown",
+      "CIN",
+      "RB",
+      248.1,
+      0.776
+    ],
+    [
+      26,
+      "George Pickens",
+      "DAL",
+      "WR",
+      245.4,
+      0.822
+    ],
+    [
+      27,
+      "Kyren Williams",
+      "LA",
+      "RB",
+      245.3,
+      0.725
+    ],
+    [
+      28,
+      "Jaxson Dart",
+      "NYG",
+      "QB",
+      241.6,
+      0.661
+    ],
+    [
+      29,
+      "Travis Etienne",
+      "JAX",
+      "RB",
+      235.9,
+      0.708
+    ],
+    [
+      30,
+      "Sam Darnold",
+      "SEA",
+      "QB",
+      235.4,
+      0.644
+    ],
+    [
+      31,
+      "Jordan Love",
+      "GB",
+      "QB",
+      235.1,
+      0.643
+    ],
+    [
+      32,
+      "Jacoby Brissett",
+      "ARI",
+      "QB",
+      227.4,
+      0.622
+    ],
+    [
+      33,
+      "Aaron Rodgers",
+      "PIT",
+      "QB",
+      226.6,
+      0.621
+    ],
+    [
+      34,
+      "Daniel Jones",
+      "IND",
+      "QB",
+      226.4,
+      0.619
+    ],
+    [
+      35,
+      "Javonte Williams",
+      "DAL",
+      "RB",
+      225.3,
+      0.669
+    ],
+    [
+      36,
+      "Josh Jacobs",
+      "GB",
+      "RB",
+      219.1,
+      0.66
+    ],
+    [
+      37,
+      "Bryce Young",
+      "CAR",
+      "QB",
+      218.0,
+      0.596
+    ],
+    [
+      38,
+      "Chris Olave",
+      "NO",
+      "WR",
+      218.0,
+      0.77
+    ],
+    [
+      39,
+      "Ashton Jeanty",
+      "LV",
+      "RB",
+      217.6,
+      0.683
+    ],
+    [
+      40,
+      "Lamar Jackson",
+      "BAL",
+      "QB",
+      214.9,
+      0.588
+    ],
+    [
+      41,
+      "Saquon Barkley",
+      "PHI",
+      "RB",
+      213.8,
+      0.655
+    ],
+    [
+      42,
+      "D'Andre Swift",
+      "CHI",
+      "RB",
+      211.6,
+      0.633
+    ],
+    [
+      43,
+      "C.J. Stroud",
+      "HOU",
+      "QB",
+      208.5,
+      0.57
+    ],
+    [
+      44,
+      "Zay Flowers",
+      "BAL",
+      "WR",
+      200.3,
+      0.712
+    ],
+    [
+      45,
+      "Jaylen Warren",
+      "PIT",
+      "RB",
+      197.1,
+      0.591
+    ],
+    [
+      46,
+      "Rico Dowdle",
+      "CAR",
+      "RB",
+      196.8,
+      0.598
+    ],
+    [
+      47,
+      "Davante Adams",
+      "LA",
+      "WR",
+      192.9,
+      0.66
+    ],
+    [
+      48,
+      "Nico Collins",
+      "HOU",
+      "WR",
+      190.7,
+      0.648
+    ],
+    [
+      49,
+      "Breece Hall",
+      "NYJ",
+      "RB",
+      189.7,
+      0.574
+    ],
+    [
+      50,
+      "TreVeyon Henderson",
+      "NE",
+      "RB",
+      188.7,
+      0.559
+    ]
+  ]
+}
