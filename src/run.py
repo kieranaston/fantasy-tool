@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 from src.algorithms.example_ranking import build_rankings, build_trend_chart
@@ -22,7 +22,10 @@ def main() -> None:
         "season": season,
         "week": week,
         "scoring": SCORING,
-        "last_updated": datetime.now(UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
+        "last_updated": datetime.now(timezone.utc)
+        .replace(microsecond=0)
+        .isoformat()
+        .replace("+00:00", "Z"),
     }
     rankings = build_rankings(stats, season, week)
     trend_chart = build_trend_chart(stats, season, week)
