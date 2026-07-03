@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WR Rankings — Fantasy Reference</title>
+    <title>RB Rankings — Fantasy Reference</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" />
     <link rel="stylesheet" href="../css/site.css" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -12,18 +12,18 @@
   <body>
     <div class="container">
       <p class="site-header">
-        <a href="../index.html">Home</a><span class="sep"> · </span>WR Rankings
+        <a href="../index.html">Home</a><span class="sep"> · </span>RB Rankings
       </p>
       <p class="meta" data-manifest="summary">Loading…</p>
 
       <div id="table-container" class="table-wrap">
-        <table id="wr-table" class="cell-border order-column">
+        <table id="rb-table" class="cell-border order-column">
           <thead>
             <tr>
               <th>
                 <span class="th-inner">
                   <span class="th-label">Rank</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Predictive score rank among qualifying WRs">i</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Predictive score rank among qualifying RBs">i</span>
                 </span>
               </th>
               <th>
@@ -40,8 +40,8 @@
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">Tgt/G</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Average targets per game — primary sticky volume stat">i</span>
+                  <span class="th-label">Tch/G</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Average touches (carries + targets) per game">i</span>
                 </span>
               </th>
               <th>
@@ -85,13 +85,13 @@
 
       const container = document.getElementById("table-container");
       try {
-        const data = await fetchJSON("wr/season-composite.json");
+        const data = await fetchJSON("rb/season-composite.json");
 
         const scores = data.rows.map((r) => r.draft_score);
         const minScore = Math.min(...scores);
         const maxScore = Math.max(...scores);
 
-        const tbody = document.querySelector("#wr-table tbody");
+        const tbody = document.querySelector("#rb-table tbody");
         tbody.innerHTML = data.rows.map((r) => {
           const cellStyle = scoreStyle(r.draft_score, minScore, maxScore);
           const logoHtml = r.logo
@@ -114,7 +114,7 @@
             </tr>`;
         }).join("");
 
-        $("#wr-table").DataTable({
+        $("#rb-table").DataTable({
           paging:     false,
           searching:  false,
           info:       false,
