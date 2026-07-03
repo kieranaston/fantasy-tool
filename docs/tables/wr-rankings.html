@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WR Rankings — Fantasy Reference</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" />
+    <link rel="stylesheet" href="../css/site.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <p class="site-header">
+        <a href="../index.html">Home</a><span class="sep"> · </span>WR Rankings
+      </p>
+      <p class="meta" data-manifest="summary">Loading…</p>
+
+      <div id="table-container" class="table-wrap">
+        <table id="wr-table" class="cell-border order-column">
+          <thead>
+            <tr>
+              <th>
+                <span class="th-inner">
+                  <span class="th-label">Rank</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Composite score rank among qualifying WRs">i</span>
+                </span>
+              </th>
+              <th>
+                <span class="th-inner">
+                  <span class="th-label">Player</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Player name and team logo">i</span>
+                </span>
+              </th>
+              <th>
+                <span class="th-inner">
+                  <span class="th-label">GP</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Games played">i</span>
+                </span>
+              </th>
+              <th>
+                <span class="th-inner">
+                  <span class="th-label">Prod.</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Season average weekly percentile of half-PPR points">i</span>
+                </span>
+              </th>
+              <th>
+                <span class="th-inner">
+                  <span class="th-label">Opp.</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Season average weekly WOPR percentile">i</span>
+                </span>
+              </th>
+              <th>
+                <span class="th-inner">
+                  <span class="th-label">Score</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Mean weekly composite minus 1.25 × MAD">i</span>
+                </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script type="module">
+      import { loadManifest, fetchJSON, showError } from "../js/config.js";
+      import { initColumnTooltips } from "../js/tables.js";
+
+      loadManifest();
+
+      // Map a score to a cell fill: low → white, high → light green (black text throughout)
+      function scoreStyle(score, min, max) {
+        const t = Math.max(0, Math.min(1, (score - min) / (max - min)));
+        const r = Math.round(255 + t * (180 - 255));
+        const g = Math.round(255 + t * (236 - 255));
+        const b = Math.round(255 + t * (210 - 255));
+        return `background:rgb(${r},${g},${b})`;
+      }
+
+      const container = document.getElementById("table-container");
+      try {
+        const data = await fetchJSON("wr/season-composite.json");
+
+        const scores = data.rows.map((r) => r.composite_score);
+        const minScore = Math.min(...scores);
+        const maxScore = Math.max(...scores);
+
+        const tbody = document.querySelector("#wr-table tbody");
+        tbody.innerHTML = data.rows.map((r) => {
+          const cellStyle = scoreStyle(r.composite_score, minScore, maxScore);
+          const logoHtml = r.logo
+            ? `<img class="team-logo" src="${r.logo}" alt="${r.team}">`
+            : `<span style="font-weight:600;color:${r.team_color}">${r.team}</span>`;
+          return `
+            <tr>
+              <td>${r.rank}</td>
+              <td>
+                <div class="player-cell">
+                  ${logoHtml}
+                  <span>${r.player}</span>
+                </div>
+              </td>
+              <td>${r.games_played}</td>
+              <td>${r.avg_prod_pct}</td>
+              <td>${r.avg_opp_pct}</td>
+              <td class="score-cell" style="${cellStyle}">${r.composite_score}</td>
+            </tr>`;
+        }).join("");
+
+        $("#wr-table").DataTable({
+          paging:     false,
+          searching:  false,
+          info:       false,
+          order:      [],
+          autoWidth:  false,
+          dom:        "t",
+          columnDefs: [
+            { targets: 0,         type: "num" },
+            { targets: [2, 3, 4], type: "num" },
+            { targets: 5,         type: "num" },
+            { targets: 1,         orderable: false },
+          ],
+        });
+
+        initColumnTooltips();
+      } catch (err) {
+        showError(container, err.message);
+      }
+    </script>
+  </body>
+</html>

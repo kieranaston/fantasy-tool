@@ -1,4 +1,4 @@
-"""Example ranking and trend chart exports for the static site scaffold."""
+"""Example ranking and chart exports for the static site scaffold."""
 
 from __future__ import annotations
 
@@ -7,7 +7,7 @@ import polars as pl
 from src.config.scoring import SKILL_POSITIONS
 
 TOP_RANKINGS = 50
-TOP_WR_TREND = 5
+TOP_WR_OPPORTUNITY = 32
 
 
 def build_rankings(stats: pl.DataFrame, season: int, week: int) -> dict:
@@ -70,51 +70,67 @@ def build_rankings(stats: pl.DataFrame, season: int, week: int) -> dict:
     }
 
 
-def build_trend_chart(stats: pl.DataFrame, season: int, week: int) -> dict:
-    """Weekly half-PPR points for the top WRs by season total."""
-    filtered = stats.filter(
-        (pl.col("season") == season)
-        & (pl.col("season_type") == "REG")
+def build_wr_opportunity_chart(
+    opportunity: pl.DataFrame,
+    teams: pl.DataFrame,
+    season: int,
+    week: int,
+) -> dict:
+    """Production versus expected opportunity for top wide receivers."""
+    filtered = opportunity.filter(
+        (pl.col("season").cast(pl.Int64) == season)
         & (pl.col("week") <= week)
         & (pl.col("position") == "WR")
     )
 
     if filtered.is_empty():
         return {
-            "title": "Weekly Half-PPR Points — Top WRs",
-            "labels": [],
-            "datasets": [],
+            "title": "WR Production vs Opportunity",
+            "x_axis": "Expected Fantasy Points",
+            "y_axis": "Actual Fantasy Points",
+            "points": [],
         }
 
-    top_wrs = (
-        filtered.group_by("player_display_name")
-        .agg(pl.col("half_ppr_points").sum().alias("total_pts"))
-        .sort("total_pts", descending=True)
-        .head(TOP_WR_TREND)
-        .select("player_display_name")
-        .to_series()
-        .to_list()
+    team_lookup = teams.select(
+        pl.col("team_abbr").alias("posteam"),
+        "team_color",
+        "team_color2",
+        "team_logo_espn",
     )
 
-    labels = [f"W{w}" for w in range(1, week + 1)]
-    datasets = []
-
-    for player in top_wrs:
-        weekly = (
-            filtered.filter(pl.col("player_display_name") == player)
-            .sort("week")
-            .select("week", "half_ppr_points")
+    wrs = (
+        filtered.group_by("player_id", "full_name", "posteam")
+        .agg(
+            pl.col("total_fantasy_points").sum().alias("production"),
+            pl.col("total_fantasy_points_exp").sum().alias("opportunity"),
+            pl.col("rec_attempt").sum().alias("targets"),
+            pl.col("rec_air_yards").sum().alias("air_yards"),
         )
-        points_by_week = {row["week"]: row["half_ppr_points"] for row in weekly.iter_rows(named=True)}
-        datasets.append(
+        .filter(pl.col("opportunity") > 0)
+        .join(team_lookup, on="posteam", how="left")
+        .sort("opportunity", descending=True)
+        .head(TOP_WR_OPPORTUNITY)
+    )
+
+    points = []
+    for row in wrs.iter_rows(named=True):
+        points.append(
             {
-                "label": player,
-                "data": [round(points_by_week.get(w, 0), 1) for w in range(1, week + 1)],
+                "player": row["full_name"],
+                "team": row["posteam"],
+                "x": round(row["opportunity"], 1),
+                "y": round(row["production"], 1),
+                "targets": int(row["targets"] or 0),
+                "air_yards": int(row["air_yards"] or 0),
+                "team_color": row["team_color"] or "#2563eb",
+                "team_color2": row["team_color2"] or "#111827",
+                "logo": row["team_logo_espn"],
             }
         )
 
     return {
-        "title": "Weekly Half-PPR Points — Top WRs",
-        "labels": labels,
-        "datasets": datasets,
+        "title": f"WR Production vs Opportunity — Top {TOP_WR_OPPORTUNITY} by Expected Points",
+        "x_axis": "Expected Fantasy Points",
+        "y_axis": "Actual Fantasy Points",
+        "points": points,
     }
