@@ -11,7 +11,7 @@
       "volume_pg": 25.9,
       "snap_pct": 83.1,
       "adj_ppg": 19.4,
-      "draft_score": 75.8
+      "draft_score": 75.6
     },
     {
       "rank": 2,
@@ -23,7 +23,7 @@
       "volume_pg": 22.9,
       "snap_pct": 78.2,
       "adj_ppg": 18.5,
-      "draft_score": 68.7
+      "draft_score": 68.5
     },
     {
       "rank": 3,
@@ -47,7 +47,7 @@
       "volume_pg": 20.2,
       "snap_pct": 75.4,
       "adj_ppg": 16.7,
-      "draft_score": 62.6
+      "draft_score": 62.5
     },
     {
       "rank": 5,
@@ -59,7 +59,7 @@
       "volume_pg": 22.2,
       "snap_pct": 82.6,
       "adj_ppg": 17.3,
-      "draft_score": 61.4
+      "draft_score": 61.3
     },
     {
       "rank": 6,
@@ -70,8 +70,8 @@
       "games_played": 17,
       "volume_pg": 19.9,
       "snap_pct": 77.9,
-      "adj_ppg": 12.0,
-      "draft_score": 58.1
+      "adj_ppg": 11.9,
+      "draft_score": 58.0
     },
     {
       "rank": 7,
@@ -95,7 +95,7 @@
       "volume_pg": 20.6,
       "snap_pct": 78.3,
       "adj_ppg": 12.6,
-      "draft_score": 56.8
+      "draft_score": 56.7
     },
     {
       "rank": 9,
@@ -106,23 +106,11 @@
       "games_played": 17,
       "volume_pg": 20.5,
       "snap_pct": 57.2,
-      "adj_ppg": 15.3,
+      "adj_ppg": 15.2,
       "draft_score": 55.3
     },
     {
       "rank": 10,
-      "player": "Omarion Hampton",
-      "team": "LAC",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
-      "team_color": "#007BC7",
-      "games_played": 9,
-      "volume_pg": 17.7,
-      "snap_pct": 63.4,
-      "adj_ppg": 12.5,
-      "draft_score": 54.9
-    },
-    {
-      "rank": 11,
       "player": "Chase Brown",
       "team": "CIN",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
@@ -131,7 +119,19 @@
       "volume_pg": 18.8,
       "snap_pct": 0.0,
       "adj_ppg": 13.6,
-      "draft_score": 54.7
+      "draft_score": 55.2
+    },
+    {
+      "rank": 11,
+      "player": "Omarion Hampton",
+      "team": "LAC",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
+      "team_color": "#007BC7",
+      "games_played": 9,
+      "volume_pg": 17.7,
+      "snap_pct": 63.4,
+      "adj_ppg": 12.5,
+      "draft_score": 54.8
     },
     {
       "rank": 12,
@@ -166,8 +166,8 @@
       "games_played": 17,
       "volume_pg": 18.2,
       "snap_pct": 68.3,
-      "adj_ppg": 13.1,
-      "draft_score": 53.3
+      "adj_ppg": 13.0,
+      "draft_score": 53.2
     },
     {
       "rank": 15,
@@ -191,7 +191,7 @@
       "volume_pg": 16.6,
       "snap_pct": 52.2,
       "adj_ppg": 12.8,
-      "draft_score": 52.9
+      "draft_score": 53.0
     },
     {
       "rank": 17,
@@ -215,7 +215,7 @@
       "volume_pg": 19.0,
       "snap_pct": 50.5,
       "adj_ppg": 10.6,
-      "draft_score": 51.3
+      "draft_score": 51.4
     },
     {
       "rank": 19,
@@ -227,7 +227,7 @@
       "volume_pg": 16.9,
       "snap_pct": 57.9,
       "adj_ppg": 12.3,
-      "draft_score": 51.1
+      "draft_score": 51.2
     },
     {
       "rank": 20,
@@ -239,7 +239,7 @@
       "volume_pg": 19.3,
       "snap_pct": 54.5,
       "adj_ppg": 14.1,
-      "draft_score": 50.6
+      "draft_score": 50.7
     },
     {
       "rank": 21,
@@ -263,7 +263,7 @@
       "volume_pg": 16.0,
       "snap_pct": 50.8,
       "adj_ppg": 11.7,
-      "draft_score": 49.8
+      "draft_score": 49.9
     },
     {
       "rank": 23,
@@ -291,18 +291,6 @@
     },
     {
       "rank": 25,
-      "player": "Kenneth Gainwell",
-      "team": "PIT",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
-      "team_color": "#000000",
-      "games_played": 17,
-      "volume_pg": 11.7,
-      "snap_pct": 49.6,
-      "adj_ppg": 10.4,
-      "draft_score": 48.9
-    },
-    {
-      "rank": 26,
       "player": "Tyrone Tracy Jr.",
       "team": "NYG",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
@@ -311,10 +299,10 @@
       "volume_pg": 14.9,
       "snap_pct": 54.5,
       "adj_ppg": 9.6,
-      "draft_score": 48.2
+      "draft_score": 48.3
     },
     {
-      "rank": 27,
+      "rank": 26,
       "player": "Aaron Jones",
       "team": "MIN",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
@@ -323,10 +311,10 @@
       "volume_pg": 14.4,
       "snap_pct": 55.1,
       "adj_ppg": 8.9,
-      "draft_score": 47.4
+      "draft_score": 47.5
     },
     {
-      "rank": 28,
+      "rank": 27,
       "player": "Kenneth Walker III",
       "team": "SEA",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
@@ -335,10 +323,10 @@
       "volume_pg": 15.1,
       "snap_pct": 46.9,
       "adj_ppg": 10.4,
-      "draft_score": 46.4
+      "draft_score": 46.6
     },
     {
-      "rank": 29,
+      "rank": 28,
       "player": "J.K. Dobbins",
       "team": "DEN",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
@@ -347,7 +335,19 @@
       "volume_pg": 16.7,
       "snap_pct": 51.1,
       "adj_ppg": 10.8,
-      "draft_score": 46.4
+      "draft_score": 46.5
+    },
+    {
+      "rank": 29,
+      "player": "Kenny Gainwell",
+      "team": "PIT",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
+      "team_color": "#000000",
+      "games_played": 17,
+      "volume_pg": 11.7,
+      "snap_pct": 0.0,
+      "adj_ppg": 10.4,
+      "draft_score": 46.3
     },
     {
       "rank": 30,
@@ -371,7 +371,7 @@
       "volume_pg": 12.0,
       "snap_pct": 42.1,
       "adj_ppg": 9.6,
-      "draft_score": 44.9
+      "draft_score": 45.1
     },
     {
       "rank": 32,
@@ -383,7 +383,7 @@
       "volume_pg": 14.5,
       "snap_pct": 51.5,
       "adj_ppg": 8.3,
-      "draft_score": 44.9
+      "draft_score": 45.0
     },
     {
       "rank": 33,
@@ -394,8 +394,8 @@
       "games_played": 17,
       "volume_pg": 13.1,
       "snap_pct": 45.9,
-      "adj_ppg": 10.3,
-      "draft_score": 44.4
+      "adj_ppg": 10.2,
+      "draft_score": 44.6
     },
     {
       "rank": 34,
@@ -407,7 +407,7 @@
       "volume_pg": 13.6,
       "snap_pct": 54.5,
       "adj_ppg": 8.4,
-      "draft_score": 43.1
+      "draft_score": 43.2
     },
     {
       "rank": 35,
@@ -419,7 +419,7 @@
       "volume_pg": 10.5,
       "snap_pct": 45.2,
       "adj_ppg": 7.0,
-      "draft_score": 42.3
+      "draft_score": 42.5
     },
     {
       "rank": 36,
@@ -431,7 +431,7 @@
       "volume_pg": 13.0,
       "snap_pct": 48.4,
       "adj_ppg": 9.4,
-      "draft_score": 42.2
+      "draft_score": 42.3
     },
     {
       "rank": 37,
@@ -443,7 +443,7 @@
       "volume_pg": 11.5,
       "snap_pct": 45.8,
       "adj_ppg": 7.5,
-      "draft_score": 41.9
+      "draft_score": 42.0
     },
     {
       "rank": 38,
@@ -455,7 +455,7 @@
       "volume_pg": 10.4,
       "snap_pct": 51.1,
       "adj_ppg": 7.4,
-      "draft_score": 41.2
+      "draft_score": 41.3
     },
     {
       "rank": 39,
@@ -467,7 +467,7 @@
       "volume_pg": 11.7,
       "snap_pct": 40.9,
       "adj_ppg": 8.1,
-      "draft_score": 39.9
+      "draft_score": 40.1
     },
     {
       "rank": 40,
@@ -479,7 +479,7 @@
       "volume_pg": 11.1,
       "snap_pct": 51.7,
       "adj_ppg": 6.4,
-      "draft_score": 39.8
+      "draft_score": 39.9
     }
   ]
 }
