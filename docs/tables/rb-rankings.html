@@ -16,6 +16,13 @@
       </p>
       <p class="meta" data-manifest="summary">Loading…</p>
 
+      <div class="controls">
+        <div>
+          <label id="format-label">Format</label>
+          <div id="format-toggle" class="format-toggle" role="group" aria-label="Scoring format"></div>
+        </div>
+      </div>
+
       <div id="table-container" class="table-wrap">
         <table id="rb-table" class="cell-border order-column">
           <thead>
@@ -23,7 +30,7 @@
               <th>
                 <span class="th-inner">
                   <span class="th-label">Rank</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Predictive score rank among qualifying RBs">i</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Composite score rank for the selected format">i</span>
                 </span>
               </th>
               <th>
@@ -40,26 +47,32 @@
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">Tch/G</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Average touches (carries + targets) per game">i</span>
+                  <span class="th-label">Opp%</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Opportunity share = (carries + targets) / team offensive plays">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">Snap%</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Average offensive snap share — role security signal">i</span>
+                  <span class="th-label">YFS</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Yards from scrimmage (rushing + receiving)">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">Adj</span>
-                  <span class="col-info" tabindex="0" data-tooltip="TD-regressed half-PPR per game (TD spikes pulled 50% toward average)">i</span>
+                  <span class="th-label">YPC</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Yards per carry">i</span>
+                </span>
+              </th>
+              <th>
+                <span class="th-inner">
+                  <span class="th-label">YAC</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Yards after contact per attempt (PFR)">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
                   <span class="th-label">Score</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Weighted z-score: volume, snap share, and TD-adjusted scoring">i</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Weighted composite of normalized opportunity share, yards from scrimmage, and efficiency">i</span>
                 </span>
               </th>
             </tr>
@@ -70,69 +83,19 @@
     </div>
 
     <script type="module">
-      import { loadManifest, fetchJSON, showError } from "../js/config.js";
-      import { initColumnTooltips } from "../js/tables.js";
+      import { mountRankingsPage } from "../js/rankings.js";
 
-      loadManifest();
-
-      function scoreStyle(score, min, max) {
-        const t = Math.max(0, Math.min(1, (score - min) / (max - min)));
-        const r = Math.round(255 + t * (180 - 255));
-        const g = Math.round(255 + t * (236 - 255));
-        const b = Math.round(255 + t * (210 - 255));
-        return `background:rgb(${r},${g},${b})`;
-      }
-
-      const container = document.getElementById("table-container");
-      try {
-        const data = await fetchJSON("rb/season-composite.json");
-
-        const scores = data.rows.map((r) => r.draft_score);
-        const minScore = Math.min(...scores);
-        const maxScore = Math.max(...scores);
-
-        const tbody = document.querySelector("#rb-table tbody");
-        tbody.innerHTML = data.rows.map((r) => {
-          const cellStyle = scoreStyle(r.draft_score, minScore, maxScore);
-          const logoHtml = r.logo
-            ? `<img class="team-logo" src="${r.logo}" alt="${r.team}">`
-            : `<span style="font-weight:600;color:${r.team_color}">${r.team}</span>`;
-          return `
-            <tr>
-              <td>${r.rank}</td>
-              <td>
-                <div class="player-cell">
-                  ${logoHtml}
-                  <span>${r.player}</span>
-                </div>
-              </td>
-              <td>${r.games_played}</td>
-              <td>${r.volume_pg.toFixed(1)}</td>
-              <td>${r.snap_pct.toFixed(1)}%</td>
-              <td>${r.adj_ppg.toFixed(1)}</td>
-              <td class="score-cell" style="${cellStyle}">${r.draft_score}</td>
-            </tr>`;
-        }).join("");
-
-        $("#rb-table").DataTable({
-          paging:     false,
-          searching:  false,
-          info:       false,
-          order:      [],
-          autoWidth:  false,
-          dom:        "t",
-          columnDefs: [
-            { targets: 0,             type: "num" },
-            { targets: [2, 3, 4, 5],  type: "num" },
-            { targets: 6,             type: "num" },
-            { targets: 1,             orderable: false },
-          ],
-        });
-
-        initColumnTooltips();
-      } catch (err) {
-        showError(container, err.message);
-      }
+      mountRankingsPage({
+        position: "rb",
+        tableId: "rb-table",
+        showFormat: true,
+        numericTargets: [2, 3, 4, 5, 6, 7],
+        metricCells: (row) => `
+          <td>${(row.metrics.opportunity_share * 100).toFixed(1)}%</td>
+          <td>${Math.round(row.metrics.yards_from_scrimmage)}</td>
+          <td>${row.metrics.ypc.toFixed(1)}</td>
+          <td>${row.metrics.yac_per_attempt.toFixed(1)}</td>`,
+      });
     </script>
   </body>
 </html>

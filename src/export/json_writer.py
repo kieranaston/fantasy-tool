@@ -6,13 +6,13 @@ import json
 from pathlib import Path
 from typing import Any
 
-MANIFEST_KEYS = {"season", "week", "scoring", "last_updated"}
-RANKINGS_KEYS = {"title", "columns", "rows"}
-CHART_KEYS = {"title", "x_axis", "y_axis", "points"}
-
-# WR ranking system
-WR_TABLE_KEYS = {"title", "columns", "rows"}   # weekly_production, weekly_opportunity, season_composite
-WR_SCATTER_KEYS = {"title", "x_axis", "y_axis", "points"}
+MANIFEST_KEYS = {
+    "season",
+    "formats",
+    "positions",
+    "last_updated",
+}
+RANKINGS_KEYS = {"title", "season", "position", "rows"}
 
 
 def write_json(path: Path, payload: dict[str, Any], required_keys: set[str]) -> None:

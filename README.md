@@ -1,25 +1,21 @@
 # fantasy-tool
 
-Personal fantasy football reference site with custom statistical rankings and charts.
+Personal fantasy football reference site with custom statistical rankings.
 
-Data is pulled from [nflverse](https://github.com/nflverse) via [nflreadpy](https://github.com/nflverse/nflreadpy), processed with custom algorithms, and published as static JSON consumed by a GitHub Pages site in `/docs`.
+Data is pulled from [nflverse](https://github.com/nflverse) via [nflreadpy](https://github.com/nflverse/nflreadpy), processed into preseason composite rankings, and published as static JSON consumed by a GitHub Pages site in `/docs`.
 
-## Scoring
+## Strategy
 
-All metrics use **half-PPR** scoring:
+Rankings are built from the **latest completed season** using position-specific metrics that tend to stick year to year. Raw stats are min-max normalized within each position pool, then weighted into a composite score.
 
-```
-half_ppr = fantasy_points + 0.5 × receptions
-```
-
-where `fantasy_points` is the nflverse standard (non-PPR) total.
+RB, WR, and TE pages include a **Standard | Half-PPR | Full-PPR** selector (re-sorts by format weights). QB uses a single fixed formula.
 
 ## Project structure
 
 ```
 docs/           GitHub Pages site (HTML, JS, CSS, generated JSON)
 src/            Python pipeline (loaders, algorithms, export)
-.github/        Weekly data refresh workflow
+.github/        Monthly data refresh workflow
 ```
 
 ## Local development
@@ -43,7 +39,7 @@ Requires Python 3.10+.
 2. Settings → Pages → Build from branch `main`, folder `/docs`
 3. Site URL: `https://<username>.github.io/fantasy-tool/`
 
-Data refreshes automatically every Tuesday at 11:00 UTC via GitHub Actions. Trigger manually from the Actions tab with **workflow_dispatch**.
+Data refreshes automatically on the first Tuesday of each month via GitHub Actions. Trigger manually from the Actions tab with **workflow_dispatch**.
 
 ## Adding a new view
 

@@ -1,6 +1,6 @@
 import { fetchJSON, showError } from "./config.js";
 
-/** Wire column header info icons to a fixed-position tooltip. */
+/** Wire column header info icons to a fixed-position tooltip (idempotent). */
 function initColumnTooltips() {
   let tip = document.getElementById("col-tooltip");
   if (!tip) {
@@ -34,6 +34,8 @@ function initColumnTooltips() {
   };
 
   document.querySelectorAll(".col-info").forEach((el) => {
+    if (el.dataset.tooltipBound) return;
+    el.dataset.tooltipBound = "1";
     el.addEventListener("click", (e) => e.stopPropagation());
     el.addEventListener("mouseenter", () => show(el));
     el.addEventListener("focus", () => show(el));
@@ -41,8 +43,11 @@ function initColumnTooltips() {
     el.addEventListener("blur", hide);
   });
 
-  window.addEventListener("scroll", hide, true);
-  window.addEventListener("resize", hide);
+  if (!window.__colTooltipWindowBound) {
+    window.__colTooltipWindowBound = true;
+    window.addEventListener("scroll", hide, true);
+    window.addEventListener("resize", hide);
+  }
 }
 
 /** Load rankings JSON and render a DataTables table. */

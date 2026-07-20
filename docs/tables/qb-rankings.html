@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WR Rankings — Fantasy Reference</title>
+    <title>QB Rankings — Fantasy Reference</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" />
     <link rel="stylesheet" href="../css/site.css" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -12,11 +12,11 @@
   <body>
     <div class="container">
       <p class="site-header">
-        <a href="../index.html">Home</a><span class="sep"> · </span>WR Rankings
+        <a href="../index.html">Home</a><span class="sep"> · </span>QB Rankings
       </p>
       <p class="meta" data-manifest="summary">Loading…</p>
 
-      <div class="controls">
+      <div class="controls" hidden>
         <div>
           <label id="format-label">Format</label>
           <div id="format-toggle" class="format-toggle" role="group" aria-label="Scoring format"></div>
@@ -24,13 +24,13 @@
       </div>
 
       <div id="table-container" class="table-wrap">
-        <table id="wr-table" class="cell-border order-column">
+        <table id="qb-table" class="cell-border order-column">
           <thead>
             <tr>
               <th>
                 <span class="th-inner">
                   <span class="th-label">Rank</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Composite score rank for the selected format">i</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Composite score rank">i</span>
                 </span>
               </th>
               <th>
@@ -47,32 +47,32 @@
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">Tgt%</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Target share = player targets / team pass attempts">i</span>
+                  <span class="th-label">Pass Att</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Season pass attempts">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">Air</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Total receiving air yards">i</span>
+                  <span class="th-label">Rush Att</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Season rush attempts">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">aDOT</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Average depth of target = air yards / targets">i</span>
+                  <span class="th-label">TD%</span>
+                  <span class="col-info" tabindex="0" data-tooltip="TD rate = (pass TDs + rush TDs) / (pass attempts + rush attempts)">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">YPRR</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Yards per route run (receiving yards / routes on pass plays)">i</span>
+                  <span class="th-label">YPA</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Passing yards per attempt">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
                   <span class="th-label">Score</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Weighted composite of normalized target share, air yards/aDOT, and YPRR">i</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Fixed composite: pass attempts, rush attempts, TD rate, and yards per attempt">i</span>
                 </span>
               </th>
             </tr>
@@ -86,15 +86,15 @@
       import { mountRankingsPage } from "../js/rankings.js";
 
       mountRankingsPage({
-        position: "wr",
-        tableId: "wr-table",
-        showFormat: true,
+        position: "qb",
+        tableId: "qb-table",
+        showFormat: false,
         numericTargets: [2, 3, 4, 5, 6, 7],
         metricCells: (row) => `
-          <td>${(row.metrics.target_share * 100).toFixed(1)}%</td>
-          <td>${Math.round(row.metrics.air_yards)}</td>
-          <td>${row.metrics.adot.toFixed(1)}</td>
-          <td>${row.metrics.yprr.toFixed(2)}</td>`,
+          <td>${Math.round(row.metrics.pass_attempts)}</td>
+          <td>${Math.round(row.metrics.rush_attempts)}</td>
+          <td>${(row.metrics.td_rate * 100).toFixed(1)}%</td>
+          <td>${row.metrics.yards_per_attempt.toFixed(1)}</td>`,
       });
     </script>
   </body>

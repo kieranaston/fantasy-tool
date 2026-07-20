@@ -1,0 +1,984 @@
+{
+  "title": "RB Rankings \u2014 2025",
+  "season": 2025,
+  "position": "RB",
+  "formats": [
+    "standard",
+    "half_ppr",
+    "full_ppr"
+  ],
+  "rows": [
+    {
+      "player": "Bijan Robinson",
+      "team": "ATL",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.3816,
+        "yards_from_scrimmage": 2298.0,
+        "ypc": 5.15,
+        "yac_per_attempt": 2.3,
+        "touches_pg": 22.9
+      },
+      "components": {
+        "opportunity_share": 87.7,
+        "yards_from_scrimmage": 100.0,
+        "efficiency": 67.9
+      },
+      "scores": {
+        "standard": 88.7,
+        "half_ppr": 87.4,
+        "full_ppr": 86.2
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
+      "team_color": "#A71930"
+    },
+    {
+      "player": "Jonathan Taylor",
+      "team": "IND",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.3822,
+        "yards_from_scrimmage": 1963.0,
+        "ypc": 4.91,
+        "yac_per_attempt": 2.4,
+        "touches_pg": 22.2
+      },
+      "components": {
+        "opportunity_share": 87.9,
+        "yards_from_scrimmage": 80.7,
+        "efficiency": 65.5
+      },
+      "scores": {
+        "standard": 80.5,
+        "half_ppr": 81.3,
+        "full_ppr": 82.0
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
+      "team_color": "#002C5F"
+    },
+    {
+      "player": "De'Von Achane",
+      "team": "MIA",
+      "games_played": 16,
+      "metrics": {
+        "opportunity_share": 0.3546,
+        "yards_from_scrimmage": 1838.0,
+        "ypc": 5.67,
+        "yac_per_attempt": 3.0,
+        "touches_pg": 20.2
+      },
+      "components": {
+        "opportunity_share": 78.4,
+        "yards_from_scrimmage": 73.5,
+        "efficiency": 100.0
+      },
+      "scores": {
+        "standard": 80.8,
+        "half_ppr": 81.2,
+        "full_ppr": 81.7
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png",
+      "team_color": "#008E97"
+    },
+    {
+      "player": "Christian McCaffrey",
+      "team": "SF",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.4171,
+        "yards_from_scrimmage": 2126.0,
+        "ypc": 3.86,
+        "yac_per_attempt": 1.5,
+        "touches_pg": 25.9
+      },
+      "components": {
+        "opportunity_share": 100.0,
+        "yards_from_scrimmage": 90.1,
+        "efficiency": 16.1
+      },
+      "scores": {
+        "standard": 79.3,
+        "half_ppr": 80.2,
+        "full_ppr": 81.2
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
+      "team_color": "#AA0000"
+    },
+    {
+      "player": "Derrick Henry",
+      "team": "BAL",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.3531,
+        "yards_from_scrimmage": 1745.0,
+        "ypc": 5.2,
+        "yac_per_attempt": 2.4,
+        "touches_pg": 19.3
+      },
+      "components": {
+        "opportunity_share": 77.8,
+        "yards_from_scrimmage": 68.1,
+        "efficiency": 71.9
+      },
+      "scores": {
+        "standard": 72.7,
+        "half_ppr": 73.7,
+        "full_ppr": 74.7
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
+      "team_color": "#241773"
+    },
+    {
+      "player": "James Cook",
+      "team": "BUF",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.3349,
+        "yards_from_scrimmage": 1912.0,
+        "ypc": 5.25,
+        "yac_per_attempt": 2.2,
+        "touches_pg": 20.5
+      },
+      "components": {
+        "opportunity_share": 71.6,
+        "yards_from_scrimmage": 77.8,
+        "efficiency": 67.1
+      },
+      "scores": {
+        "standard": 73.2,
+        "half_ppr": 72.6,
+        "full_ppr": 71.9
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
+      "team_color": "#00338D"
+    },
+    {
+      "player": "Jahmyr Gibbs",
+      "team": "DET",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.3291,
+        "yards_from_scrimmage": 1839.0,
+        "ypc": 5.03,
+        "yac_per_attempt": 1.7,
+        "touches_pg": 19.8
+      },
+      "components": {
+        "opportunity_share": 69.5,
+        "yards_from_scrimmage": 73.5,
+        "efficiency": 47.7
+      },
+      "scores": {
+        "standard": 66.7,
+        "half_ppr": 66.3,
+        "full_ppr": 65.9
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
+      "team_color": "#0076B6"
+    },
+    {
+      "player": "Ashton Jeanty",
+      "team": "LV",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.3835,
+        "yards_from_scrimmage": 1321.0,
+        "ypc": 3.67,
+        "yac_per_attempt": 2.1,
+        "touches_pg": 19.9
+      },
+      "components": {
+        "opportunity_share": 88.4,
+        "yards_from_scrimmage": 43.7,
+        "efficiency": 29.4
+      },
+      "scores": {
+        "standard": 58.7,
+        "half_ppr": 63.2,
+        "full_ppr": 67.7
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png",
+      "team_color": "#000000"
+    },
+    {
+      "player": "Chase Brown",
+      "team": "CIN",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.3134,
+        "yards_from_scrimmage": 1456.0,
+        "ypc": 4.39,
+        "yac_per_attempt": 2.1,
+        "touches_pg": 18.8
+      },
+      "components": {
+        "opportunity_share": 64.1,
+        "yards_from_scrimmage": 51.5,
+        "efficiency": 45.4
+      },
+      "scores": {
+        "standard": 55.3,
+        "half_ppr": 56.6,
+        "full_ppr": 57.8
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
+      "team_color": "#FB4F14"
+    },
+    {
+      "player": "Saquon Barkley",
+      "team": "PHI",
+      "games_played": 16,
+      "metrics": {
+        "opportunity_share": 0.3385,
+        "yards_from_scrimmage": 1413.0,
+        "ypc": 4.07,
+        "yac_per_attempt": 1.6,
+        "touches_pg": 20.6
+      },
+      "components": {
+        "opportunity_share": 72.8,
+        "yards_from_scrimmage": 49.0,
+        "efficiency": 23.6
+      },
+      "scores": {
+        "standard": 53.4,
+        "half_ppr": 55.8,
+        "full_ppr": 58.2
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
+      "team_color": "#004C54"
+    },
+    {
+      "player": "Kyren Williams",
+      "team": "LA",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.2907,
+        "yards_from_scrimmage": 1533.0,
+        "ypc": 4.83,
+        "yac_per_attempt": 2.0,
+        "touches_pg": 18.2
+      },
+      "components": {
+        "opportunity_share": 56.2,
+        "yards_from_scrimmage": 55.9,
+        "efficiency": 52.2
+      },
+      "scores": {
+        "standard": 55.3,
+        "half_ppr": 55.3,
+        "full_ppr": 55.3
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
+      "team_color": "#003594"
+    },
+    {
+      "player": "Breece Hall",
+      "team": "NYJ",
+      "games_played": 16,
+      "metrics": {
+        "opportunity_share": 0.3063,
+        "yards_from_scrimmage": 1415.0,
+        "ypc": 4.38,
+        "yac_per_attempt": 1.8,
+        "touches_pg": 18.2
+      },
+      "components": {
+        "opportunity_share": 61.7,
+        "yards_from_scrimmage": 49.1,
+        "efficiency": 36.3
+      },
+      "scores": {
+        "standard": 51.6,
+        "half_ppr": 52.8,
+        "full_ppr": 54.1
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
+      "team_color": "#003F2D"
+    },
+    {
+      "player": "Javonte Williams",
+      "team": "DAL",
+      "games_played": 16,
+      "metrics": {
+        "opportunity_share": 0.2782,
+        "yards_from_scrimmage": 1338.0,
+        "ypc": 4.77,
+        "yac_per_attempt": 2.5,
+        "touches_pg": 18.9
+      },
+      "components": {
+        "opportunity_share": 51.9,
+        "yards_from_scrimmage": 44.7,
+        "efficiency": 65.4
+      },
+      "scores": {
+        "standard": 51.7,
+        "half_ppr": 52.4,
+        "full_ppr": 53.2
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
+      "team_color": "#002244"
+    },
+    {
+      "player": "Travis Etienne",
+      "team": "JAX",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.2966,
+        "yards_from_scrimmage": 1399.0,
+        "ypc": 4.26,
+        "yac_per_attempt": 2.1,
+        "touches_pg": 18.4
+      },
+      "components": {
+        "opportunity_share": 58.3,
+        "yards_from_scrimmage": 48.2,
+        "efficiency": 42.4
+      },
+      "scores": {
+        "standard": 51.1,
+        "half_ppr": 52.1,
+        "full_ppr": 53.1
+      },
+      "new_team": "NO",
+      "new_team_season": 2026,
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
+      "team_color": "#006778"
+    },
+    {
+      "player": "Rico Dowdle",
+      "team": "CAR",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.293,
+        "yards_from_scrimmage": 1373.0,
+        "ypc": 4.56,
+        "yac_per_attempt": 2.0,
+        "touches_pg": 16.8
+      },
+      "components": {
+        "opportunity_share": 57.1,
+        "yards_from_scrimmage": 46.7,
+        "efficiency": 46.1
+      },
+      "scores": {
+        "standard": 50.7,
+        "half_ppr": 51.8,
+        "full_ppr": 52.8
+      },
+      "new_team": "PIT",
+      "new_team_season": 2026,
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/car.png",
+      "team_color": "#0085CA"
+    },
+    {
+      "player": "Tony Pollard",
+      "team": "TEN",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.2985,
+        "yards_from_scrimmage": 1288.0,
+        "ypc": 4.47,
+        "yac_per_attempt": 1.8,
+        "touches_pg": 16.6
+      },
+      "components": {
+        "opportunity_share": 59.0,
+        "yards_from_scrimmage": 41.8,
+        "efficiency": 38.3
+      },
+      "scores": {
+        "standard": 48.0,
+        "half_ppr": 49.7,
+        "full_ppr": 51.4
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
+      "team_color": "#4495D2"
+    },
+    {
+      "player": "Jaylen Warren",
+      "team": "PIT",
+      "games_played": 16,
+      "metrics": {
+        "opportunity_share": 0.2675,
+        "yards_from_scrimmage": 1291.0,
+        "ypc": 4.54,
+        "yac_per_attempt": 2.4,
+        "touches_pg": 16.0
+      },
+      "components": {
+        "opportunity_share": 48.2,
+        "yards_from_scrimmage": 42.0,
+        "efficiency": 57.5
+      },
+      "scores": {
+        "standard": 47.6,
+        "half_ppr": 48.2,
+        "full_ppr": 48.8
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
+      "team_color": "#000000"
+    },
+    {
+      "player": "D'Andre Swift",
+      "team": "CHI",
+      "games_played": 16,
+      "metrics": {
+        "opportunity_share": 0.2512,
+        "yards_from_scrimmage": 1386.0,
+        "ypc": 4.87,
+        "yac_per_attempt": 1.9,
+        "touches_pg": 16.9
+      },
+      "components": {
+        "opportunity_share": 42.6,
+        "yards_from_scrimmage": 47.4,
+        "efficiency": 50.1
+      },
+      "scores": {
+        "standard": 46.0,
+        "half_ppr": 45.5,
+        "full_ppr": 45.1
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
+      "team_color": "#0B162A"
+    },
+    {
+      "player": "Josh Jacobs",
+      "team": "GB",
+      "games_played": 15,
+      "metrics": {
+        "opportunity_share": 0.2834,
+        "yards_from_scrimmage": 1211.0,
+        "ypc": 3.97,
+        "yac_per_attempt": 2.0,
+        "touches_pg": 18.5
+      },
+      "components": {
+        "opportunity_share": 53.7,
+        "yards_from_scrimmage": 37.3,
+        "efficiency": 33.2
+      },
+      "scores": {
+        "standard": 43.0,
+        "half_ppr": 44.7,
+        "full_ppr": 46.3
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
+      "team_color": "#203731"
+    },
+    {
+      "player": "Kenneth Walker III",
+      "team": "SEA",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.2601,
+        "yards_from_scrimmage": 1309.0,
+        "ypc": 4.65,
+        "yac_per_attempt": 1.8,
+        "touches_pg": 15.1
+      },
+      "components": {
+        "opportunity_share": 45.7,
+        "yards_from_scrimmage": 43.0,
+        "efficiency": 42.2
+      },
+      "scores": {
+        "standard": 43.9,
+        "half_ppr": 44.2,
+        "full_ppr": 44.5
+      },
+      "new_team": "KC",
+      "new_team_season": 2026,
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
+      "team_color": "#002244"
+    },
+    {
+      "player": "Quinshon Judkins",
+      "team": "CLE",
+      "games_played": 14,
+      "metrics": {
+        "opportunity_share": 0.2717,
+        "yards_from_scrimmage": 998.0,
+        "ypc": 3.6,
+        "yac_per_attempt": 2.2,
+        "touches_pg": 19.0
+      },
+      "components": {
+        "opportunity_share": 49.7,
+        "yards_from_scrimmage": 25.1,
+        "efficiency": 30.8
+      },
+      "scores": {
+        "standard": 36.1,
+        "half_ppr": 38.5,
+        "full_ppr": 41.0
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
+      "team_color": "#FF3C00"
+    },
+    {
+      "player": "TreVeyon Henderson",
+      "team": "NE",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.2229,
+        "yards_from_scrimmage": 1132.0,
+        "ypc": 5.06,
+        "yac_per_attempt": 2.0,
+        "touches_pg": 13.1
+      },
+      "components": {
+        "opportunity_share": 32.8,
+        "yards_from_scrimmage": 32.8,
+        "efficiency": 57.1
+      },
+      "scores": {
+        "standard": 37.7,
+        "half_ppr": 37.7,
+        "full_ppr": 37.7
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
+      "team_color": "#002244"
+    },
+    {
+      "player": "Kenny Gainwell",
+      "team": "PIT",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.2079,
+        "yards_from_scrimmage": 1023.0,
+        "ypc": 4.71,
+        "yac_per_attempt": 2.1,
+        "touches_pg": 11.7
+      },
+      "components": {
+        "opportunity_share": 27.6,
+        "yards_from_scrimmage": 26.5,
+        "efficiency": 52.4
+      },
+      "scores": {
+        "standard": 32.1,
+        "half_ppr": 32.2,
+        "full_ppr": 32.3
+      },
+      "new_team": "TB",
+      "new_team_season": 2026,
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
+      "team_color": "#000000"
+    },
+    {
+      "player": "Tyrone Tracy Jr.",
+      "team": "NYG",
+      "games_played": 15,
+      "metrics": {
+        "opportunity_share": 0.216,
+        "yards_from_scrimmage": 1028.0,
+        "ypc": 4.2,
+        "yac_per_attempt": 1.7,
+        "touches_pg": 14.9
+      },
+      "components": {
+        "opportunity_share": 30.4,
+        "yards_from_scrimmage": 26.8,
+        "efficiency": 29.5
+      },
+      "scores": {
+        "standard": 28.8,
+        "half_ppr": 29.1,
+        "full_ppr": 29.5
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
+      "team_color": "#0B2265"
+    },
+    {
+      "player": "Jordan Mason",
+      "team": "MIN",
+      "games_played": 16,
+      "metrics": {
+        "opportunity_share": 0.1957,
+        "yards_from_scrimmage": 809.0,
+        "ypc": 4.77,
+        "yac_per_attempt": 2.4,
+        "touches_pg": 10.9
+      },
+      "components": {
+        "opportunity_share": 23.4,
+        "yards_from_scrimmage": 14.2,
+        "efficiency": 62.4
+      },
+      "scores": {
+        "standard": 27.5,
+        "half_ppr": 28.4,
+        "full_ppr": 29.4
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
+      "team_color": "#4F2683"
+    },
+    {
+      "player": "Rhamondre Stevenson",
+      "team": "NE",
+      "games_played": 14,
+      "metrics": {
+        "opportunity_share": 0.1677,
+        "yards_from_scrimmage": 948.0,
+        "ypc": 4.64,
+        "yac_per_attempt": 2.8,
+        "touches_pg": 11.9
+      },
+      "components": {
+        "opportunity_share": 13.6,
+        "yards_from_scrimmage": 22.2,
+        "efficiency": 71.4
+      },
+      "scores": {
+        "standard": 28.6,
+        "half_ppr": 27.7,
+        "full_ppr": 26.9
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
+      "team_color": "#002244"
+    },
+    {
+      "player": "Jacory Croskey-Merritt",
+      "team": "WAS",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.1973,
+        "yards_from_scrimmage": 873.0,
+        "ypc": 4.6,
+        "yac_per_attempt": 2.1,
+        "touches_pg": 11.1
+      },
+      "components": {
+        "opportunity_share": 23.9,
+        "yards_from_scrimmage": 17.9,
+        "efficiency": 49.9
+      },
+      "scores": {
+        "standard": 26.7,
+        "half_ppr": 27.3,
+        "full_ppr": 27.9
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
+      "team_color": "#5A1414"
+    },
+    {
+      "player": "David Montgomery",
+      "team": "DET",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.1826,
+        "yards_from_scrimmage": 908.0,
+        "ypc": 4.53,
+        "yac_per_attempt": 2.2,
+        "touches_pg": 11.0
+      },
+      "components": {
+        "opportunity_share": 18.8,
+        "yards_from_scrimmage": 19.9,
+        "efficiency": 51.4
+      },
+      "scores": {
+        "standard": 25.8,
+        "half_ppr": 25.7,
+        "full_ppr": 25.5
+      },
+      "new_team": "HOU",
+      "new_team_season": 2026,
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
+      "team_color": "#0076B6"
+    },
+    {
+      "player": "Woody Marks",
+      "team": "HOU",
+      "games_played": 16,
+      "metrics": {
+        "opportunity_share": 0.2195,
+        "yards_from_scrimmage": 911.0,
+        "ypc": 3.59,
+        "yac_per_attempt": 1.8,
+        "touches_pg": 14.5
+      },
+      "components": {
+        "opportunity_share": 31.6,
+        "yards_from_scrimmage": 20.1,
+        "efficiency": 18.8
+      },
+      "scores": {
+        "standard": 24.4,
+        "half_ppr": 25.6,
+        "full_ppr": 26.7
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
+      "team_color": "#03202F"
+    },
+    {
+      "player": "Kyle Monangai",
+      "team": "CHI",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.1844,
+        "yards_from_scrimmage": 947.0,
+        "ypc": 4.63,
+        "yac_per_attempt": 1.9,
+        "touches_pg": 11.7
+      },
+      "components": {
+        "opportunity_share": 19.5,
+        "yards_from_scrimmage": 22.1,
+        "efficiency": 44.8
+      },
+      "scores": {
+        "standard": 25.6,
+        "half_ppr": 25.3,
+        "full_ppr": 25.1
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
+      "team_color": "#0B162A"
+    },
+    {
+      "player": "Zach Charbonnet",
+      "team": "SEA",
+      "games_played": 16,
+      "metrics": {
+        "opportunity_share": 0.2105,
+        "yards_from_scrimmage": 874.0,
+        "ypc": 3.97,
+        "yac_per_attempt": 1.8,
+        "touches_pg": 13.0
+      },
+      "components": {
+        "opportunity_share": 28.5,
+        "yards_from_scrimmage": 17.9,
+        "efficiency": 27.2
+      },
+      "scores": {
+        "standard": 24.0,
+        "half_ppr": 25.1,
+        "full_ppr": 26.1
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
+      "team_color": "#002244"
+    },
+    {
+      "player": "J.K. Dobbins",
+      "team": "DEN",
+      "games_played": 10,
+      "metrics": {
+        "opportunity_share": 0.1562,
+        "yards_from_scrimmage": 809.0,
+        "ypc": 5.05,
+        "yac_per_attempt": 2.4,
+        "touches_pg": 16.7
+      },
+      "components": {
+        "opportunity_share": 9.7,
+        "yards_from_scrimmage": 14.2,
+        "efficiency": 68.6
+      },
+      "scores": {
+        "standard": 23.3,
+        "half_ppr": 22.8,
+        "full_ppr": 22.4
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
+      "team_color": "#002244"
+    },
+    {
+      "player": "Kimani Vidal",
+      "team": "LAC",
+      "games_played": 13,
+      "metrics": {
+        "opportunity_share": 0.171,
+        "yards_from_scrimmage": 779.0,
+        "ypc": 4.15,
+        "yac_per_attempt": 2.4,
+        "touches_pg": 13.6
+      },
+      "components": {
+        "opportunity_share": 14.8,
+        "yards_from_scrimmage": 12.4,
+        "efficiency": 48.8
+      },
+      "scores": {
+        "standard": 20.6,
+        "half_ppr": 20.9,
+        "full_ppr": 21.1
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
+      "team_color": "#007BC7"
+    },
+    {
+      "player": "RJ Harvey",
+      "team": "DEN",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.1908,
+        "yards_from_scrimmage": 896.0,
+        "ypc": 3.7,
+        "yac_per_attempt": 1.8,
+        "touches_pg": 12.0
+      },
+      "components": {
+        "opportunity_share": 21.7,
+        "yards_from_scrimmage": 19.2,
+        "efficiency": 21.3
+      },
+      "scores": {
+        "standard": 20.6,
+        "half_ppr": 20.9,
+        "full_ppr": 21.1
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
+      "team_color": "#002244"
+    },
+    {
+      "player": "Aaron Jones",
+      "team": "MIN",
+      "games_played": 12,
+      "metrics": {
+        "opportunity_share": 0.1935,
+        "yards_from_scrimmage": 747.0,
+        "ypc": 4.15,
+        "yac_per_attempt": 1.8,
+        "touches_pg": 14.4
+      },
+      "components": {
+        "opportunity_share": 22.6,
+        "yards_from_scrimmage": 10.6,
+        "efficiency": 31.3
+      },
+      "scores": {
+        "standard": 19.5,
+        "half_ppr": 20.7,
+        "full_ppr": 21.9
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
+      "team_color": "#4F2683"
+    },
+    {
+      "player": "Bucky Irving",
+      "team": "TB",
+      "games_played": 10,
+      "metrics": {
+        "opportunity_share": 0.2019,
+        "yards_from_scrimmage": 865.0,
+        "ypc": 3.4,
+        "yac_per_attempt": 1.6,
+        "touches_pg": 20.8
+      },
+      "components": {
+        "opportunity_share": 25.5,
+        "yards_from_scrimmage": 17.4,
+        "efficiency": 8.8
+      },
+      "scores": {
+        "standard": 18.9,
+        "half_ppr": 19.7,
+        "full_ppr": 20.5
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
+      "team_color": "#A71930"
+    },
+    {
+      "player": "Kareem Hunt",
+      "team": "KC",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.1854,
+        "yards_from_scrimmage": 754.0,
+        "ypc": 3.75,
+        "yac_per_attempt": 2.0,
+        "touches_pg": 11.1
+      },
+      "components": {
+        "opportunity_share": 19.8,
+        "yards_from_scrimmage": 11.0,
+        "efficiency": 28.3
+      },
+      "scores": {
+        "standard": 18.0,
+        "half_ppr": 18.9,
+        "full_ppr": 19.7
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
+      "team_color": "#E31837"
+    },
+    {
+      "player": "Rachaad White",
+      "team": "TB",
+      "games_played": 17,
+      "metrics": {
+        "opportunity_share": 0.1718,
+        "yards_from_scrimmage": 790.0,
+        "ypc": 4.33,
+        "yac_per_attempt": 1.5,
+        "touches_pg": 10.4
+      },
+      "components": {
+        "opportunity_share": 15.1,
+        "yards_from_scrimmage": 13.1,
+        "efficiency": 26.4
+      },
+      "scores": {
+        "standard": 16.6,
+        "half_ppr": 16.8,
+        "full_ppr": 17.0
+      },
+      "new_team": "WAS",
+      "new_team_season": 2026,
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
+      "team_color": "#A71930"
+    },
+    {
+      "player": "Chuba Hubbard",
+      "team": "CAR",
+      "games_played": 15,
+      "metrics": {
+        "opportunity_share": 0.1773,
+        "yards_from_scrimmage": 734.0,
+        "ypc": 3.81,
+        "yac_per_attempt": 1.8,
+        "touches_pg": 11.5
+      },
+      "components": {
+        "opportunity_share": 17.0,
+        "yards_from_scrimmage": 9.9,
+        "efficiency": 23.8
+      },
+      "scores": {
+        "standard": 15.5,
+        "half_ppr": 16.2,
+        "full_ppr": 16.9
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/car.png",
+      "team_color": "#0085CA"
+    },
+    {
+      "player": "Omarion Hampton",
+      "team": "LAC",
+      "games_played": 9,
+      "metrics": {
+        "opportunity_share": 0.1536,
+        "yards_from_scrimmage": 737.0,
+        "ypc": 4.4,
+        "yac_per_attempt": 1.7,
+        "touches_pg": 17.7
+      },
+      "components": {
+        "opportunity_share": 8.8,
+        "yards_from_scrimmage": 10.0,
+        "efficiency": 33.7
+      },
+      "scores": {
+        "standard": 14.3,
+        "half_ppr": 14.1,
+        "full_ppr": 14.0
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
+      "team_color": "#007BC7"
+    }
+  ]
+}

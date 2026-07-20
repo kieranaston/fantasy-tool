@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WR Rankings — Fantasy Reference</title>
+    <title>TE Rankings — Fantasy Reference</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" />
     <link rel="stylesheet" href="../css/site.css" />
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -12,7 +12,7 @@
   <body>
     <div class="container">
       <p class="site-header">
-        <a href="../index.html">Home</a><span class="sep"> · </span>WR Rankings
+        <a href="../index.html">Home</a><span class="sep"> · </span>TE Rankings
       </p>
       <p class="meta" data-manifest="summary">Loading…</p>
 
@@ -24,7 +24,7 @@
       </div>
 
       <div id="table-container" class="table-wrap">
-        <table id="wr-table" class="cell-border order-column">
+        <table id="te-table" class="cell-border order-column">
           <thead>
             <tr>
               <th>
@@ -47,32 +47,26 @@
               </th>
               <th>
                 <span class="th-inner">
+                  <span class="th-label">Yds/G</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Receiving yards per game">i</span>
+                </span>
+              </th>
+              <th>
+                <span class="th-inner">
                   <span class="th-label">Tgt%</span>
                   <span class="col-info" tabindex="0" data-tooltip="Target share = player targets / team pass attempts">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">Air</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Total receiving air yards">i</span>
-                </span>
-              </th>
-              <th>
-                <span class="th-inner">
-                  <span class="th-label">aDOT</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Average depth of target = air yards / targets">i</span>
-                </span>
-              </th>
-              <th>
-                <span class="th-inner">
-                  <span class="th-label">YPRR</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Yards per route run (receiving yards / routes on pass plays)">i</span>
+                  <span class="th-label">TD%</span>
+                  <span class="col-info" tabindex="0" data-tooltip="TD rate = receiving touchdowns / targets">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
                   <span class="th-label">Score</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Weighted composite of normalized target share, air yards/aDOT, and YPRR">i</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Weighted composite of normalized receiving YPG, target share, and TD rate">i</span>
                 </span>
               </th>
             </tr>
@@ -86,15 +80,14 @@
       import { mountRankingsPage } from "../js/rankings.js";
 
       mountRankingsPage({
-        position: "wr",
-        tableId: "wr-table",
+        position: "te",
+        tableId: "te-table",
         showFormat: true,
-        numericTargets: [2, 3, 4, 5, 6, 7],
+        numericTargets: [2, 3, 4, 5, 6],
         metricCells: (row) => `
+          <td>${row.metrics.receiving_ypg.toFixed(1)}</td>
           <td>${(row.metrics.target_share * 100).toFixed(1)}%</td>
-          <td>${Math.round(row.metrics.air_yards)}</td>
-          <td>${row.metrics.adot.toFixed(1)}</td>
-          <td>${row.metrics.yprr.toFixed(2)}</td>`,
+          <td>${(row.metrics.td_rate * 100).toFixed(1)}%</td>`,
       });
     </script>
   </body>

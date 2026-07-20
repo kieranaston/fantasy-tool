@@ -2,7 +2,8 @@ name: Refresh data
 
 on:
   schedule:
-    - cron: "0 11 * * 2"
+    # First Tuesday of each month at 11:00 UTC
+    - cron: "0 11 1-7 * 2"
   workflow_dispatch:
 
 permissions:
@@ -40,7 +41,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No data changes to commit."
           else
-            WEEK=$(python -c "import json; print(json.load(open('docs/data/manifest.json'))['week'])")
-            git commit -m "chore: refresh data through week ${WEEK} [skip ci]"
+            git commit -m "chore: refresh preseason rankings [skip ci]"
             git push
           fi

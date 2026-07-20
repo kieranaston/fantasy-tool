@@ -1,0 +1,1022 @@
+{
+  "title": "WR Rankings \u2014 2025",
+  "season": 2025,
+  "position": "WR",
+  "formats": [
+    "standard",
+    "half_ppr",
+    "full_ppr"
+  ],
+  "rows": [
+    {
+      "player": "Jaxon Smith-Njigba",
+      "team": "SEA",
+      "games_played": 17,
+      "metrics": {
+        "target_share": 0.3389,
+        "air_yards": 1833.0,
+        "adot": 11.25,
+        "yprr": 2.98,
+        "yprr_from_routes": true,
+        "targets_pg": 9.6
+      },
+      "components": {
+        "target_share": 100.0,
+        "air_adot": 74.5,
+        "yprr": 100.0
+      },
+      "scores": {
+        "standard": 91.1,
+        "half_ppr": 92.3,
+        "full_ppr": 93.6
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
+      "team_color": "#002244"
+    },
+    {
+      "player": "Puka Nacua",
+      "team": "LA",
+      "games_played": 16,
+      "metrics": {
+        "target_share": 0.2776,
+        "air_yards": 1566.0,
+        "adot": 9.43,
+        "yprr": 2.84,
+        "yprr_from_routes": true,
+        "targets_pg": 10.4
+      },
+      "components": {
+        "target_share": 75.2,
+        "air_adot": 59.7,
+        "yprr": 93.1
+      },
+      "scores": {
+        "standard": 74.2,
+        "half_ppr": 74.1,
+        "full_ppr": 74.0
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
+      "team_color": "#003594"
+    },
+    {
+      "player": "Amon-Ra St. Brown",
+      "team": "DET",
+      "games_played": 17,
+      "metrics": {
+        "target_share": 0.2955,
+        "air_yards": 1390.0,
+        "adot": 8.08,
+        "yprr": 2.37,
+        "yprr_from_routes": true,
+        "targets_pg": 10.1
+      },
+      "components": {
+        "target_share": 82.5,
+        "air_adot": 49.4,
+        "yprr": 70.0
+      },
+      "scores": {
+        "standard": 67.8,
+        "half_ppr": 70.1,
+        "full_ppr": 72.3
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
+      "team_color": "#0076B6"
+    },
+    {
+      "player": "Ja'Marr Chase",
+      "team": "CIN",
+      "games_played": 16,
+      "metrics": {
+        "target_share": 0.2891,
+        "air_yards": 1570.0,
+        "adot": 8.49,
+        "yprr": 2.13,
+        "yprr_from_routes": true,
+        "targets_pg": 11.6
+      },
+      "components": {
+        "target_share": 79.9,
+        "air_adot": 56.7,
+        "yprr": 57.9
+      },
+      "scores": {
+        "standard": 66.3,
+        "half_ppr": 68.5,
+        "full_ppr": 70.8
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
+      "team_color": "#FB4F14"
+    },
+    {
+      "player": "Zay Flowers",
+      "team": "BAL",
+      "games_played": 17,
+      "metrics": {
+        "target_share": 0.2796,
+        "air_yards": 1204.0,
+        "adot": 10.2,
+        "yprr": 2.38,
+        "yprr_from_routes": true,
+        "targets_pg": 6.9
+      },
+      "components": {
+        "target_share": 76.1,
+        "air_adot": 50.2,
+        "yprr": 70.5
+      },
+      "scores": {
+        "standard": 65.6,
+        "half_ppr": 67.2,
+        "full_ppr": 68.8
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
+      "team_color": "#241773"
+    },
+    {
+      "player": "Chris Olave",
+      "team": "NO",
+      "games_played": 16,
+      "metrics": {
+        "target_share": 0.264,
+        "air_yards": 1841.0,
+        "adot": 11.8,
+        "yprr": 1.88,
+        "yprr_from_routes": true,
+        "targets_pg": 9.8
+      },
+      "components": {
+        "target_share": 69.7,
+        "air_adot": 76.6,
+        "yprr": 45.7
+      },
+      "scores": {
+        "standard": 66.1,
+        "half_ppr": 67.0,
+        "full_ppr": 67.8
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
+      "team_color": "#D3BC8D"
+    },
+    {
+      "player": "Justin Jefferson",
+      "team": "MIN",
+      "games_played": 17,
+      "metrics": {
+        "target_share": 0.2913,
+        "air_yards": 1438.0,
+        "adot": 10.2,
+        "yprr": 1.79,
+        "yprr_from_routes": true,
+        "targets_pg": 8.3
+      },
+      "components": {
+        "target_share": 80.8,
+        "air_adot": 57.9,
+        "yprr": 41.2
+      },
+      "scores": {
+        "standard": 62.9,
+        "half_ppr": 66.0,
+        "full_ppr": 69.1
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
+      "team_color": "#4F2683"
+    },
+    {
+      "player": "A.J. Brown",
+      "team": "PHI",
+      "games_played": 15,
+      "metrics": {
+        "target_share": 0.2435,
+        "air_yards": 1425.0,
+        "adot": 11.78,
+        "yprr": 1.84,
+        "yprr_from_routes": true,
+        "targets_pg": 8.1
+      },
+      "components": {
+        "target_share": 61.4,
+        "air_adot": 62.7,
+        "yprr": 43.3
+      },
+      "scores": {
+        "standard": 57.3,
+        "half_ppr": 58.2,
+        "full_ppr": 59.0
+      },
+      "new_team": "NE",
+      "new_team_season": 2026,
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
+      "team_color": "#004C54"
+    },
+    {
+      "player": "George Pickens",
+      "team": "DAL",
+      "games_played": 17,
+      "metrics": {
+        "target_share": 0.2196,
+        "air_yards": 1547.0,
+        "adot": 11.29,
+        "yprr": 2.18,
+        "yprr_from_routes": true,
+        "targets_pg": 8.1
+      },
+      "components": {
+        "target_share": 51.8,
+        "air_adot": 65.1,
+        "yprr": 60.1
+      },
+      "scores": {
+        "standard": 58.5,
+        "half_ppr": 57.4,
+        "full_ppr": 56.4
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
+      "team_color": "#002244"
+    },
+    {
+      "player": "Wan'Dale Robinson",
+      "team": "NYG",
+      "games_played": 16,
+      "metrics": {
+        "target_share": 0.2662,
+        "air_yards": 1187.0,
+        "adot": 8.48,
+        "yprr": 1.73,
+        "yprr_from_routes": true,
+        "targets_pg": 8.8
+      },
+      "components": {
+        "target_share": 70.6,
+        "air_adot": 44.0,
+        "yprr": 37.9
+      },
+      "scores": {
+        "standard": 53.1,
+        "half_ppr": 56.1,
+        "full_ppr": 59.0
+      },
+      "new_team": "TEN",
+      "new_team_season": 2026,
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
+      "team_color": "#0B2265"
+    },
+    {
+      "player": "Emeka Egbuka",
+      "team": "TB",
+      "games_played": 17,
+      "metrics": {
+        "target_share": 0.2276,
+        "air_yards": 1572.0,
+        "adot": 12.38,
+        "yprr": 1.63,
+        "yprr_from_routes": true,
+        "targets_pg": 7.5
+      },
+      "components": {
+        "target_share": 55.0,
+        "air_adot": 69.5,
+        "yprr": 33.2
+      },
+      "scores": {
+        "standard": 54.6,
+        "half_ppr": 55.0,
+        "full_ppr": 55.4
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
+      "team_color": "#A71930"
+    },
+    {
+      "player": "Nico Collins",
+      "team": "HOU",
+      "games_played": 15,
+      "metrics": {
+        "target_share": 0.2062,
+        "air_yards": 1529.0,
+        "adot": 12.74,
+        "yprr": 2.06,
+        "yprr_from_routes": true,
+        "targets_pg": 8.0
+      },
+      "components": {
+        "target_share": 46.4,
+        "air_adot": 69.3,
+        "yprr": 54.2
+      },
+      "scores": {
+        "standard": 56.4,
+        "half_ppr": 54.8,
+        "full_ppr": 53.3
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
+      "team_color": "#03202F"
+    },
+    {
+      "player": "Tetairoa McMillan",
+      "team": "CAR",
+      "games_played": 17,
+      "metrics": {
+        "target_share": 0.2369,
+        "air_yards": 1410.0,
+        "adot": 11.56,
+        "yprr": 1.62,
+        "yprr_from_routes": true,
+        "targets_pg": 7.2
+      },
+      "components": {
+        "target_share": 58.8,
+        "air_adot": 61.4,
+        "yprr": 32.5
+      },
+      "scores": {
+        "standard": 53.1,
+        "half_ppr": 54.3,
+        "full_ppr": 55.5
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/car.png",
+      "team_color": "#0085CA"
+    },
+    {
+      "player": "Jaylen Waddle",
+      "team": "MIA",
+      "games_played": 16,
+      "metrics": {
+        "target_share": 0.2088,
+        "air_yards": 1306.0,
+        "adot": 13.06,
+        "yprr": 2.12,
+        "yprr_from_routes": true,
+        "targets_pg": 6.2
+      },
+      "components": {
+        "target_share": 47.4,
+        "air_adot": 62.9,
+        "yprr": 57.4
+      },
+      "scores": {
+        "standard": 55.3,
+        "half_ppr": 54.0,
+        "full_ppr": 52.8
+      },
+      "new_team": "DEN",
+      "new_team_season": 2026,
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png",
+      "team_color": "#008E97"
+    },
+    {
+      "player": "DeVonta Smith",
+      "team": "PHI",
+      "games_played": 17,
+      "metrics": {
+        "target_share": 0.2274,
+        "air_yards": 1355.0,
+        "adot": 11.99,
+        "yprr": 1.73,
+        "yprr_from_routes": true,
+        "targets_pg": 6.6
+      },
+      "components": {
+        "target_share": 54.9,
+        "air_adot": 61.0,
+        "yprr": 37.8
+      },
+      "scores": {
+        "standard": 52.8,
+        "half_ppr": 53.3,
+        "full_ppr": 53.9
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
+      "team_color": "#004C54"
+    },
+    {
+      "player": "Drake London",
+      "team": "ATL",
+      "games_played": 12,
+      "metrics": {
+        "target_share": 0.2055,
+        "air_yards": 1221.0,
+        "adot": 10.9,
+        "yprr": 2.2,
+        "yprr_from_routes": true,
+        "targets_pg": 9.3
+      },
+      "components": {
+        "target_share": 46.1,
+        "air_adot": 53.0,
+        "yprr": 61.3
+      },
+      "scores": {
+        "standard": 52.3,
+        "half_ppr": 51.2,
+        "full_ppr": 50.1
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
+      "team_color": "#A71930"
+    },
+    {
+      "player": "Alec Pierce",
+      "team": "IND",
+      "games_played": 15,
+      "metrics": {
+        "target_share": 0.1536,
+        "air_yards": 1593.0,
+        "adot": 18.96,
+        "yprr": 2.0,
+        "yprr_from_routes": true,
+        "targets_pg": 5.6
+      },
+      "components": {
+        "target_share": 25.1,
+        "air_adot": 91.7,
+        "yprr": 51.5
+      },
+      "scores": {
+        "standard": 55.0,
+        "half_ppr": 50.4,
+        "full_ppr": 45.7
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
+      "team_color": "#002C5F"
+    },
+    {
+      "player": "CeeDee Lamb",
+      "team": "DAL",
+      "games_played": 13,
+      "metrics": {
+        "target_share": 0.1875,
+        "air_yards": 1403.0,
+        "adot": 11.99,
+        "yprr": 2.18,
+        "yprr_from_routes": true,
+        "targets_pg": 9.0
+      },
+      "components": {
+        "target_share": 38.8,
+        "air_adot": 62.6,
+        "yprr": 60.4
+      },
+      "scores": {
+        "standard": 52.5,
+        "half_ppr": 50.3,
+        "full_ppr": 48.0
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
+      "team_color": "#002244"
+    },
+    {
+      "player": "Courtland Sutton",
+      "team": "DEN",
+      "games_played": 17,
+      "metrics": {
+        "target_share": 0.2023,
+        "air_yards": 1542.0,
+        "adot": 12.44,
+        "yprr": 1.38,
+        "yprr_from_routes": true,
+        "targets_pg": 7.3
+      },
+      "components": {
+        "target_share": 44.8,
+        "air_adot": 68.7,
+        "yprr": 20.6
+      },
+      "scores": {
+        "standard": 47.1,
+        "half_ppr": 47.1,
+        "full_ppr": 47.1
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
+      "team_color": "#002244"
+    },
+    {
+      "player": "Michael Wilson",
+      "team": "ARI",
+      "games_played": 17,
+      "metrics": {
+        "target_share": 0.1941,
+        "air_yards": 1502.0,
+        "adot": 11.92,
+        "yprr": 1.49,
+        "yprr_from_routes": true,
+        "targets_pg": 7.4
+      },
+      "components": {
+        "target_share": 41.5,
+        "air_adot": 65.7,
+        "yprr": 26.3
+      },
+      "scores": {
+        "standard": 46.2,
+        "half_ppr": 45.7,
+        "full_ppr": 45.3
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
+      "team_color": "#97233F"
+    },
+    {
+      "player": "Davante Adams",
+      "team": "LA",
+      "games_played": 14,
+      "metrics": {
+        "target_share": 0.1906,
+        "air_yards": 1444.0,
+        "adot": 12.67,
+        "yprr": 1.47,
+        "yprr_from_routes": true,
+        "targets_pg": 8.1
+      },
+      "components": {
+        "target_share": 40.1,
+        "air_adot": 66.2,
+        "yprr": 25.3
+      },
+      "scores": {
+        "standard": 45.5,
+        "half_ppr": 45.0,
+        "full_ppr": 44.4
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
+      "team_color": "#003594"
+    },
+    {
+      "player": "Jameson Williams",
+      "team": "DET",
+      "games_played": 17,
+      "metrics": {
+        "target_share": 0.1753,
+        "air_yards": 1289.0,
+        "adot": 12.64,
+        "yprr": 1.8,
+        "yprr_from_routes": true,
+        "targets_pg": 6.0
+      },
+      "components": {
+        "target_share": 33.9,
+        "air_adot": 60.9,
+        "yprr": 41.4
+      },
+      "scores": {
+        "standard": 45.2,
+        "half_ppr": 43.5,
+        "full_ppr": 41.8
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
+      "team_color": "#0076B6"
+    },
+    {
+      "player": "Keenan Allen",
+      "team": "LAC",
+      "games_played": 17,
+      "metrics": {
+        "target_share": 0.2144,
+        "air_yards": 1027.0,
+        "adot": 8.42,
+        "yprr": 1.49,
+        "yprr_from_routes": true,
+        "targets_pg": 7.2
+      },
+      "components": {
+        "target_share": 49.7,
+        "air_adot": 38.4,
+        "yprr": 25.9
+      },
+      "scores": {
+        "standard": 39.8,
+        "half_ppr": 41.6,
+        "full_ppr": 43.3
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
+      "team_color": "#007BC7"
+    },
+    {
+      "player": "Parker Washington",
+      "team": "JAX",
+      "games_played": 16,
+      "metrics": {
+        "target_share": 0.1687,
+        "air_yards": 1187.0,
+        "adot": 12.49,
+        "yprr": 1.83,
+        "yprr_from_routes": true,
+        "targets_pg": 5.9
+      },
+      "components": {
+        "target_share": 31.3,
+        "air_adot": 57.1,
+        "yprr": 43.1
+      },
+      "scores": {
+        "standard": 43.3,
+        "half_ppr": 41.4,
+        "full_ppr": 39.5
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
+      "team_color": "#006778"
+    },
+    {
+      "player": "Stefon Diggs",
+      "team": "NE",
+      "games_played": 17,
+      "metrics": {
+        "target_share": 0.2032,
+        "air_yards": 871.0,
+        "adot": 8.54,
+        "yprr": 1.78,
+        "yprr_from_routes": true,
+        "targets_pg": 6.0
+      },
+      "components": {
+        "target_share": 45.2,
+        "air_adot": 33.6,
+        "yprr": 40.7
+      },
+      "scores": {
+        "standard": 40.0,
+        "half_ppr": 40.8,
+        "full_ppr": 41.6
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
+      "team_color": "#002244"
+    },
+    {
+      "player": "Romeo Doubs",
+      "team": "GB",
+      "games_played": 16,
+      "metrics": {
+        "target_share": 0.1738,
+        "air_yards": 1085.0,
+        "adot": 12.76,
+        "yprr": 1.53,
+        "yprr_from_routes": true,
+        "targets_pg": 5.3
+      },
+      "components": {
+        "target_share": 33.3,
+        "air_adot": 54.6,
+        "yprr": 27.9
+      },
+      "scores": {
+        "standard": 39.4,
+        "half_ppr": 38.6,
+        "full_ppr": 37.8
+      },
+      "new_team": "NE",
+      "new_team_season": 2026,
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
+      "team_color": "#203731"
+    },
+    {
+      "player": "Troy Franklin",
+      "team": "DEN",
+      "games_played": 17,
+      "metrics": {
+        "target_share": 0.1697,
+        "air_yards": 1321.0,
+        "adot": 12.7,
+        "yprr": 1.36,
+        "yprr_from_routes": true,
+        "targets_pg": 6.1
+      },
+      "components": {
+        "target_share": 31.6,
+        "air_adot": 62.2,
+        "yprr": 19.7
+      },
+      "scores": {
+        "standard": 39.3,
+        "half_ppr": 38.4,
+        "full_ppr": 37.5
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
+      "team_color": "#002244"
+    },
+    {
+      "player": "Brian Thomas Jr.",
+      "team": "JAX",
+      "games_played": 14,
+      "metrics": {
+        "target_share": 0.1616,
+        "air_yards": 1315.0,
+        "adot": 14.45,
+        "yprr": 1.34,
+        "yprr_from_routes": true,
+        "targets_pg": 6.5
+      },
+      "components": {
+        "target_share": 28.4,
+        "air_adot": 67.7,
+        "yprr": 18.7
+      },
+      "scores": {
+        "standard": 39.7,
+        "half_ppr": 38.2,
+        "full_ppr": 36.8
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
+      "team_color": "#006778"
+    },
+    {
+      "player": "DK Metcalf",
+      "team": "PIT",
+      "games_played": 15,
+      "metrics": {
+        "target_share": 0.18,
+        "air_yards": 1044.0,
+        "adot": 10.55,
+        "yprr": 1.61,
+        "yprr_from_routes": true,
+        "targets_pg": 6.6
+      },
+      "components": {
+        "target_share": 35.8,
+        "air_adot": 46.0,
+        "yprr": 31.9
+      },
+      "scores": {
+        "standard": 38.4,
+        "half_ppr": 38.1,
+        "full_ppr": 37.8
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
+      "team_color": "#000000"
+    },
+    {
+      "player": "Jerry Jeudy",
+      "team": "CLE",
+      "games_played": 17,
+      "metrics": {
+        "target_share": 0.19,
+        "air_yards": 1288.0,
+        "adot": 12.15,
+        "yprr": 0.96,
+        "yprr_from_routes": true,
+        "targets_pg": 6.2
+      },
+      "components": {
+        "target_share": 39.8,
+        "air_adot": 59.3,
+        "yprr": 0.0
+      },
+      "scores": {
+        "standard": 36.7,
+        "half_ppr": 37.7,
+        "full_ppr": 38.7
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
+      "team_color": "#FF3C00"
+    },
+    {
+      "player": "Jakobi Meyers",
+      "team": "JAX",
+      "games_played": 16,
+      "metrics": {
+        "target_share": 0.1954,
+        "air_yards": 1008.0,
+        "adot": 9.16,
+        "yprr": 1.41,
+        "yprr_from_routes": true,
+        "targets_pg": 6.9
+      },
+      "components": {
+        "target_share": 42.0,
+        "air_adot": 40.2,
+        "yprr": 22.1
+      },
+      "scores": {
+        "standard": 36.4,
+        "half_ppr": 37.5,
+        "full_ppr": 38.6
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
+      "team_color": "#006778"
+    },
+    {
+      "player": "Tee Higgins",
+      "team": "CIN",
+      "games_played": 15,
+      "metrics": {
+        "target_share": 0.1531,
+        "air_yards": 1314.0,
+        "adot": 13.41,
+        "yprr": 1.53,
+        "yprr_from_routes": true,
+        "targets_pg": 6.5
+      },
+      "components": {
+        "target_share": 24.9,
+        "air_adot": 64.3,
+        "yprr": 28.2
+      },
+      "scores": {
+        "standard": 39.5,
+        "half_ppr": 37.4,
+        "full_ppr": 35.2
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
+      "team_color": "#FB4F14"
+    },
+    {
+      "player": "Rashid Shaheed",
+      "team": "SEA",
+      "games_played": 18,
+      "metrics": {
+        "target_share": 0.1913,
+        "air_yards": 1053.0,
+        "adot": 11.45,
+        "yprr": 1.18,
+        "yprr_from_routes": true,
+        "targets_pg": 5.1
+      },
+      "components": {
+        "target_share": 40.4,
+        "air_adot": 49.2,
+        "yprr": 10.6
+      },
+      "scores": {
+        "standard": 36.0,
+        "half_ppr": 37.1,
+        "full_ppr": 38.1
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
+      "team_color": "#002244"
+    },
+    {
+      "player": "Michael Pittman",
+      "team": "IND",
+      "games_played": 17,
+      "metrics": {
+        "target_share": 0.2029,
+        "air_yards": 907.0,
+        "adot": 8.17,
+        "yprr": 1.38,
+        "yprr_from_routes": true,
+        "targets_pg": 6.5
+      },
+      "components": {
+        "target_share": 45.1,
+        "air_adot": 33.6,
+        "yprr": 20.4
+      },
+      "scores": {
+        "standard": 34.9,
+        "half_ppr": 36.7,
+        "full_ppr": 38.5
+      },
+      "new_team": "PIT",
+      "new_team_season": 2026,
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
+      "team_color": "#002C5F"
+    },
+    {
+      "player": "Christian Watson",
+      "team": "GB",
+      "games_played": 10,
+      "metrics": {
+        "target_share": 0.1125,
+        "air_yards": 977.0,
+        "adot": 17.76,
+        "yprr": 2.09,
+        "yprr_from_routes": true,
+        "targets_pg": 5.5
+      },
+      "components": {
+        "target_share": 8.5,
+        "air_adot": 67.3,
+        "yprr": 55.6
+      },
+      "scores": {
+        "standard": 40.9,
+        "half_ppr": 35.6,
+        "full_ppr": 30.3
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
+      "team_color": "#203731"
+    },
+    {
+      "player": "Rome Odunze",
+      "team": "CHI",
+      "games_played": 12,
+      "metrics": {
+        "target_share": 0.1568,
+        "air_yards": 1252.0,
+        "adot": 13.91,
+        "yprr": 1.28,
+        "yprr_from_routes": true,
+        "targets_pg": 7.5
+      },
+      "components": {
+        "target_share": 26.4,
+        "air_adot": 63.9,
+        "yprr": 15.8
+      },
+      "scores": {
+        "standard": 36.9,
+        "half_ppr": 35.5,
+        "full_ppr": 34.2
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
+      "team_color": "#0B162A"
+    },
+    {
+      "player": "Jordan Addison",
+      "team": "MIN",
+      "games_played": 14,
+      "metrics": {
+        "target_share": 0.1632,
+        "air_yards": 1083.0,
+        "adot": 13.71,
+        "yprr": 1.31,
+        "yprr_from_routes": true,
+        "targets_pg": 5.6
+      },
+      "components": {
+        "target_share": 29.0,
+        "air_adot": 57.6,
+        "yprr": 17.0
+      },
+      "scores": {
+        "standard": 36.0,
+        "half_ppr": 35.2,
+        "full_ppr": 34.3
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
+      "team_color": "#4F2683"
+    },
+    {
+      "player": "Ladd McConkey",
+      "team": "LAC",
+      "games_played": 16,
+      "metrics": {
+        "target_share": 0.1863,
+        "air_yards": 1046.0,
+        "adot": 9.87,
+        "yprr": 1.24,
+        "yprr_from_routes": true,
+        "targets_pg": 6.6
+      },
+      "components": {
+        "target_share": 38.3,
+        "air_adot": 43.8,
+        "yprr": 13.8
+      },
+      "scores": {
+        "standard": 34.1,
+        "half_ppr": 35.0,
+        "full_ppr": 36.0
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
+      "team_color": "#007BC7"
+    },
+    {
+      "player": "Terry McLaurin",
+      "team": "WAS",
+      "games_played": 10,
+      "metrics": {
+        "target_share": 0.1279,
+        "air_yards": 839.0,
+        "adot": 13.98,
+        "yprr": 2.08,
+        "yprr_from_routes": true,
+        "targets_pg": 6.0
+      },
+      "components": {
+        "target_share": 14.8,
+        "air_adot": 50.4,
+        "yprr": 55.3
+      },
+      "scores": {
+        "standard": 37.4,
+        "half_ppr": 33.6,
+        "full_ppr": 29.8
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
+      "team_color": "#5A1414"
+    },
+    {
+      "player": "Deebo Samuel Sr.",
+      "team": "WAS",
+      "games_played": 16,
+      "metrics": {
+        "target_share": 0.2111,
+        "air_yards": 527.0,
+        "adot": 5.32,
+        "yprr": 1.54,
+        "yprr_from_routes": true,
+        "targets_pg": 6.2
+      },
+      "components": {
+        "target_share": 48.4,
+        "air_adot": 11.7,
+        "yprr": 28.4
+      },
+      "scores": {
+        "standard": 30.6,
+        "half_ppr": 33.4,
+        "full_ppr": 36.2
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
+      "team_color": "#5A1414"
+    }
+  ]
+}

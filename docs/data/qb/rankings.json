@@ -1,0 +1,846 @@
+{
+  "title": "QB Rankings \u2014 2025",
+  "season": 2025,
+  "position": "QB",
+  "formats": [
+    "default"
+  ],
+  "rows": [
+    {
+      "player": "Josh Allen",
+      "team": "BUF",
+      "games_played": 16,
+      "metrics": {
+        "pass_attempts": 460.0,
+        "rush_attempts": 112.0,
+        "td_rate": 0.0682,
+        "yards_per_attempt": 7.97,
+        "pass_attempts_pg": 28.8
+      },
+      "components": {
+        "pass_attempts": 62.7,
+        "rush_attempts": 100.0,
+        "td_rate": 88.4,
+        "yards_per_attempt": 68.8
+      },
+      "scores": {
+        "default": 79.6
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
+      "team_color": "#00338D"
+    },
+    {
+      "player": "Drake Maye",
+      "team": "NE",
+      "games_played": 17,
+      "metrics": {
+        "pass_attempts": 492.0,
+        "rush_attempts": 103.0,
+        "td_rate": 0.0588,
+        "yards_per_attempt": 8.93,
+        "pass_attempts_pg": 28.9
+      },
+      "components": {
+        "pass_attempts": 70.6,
+        "rush_attempts": 90.8,
+        "td_rate": 67.9,
+        "yards_per_attempt": 100.0
+      },
+      "scores": {
+        "default": 79.1
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
+      "team_color": "#002244"
+    },
+    {
+      "player": "Trevor Lawrence",
+      "team": "JAX",
+      "games_played": 17,
+      "metrics": {
+        "pass_attempts": 560.0,
+        "rush_attempts": 82.0,
+        "td_rate": 0.0592,
+        "yards_per_attempt": 7.16,
+        "pass_attempts_pg": 32.9
+      },
+      "components": {
+        "pass_attempts": 87.3,
+        "rush_attempts": 69.4,
+        "td_rate": 68.7,
+        "yards_per_attempt": 42.0
+      },
+      "scores": {
+        "default": 73.7
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
+      "team_color": "#006778"
+    },
+    {
+      "player": "Jalen Hurts",
+      "team": "PHI",
+      "games_played": 16,
+      "metrics": {
+        "pass_attempts": 454.0,
+        "rush_attempts": 105.0,
+        "td_rate": 0.059,
+        "yards_per_attempt": 7.1,
+        "pass_attempts_pg": 28.4
+      },
+      "components": {
+        "pass_attempts": 61.3,
+        "rush_attempts": 92.9,
+        "td_rate": 68.4,
+        "yards_per_attempt": 40.3
+      },
+      "scores": {
+        "default": 70.1
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
+      "team_color": "#004C54"
+    },
+    {
+      "player": "Bo Nix",
+      "team": "DEN",
+      "games_played": 17,
+      "metrics": {
+        "pass_attempts": 612.0,
+        "rush_attempts": 83.0,
+        "td_rate": 0.0432,
+        "yards_per_attempt": 6.42,
+        "pass_attempts_pg": 36.0
+      },
+      "components": {
+        "pass_attempts": 100.0,
+        "rush_attempts": 70.4,
+        "td_rate": 33.7,
+        "yards_per_attempt": 18.1
+      },
+      "scores": {
+        "default": 69.7
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
+      "team_color": "#002244"
+    },
+    {
+      "player": "Matthew Stafford",
+      "team": "LA",
+      "games_played": 17,
+      "metrics": {
+        "pass_attempts": 597.0,
+        "rush_attempts": 29.0,
+        "td_rate": 0.0735,
+        "yards_per_attempt": 7.88,
+        "pass_attempts_pg": 35.1
+      },
+      "components": {
+        "pass_attempts": 96.3,
+        "rush_attempts": 15.3,
+        "td_rate": 100.0,
+        "yards_per_attempt": 65.8
+      },
+      "scores": {
+        "default": 69.7
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
+      "team_color": "#003594"
+    },
+    {
+      "player": "Caleb Williams",
+      "team": "CHI",
+      "games_played": 17,
+      "metrics": {
+        "pass_attempts": 568.0,
+        "rush_attempts": 77.0,
+        "td_rate": 0.0465,
+        "yards_per_attempt": 6.94,
+        "pass_attempts_pg": 33.4
+      },
+      "components": {
+        "pass_attempts": 89.2,
+        "rush_attempts": 64.3,
+        "td_rate": 41.0,
+        "yards_per_attempt": 35.0
+      },
+      "scores": {
+        "default": 66.7
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
+      "team_color": "#0B162A"
+    },
+    {
+      "player": "Dak Prescott",
+      "team": "DAL",
+      "games_played": 17,
+      "metrics": {
+        "pass_attempts": 600.0,
+        "rush_attempts": 53.0,
+        "td_rate": 0.049,
+        "yards_per_attempt": 7.59,
+        "pass_attempts_pg": 35.3
+      },
+      "components": {
+        "pass_attempts": 97.1,
+        "rush_attempts": 39.8,
+        "td_rate": 46.4,
+        "yards_per_attempt": 56.1
+      },
+      "scores": {
+        "default": 65.7
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
+      "team_color": "#002244"
+    },
+    {
+      "player": "Justin Herbert",
+      "team": "LAC",
+      "games_played": 16,
+      "metrics": {
+        "pass_attempts": 512.0,
+        "rush_attempts": 83.0,
+        "td_rate": 0.0471,
+        "yards_per_attempt": 7.28,
+        "pass_attempts_pg": 32.0
+      },
+      "components": {
+        "pass_attempts": 75.5,
+        "rush_attempts": 70.4,
+        "td_rate": 42.2,
+        "yards_per_attempt": 46.1
+      },
+      "scores": {
+        "default": 64.4
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
+      "team_color": "#007BC7"
+    },
+    {
+      "player": "Jared Goff",
+      "team": "DET",
+      "games_played": 17,
+      "metrics": {
+        "pass_attempts": 578.0,
+        "rush_attempts": 19.0,
+        "td_rate": 0.057,
+        "yards_per_attempt": 7.9,
+        "pass_attempts_pg": 34.0
+      },
+      "components": {
+        "pass_attempts": 91.7,
+        "rush_attempts": 5.1,
+        "td_rate": 63.8,
+        "yards_per_attempt": 66.2
+      },
+      "scores": {
+        "default": 57.6
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
+      "team_color": "#0076B6"
+    },
+    {
+      "player": "Patrick Mahomes",
+      "team": "KC",
+      "games_played": 14,
+      "metrics": {
+        "pass_attempts": 502.0,
+        "rush_attempts": 64.0,
+        "td_rate": 0.0477,
+        "yards_per_attempt": 7.15,
+        "pass_attempts_pg": 35.9
+      },
+      "components": {
+        "pass_attempts": 73.0,
+        "rush_attempts": 51.0,
+        "td_rate": 43.6,
+        "yards_per_attempt": 41.7
+      },
+      "scores": {
+        "default": 57.4
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
+      "team_color": "#E31837"
+    },
+    {
+      "player": "Baker Mayfield",
+      "team": "TB",
+      "games_played": 17,
+      "metrics": {
+        "pass_attempts": 543.0,
+        "rush_attempts": 55.0,
+        "td_rate": 0.0452,
+        "yards_per_attempt": 6.8,
+        "pass_attempts_pg": 31.9
+      },
+      "components": {
+        "pass_attempts": 83.1,
+        "rush_attempts": 41.8,
+        "td_rate": 38.0,
+        "yards_per_attempt": 30.5
+      },
+      "scores": {
+        "default": 56.4
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
+      "team_color": "#A71930"
+    },
+    {
+      "player": "Sam Darnold",
+      "team": "SEA",
+      "games_played": 17,
+      "metrics": {
+        "pass_attempts": 477.0,
+        "rush_attempts": 35.0,
+        "td_rate": 0.0488,
+        "yards_per_attempt": 8.49,
+        "pass_attempts_pg": 28.1
+      },
+      "components": {
+        "pass_attempts": 66.9,
+        "rush_attempts": 21.4,
+        "td_rate": 46.1,
+        "yards_per_attempt": 85.5
+      },
+      "scores": {
+        "default": 51.0
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
+      "team_color": "#002244"
+    },
+    {
+      "player": "Jaxson Dart",
+      "team": "NYG",
+      "games_played": 14,
+      "metrics": {
+        "pass_attempts": 339.0,
+        "rush_attempts": 86.0,
+        "td_rate": 0.0565,
+        "yards_per_attempt": 6.7,
+        "pass_attempts_pg": 24.2
+      },
+      "components": {
+        "pass_attempts": 33.1,
+        "rush_attempts": 73.5,
+        "td_rate": 62.8,
+        "yards_per_attempt": 27.2
+      },
+      "scores": {
+        "default": 50.6
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
+      "team_color": "#0B2265"
+    },
+    {
+      "player": "Lamar Jackson",
+      "team": "BAL",
+      "games_played": 13,
+      "metrics": {
+        "pass_attempts": 302.0,
+        "rush_attempts": 67.0,
+        "td_rate": 0.0623,
+        "yards_per_attempt": 8.44,
+        "pass_attempts_pg": 23.2
+      },
+      "components": {
+        "pass_attempts": 24.0,
+        "rush_attempts": 54.1,
+        "td_rate": 75.6,
+        "yards_per_attempt": 84.0
+      },
+      "scores": {
+        "default": 49.4
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
+      "team_color": "#241773"
+    },
+    {
+      "player": "Bryce Young",
+      "team": "CAR",
+      "games_played": 16,
+      "metrics": {
+        "pass_attempts": 478.0,
+        "rush_attempts": 54.0,
+        "td_rate": 0.047,
+        "yards_per_attempt": 6.3,
+        "pass_attempts_pg": 29.9
+      },
+      "components": {
+        "pass_attempts": 67.2,
+        "rush_attempts": 40.8,
+        "td_rate": 42.0,
+        "yards_per_attempt": 14.1
+      },
+      "scores": {
+        "default": 48.9
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/car.png",
+      "team_color": "#0085CA"
+    },
+    {
+      "player": "Jordan Love",
+      "team": "GB",
+      "games_played": 15,
+      "metrics": {
+        "pass_attempts": 439.0,
+        "rush_attempts": 47.0,
+        "td_rate": 0.0473,
+        "yards_per_attempt": 7.7,
+        "pass_attempts_pg": 29.3
+      },
+      "components": {
+        "pass_attempts": 57.6,
+        "rush_attempts": 33.7,
+        "td_rate": 42.8,
+        "yards_per_attempt": 59.9
+      },
+      "scores": {
+        "default": 47.7
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
+      "team_color": "#203731"
+    },
+    {
+      "player": "Daniel Jones",
+      "team": "IND",
+      "games_played": 13,
+      "metrics": {
+        "pass_attempts": 384.0,
+        "rush_attempts": 45.0,
+        "td_rate": 0.0559,
+        "yards_per_attempt": 8.08,
+        "pass_attempts_pg": 29.5
+      },
+      "components": {
+        "pass_attempts": 44.1,
+        "rush_attempts": 31.6,
+        "td_rate": 61.6,
+        "yards_per_attempt": 72.1
+      },
+      "scores": {
+        "default": 46.6
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
+      "team_color": "#002C5F"
+    },
+    {
+      "player": "Jacoby Brissett",
+      "team": "ARI",
+      "games_played": 14,
+      "metrics": {
+        "pass_attempts": 485.0,
+        "rush_attempts": 38.0,
+        "td_rate": 0.0459,
+        "yards_per_attempt": 6.94,
+        "pass_attempts_pg": 34.6
+      },
+      "components": {
+        "pass_attempts": 68.9,
+        "rush_attempts": 24.5,
+        "td_rate": 39.6,
+        "yards_per_attempt": 35.0
+      },
+      "scores": {
+        "default": 46.3
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
+      "team_color": "#97233F"
+    },
+    {
+      "player": "C.J. Stroud",
+      "team": "HOU",
+      "games_played": 14,
+      "metrics": {
+        "pass_attempts": 423.0,
+        "rush_attempts": 48.0,
+        "td_rate": 0.0425,
+        "yards_per_attempt": 7.19,
+        "pass_attempts_pg": 30.2
+      },
+      "components": {
+        "pass_attempts": 53.7,
+        "rush_attempts": 34.7,
+        "td_rate": 32.1,
+        "yards_per_attempt": 43.1
+      },
+      "scores": {
+        "default": 42.6
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
+      "team_color": "#03202F"
+    },
+    {
+      "player": "Aaron Rodgers",
+      "team": "PIT",
+      "games_played": 16,
+      "metrics": {
+        "pass_attempts": 498.0,
+        "rush_attempts": 21.0,
+        "td_rate": 0.0482,
+        "yards_per_attempt": 6.67,
+        "pass_attempts_pg": 31.1
+      },
+      "components": {
+        "pass_attempts": 72.1,
+        "rush_attempts": 7.1,
+        "td_rate": 44.6,
+        "yards_per_attempt": 26.2
+      },
+      "scores": {
+        "default": 42.5
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
+      "team_color": "#000000"
+    },
+    {
+      "player": "Cam Ward",
+      "team": "TEN",
+      "games_played": 17,
+      "metrics": {
+        "pass_attempts": 540.0,
+        "rush_attempts": 39.0,
+        "td_rate": 0.0294,
+        "yards_per_attempt": 5.87,
+        "pass_attempts_pg": 31.8
+      },
+      "components": {
+        "pass_attempts": 82.4,
+        "rush_attempts": 25.5,
+        "td_rate": 3.5,
+        "yards_per_attempt": 0.0
+      },
+      "scores": {
+        "default": 41.3
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
+      "team_color": "#4495D2"
+    },
+    {
+      "player": "Geno Smith",
+      "team": "LV",
+      "games_played": 15,
+      "metrics": {
+        "pass_attempts": 448.0,
+        "rush_attempts": 41.0,
+        "td_rate": 0.0389,
+        "yards_per_attempt": 6.75,
+        "pass_attempts_pg": 29.9
+      },
+      "components": {
+        "pass_attempts": 59.8,
+        "rush_attempts": 27.6,
+        "td_rate": 24.2,
+        "yards_per_attempt": 28.9
+      },
+      "scores": {
+        "default": 39.9
+      },
+      "new_team": "NYJ",
+      "new_team_season": 2026,
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png",
+      "team_color": "#000000"
+    },
+    {
+      "player": "Brock Purdy",
+      "team": "SF",
+      "games_played": 9,
+      "metrics": {
+        "pass_attempts": 284.0,
+        "rush_attempts": 33.0,
+        "td_rate": 0.0726,
+        "yards_per_attempt": 7.63,
+        "pass_attempts_pg": 31.6
+      },
+      "components": {
+        "pass_attempts": 19.6,
+        "rush_attempts": 19.4,
+        "td_rate": 98.0,
+        "yards_per_attempt": 57.5
+      },
+      "scores": {
+        "default": 39.0
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
+      "team_color": "#AA0000"
+    },
+    {
+      "player": "Tua Tagovailoa",
+      "team": "MIA",
+      "games_played": 14,
+      "metrics": {
+        "pass_attempts": 384.0,
+        "rush_attempts": 20.0,
+        "td_rate": 0.0495,
+        "yards_per_attempt": 6.93,
+        "pass_attempts_pg": 27.4
+      },
+      "components": {
+        "pass_attempts": 44.1,
+        "rush_attempts": 6.1,
+        "td_rate": 47.5,
+        "yards_per_attempt": 34.6
+      },
+      "scores": {
+        "default": 32.4
+      },
+      "new_team": "ATL",
+      "new_team_season": 2026,
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png",
+      "team_color": "#008E97"
+    },
+    {
+      "player": "Tyler Shough",
+      "team": "NO",
+      "games_played": 11,
+      "metrics": {
+        "pass_attempts": 327.0,
+        "rush_attempts": 45.0,
+        "td_rate": 0.0349,
+        "yards_per_attempt": 7.29,
+        "pass_attempts_pg": 29.7
+      },
+      "components": {
+        "pass_attempts": 30.1,
+        "rush_attempts": 31.6,
+        "td_rate": 15.7,
+        "yards_per_attempt": 46.4
+      },
+      "scores": {
+        "default": 29.3
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
+      "team_color": "#D3BC8D"
+    },
+    {
+      "player": "Joe Flacco",
+      "team": "CIN",
+      "games_played": 13,
+      "metrics": {
+        "pass_attempts": 416.0,
+        "rush_attempts": 21.0,
+        "td_rate": 0.0366,
+        "yards_per_attempt": 5.96,
+        "pass_attempts_pg": 32.0
+      },
+      "components": {
+        "pass_attempts": 52.0,
+        "rush_attempts": 7.1,
+        "td_rate": 19.3,
+        "yards_per_attempt": 3.0
+      },
+      "scores": {
+        "default": 27.1
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
+      "team_color": "#FB4F14"
+    },
+    {
+      "player": "Mac Jones",
+      "team": "SF",
+      "games_played": 11,
+      "metrics": {
+        "pass_attempts": 289.0,
+        "rush_attempts": 36.0,
+        "td_rate": 0.04,
+        "yards_per_attempt": 7.44,
+        "pass_attempts_pg": 26.3
+      },
+      "components": {
+        "pass_attempts": 20.8,
+        "rush_attempts": 22.4,
+        "td_rate": 26.7,
+        "yards_per_attempt": 51.4
+      },
+      "scores": {
+        "default": 25.5
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
+      "team_color": "#AA0000"
+    },
+    {
+      "player": "J.J. McCarthy",
+      "team": "MIN",
+      "games_played": 10,
+      "metrics": {
+        "pass_attempts": 243.0,
+        "rush_attempts": 37.0,
+        "td_rate": 0.0536,
+        "yards_per_attempt": 6.72,
+        "pass_attempts_pg": 24.3
+      },
+      "components": {
+        "pass_attempts": 9.6,
+        "rush_attempts": 23.5,
+        "td_rate": 56.4,
+        "yards_per_attempt": 27.7
+      },
+      "scores": {
+        "default": 24.9
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
+      "team_color": "#4F2683"
+    },
+    {
+      "player": "Joe Burrow",
+      "team": "CIN",
+      "games_played": 8,
+      "metrics": {
+        "pass_attempts": 259.0,
+        "rush_attempts": 14.0,
+        "td_rate": 0.0623,
+        "yards_per_attempt": 6.98,
+        "pass_attempts_pg": 32.4
+      },
+      "components": {
+        "pass_attempts": 13.5,
+        "rush_attempts": 0.0,
+        "td_rate": 75.5,
+        "yards_per_attempt": 36.4
+      },
+      "scores": {
+        "default": 24.1
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
+      "team_color": "#FB4F14"
+    },
+    {
+      "player": "Justin Fields",
+      "team": "NYJ",
+      "games_played": 9,
+      "metrics": {
+        "pass_attempts": 204.0,
+        "rush_attempts": 71.0,
+        "td_rate": 0.04,
+        "yards_per_attempt": 6.17,
+        "pass_attempts_pg": 22.7
+      },
+      "components": {
+        "pass_attempts": 0.0,
+        "rush_attempts": 58.2,
+        "td_rate": 26.7,
+        "yards_per_attempt": 9.9
+      },
+      "scores": {
+        "default": 23.8
+      },
+      "new_team": "KC",
+      "new_team_season": 2026,
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
+      "team_color": "#003F2D"
+    },
+    {
+      "player": "Marcus Mariota",
+      "team": "WAS",
+      "games_played": 10,
+      "metrics": {
+        "pass_attempts": 227.0,
+        "rush_attempts": 50.0,
+        "td_rate": 0.0397,
+        "yards_per_attempt": 7.47,
+        "pass_attempts_pg": 22.7
+      },
+      "components": {
+        "pass_attempts": 5.6,
+        "rush_attempts": 36.7,
+        "td_rate": 26.1,
+        "yards_per_attempt": 52.2
+      },
+      "scores": {
+        "default": 23.7
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
+      "team_color": "#5A1414"
+    },
+    {
+      "player": "Michael Penix Jr.",
+      "team": "ATL",
+      "games_played": 9,
+      "metrics": {
+        "pass_attempts": 276.0,
+        "rush_attempts": 21.0,
+        "td_rate": 0.0337,
+        "yards_per_attempt": 7.18,
+        "pass_attempts_pg": 30.7
+      },
+      "components": {
+        "pass_attempts": 17.6,
+        "rush_attempts": 7.1,
+        "td_rate": 12.9,
+        "yards_per_attempt": 42.9
+      },
+      "scores": {
+        "default": 16.0
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
+      "team_color": "#A71930"
+    },
+    {
+      "player": "Kirk Cousins",
+      "team": "ATL",
+      "games_played": 10,
+      "metrics": {
+        "pass_attempts": 269.0,
+        "rush_attempts": 14.0,
+        "td_rate": 0.0389,
+        "yards_per_attempt": 6.4,
+        "pass_attempts_pg": 26.9
+      },
+      "components": {
+        "pass_attempts": 15.9,
+        "rush_attempts": 0.0,
+        "td_rate": 24.3,
+        "yards_per_attempt": 17.3
+      },
+      "scores": {
+        "default": 13.0
+      },
+      "new_team": "LV",
+      "new_team_season": 2026,
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
+      "team_color": "#A71930"
+    },
+    {
+      "player": "Spencer Rattler",
+      "team": "NO",
+      "games_played": 9,
+      "metrics": {
+        "pass_attempts": 257.0,
+        "rush_attempts": 31.0,
+        "td_rate": 0.0278,
+        "yards_per_attempt": 6.17,
+        "pass_attempts_pg": 28.6
+      },
+      "components": {
+        "pass_attempts": 13.0,
+        "rush_attempts": 17.3,
+        "td_rate": 0.0,
+        "yards_per_attempt": 9.9
+      },
+      "scores": {
+        "default": 11.4
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
+      "team_color": "#D3BC8D"
+    },
+    {
+      "player": "Shedeur Sanders",
+      "team": "CLE",
+      "games_played": 8,
+      "metrics": {
+        "pass_attempts": 212.0,
+        "rush_attempts": 21.0,
+        "td_rate": 0.0343,
+        "yards_per_attempt": 6.6,
+        "pass_attempts_pg": 26.5
+      },
+      "components": {
+        "pass_attempts": 2.0,
+        "rush_attempts": 7.1,
+        "td_rate": 14.3,
+        "yards_per_attempt": 24.0
+      },
+      "scores": {
+        "default": 8.2
+      },
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
+      "team_color": "#FF3C00"
+    }
+  ]
+}

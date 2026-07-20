@@ -1,6 +1,16 @@
 {
   "season": 2025,
-  "week": 18,
-  "scoring": "half_ppr",
-  "last_updated": "2026-07-14T12:18:19Z"
+  "upcoming_season": 2026,
+  "formats": [
+    "standard",
+    "half_ppr",
+    "full_ppr"
+  ],
+  "positions": [
+    "QB",
+    "RB",
+    "WR",
+    "TE"
+  ],
+  "last_updated": "2026-07-20T21:03:53Z"
 }
