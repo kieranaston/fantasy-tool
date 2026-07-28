@@ -9,6 +9,7 @@
   ],
   "rows": [
     {
+      "player_id": "00-0038542",
       "player": "Bijan Robinson",
       "team": "ATL",
       "games_played": 17,
@@ -30,10 +31,10 @@
         "full_ppr": 86.2
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
-      "team_color": "#A71930",
-      "player_id": "00-0038542"
+      "team_color": "#A71930"
     },
     {
+      "player_id": "00-0036223",
       "player": "Jonathan Taylor",
       "team": "IND",
       "games_played": 17,
@@ -55,10 +56,10 @@
         "full_ppr": 82.0
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
-      "team_color": "#002C5F",
-      "player_id": "00-0036223"
+      "team_color": "#002C5F"
     },
     {
+      "player_id": "00-0039040",
       "player": "De'Von Achane",
       "team": "MIA",
       "games_played": 16,
@@ -80,10 +81,10 @@
         "full_ppr": 81.7
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png",
-      "team_color": "#008E97",
-      "player_id": "00-0039040"
+      "team_color": "#008E97"
     },
     {
+      "player_id": "00-0033280",
       "player": "Christian McCaffrey",
       "team": "SF",
       "games_played": 17,
@@ -105,10 +106,10 @@
         "full_ppr": 81.2
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
-      "team_color": "#AA0000",
-      "player_id": "00-0033280"
+      "team_color": "#AA0000"
     },
     {
+      "player_id": "00-0032764",
       "player": "Derrick Henry",
       "team": "BAL",
       "games_played": 17,
@@ -130,10 +131,10 @@
         "full_ppr": 74.7
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
-      "team_color": "#241773",
-      "player_id": "00-0032764"
+      "team_color": "#241773"
     },
     {
+      "player_id": "00-0037248",
       "player": "James Cook",
       "team": "BUF",
       "games_played": 17,
@@ -155,10 +156,10 @@
         "full_ppr": 71.9
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
-      "team_color": "#00338D",
-      "player_id": "00-0037248"
+      "team_color": "#00338D"
     },
     {
+      "player_id": "00-0039139",
       "player": "Jahmyr Gibbs",
       "team": "DET",
       "games_played": 17,
@@ -180,10 +181,10 @@
         "full_ppr": 65.9
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
-      "team_color": "#0076B6",
-      "player_id": "00-0039139"
+      "team_color": "#0076B6"
     },
     {
+      "player_id": "00-0040122",
       "player": "Ashton Jeanty",
       "team": "LV",
       "games_played": 17,
@@ -205,10 +206,10 @@
         "full_ppr": 67.7
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png",
-      "team_color": "#000000",
-      "player_id": "00-0040122"
+      "team_color": "#000000"
     },
     {
+      "player_id": "00-0038597",
       "player": "Chase Brown",
       "team": "CIN",
       "games_played": 17,
@@ -230,10 +231,10 @@
         "full_ppr": 57.8
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
-      "team_color": "#FB4F14",
-      "player_id": "00-0038597"
+      "team_color": "#FB4F14"
     },
     {
+      "player_id": "00-0034844",
       "player": "Saquon Barkley",
       "team": "PHI",
       "games_played": 16,
@@ -255,10 +256,10 @@
         "full_ppr": 58.2
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
-      "team_color": "#004C54",
-      "player_id": "00-0034844"
+      "team_color": "#004C54"
     },
     {
+      "player_id": "00-0037840",
       "player": "Kyren Williams",
       "team": "LA",
       "games_played": 17,
@@ -280,10 +281,10 @@
         "full_ppr": 55.3
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
-      "team_color": "#003594",
-      "player_id": "00-0037840"
+      "team_color": "#003594"
     },
     {
+      "player_id": "00-0038120",
       "player": "Breece Hall",
       "team": "NYJ",
       "games_played": 16,
@@ -305,10 +306,10 @@
         "full_ppr": 54.1
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
-      "team_color": "#003F2D",
-      "player_id": "00-0038120"
+      "team_color": "#003F2D"
     },
     {
+      "player_id": "00-0036997",
       "player": "Javonte Williams",
       "team": "DAL",
       "games_played": 16,
@@ -330,10 +331,10 @@
         "full_ppr": 53.2
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
-      "team_color": "#002244",
-      "player_id": "00-0036997"
+      "team_color": "#002244"
     },
     {
+      "player_id": "00-0036973",
       "player": "Travis Etienne",
       "team": "JAX",
       "games_played": 17,
@@ -357,10 +358,10 @@
       "new_team": "NO",
       "new_team_season": 2026,
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
-      "team_color": "#006778",
-      "player_id": "00-0036973"
+      "team_color": "#006778"
     },
     {
+      "player_id": "00-0036139",
       "player": "Rico Dowdle",
       "team": "CAR",
       "games_played": 17,
@@ -384,10 +385,10 @@
       "new_team": "PIT",
       "new_team_season": 2026,
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/car.png",
-      "team_color": "#0085CA",
-      "player_id": "00-0036139"
+      "team_color": "#0085CA"
     },
     {
+      "player_id": "00-0035261",
       "player": "Tony Pollard",
       "team": "TEN",
       "games_played": 17,
@@ -409,10 +410,10 @@
         "full_ppr": 51.4
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
-      "team_color": "#4495D2",
-      "player_id": "00-0035261"
+      "team_color": "#4495D2"
     },
     {
+      "player_id": "00-0037228",
       "player": "Jaylen Warren",
       "team": "PIT",
       "games_played": 16,
@@ -434,10 +435,10 @@
         "full_ppr": 48.8
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
-      "team_color": "#000000",
-      "player_id": "00-0037228"
+      "team_color": "#000000"
     },
     {
+      "player_id": "00-0036275",
       "player": "D'Andre Swift",
       "team": "CHI",
       "games_played": 16,
@@ -459,10 +460,10 @@
         "full_ppr": 45.1
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
-      "team_color": "#0B162A",
-      "player_id": "00-0036275"
+      "team_color": "#0B162A"
     },
     {
+      "player_id": "00-0035700",
       "player": "Josh Jacobs",
       "team": "GB",
       "games_played": 15,
@@ -484,10 +485,10 @@
         "full_ppr": 46.3
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
-      "team_color": "#203731",
-      "player_id": "00-0035700"
+      "team_color": "#203731"
     },
     {
+      "player_id": "00-0038134",
       "player": "Kenneth Walker III",
       "team": "SEA",
       "games_played": 17,
@@ -511,10 +512,10 @@
       "new_team": "KC",
       "new_team_season": 2026,
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
-      "team_color": "#002244",
-      "player_id": "00-0038134"
+      "team_color": "#002244"
     },
     {
+      "player_id": "00-0040784",
       "player": "Quinshon Judkins",
       "team": "CLE",
       "games_played": 14,
@@ -536,10 +537,10 @@
         "full_ppr": 41.0
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
-      "team_color": "#FF3C00",
-      "player_id": "00-0040784"
+      "team_color": "#FF3C00"
     },
     {
+      "player_id": "00-0040734",
       "player": "TreVeyon Henderson",
       "team": "NE",
       "games_played": 17,
@@ -561,10 +562,10 @@
         "full_ppr": 37.7
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "team_color": "#002244",
-      "player_id": "00-0040734"
+      "team_color": "#002244"
     },
     {
+      "player_id": "00-0036919",
       "player": "Kenny Gainwell",
       "team": "PIT",
       "games_played": 17,
@@ -588,10 +589,10 @@
       "new_team": "TB",
       "new_team_season": 2026,
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
-      "team_color": "#000000",
-      "player_id": "00-0036919"
+      "team_color": "#000000"
     },
     {
+      "player_id": "00-0039384",
       "player": "Tyrone Tracy Jr.",
       "team": "NYG",
       "games_played": 15,
@@ -613,10 +614,10 @@
         "full_ppr": 29.5
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
-      "team_color": "#0B2265",
-      "player_id": "00-0039384"
+      "team_color": "#0B2265"
     },
     {
+      "player_id": "00-0037525",
       "player": "Jordan Mason",
       "team": "MIN",
       "games_played": 16,
@@ -638,10 +639,10 @@
         "full_ppr": 29.4
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
-      "team_color": "#4F2683",
-      "player_id": "00-0037525"
+      "team_color": "#4F2683"
     },
     {
+      "player_id": "00-0036875",
       "player": "Rhamondre Stevenson",
       "team": "NE",
       "games_played": 14,
@@ -663,10 +664,10 @@
         "full_ppr": 26.9
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "team_color": "#002244",
-      "player_id": "00-0036875"
+      "team_color": "#002244"
     },
     {
+      "player_id": "00-0040242",
       "player": "Jacory Croskey-Merritt",
       "team": "WAS",
       "games_played": 17,
@@ -688,10 +689,10 @@
         "full_ppr": 27.9
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
-      "team_color": "#5A1414",
-      "player_id": "00-0040242"
+      "team_color": "#5A1414"
     },
     {
+      "player_id": "00-0035685",
       "player": "David Montgomery",
       "team": "DET",
       "games_played": 17,
@@ -715,10 +716,10 @@
       "new_team": "HOU",
       "new_team_season": 2026,
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
-      "team_color": "#0076B6",
-      "player_id": "00-0035685"
+      "team_color": "#0076B6"
     },
     {
+      "player_id": "00-0040583",
       "player": "Woody Marks",
       "team": "HOU",
       "games_played": 16,
@@ -740,10 +741,10 @@
         "full_ppr": 26.7
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
-      "team_color": "#03202F",
-      "player_id": "00-0040583"
+      "team_color": "#03202F"
     },
     {
+      "player_id": "00-0040236",
       "player": "Kyle Monangai",
       "team": "CHI",
       "games_played": 17,
@@ -765,10 +766,10 @@
         "full_ppr": 25.1
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
-      "team_color": "#0B162A",
-      "player_id": "00-0040236"
+      "team_color": "#0B162A"
     },
     {
+      "player_id": "00-0039165",
       "player": "Zach Charbonnet",
       "team": "SEA",
       "games_played": 16,
@@ -790,10 +791,10 @@
         "full_ppr": 26.1
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
-      "team_color": "#002244",
-      "player_id": "00-0039165"
+      "team_color": "#002244"
     },
     {
+      "player_id": "00-0036158",
       "player": "J.K. Dobbins",
       "team": "DEN",
       "games_played": 10,
@@ -815,10 +816,10 @@
         "full_ppr": 22.4
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
-      "team_color": "#002244",
-      "player_id": "00-0036158"
+      "team_color": "#002244"
     },
     {
+      "player_id": "00-0039391",
       "player": "Kimani Vidal",
       "team": "LAC",
       "games_played": 13,
@@ -840,10 +841,10 @@
         "full_ppr": 21.1
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
-      "team_color": "#007BC7",
-      "player_id": "00-0039391"
+      "team_color": "#007BC7"
     },
     {
+      "player_id": "00-0040730",
       "player": "RJ Harvey",
       "team": "DEN",
       "games_played": 17,
@@ -865,10 +866,10 @@
         "full_ppr": 21.1
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
-      "team_color": "#002244",
-      "player_id": "00-0040730"
+      "team_color": "#002244"
     },
     {
+      "player_id": "00-0033293",
       "player": "Aaron Jones",
       "team": "MIN",
       "games_played": 12,
@@ -890,10 +891,10 @@
         "full_ppr": 21.9
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
-      "team_color": "#4F2683",
-      "player_id": "00-0033293"
+      "team_color": "#4F2683"
     },
     {
+      "player_id": "00-0039361",
       "player": "Bucky Irving",
       "team": "TB",
       "games_played": 10,
@@ -915,10 +916,10 @@
         "full_ppr": 20.5
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
-      "team_color": "#A71930",
-      "player_id": "00-0039361"
+      "team_color": "#A71930"
     },
     {
+      "player_id": "00-0033923",
       "player": "Kareem Hunt",
       "team": "KC",
       "games_played": 17,
@@ -940,10 +941,10 @@
         "full_ppr": 19.7
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
-      "team_color": "#E31837",
-      "player_id": "00-0033923"
+      "team_color": "#E31837"
     },
     {
+      "player_id": "00-0037256",
       "player": "Rachaad White",
       "team": "TB",
       "games_played": 17,
@@ -967,10 +968,10 @@
       "new_team": "WAS",
       "new_team_season": 2026,
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
-      "team_color": "#A71930",
-      "player_id": "00-0037256"
+      "team_color": "#A71930"
     },
     {
+      "player_id": "00-0036555",
       "player": "Chuba Hubbard",
       "team": "CAR",
       "games_played": 15,
@@ -992,10 +993,10 @@
         "full_ppr": 16.9
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/car.png",
-      "team_color": "#0085CA",
-      "player_id": "00-0036555"
+      "team_color": "#0085CA"
     },
     {
+      "player_id": "00-0040666",
       "player": "Omarion Hampton",
       "team": "LAC",
       "games_played": 9,
@@ -1017,8 +1018,7 @@
         "full_ppr": 14.0
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
-      "team_color": "#007BC7",
-      "player_id": "00-0040666"
+      "team_color": "#007BC7"
     }
   ]
 }

@@ -7,6 +7,7 @@
   ],
   "rows": [
     {
+      "player_id": "00-0034857",
       "player": "Josh Allen",
       "team": "BUF",
       "games_played": 16,
@@ -27,10 +28,10 @@
         "default": 79.6
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
-      "team_color": "#00338D",
-      "player_id": "00-0034857"
+      "team_color": "#00338D"
     },
     {
+      "player_id": "00-0039851",
       "player": "Drake Maye",
       "team": "NE",
       "games_played": 17,
@@ -51,10 +52,10 @@
         "default": 79.1
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-      "team_color": "#002244",
-      "player_id": "00-0039851"
+      "team_color": "#002244"
     },
     {
+      "player_id": "00-0036971",
       "player": "Trevor Lawrence",
       "team": "JAX",
       "games_played": 17,
@@ -75,10 +76,10 @@
         "default": 73.7
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
-      "team_color": "#006778",
-      "player_id": "00-0036971"
+      "team_color": "#006778"
     },
     {
+      "player_id": "00-0036389",
       "player": "Jalen Hurts",
       "team": "PHI",
       "games_played": 16,
@@ -99,10 +100,10 @@
         "default": 70.1
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
-      "team_color": "#004C54",
-      "player_id": "00-0036389"
+      "team_color": "#004C54"
     },
     {
+      "player_id": "00-0039732",
       "player": "Bo Nix",
       "team": "DEN",
       "games_played": 17,
@@ -123,10 +124,10 @@
         "default": 69.7
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
-      "team_color": "#002244",
-      "player_id": "00-0039732"
+      "team_color": "#002244"
     },
     {
+      "player_id": "00-0026498",
       "player": "Matthew Stafford",
       "team": "LA",
       "games_played": 17,
@@ -147,10 +148,10 @@
         "default": 69.7
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
-      "team_color": "#003594",
-      "player_id": "00-0026498"
+      "team_color": "#003594"
     },
     {
+      "player_id": "00-0039918",
       "player": "Caleb Williams",
       "team": "CHI",
       "games_played": 17,
@@ -171,10 +172,10 @@
         "default": 66.7
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
-      "team_color": "#0B162A",
-      "player_id": "00-0039918"
+      "team_color": "#0B162A"
     },
     {
+      "player_id": "00-0033077",
       "player": "Dak Prescott",
       "team": "DAL",
       "games_played": 17,
@@ -195,10 +196,10 @@
         "default": 65.7
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
-      "team_color": "#002244",
-      "player_id": "00-0033077"
+      "team_color": "#002244"
     },
     {
+      "player_id": "00-0036355",
       "player": "Justin Herbert",
       "team": "LAC",
       "games_played": 16,
@@ -219,10 +220,10 @@
         "default": 64.4
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
-      "team_color": "#007BC7",
-      "player_id": "00-0036355"
+      "team_color": "#007BC7"
     },
     {
+      "player_id": "00-0033106",
       "player": "Jared Goff",
       "team": "DET",
       "games_played": 17,
@@ -243,10 +244,10 @@
         "default": 57.6
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
-      "team_color": "#0076B6",
-      "player_id": "00-0033106"
+      "team_color": "#0076B6"
     },
     {
+      "player_id": "00-0033873",
       "player": "Patrick Mahomes",
       "team": "KC",
       "games_played": 14,
@@ -267,10 +268,10 @@
         "default": 57.4
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
-      "team_color": "#E31837",
-      "player_id": "00-0033873"
+      "team_color": "#E31837"
     },
     {
+      "player_id": "00-0034855",
       "player": "Baker Mayfield",
       "team": "TB",
       "games_played": 17,
@@ -291,10 +292,10 @@
         "default": 56.4
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
-      "team_color": "#A71930",
-      "player_id": "00-0034855"
+      "team_color": "#A71930"
     },
     {
+      "player_id": "00-0034869",
       "player": "Sam Darnold",
       "team": "SEA",
       "games_played": 17,
@@ -315,10 +316,10 @@
         "default": 51.0
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
-      "team_color": "#002244",
-      "player_id": "00-0034869"
+      "team_color": "#002244"
     },
     {
+      "player_id": "00-0040691",
       "player": "Jaxson Dart",
       "team": "NYG",
       "games_played": 14,
@@ -339,10 +340,10 @@
         "default": 50.6
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
-      "team_color": "#0B2265",
-      "player_id": "00-0040691"
+      "team_color": "#0B2265"
     },
     {
+      "player_id": "00-0034796",
       "player": "Lamar Jackson",
       "team": "BAL",
       "games_played": 13,
@@ -363,10 +364,10 @@
         "default": 49.4
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
-      "team_color": "#241773",
-      "player_id": "00-0034796"
+      "team_color": "#241773"
     },
     {
+      "player_id": "00-0039150",
       "player": "Bryce Young",
       "team": "CAR",
       "games_played": 16,
@@ -387,10 +388,10 @@
         "default": 48.9
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/car.png",
-      "team_color": "#0085CA",
-      "player_id": "00-0039150"
+      "team_color": "#0085CA"
     },
     {
+      "player_id": "00-0036264",
       "player": "Jordan Love",
       "team": "GB",
       "games_played": 15,
@@ -411,10 +412,10 @@
         "default": 47.7
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
-      "team_color": "#203731",
-      "player_id": "00-0036264"
+      "team_color": "#203731"
     },
     {
+      "player_id": "00-0035710",
       "player": "Daniel Jones",
       "team": "IND",
       "games_played": 13,
@@ -435,10 +436,10 @@
         "default": 46.6
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
-      "team_color": "#002C5F",
-      "player_id": "00-0035710"
+      "team_color": "#002C5F"
     },
     {
+      "player_id": "00-0033119",
       "player": "Jacoby Brissett",
       "team": "ARI",
       "games_played": 14,
@@ -459,10 +460,10 @@
         "default": 46.3
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
-      "team_color": "#97233F",
-      "player_id": "00-0033119"
+      "team_color": "#97233F"
     },
     {
+      "player_id": "00-0039163",
       "player": "C.J. Stroud",
       "team": "HOU",
       "games_played": 14,
@@ -483,10 +484,10 @@
         "default": 42.6
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
-      "team_color": "#03202F",
-      "player_id": "00-0039163"
+      "team_color": "#03202F"
     },
     {
+      "player_id": "00-0023459",
       "player": "Aaron Rodgers",
       "team": "PIT",
       "games_played": 16,
@@ -507,10 +508,10 @@
         "default": 42.5
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
-      "team_color": "#000000",
-      "player_id": "00-0023459"
+      "team_color": "#000000"
     },
     {
+      "player_id": "00-0040676",
       "player": "Cam Ward",
       "team": "TEN",
       "games_played": 17,
@@ -531,10 +532,10 @@
         "default": 41.3
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
-      "team_color": "#4495D2",
-      "player_id": "00-0040676"
+      "team_color": "#4495D2"
     },
     {
+      "player_id": "00-0030565",
       "player": "Geno Smith",
       "team": "LV",
       "games_played": 15,
@@ -557,10 +558,10 @@
       "new_team": "NYJ",
       "new_team_season": 2026,
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png",
-      "team_color": "#000000",
-      "player_id": "00-0030565"
+      "team_color": "#000000"
     },
     {
+      "player_id": "00-0037834",
       "player": "Brock Purdy",
       "team": "SF",
       "games_played": 9,
@@ -581,10 +582,10 @@
         "default": 39.0
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
-      "team_color": "#AA0000",
-      "player_id": "00-0037834"
+      "team_color": "#AA0000"
     },
     {
+      "player_id": "00-0036212",
       "player": "Tua Tagovailoa",
       "team": "MIA",
       "games_played": 14,
@@ -607,10 +608,10 @@
       "new_team": "ATL",
       "new_team_season": 2026,
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png",
-      "team_color": "#008E97",
-      "player_id": "00-0036212"
+      "team_color": "#008E97"
     },
     {
+      "player_id": "00-0040743",
       "player": "Tyler Shough",
       "team": "NO",
       "games_played": 11,
@@ -631,10 +632,10 @@
         "default": 29.3
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
-      "team_color": "#D3BC8D",
-      "player_id": "00-0040743"
+      "team_color": "#D3BC8D"
     },
     {
+      "player_id": "00-0026158",
       "player": "Joe Flacco",
       "team": "CIN",
       "games_played": 13,
@@ -655,10 +656,10 @@
         "default": 27.1
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
-      "team_color": "#FB4F14",
-      "player_id": "00-0026158"
+      "team_color": "#FB4F14"
     },
     {
+      "player_id": "00-0036972",
       "player": "Mac Jones",
       "team": "SF",
       "games_played": 11,
@@ -679,10 +680,10 @@
         "default": 25.5
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
-      "team_color": "#AA0000",
-      "player_id": "00-0036972"
+      "team_color": "#AA0000"
     },
     {
+      "player_id": "00-0039923",
       "player": "J.J. McCarthy",
       "team": "MIN",
       "games_played": 10,
@@ -703,10 +704,10 @@
         "default": 24.9
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
-      "team_color": "#4F2683",
-      "player_id": "00-0039923"
+      "team_color": "#4F2683"
     },
     {
+      "player_id": "00-0036442",
       "player": "Joe Burrow",
       "team": "CIN",
       "games_played": 8,
@@ -727,10 +728,10 @@
         "default": 24.1
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
-      "team_color": "#FB4F14",
-      "player_id": "00-0036442"
+      "team_color": "#FB4F14"
     },
     {
+      "player_id": "00-0036945",
       "player": "Justin Fields",
       "team": "NYJ",
       "games_played": 9,
@@ -753,10 +754,10 @@
       "new_team": "KC",
       "new_team_season": 2026,
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
-      "team_color": "#003F2D",
-      "player_id": "00-0036945"
+      "team_color": "#003F2D"
     },
     {
+      "player_id": "00-0032268",
       "player": "Marcus Mariota",
       "team": "WAS",
       "games_played": 10,
@@ -777,10 +778,10 @@
         "default": 23.7
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
-      "team_color": "#5A1414",
-      "player_id": "00-0032268"
+      "team_color": "#5A1414"
     },
     {
+      "player_id": "00-0039917",
       "player": "Michael Penix Jr.",
       "team": "ATL",
       "games_played": 9,
@@ -801,10 +802,10 @@
         "default": 16.0
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
-      "team_color": "#A71930",
-      "player_id": "00-0039917"
+      "team_color": "#A71930"
     },
     {
+      "player_id": "00-0029604",
       "player": "Kirk Cousins",
       "team": "ATL",
       "games_played": 10,
@@ -827,10 +828,10 @@
       "new_team": "LV",
       "new_team_season": 2026,
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
-      "team_color": "#A71930",
-      "player_id": "00-0029604"
+      "team_color": "#A71930"
     },
     {
+      "player_id": "00-0039376",
       "player": "Spencer Rattler",
       "team": "NO",
       "games_played": 9,
@@ -851,10 +852,10 @@
         "default": 11.4
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
-      "team_color": "#D3BC8D",
-      "player_id": "00-0039376"
+      "team_color": "#D3BC8D"
     },
     {
+      "player_id": "00-0040668",
       "player": "Shedeur Sanders",
       "team": "CLE",
       "games_played": 8,
@@ -875,8 +876,7 @@
         "default": 8.2
       },
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
-      "team_color": "#FF3C00",
-      "player_id": "00-0040668"
+      "team_color": "#FF3C00"
     }
   ]
 }
