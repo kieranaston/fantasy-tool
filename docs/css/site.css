@@ -193,7 +193,7 @@ table.dataTable > tbody > tr > td:first-child {
   font-weight: 600;
 }
 
-/* Shrink numeric columns to content; Player column takes natural width */
+/* Shrink columns to content width */
 table.dataTable > thead > tr > th:nth-child(1),
 table.dataTable > tbody > tr > td:nth-child(1),
 table.dataTable > thead > tr > th:nth-child(n+3),
@@ -201,6 +201,12 @@ table.dataTable > tbody > tr > td:nth-child(n+3) {
   width: 1%;
   white-space: nowrap;
   text-align: right;
+}
+
+table.dataTable > thead > tr > th:nth-child(2),
+table.dataTable > tbody > tr > td:nth-child(2) {
+  width: 1%;
+  white-space: nowrap;
 }
 
 table.dataTable > tbody > tr > td.score-cell {
@@ -212,8 +218,10 @@ table.dataTable > tbody > tr > td.score-cell {
 .player-cell {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 0.1rem;
+  width: max-content;
+  max-width: 100%;
 }
 
 .player-cell-top {
@@ -239,13 +247,15 @@ table.dataTable > tbody > tr > td.score-cell {
   font-weight: 600;
 }
 
+/* Size to the name row; don't let long status text widen the column */
 .news-tag {
   color: var(--accent);
   font-size: 0.72rem;
   font-weight: 600;
   text-decoration: none;
   border-bottom: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
-  max-width: 100%;
+  width: 0;
+  min-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
