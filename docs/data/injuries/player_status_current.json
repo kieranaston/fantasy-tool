@@ -122,5 +122,50 @@
       "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrnczf3pyc2h"
     },
     "last_diff_summary": "On July 27th, Daniel Jones was fully cleared from his torn Achilles and expected to be on the field for the start of training camp."
+  },
+  "00-0037664": {
+    "player_name": "Alec Pierce",
+    "current_designation": "PUP",
+    "last_updated": "2026-07-27T20:40:12.053Z",
+    "last_report_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrnqxddfl22w",
+    "last_report_id": "4a2995b3-f8d1-432c-9aaa-3cd99a9ab361",
+    "last_extraction": {
+      "status": "PUP",
+      "designation": "PUP",
+      "date": "2026-07-27T20:40:12.053Z",
+      "direct_quote": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\nColts placed WR Alec Pierce (ankle) on the Active/Physically Unable to Perform list.\n\nPer Adam Schefter.",
+      "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrnqxddfl22w"
+    },
+    "last_diff_summary": "The Indianapolis Colts have placed wide receiver Alec Pierce on the Active/Physically Unable to Perform list due to an ankle injury."
+  },
+  "00-0034773": {
+    "player_name": "Vita Vea",
+    "current_designation": "requested a trade",
+    "last_updated": "2026-07-27T22:17:36.822Z",
+    "last_report_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrnwfjdlsc22",
+    "last_report_id": "3d9e5e0f-4cc9-4b63-95d1-7c3de8fd468c",
+    "last_extraction": {
+      "status": "requested a trade",
+      "designation": "requested a trade",
+      "date": "2026-07-27T22:17:36.822Z",
+      "direct_quote": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 BREAKING NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\nVita Vea has requested a trade from the Bucs.\n\nPer Adam Schefter.",
+      "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrnwfjdlsc22"
+    },
+    "last_diff_summary": "Vita Vea has requested a trade from the Tampa Bay Buccaneers."
+  },
+  "00-0036932": {
+    "player_name": "Micah Parsons",
+    "current_designation": "not on PUP list",
+    "last_updated": "2026-07-27T22:37:21.155Z",
+    "last_report_url": "https://bsky.app/profile/rapsheet.bsky.social/post/3mrnxissxos2v",
+    "last_report_id": "c09aea66-3f9b-4ed4-93d3-024565c43bec",
+    "last_extraction": {
+      "status": "not on PUP list",
+      "designation": "not on PUP list",
+      "date": "2026-07-27T22:37:21.155Z",
+      "direct_quote": "In the Packers' list of players on the PUP list\u2026 Micah Parsons is not on it.",
+      "source_url": "https://bsky.app/profile/rapsheet.bsky.social/post/3mrnxissxos2v"
+    },
+    "last_diff_summary": "Micah Parsons is not on the Green Bay Packers' Physically Unable to Perform list."
   }
 }
