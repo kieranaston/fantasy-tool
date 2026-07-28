@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My QB Draft — Fantasy Reference</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" />
+    <link rel="stylesheet" href="../css/site.css" />
+  </head>
+  <body>
+    <div class="container">
+      <p class="site-header">
+        <a href="../index.html">Home</a><span class="sep"> · </span><span class="nav-current">My QB Draft</span>
+      </p>
+      <p class="meta" data-draft="summary">Loading…</p>
+
+      <div class="controls draft-controls">
+        <div>
+          <label id="format-label">Format</label>
+          <div id="format-toggle" class="format-toggle" role="group" aria-label="Scoring format"></div>
+        </div>
+        <div class="draft-actions">
+          <button type="button" id="draft-download-csv" class="draft-btn">Download spreadsheet</button>
+        </div>
+      </div>
+
+      <div id="table-container" class="table-wrap">
+        <table id="qb-draft-table" class="cell-border draft-table">
+          <thead>
+            <tr>
+              <th>
+                <span class="th-inner">
+                  <span class="th-label">My Rank</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Your draft rank — drag rows to reorder">i</span>
+                </span>
+              </th>
+              <th>
+                <span class="th-inner">
+                  <span class="th-label">Player</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Player name, team change, and player-news status">i</span>
+                </span>
+              </th>
+              <th>
+                <span class="th-inner">
+                  <span class="th-label">FP ECR</span>
+                  <span class="col-info" tabindex="0" data-tooltip="FantasyPros expert consensus rank for this format">i</span>
+                </span>
+              </th>
+              <th>
+                <span class="th-inner">
+                  <span class="th-label">vs ECR</span>
+                  <span class="col-info" tabindex="0" data-tooltip="My rank minus FP ECR. Negative means you rank them higher than consensus">i</span>
+                </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script type="module">
+      import { mountDraftRankingsPage } from "../js/draft-rankings.js";
+      mountDraftRankingsPage({ position: "qb", tableId: "qb-draft-table" });
+    </script>
+  </body>
+</html>

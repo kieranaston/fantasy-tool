@@ -220,4 +220,11 @@ async function mountRankingsPage(options) {
   }
 }
 
-export { mountRankingsPage, FORMAT_LABELS };
+export {
+  mountRankingsPage,
+  FORMAT_LABELS,
+  buildNewsIndex,
+  playerCell,
+  escapeHtml,
+  normalizeName,
+};

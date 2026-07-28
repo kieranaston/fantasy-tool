@@ -1,0 +1,135 @@
+{
+  "season": 2026,
+  "position": "WR",
+  "formats": [
+    "half_ppr",
+    "full_ppr"
+  ],
+  "players": {
+    "half_ppr": [
+      {
+        "player_id": "00-0036900",
+        "player": "Ja'Marr Chase",
+        "ecr": 1,
+        "pos_rank": "WR1"
+      },
+      {
+        "player_id": "00-0039075",
+        "player": "Puka Nacua",
+        "ecr": 2,
+        "pos_rank": "WR2"
+      },
+      {
+        "player_id": "00-0038543",
+        "player": "Jaxon Smith-Njigba",
+        "ecr": 3,
+        "pos_rank": "WR3"
+      },
+      {
+        "player_id": "00-0036963",
+        "player": "Amon-Ra St. Brown",
+        "ecr": 4,
+        "pos_rank": "WR4"
+      },
+      {
+        "player_id": "00-0036358",
+        "player": "CeeDee Lamb",
+        "ecr": 5,
+        "pos_rank": "WR5"
+      },
+      {
+        "player_id": "00-0036322",
+        "player": "Justin Jefferson",
+        "ecr": 6,
+        "pos_rank": "WR6"
+      },
+      {
+        "player_id": "00-0037238",
+        "player": "Drake London",
+        "ecr": 7,
+        "pos_rank": "WR7"
+      },
+      {
+        "player_id": "00-0035676",
+        "player": "A.J. Brown",
+        "ecr": 8,
+        "pos_rank": "WR8"
+      },
+      {
+        "player_id": "00-0036554",
+        "player": "Nico Collins",
+        "ecr": 9,
+        "pos_rank": "WR9"
+      },
+      {
+        "player_id": "00-0037247",
+        "player": "George Pickens",
+        "ecr": 10,
+        "pos_rank": "WR10"
+      }
+    ],
+    "full_ppr": [
+      {
+        "player_id": "00-0036900",
+        "player": "Ja'Marr Chase",
+        "ecr": 1,
+        "pos_rank": "WR1"
+      },
+      {
+        "player_id": "00-0039075",
+        "player": "Puka Nacua",
+        "ecr": 2,
+        "pos_rank": "WR2"
+      },
+      {
+        "player_id": "00-0038543",
+        "player": "Jaxon Smith-Njigba",
+        "ecr": 3,
+        "pos_rank": "WR3"
+      },
+      {
+        "player_id": "00-0036963",
+        "player": "Amon-Ra St. Brown",
+        "ecr": 4,
+        "pos_rank": "WR4"
+      },
+      {
+        "player_id": "00-0036358",
+        "player": "CeeDee Lamb",
+        "ecr": 5,
+        "pos_rank": "WR5"
+      },
+      {
+        "player_id": "00-0036322",
+        "player": "Justin Jefferson",
+        "ecr": 6,
+        "pos_rank": "WR6"
+      },
+      {
+        "player_id": "00-0037238",
+        "player": "Drake London",
+        "ecr": 7,
+        "pos_rank": "WR7"
+      },
+      {
+        "player_id": "00-0035676",
+        "player": "A.J. Brown",
+        "ecr": 8,
+        "pos_rank": "WR8"
+      },
+      {
+        "player_id": "00-0036554",
+        "player": "Nico Collins",
+        "ecr": 9,
+        "pos_rank": "WR9"
+      },
+      {
+        "player_id": "00-0037247",
+        "player": "George Pickens",
+        "ecr": 10,
+        "pos_rank": "WR10"
+      }
+    ]
+  },
+  "last_updated": "2026-07-28T20:31:42Z"
+}

@@ -75,6 +75,20 @@ def load_player_index(season: int | None = None) -> list[PlayerRef]:
     return list(refs.values())
 
 
+def fantasypros_id_to_gsis() -> dict[str, str]:
+    """Map FantasyPros player id (str) → GSIS id."""
+    ids = nfl.load_ff_playerids()
+    mapped = ids.filter(
+        pl.col("fantasypros_id").is_not_null()
+        & pl.col("gsis_id").is_not_null()
+        & pl.col("gsis_id").cast(pl.Utf8).str.starts_with("00-")
+    )
+    return {
+        str(row["fantasypros_id"]): str(row["gsis_id"])
+        for row in mapped.iter_rows(named=True)
+    }
+
+
 def match_player_name(
     player_name: str | None,
     index: list[PlayerRef],

@@ -97,7 +97,8 @@ a:hover {
 }
 
 /* DataTables — load after DataTables CDN so these win */
-table.dataTable {
+table.dataTable,
+table.draft-table {
   width: auto !important;
   max-width: 100%;
   border-collapse: collapse !important;
@@ -108,13 +109,16 @@ table.dataTable {
 }
 
 table.dataTable > thead > tr > th,
-table.dataTable > tbody > tr > td {
+table.dataTable > tbody > tr > td,
+table.draft-table > thead > tr > th,
+table.draft-table > tbody > tr > td {
   border: 1px solid #9ca3af !important;
   padding: 0.35rem 0.6rem !important;
   vertical-align: middle;
 }
 
-table.dataTable > thead > tr > th {
+table.dataTable > thead > tr > th,
+table.draft-table > thead > tr > th {
   font-weight: 600;
   font-size: 0.85rem;
   text-align: left;
@@ -500,5 +504,87 @@ table.dataTable > tbody > tr > td.score-cell {
   color: var(--accent);
   font-weight: 600;
 }
+
+.draft-controls {
+  align-items: center;
+}
+
+.draft-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 1rem;
+}
+
+.draft-edit-status {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.draft-edit-status.draft-dirty {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.draft-btn {
+  font-family: inherit;
+  font-size: 0.8rem;
+  color: var(--text);
+  background: none;
+  border: none;
+  border-bottom: 1px solid #9ca3af;
+  padding: 0.1rem 0;
+  cursor: pointer;
+}
+
+.draft-btn:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.draft-rank-cell {
+  white-space: nowrap;
+}
+
+.drag-handle {
+  display: inline-block;
+  color: var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: -0.15em;
+  margin-right: 0.4rem;
+  cursor: grab;
+  user-select: none;
+}
+
+table.draft-table > tbody > tr[draggable="true"] {
+  cursor: grab;
+}
+
+table.draft-table > tbody > tr.dragging {
+  opacity: 0.55;
+}
+
+table.draft-table > tbody > tr.drag-over {
+  background: var(--sort-highlight-soft);
+}
+
+.draft-vs-higher {
+  color: #15803d;
+  font-weight: 600;
+}
+
+.draft-vs-lower {
+  color: var(--muted);
+}
+
+td.num {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.muted {
+  color: var(--muted);
+}
+
 
 

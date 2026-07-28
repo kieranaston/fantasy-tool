@@ -1,0 +1,135 @@
+{
+  "season": 2026,
+  "position": "RB",
+  "formats": [
+    "half_ppr",
+    "full_ppr"
+  ],
+  "players": {
+    "half_ppr": [
+      {
+        "player_id": "00-0039139",
+        "player": "Jahmyr Gibbs",
+        "ecr": 1,
+        "pos_rank": "RB1"
+      },
+      {
+        "player_id": "00-0038542",
+        "player": "Bijan Robinson",
+        "ecr": 2,
+        "pos_rank": "RB2"
+      },
+      {
+        "player_id": "00-0033280",
+        "player": "Christian McCaffrey",
+        "ecr": 3,
+        "pos_rank": "RB3"
+      },
+      {
+        "player_id": "00-0036223",
+        "player": "Jonathan Taylor",
+        "ecr": 4,
+        "pos_rank": "RB4"
+      },
+      {
+        "player_id": "00-0037248",
+        "player": "James Cook III",
+        "ecr": 5,
+        "pos_rank": "RB5"
+      },
+      {
+        "player_id": "00-0040122",
+        "player": "Ashton Jeanty",
+        "ecr": 6,
+        "pos_rank": "RB6"
+      },
+      {
+        "player_id": "00-0034844",
+        "player": "Saquon Barkley",
+        "ecr": 7,
+        "pos_rank": "RB7"
+      },
+      {
+        "player_id": "00-0038597",
+        "player": "Chase Brown",
+        "ecr": 8,
+        "pos_rank": "RB8"
+      },
+      {
+        "player_id": "00-0039040",
+        "player": "De'Von Achane",
+        "ecr": 9,
+        "pos_rank": "RB9"
+      },
+      {
+        "player_id": "00-0040666",
+        "player": "Omarion Hampton",
+        "ecr": 10,
+        "pos_rank": "RB10"
+      }
+    ],
+    "full_ppr": [
+      {
+        "player_id": "00-0038542",
+        "player": "Bijan Robinson",
+        "ecr": 1,
+        "pos_rank": "RB1"
+      },
+      {
+        "player_id": "00-0039139",
+        "player": "Jahmyr Gibbs",
+        "ecr": 2,
+        "pos_rank": "RB2"
+      },
+      {
+        "player_id": "00-0033280",
+        "player": "Christian McCaffrey",
+        "ecr": 3,
+        "pos_rank": "RB3"
+      },
+      {
+        "player_id": "00-0036223",
+        "player": "Jonathan Taylor",
+        "ecr": 4,
+        "pos_rank": "RB4"
+      },
+      {
+        "player_id": "00-0040122",
+        "player": "Ashton Jeanty",
+        "ecr": 5,
+        "pos_rank": "RB5"
+      },
+      {
+        "player_id": "00-0038597",
+        "player": "Chase Brown",
+        "ecr": 6,
+        "pos_rank": "RB6"
+      },
+      {
+        "player_id": "00-0037248",
+        "player": "James Cook III",
+        "ecr": 7,
+        "pos_rank": "RB7"
+      },
+      {
+        "player_id": "00-0039040",
+        "player": "De'Von Achane",
+        "ecr": 8,
+        "pos_rank": "RB8"
+      },
+      {
+        "player_id": "00-0040666",
+        "player": "Omarion Hampton",
+        "ecr": 9,
+        "pos_rank": "RB9"
+      },
+      {
+        "player_id": "00-0034844",
+        "player": "Saquon Barkley",
+        "ecr": 10,
+        "pos_rank": "RB10"
+      }
+    ]
+  },
+  "last_updated": "2026-07-28T20:31:42Z"
+}

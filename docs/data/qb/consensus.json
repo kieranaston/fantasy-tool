@@ -1,0 +1,135 @@
+{
+  "season": 2026,
+  "position": "QB",
+  "formats": [
+    "half_ppr",
+    "full_ppr"
+  ],
+  "players": {
+    "half_ppr": [
+      {
+        "player_id": "00-0034857",
+        "player": "Josh Allen",
+        "ecr": 1,
+        "pos_rank": "QB1"
+      },
+      {
+        "player_id": "00-0034796",
+        "player": "Lamar Jackson",
+        "ecr": 2,
+        "pos_rank": "QB2"
+      },
+      {
+        "player_id": "00-0039851",
+        "player": "Drake Maye",
+        "ecr": 3,
+        "pos_rank": "QB3"
+      },
+      {
+        "player_id": "00-0036442",
+        "player": "Joe Burrow",
+        "ecr": 4,
+        "pos_rank": "QB4"
+      },
+      {
+        "player_id": "00-0039910",
+        "player": "Jayden Daniels",
+        "ecr": 5,
+        "pos_rank": "QB5"
+      },
+      {
+        "player_id": "00-0036389",
+        "player": "Jalen Hurts",
+        "ecr": 6,
+        "pos_rank": "QB6"
+      },
+      {
+        "player_id": "00-0039918",
+        "player": "Caleb Williams",
+        "ecr": 7,
+        "pos_rank": "QB7"
+      },
+      {
+        "player_id": "00-0036355",
+        "player": "Justin Herbert",
+        "ecr": 8,
+        "pos_rank": "QB8"
+      },
+      {
+        "player_id": "00-0033077",
+        "player": "Dak Prescott",
+        "ecr": 9,
+        "pos_rank": "QB9"
+      },
+      {
+        "player_id": "00-0036971",
+        "player": "Trevor Lawrence",
+        "ecr": 10,
+        "pos_rank": "QB10"
+      }
+    ],
+    "full_ppr": [
+      {
+        "player_id": "00-0034857",
+        "player": "Josh Allen",
+        "ecr": 1,
+        "pos_rank": "QB1"
+      },
+      {
+        "player_id": "00-0034796",
+        "player": "Lamar Jackson",
+        "ecr": 2,
+        "pos_rank": "QB2"
+      },
+      {
+        "player_id": "00-0039851",
+        "player": "Drake Maye",
+        "ecr": 3,
+        "pos_rank": "QB3"
+      },
+      {
+        "player_id": "00-0036442",
+        "player": "Joe Burrow",
+        "ecr": 4,
+        "pos_rank": "QB4"
+      },
+      {
+        "player_id": "00-0039910",
+        "player": "Jayden Daniels",
+        "ecr": 5,
+        "pos_rank": "QB5"
+      },
+      {
+        "player_id": "00-0036389",
+        "player": "Jalen Hurts",
+        "ecr": 6,
+        "pos_rank": "QB6"
+      },
+      {
+        "player_id": "00-0039918",
+        "player": "Caleb Williams",
+        "ecr": 7,
+        "pos_rank": "QB7"
+      },
+      {
+        "player_id": "00-0036355",
+        "player": "Justin Herbert",
+        "ecr": 8,
+        "pos_rank": "QB8"
+      },
+      {
+        "player_id": "00-0033077",
+        "player": "Dak Prescott",
+        "ecr": 9,
+        "pos_rank": "QB9"
+      },
+      {
+        "player_id": "00-0036971",
+        "player": "Trevor Lawrence",
+        "ecr": 10,
+        "pos_rank": "QB10"
+      }
+    ]
+  },
+  "last_updated": "2026-07-28T20:31:41Z"
+}
