@@ -39,13 +39,28 @@ a:hover {
 }
 
 .site-header {
-  margin: 0 0 0.35rem;
-  font-size: 0.9rem;
+  margin: 0 0 0.75rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+/* Breadcrumb headers: keep Home/nav compact, enlarge the page name */
+.site-header:has(a) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
 }
 
 .site-header a {
   color: var(--text);
   font-weight: 700;
+  font-size: 0.95rem;
   text-decoration: underline;
   text-underline-offset: 0.15em;
 }
@@ -55,12 +70,15 @@ a:hover {
 }
 
 .site-header .nav-current {
-  color: var(--muted);
-  font-weight: 400;
+  color: var(--text);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.25;
 }
 
 .site-header .sep {
   color: var(--muted);
+  font-size: 0.95rem;
 }
 
 .meta {

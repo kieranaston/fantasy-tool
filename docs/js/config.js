@@ -39,16 +39,33 @@ function showError(container, message) {
 /** Load manifest and populate elements with data-manifest attributes. */
 async function loadManifest() {
   const manifest = await fetchJSON("manifest.json");
+  const summaryEls = document.querySelectorAll("[data-manifest='summary']");
+  if (summaryEls.length) {
+    let statusUpdated = null;
+    try {
+      const injuries = await fetchJSON("injuries/summaries.json");
+      statusUpdated = injuries.last_updated || null;
+    } catch {
+      statusUpdated = null;
+    }
+
+    const parts = [`Based on ${manifest.season}`];
+    if (manifest.last_updated) {
+      parts.push(`Teams last updated ${formatTimestamp(manifest.last_updated)}`);
+    }
+    if (statusUpdated) {
+      parts.push(`Player status updated ${formatTimestamp(statusUpdated)}`);
+    }
+
+    summaryEls.forEach((el) => {
+      el.textContent = parts.join(" · ");
+    });
+  }
+
   document.querySelectorAll("[data-manifest]").forEach((el) => {
     const key = el.getAttribute("data-manifest");
-    if (key === "summary") {
-      const onHome =
-        !window.location.pathname.includes("/tables/") &&
-        !window.location.pathname.includes("/charts/");
-      el.textContent = onHome
-        ? `Updated ${formatTimestamp(manifest.last_updated)}`
-        : `Based on ${manifest.season} · Updated ${formatTimestamp(manifest.last_updated)}`;
-    } else if (key in manifest) {
+    if (key === "summary") return;
+    if (key in manifest) {
       el.textContent = manifest[key];
     }
   });

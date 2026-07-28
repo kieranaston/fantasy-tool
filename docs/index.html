@@ -9,7 +9,6 @@
   <body>
     <div class="container">
       <p class="site-header">Fantasy Football Reference</p>
-      <p class="meta" data-manifest="summary">Loading…</p>
       <p>
         <a href="tables/qb-rankings.html">QB Rankings</a>
         · <a href="tables/rb-rankings.html">RB Rankings</a>
@@ -18,14 +17,5 @@
         · <a href="tables/injuries.html">Player News</a>
       </p>
     </div>
-
-    <script type="module">
-      import { loadManifest } from "./js/config.js";
-      loadManifest().catch((err) => {
-        document.querySelector("[data-manifest='summary']").textContent =
-          "Unable to load data manifest.";
-        console.error(err);
-      });
-    </script>
   </body>
 </html>
