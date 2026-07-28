@@ -1,0 +1,317 @@
+[
+  {
+    "timestamp": "2026-07-27T19:35:22Z",
+    "reason": "bluesky_extraction_error: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",
+    "failed_fields": [],
+    "source": {
+      "posts": [
+        "https://bsky.app/profile/news.optimusfantasy.com/post/3mefelwj6cc2v",
+        "https://bsky.app/profile/news.optimusfantasy.com/post/3mefevzr5522v",
+        "https://bsky.app/profile/news.optimusfantasy.com/post/3mefgf3iffc2v",
+        "https://bsky.app/profile/news.optimusfantasy.com/post/3mep7cmnh422x",
+        "https://bsky.app/profile/news.optimusfantasy.com/post/3mibwtcy7e224",
+        "https://bsky.app/profile/news.optimusfantasy.com/post/3mklajdz6as26",
+        "https://bsky.app/profile/news.optimusfantasy.com/post/3mm7yhvl2oc2b",
+        "https://bsky.app/profile/news.optimusfantasy.com/post/3mmaj2jwx2s22",
+        "https://bsky.app/profile/news.optimusfantasy.com/post/3mmcesjq6bs2t",
+        "https://bsky.app/profile/news.optimusfantasy.com/post/3mmtvzkrals2e",
+        "https://bsky.app/profile/news.optimusfantasy.com/post/3mr6m6gg4es2w",
+        "https://bsky.app/profile/johnpboyle.bsky.social/post/3mrarkj4ebq24",
+        "https://bsky.app/profile/news.optimusfantasy.com/post/3mrcx6dqcqc2c",
+        "https://bsky.app/profile/daringantt.bsky.social/post/3mrd6px2cyk2e",
+        "https://bsky.app/profile/news.optimusfantasy.com/post/3mrdt53wc4c2m",
+        "https://bsky.app/profile/news.optimusfantasy.com/post/3mrg55a7omk2u",
+        "https://bsky.app/profile/news.optimusfantasy.com/post/3mrg57frk5s2u",
+        "https://bsky.app/profile/news.optimusfantasy.com/post/3mrnczf3pyc2h"
+      ]
+    },
+    "extraction": null
+  },
+  {
+    "timestamp": "2026-07-27T19:36:34Z",
+    "reason": "unmatched_player_name",
+    "failed_fields": [],
+    "source": {
+      "id": "b33bfa04-9245-4162-aa80-6f7fa27583fb",
+      "player_id": null,
+      "player_name": "Chris Boswell",
+      "timestamp": "2026-07-21T20:04:45.384Z",
+      "designation": "recovering from a torn ACL, on the active/NFI list",
+      "source_text": "\ud83d\udce3\ud83d\udce3\ud83d\udce3 NEWS \ud83d\udce3\ud83d\udce3\ud83d\udce3\n\nThe Dolphins have placed rookie WR Chris Bell, who is recovering from a torn ACL while at Louisville last December, on the active/NFI list.\n\nPer Adam Schefter.",
+      "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mr6m6gg4es2w",
+      "source_type": "beat_reporter",
+      "needs_review": true
+    },
+    "extraction": null
+  },
+  {
+    "timestamp": "2026-07-28T03:10:47Z",
+    "reason": "narrative_batch_error: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash-lite\\nPlease retry in 12.534586909s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash-lite'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '12s'}]}}",
+    "failed_fields": [],
+    "source": null,
+    "extraction": null
+  },
+  {
+    "timestamp": "2026-07-28T03:10:47Z",
+    "reason": "narrative_missing_from_batch",
+    "failed_fields": [],
+    "source": {
+      "id": "4a2995b3-f8d1-432c-9aaa-3cd99a9ab361",
+      "player_id": "00-0037664",
+      "player_name": "Alec Pierce",
+      "timestamp": "2026-07-27T20:40:12.053Z",
+      "designation": "PUP",
+      "source_text": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\nColts placed WR Alec Pierce (ankle) on the Active/Physically Unable to Perform list.\n\nPer Adam Schefter.",
+      "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrnqxddfl22w",
+      "source_type": "beat_reporter",
+      "needs_review": false,
+      "triaged": true
+    },
+    "extraction": {
+      "status": "PUP",
+      "designation": "PUP",
+      "date": "2026-07-27T20:40:12.053Z",
+      "direct_quote": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\nColts placed WR Alec Pierce (ankle) on the Active/Physically Unable to Perform list.\n\nPer Adam Schefter.",
+      "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrnqxddfl22w"
+    }
+  },
+  {
+    "timestamp": "2026-07-28T03:10:47Z",
+    "reason": "narrative_missing_from_batch",
+    "failed_fields": [],
+    "source": {
+      "id": "3d9e5e0f-4cc9-4b63-95d1-7c3de8fd468c",
+      "player_id": "00-0034773",
+      "player_name": "Vita Vea",
+      "timestamp": "2026-07-27T22:17:36.822Z",
+      "designation": "requested a trade",
+      "source_text": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 BREAKING NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\nVita Vea has requested a trade from the Bucs.\n\nPer Adam Schefter.",
+      "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrnwfjdlsc22",
+      "source_type": "beat_reporter",
+      "needs_review": false,
+      "triaged": true
+    },
+    "extraction": {
+      "status": "requested a trade",
+      "designation": "requested a trade",
+      "date": "2026-07-27T22:17:36.822Z",
+      "direct_quote": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 BREAKING NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\nVita Vea has requested a trade from the Bucs.\n\nPer Adam Schefter.",
+      "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrnwfjdlsc22"
+    }
+  },
+  {
+    "timestamp": "2026-07-28T03:10:47Z",
+    "reason": "narrative_missing_from_batch",
+    "failed_fields": [],
+    "source": {
+      "id": "c09aea66-3f9b-4ed4-93d3-024565c43bec",
+      "player_id": "00-0036932",
+      "player_name": "Micah Parsons",
+      "timestamp": "2026-07-27T22:37:21.155Z",
+      "designation": "not on PUP list",
+      "source_text": "In the Packers' list of players on the PUP list\u2026 Micah Parsons is not on it.",
+      "url": "https://bsky.app/profile/rapsheet.bsky.social/post/3mrnxissxos2v",
+      "source_type": "beat_reporter",
+      "needs_review": false,
+      "triaged": true
+    },
+    "extraction": {
+      "status": "not on PUP list",
+      "designation": "not on PUP list",
+      "date": "2026-07-27T22:37:21.155Z",
+      "direct_quote": "In the Packers' list of players on the PUP list\u2026 Micah Parsons is not on it.",
+      "source_url": "https://bsky.app/profile/rapsheet.bsky.social/post/3mrnxissxos2v"
+    }
+  },
+  {
+    "timestamp": "2026-07-28T03:20:52Z",
+    "reason": "narrative_batch_error: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash-lite\\nPlease retry in 7.0300239s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.5-flash-lite'}, 'quotaValue': '20'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '7s'}]}}",
+    "failed_fields": [],
+    "source": null,
+    "extraction": null
+  },
+  {
+    "timestamp": "2026-07-28T03:20:52Z",
+    "reason": "narrative_missing_from_batch",
+    "failed_fields": [],
+    "source": {
+      "id": "fp-598510",
+      "player_id": "00-0036932",
+      "player_name": "Micah Parsons",
+      "timestamp": "2026-07-27T20:59:43Z",
+      "designation": "Micah Parsons (knee) will be placed on PUP list",
+      "source_text": "Micah Parsons (knee) will be placed on PUP list\n\nThe Packers are expected to place Micah Parsons on the PUP list on Tuesday or Wednesday.\n\nParsons is expected to miss the start of the season. He is targeting his return in October.",
+      "url": "https://www.fantasypros.com/nfl/news/598510/micah-parsons-knee-will-be-placed-on-pup-list.php",
+      "source_type": "fantasypros",
+      "needs_review": false
+    },
+    "extraction": {
+      "status": "Micah Parsons (knee) will be placed on PUP list",
+      "designation": "Micah Parsons (knee) will be placed on PUP list",
+      "date": "2026-07-27T20:59:43Z",
+      "direct_quote": "Micah Parsons (knee) will be placed on PUP list\n\nThe Packers are expected to place Micah Parsons on the PUP list on Tuesday or Wednesday.\n\nParsons is expected to miss the start of the season. He is targeting his return in October.",
+      "source_url": "https://www.fantasypros.com/nfl/news/598510/micah-parsons-knee-will-be-placed-on-pup-list.php"
+    }
+  },
+  {
+    "timestamp": "2026-07-28T03:20:52Z",
+    "reason": "narrative_missing_from_batch",
+    "failed_fields": [],
+    "source": {
+      "id": "fp-598508",
+      "player_id": "00-0038685",
+      "player_name": "Chris Brooks",
+      "timestamp": "2026-07-27T20:52:32Z",
+      "designation": "Chris Brooks placed on NFI list",
+      "source_text": "Chris Brooks placed on NFI list\n\nThe Packers placed RB Chris Brooks on the non-football injury list.\n\nBrooks can be activated at any point during training camp.",
+      "url": "https://www.fantasypros.com/nfl/news/598508/chris-brooks-placed-on-nfi-list.php",
+      "source_type": "fantasypros",
+      "needs_review": false
+    },
+    "extraction": {
+      "status": "Chris Brooks placed on NFI list",
+      "designation": "Chris Brooks placed on NFI list",
+      "date": "2026-07-27T20:52:32Z",
+      "direct_quote": "Chris Brooks placed on NFI list\n\nThe Packers placed RB Chris Brooks on the non-football injury list.\n\nBrooks can be activated at any point during training camp.",
+      "source_url": "https://www.fantasypros.com/nfl/news/598508/chris-brooks-placed-on-nfi-list.php"
+    }
+  },
+  {
+    "timestamp": "2026-07-28T03:20:52Z",
+    "reason": "narrative_missing_from_batch",
+    "failed_fields": [],
+    "source": {
+      "id": "fp-598507",
+      "player_id": "00-0039831",
+      "player_name": "Kamal Hadden",
+      "timestamp": "2026-07-27T20:51:43Z",
+      "designation": "Kamal Hadden placed on PUP list",
+      "source_text": "Kamal Hadden placed on PUP list\n\nThe Packers placed CB Kamal Hadden on the PUP list.\n\nHadden will not be ready to go to begin training camp. He can be activated at any point during camp.",
+      "url": "https://www.fantasypros.com/nfl/news/598507/kamal-hadden-placed-on-pup-list.php",
+      "source_type": "fantasypros",
+      "needs_review": false
+    },
+    "extraction": {
+      "status": "Kamal Hadden placed on PUP list",
+      "designation": "Kamal Hadden placed on PUP list",
+      "date": "2026-07-27T20:51:43Z",
+      "direct_quote": "Kamal Hadden placed on PUP list\n\nThe Packers placed CB Kamal Hadden on the PUP list.\n\nHadden will not be ready to go to begin training camp. He can be activated at any point during camp.",
+      "source_url": "https://www.fantasypros.com/nfl/news/598507/kamal-hadden-placed-on-pup-list.php"
+    }
+  },
+  {
+    "timestamp": "2026-07-28T03:20:52Z",
+    "reason": "narrative_missing_from_batch",
+    "failed_fields": [],
+    "source": {
+      "id": "fp-598506",
+      "player_id": "00-0033109",
+      "player_name": "Javon Hargrave",
+      "timestamp": "2026-07-27T20:50:58Z",
+      "designation": "Javon Hargrave placed on PUP list",
+      "source_text": "Javon Hargrave placed on PUP list\n\nThe Packers placed DT Javon Hargrave on the PUP list.\n\nHargrave will not be ready to go to begin training camp. He can be activated at any point during camp.",
+      "url": "https://www.fantasypros.com/nfl/news/598506/javon-hargrave-placed-on-pup-list.php",
+      "source_type": "fantasypros",
+      "needs_review": false
+    },
+    "extraction": {
+      "status": "Javon Hargrave placed on PUP list",
+      "designation": "Javon Hargrave placed on PUP list",
+      "date": "2026-07-27T20:50:58Z",
+      "direct_quote": "Javon Hargrave placed on PUP list\n\nThe Packers placed DT Javon Hargrave on the PUP list.\n\nHargrave will not be ready to go to begin training camp. He can be activated at any point during camp.",
+      "source_url": "https://www.fantasypros.com/nfl/news/598506/javon-hargrave-placed-on-pup-list.php"
+    }
+  },
+  {
+    "timestamp": "2026-07-28T03:20:52Z",
+    "reason": "narrative_missing_from_batch",
+    "failed_fields": [],
+    "source": {
+      "id": "fp-598505",
+      "player_id": "00-0036551",
+      "player_name": "Aaron Banks",
+      "timestamp": "2026-07-27T20:49:55Z",
+      "designation": "Aaron Banks placed on PUP list",
+      "source_text": "Aaron Banks placed on PUP list\n\nThe Packers placed OL Aaron Banks on the PUP list.\n\nBanks will not be ready to go for the start of training camp. He can be activated at any time.",
+      "url": "https://www.fantasypros.com/nfl/news/598505/aaron-banks-placed-on-pup-list.php",
+      "source_type": "fantasypros",
+      "needs_review": false
+    },
+    "extraction": {
+      "status": "Aaron Banks placed on PUP list",
+      "designation": "Aaron Banks placed on PUP list",
+      "date": "2026-07-27T20:49:55Z",
+      "direct_quote": "Aaron Banks placed on PUP list\n\nThe Packers placed OL Aaron Banks on the PUP list.\n\nBanks will not be ready to go for the start of training camp. He can be activated at any time.",
+      "source_url": "https://www.fantasypros.com/nfl/news/598505/aaron-banks-placed-on-pup-list.php"
+    }
+  },
+  {
+    "timestamp": "2026-07-28T03:20:52Z",
+    "reason": "narrative_missing_from_batch",
+    "failed_fields": [],
+    "source": {
+      "id": "fp-598503",
+      "player_id": "00-0039144",
+      "player_name": "Luke Musgrave",
+      "timestamp": "2026-07-27T20:48:48Z",
+      "designation": "Luke Musgrave placed on PUP list",
+      "source_text": "Luke Musgrave placed on PUP list\n\nThe Packers placed TE Luke Musgrave on the PUP list.\n\nMusgrave is not ready to go for the start of training camp. He can be activated at any point.",
+      "url": "https://www.fantasypros.com/nfl/news/598503/luke-musgrave-placed-on-pup-list.php",
+      "source_type": "fantasypros",
+      "needs_review": false
+    },
+    "extraction": {
+      "status": "Luke Musgrave placed on PUP list",
+      "designation": "Luke Musgrave placed on PUP list",
+      "date": "2026-07-27T20:48:48Z",
+      "direct_quote": "Luke Musgrave placed on PUP list\n\nThe Packers placed TE Luke Musgrave on the PUP list.\n\nMusgrave is not ready to go for the start of training camp. He can be activated at any point.",
+      "source_url": "https://www.fantasypros.com/nfl/news/598503/luke-musgrave-placed-on-pup-list.php"
+    }
+  },
+  {
+    "timestamp": "2026-07-28T03:20:52Z",
+    "reason": "narrative_missing_from_batch",
+    "failed_fields": [],
+    "source": {
+      "id": "fp-598502",
+      "player_id": "00-0038996",
+      "player_name": "Tucker Kraft",
+      "timestamp": "2026-07-27T20:47:42Z",
+      "designation": "Tucker Kraft (knee) placed on PUP list",
+      "source_text": "Tucker Kraft (knee) placed on PUP list\n\nThe Packers placed TE Tucker Kraft on the PUP list.\n\nKraft is recovering from a torn ACL that ended his 2025 season. He is still currently on track to be ready for Week 1.",
+      "url": "https://www.fantasypros.com/nfl/news/598502/tucker-kraft-knee-placed-on-pup-list.php",
+      "source_type": "fantasypros",
+      "needs_review": false
+    },
+    "extraction": {
+      "status": "Tucker Kraft (knee) placed on PUP list",
+      "designation": "Tucker Kraft (knee) placed on PUP list",
+      "date": "2026-07-27T20:47:42Z",
+      "direct_quote": "Tucker Kraft (knee) placed on PUP list\n\nThe Packers placed TE Tucker Kraft on the PUP list.\n\nKraft is recovering from a torn ACL that ended his 2025 season. He is still currently on track to be ready for Week 1.",
+      "source_url": "https://www.fantasypros.com/nfl/news/598502/tucker-kraft-knee-placed-on-pup-list.php"
+    }
+  },
+  {
+    "timestamp": "2026-07-28T03:20:52Z",
+    "reason": "narrative_missing_from_batch",
+    "failed_fields": [],
+    "source": {
+      "id": "fp-598500",
+      "player_id": "00-0041039",
+      "player_name": "CJ Allen",
+      "timestamp": "2026-07-27T20:45:21Z",
+      "designation": "CJ Allen placed on PUP list",
+      "source_text": "CJ Allen placed on PUP list\n\nThe Colts placed LB CJ Allen on the PUP list.\n\nAllen won't be ready for the start of training camp. He can be activated at any time.",
+      "url": "https://www.fantasypros.com/nfl/news/598500/cj-allen-placed-on-pup-list.php",
+      "source_type": "fantasypros",
+      "needs_review": false
+    },
+    "extraction": {
+      "status": "CJ Allen placed on PUP list",
+      "designation": "CJ Allen placed on PUP list",
+      "date": "2026-07-27T20:45:21Z",
+      "direct_quote": "CJ Allen placed on PUP list\n\nThe Colts placed LB CJ Allen on the PUP list.\n\nAllen won't be ready for the start of training camp. He can be activated at any time.",
+      "source_url": "https://www.fantasypros.com/nfl/news/598500/cj-allen-placed-on-pup-list.php"
+    }
+  }
+]

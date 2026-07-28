@@ -1,0 +1,163 @@
+"""Bluesky public author-feed ingestion for Optimus Fantasy news."""
+
+from __future__ import annotations
+
+from datetime import datetime, timezone
+from typing import Any
+from urllib.parse import quote
+
+import httpx
+
+from src.injuries.calendar import post_super_bowl_cutoff
+
+BSKY_FEED_URL = (
+    "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed"
+)
+DEFAULT_ACTOR = "news.optimusfantasy.com"
+PAGE_LIMIT = 50
+MAX_PAGES = 30
+
+
+def _parse_iso(value: str | None) -> datetime | None:
+    if not value:
+        return None
+    text = value.strip()
+    if text.endswith("Z"):
+        text = text[:-1] + "+00:00"
+    try:
+        dt = datetime.fromisoformat(text)
+    except ValueError:
+        return None
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt
+
+
+def at_uri_to_web_url(uri: str, handle: str) -> str:
+    """Convert at://did/.../app.bsky.feed.post/rkey → bsky.app URL."""
+    rkey = uri.rstrip("/").split("/")[-1]
+    return f"https://bsky.app/profile/{handle}/post/{rkey}"
+
+
+def fetch_author_posts(
+    *,
+    actor: str = DEFAULT_ACTOR,
+    since_iso: str | None = None,
+    known_urls: set[str] | None = None,
+) -> list[dict[str, Any]]:
+    """Pull posts newer than ``since_iso`` (or post-Super-Bowl on first run).
+
+    No keyword pre-filter — Gemini triage selects player-related posts.
+    """
+    known_urls = known_urls or set()
+    since = _parse_iso(since_iso)
+    if since is None:
+        since = post_super_bowl_cutoff()
+
+    posts: list[dict[str, Any]] = []
+    cursor: str | None = None
+
+    with httpx.Client(timeout=30.0) as client:
+        for _ in range(MAX_PAGES):
+            params: dict[str, Any] = {
+                "actor": actor,
+                "limit": PAGE_LIMIT,
+                "filter": "posts_no_replies",
+            }
+            if cursor:
+                params["cursor"] = cursor
+
+            response = client.get(BSKY_FEED_URL, params=params)
+            response.raise_for_status()
+            payload = response.json()
+            feed = payload.get("feed") or []
+            if not feed:
+                break
+
+            stop = False
+            for entry in feed:
+                post = entry.get("post") or {}
+                record = post.get("record") or {}
+                created_at = record.get("createdAt") or post.get("indexedAt")
+                created_dt = _parse_iso(created_at)
+                if created_dt is not None and created_dt <= since:
+                    stop = True
+                    continue
+
+                uri = post.get("uri") or ""
+                author = (post.get("author") or {}).get("handle") or actor
+                url = at_uri_to_web_url(uri, author) if uri else ""
+                if url and url in known_urls:
+                    continue
+
+                text = record.get("text") or ""
+                if not text.strip():
+                    continue
+
+                posts.append(
+                    {
+                        "uri": uri,
+                        "url": url,
+                        "created_at": created_at,
+                        "text": text,
+                        "handle": author,
+                    }
+                )
+
+            if stop:
+                break
+            cursor = payload.get("cursor")
+            if not cursor:
+                break
+
+    posts.sort(key=lambda p: p.get("created_at") or "")
+    return posts
+
+
+def posts_to_raw_reports(
+    posts: list[dict[str, Any]],
+    extractions: list[dict[str, Any]],
+    player_index: list[Any],
+) -> list[dict[str, Any]]:
+    """Join Gemini Bluesky extractions back to posts as raw_reports rows."""
+    from src.injuries.match import match_player_name
+    from src.injuries.store import SOURCE_BEAT_REPORTER, new_report_id
+
+    by_url = {p["url"]: p for p in posts if p.get("url")}
+    reports: list[dict[str, Any]] = []
+
+    for item in extractions:
+        post_url = item.get("post_url") or ""
+        post = by_url.get(post_url)
+        if post is None and post_url:
+            for url, candidate in by_url.items():
+                if post_url in url or url in post_url:
+                    post = candidate
+                    post_url = url
+                    break
+
+        source_text = (post or {}).get("text") or item.get("direct_quote") or ""
+        timestamp = (post or {}).get("created_at") or item.get("date") or ""
+        player_name = item.get("player_name")
+        match = match_player_name(player_name, player_index)
+        needs_review = bool(item.get("needs_review")) or match.needs_review or (
+            player_name is None
+        )
+
+        reports.append(
+            {
+                "id": new_report_id(),
+                "player_id": match.player_id,
+                "player_name": match.matched_name or player_name,
+                "timestamp": timestamp,
+                "designation": item.get("designation") or "",
+                "source_text": source_text,
+                "url": post_url
+                or (post or {}).get("url")
+                or f"bsky:missing:{quote(str(player_name))}",
+                "source_type": SOURCE_BEAT_REPORTER,
+                "needs_review": needs_review,
+                "triaged": True,
+            }
+        )
+    return reports

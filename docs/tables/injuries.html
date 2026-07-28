@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Player News — Fantasy Reference</title>
+    <link rel="stylesheet" href="../css/site.css" />
+  </head>
+  <body>
+    <div class="container">
+      <p class="site-header">
+        <a href="../index.html">Home</a><span class="sep"> · </span><span class="nav-current">Player News</span>
+      </p>
+      <p class="meta" data-injuries="summary">Loading…</p>
+      <div id="injuries-container" class="injuries-list"></div>
+    </div>
+
+    <script type="module">
+      import { mountInjuriesPage } from "../js/injuries.js";
+      mountInjuriesPage();
+    </script>
+  </body>
+</html>

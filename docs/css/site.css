@@ -45,6 +45,18 @@ a:hover {
 
 .site-header a {
   color: var(--text);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.site-header a:hover {
+  color: var(--accent);
+}
+
+.site-header .nav-current {
+  color: var(--muted);
+  font-weight: 400;
 }
 
 .site-header .sep {
@@ -199,6 +211,13 @@ table.dataTable > tbody > tr > td.score-cell {
 
 .player-cell {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+}
+
+.player-cell-top {
+  display: flex;
   align-items: center;
   gap: 6px;
   white-space: nowrap;
@@ -218,6 +237,41 @@ table.dataTable > tbody > tr > td.score-cell {
   color: var(--accent);
   font-size: 0.75rem;
   font-weight: 600;
+}
+
+.news-tag {
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.news-tag:hover {
+  color: var(--text);
+  border-bottom-color: var(--text);
+}
+
+.status-chip {
+  display: block;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+  max-width: 42rem;
+}
+
+.injury-card-target {
+  scroll-margin-top: 1rem;
+}
+
+.injury-card-target .injury-card-identity .player-name {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 
 .page-nav {
@@ -280,4 +334,143 @@ table.dataTable > tbody > tr > td.score-cell {
   border-bottom-color: var(--text);
   font-weight: 600;
 }
+
+.page-title {
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.injuries-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.injury-card {
+  padding: 1.15rem 0 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.injury-card:first-child {
+  border-top: none;
+  padding-top: 0.25rem;
+}
+
+.injury-card-main {
+  margin-bottom: 0.35rem;
+}
+
+.injury-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: auto;
+  padding: 0.25rem 0;
+  font-family: inherit;
+  font-size: 0.8rem;
+  color: var(--muted);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.injury-card-header:hover {
+  color: var(--text);
+}
+
+.injury-card-title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.injury-card-identity {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.5rem;
+  min-width: 0;
+}
+
+.player-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.player-team {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.update-tag {
+  flex-shrink: 0;
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.sources-toggle-label {
+  font-weight: 600;
+}
+
+.expand-hint {
+  color: inherit;
+  font-weight: 600;
+  width: 1rem;
+  text-align: center;
+}
+
+.injury-card-body {
+  padding: 0.25rem 0 0.5rem;
+}
+
+.injury-blurb {
+  margin: 0 0 0.35rem;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.injury-blurb.muted,
+.timeline-empty {
+  color: var(--muted);
+}
+
+.injury-timeline {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.injury-timeline li {
+  padding: 0.55rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.timeline-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-text {
+  margin: 0;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+}
+
+.source-chip {
+  color: var(--accent);
+  font-weight: 600;
+}
+
 

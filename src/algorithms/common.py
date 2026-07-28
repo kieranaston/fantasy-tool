@@ -36,7 +36,7 @@ def attach_team_meta(
 
     for row in rows:
         ranking_team = row.get(team_key, "") or ""
-        player_id = row.pop("player_id", None)
+        player_id = row.get("player_id")
         new_team = upcoming_teams.get(player_id) if player_id else None
 
         if new_team and new_team != ranking_team:

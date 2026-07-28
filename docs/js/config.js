@@ -1,9 +1,14 @@
-/** Format timestamp for display. */
+/** Format timestamp in US Eastern time (EST/EDT). */
 function formatTimestamp(isoString) {
   const date = new Date(isoString);
-  return date.toLocaleString(undefined, {
-    dateStyle: "medium",
-    timeStyle: "short",
+  return date.toLocaleString("en-US", {
+    timeZone: "America/New_York",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    timeZoneName: "short",
   });
 }
 
@@ -37,7 +42,12 @@ async function loadManifest() {
   document.querySelectorAll("[data-manifest]").forEach((el) => {
     const key = el.getAttribute("data-manifest");
     if (key === "summary") {
-      el.textContent = `Preseason composites · based on ${manifest.season} · Updated ${formatTimestamp(manifest.last_updated)}`;
+      const onHome =
+        !window.location.pathname.includes("/tables/") &&
+        !window.location.pathname.includes("/charts/");
+      el.textContent = onHome
+        ? `Updated ${formatTimestamp(manifest.last_updated)}`
+        : `Based on ${manifest.season} · Updated ${formatTimestamp(manifest.last_updated)}`;
     } else if (key in manifest) {
       el.textContent = manifest[key];
     }

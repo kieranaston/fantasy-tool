@@ -1,0 +1,50 @@
+name: Refresh injuries
+
+on:
+  schedule:
+    # Daily at 12:00 UTC
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Cache nflreadpy data
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/nflreadpy
+          key: nflreadpy-injuries-${{ runner.os }}-${{ hashFiles('pyproject.toml') }}
+          restore-keys: |
+            nflreadpy-injuries-${{ runner.os }}-
+            nflreadpy-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: pip install .
+
+      - name: Generate injury JSON
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+        run: python -m src.run_injuries
+
+      - name: Commit updated injury data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/injuries/
+          if git diff --staged --quiet; then
+            echo "No injury data changes to commit."
+          else
+            git commit -m "chore: refresh injury summaries [skip ci]"
+            git push
+          fi

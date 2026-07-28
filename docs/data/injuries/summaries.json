@@ -1,0 +1,347 @@
+{
+  "title": "Player News",
+  "last_updated": "2026-07-28T03:38:07Z",
+  "players": [
+    {
+      "player_id": "00-0036932",
+      "player_name": "Micah Parsons",
+      "team": null,
+      "current_designation": "not on PUP list",
+      "last_updated": "2026-07-27T22:37:21.155Z",
+      "diff_summary": null,
+      "extraction": null,
+      "timeline": [
+        {
+          "id": "c09aea66-3f9b-4ed4-93d3-024565c43bec",
+          "timestamp": "2026-07-27T22:37:21.155Z",
+          "designation": "not on PUP list",
+          "source_text": "In the Packers' list of players on the PUP list\u2026 Micah Parsons is not on it.",
+          "url": "https://bsky.app/profile/rapsheet.bsky.social/post/3mrnxissxos2v",
+          "source_type": "beat_reporter",
+          "player_name": "Micah Parsons"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0034773",
+      "player_name": "Vita Vea",
+      "team": null,
+      "current_designation": "requested a trade",
+      "last_updated": "2026-07-27T22:17:36.822Z",
+      "diff_summary": null,
+      "extraction": null,
+      "timeline": [
+        {
+          "id": "3d9e5e0f-4cc9-4b63-95d1-7c3de8fd468c",
+          "timestamp": "2026-07-27T22:17:36.822Z",
+          "designation": "requested a trade",
+          "source_text": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 BREAKING NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\nVita Vea has requested a trade from the Bucs.\n\nPer Adam Schefter.",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrnwfjdlsc22",
+          "source_type": "beat_reporter",
+          "player_name": "Vita Vea"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0037664",
+      "player_name": "Alec Pierce",
+      "team": null,
+      "current_designation": "PUP",
+      "last_updated": "2026-07-27T20:40:12.053Z",
+      "diff_summary": null,
+      "extraction": null,
+      "timeline": [
+        {
+          "id": "4a2995b3-f8d1-432c-9aaa-3cd99a9ab361",
+          "timestamp": "2026-07-27T20:40:12.053Z",
+          "designation": "PUP",
+          "source_text": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\nColts placed WR Alec Pierce (ankle) on the Active/Physically Unable to Perform list.\n\nPer Adam Schefter.",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrnqxddfl22w",
+          "source_type": "beat_reporter",
+          "player_name": "Alec Pierce"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0035710",
+      "player_name": "Daniel Jones",
+      "team": null,
+      "current_designation": "fully cleared from torn Achilles",
+      "last_updated": "2026-07-27T16:30:48.622Z",
+      "diff_summary": "On July 27th, Daniel Jones was fully cleared from his torn Achilles and expected to be on the field for the start of training camp.",
+      "extraction": {
+        "status": "fully cleared from torn Achilles",
+        "designation": "fully cleared from torn Achilles",
+        "date": "2026-07-27T16:30:48.622Z",
+        "direct_quote": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 BREAKING NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\nDaniel Jones is fully cleared from the torn Achilles and will be on the field for the start of training camp this week. \n\nPer Pat McAfee.",
+        "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrnczf3pyc2h"
+      },
+      "timeline": [
+        {
+          "id": "272e5352-e4c3-46b8-a219-0f9a95a722e4",
+          "timestamp": "2026-07-27T16:30:48.622Z",
+          "designation": "fully cleared from torn Achilles",
+          "source_text": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 BREAKING NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\nDaniel Jones is fully cleared from the torn Achilles and will be on the field for the start of training camp this week. \n\nPer Pat McAfee.",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrnczf3pyc2h",
+          "source_type": "beat_reporter",
+          "player_name": "Daniel Jones"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0039067",
+      "player_name": "Rashee Rice",
+      "team": null,
+      "current_designation": "cleared to participate",
+      "last_updated": "2026-07-24T19:58:10.044Z",
+      "diff_summary": "On May 19th, Rashee Rice was ordered to serve 30 days in jail for a probation violation, which would cause him to miss Chiefs OTAs and mandatory mini-camp. On the same day, an update revealed Rice underwent knee surgery a week prior to remove loose debris, with an expected two-month recovery. 66 days later, on July 24th, Rice was cleared to participate in camp.",
+      "extraction": {
+        "status": "cleared to participate",
+        "designation": "cleared to participate",
+        "date": "2026-07-24T19:58:10.044Z",
+        "direct_quote": "Additionally, Rashee Rice has been cleared to participate in camp.",
+        "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrg57frk5s2u"
+      },
+      "timeline": [
+        {
+          "id": "ac06764e-d8d3-48bc-b197-d5943c0c2648",
+          "timestamp": "2026-07-24T19:58:10.044Z",
+          "designation": "cleared to participate",
+          "source_text": "Additionally, Rashee Rice has been cleared to participate in camp.",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrg57frk5s2u",
+          "source_type": "beat_reporter",
+          "player_name": "Rashee Rice"
+        },
+        {
+          "id": "af9ba284-2cdc-4a95-b2c9-5c595d6a1938",
+          "timestamp": "2026-05-19T23:08:14.976Z",
+          "designation": "underwent a clean-up surgery",
+          "source_text": "UPDATE:\n\nOne week before being ordered to serve 30 days in jail, Rashee Rice underwent a clean-up surgery on his right knee to remove loose debris that was causing inflammation and now is expected to sideline him 2 months. \n\nPer Adam Schefter.",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mmaj2jwx2s22",
+          "source_type": "beat_reporter",
+          "player_name": "Rashee Rice"
+        },
+        {
+          "id": "929bbc6c-2927-4a51-8bbd-656ee3a0b990",
+          "timestamp": "2026-05-19T18:11:29.766Z",
+          "designation": "violated his probation",
+          "source_text": "\ud83e\udd74\ud83e\udd74\ud83e\udd74 BREAKING NEWS \ud83e\udd74\ud83e\udd74\ud83e\udd74\n\nRashee Rice has violated his probation after testing positive for marijuana.\n\nRice has been ordered to serve 30 days in jail, meaning he will miss Chiefs OTAs & Mandatory Mini-Camp. \n\nPer Matt Foster.",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mm7yhvl2oc2b",
+          "source_type": "beat_reporter",
+          "player_name": "Rashee Rice"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0033873",
+      "player_name": "Patrick Mahomes",
+      "team": null,
+      "current_designation": "fully cleared to participate in practice",
+      "last_updated": "2026-07-24T19:56:57.106Z",
+      "diff_summary": "On July 24th, HC Andy Reid announced that QB Patrick Mahomes had been fully cleared to participate in practice.",
+      "extraction": {
+        "status": "fully cleared to participate in practice",
+        "designation": "fully cleared to participate in practice",
+        "date": "2026-07-24T19:56:57.106Z",
+        "direct_quote": "\ud83d\udcc8\ud83d\udcc8\ud83d\udcc8 NEWS \ud83d\udcc8\ud83d\udcc8\ud83d\udcc8\n\nHC Andy Reid has announced that QB Patrick Mahomes has been fully cleared to participate in practice.\n\nPer Ari Meirov.",
+        "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrg55a7omk2u"
+      },
+      "timeline": [
+        {
+          "id": "341b8af8-5879-45ef-97a7-642082dc857f",
+          "timestamp": "2026-07-24T19:56:57.106Z",
+          "designation": "fully cleared to participate in practice",
+          "source_text": "\ud83d\udcc8\ud83d\udcc8\ud83d\udcc8 NEWS \ud83d\udcc8\ud83d\udcc8\ud83d\udcc8\n\nHC Andy Reid has announced that QB Patrick Mahomes has been fully cleared to participate in practice.\n\nPer Ari Meirov.",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrg55a7omk2u",
+          "source_type": "beat_reporter",
+          "player_name": "Patrick Mahomes"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0039337",
+      "player_name": "Malik Nabers",
+      "team": null,
+      "current_designation": "not on the PUP list",
+      "last_updated": "2026-07-23T21:52:35.710Z",
+      "diff_summary": "On July 23rd, Malik Nabers was not placed on the Physically Unable to Perform (PUP) list, meaning he can practice at the start of training camp.",
+      "extraction": {
+        "status": "not on the PUP list",
+        "designation": "not on the PUP list",
+        "date": "2026-07-23T21:52:35.710Z",
+        "direct_quote": "\ud83d\udc40\ud83d\udc40\ud83d\udc40 NEWS \ud83d\udc40\ud83d\udc40\ud83d\udc40\n\nMalik Nabers (knee) is not on the PUP list to start training camp. \n\nPer Jordan Raanan.",
+        "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrdt53wc4c2m"
+      },
+      "timeline": [
+        {
+          "id": "32cfaa08-b54d-419e-931d-0ae8b160291b",
+          "timestamp": "2026-07-23T21:52:35.710Z",
+          "designation": "not on the PUP list",
+          "source_text": "\ud83d\udc40\ud83d\udc40\ud83d\udc40 NEWS \ud83d\udc40\ud83d\udc40\ud83d\udc40\n\nMalik Nabers (knee) is not on the PUP list to start training camp. \n\nPer Jordan Raanan.",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrdt53wc4c2m",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0040746",
+      "player_name": "Nic Scourton",
+      "team": null,
+      "current_designation": "heading for tests on right knee after being carted off",
+      "last_updated": "2026-07-23T15:47:19.554Z",
+      "diff_summary": "On July 23rd, Nic Scourton was heading for tests on his right knee after being carted off during his first training camp practice.",
+      "extraction": {
+        "status": "heading for tests on right knee after being carted off",
+        "designation": "heading for tests on right knee after being carted off",
+        "date": "2026-07-23T15:47:19.554Z",
+        "direct_quote": "Nic Scourton heading for tests on right knee after being carted off late in first practice of training camp.\n\nwww.panthers.com/news/dave-ca...",
+        "source_url": "https://bsky.app/profile/daringantt.bsky.social/post/3mrd6px2cyk2e"
+      },
+      "timeline": [
+        {
+          "id": "20faf7d3-b464-485e-973e-5c871e274ecb",
+          "timestamp": "2026-07-23T15:47:19.554Z",
+          "designation": "heading for tests on right knee after being carted off",
+          "source_text": "Nic Scourton heading for tests on right knee after being carted off late in first practice of training camp.\n\nwww.panthers.com/news/dave-ca...",
+          "url": "https://bsky.app/profile/daringantt.bsky.social/post/3mrd6px2cyk2e",
+          "source_type": "beat_reporter",
+          "player_name": "Nic Scourton"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0033040",
+      "player_name": "Tyreek Hill",
+      "team": null,
+      "current_designation": "no power in left leg",
+      "last_updated": "2026-07-23T13:32:12.685Z",
+      "diff_summary": "On July 23rd, Tyreek Hill stated he still had no power in the left leg he injured in week 4 last season.",
+      "extraction": {
+        "status": "no power in left leg",
+        "designation": "no power in left leg",
+        "date": "2026-07-23T13:32:12.685Z",
+        "direct_quote": "\ud83d\ude2c\ud83d\ude2c\ud83d\ude2c NEWS \ud83d\ude2c\ud83d\ude2c\ud83d\ude2c\n\nFree-agent WR Tyreek Hill said he still has \u201cno power\u201d in the left leg he injured in week 4 last season against the New York Jets.\n\nPer Adam Schefter.",
+        "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrcx6dqcqc2c"
+      },
+      "timeline": [
+        {
+          "id": "47e2e40d-76d2-4c04-9c01-f264581b9cef",
+          "timestamp": "2026-07-23T13:32:12.685Z",
+          "designation": "no power in left leg",
+          "source_text": "\ud83d\ude2c\ud83d\ude2c\ud83d\ude2c NEWS \ud83d\ude2c\ud83d\ude2c\ud83d\ude2c\n\nFree-agent WR Tyreek Hill said he still has \u201cno power\u201d in the left leg he injured in week 4 last season against the New York Jets.\n\nPer Adam Schefter.",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrcx6dqcqc2c",
+          "source_type": "beat_reporter",
+          "player_name": "Tyreek Hill"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0039165",
+      "player_name": "Zach Charbonnet",
+      "team": null,
+      "current_designation": "placed on the PUP list",
+      "last_updated": "2026-07-22T16:46:18.924Z",
+      "diff_summary": "On July 22nd, Seahawks RB Zach Charbonnet was placed on the Physically Unable to Perform (PUP) list prior to the start of camp, meaning he cannot practice or play for at least the first four weeks of the regular season until activated.",
+      "extraction": {
+        "status": "placed on the PUP list",
+        "designation": "placed on the PUP list",
+        "date": "2026-07-22T16:46:18.924Z",
+        "direct_quote": "In an expected move, Seahawks RB Zach Charbonnet was placed on the PUP list prior to the start of camp: shwks.com/61av5f43",
+        "source_url": "https://bsky.app/profile/johnpboyle.bsky.social/post/3mrarkj4ebq24"
+      },
+      "timeline": [
+        {
+          "id": "85f5a075-687d-4ae8-b2c8-3b05a4644f28",
+          "timestamp": "2026-07-22T16:46:18.924Z",
+          "designation": "placed on the PUP list",
+          "source_text": "In an expected move, Seahawks RB Zach Charbonnet was placed on the PUP list prior to the start of camp: shwks.com/61av5f43",
+          "url": "https://bsky.app/profile/johnpboyle.bsky.social/post/3mrarkj4ebq24",
+          "source_type": "beat_reporter",
+          "player_name": "Zach Charbonnet"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0038996",
+      "player_name": "Tucker Kraft",
+      "team": null,
+      "current_designation": "hopeful returns sometime before or during training camp",
+      "last_updated": "2026-05-27T16:20:55.955Z",
+      "diff_summary": "On May 27th, HC Matt LaFleur expressed hope that TE Tucker Kraft would return sometime before or during training camp.",
+      "extraction": null,
+      "timeline": [
+        {
+          "id": "c9bd456a-1c7b-4dd7-b661-b5398cd8c2e0",
+          "timestamp": "2026-05-27T16:20:55.955Z",
+          "designation": "hopeful returns sometime before or during training camp",
+          "source_text": "\ud83e\ude7a\ud83e\ude7a\ud83e\ude7a INJURY NEWS\ud83e\ude7a\ud83e\ude7a\ud83e\ude7a\n\nHC Matt LaFleur says he's hopeful Packers TE Tucker Kraft returns sometime before or during training camp\n\nPer @byjbh.bsky.social",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mmtvzkrals2e",
+          "source_type": "beat_reporter",
+          "player_name": "Tucker Kraft"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0040784",
+      "player_name": "Quinshon Judkins",
+      "team": null,
+      "current_designation": "taking part in practice after suffering dislocated ankle, fractured fibula",
+      "last_updated": "2026-05-20T16:57:30.827Z",
+      "diff_summary": "On May 20th, Browns RB Quinshon Judkins was taking part in practice after suffering a dislocated ankle and fractured fibula last season.",
+      "extraction": {
+        "status": "taking part in practice after suffering dislocated ankle, fractured fibula",
+        "designation": "taking part in practice after suffering dislocated ankle, fractured fibula",
+        "date": "2026-05-20T16:57:30.827Z",
+        "direct_quote": "\u203c\ufe0f\u203c\ufe0f\u203c\ufe0f BREAKING NEWS \u203c\ufe0f\u203c\ufe0f\u203c\ufe0f\n\nBrowns RB Quinshon Judkins is taking part in practice after suffering dislocated ankle, fractured fibula last season.\n\nVideo from Daniel Oyefusi",
+        "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mmcesjq6bs2t"
+      },
+      "timeline": [
+        {
+          "id": "6f281e8f-7424-4953-83eb-1626d3d5eeff",
+          "timestamp": "2026-05-20T16:57:30.827Z",
+          "designation": "taking part in practice after suffering dislocated ankle, fractured fibula",
+          "source_text": "\u203c\ufe0f\u203c\ufe0f\u203c\ufe0f BREAKING NEWS \u203c\ufe0f\u203c\ufe0f\u203c\ufe0f\n\nBrowns RB Quinshon Judkins is taking part in practice after suffering dislocated ankle, fractured fibula last season.\n\nVideo from Daniel Oyefusi",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mmcesjq6bs2t",
+          "source_type": "beat_reporter",
+          "player_name": "Quinshon Judkins"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0039344",
+      "player_name": "Jonathon Brooks",
+      "team": null,
+      "current_designation": "fully medically cleared",
+      "last_updated": "2026-04-28T18:44:22.263Z",
+      "diff_summary": "On March 30th, RB Jonathan Brooks was expected to participate in Organized Team Activities (voluntary spring practices). 29 days later, on April 28th, Brooks announced he had been fully medically cleared to play football.",
+      "extraction": {
+        "status": "fully medically cleared",
+        "designation": "fully medically cleared",
+        "date": "2026-04-28T18:44:22.263Z",
+        "direct_quote": "\ud83d\udce3\ud83d\udce3\ud83d\udce3 NEWS \ud83d\udce3\ud83d\udce3\ud83d\udce3\n\nJonathan Brooks (knee) says he's been fully medically cleared to play football.",
+        "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mklajdz6as26"
+      },
+      "timeline": [
+        {
+          "id": "f500d445-3852-4981-8376-01f0426d9228",
+          "timestamp": "2026-04-28T18:44:22.263Z",
+          "designation": "fully medically cleared",
+          "source_text": "\ud83d\udce3\ud83d\udce3\ud83d\udce3 NEWS \ud83d\udce3\ud83d\udce3\ud83d\udce3\n\nJonathan Brooks (knee) says he's been fully medically cleared to play football.",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mklajdz6as26",
+          "source_type": "beat_reporter",
+          "player_name": "Jonathon Brooks"
+        },
+        {
+          "id": "d437ce69-8c85-4cce-94b3-953441dbe20a",
+          "timestamp": "2026-03-30T15:06:38.409Z",
+          "designation": "expected to be able to participate in OTAs",
+          "source_text": "\ud83d\udcc8\ud83d\udcc8\ud83d\udcc8INJURY UPDATE\ud83d\udcc8\ud83d\udcc8\ud83d\udcc8\n\nRB Jonathan Brooks is expected to be able to participate in OTAs per HC Dave Canales",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mibwtcy7e224",
+          "source_type": "beat_reporter",
+          "player_name": "Jonathon Brooks"
+        }
+      ]
+    }
+  ]
+}
