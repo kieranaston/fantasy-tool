@@ -202,5 +202,77 @@
     "source_type": "beat_reporter",
     "needs_review": false,
     "triaged": true
+  },
+  {
+    "id": "fb9a1d95-9dbe-4bc4-912f-80329413a607",
+    "player_id": "00-0034855",
+    "player_name": "Baker Mayfield",
+    "timestamp": "2026-07-28T15:49:39.854Z",
+    "designation": "contract",
+    "source_text": "\ud83d\udce3\ud83d\udce3\ud83d\udce3 NEWS \ud83d\udce3\ud83d\udce3\ud83d\udce3\n\nAny talks of a new contract for Baker Mayfield and the Bucs are finished, and he will play the 2026 season on his current expiring deal and the two sides will revisit things from there. \n\nPer Greg Auman.",
+    "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrpr6q5nqc24",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
+  },
+  {
+    "id": "7981cae6-30d1-4984-8148-83675347a091",
+    "player_id": "00-0038386",
+    "player_name": "Jalen Carter",
+    "timestamp": "2026-07-28T17:02:02.460Z",
+    "designation": "extension",
+    "source_text": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 BREAKING NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\nEagles are signing Jalen Carter to a 4-year, $152 million extension worth up to $160 million, including $106 million guaranteed that now makes him the highest-paid defensive tackle in NFL history. \n\nPer Adam Schefter.",
+    "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrpva5liv22g",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
+  },
+  {
+    "id": "ec61768d-5514-4721-9d20-a83f69595204",
+    "player_id": "00-0029604",
+    "player_name": "Kirk Cousins",
+    "timestamp": "2026-07-28T20:48:50.212Z",
+    "designation": "starting QB",
+    "source_text": "\ud83d\udce3\ud83d\udce3\ud83d\udce3 NEWS \ud83d\udce3\ud83d\udce3\ud83d\udce3\n\nLas Vegas HC Klint Kubiak says that Kirk Cousins will open training camp as the starting QB over Fernando Mendoza\n\nPer Adam Schefter",
+    "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrqbvox47s2l",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
+  },
+  {
+    "id": "daf9071f-0be2-4f91-b3b6-c877f93353ee",
+    "player_id": "00-0036932",
+    "player_name": "Micah Parsons",
+    "timestamp": "2026-07-28T21:06:32.620Z",
+    "designation": "PUP",
+    "source_text": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 BREAKING NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\nMicah Parsons has now been placed on the PUP. \n\nPer @rapsheet.bsky.social",
+    "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrqcve5byc2w",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
+  },
+  {
+    "id": "ae5fb639-3a3d-405e-9aca-e017575f64c9",
+    "player_id": "00-0038977",
+    "player_name": "Tank Dell",
+    "timestamp": "2026-07-28T21:10:21.937Z",
+    "designation": "not on PUP",
+    "source_text": "\ud83d\udce3\ud83d\udce3\ud83d\udce3 NEWS \ud83d\udce3\ud83d\udce3\ud83d\udce3\n\nTank Dell (leg) officially not on PUP list to begin training camp.",
+    "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrqd46thfc2w",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
+  },
+  {
+    "id": "7b818984-6152-4ebc-a6ab-a6b8d66f609e",
+    "player_id": "00-0034856",
+    "player_name": "Denzel Ward",
+    "timestamp": "2026-07-28T21:37:52.512Z",
+    "designation": "extension",
+    "source_text": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 BREAKING NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\nCB Denzel Ward and the Browns have agreed to a 2-year, $62.2M extension that makes him the highest paid DB in NFL history for the second time in his career. \n\nThe deal includes $52.3M guaranteed. \n\nPer @rapsheet.bsky.social",
+    "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrqenewzzc2w",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
   }
 ]
