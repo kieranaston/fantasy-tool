@@ -14,12 +14,12 @@ from src.export.json_writer import MANIFEST_KEYS, RANKINGS_KEYS, write_json
 from src.loaders.nfl_data import (
     get_latest_completed_season,
     load_player_season_stats,
-    load_pfr_rush_yac,
     load_route_counts,
-    load_team_season_stats,
     load_teams,
     load_upcoming_roster_teams,
 )
+from src.run_injury_history import export_injury_history
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS_DATA = ROOT / "docs" / "data"
@@ -37,8 +37,6 @@ def main() -> None:
         print(f"  Offseason roster overlay: {upcoming_season} ({len(upcoming_teams)} players)")
 
     season_stats = load_player_season_stats(season)
-    team_stats = load_team_season_stats(season)
-    rush_yac = load_pfr_rush_yac(season)
     routes = load_route_counts(season)
 
     team_kwargs = {
@@ -47,9 +45,9 @@ def main() -> None:
     }
     payloads = {
         "qb": build_qb_rankings(season_stats, teams, season, **team_kwargs),
-        "rb": build_rb_rankings(season_stats, team_stats, rush_yac, teams, season, **team_kwargs),
-        "wr": build_wr_rankings(season_stats, team_stats, routes, teams, season, **team_kwargs),
-        "te": build_te_rankings(season_stats, team_stats, teams, season, **team_kwargs),
+        "rb": build_rb_rankings(season_stats, teams, season, **team_kwargs),
+        "wr": build_wr_rankings(season_stats, routes, teams, season, **team_kwargs),
+        "te": build_te_rankings(season_stats, routes, teams, season, **team_kwargs),
     }
 
     manifest = {
@@ -70,6 +68,7 @@ def main() -> None:
         print(f"  {position.upper()}: {len(payload['rows'])} players ({changed} team changes)")
 
     print(f"Exported preseason composites for {season} to {DOCS_DATA}")
+    export_injury_history(season=season)
 
 
 if __name__ == "__main__":

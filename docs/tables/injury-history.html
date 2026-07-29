@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Season Injury History — Fantasy Reference</title>
+    <link rel="stylesheet" href="../css/site.css" />
+  </head>
+  <body>
+    <div class="container">
+      <p class="site-header">
+        <a href="../index.html">Home</a><span class="sep"> · </span><span class="nav-current">Season Injury History</span>
+      </p>
+      <p class="meta" data-history="summary">Loading…</p>
+      <p class="meta history-help">
+        Combined from weekly roster status (IR / inactive), official injury reports, and games missed vs the team schedule (bye-aware).
+      </p>
+      <div class="controls history-filters">
+        <div>
+          <label for="history-position">Position</label>
+          <select id="history-position">
+            <option value="all">All</option>
+            <option value="QB">QB</option>
+            <option value="RB">RB</option>
+            <option value="WR">WR</option>
+            <option value="TE">TE</option>
+          </select>
+        </div>
+        <div>
+          <label for="history-search">Search</label>
+          <input id="history-search" type="search" placeholder="Player name" autocomplete="off" />
+        </div>
+      </div>
+      <div id="history-container" class="injuries-list"></div>
+    </div>
+
+    <script type="module">
+      import { mountInjuryHistoryPage } from "../js/injury-history.js";
+      mountInjuryHistoryPage();
+    </script>
+  </body>
+</html>

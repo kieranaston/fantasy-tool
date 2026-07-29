@@ -4,29 +4,22 @@ from __future__ import annotations
 
 import polars as pl
 
-from src.algorithms.common import attach_team_meta, safe_div, sort_and_trim
+from src.algorithms.common import attach_team_meta, sort_and_trim
 from src.algorithms.normalize import format_scores, normalize_values
-from src.config.scoring import (
-    FORMATS,
-    MIN_GAMES,
-    TE_MIN_AVG_TARGETS,
-    TE_WEIGHTS,
-)
-from src.loaders.nfl_data import team_offensive_totals
+from src.config.scoring import FORMATS, TE_WEIGHTS
 
 
 def build_te_rankings(
     season_stats: pl.DataFrame,
-    team_stats: pl.DataFrame,
+    route_counts: pl.DataFrame,
     teams: pl.DataFrame,
     season: int,
     *,
     upcoming_teams: dict[str, str] | None = None,
     upcoming_season: int | None = None,
 ) -> dict:
-    """Build TE rankings with Standard / Half-PPR / Full-PPR scores."""
+    """Build TE rankings from per-game targets, yards/target, and YPRR."""
     title = f"TE Rankings — {season}"
-    team_totals = team_offensive_totals(team_stats)
 
     frame = (
         season_stats.filter(pl.col("position") == "TE")
@@ -37,27 +30,20 @@ def build_te_rankings(
             pl.col("games").fill_null(0).cast(pl.Int32).alias("games_played"),
             pl.col("targets").fill_null(0).cast(pl.Float64),
             pl.col("receiving_yards").fill_null(0).cast(pl.Float64),
-            pl.col("receiving_tds").fill_null(0).cast(pl.Float64),
         )
-        .join(team_totals, on="team", how="left")
+        .join(route_counts, on="player_id", how="left")
+        .filter((pl.col("games_played") > 0) & (pl.col("targets") > 0))
         .with_columns(
-            pl.col("team_pass_attempts").fill_null(0),
+            pl.col("routes").fill_null(0).cast(pl.Float64),
             (pl.col("targets") / pl.col("games_played")).alias("targets_pg"),
-            (pl.col("receiving_yards") / pl.col("games_played")).alias("receiving_ypg"),
+            (pl.col("receiving_yards") / pl.col("targets")).alias("yards_per_target"),
         )
         .with_columns(
-            pl.when(pl.col("team_pass_attempts") > 0)
-            .then(pl.col("targets") / pl.col("team_pass_attempts"))
-            .otherwise(0.0)
-            .alias("target_share"),
-            pl.when(pl.col("targets") > 0)
-            .then(pl.col("receiving_tds") / pl.col("targets"))
-            .otherwise(0.0)
-            .alias("td_rate"),
-        )
-        .filter(
-            (pl.col("games_played") >= MIN_GAMES)
-            & (pl.col("targets_pg") >= TE_MIN_AVG_TARGETS)
+            pl.when(pl.col("routes") > 0)
+            .then(pl.col("receiving_yards") / pl.col("routes"))
+            .otherwise(pl.col("yards_per_target"))
+            .alias("yprr"),
+            (pl.col("routes") > 0).alias("yprr_from_routes"),
         )
     )
 
@@ -65,16 +51,16 @@ def build_te_rankings(
         return {"title": title, "season": season, "position": "TE", "rows": []}
 
     raw = frame.sort("player").to_dicts()
-    ypg = normalize_values([float(r["receiving_ypg"]) for r in raw])
-    tgt = normalize_values([float(r["target_share"]) for r in raw])
-    td = normalize_values([float(r["td_rate"]) for r in raw])
+    tgt = normalize_values([float(r["targets_pg"]) for r in raw])
+    ypt = normalize_values([float(r["yards_per_target"]) for r in raw])
+    yprr = normalize_values([float(r["yprr"]) for r in raw])
 
     rows: list[dict] = []
     for idx, player in enumerate(raw):
         components = {
-            "receiving_ypg": round(ypg[idx], 1),
-            "target_share": round(tgt[idx], 1),
-            "td_rate": round(td[idx], 1),
+            "targets_pg": round(tgt[idx], 1),
+            "yards_per_target": round(ypt[idx], 1),
+            "yprr": round(yprr[idx], 1),
         }
         rows.append({
             "player_id": player["player_id"],
@@ -82,13 +68,10 @@ def build_te_rankings(
             "team": player["team"] or "",
             "games_played": int(player["games_played"]),
             "metrics": {
-                "receiving_ypg": round(float(player["receiving_ypg"]), 1),
-                "target_share": round(float(player["target_share"]), 4),
-                "td_rate": round(float(player["td_rate"]), 4),
-                "targets_pg": round(
-                    safe_div(float(player["targets"]), float(player["games_played"])),
-                    1,
-                ),
+                "targets_pg": round(float(player["targets_pg"]), 1),
+                "yards_per_target": round(float(player["yards_per_target"]), 2),
+                "yprr": round(float(player["yprr"]), 2),
+                "yprr_from_routes": bool(player["yprr_from_routes"]),
             },
             "components": components,
             "scores": format_scores(components, TE_WEIGHTS),

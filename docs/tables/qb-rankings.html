@@ -47,20 +47,14 @@
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">Pass Att</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Season pass attempts">i</span>
+                  <span class="th-label">Pass/G</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Pass attempts per game">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">Rush Att</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Season rush attempts">i</span>
-                </span>
-              </th>
-              <th>
-                <span class="th-inner">
-                  <span class="th-label">TD%</span>
-                  <span class="col-info" tabindex="0" data-tooltip="TD rate = (pass TDs + rush TDs) / (pass attempts + rush attempts)">i</span>
+                  <span class="th-label">Rush/G</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Rush attempts per game">i</span>
                 </span>
               </th>
               <th>
@@ -72,7 +66,7 @@
               <th>
                 <span class="th-inner">
                   <span class="th-label">Score</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Fixed composite: pass attempts, rush attempts, TD rate, and yards per attempt">i</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Fixed composite of pass attempts/g, rush attempts/g, and yards per attempt">i</span>
                 </span>
               </th>
             </tr>
@@ -83,17 +77,16 @@
     </div>
 
     <script type="module">
-      import { mountRankingsPage } from "../js/rankings.js";
+      import { mountRankingsPage } from "../js/rankings.js?v=history3";
 
       mountRankingsPage({
         position: "qb",
         tableId: "qb-table",
         showFormat: false,
-        numericTargets: [2, 3, 4, 5, 6, 7],
+        numericTargets: [2, 3, 4, 5, 6],
         metricCells: (row) => `
-          <td>${Math.round(row.metrics.pass_attempts)}</td>
-          <td>${Math.round(row.metrics.rush_attempts)}</td>
-          <td>${(row.metrics.td_rate * 100).toFixed(1)}%</td>
+          <td>${row.metrics.pass_attempts_pg.toFixed(1)}</td>
+          <td>${row.metrics.rush_attempts_pg.toFixed(1)}</td>
           <td>${row.metrics.yards_per_attempt.toFixed(1)}</td>`,
       });
     </script>

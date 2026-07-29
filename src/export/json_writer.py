@@ -8,6 +8,7 @@ from typing import Any
 
 MANIFEST_KEYS = {
     "season",
+    "upcoming_season",
     "formats",
     "positions",
     "last_updated",

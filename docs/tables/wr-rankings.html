@@ -47,14 +47,8 @@
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">Tgt%</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Target share = player targets / team pass attempts">i</span>
-                </span>
-              </th>
-              <th>
-                <span class="th-inner">
-                  <span class="th-label">Air</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Total receiving air yards">i</span>
+                  <span class="th-label">Tgt/G</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Targets per game">i</span>
                 </span>
               </th>
               <th>
@@ -66,13 +60,13 @@
               <th>
                 <span class="th-inner">
                   <span class="th-label">YPRR</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Yards per route run (receiving yards / routes on pass plays)">i</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Yards per route run (receiving yards / routes on pass plays; falls back to yards per target)">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
                   <span class="th-label">Score</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Weighted composite of normalized target share, air yards/aDOT, and YPRR">i</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Weighted composite of targets/g, aDOT, and YPRR (PPR weights targets more)">i</span>
                 </span>
               </th>
             </tr>
@@ -83,16 +77,15 @@
     </div>
 
     <script type="module">
-      import { mountRankingsPage } from "../js/rankings.js";
+      import { mountRankingsPage } from "../js/rankings.js?v=history3";
 
       mountRankingsPage({
         position: "wr",
         tableId: "wr-table",
         showFormat: true,
-        numericTargets: [2, 3, 4, 5, 6, 7],
+        numericTargets: [2, 3, 4, 5, 6],
         metricCells: (row) => `
-          <td>${(row.metrics.target_share * 100).toFixed(1)}%</td>
-          <td>${Math.round(row.metrics.air_yards)}</td>
+          <td>${row.metrics.targets_pg.toFixed(1)}</td>
           <td>${row.metrics.adot.toFixed(1)}</td>
           <td>${row.metrics.yprr.toFixed(2)}</td>`,
       });

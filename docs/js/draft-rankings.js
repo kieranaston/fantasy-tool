@@ -3,9 +3,10 @@ import { initColumnTooltips } from "./tables.js";
 import {
   FORMAT_LABELS,
   buildNewsIndex,
+  buildHistoryIndex,
   playerCell,
   escapeHtml,
-} from "./rankings.js";
+} from "./rankings.js?v=history3";
 
 const DRAFT_FORMATS = ["half_ppr", "full_ppr"];
 const STORAGE_PREFIX = "draft-rankings:";
@@ -112,6 +113,26 @@ function mergeOrdersWithPool(orders, allIds) {
   return merged;
 }
 
+function scoreForFormat(row, format) {
+  const scores = row?.scores || {};
+  if (format in scores) return Number(scores[format]);
+  if ("default" in scores) return Number(scores.default);
+  const first = Object.values(scores)[0];
+  return first == null ? 0 : Number(first);
+}
+
+/** Rebuild draft order from composite rankings scores (per format). */
+function ordersFromComposite(rankingsRows, allIds) {
+  const built = {};
+  for (const fmt of DRAFT_FORMATS) {
+    built[fmt] = [...(rankingsRows || [])]
+      .sort((a, b) => scoreForFormat(b, fmt) - scoreForFormat(a, fmt))
+      .map((row) => row.player_id)
+      .filter(Boolean);
+  }
+  return mergeOrdersWithPool(built, allIds);
+}
+
 /**
  * @param {object} options
  * @param {string} options.position  qb|rb|wr|te
@@ -122,13 +143,16 @@ async function mountDraftRankingsPage(options) {
   const container = document.getElementById("table-container");
   const formatToggle = document.getElementById("format-toggle");
   const downloadCsvBtn = document.getElementById("draft-download-csv");
+  const resetBtn = document.getElementById("draft-reset");
 
   let rankings = null;
   let consensus = null;
   let newsIndex = null;
+  let historyIndex = null;
   let orders = { half_ppr: [], full_ppr: [] };
   let currentFormat = "half_ppr";
   let dragFromIndex = null;
+  let allIds = [];
 
   try {
     await loadManifest();
@@ -185,7 +209,7 @@ async function mountDraftRankingsPage(options) {
               <span class="drag-handle" title="Drag to reorder" aria-hidden="true">⋮⋮</span>
               <span class="draft-rank">${myRank}</span>
             </td>
-            <td>${playerCell(row, newsIndex)}</td>
+            <td>${playerCell(row, newsIndex, historyIndex)}</td>
             ${ecrCell}
             ${vsEcrHtml(myRank, ecr)}
           </tr>`;
@@ -267,20 +291,37 @@ async function mountDraftRankingsPage(options) {
     });
   }
 
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      if (
+        !window.confirm(
+          "Reset this draft board to your composite rankings? Saved drag order for both formats will be replaced."
+        )
+      ) {
+        return;
+      }
+      orders = ordersFromComposite(rankings?.rows || [], allIds);
+      persistLocal();
+      renderTable();
+    });
+  }
+
   try {
-    const [rankingsData, draftData, consensusData, summaries] =
+    const [rankingsData, draftData, consensusData, summaries, history] =
       await Promise.all([
         fetchJSON(`${position}/rankings.json`),
         fetchJSON(`${position}/draft-rankings.json`).catch(() => null),
         fetchJSON(`${position}/consensus.json`).catch(() => null),
         fetchJSON("injuries/summaries.json").catch(() => null),
+        fetchJSON("injuries/history.json").catch(() => null),
       ]);
 
     rankings = rankingsData;
     consensus = consensusData;
     newsIndex = buildNewsIndex(summaries);
+    historyIndex = buildHistoryIndex(history);
 
-    const allIds = (rankings.rows || [])
+    allIds = (rankings.rows || [])
       .map((r) => r.player_id)
       .filter(Boolean);
 
@@ -298,7 +339,7 @@ async function mountDraftRankingsPage(options) {
       orders = mergeOrdersWithPool(cloneOrders(draftData.orders), allIds);
       persistLocal();
     } else {
-      orders = mergeOrdersWithPool({ half_ppr: [], full_ppr: [] }, allIds);
+      orders = ordersFromComposite(rankings.rows || [], allIds);
       persistLocal();
     }
 

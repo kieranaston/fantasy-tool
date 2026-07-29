@@ -71,7 +71,26 @@ function newsForRow(row, newsIndex) {
   return newsIndex.byName.get(normalizeName(row.player)) || null;
 }
 
-function playerCell(row, newsIndex) {
+/** Build player_id → injury-history lookup. */
+function buildHistoryIndex(history) {
+  const byId = new Map();
+  for (const player of history?.players || []) {
+    if (!player?.player_id || !player.label) continue;
+    byId.set(player.player_id, {
+      player_id: player.player_id,
+      label: truncateLabel(player.label, 36),
+      summary: player.summary || player.label,
+    });
+  }
+  return byId;
+}
+
+function historyForRow(row, historyIndex) {
+  if (!historyIndex || !row.player_id) return null;
+  return historyIndex.get(row.player_id) || null;
+}
+
+function playerCell(row, newsIndex, historyIndex) {
   const logoHtml = row.logo
     ? `<img class="team-logo" src="${row.logo}" alt="${row.team}">`
     : `<span style="font-weight:600;color:${row.team_color}">${row.team}</span>`;
@@ -82,6 +101,10 @@ function playerCell(row, newsIndex) {
   const newsTag = news
     ? `<a class="news-tag" href="injuries.html#player-${encodeURIComponent(news.player_id)}" title="${escapeHtml(news.designation)}">${escapeHtml(news.label)}</a>`
     : "";
+  const history = historyForRow(row, historyIndex);
+  const historyTag = history
+    ? `<a class="history-tag" href="injury-history.html#player-${encodeURIComponent(history.player_id)}" title="${escapeHtml(history.summary)}">${escapeHtml(history.label)}</a>`
+    : "";
   return `
     <div class="player-cell">
       <div class="player-cell-top">
@@ -90,6 +113,7 @@ function playerCell(row, newsIndex) {
         ${teamChange}
       </div>
       ${newsTag}
+      ${historyTag}
     </div>`;
 }
 
@@ -128,6 +152,7 @@ async function mountRankingsPage(options) {
   let manifest;
   let currentData = null;
   let newsIndex = null;
+  let historyIndex = null;
   let currentFormat = showFormat ? "half_ppr" : "default";
   let dataTable = null;
 
@@ -182,7 +207,7 @@ async function mountRankingsPage(options) {
         return `
           <tr>
             <td>${row.rank}</td>
-            <td>${playerCell(row, newsIndex)}</td>
+            <td>${playerCell(row, newsIndex, historyIndex)}</td>
             <td>${row.games_played}</td>
             ${metricCells(row)}
             <td class="score-cell" style="${cellStyle}">${score.toFixed(1)}</td>
@@ -208,12 +233,14 @@ async function mountRankingsPage(options) {
   }
 
   try {
-    const [rankings, summaries] = await Promise.all([
+    const [rankings, summaries, history] = await Promise.all([
       fetchJSON(`${position}/rankings.json`),
       fetchJSON("injuries/summaries.json").catch(() => null),
+      fetchJSON("injuries/history.json").catch(() => null),
     ]);
     currentData = rankings;
     newsIndex = buildNewsIndex(summaries);
+    historyIndex = buildHistoryIndex(history);
     renderTable();
   } catch (err) {
     showError(container, err.message);
@@ -224,6 +251,7 @@ export {
   mountRankingsPage,
   FORMAT_LABELS,
   buildNewsIndex,
+  buildHistoryIndex,
   playerCell,
   escapeHtml,
   normalizeName,

@@ -47,32 +47,26 @@
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">Opp%</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Opportunity share = (carries + targets) / team offensive plays">i</span>
+                  <span class="th-label">Tch/G</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Touches per game (carries + targets)">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">YFS</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Yards from scrimmage (rushing + receiving)">i</span>
+                  <span class="th-label">Y/Tch</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Yards per touch (rushing + receiving yards / touches)">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">YPC</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Yards per carry">i</span>
-                </span>
-              </th>
-              <th>
-                <span class="th-inner">
-                  <span class="th-label">YAC</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Yards after contact per attempt (PFR)">i</span>
+                  <span class="th-label">Tgt/G</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Targets per game">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
                   <span class="th-label">Score</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Weighted composite of normalized opportunity share, yards from scrimmage, and efficiency">i</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Weighted composite of touches/g, yards per touch, and targets/g (PPR weights targets more)">i</span>
                 </span>
               </th>
             </tr>
@@ -83,18 +77,17 @@
     </div>
 
     <script type="module">
-      import { mountRankingsPage } from "../js/rankings.js";
+      import { mountRankingsPage } from "../js/rankings.js?v=history3";
 
       mountRankingsPage({
         position: "rb",
         tableId: "rb-table",
         showFormat: true,
-        numericTargets: [2, 3, 4, 5, 6, 7],
+        numericTargets: [2, 3, 4, 5, 6],
         metricCells: (row) => `
-          <td>${(row.metrics.opportunity_share * 100).toFixed(1)}%</td>
-          <td>${Math.round(row.metrics.yards_from_scrimmage)}</td>
-          <td>${row.metrics.ypc.toFixed(1)}</td>
-          <td>${row.metrics.yac_per_attempt.toFixed(1)}</td>`,
+          <td>${row.metrics.touches_pg.toFixed(1)}</td>
+          <td>${row.metrics.yards_per_touch.toFixed(1)}</td>
+          <td>${row.metrics.targets_pg.toFixed(1)}</td>`,
       });
     </script>
   </body>

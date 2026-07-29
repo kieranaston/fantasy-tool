@@ -6,7 +6,18 @@ Data is pulled from [nflverse](https://github.com/nflverse) via [nflreadpy](http
 
 ## Strategy
 
-Rankings are built from the **latest completed season** using position-specific metrics that tend to stick year to year. Raw stats are min-max normalized within each position pool, then weighted into a composite score.
+Rankings are built from the **latest completed season** using **rate-only** metrics (per-game opportunity + efficiency) that tend to stick year to year. There is no minimum games-played cutoff, so players who missed time are still ranked on the rates they posted when available. Raw rates are min-max normalized within each position pool, then weighted into a composite score.
+
+| Pos | Scored rates |
+| --- | --- |
+| QB | Pass att/g, rush att/g, yards per attempt |
+| RB | Touches/g, yards per touch, targets/g (PPR weights targets more) |
+| WR | Targets/g, aDOT, yards per route run |
+| TE | Targets/g, yards per target, yards per route run |
+
+Players in the composite pool get a short **season injury-history** tag linking to a
+dedicated page that combines weekly roster status (IR / inactive), official injury
+reports, and games missed vs the team schedule. Current player news remains separate (Bluesky).
 
 RB, WR, and TE composite pages include a **Standard | Half-PPR | Full-PPR** selector. Personal draft pages use **Half-PPR | PPR** with drag-and-drop reordering.
 
@@ -25,9 +36,10 @@ python -m venv .venv
 source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -e .
 
-python -m src.run            # writes docs/data/{qb,rb,wr,te}/rankings.json
-python -m src.run_injuries   # writes docs/data/injuries/
-python -m src.run_consensus  # FantasyPros ECR + seeds draft-rankings.json if missing
+python -m src.run                  # rankings + season injury history
+python -m src.run_injury_history   # injury history only (uses existing rankings pool)
+python -m src.run_injuries         # writes docs/data/injuries/
+python -m src.run_consensus        # FantasyPros ECR + seeds draft-rankings.json if missing
 python -m http.server 8000 --directory docs
 ```
 
@@ -51,6 +63,7 @@ FANTASYPROS_API_KEY=...        # consensus ECR for draft pages (public API; free
 - Pool: same top-40 composite players per position
 - Drag rows to reorder — order is saved in this browser (`localStorage`) and survives reloads
 - Half-PPR and PPR keep independent orders
+- **Reset to my rankings** restores both formats to the composite ranking order
 - **Download spreadsheet** exports the current format as CSV (opens in Excel/Sheets)
 - Does not sync across devices/browsers (GitHub Pages cannot write the repo from the page)
 

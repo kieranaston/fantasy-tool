@@ -20,6 +20,7 @@
           <div id="format-toggle" class="format-toggle" role="group" aria-label="Scoring format"></div>
         </div>
         <div class="draft-actions">
+          <button type="button" id="draft-reset" class="draft-btn" title="Replace saved order with composite rankings">Reset to my rankings</button>
           <button type="button" id="draft-download-csv" class="draft-btn">Download spreadsheet</button>
         </div>
       </div>
@@ -60,7 +61,7 @@
     </div>
 
     <script type="module">
-      import { mountDraftRankingsPage } from "../js/draft-rankings.js";
+      import { mountDraftRankingsPage } from "../js/draft-rankings.js?v=history3";
       mountDraftRankingsPage({ position: "te", tableId: "te-draft-table" });
     </script>
   </body>
