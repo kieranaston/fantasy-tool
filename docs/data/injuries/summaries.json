@@ -1,22 +1,83 @@
 {
   "title": "Player News",
-  "last_updated": "2026-07-28T14:58:36Z",
+  "last_updated": "2026-07-29T13:44:34Z",
   "players": [
+    {
+      "player_id": "00-0034856",
+      "player_name": "Denzel Ward",
+      "team": null,
+      "current_designation": "extension",
+      "last_updated": "2026-07-28T21:37:52.512Z",
+      "diff_summary": "Cornerback Denzel Ward and the Browns have agreed to a two-year, $62.2 million contract extension, which includes $52.3 million guaranteed and makes him the highest-paid defensive back in the NFL for the second time in his career.",
+      "extraction": {
+        "status": "extension",
+        "designation": "extension",
+        "date": "2026-07-28T21:37:52.512Z",
+        "direct_quote": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 BREAKING NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\nCB Denzel Ward and the Browns have agreed to a 2-year, $62.2M extension that makes him the highest paid DB in NFL history for the second time in his career. \n\nThe deal includes $52.3M guaranteed. \n\nPer @rapsheet.bsky.social",
+        "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrqenewzzc2w"
+      },
+      "timeline": [
+        {
+          "id": "7b818984-6152-4ebc-a6ab-a6b8d66f609e",
+          "timestamp": "2026-07-28T21:37:52.512Z",
+          "designation": "extension",
+          "source_text": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 BREAKING NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\nCB Denzel Ward and the Browns have agreed to a 2-year, $62.2M extension that makes him the highest paid DB in NFL history for the second time in his career. \n\nThe deal includes $52.3M guaranteed. \n\nPer @rapsheet.bsky.social",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrqenewzzc2w",
+          "source_type": "beat_reporter",
+          "player_name": "Denzel Ward"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0038977",
+      "player_name": "Tank Dell",
+      "team": null,
+      "current_designation": "not on PUP",
+      "last_updated": "2026-07-28T21:10:21.937Z",
+      "diff_summary": "Tank Dell will not begin training camp on the Physically Unable to Perform (PUP) list as he recovers from a leg injury.",
+      "extraction": {
+        "status": "not on PUP",
+        "designation": "not on PUP",
+        "date": "2026-07-28T21:10:21.937Z",
+        "direct_quote": "\ud83d\udce3\ud83d\udce3\ud83d\udce3 NEWS \ud83d\udce3\ud83d\udce3\ud83d\udce3\n\nTank Dell (leg) officially not on PUP list to begin training camp.",
+        "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrqd46thfc2w"
+      },
+      "timeline": [
+        {
+          "id": "ae5fb639-3a3d-405e-9aca-e017575f64c9",
+          "timestamp": "2026-07-28T21:10:21.937Z",
+          "designation": "not on PUP",
+          "source_text": "\ud83d\udce3\ud83d\udce3\ud83d\udce3 NEWS \ud83d\udce3\ud83d\udce3\ud83d\udce3\n\nTank Dell (leg) officially not on PUP list to begin training camp.",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrqd46thfc2w",
+          "source_type": "beat_reporter",
+          "player_name": "Tank Dell"
+        }
+      ]
+    },
     {
       "player_id": "00-0036932",
       "player_name": "Micah Parsons",
       "team": null,
-      "current_designation": "not on PUP list",
-      "last_updated": "2026-07-27T22:37:21.155Z",
-      "diff_summary": "Micah Parsons is not on the Green Bay Packers' Physically Unable to Perform list.",
+      "current_designation": "PUP",
+      "last_updated": "2026-07-28T21:06:32.620Z",
+      "diff_summary": "Micah Parsons was initially reported as not being on the Packers' Physically Unable to Perform (PUP) list on July 27th. However, one day later, on July 28th, he was placed on the PUP list.",
       "extraction": {
-        "status": "not on PUP list",
-        "designation": "not on PUP list",
-        "date": "2026-07-27T22:37:21.155Z",
-        "direct_quote": "In the Packers' list of players on the PUP list\u2026 Micah Parsons is not on it.",
-        "source_url": "https://bsky.app/profile/rapsheet.bsky.social/post/3mrnxissxos2v"
+        "status": "PUP",
+        "designation": "PUP",
+        "date": "2026-07-28T21:06:32.620Z",
+        "direct_quote": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 BREAKING NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\nMicah Parsons has now been placed on the PUP. \n\nPer @rapsheet.bsky.social",
+        "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrqcve5byc2w"
       },
       "timeline": [
+        {
+          "id": "daf9071f-0be2-4f91-b3b6-c877f93353ee",
+          "timestamp": "2026-07-28T21:06:32.620Z",
+          "designation": "PUP",
+          "source_text": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 BREAKING NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\nMicah Parsons has now been placed on the PUP. \n\nPer @rapsheet.bsky.social",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrqcve5byc2w",
+          "source_type": "beat_reporter",
+          "player_name": "Micah Parsons"
+        },
         {
           "id": "c09aea66-3f9b-4ed4-93d3-024565c43bec",
           "timestamp": "2026-07-27T22:37:21.155Z",
@@ -25,6 +86,84 @@
           "url": "https://bsky.app/profile/rapsheet.bsky.social/post/3mrnxissxos2v",
           "source_type": "beat_reporter",
           "player_name": "Micah Parsons"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0029604",
+      "player_name": "Kirk Cousins",
+      "team": null,
+      "current_designation": "starting QB",
+      "last_updated": "2026-07-28T20:48:50.212Z",
+      "diff_summary": "Las Vegas Head Coach Klint Kubiak has announced that Kirk Cousins will begin training camp as the starting quarterback over Fernando Mendoza.",
+      "extraction": {
+        "status": "starting QB",
+        "designation": "starting QB",
+        "date": "2026-07-28T20:48:50.212Z",
+        "direct_quote": "\ud83d\udce3\ud83d\udce3\ud83d\udce3 NEWS \ud83d\udce3\ud83d\udce3\ud83d\udce3\n\nLas Vegas HC Klint Kubiak says that Kirk Cousins will open training camp as the starting QB over Fernando Mendoza\n\nPer Adam Schefter",
+        "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrqbvox47s2l"
+      },
+      "timeline": [
+        {
+          "id": "ec61768d-5514-4721-9d20-a83f69595204",
+          "timestamp": "2026-07-28T20:48:50.212Z",
+          "designation": "starting QB",
+          "source_text": "\ud83d\udce3\ud83d\udce3\ud83d\udce3 NEWS \ud83d\udce3\ud83d\udce3\ud83d\udce3\n\nLas Vegas HC Klint Kubiak says that Kirk Cousins will open training camp as the starting QB over Fernando Mendoza\n\nPer Adam Schefter",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrqbvox47s2l",
+          "source_type": "beat_reporter",
+          "player_name": "Kirk Cousins"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0038386",
+      "player_name": "Jalen Carter",
+      "team": null,
+      "current_designation": "extension",
+      "last_updated": "2026-07-28T17:02:02.460Z",
+      "diff_summary": "The Eagles have signed Jalen Carter to a four-year contract extension worth up to $160 million, including $106 million guaranteed, making him the highest-paid defensive tackle in NFL history.",
+      "extraction": {
+        "status": "extension",
+        "designation": "extension",
+        "date": "2026-07-28T17:02:02.460Z",
+        "direct_quote": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 BREAKING NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\nEagles are signing Jalen Carter to a 4-year, $152 million extension worth up to $160 million, including $106 million guaranteed that now makes him the highest-paid defensive tackle in NFL history. \n\nPer Adam Schefter.",
+        "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrpva5liv22g"
+      },
+      "timeline": [
+        {
+          "id": "7981cae6-30d1-4984-8148-83675347a091",
+          "timestamp": "2026-07-28T17:02:02.460Z",
+          "designation": "extension",
+          "source_text": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 BREAKING NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\nEagles are signing Jalen Carter to a 4-year, $152 million extension worth up to $160 million, including $106 million guaranteed that now makes him the highest-paid defensive tackle in NFL history. \n\nPer Adam Schefter.",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrpva5liv22g",
+          "source_type": "beat_reporter",
+          "player_name": "Jalen Carter"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0034855",
+      "player_name": "Baker Mayfield",
+      "team": null,
+      "current_designation": "contract",
+      "last_updated": "2026-07-28T15:49:39.854Z",
+      "diff_summary": "Contract negotiations between Baker Mayfield and the Buccaneers have concluded, and he is expected to play the 2026 season on his current contract, with discussions to resume afterward.",
+      "extraction": {
+        "status": "contract",
+        "designation": "contract",
+        "date": "2026-07-28T15:49:39.854Z",
+        "direct_quote": "\ud83d\udce3\ud83d\udce3\ud83d\udce3 NEWS \ud83d\udce3\ud83d\udce3\ud83d\udce3\n\nAny talks of a new contract for Baker Mayfield and the Bucs are finished, and he will play the 2026 season on his current expiring deal and the two sides will revisit things from there. \n\nPer Greg Auman.",
+        "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrpr6q5nqc24"
+      },
+      "timeline": [
+        {
+          "id": "fb9a1d95-9dbe-4bc4-912f-80329413a607",
+          "timestamp": "2026-07-28T15:49:39.854Z",
+          "designation": "contract",
+          "source_text": "\ud83d\udce3\ud83d\udce3\ud83d\udce3 NEWS \ud83d\udce3\ud83d\udce3\ud83d\udce3\n\nAny talks of a new contract for Baker Mayfield and the Bucs are finished, and he will play the 2026 season on his current expiring deal and the two sides will revisit things from there. \n\nPer Greg Auman.",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrpr6q5nqc24",
+          "source_type": "beat_reporter",
+          "player_name": "Baker Mayfield"
         }
       ]
     },
