@@ -242,5 +242,35 @@
       "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrqenewzzc2w"
     },
     "last_diff_summary": "Cornerback Denzel Ward and the Browns have agreed to a two-year, $62.2 million contract extension, which includes $52.3 million guaranteed and makes him the highest-paid defensive back in the NFL for the second time in his career."
+  },
+  "00-0040715": {
+    "player_name": "Cam Skattebo",
+    "current_designation": "injury update",
+    "last_updated": "2026-07-29T17:06:48.656Z",
+    "last_report_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrsfxlya6s2n",
+    "last_report_id": "ba86f729-2349-4a70-bf72-7ba2615b4d9c",
+    "last_extraction": {
+      "status": "injury update",
+      "designation": "injury update",
+      "date": "2026-07-29T17:06:48.656Z",
+      "direct_quote": "\u2705\u2705\u2705 INJURY UPDATE \u2705\u2705\u2705\n\nNew York Giants RB Cam Skattebo (ankle) is \"good to go\" for training camp",
+      "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrsfxlya6s2n"
+    },
+    "last_diff_summary": "New York Giants running back Cam Skattebo (ankle) is \"good to go\" for training camp."
+  },
+  "00-0033357": {
+    "player_name": "Taysom Hill",
+    "current_designation": "says goodbye",
+    "last_updated": "2026-07-29T23:37:21.681Z",
+    "last_report_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrt3rxhils2z",
+    "last_report_id": "32d99b90-3fe2-44a1-89e6-efa5cef2bd77",
+    "last_extraction": {
+      "status": "says goodbye",
+      "designation": "says goodbye",
+      "date": "2026-07-29T23:37:21.681Z",
+      "direct_quote": "\ud83d\udc90\ud83d\udc90\ud83d\udc90 NEWS \ud83d\udc90\ud83d\udc90\ud83d\udc90\n\nTaysom Hill says goodbye to the New Orleans saints. \n\n(The flowers are for him)",
+      "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrt3rxhils2z"
+    },
+    "last_diff_summary": "Taysom Hill has announced his departure from the New Orleans Saints."
   }
 }

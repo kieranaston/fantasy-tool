@@ -1,7 +1,59 @@
 {
   "title": "Player News",
-  "last_updated": "2026-07-29T13:44:34Z",
+  "last_updated": "2026-07-30T13:25:19Z",
   "players": [
+    {
+      "player_id": "00-0033357",
+      "player_name": "Taysom Hill",
+      "team": null,
+      "current_designation": "says goodbye",
+      "last_updated": "2026-07-29T23:37:21.681Z",
+      "diff_summary": "Taysom Hill has announced his departure from the New Orleans Saints.",
+      "extraction": {
+        "status": "says goodbye",
+        "designation": "says goodbye",
+        "date": "2026-07-29T23:37:21.681Z",
+        "direct_quote": "\ud83d\udc90\ud83d\udc90\ud83d\udc90 NEWS \ud83d\udc90\ud83d\udc90\ud83d\udc90\n\nTaysom Hill says goodbye to the New Orleans saints. \n\n(The flowers are for him)",
+        "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrt3rxhils2z"
+      },
+      "timeline": [
+        {
+          "id": "32d99b90-3fe2-44a1-89e6-efa5cef2bd77",
+          "timestamp": "2026-07-29T23:37:21.681Z",
+          "designation": "says goodbye",
+          "source_text": "\ud83d\udc90\ud83d\udc90\ud83d\udc90 NEWS \ud83d\udc90\ud83d\udc90\ud83d\udc90\n\nTaysom Hill says goodbye to the New Orleans saints. \n\n(The flowers are for him)",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrt3rxhils2z",
+          "source_type": "beat_reporter",
+          "player_name": "Taysom Hill"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0040715",
+      "player_name": "Cam Skattebo",
+      "team": null,
+      "current_designation": "injury update",
+      "last_updated": "2026-07-29T17:06:48.656Z",
+      "diff_summary": "New York Giants running back Cam Skattebo (ankle) is \"good to go\" for training camp.",
+      "extraction": {
+        "status": "injury update",
+        "designation": "injury update",
+        "date": "2026-07-29T17:06:48.656Z",
+        "direct_quote": "\u2705\u2705\u2705 INJURY UPDATE \u2705\u2705\u2705\n\nNew York Giants RB Cam Skattebo (ankle) is \"good to go\" for training camp",
+        "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrsfxlya6s2n"
+      },
+      "timeline": [
+        {
+          "id": "ba86f729-2349-4a70-bf72-7ba2615b4d9c",
+          "timestamp": "2026-07-29T17:06:48.656Z",
+          "designation": "injury update",
+          "source_text": "\u2705\u2705\u2705 INJURY UPDATE \u2705\u2705\u2705\n\nNew York Giants RB Cam Skattebo (ankle) is \"good to go\" for training camp",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrsfxlya6s2n",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        }
+      ]
+    },
     {
       "player_id": "00-0034856",
       "player_name": "Denzel Ward",

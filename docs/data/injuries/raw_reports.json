@@ -274,5 +274,41 @@
     "source_type": "beat_reporter",
     "needs_review": false,
     "triaged": true
+  },
+  {
+    "id": "ba86f729-2349-4a70-bf72-7ba2615b4d9c",
+    "player_id": "00-0040715",
+    "player_name": "Cam Skattebo",
+    "timestamp": "2026-07-29T17:06:48.656Z",
+    "designation": "injury update",
+    "source_text": "\u2705\u2705\u2705 INJURY UPDATE \u2705\u2705\u2705\n\nNew York Giants RB Cam Skattebo (ankle) is \"good to go\" for training camp",
+    "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrsfxlya6s2n",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
+  },
+  {
+    "id": "16343c65-1a5b-4e71-8e72-64b8c5bc2b84",
+    "player_id": null,
+    "player_name": "Chris Braswell",
+    "timestamp": "2026-07-29T18:06:32.755Z",
+    "designation": "injury update",
+    "source_text": "\u26a0\ufe0f\u26a0\ufe0f\u26a0\ufe0f NEWS \u26a0\ufe0f\u26a0\ufe0f\u26a0\ufe0f\n\nPanthers rookie WR Chris Brazzell sustained a moderate LCL tear in his left knee and is expected to miss up to eight weeks. \n\nBrazzell's injury is believed to be unrelated to his earlier knee issue.\n\nPer Joe Person.",
+    "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrsjcg2auk25",
+    "source_type": "beat_reporter",
+    "needs_review": true,
+    "triaged": true
+  },
+  {
+    "id": "32d99b90-3fe2-44a1-89e6-efa5cef2bd77",
+    "player_id": "00-0033357",
+    "player_name": "Taysom Hill",
+    "timestamp": "2026-07-29T23:37:21.681Z",
+    "designation": "says goodbye",
+    "source_text": "\ud83d\udc90\ud83d\udc90\ud83d\udc90 NEWS \ud83d\udc90\ud83d\udc90\ud83d\udc90\n\nTaysom Hill says goodbye to the New Orleans saints. \n\n(The flowers are for him)",
+    "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrt3rxhils2z",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
   }
 ]
