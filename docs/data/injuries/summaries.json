@@ -1,7 +1,33 @@
 {
   "title": "Player News",
-  "last_updated": "2026-07-30T13:25:19Z",
+  "last_updated": "2026-07-31T13:30:42Z",
   "players": [
+    {
+      "player_id": "00-0037239",
+      "player_name": "Chris Olave",
+      "team": null,
+      "current_designation": "signing a 4-year extension",
+      "last_updated": "2026-07-30T20:50:54.499Z",
+      "diff_summary": "Chris Olave has signed a four-year contract extension with the New Orleans Saints, potentially worth up to $132 million with $90 million guaranteed, according to Adam Schefter.",
+      "extraction": {
+        "status": "signing a 4-year extension",
+        "designation": "signing a 4-year extension",
+        "date": "2026-07-30T20:50:54.499Z",
+        "direct_quote": "\u203c\ufe0f\u203c\ufe0f\u203c\ufe0f BREAKING NEWS \u203c\ufe0f\u203c\ufe0f\u203c\ufe0f\n\nChris Olave is signing a 4-year extension with the New Orleans Saints worth up to $132M, with $90M guaranteed.\n\nPer Adam Schefter.",
+        "source_url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrvcxafl7s2w"
+      },
+      "timeline": [
+        {
+          "id": "0e401b0c-4e41-46e9-8f87-ff2c90b53c8b",
+          "timestamp": "2026-07-30T20:50:54.499Z",
+          "designation": "signing a 4-year extension",
+          "source_text": "\u203c\ufe0f\u203c\ufe0f\u203c\ufe0f BREAKING NEWS \u203c\ufe0f\u203c\ufe0f\u203c\ufe0f\n\nChris Olave is signing a 4-year extension with the New Orleans Saints worth up to $132M, with $90M guaranteed.\n\nPer Adam Schefter.",
+          "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrvcxafl7s2w",
+          "source_type": "beat_reporter",
+          "player_name": "Chris Olave"
+        }
+      ]
+    },
     {
       "player_id": "00-0033357",
       "player_name": "Taysom Hill",
