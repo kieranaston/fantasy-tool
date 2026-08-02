@@ -370,5 +370,65 @@
     "source_type": "beat_reporter",
     "needs_review": false,
     "triaged": true
+  },
+  {
+    "id": "ab80c0c9-9fbe-42f7-b731-02f6c5081d8c",
+    "player_id": "00-0030564",
+    "player_name": "DeAndre Hopkins",
+    "timestamp": "2026-08-01T13:45:26.892Z",
+    "designation": "Free agent",
+    "source_text": "\u2753\u2753\u2753 NEWS \u2753\u2753\u2753\n\nFree agent WR DeAndre Hopkins says he has not retired from the NFL, despite taking a position on the coaching staff at Georgia Tech",
+    "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrzm4ccdj22q",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
+  },
+  {
+    "id": "9561834f-9873-49fd-9795-2db57716485d",
+    "player_id": "00-0039916",
+    "player_name": "Ricky Pearsall",
+    "timestamp": "2026-08-01T16:47:32.735Z",
+    "designation": "season-ending IR",
+    "source_text": "\ud83d\udea8\ud83d\udea8\ud83d\udea8 BREAKING NEWS \ud83d\udea8\ud83d\udea8\ud83d\udea8\n\n49ers are putting Ricky Pearsall on season-ending IR. He\u2019ll have surgery on his PCL, John Lynch said.",
+    "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrzwbvym2s2x",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
+  },
+  {
+    "id": "f1dfef1b-3464-4d32-b8d4-1c5cf75de8a8",
+    "player_id": "00-0040890",
+    "player_name": "Cyrus Allen",
+    "timestamp": "2026-08-01T17:30:09.086Z",
+    "designation": "lower leg injury",
+    "source_text": "\u26a0\ufe0f\u26a0\ufe0f\u26a0\ufe0f NEWS \u26a0\ufe0f\u26a0\ufe0f\u26a0\ufe0f\n\nChiefs announced that Cyrus Allen left practice with a lower leg injury and Xavier Worthy left with a shoulder injury.\n\nBoth players are still being evaluated.",
+    "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3mrzyo3w7mc26",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
+  },
+  {
+    "id": "44c2075c-f3c7-4fb2-8876-80453acf75ba",
+    "player_id": "00-0040890",
+    "player_name": "Cyrus Allen",
+    "timestamp": "2026-08-01T19:23:04.589Z",
+    "designation": "shin bruise",
+    "source_text": "UPDATE:\n\nTests on Chiefs rookie WR Cyrus Allen revealed a shin bruise. Nothing was torn or broken. \n\nPer Adam Schefter.",
+    "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3ms26xzk5r22v",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
+  },
+  {
+    "id": "7fc711fe-8d03-4351-a05d-a585e3622050",
+    "player_id": "00-0039894",
+    "player_name": "Xavier Worthy",
+    "timestamp": "2026-08-01T20:22:52.064Z",
+    "designation": "shoulder",
+    "source_text": "\u2705\u2705\u2705 INJURY UPDATE \u2705\u2705\u2705\n\nWR Xavier Worthy (shoulder) is believed to be OK\n\nPer Ian Rapoport",
+    "url": "https://bsky.app/profile/news.optimusfantasy.com/post/3ms2ccwt7cs2n",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
   }
 ]
