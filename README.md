@@ -2,7 +2,7 @@
 
 Personal fantasy football reference site with editable rankings vs Sleeper ADP, player news, and season injury history.
 
-Data is pulled from [nflverse](https://github.com/nflverse) via [nflreadpy](https://github.com/nflverse/nflreadpy) and [Sleeper](https://docs.sleeper.com/) ADP, then published as static JSON for a GitHub Pages site in `/docs`. Player news is ingested from Bluesky (`news.optimusfantasy.com`) and grounded-summarized with Gemini when status changes.
+Data is pulled from [nflverse](https://github.com/nflverse) via [nflreadpy](https://github.com/nflverse/nflreadpy) and [Sleeper](https://docs.sleeper.com/) ADP, then published as static JSON for a GitHub Pages site in `/docs`. Player news is ingested from RotoWire’s Bluesky account (`rotowirenfl.bsky.social`) and grounded-summarized with Gemini.
 
 ## Rankings vs ADP
 

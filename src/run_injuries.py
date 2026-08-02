@@ -135,7 +135,7 @@ def ingest_bluesky(player_index, reports: list, poll_state: dict) -> tuple[list,
         print("  Bluesky: no new posts since last poll")
         return reports, []
 
-    print(f"  Bluesky: {len(posts)} new posts (LLM will triage player-related news)")
+    print(f"  Bluesky: {len(posts)} new RotoWire posts (extracting players)")
 
     if not gemini_available():
         before = list(reports)
@@ -204,7 +204,7 @@ def ingest_bluesky(player_index, reports: list, poll_state: dict) -> tuple[list,
     reports = append_reports(RAW_PATH, reports, new_rows)
     added = _newly_appended(before, reports)
     print(
-        f"  Bluesky: {len(valid_extractions)} player-news extractions, "
+        f"  Bluesky: {len(valid_extractions)} extractions, "
         f"{len(added)} new reports ({len(unmatched)} need review)"
     )
     return reports, added

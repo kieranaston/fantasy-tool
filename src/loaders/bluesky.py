@@ -1,4 +1,4 @@
-"""Bluesky public author-feed ingestion for Optimus Fantasy news."""
+"""Bluesky public author-feed ingestion for RotoWire NFL news."""
 
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ from src.injuries.calendar import post_super_bowl_cutoff
 BSKY_FEED_URL = (
     "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed"
 )
-DEFAULT_ACTOR = "news.optimusfantasy.com"
+DEFAULT_ACTOR = "rotowirenfl.bsky.social"
 PAGE_LIMIT = 50
 MAX_PAGES = 30
 
@@ -47,7 +47,8 @@ def fetch_author_posts(
 ) -> list[dict[str, Any]]:
     """Pull posts newer than ``since_iso`` (or post-Super-Bowl on first run).
 
-    No keyword pre-filter — Gemini triage selects player-related posts.
+    RotoWire posts are curated player blurbs — every post is ingested; Gemini
+    extracts player/designation fields rather than relevance-filtering.
     """
     known_urls = known_urls or set()
     since = _parse_iso(since_iso)

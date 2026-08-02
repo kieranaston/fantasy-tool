@@ -14,20 +14,17 @@ EXTRACT_SYSTEM = (
 )
 
 BLUESKY_BATCH_INSTRUCTION = (
-    "Identify posts that are player-related NFL news — anything about a specific "
-    "player's situation that fantasy managers would care about. Include injuries, "
-    "recovery/clearance, PUP/NFI/IR, practice participation, rest, suspensions, "
-    "game-status designations, contracts/extensions/releases that affect a named "
-    "player, trades involving named players, and similar player news. "
-    "Ignore coaching hires, draft-class speculation with no named current player, "
-    "and general team news that does not name a player. "
-    "For each relevant post, extract: "
+    "These posts are from RotoWire's curated NFL news account. Treat every "
+    "post as useful fantasy-player news — do not drop posts for relevance. "
+    "For each post, extract one item per named player mentioned: "
     "player_name, designation, date, direct_quote, post_url. "
     "designation should be a short phrase from the post (e.g. PUP, cleared, "
-    "signed, released, traded) — never only a team name. "
+    "full practice, season-ending IR, signed, released, traded, expanded role) "
+    "— never only a team name. "
     "direct_quote must be copied verbatim from the post text. "
-    "If no player can be confidently matched, return player_name as null "
-    "and set needs_review to true. Return one item per named player mentioned."
+    "If no player can be confidently identified, return player_name as null "
+    "and set needs_review to true. "
+    "Return items for every post in the batch (one or more per post)."
 )
 
 NARRATIVE_SYSTEM = (
@@ -242,7 +239,7 @@ def _generate_json(
 
 
 def extract_bluesky_batch(posts: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Step A: triage + extract player-related posts from a Bluesky batch."""
+    """Step A: extract player/designation fields from a RotoWire Bluesky batch."""
     if not posts:
         return []
     payload = [
