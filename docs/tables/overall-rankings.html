@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RB Rankings — Fantasy Reference</title>
+    <title>Overall Rankings — Fantasy Reference</title>
     <link rel="stylesheet" href="../css/site.css" />
   </head>
   <body>
     <div class="container">
       <p class="site-header">
-        <a href="../index.html">Home</a><span class="sep"> · </span><span class="nav-current">RB Rankings</span>
+        <a href="../index.html">Home</a><span class="sep"> · </span><span class="nav-current">Overall Rankings</span>
       </p>
       <p class="meta" data-draft="summary">Loading…</p>
 
@@ -25,13 +25,13 @@
       </div>
 
       <div id="table-container" class="table-wrap">
-        <table id="rb-rankings-table" class="cell-border draft-table">
+        <table id="overall-rankings-table" class="cell-border draft-table">
           <thead>
             <tr>
               <th>
                 <span class="th-inner">
                   <span class="th-label">My Rank</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Your RB rank — drag rows to reorder">i</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Your overall draft order — drag rows to reorder">i</span>
                 </span>
               </th>
               <th>
@@ -48,20 +48,20 @@
               </th>
               <th>
                 <span class="th-inner">
+                  <span class="th-label">Pos</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Position">i</span>
+                </span>
+              </th>
+              <th>
+                <span class="th-inner">
                   <span class="th-label">ADP</span>
                   <span class="col-info" tabindex="0" data-tooltip="Sleeper average draft position for this format">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">ADP Rank</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Positional rank by Sleeper ADP (RB1, RB2, …)">i</span>
-                </span>
-              </th>
-              <th>
-                <span class="th-inner">
                   <span class="th-label">Value</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Positional ADP rank minus my rank. Positive means the market ranks them lower than you (value)">i</span>
+                  <span class="col-info" tabindex="0" data-tooltip="ADP minus my rank. Positive means the market takes them later than you would (value)">i</span>
                 </span>
               </th>
               <th>
@@ -78,7 +78,7 @@
 
     <script type="module">
       import { mountAdpRankingsPage } from "../js/adp-rankings.js?v=4";
-      mountAdpRankingsPage({ position: "rb", tableId: "rb-rankings-table" });
+      mountAdpRankingsPage({ position: "overall", tableId: "overall-rankings-table" });
     </script>
   </body>
 </html>

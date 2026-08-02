@@ -13,7 +13,6 @@ MANIFEST_KEYS = {
     "positions",
     "last_updated",
 }
-RANKINGS_KEYS = {"title", "season", "position", "rows"}
 
 
 def write_json(path: Path, payload: dict[str, Any], required_keys: set[str]) -> None:

@@ -1,31 +1,25 @@
 # fantasy-tool
 
-Personal fantasy football reference site with custom statistical rankings, personal draft boards, and a player-news summarizer.
+Personal fantasy football reference site with editable rankings vs Sleeper ADP, player news, and season injury history.
 
-Data is pulled from [nflverse](https://github.com/nflverse) via [nflreadpy](https://github.com/nflverse/nflreadpy), processed into preseason composite rankings, and published as static JSON consumed by a GitHub Pages site in `/docs`. Player news is ingested from Bluesky (`news.optimusfantasy.com`) and grounded-summarized with Gemini when status changes. FantasyPros expert consensus rankings (ECR) power the “vs ECR” column on personal draft pages.
+Data is pulled from [nflverse](https://github.com/nflverse) via [nflreadpy](https://github.com/nflverse/nflreadpy) and [Sleeper](https://docs.sleeper.com/) ADP, then published as static JSON for a GitHub Pages site in `/docs`. Player news is ingested from Bluesky (`news.optimusfantasy.com`) and grounded-summarized with Gemini when status changes.
 
-## Strategy
+## Rankings vs ADP
 
-Rankings are built from the **latest completed season** using **rate-only** metrics (per-game opportunity + efficiency) that tend to stick year to year. There is no minimum games-played cutoff, so players who missed time are still ranked on the rates they posted when available. Raw rates are min-max normalized within each position pool, then weighted into a composite score.
+Boards are seeded from **Sleeper ADP** (includes rookies). Drag to set your ranks and insert tier breaks. Value is computed per player:
 
-| Pos | Scored rates |
+| Board | Value |
 | --- | --- |
-| QB | Pass att/g, rush att/g, yards per attempt |
-| RB | Touches/g, yards per touch, targets/g (PPR weights targets more) |
-| WR | Targets/g, aDOT, yards per route run |
-| TE | Targets/g, yards per target, yards per route run |
+| Overall | `ADP − myOverallRank` (positive = market later than you → value) |
+| QB / RB / WR / TE | `posAdpRank − myPosRank` (positional ADP rank vs your rank) |
 
-Players in the composite pool get a short **season injury-history** tag linking to a
-dedicated page that combines weekly roster status (IR / inactive), official injury
-reports, and games missed vs the team schedule. Current player news remains separate (Bluesky).
-
-RB, WR, and TE composite pages include a **Standard | Half-PPR | Full-PPR** selector. Personal draft pages use **Half-PPR | PPR** with drag-and-drop reordering.
+Half-PPR and PPR keep independent orders/tiers in this browser (`localStorage`).
 
 ## Project structure
 
 ```
 docs/           GitHub Pages site (HTML, JS, CSS, generated JSON)
-src/            Python pipeline (loaders, algorithms, injuries, export)
+src/            Python pipeline (loaders, injuries, export)
 .github/        Data refresh workflows
 ```
 
@@ -36,10 +30,10 @@ python -m venv .venv
 source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -e .
 
-python -m src.run                  # rankings + season injury history
-python -m src.run_injury_history   # injury history only (uses existing rankings pool)
+python -m src.run                  # manifest + season injury history (ADP pool)
+python -m src.run_injury_history   # injury history only
 python -m src.run_injuries         # writes docs/data/injuries/
-python -m src.run_consensus        # FantasyPros ECR + seeds draft-rankings.json if missing
+python -m src.run_adp              # Sleeper ADP + seeds my-rankings.json if missing
 python -m http.server 8000 --directory docs
 ```
 
@@ -54,18 +48,32 @@ Create a `.env` in the repo root (gitignored):
 ```bash
 GEMINI_API_KEY=...             # Bluesky triage + grounded summaries
 GEMINI_MODEL=gemini-2.5-flash-lite   # optional override
-FANTASYPROS_API_KEY=...        # consensus ECR for draft pages (public API; free tier returns a limited top list)
 ```
 
-### Personal draft rankings
+### Personal rankings
 
-- Pages: **My QB / RB / WR / TE Draft**
-- Pool: same top-40 composite players per position
-- Drag rows to reorder — order is saved in this browser (`localStorage`) and survives reloads
-- Half-PPR and PPR keep independent orders
-- **Reset to my rankings** restores both formats to the composite ranking order
-- **Download spreadsheet** exports the current format as CSV (opens in Excel/Sheets)
-- Does not sync across devices/browsers (GitHub Pages cannot write the repo from the page)
+- Pages: **Overall / QB / RB / WR / TE Rankings**
+- Pool: Sleeper ADP depth (overall top 200; position caps QB 40 / RB 60 / WR 80 / TE 40)
+- Drag rows to reorder
+- **+** on a row toggles a tier break below it
+- **Reset to ADP** restores ADP order and clears tiers for both formats
+- **Download spreadsheet** exports the current format as CSV
+- Without sync configured, order is saved in this browser only
+
+### Multi-device sync (Supabase)
+
+Site stays on GitHub Pages (no server for you to run). Rankings sync through a free Supabase project.
+
+1. Create a project at [supabase.com](https://supabase.com)
+2. SQL Editor → run [`supabase/schema.sql`](supabase/schema.sql)
+3. Authentication → Providers → enable **Email**
+4. Authentication → URL Configuration → add your site URL to **Redirect URLs**  
+   (local: `http://localhost:8000/*`, Pages: `https://<user>.github.io/fantasy-tool/*`)
+5. Project Settings → API → copy **Project URL** and **anon public** key into [`docs/js/sync-config.js`](docs/js/sync-config.js)
+6. On any rankings page, enter your email → **Sign in to sync** → open the magic link
+7. Reorder on one device; other signed-in devices load the newer board
+
+The anon key is safe to commit when RLS from `schema.sql` is enabled.
 
 ## GitHub Pages
 
@@ -73,18 +81,16 @@ FANTASYPROS_API_KEY=...        # consensus ECR for draft pages (public API; free
 2. Settings → Pages → Build from branch `main`, folder `/docs`
 3. Site URL: `https://<username>.github.io/fantasy-tool/`
 
-Rankings refresh automatically on the first Tuesday of each month. Player news + FantasyPros ECR refresh daily via **Refresh injuries**. Trigger either workflow manually from the Actions tab.
+Composite/injury-history refresh on the first Tuesday of each month (injury history uses the ADP player pool). Player news + Sleeper ADP refresh daily via **Refresh injuries**. Trigger either workflow manually from the Actions tab.
 
 Repository secrets:
 
 - `GEMINI_API_KEY` — grounded summaries
-- `FANTASYPROS_API_KEY` — consensus rankings (optional; skipped if unset)
 
 Missing Gemini summaries from quota limits are retried automatically on the next daily run.
 
 ## Adding a new view
 
-1. Add an algorithm module under `src/algorithms/`
-2. Export JSON to `docs/data/<your-path>.json` from `src/run.py`
-3. Add an HTML page under `docs/charts/` or `docs/tables/`
-4. Link it from `docs/index.html`
+1. Export JSON under `docs/data/` (from `src/run*.py` or a new module)
+2. Add an HTML page under `docs/tables/`
+3. Link it from `docs/index.html`

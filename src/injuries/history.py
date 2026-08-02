@@ -117,31 +117,43 @@ def roster_detail_label(status: str | None, abbr: str | None) -> str:
 
 
 def load_ranking_pool(docs_data) -> list[dict[str, Any]]:
-    """Collect player rows from exported composite rankings."""
+    """Collect player rows from exported Sleeper ADP boards (skill positions)."""
     import json
     from pathlib import Path
 
     docs_data = Path(docs_data)
     pool: list[dict[str, Any]] = []
     seen: set[str] = set()
+    # Prefer full_ppr order, then backfill anyone only present in half_ppr.
+    format_keys = ("full_ppr", "half_ppr")
+
     for position in ("qb", "rb", "wr", "te"):
-        path = docs_data / position / "rankings.json"
+        path = docs_data / position / "adp.json"
         if not path.exists():
             continue
         payload = json.loads(path.read_text(encoding="utf-8"))
-        for row in payload.get("rows") or []:
-            pid = row.get("player_id")
-            if not pid or pid in seen:
-                continue
-            seen.add(pid)
-            pool.append({
-                "player_id": pid,
-                "player_name": row.get("player") or "",
-                "position": (payload.get("position") or position).upper(),
-                "team": row.get("team") or "",
-                "games_played": int(row.get("games_played") or 0),
-                "logo": row.get("logo"),
-            })
+        players_by_format = payload.get("players") or {}
+        for format_key in format_keys:
+            for row in players_by_format.get(format_key) or []:
+                pid = row.get("player_id")
+                if not pid or pid in seen:
+                    continue
+                # Injury history is GSIS-keyed via nflverse; skip Sleeper-only ids.
+                if str(pid).startswith("sleeper:"):
+                    continue
+                seen.add(pid)
+                pool.append({
+                    "player_id": pid,
+                    "player_name": row.get("player") or "",
+                    "position": (
+                        row.get("position")
+                        or payload.get("position")
+                        or position
+                    ).upper(),
+                    "team": row.get("team") or "",
+                    "games_played": 0,
+                    "logo": row.get("logo"),
+                })
     return pool
 
 
@@ -637,7 +649,7 @@ def aggregate_injury_history(
             "position": player.get("position") or "",
             "team": team,
             "logo": player.get("logo"),
-            "games_played": int(player.get("games_played") or 0),
+            "games_played": len(played),
             "team_games": len(scheduled),
             "bye_weeks": bye_weeks,
             "missed_weeks": missed,

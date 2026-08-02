@@ -1,4 +1,4 @@
-"""Build comprehensive season injury-history JSON for the ranking pool."""
+"""Build season injury-history JSON for the ADP player pool."""
 
 from __future__ import annotations
 

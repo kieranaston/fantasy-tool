@@ -4,69 +4,69 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QB Rankings — Fantasy Reference</title>
-    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css" />
     <link rel="stylesheet" href="../css/site.css" />
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
   </head>
   <body>
     <div class="container">
       <p class="site-header">
         <a href="../index.html">Home</a><span class="sep"> · </span><span class="nav-current">QB Rankings</span>
       </p>
-      <p class="meta" data-manifest="summary">Loading…</p>
+      <p class="meta" data-draft="summary">Loading…</p>
 
-      <div class="controls" hidden>
+      <div class="controls draft-controls">
         <div>
           <label id="format-label">Format</label>
           <div id="format-toggle" class="format-toggle" role="group" aria-label="Scoring format"></div>
         </div>
+        <div class="draft-actions">
+          <button type="button" id="draft-reset" class="draft-btn" title="Restore Sleeper ADP order">Reset to ADP</button>
+          <button type="button" id="draft-download-csv" class="draft-btn">Download spreadsheet</button>
+        </div>
       </div>
 
       <div id="table-container" class="table-wrap">
-        <table id="qb-table" class="cell-border order-column">
+        <table id="qb-rankings-table" class="cell-border draft-table">
           <thead>
             <tr>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">Rank</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Composite score rank">i</span>
+                  <span class="th-label">My Rank</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Your QB rank — drag rows to reorder">i</span>
+                </span>
+              </th>
+              <th>
+                <span class="th-inner">
+                  <span class="th-label">Tier</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Your tier grouping. Use + on a row to add a break below">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
                   <span class="th-label">Player</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Player name and team logo">i</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Player name, team, and player-news status">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">GP</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Games played">i</span>
+                  <span class="th-label">ADP</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Sleeper average draft position for this format">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">Pass/G</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Pass attempts per game">i</span>
+                  <span class="th-label">ADP Rank</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Positional rank by Sleeper ADP (RB1, RB2, …)">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">Rush/G</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Rush attempts per game">i</span>
+                  <span class="th-label">Value</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Positional ADP rank minus my rank. Positive means the market ranks them lower than you (value)">i</span>
                 </span>
               </th>
               <th>
                 <span class="th-inner">
-                  <span class="th-label">YPA</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Passing yards per attempt">i</span>
-                </span>
-              </th>
-              <th>
-                <span class="th-inner">
-                  <span class="th-label">Score</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Fixed composite of pass attempts/g, rush attempts/g, and yards per attempt">i</span>
+                  <span class="th-label"></span>
                 </span>
               </th>
             </tr>
@@ -77,18 +77,8 @@
     </div>
 
     <script type="module">
-      import { mountRankingsPage } from "../js/rankings.js?v=history3";
-
-      mountRankingsPage({
-        position: "qb",
-        tableId: "qb-table",
-        showFormat: false,
-        numericTargets: [2, 3, 4, 5, 6],
-        metricCells: (row) => `
-          <td>${row.metrics.pass_attempts_pg.toFixed(1)}</td>
-          <td>${row.metrics.rush_attempts_pg.toFixed(1)}</td>
-          <td>${row.metrics.yards_per_attempt.toFixed(1)}</td>`,
-      });
+      import { mountAdpRankingsPage } from "../js/adp-rankings.js?v=4";
+      mountAdpRankingsPage({ position: "qb", tableId: "qb-rankings-table" });
     </script>
   </body>
 </html>

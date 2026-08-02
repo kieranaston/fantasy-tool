@@ -96,8 +96,7 @@ a:hover {
   padding: 0.75rem 0;
 }
 
-/* DataTables — load after DataTables CDN so these win */
-table.dataTable,
+/* Ranking / draft boards */
 table.draft-table {
   width: auto !important;
   max-width: 100%;
@@ -108,8 +107,6 @@ table.draft-table {
   table-layout: auto;
 }
 
-table.dataTable > thead > tr > th,
-table.dataTable > tbody > tr > td,
 table.draft-table > thead > tr > th,
 table.draft-table > tbody > tr > td {
   border: 1px solid #9ca3af !important;
@@ -117,7 +114,6 @@ table.draft-table > tbody > tr > td {
   vertical-align: middle;
 }
 
-table.dataTable > thead > tr > th,
 table.draft-table > thead > tr > th {
   font-weight: 600;
   font-size: 0.85rem;
@@ -164,77 +160,6 @@ table.draft-table > thead > tr > th {
   font-weight: 400;
   line-height: 1.35;
   pointer-events: none;
-}
-
-/* Hide sort arrows; columns still sort on click */
-table.dataTable > thead > tr > th span.dt-column-order {
-  display: none !important;
-}
-
-table.dataTable > thead > tr > th.dt-orderable-asc,
-table.dataTable > thead > tr > th.dt-orderable-desc,
-table.dataTable > thead > tr > th.dt-ordering-asc,
-table.dataTable > thead > tr > th.dt-ordering-desc {
-  padding-right: 0.6rem !important;
-  cursor: pointer;
-}
-
-table.dataTable > thead > tr > th.dt-orderable-asc:hover,
-table.dataTable > thead > tr > th.dt-orderable-desc:hover,
-table.dataTable > thead > tr > th.dt-ordering-asc:hover,
-table.dataTable > thead > tr > th.dt-ordering-desc:hover {
-  outline: none !important;
-}
-
-table.dataTable > thead > tr > th.dt-ordering-asc,
-table.dataTable > thead > tr > th.dt-ordering-desc {
-  background: var(--sort-highlight) !important;
-}
-
-table.dataTable.order-column > tbody > tr > td.sorting_1 {
-  background: var(--sort-highlight-soft) !important;
-}
-
-table.dataTable.order-column > tbody > tr > td.sorting_1.score-cell {
-  background: var(--sort-highlight-soft) !important;
-}
-
-table.dataTable > tbody > tr,
-table.dataTable > tbody > tr:hover,
-table.dataTable.stripe > tbody > tr.odd,
-table.dataTable.stripe > tbody > tr.even,
-table.dataTable.display > tbody > tr.odd,
-table.dataTable.display > tbody > tr.even,
-table.dataTable.cell-border > tbody > tr.odd,
-table.dataTable.cell-border > tbody > tr.even {
-  background: transparent !important;
-}
-
-table.dataTable > tbody > tr > td:first-child {
-  color: var(--muted);
-  font-weight: 600;
-}
-
-/* Shrink columns to content width */
-table.dataTable > thead > tr > th:nth-child(1),
-table.dataTable > tbody > tr > td:nth-child(1),
-table.dataTable > thead > tr > th:nth-child(n+3),
-table.dataTable > tbody > tr > td:nth-child(n+3) {
-  width: 1%;
-  white-space: nowrap;
-  text-align: right;
-}
-
-table.dataTable > thead > tr > th:nth-child(2),
-table.dataTable > tbody > tr > td:nth-child(2) {
-  width: 1%;
-  white-space: nowrap;
-}
-
-table.dataTable > tbody > tr > td.score-cell {
-  font-weight: 600;
-  text-align: right;
-  color: var(--text);
 }
 
 .player-cell {
@@ -617,6 +542,48 @@ table.dataTable > tbody > tr > td.score-cell {
   gap: 0.65rem 1rem;
 }
 
+.sync-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.85rem;
+  width: 100%;
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.sync-login {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.6rem;
+}
+
+.sync-login input[type="email"] {
+  font-family: inherit;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.4rem;
+  border: none;
+  border-bottom: 1px solid #9ca3af;
+  background: transparent;
+  color: var(--text);
+  min-width: 14rem;
+}
+
+.sync-login input[type="email"]:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
+.sync-user {
+  color: var(--text);
+}
+
+.sync-status {
+  color: var(--muted);
+}
+
 .draft-edit-status {
   color: var(--muted);
   font-size: 0.8rem;
@@ -681,6 +648,75 @@ table.draft-table > tbody > tr.drag-over {
 td.num {
   text-align: right;
   white-space: nowrap;
+}
+
+td.tier-num {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+td.pos-cell {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+td.tier-actions {
+  width: 1%;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.tier-break-btn {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0.15rem 0.35rem;
+  line-height: 1;
+}
+
+.tier-break-btn:hover {
+  color: var(--accent);
+}
+
+.tier-break-row td {
+  background: var(--bg) !important;
+  border-left: none !important;
+  border-right: none !important;
+  padding: 0.15rem 0.6rem !important;
+}
+
+.tier-break-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-top: 2px solid var(--accent);
+  padding-top: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.tier-break-remove {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.7rem;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+  padding: 0;
+}
+
+.tier-break-remove:hover {
+  color: var(--danger);
 }
 
 .muted {
