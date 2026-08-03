@@ -233,7 +233,15 @@ def _generate_json(
             )
             if not retryable or attempt == retries - 1:
                 break
-            time.sleep(2 ** attempt)
+            delay = 2 ** attempt
+            if "429" in message or "RESOURCE_EXHAUSTED" in message:
+                # Free tier is often ~10 RPM; honor RetryInfo when present.
+                match = re.search(r"Please retry in ([0-9.]+)s", message)
+                if match:
+                    delay = max(delay, float(match.group(1)) + 1.0)
+                else:
+                    delay = max(delay, 25.0)
+            time.sleep(delay)
     assert last_error is not None
     raise last_error
 

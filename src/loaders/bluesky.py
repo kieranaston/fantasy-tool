@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from datetime import datetime, timezone
 from typing import Any
 from urllib.parse import quote
@@ -16,6 +17,13 @@ BSKY_FEED_URL = (
 DEFAULT_ACTOR = "rotowirenfl.bsky.social"
 PAGE_LIMIT = 50
 MAX_PAGES = 30
+
+# RotoWire blurbs are almost always "Player Name: update …"
+_ROTOWIRE_LINE = re.compile(
+    r"^\s*(?P<player>[^:\n]{2,80}?)\s*:\s*(?P<designation>.+?)\s*$",
+    re.MULTILINE,
+)
+_URL_LINE = re.compile(r"https?://\S+")
 
 
 def _parse_iso(value: str | None) -> datetime | None:
@@ -113,6 +121,48 @@ def fetch_author_posts(
 
     posts.sort(key=lambda p: p.get("created_at") or "")
     return posts
+
+
+def extract_rotowire_posts(posts: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Deterministic extract for RotoWire ``Player: update`` posts (no LLM)."""
+    items: list[dict[str, Any]] = []
+    for post in posts:
+        text = (post.get("text") or "").strip()
+        url = post.get("url") or ""
+        created = post.get("created_at") or ""
+        if not text or not url:
+            continue
+
+        cleaned = _URL_LINE.sub("", text).strip()
+        match = _ROTOWIRE_LINE.search(cleaned)
+        if not match:
+            items.append(
+                {
+                    "player_name": None,
+                    "designation": "",
+                    "date": created,
+                    "direct_quote": text[:280],
+                    "post_url": url,
+                    "needs_review": True,
+                }
+            )
+            continue
+
+        player = match.group("player").strip()
+        designation = match.group("designation").strip()
+        # Drop trailing orphan punctuation / blank leftovers
+        designation = designation.split("\n")[0].strip(" -–—")
+        items.append(
+            {
+                "player_name": player,
+                "designation": designation,
+                "date": created,
+                "direct_quote": text[:280],
+                "post_url": url,
+                "needs_review": False,
+            }
+        )
+    return items
 
 
 def posts_to_raw_reports(

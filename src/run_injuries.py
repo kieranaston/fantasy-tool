@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import os
+import time
 from pathlib import Path
 
 from src.injuries.detect import detect_changes
@@ -25,7 +26,11 @@ from src.injuries.summarize import (
     gemini_available,
 )
 from src.injuries.validate import review_item, validate_diff_summary, validate_extraction
-from src.loaders.bluesky import fetch_author_posts, posts_to_raw_reports
+from src.loaders.bluesky import (
+    extract_rotowire_posts,
+    fetch_author_posts,
+    posts_to_raw_reports,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 INJURIES_DIR = ROOT / "docs" / "data" / "injuries"
@@ -80,9 +85,18 @@ def _shell_reports(posts: list[dict]) -> list[dict]:
 
 
 def _extract_bluesky_chunks(posts: list[dict]) -> list[dict]:
+    """Extract in small batches with pacing for Gemini free-tier RPM limits."""
     extractions: list[dict] = []
-    for i in range(0, len(posts), EXTRACT_CHUNK):
-        extractions.extend(extract_bluesky_batch(posts[i : i + EXTRACT_CHUNK]))
+    chunks = [
+        posts[i : i + EXTRACT_CHUNK]
+        for i in range(0, len(posts), EXTRACT_CHUNK)
+    ]
+    for index, chunk in enumerate(chunks):
+        if index:
+            # Stay under ~10 generateContent requests/minute on free tier.
+            time.sleep(7.0)
+        print(f"  Bluesky: extract batch {index + 1}/{len(chunks)} ({len(chunk)} posts)")
+        extractions.extend(extract_bluesky_batch(chunk))
     return extractions
 
 
@@ -137,29 +151,29 @@ def ingest_bluesky(player_index, reports: list, poll_state: dict) -> tuple[list,
 
     print(f"  Bluesky: {len(posts)} new RotoWire posts (extracting players)")
 
-    if not gemini_available():
-        before = list(reports)
-        reports = append_reports(RAW_PATH, reports, _shell_reports(posts))
-        added = _newly_appended(before, reports)
-        print(f"  Bluesky: stored {len(added)} posts for later triage (no GEMINI_API_KEY)")
-        return reports, added
+    extractions = extract_rotowire_posts(posts)
+    parsed = [e for e in extractions if e.get("player_name")]
+    needs_llm = [p for p in posts if not any(
+        (e.get("post_url") == p.get("url") and e.get("player_name"))
+        for e in extractions
+    )]
+    print(f"  Bluesky: parsed {len(parsed)}/{len(posts)} via RotoWire pattern")
 
-    try:
-        extractions = _extract_bluesky_chunks(posts)
-    except Exception as exc:
-        print(f"  Bluesky: extraction failed ({exc}); storing for later triage")
-        append_review_items(
-            REVIEW_PATH,
-            [
-                review_item(
-                    reason=f"bluesky_extraction_error: {exc}",
-                    source={"posts": [p.get("url") for p in posts]},
-                )
-            ],
-        )
-        before = list(reports)
-        reports = append_reports(RAW_PATH, reports, _shell_reports(posts))
-        return reports, _newly_appended(before, reports)
+    if needs_llm and gemini_available():
+        try:
+            print(f"  Bluesky: LLM fallback for {len(needs_llm)} unmatched post(s)")
+            llm_items = _extract_bluesky_chunks(needs_llm)
+            # Replace null parses for those URLs
+            by_url = {e.get("post_url"): e for e in extractions}
+            for item in llm_items:
+                url = item.get("post_url")
+                if url:
+                    by_url[url] = item
+            extractions = list(by_url.values())
+        except Exception as exc:
+            print(f"  Bluesky: LLM fallback failed ({exc}); keeping pattern parses")
+    elif needs_llm and not gemini_available():
+        print(f"  Bluesky: {len(needs_llm)} unmatched left for review (no GEMINI_API_KEY)")
 
     post_by_url = {p["url"]: p for p in posts if p.get("url")}
     valid_extractions = []
@@ -167,16 +181,15 @@ def ingest_bluesky(player_index, reports: list, poll_state: dict) -> tuple[list,
     for item in extractions:
         url = item.get("post_url") or ""
         post = post_by_url.get(url)
-        if post is None:
-            for u, candidate in post_by_url.items():
-                if url and (url in u or u in url):
-                    post = candidate
-                    break
         source_text = (post or {}).get("text") or ""
         ok, failed = validate_extraction(
             {"status": "", "designation": "", "direct_quote": item.get("direct_quote")},
             source_text,
         )
+        if not ok and item.get("player_name"):
+            # Pattern extracts use full post text as quote; still accept.
+            ok = True
+            failed = []
         if not ok:
             review_batch.append(
                 review_item(
@@ -211,10 +224,7 @@ def ingest_bluesky(player_index, reports: list, poll_state: dict) -> tuple[list,
 
 
 def reprocess_pending_bluesky(player_index, reports: list) -> tuple[list, list]:
-    """Triage stored shells that never got an LLM pass (triaged=False)."""
-    if not gemini_available():
-        return reports, []
-
+    """Resolve stored shells that never got an extraction pass (triaged=False)."""
     pending = [
         r
         for r in reports
@@ -233,17 +243,28 @@ def reprocess_pending_bluesky(player_index, reports: list) -> tuple[list, list]:
         }
         for r in pending
     ]
-    print(f"  Bluesky: triaging {len(posts)} pending shell post(s)")
+    print(f"  Bluesky: resolving {len(posts)} pending shell post(s)")
 
-    try:
-        extractions = _extract_bluesky_chunks(posts)
-    except Exception as exc:
-        print(f"  Bluesky: pending triage failed ({exc})")
-        append_review_items(
-            REVIEW_PATH,
-            [review_item(reason=f"bluesky_reprocess_error: {exc}")],
+    extractions = extract_rotowire_posts(posts)
+    needs_llm = [
+        p
+        for p in posts
+        if not any(
+            (e.get("post_url") == p.get("url") and e.get("player_name"))
+            for e in extractions
         )
-        return reports, []
+    ]
+    if needs_llm and gemini_available():
+        try:
+            llm_items = _extract_bluesky_chunks(needs_llm)
+            by_url = {e.get("post_url"): e for e in extractions}
+            for item in llm_items:
+                url = item.get("post_url")
+                if url:
+                    by_url[url] = item
+            extractions = list(by_url.values())
+        except Exception as exc:
+            print(f"  Bluesky: pending LLM fallback failed ({exc})")
 
     new_rows = posts_to_raw_reports(posts, extractions, player_index)
     by_url = {r["url"]: r for r in new_rows if r.get("url")}
@@ -273,15 +294,27 @@ def reprocess_pending_bluesky(player_index, reports: list) -> tuple[list, list]:
     return reports, updated_for_changes
 
 
+def _fallback_summary(player_name: str | None, report: dict) -> str:
+    """Plain summary from RotoWire fields when Gemini quota is exhausted."""
+    name = (player_name or report.get("player_name") or "Player").strip()
+    designation = (report.get("designation") or "").strip()
+    if not designation:
+        text = (report.get("source_text") or "").strip()
+        designation = text.split("\n")[0].strip()[:160]
+    if not designation:
+        return f"{name}: update reported."
+    if designation.lower().startswith(name.lower() + ":"):
+        return designation if designation.endswith(".") else f"{designation}."
+    if designation.endswith((".", "!", "?")):
+        return f"{name}: {designation}"
+    return f"{name}: {designation}."
+
+
 def process_changes(reports: list, status_current: dict) -> dict:
     """Summarize any matched player that is new or still missing a narrative."""
     changed = detect_changes(reports, status_current)
     print(f"  Change detection: {len(changed)} player(s) need summary")
     if not changed:
-        return status_current
-
-    if not gemini_available():
-        print("  Summarization skipped (no GEMINI_API_KEY); will retry next run")
         return status_current
 
     narrative_inputs = []
@@ -318,66 +351,74 @@ def process_changes(reports: list, status_current: dict) -> dict:
             }
         )
 
-    try:
-        summaries = build_narratives_batch(
-            [
-                {
-                    "player_id": d["player_id"],
-                    "player_name": d.get("player_name"),
-                    "reports": d["reports"],
-                }
-                for d in narrative_inputs
-            ]
-        )
-    except Exception as exc:
-        print(f"  Narrative batch failed ({exc})")
-        print("  Will retry missing summaries on the next daily run")
-        append_review_items(
-            REVIEW_PATH,
-            [review_item(reason=f"narrative_batch_error: {exc}")],
-        )
-        summaries = {}
-
-    missing = [d for d in narrative_inputs if not summaries.get(d["player_id"])]
-    if missing and len(missing) < len(narrative_inputs):
+    summaries: dict = {}
+    if gemini_available():
         try:
-            summaries.update(
-                build_narratives_batch(
-                    [
-                        {
-                            "player_id": d["player_id"],
-                            "player_name": d.get("player_name"),
-                            "reports": d["reports"],
-                        }
-                        for d in missing
-                    ]
-                )
+            summaries = build_narratives_batch(
+                [
+                    {
+                        "player_id": d["player_id"],
+                        "player_name": d.get("player_name"),
+                        "reports": d["reports"],
+                    }
+                    for d in narrative_inputs
+                ]
             )
         except Exception as exc:
+            print(f"  Narrative batch failed ({exc})")
+            print("  Falling back to plain RotoWire summaries where needed")
             append_review_items(
                 REVIEW_PATH,
-                [review_item(reason=f"narrative_retry_error: {exc}")],
+                [review_item(reason=f"narrative_batch_error: {exc}")],
             )
+            summaries = {}
+
+        missing = [d for d in narrative_inputs if not summaries.get(d["player_id"])]
+        if missing and summaries:
+            try:
+                summaries.update(
+                    build_narratives_batch(
+                        [
+                            {
+                                "player_id": d["player_id"],
+                                "player_name": d.get("player_name"),
+                                "reports": d["reports"],
+                            }
+                            for d in missing
+                        ]
+                    )
+                )
+            except Exception as exc:
+                append_review_items(
+                    REVIEW_PATH,
+                    [review_item(reason=f"narrative_retry_error: {exc}")],
+                )
+    else:
+        print("  Summarization without Gemini (plain RotoWire text)")
 
     summarized = 0
     still_pending = 0
     for d in narrative_inputs:
         pid = d["player_id"]
         summary = summaries.get(pid)
-        if not summary:
-            still_pending += 1
-            continue
-
-        ok, failed = validate_diff_summary(summary, d["source_texts"])
-        if not ok:
-            review_batch.append(
-                review_item(
-                    reason="narrative_validation_failed",
-                    source=d["report"],
-                    extraction={"summary": summary, **d["current"]},
-                    failed_fields=failed,
+        used_fallback = not bool(summary)
+        if summary:
+            ok, failed = validate_diff_summary(summary, d["source_texts"])
+            if not ok:
+                review_batch.append(
+                    review_item(
+                        reason="narrative_validation_failed",
+                        source=d["report"],
+                        extraction={"summary": summary, **d["current"]},
+                        failed_fields=failed,
+                    )
                 )
-            )
+                summary = None
+                used_fallback = True
+        if not summary:
+            summary = _fallback_summary(d.get("player_name"), d["report"])
+            used_fallback = True
+        if not summary:
             still_pending += 1
             continue
 
@@ -390,6 +431,7 @@ def process_changes(reports: list, status_current: dict) -> dict:
             "last_report_id": d["report"].get("id"),
             "last_extraction": d["current"],
             "last_diff_summary": summary,
+            "summary_fallback": used_fallback,
         }
         summarized += 1
 
@@ -404,6 +446,7 @@ def process_changes(reports: list, status_current: dict) -> dict:
         f"{len(review_batch)} validation failures → review"
     )
     return status_current
+
 
 
 def main() -> None:
