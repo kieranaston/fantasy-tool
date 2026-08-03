@@ -2,7 +2,6 @@
   "season": 2025,
   "upcoming_season": 2026,
   "formats": [
-    "standard",
     "half_ppr",
     "full_ppr"
   ],
@@ -12,5 +11,5 @@
     "WR",
     "TE"
   ],
-  "last_updated": "2026-08-02T11:52:39Z"
+  "last_updated": "2026-08-03T13:32:48Z"
 }
