@@ -92,4 +92,4 @@ Missing Gemini summaries from quota limits are retried automatically on the next
 
 1. Export JSON under `docs/data/` (from `src/run*.py` or a new module)
 2. Add an HTML page under `docs/tables/`
-3. Add a link in [`docs/js/site-nav.js`](docs/js/site-nav.js)
+3. Add a sidebar link on each page

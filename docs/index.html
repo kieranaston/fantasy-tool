@@ -4,11 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Player News — Fantasy Football Reference</title>
-    <link rel="stylesheet" href="css/site.css" />
+    <link rel="stylesheet" href="css/site.css?v=3" />
   </head>
   <body>
     <div class="site-layout">
-      <aside id="site-nav" class="site-nav" aria-label="Site"></aside>
+      <aside class="site-nav" aria-label="Site">
+        <a class="site-nav-brand" href="index.html">Fantasy Reference</a>
+        <nav class="site-nav-links">
+          <a href="index.html" class="is-active" aria-current="page">Player News</a>
+          <a href="tables/overall-rankings.html">Overall</a>
+          <a href="tables/qb-rankings.html">QB</a>
+          <a href="tables/rb-rankings.html">RB</a>
+          <a href="tables/wr-rankings.html">WR</a>
+          <a href="tables/te-rankings.html">TE</a>
+        </nav>
+      </aside>
       <main class="site-main">
         <div class="container">
           <h1 class="page-title">Player News</h1>
@@ -19,9 +29,7 @@
     </div>
 
     <script type="module">
-      import { mountSiteNav } from "./js/site-nav.js";
       import { mountInjuriesPage } from "./js/injuries.js";
-      mountSiteNav({ current: "home" });
       mountInjuriesPage();
     </script>
   </body>

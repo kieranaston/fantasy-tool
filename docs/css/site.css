@@ -39,25 +39,19 @@ a:hover {
 }
 
 .site-nav {
-  flex: 0 0 12.5rem;
-  position: sticky;
-  top: 0;
-  align-self: flex-start;
-  max-height: 100vh;
-  overflow-y: auto;
-  padding: 1.25rem 1rem 1.5rem;
+  width: 11rem;
+  flex-shrink: 0;
+  padding: 1rem 1rem 1.5rem;
   border-right: 1px solid var(--border);
-  background: var(--bg);
 }
 
 .site-nav-brand {
   display: block;
-  margin: 0 0 1.25rem;
-  font-size: 0.95rem;
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
   font-weight: 700;
   line-height: 1.3;
   color: var(--text);
-  text-decoration: none;
 }
 
 .site-nav-brand:hover {
@@ -68,27 +62,18 @@ a:hover {
 .site-nav-links {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.45rem;
 }
 
 .site-nav-links a {
-  color: var(--muted);
-  font-size: 0.85rem;
-  font-weight: 500;
-  text-decoration: none;
-  padding: 0.15rem 0;
-  border-bottom: 1px solid transparent;
-}
-
-.site-nav-links a:hover {
   color: var(--accent);
-  text-decoration: none;
+  font-size: 0.85rem;
 }
 
 .site-nav-links a.is-active {
   color: var(--text);
   font-weight: 700;
-  border-bottom-color: color-mix(in srgb, var(--text) 35%, transparent);
+  text-decoration: none;
 }
 
 .site-main {
@@ -116,17 +101,10 @@ a:hover {
   }
 
   .site-nav {
-    flex: none;
-    position: static;
-    max-height: none;
     width: 100%;
     border-right: none;
     border-bottom: 1px solid var(--border);
-    padding: 0.85rem 1rem 1rem;
-  }
-
-  .site-nav-brand {
-    margin-bottom: 0.65rem;
+    padding-bottom: 0.85rem;
   }
 
   .site-nav-links {
@@ -340,12 +318,6 @@ table.draft-table > thead > tr > th {
   color: var(--text);
   border-bottom-color: var(--text);
   font-weight: 600;
-}
-
-.page-title {
-  margin: 0 0 0.25rem;
-  font-size: 1.25rem;
-  font-weight: 700;
 }
 
 .injuries-list {

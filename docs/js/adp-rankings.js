@@ -64,12 +64,13 @@ function valueHtml(value, { title }) {
     return `<td class="draft-vs muted">—</td>`;
   }
   const rounded = Math.round(value * 10) / 10;
-  let cls = "draft-vs";
-  if (rounded > 0) cls += " draft-vs-higher";
-  else if (rounded < 0) cls += " draft-vs-lower";
+  // Positive = you're higher than ADP (reach) → orange; negative → green.
+  let color = "inherit";
+  if (rounded > 0) color = "#c2410c";
+  else if (rounded < 0) color = "#15803d";
   const label =
     rounded === 0 ? "0" : rounded > 0 ? `+${rounded}` : String(rounded);
-  return `<td class="${cls}" title="${escapeHtml(title)}">${label}</td>`;
+  return `<td class="draft-vs" style="color:${color};font-weight:600" title="${escapeHtml(title)}">${label}</td>`;
 }
 
 function csvEscape(value) {
