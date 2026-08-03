@@ -3,25 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>QB Rankings — Fantasy Reference</title>
-    <link rel="stylesheet" href="../css/site.css?v=8" />
+    <title>QB Rankings</title>
+    <link rel="stylesheet" href="../css/site.css?v=9" />
   </head>
   <body>
-    <div class="site-layout">
-      <aside class="site-nav" aria-label="Site">
-        <a class="site-nav-brand" href="../index.html">Fantasy Reference</a>
-        <nav class="site-nav-links">
-          <a href="../index.html">Player News</a>
-          <a href="overall-rankings.html">Overall</a>
-          <a href="qb-rankings.html" class="is-active" aria-current="page">QB</a>
-          <a href="rb-rankings.html">RB</a>
-          <a href="wr-rankings.html">WR</a>
-          <a href="te-rankings.html">TE</a>
-        </nav>
-      </aside>
-      <main class="site-main">
-        <div class="container">
-          <h1 class="page-title">QB Rankings</h1>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="../index.html">Player News</a>
+      <a href="overall-rankings.html">Overall</a>
+      <a href="qb-rankings.html" class="is-active" aria-current="page">QB</a>
+      <a href="rb-rankings.html">RB</a>
+      <a href="wr-rankings.html">WR</a>
+      <a href="te-rankings.html">TE</a>
+    </nav>
+    <main class="site-main">
+      <div class="container">
+        <h1 class="page-title">QB Rankings</h1>
       <p class="meta" data-draft="summary">Loading…</p>
 
       <div class="controls draft-controls">
@@ -79,9 +75,8 @@
           <tbody></tbody>
         </table>
       </div>
-        </div>
-      </main>
-    </div>
+      </div>
+    </main>
 
     <script type="module">
       import { mountAdpRankingsPage } from "../js/adp-rankings.js?v=16";
