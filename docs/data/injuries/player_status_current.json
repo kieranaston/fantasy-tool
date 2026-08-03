@@ -3569,18 +3569,18 @@
   },
   "00-0040236": {
     "player_name": "Kyle Monangai",
-    "current_designation": "Sidelined Friday",
-    "last_updated": "2026-07-31T07:22:57-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx5qhcliz2z",
-    "last_report_id": "216ad5cc-e1fa-4ba4-9e70-d40e1f7c2eb9",
+    "current_designation": "Dealing with soft-tissue injury",
+    "last_updated": "2026-08-03T05:54:56-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6k7ssfuk2m",
+    "last_report_id": "34ed6d06-24b4-4b17-9122-6ffb3f4ffb64",
     "last_extraction": {
-      "status": "Sidelined Friday",
-      "designation": "Sidelined Friday",
-      "date": "2026-07-31T07:22:57-07:00",
-      "direct_quote": "Kyle Monangai: Sidelined Friday \n\n https://www.rotowire.com/football/player/kyle-monangai-18520",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx5qhcliz2z"
+      "status": "Dealing with soft-tissue injury",
+      "designation": "Dealing with soft-tissue injury",
+      "date": "2026-08-03T05:54:56-07:00",
+      "direct_quote": "Kyle Monangai: Dealing with soft-tissue injury",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6k7ssfuk2m"
     },
-    "last_diff_summary": "Kyle Monangai: Sidelined Friday.",
-    "summary_fallback": true
+    "last_diff_summary": "Kyle Monangai was sidelined on Friday, July 31st, and is dealing with a soft-tissue injury as of August 3rd, three days later.",
+    "summary_fallback": false
   }
 }

@@ -6934,5 +6934,17 @@
     "source_type": "beat_reporter",
     "needs_review": true,
     "triaged": true
+  },
+  {
+    "id": "34ed6d06-24b4-4b17-9122-6ffb3f4ffb64",
+    "player_id": "00-0040236",
+    "player_name": "Kyle Monangai",
+    "timestamp": "2026-08-03T05:54:56-07:00",
+    "designation": "Dealing with soft-tissue injury",
+    "source_text": "Kyle Monangai: Dealing with soft-tissue injury",
+    "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6k7ssfuk2m",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
   }
 ]
