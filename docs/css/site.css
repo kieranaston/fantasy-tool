@@ -564,14 +564,30 @@ table.draft-table > thead > tr > th {
 
 table.draft-table > tbody > tr[draggable="true"] {
   cursor: grab;
+  position: relative;
+}
+
+table.draft-table > tbody.is-dragging > tr[draggable="true"]:not(.dragging) {
+  cursor: grabbing;
 }
 
 table.draft-table > tbody > tr.dragging {
-  opacity: 0.55;
+  opacity: 0.4;
+  background: color-mix(in srgb, var(--accent) 8%, var(--bg)) !important;
 }
 
-table.draft-table > tbody > tr.drag-over {
-  background: var(--sort-highlight-soft);
+table.draft-table > tbody > tr.drop-before > td {
+  box-shadow: inset 0 3px 0 0 var(--accent);
+}
+
+table.draft-table > tbody > tr.drop-after > td {
+  box-shadow: inset 0 -3px 0 0 var(--accent);
+}
+
+table.draft-table > tbody > tr.tier-break-row.drop-at-break .tier-break-line {
+  border-top-color: var(--accent);
+  border-top-width: 3px;
+  color: var(--accent);
 }
 
 .draft-vs-higher {

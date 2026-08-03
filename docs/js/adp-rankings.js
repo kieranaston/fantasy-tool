@@ -102,30 +102,35 @@ function appendMissingPlayers(groups, order) {
   return next;
 }
 
-function movePlayerInGroups(groups, playerId, toFlatIndex) {
+function movePlayerInGroups(groups, playerId, targetFlatIndex, placeAfter) {
   const next = groups.map((tier) => [...tier]);
   const flat = next.flat();
   const fromFlatIndex = flat.indexOf(playerId);
-  if (fromFlatIndex === -1 || fromFlatIndex === toFlatIndex) {
+  if (fromFlatIndex === -1 || Number.isNaN(Number(targetFlatIndex))) {
     return next;
   }
 
   const src = locateInGroups(next, fromFlatIndex);
-  const dest = locateInGroups(next, toFlatIndex);
-  next[src.tierIdx].splice(src.posInTier, 1);
+  const dest = locateInGroups(next, Number(targetFlatIndex));
+  let insertTier = dest.tierIdx;
+  let insertAt = placeAfter ? dest.posInTier + 1 : dest.posInTier;
 
-  if (src.tierIdx === dest.tierIdx) {
-    // Same tier: mirror Array#splice(from); splice(to, 0, item) so
-    // dragging down onto the next row places you below them.
-    let insertAt = dest.posInTier;
-    next[src.tierIdx].splice(insertAt, 0, playerId);
-  } else {
-    // Cross-tier: join the destination tier at the drop target.
-    // Source removal only shifts later tiers if we compact; keep empty
-    // slots until the end so dest.tierIdx stays valid.
-    next[dest.tierIdx].splice(dest.posInTier, 0, playerId);
+  // Already in the landing slot
+  if (src.tierIdx === insertTier) {
+    if (!placeAfter && src.posInTier === dest.posInTier - 1) return next;
+    if (!placeAfter && src.posInTier === dest.posInTier) return next;
+    if (placeAfter && src.posInTier === dest.posInTier + 1) return next;
+    if (placeAfter && src.posInTier === dest.posInTier) return next;
   }
 
+  next[src.tierIdx].splice(src.posInTier, 1);
+  if (src.tierIdx === insertTier && src.posInTier < insertAt) {
+    insertAt -= 1;
+  }
+  if (!next[insertTier]) {
+    return next.filter((tier) => tier.length > 0);
+  }
+  next[insertTier].splice(insertAt, 0, playerId);
   return next.filter((tier) => tier.length > 0);
 }
 
@@ -308,6 +313,8 @@ async function mountAdpRankingsPage(options) {
   let excluded = [];
   let currentFormat = "half_ppr";
   let dragFromIndex = null;
+  let dropTargetIndex = null;
+  let dropPlaceAfter = false;
   let allIds = [];
   let syncStatus = isSyncConfigured() ? "Checking sync…" : "Local only";
   let signedInEmail = null;
@@ -521,7 +528,7 @@ async function mountAdpRankingsPage(options) {
       if (breaks.includes(index) && index < rows.length - 1) {
         const nextTier = tierForFlatIndex(index + 1, groups);
         parts.push(`
-          <tr class="tier-break-row" data-break-index="${index}">
+          <tr class="tier-break-row" data-break-index="${index}" data-drop-after="${index}">
             <td colspan="${colSpan}">
               <div class="tier-break-line">
                 <span>Tier ${nextTier}</span>
@@ -573,52 +580,108 @@ async function mountAdpRankingsPage(options) {
     });
   }
 
+  function clearDropIndicators(tbody) {
+    tbody.querySelectorAll(".drop-before, .drop-after, .drop-at-break").forEach((el) => {
+      el.classList.remove("drop-before", "drop-after", "drop-at-break");
+    });
+    dropTargetIndex = null;
+    dropPlaceAfter = false;
+  }
+
+  function setDropIndicator(tbody, { targetIndex, placeAfter, breakRow = null }) {
+    clearDropIndicators(tbody);
+    if (targetIndex == null || Number.isNaN(targetIndex)) return;
+    dropTargetIndex = targetIndex;
+    dropPlaceAfter = placeAfter;
+    if (breakRow) {
+      breakRow.classList.add("drop-at-break");
+      return;
+    }
+    const targetTr = tbody.querySelector(`tr[draggable='true'][data-index='${targetIndex}']`);
+    if (!targetTr || targetTr.classList.contains("dragging")) return;
+    targetTr.classList.add(placeAfter ? "drop-after" : "drop-before");
+  }
+
+  function applyDrop(playerId, targetIndex, placeAfter) {
+    if (dragFromIndex == null || Number.isNaN(targetIndex) || !playerId) return;
+    tierGroups[currentFormat] = movePlayerInGroups(
+      tierGroups[currentFormat] || [],
+      playerId,
+      targetIndex,
+      placeAfter
+    );
+    syncFormatFromGroups(currentFormat);
+    persist();
+    renderTable();
+  }
+
   function bindDrag(tbody) {
+    const playerIdFromEvent = (event) =>
+      event.dataTransfer.getData("text/plain") ||
+      orderedRows()[dragFromIndex]?.player_id;
+
     tbody.querySelectorAll("tr[draggable='true']").forEach((tr) => {
       tr.addEventListener("dragstart", (event) => {
         dragFromIndex = Number(tr.dataset.index);
         tr.classList.add("dragging");
+        tbody.classList.add("is-dragging");
         event.dataTransfer.effectAllowed = "move";
         event.dataTransfer.setData("text/plain", tr.dataset.playerId);
+        if (event.dataTransfer.setDragImage) {
+          event.dataTransfer.setDragImage(tr, 24, 16);
+        }
       });
       tr.addEventListener("dragend", () => {
         tr.classList.remove("dragging");
+        tbody.classList.remove("is-dragging");
         dragFromIndex = null;
-        tbody.querySelectorAll("tr.drag-over").forEach((el) => {
-          el.classList.remove("drag-over");
-        });
+        clearDropIndicators(tbody);
       });
       tr.addEventListener("dragover", (event) => {
         event.preventDefault();
         event.dataTransfer.dropEffect = "move";
-        tr.classList.add("drag-over");
-      });
-      tr.addEventListener("dragleave", () => {
-        tr.classList.remove("drag-over");
+        if (tr.classList.contains("dragging")) return;
+        const rect = tr.getBoundingClientRect();
+        const placeAfter = event.clientY > rect.top + rect.height / 2;
+        setDropIndicator(tbody, {
+          targetIndex: Number(tr.dataset.index),
+          placeAfter,
+        });
       });
       tr.addEventListener("drop", (event) => {
         event.preventDefault();
-        tr.classList.remove("drag-over");
-        const toIndex = Number(tr.dataset.index);
-        const playerId =
-          event.dataTransfer.getData("text/plain") ||
-          orderedRows()[dragFromIndex]?.player_id;
-        if (
-          dragFromIndex == null ||
-          Number.isNaN(toIndex) ||
-          dragFromIndex === toIndex ||
-          !playerId
-        ) {
-          return;
-        }
-        tierGroups[currentFormat] = movePlayerInGroups(
-          tierGroups[currentFormat] || [],
-          playerId,
-          toIndex
-        );
-        syncFormatFromGroups(currentFormat);
-        persist();
-        renderTable();
+        const targetIndex =
+          dropTargetIndex != null ? dropTargetIndex : Number(tr.dataset.index);
+        const placeAfter =
+          dropTargetIndex != null
+            ? dropPlaceAfter
+            : event.clientY >
+              tr.getBoundingClientRect().top + tr.getBoundingClientRect().height / 2;
+        const playerId = playerIdFromEvent(event);
+        clearDropIndicators(tbody);
+        tbody.classList.remove("is-dragging");
+        applyDrop(playerId, targetIndex, placeAfter);
+      });
+    });
+
+    // Tier lines accept drops as "end of the tier above"
+    tbody.querySelectorAll("tr.tier-break-row[data-drop-after]").forEach((tr) => {
+      tr.addEventListener("dragover", (event) => {
+        event.preventDefault();
+        event.dataTransfer.dropEffect = "move";
+        setDropIndicator(tbody, {
+          targetIndex: Number(tr.dataset.dropAfter),
+          placeAfter: true,
+          breakRow: tr,
+        });
+      });
+      tr.addEventListener("drop", (event) => {
+        event.preventDefault();
+        const targetIndex = Number(tr.dataset.dropAfter);
+        const playerId = playerIdFromEvent(event);
+        clearDropIndicators(tbody);
+        tbody.classList.remove("is-dragging");
+        applyDrop(playerId, targetIndex, true);
       });
     });
   }
@@ -820,7 +883,7 @@ async function mountAdpRankingsPage(options) {
       if (adp.last_updated) {
         parts.push(`updated ${formatTimestamp(adp.last_updated)}`);
       }
-      parts.push("Drag to rank · drag across tier lines to change tiers · × crosses out · + adds a tier break");
+      parts.push("Drag to rank · drop on a tier line to land at the bottom of the tier above · × crosses out · + adds a tier break");
       meta.textContent = parts.join(" · ");
     }
 
