@@ -10,12 +10,15 @@ def build_summaries(
     status_current: dict[str, Any],
     reports: list[dict[str, Any]],
     last_updated: str,
+    allowed_player_ids: set[str] | None = None,
 ) -> dict[str, Any]:
     """Aggregate current status + report timeline per player."""
     by_player: dict[str, list[dict[str, Any]]] = {}
     for report in reports:
         pid = report.get("player_id")
         if not pid:
+            continue
+        if allowed_player_ids is not None and pid not in allowed_player_ids:
             continue
         by_player.setdefault(pid, []).append(
             {
@@ -34,7 +37,11 @@ def build_summaries(
 
     players: list[dict[str, Any]] = []
     for player_id, status in status_current.items():
+        if allowed_player_ids is not None and player_id not in allowed_player_ids:
+            continue
         timeline = by_player.get(player_id, [])
+        if not timeline and not status.get("last_diff_summary"):
+            continue
         players.append(
             {
                 "player_id": player_id,

@@ -52,9 +52,9 @@ GEMINI_MODEL=gemini-2.5-flash-lite   # optional override
 ### Personal rankings
 
 - Pages: **Overall / QB / RB / WR / TE Rankings**
-- Pool: Sleeper ADP depth (overall top 200; position caps QB 40 / RB 60 / WR 80 / TE 40)
+- Pool: Sleeper ADP depth (QB/TE top 25; RB/WR top 45; Overall = those players only)
 - Drag rows to reorder
-- **×** on a row crosses out a player you won't consider (syncs across devices when signed in)
+- **×** on a row crosses out a player you won't consider (shared across Overall and position boards; syncs when signed in)
 - **+** on a row toggles a tier break below it; drag across tier lines to move players between tiers
 - **Reset to ADP** restores ADP order and clears tiers for both formats
 - **Download spreadsheet** exports the current format as CSV

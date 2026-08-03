@@ -20,6 +20,8 @@ import {
 
 const BOARD_FORMATS = ["half_ppr", "full_ppr"];
 const STORAGE_PREFIX = "adp-rankings:";
+const EXCLUDED_STORAGE_KEY = "adp-rankings:excluded";
+const BOARD_POSITIONS = ["overall", "qb", "rb", "wr", "te"];
 
 function storageKey(position) {
   return `${STORAGE_PREFIX}${String(position).toLowerCase()}`;
@@ -43,6 +45,55 @@ function cloneTier(tiers) {
 
 function cloneExcluded(excluded) {
   return [...new Set((excluded || []).filter(Boolean))];
+}
+
+function mergeExcludedLists(...lists) {
+  return cloneExcluded(lists.flatMap((list) => list || []));
+}
+
+function readLocalBoard(position) {
+  try {
+    return JSON.parse(localStorage.getItem(storageKey(position)) || "null");
+  } catch {
+    return null;
+  }
+}
+
+function loadSharedExcluded() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(EXCLUDED_STORAGE_KEY) || "null");
+    if (Array.isArray(raw)) return cloneExcluded(raw);
+    return cloneExcluded(raw?.ids);
+  } catch {
+    return [];
+  }
+}
+
+function collectExcludedFromLocalBoards() {
+  const lists = [loadSharedExcluded()];
+  for (const pos of BOARD_POSITIONS) {
+    const board = readLocalBoard(pos);
+    if (board?.excluded) lists.push(board.excluded);
+  }
+  return mergeExcludedLists(...lists);
+}
+
+/** Persist crossed-out players globally and mirror onto every local board. */
+function saveSharedExcluded(ids) {
+  const list = cloneExcluded(ids);
+  const updatedAt = new Date().toISOString();
+  localStorage.setItem(
+    EXCLUDED_STORAGE_KEY,
+    JSON.stringify({ ids: list, updated_at: updatedAt })
+  );
+  for (const pos of BOARD_POSITIONS) {
+    const existing = readLocalBoard(pos);
+    if (!existing?.orders) continue;
+    existing.excluded = list;
+    existing.updated_at = updatedAt;
+    localStorage.setItem(storageKey(pos), JSON.stringify(existing));
+  }
+  return list;
 }
 
 /** Build tier groups from flat order + break indices (break = after this row). */
@@ -358,14 +409,22 @@ async function mountAdpRankingsPage(options) {
     return excluded.includes(playerId);
   }
 
+  function setExcluded(nextIds) {
+    excluded = saveSharedExcluded(nextIds);
+  }
+
   function toggleExcluded(playerId) {
     if (!playerId) return;
     if (isExcluded(playerId)) {
-      excluded = excluded.filter((id) => id !== playerId);
+      setExcluded(excluded.filter((id) => id !== playerId));
     } else {
-      excluded = [...excluded, playerId];
+      setExcluded([...excluded, playerId]);
     }
     persist();
+    // Flush sync immediately so cross-outs aren't lost on quick navigation
+    if (isSyncConfigured() && signedInEmail) {
+      remoteSaver.flush().catch(() => {});
+    }
     renderTable();
   }
 
@@ -432,6 +491,8 @@ async function mountAdpRankingsPage(options) {
   }
 
   function persist() {
+    // Keep the shared cross-out list mirrored on every board before saving.
+    excluded = saveSharedExcluded(excluded);
     const payload = boardPayload();
     localStorage.setItem(storageKey(position), JSON.stringify(payload));
     if (isSyncConfigured() && signedInEmail) {
@@ -459,7 +520,13 @@ async function mountAdpRankingsPage(options) {
     if (!board?.orders) return;
     orders = mergeOrdersWithPool(cloneOrders(board.orders), allIds);
     tierBreaks = sanitizeTier(cloneTier(board.tier_breaks), orders);
-    excluded = cloneExcluded(board.excluded).filter((id) => allIds.includes(id));
+    // Cross-outs are global across Overall + position boards.
+    excluded = mergeExcludedLists(
+      loadSharedExcluded(),
+      collectExcludedFromLocalBoards(),
+      board.excluded
+    );
+    saveSharedExcluded(excluded);
     orders = mergeOrdersWithPool(orders, allIds);
     rebuildAllTierGroups();
   }
@@ -730,13 +797,18 @@ async function mountAdpRankingsPage(options) {
         full_ppr: [orders.full_ppr.slice()],
       };
       tierBreaks = { half_ppr: [], full_ppr: [] };
-      excluded = [];
+      // Only restore players on this board; keep other boards' cross-outs.
+      setExcluded(excluded.filter((id) => !allIds.includes(id)));
       persist();
       renderTable();
     });
   }
 
   async function hydrateFromSources(seedData) {
+    // Always start from the shared cross-out list so Overall ↔ position stay aligned.
+    excluded = collectExcludedFromLocalBoards();
+    saveSharedExcluded(excluded);
+
     let local = null;
     try {
       local = JSON.parse(localStorage.getItem(storageKey(position)) || "null");
@@ -745,22 +817,35 @@ async function mountAdpRankingsPage(options) {
     }
 
     let remote = null;
+    let remoteOverall = null;
     if (isSyncConfigured()) {
       try {
         const session = await getSession();
         signedInEmail = session?.user?.email || null;
         if (signedInEmail) {
           remote = await fetchBoard(position);
+          if (String(position).toLowerCase() !== "overall") {
+            remoteOverall = await fetchBoard("overall").catch(() => null);
+          }
         }
       } catch (err) {
         setSyncStatus(formatSyncError(err, "Sync unavailable"));
       }
     }
 
+    // Merge cross-outs from remote boards before applying order/tiers.
+    excluded = mergeExcludedLists(
+      excluded,
+      remote?.excluded,
+      remoteOverall?.excluded
+    );
+    saveSharedExcluded(excluded);
+
     const seedBoard = seedData?.orders
       ? {
           orders: seedData.orders,
           tier_breaks: seedData.tier_breaks || {},
+          excluded: seedData.excluded || [],
           updated_at: seedData.updated_at || null,
         }
       : null;
@@ -800,7 +885,6 @@ async function mountAdpRankingsPage(options) {
         full_ppr: [orders.full_ppr.slice()],
       };
       tierBreaks = { half_ppr: [], full_ppr: [] };
-      excluded = [];
       persist();
     }
 

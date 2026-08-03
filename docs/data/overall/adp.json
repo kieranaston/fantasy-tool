@@ -889,6 +889,17 @@
         "adp_rank": 80
       },
       {
+        "player_id": "00-0038606",
+        "sleeper_id": "9487",
+        "player": "Parker Washington",
+        "team": "JAX",
+        "position": "WR",
+        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
+        "team_color": "#006778",
+        "adp": 81.1,
+        "adp_rank": 81
+      },
+      {
         "player_id": "00-0037664",
         "sleeper_id": "8142",
         "player": "Alec Pierce",
@@ -897,7 +908,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
         "team_color": "#002C5F",
         "adp": 81.8,
-        "adp_rank": 81
+        "adp_rank": 82
       },
       {
         "player_id": "00-0035261",
@@ -908,7 +919,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
         "team_color": "#4495D2",
         "adp": 82.1,
-        "adp_rank": 82
+        "adp_rank": 83
       },
       {
         "player_id": "00-0038559",
@@ -919,7 +930,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
         "team_color": "#97233F",
         "adp": 82.6,
-        "adp_rank": 83
+        "adp_rank": 84
       },
       {
         "player_id": "00-0034348",
@@ -930,7 +941,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
         "team_color": "#002244",
         "adp": 83.1,
-        "adp_rank": 84
+        "adp_rank": 85
       },
       {
         "player_id": "00-0036139",
@@ -941,7 +952,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
         "team_color": "#000000",
         "adp": 83.2,
-        "adp_rank": 85
+        "adp_rank": 86
       },
       {
         "player_id": "00-0036355",
@@ -952,7 +963,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
         "team_color": "#007BC7",
         "adp": 85.7,
-        "adp_rank": 86
+        "adp_rank": 87
       },
       {
         "player_id": "00-0039918",
@@ -963,17 +974,6 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
         "team_color": "#0B162A",
         "adp": 86.5,
-        "adp_rank": 87
-      },
-      {
-        "player_id": "00-0038606",
-        "sleeper_id": "9487",
-        "player": "Parker Washington",
-        "team": "JAX",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
-        "team_color": "#006778",
-        "adp": 87.4,
         "adp_rank": 88
       },
       {
@@ -1021,17 +1021,6 @@
         "adp_rank": 92
       },
       {
-        "player_id": "00-0039916",
-        "sleeper_id": "11638",
-        "player": "Ricky Pearsall",
-        "team": "SF",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
-        "team_color": "#AA0000",
-        "adp": 92.6,
-        "adp_rank": 93
-      },
-      {
         "player_id": "00-0033921",
         "sleeper_id": "4037",
         "player": "Chris Godwin",
@@ -1040,7 +1029,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
         "team_color": "#A71930",
         "adp": 93.0,
-        "adp_rank": 94
+        "adp_rank": 93
       },
       {
         "player_id": "00-0036971",
@@ -1051,7 +1040,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
         "team_color": "#006778",
         "adp": 93.8,
-        "adp_rank": 95
+        "adp_rank": 94
       },
       {
         "player_id": "00-0034960",
@@ -1062,7 +1051,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
         "team_color": "#006778",
         "adp": 95.9,
-        "adp_rank": 96
+        "adp_rank": 95
       },
       {
         "player_id": "00-0038933",
@@ -1073,7 +1062,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
         "team_color": "#00338D",
         "adp": 97.5,
-        "adp_rank": 97
+        "adp_rank": 96
       },
       {
         "player_id": "00-0033077",
@@ -1084,7 +1073,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
         "team_color": "#002244",
         "adp": 97.8,
-        "adp_rank": 98
+        "adp_rank": 97
       },
       {
         "player_id": "00-0036252",
@@ -1095,7 +1084,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
         "team_color": "#000000",
         "adp": 98.0,
-        "adp_rank": 99
+        "adp_rank": 98
       },
       {
         "player_id": "00-0038994",
@@ -1106,7 +1095,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
         "team_color": "#4F2683",
         "adp": 98.4,
-        "adp_rank": 100
+        "adp_rank": 99
       },
       {
         "player_id": "00-0033288",
@@ -1117,7 +1106,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
         "team_color": "#AA0000",
         "adp": 99.2,
-        "adp_rank": 101
+        "adp_rank": 100
       },
       {
         "player_id": "00-0033873",
@@ -1128,7 +1117,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
         "team_color": "#E31837",
         "adp": 101.0,
-        "adp_rank": 102
+        "adp_rank": 101
       },
       {
         "player_id": "00-0038117",
@@ -1139,7 +1128,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
         "team_color": "#4495D2",
         "adp": 102.0,
-        "adp_rank": 103
+        "adp_rank": 102
       },
       {
         "player_id": "00-0040189",
@@ -1150,7 +1139,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
         "team_color": "#007BC7",
         "adp": 102.2,
-        "adp_rank": 104
+        "adp_rank": 103
       },
       {
         "player_id": "00-0038544",
@@ -1161,7 +1150,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
         "team_color": "#007BC7",
         "adp": 102.5,
-        "adp_rank": 105
+        "adp_rank": 104
       },
       {
         "player_id": "00-0038041",
@@ -1172,7 +1161,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
         "team_color": "#002244",
         "adp": 105.3,
-        "adp_rank": 106
+        "adp_rank": 105
       },
       {
         "player_id": "00-0037834",
@@ -1183,7 +1172,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
         "team_color": "#AA0000",
         "adp": 105.8,
-        "adp_rank": 107
+        "adp_rank": 106
       },
       {
         "player_id": "00-0033293",
@@ -1194,7 +1183,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
         "team_color": "#4F2683",
         "adp": 107.4,
-        "adp_rank": 108
+        "adp_rank": 107
       },
       {
         "player_id": "00-0040242",
@@ -1205,7 +1194,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
         "team_color": "#5A1414",
         "adp": 108.0,
-        "adp_rank": 109
+        "adp_rank": 108
       },
       {
         "player_id": "00-0036919",
@@ -1216,18 +1205,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
         "team_color": "#A71930",
         "adp": 109.8,
-        "adp_rank": 110
-      },
-      {
-        "player_id": "00-0039146",
-        "sleeper_id": "10222",
-        "player": "Jayden Reed",
-        "team": "GB",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
-        "team_color": "#203731",
-        "adp": 110.5,
-        "adp_rank": 111
+        "adp_rank": 109
       },
       {
         "player_id": "00-0030506",
@@ -1238,18 +1216,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
         "team_color": "#E31837",
         "adp": 112.6,
-        "adp_rank": 112
-      },
-      {
-        "player_id": "00-0037816",
-        "sleeper_id": "8121",
-        "player": "Romeo Doubs",
-        "team": "NE",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-        "team_color": "#002244",
-        "adp": 112.7,
-        "adp_rank": 113
+        "adp_rank": 110
       },
       {
         "player_id": "00-0039732",
@@ -1260,7 +1227,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
         "team_color": "#002244",
         "adp": 114.1,
-        "adp_rank": 114
+        "adp_rank": 111
       },
       {
         "player_id": "00-0034753",
@@ -1271,18 +1238,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
         "team_color": "#241773",
         "adp": 115.0,
-        "adp_rank": 115
-      },
-      {
-        "player_id": "00-0041547",
-        "sleeper_id": "13298",
-        "player": "KC Concepcion",
-        "team": "CLE",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
-        "team_color": "#FF3C00",
-        "adp": 116.0,
-        "adp_rank": 116
+        "adp_rank": 112
       },
       {
         "player_id": "00-0034351",
@@ -1293,7 +1249,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
         "team_color": "#004C54",
         "adp": 116.7,
-        "adp_rank": 117
+        "adp_rank": 113
       },
       {
         "player_id": "00-0026498",
@@ -1304,7 +1260,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
         "team_color": "#003594",
         "adp": 116.7,
-        "adp_rank": 118
+        "adp_rank": 114
       },
       {
         "player_id": "00-0037256",
@@ -1315,7 +1271,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
         "team_color": "#5A1414",
         "adp": 119.0,
-        "adp_rank": 119
+        "adp_rank": 115
       },
       {
         "player_id": "00-0033090",
@@ -1326,18 +1282,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
         "team_color": "#002244",
         "adp": 119.2,
-        "adp_rank": 120
-      },
-      {
-        "player_id": "00-0039894",
-        "sleeper_id": "11624",
-        "player": "Xavier Worthy",
-        "team": "KC",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
-        "team_color": "#E31837",
-        "adp": 119.8,
-        "adp_rank": 121
+        "adp_rank": 116
       },
       {
         "player_id": "00-0037838",
@@ -1348,7 +1293,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
         "team_color": "#0B2265",
         "adp": 120.5,
-        "adp_rank": 122
+        "adp_rank": 117
       },
       {
         "player_id": "00-0037263",
@@ -1359,18 +1304,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
         "team_color": "#97233F",
         "adp": 120.9,
-        "adp_rank": 123
-      },
-      {
-        "player_id": "00-0038997",
-        "sleeper_id": "9500",
-        "player": "Josh Downs",
-        "team": "IND",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
-        "team_color": "#002C5F",
-        "adp": 121.0,
-        "adp_rank": 124
+        "adp_rank": 118
       },
       {
         "player_id": "00-0039165",
@@ -1381,7 +1315,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
         "team_color": "#002244",
         "adp": 123.3,
-        "adp_rank": 125
+        "adp_rank": 119
       },
       {
         "player_id": "00-0037525",
@@ -1392,7 +1326,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
         "team_color": "#4F2683",
         "adp": 124.6,
-        "adp_rank": 126
+        "adp_rank": 120
       },
       {
         "player_id": "00-0033106",
@@ -1403,7 +1337,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
         "team_color": "#0076B6",
         "adp": 125.8,
-        "adp_rank": 127
+        "adp_rank": 121
       },
       {
         "player_id": "00-0038935",
@@ -1414,18 +1348,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
         "team_color": "#006778",
         "adp": 128.3,
-        "adp_rank": 128
-      },
-      {
-        "player_id": "00-0040130",
-        "sleeper_id": "12484",
-        "player": "Jayden Higgins",
-        "team": "HOU",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
-        "team_color": "#03202F",
-        "adp": 129.3,
-        "adp_rank": 129
+        "adp_rank": 122
       },
       {
         "player_id": "00-0041496",
@@ -1436,18 +1359,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
         "team_color": "#002244",
         "adp": 130.2,
-        "adp_rank": 130
-      },
-      {
-        "player_id": "00-0037261",
-        "sleeper_id": "8134",
-        "player": "Khalil Shakir",
-        "team": "BUF",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
-        "team_color": "#00338D",
-        "adp": 130.4,
-        "adp_rank": 131
+        "adp_rank": 123
       },
       {
         "player_id": "00-0039384",
@@ -1458,7 +1370,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
         "team_color": "#0B2265",
         "adp": 131.4,
-        "adp_rank": 132
+        "adp_rank": 124
       },
       {
         "player_id": "00-0041032",
@@ -1469,18 +1381,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
         "team_color": "#003F2D",
         "adp": 131.9,
-        "adp_rank": 133
-      },
-      {
-        "player_id": "00-0040667",
-        "sleeper_id": "12501",
-        "player": "Matthew Golden",
-        "team": "GB",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
-        "team_color": "#203731",
-        "adp": 132.2,
-        "adp_rank": 134
+        "adp_rank": 125
       },
       {
         "player_id": "00-0039793",
@@ -1491,7 +1392,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
         "team_color": "#002244",
         "adp": 132.6,
-        "adp_rank": 135
+        "adp_rank": 126
       },
       {
         "player_id": "00-0036264",
@@ -1502,51 +1403,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
         "team_color": "#203731",
         "adp": 133.3,
-        "adp_rank": 136
-      },
-      {
-        "player_id": "00-0031588",
-        "sleeper_id": "2449",
-        "player": "Stefon Diggs",
-        "team": "",
-        "position": "WR",
-        "logo": null,
-        "team_color": "#2563eb",
-        "adp": 134.4,
-        "adp_rank": 137
-      },
-      {
-        "player_id": "00-0037746",
-        "sleeper_id": "8154",
-        "player": "Brian Robinson",
-        "team": "ATL",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
-        "team_color": "#A71930",
-        "adp": 136.9,
-        "adp_rank": 138
-      },
-      {
-        "player_id": "00-0039491",
-        "sleeper_id": "11646",
-        "player": "Jalen Coker",
-        "team": "CAR",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/car.png",
-        "team_color": "#0085CA",
-        "adp": 137.8,
-        "adp_rank": 139
-      },
-      {
-        "player_id": "00-0040583",
-        "sleeper_id": "12474",
-        "player": "Woody Marks",
-        "team": "HOU",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
-        "team_color": "#03202F",
-        "adp": 138.6,
-        "adp_rank": 140
+        "adp_rank": 127
       },
       {
         "player_id": "00-0040743",
@@ -1557,7 +1414,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
         "team_color": "#D3BC8D",
         "adp": 139.1,
-        "adp_rank": 141
+        "adp_rank": 128
       },
       {
         "player_id": "00-0038128",
@@ -1568,18 +1425,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png",
         "team_color": "#008E97",
         "adp": 139.7,
-        "adp_rank": 142
-      },
-      {
-        "player_id": "00-0038611",
-        "sleeper_id": "10219",
-        "player": "Chris Rodriguez",
-        "team": "JAX",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
-        "team_color": "#006778",
-        "adp": 140.6,
-        "adp_rank": 143
+        "adp_rank": 129
       },
       {
         "player_id": "00-0034855",
@@ -1590,7 +1436,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
         "team_color": "#A71930",
         "adp": 142.2,
-        "adp_rank": 144
+        "adp_rank": 130
       },
       {
         "player_id": "00-0036040",
@@ -1601,62 +1447,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
         "team_color": "#D3BC8D",
         "adp": 143.1,
-        "adp_rank": 145
-      },
-      {
-        "player_id": "00-0041037",
-        "sleeper_id": "13346",
-        "player": "Denzel Boston",
-        "team": "CLE",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
-        "team_color": "#FF3C00",
-        "adp": 144.4,
-        "adp_rank": 146
-      },
-      {
-        "player_id": "00-0040718",
-        "sleeper_id": "12530",
-        "player": "Travis Hunter",
-        "team": "JAX",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
-        "team_color": "#006778",
-        "adp": 145.2,
-        "adp_rank": 147
-      },
-      {
-        "player_id": "00-0039032",
-        "sleeper_id": "9508",
-        "player": "Tyjae Spears",
-        "team": "TEN",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
-        "team_color": "#4495D2",
-        "adp": 145.6,
-        "adp_rank": 148
-      },
-      {
-        "player_id": "00-0041511",
-        "sleeper_id": "13276",
-        "player": "Omar Cooper",
-        "team": "NYJ",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
-        "team_color": "#003F2D",
-        "adp": 146.0,
-        "adp_rank": 149
-      },
-      {
-        "player_id": "00-0036259",
-        "sleeper_id": "7049",
-        "player": "Jauan Jennings",
-        "team": "MIN",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
-        "team_color": "#4F2683",
-        "adp": 148.1,
-        "adp_rank": 150
+        "adp_rank": 131
       },
       {
         "player_id": "00-0034383",
@@ -1667,51 +1458,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
         "team_color": "#03202F",
         "adp": 149.2,
-        "adp_rank": 151
-      },
-      {
-        "player_id": "00-0041035",
-        "sleeper_id": "13417",
-        "player": "De'Zhaun Stribling",
-        "team": "SF",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
-        "team_color": "#AA0000",
-        "adp": 150.0,
-        "adp_rank": 152
-      },
-      {
-        "player_id": "00-0037545",
-        "sleeper_id": "8676",
-        "player": "Rashid Shaheed",
-        "team": "SEA",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
-        "team_color": "#002244",
-        "adp": 150.0,
-        "adp_rank": 153
-      },
-      {
-        "player_id": "00-0040162",
-        "sleeper_id": "12469",
-        "player": "Dylan Sampson",
-        "team": "CLE",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
-        "team_color": "#FF3C00",
-        "adp": 151.5,
-        "adp_rank": 154
-      },
-      {
-        "player_id": "00-0033553",
-        "sleeper_id": "4137",
-        "player": "James Conner",
-        "team": "ARI",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
-        "team_color": "#97233F",
-        "adp": 152.2,
-        "adp_rank": 155
+        "adp_rank": 132
       },
       {
         "player_id": "00-0037809",
@@ -1722,7 +1469,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
         "team_color": "#5A1414",
         "adp": 152.5,
-        "adp_rank": 156
+        "adp_rank": 133
       },
       {
         "player_id": "00-0040737",
@@ -1733,7 +1480,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
         "team_color": "#003594",
         "adp": 152.6,
-        "adp_rank": 157
+        "adp_rank": 134
       },
       {
         "player_id": "00-0035228",
@@ -1744,18 +1491,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
         "team_color": "#4F2683",
         "adp": 153.2,
-        "adp_rank": 158
-      },
-      {
-        "player_id": "00-0041013",
-        "sleeper_id": "13337",
-        "player": "Emmett Johnson",
-        "team": "KC",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
-        "team_color": "#E31837",
-        "adp": 153.3,
-        "adp_rank": 159
+        "adp_rank": 135
       },
       {
         "player_id": "00-0039847",
@@ -1766,40 +1502,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
         "team_color": "#0B2265",
         "adp": 154.3,
-        "adp_rank": 160
-      },
-      {
-        "player_id": "00-0033040",
-        "sleeper_id": "3321",
-        "player": "Tyreek Hill",
-        "team": "",
-        "position": "WR",
-        "logo": null,
-        "team_color": "#2563eb",
-        "adp": 156.6,
-        "adp_rank": 161
-      },
-      {
-        "player_id": "00-0033906",
-        "sleeper_id": "4035",
-        "player": "Alvin Kamara",
-        "team": "NO",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
-        "team_color": "#D3BC8D",
-        "adp": 156.8,
-        "adp_rank": 162
-      },
-      {
-        "player_id": "00-0038129",
-        "sleeper_id": "8111",
-        "player": "Cade Otton",
-        "team": "TB",
-        "position": "TE",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
-        "team_color": "#A71930",
-        "adp": 157.2,
-        "adp_rank": 163
+        "adp_rank": 136
       },
       {
         "player_id": "00-0034869",
@@ -1810,95 +1513,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
         "team_color": "#002244",
         "adp": 157.6,
-        "adp_rank": 164
-      },
-      {
-        "player_id": "00-0039794",
-        "sleeper_id": "11576",
-        "player": "Braelon Allen",
-        "team": "NYJ",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
-        "team_color": "#003F2D",
-        "adp": 158.3,
-        "adp_rank": 165
-      },
-      {
-        "player_id": "00-0035719",
-        "sleeper_id": "5872",
-        "player": "Deebo Samuel",
-        "team": "SF",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
-        "team_color": "#AA0000",
-        "adp": 158.7,
-        "adp_rank": 166
-      },
-      {
-        "player_id": "00-0035229",
-        "sleeper_id": "5844",
-        "player": "T.J. Hockenson",
-        "team": "MIN",
-        "position": "TE",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
-        "team_color": "#4F2683",
-        "adp": 159.0,
-        "adp_rank": 167
-      },
-      {
-        "player_id": "00-0040584",
-        "sleeper_id": "12502",
-        "player": "Gunnar Helm",
-        "team": "TEN",
-        "position": "TE",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
-        "team_color": "#4495D2",
-        "adp": 161.4,
-        "adp_rank": 168
-      },
-      {
-        "player_id": "00-0039855",
-        "sleeper_id": "11618",
-        "player": "Jalen McMillan",
-        "team": "TB",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
-        "team_color": "#A71930",
-        "adp": 161.9,
-        "adp_rank": 169
-      },
-      {
-        "player_id": "sleeper:13305",
-        "sleeper_id": "13305",
-        "player": "Mike Washington",
-        "team": "LV",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png",
-        "team_color": "#000000",
-        "adp": 163.3,
-        "adp_rank": 170
-      },
-      {
-        "player_id": "00-0041040",
-        "sleeper_id": "13301",
-        "player": "Antonio Williams",
-        "team": "WAS",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
-        "team_color": "#5A1414",
-        "adp": 163.9,
-        "adp_rank": 171
-      },
-      {
-        "player_id": "00-0038454",
-        "sleeper_id": "9511",
-        "player": "Keaton Mitchell",
-        "team": "LAC",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
-        "team_color": "#007BC7",
-        "adp": 164.9,
-        "adp_rank": 172
+        "adp_rank": 137
       },
       {
         "player_id": "00-0039163",
@@ -1909,7 +1524,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
         "team_color": "#03202F",
         "adp": 165.6,
-        "adp_rank": 173
+        "adp_rank": 138
       },
       {
         "player_id": "00-0040676",
@@ -1920,18 +1535,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
         "team_color": "#4495D2",
         "adp": 167.0,
-        "adp_rank": 174
-      },
-      {
-        "player_id": "00-0036407",
-        "sleeper_id": "6783",
-        "player": "Jerry Jeudy",
-        "team": "CLE",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
-        "team_color": "#FF3C00",
-        "adp": 168.2,
-        "adp_rank": 175
+        "adp_rank": 139
       },
       {
         "player_id": "00-0035710",
@@ -1942,271 +1546,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
         "team_color": "#002C5F",
         "adp": 170.1,
-        "adp_rank": 176
-      },
-      {
-        "player_id": "sleeper:13269",
-        "sleeper_id": "13269",
-        "player": "Fernando Mendoza",
-        "team": "LV",
-        "position": "QB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png",
-        "team_color": "#000000",
-        "adp": 170.2,
-        "adp_rank": 177
-      },
-      {
-        "player_id": "00-0040886",
-        "sleeper_id": "13288",
-        "player": "Nicholas Singleton",
-        "team": "TEN",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
-        "team_color": "#4495D2",
-        "adp": 170.9,
-        "adp_rank": 178
-      },
-      {
-        "player_id": "00-0038555",
-        "sleeper_id": "9225",
-        "player": "Tank Bigsby",
-        "team": "PHI",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
-        "team_color": "#004C54",
-        "adp": 171.1,
-        "adp_rank": 179
-      },
-      {
-        "player_id": "00-0033885",
-        "sleeper_id": "4033",
-        "player": "David Njoku",
-        "team": "LAC",
-        "position": "TE",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
-        "team_color": "#007BC7",
-        "adp": 172.0,
-        "adp_rank": 180
-      },
-      {
-        "player_id": "00-0039150",
-        "sleeper_id": "9228",
-        "player": "Bryce Young",
-        "team": "CAR",
-        "position": "QB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/car.png",
-        "team_color": "#0085CA",
-        "adp": 172.2,
-        "adp_rank": 181
-      },
-      {
-        "player_id": "00-0039890",
-        "sleeper_id": "11625",
-        "player": "Adonai Mitchell",
-        "team": "NYJ",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
-        "team_color": "#003F2D",
-        "adp": 172.9,
-        "adp_rank": 182
-      },
-      {
-        "player_id": "00-0038608",
-        "sleeper_id": "9504",
-        "player": "Kayshon Boutte",
-        "team": "NE",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-        "team_color": "#002244",
-        "adp": 173.3,
-        "adp_rank": 183
-      },
-      {
-        "player_id": "00-0037197",
-        "sleeper_id": "8205",
-        "player": "Isiah Pacheco",
-        "team": "DET",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
-        "team_color": "#0076B6",
-        "adp": 175.3,
-        "adp_rank": 184
-      },
-      {
-        "player_id": "00-0041483",
-        "sleeper_id": "13349",
-        "player": "Eli Stowers",
-        "team": "PHI",
-        "position": "TE",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
-        "team_color": "#004C54",
-        "adp": 176.4,
-        "adp_rank": 185
-      },
-      {
-        "player_id": "00-0039921",
-        "sleeper_id": "11589",
-        "player": "Trey Benson",
-        "team": "ARI",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
-        "team_color": "#97233F",
-        "adp": 179.0,
-        "adp_rank": 186
-      },
-      {
-        "player_id": "00-0041096",
-        "sleeper_id": "13405",
-        "player": "Kaytron Allen",
-        "team": "WAS",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
-        "team_color": "#5A1414",
-        "adp": 180.8,
-        "adp_rank": 187
-      },
-      {
-        "player_id": "00-0039391",
-        "sleeper_id": "11647",
-        "player": "Kimani Vidal",
-        "team": "LAC",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
-        "team_color": "#007BC7",
-        "adp": 187.5,
-        "adp_rank": 188
-      },
-      {
-        "player_id": "00-0040727",
-        "sleeper_id": "12509",
-        "player": "Tre' Harris",
-        "team": "LAC",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
-        "team_color": "#007BC7",
-        "adp": 188.5,
-        "adp_rank": 189
-      },
-      {
-        "player_id": "00-0038951",
-        "sleeper_id": "9506",
-        "player": "Sean Tucker",
-        "team": "TB",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
-        "team_color": "#A71930",
-        "adp": 190.9,
-        "adp_rank": 190
-      },
-      {
-        "player_id": "00-0040870",
-        "sleeper_id": "13293",
-        "player": "Ja'Kobi Lane",
-        "team": "BAL",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
-        "team_color": "#241773",
-        "adp": 191.7,
-        "adp_rank": 191
-      },
-      {
-        "player_id": "00-0039875",
-        "sleeper_id": "11575",
-        "player": "Ray Davis",
-        "team": "BUF",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
-        "team_color": "#00338D",
-        "adp": 192.6,
-        "adp_rank": 192
-      },
-      {
-        "player_id": "00-0040669",
-        "sleeper_id": "12535",
-        "player": "Isaac TeSlaa",
-        "team": "DET",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
-        "team_color": "#0076B6",
-        "adp": 193.5,
-        "adp_rank": 193
-      },
-      {
-        "player_id": "00-0036261",
-        "sleeper_id": "6803",
-        "player": "Brandon Aiyuk",
-        "team": "SF",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
-        "team_color": "#AA0000",
-        "adp": 194.0,
-        "adp_rank": 194
-      },
-      {
-        "player_id": "00-0036244",
-        "sleeper_id": "6865",
-        "player": "Colby Parkinson",
-        "team": "LAR",
-        "position": "TE",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
-        "team_color": "#003594",
-        "adp": 196.0,
-        "adp_rank": 195
-      },
-      {
-        "player_id": "00-0041044",
-        "sleeper_id": "13320",
-        "player": "Zachariah Branch",
-        "team": "ATL",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
-        "team_color": "#A71930",
-        "adp": 198.3,
-        "adp_rank": 196
-      },
-      {
-        "player_id": "00-0038563",
-        "sleeper_id": "10213",
-        "player": "Tre Tucker",
-        "team": "LV",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png",
-        "team_color": "#000000",
-        "adp": 199.1,
-        "adp_rank": 197
-      },
-      {
-        "player_id": "00-0039874",
-        "sleeper_id": "11643",
-        "player": "Jaylen Wright",
-        "team": "MIA",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png",
-        "team_color": "#008E97",
-        "adp": 199.6,
-        "adp_rank": 198
-      },
-      {
-        "player_id": "00-0038977",
-        "sleeper_id": "9502",
-        "player": "Tank Dell",
-        "team": "HOU",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
-        "team_color": "#03202F",
-        "adp": 199.7,
-        "adp_rank": 199
-      },
-      {
-        "player_id": "00-0040142",
-        "sleeper_id": "12504",
-        "player": "Kaleb Johnson",
-        "team": "PIT",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
-        "team_color": "#000000",
-        "adp": 200.4,
-        "adp_rank": 200
+        "adp_rank": 140
       }
     ],
     "full_ppr": [
@@ -3124,6 +2464,17 @@
         "adp_rank": 83
       },
       {
+        "player_id": "00-0038606",
+        "sleeper_id": "9487",
+        "player": "Parker Washington",
+        "team": "JAX",
+        "position": "WR",
+        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
+        "team_color": "#006778",
+        "adp": 83.2,
+        "adp_rank": 84
+      },
+      {
         "player_id": "00-0037664",
         "sleeper_id": "8142",
         "player": "Alec Pierce",
@@ -3132,7 +2483,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
         "team_color": "#002C5F",
         "adp": 83.6,
-        "adp_rank": 84
+        "adp_rank": 85
       },
       {
         "player_id": "00-0036355",
@@ -3143,7 +2494,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
         "team_color": "#007BC7",
         "adp": 83.7,
-        "adp_rank": 85
+        "adp_rank": 86
       },
       {
         "player_id": "00-0035261",
@@ -3154,7 +2505,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
         "team_color": "#4495D2",
         "adp": 85.6,
-        "adp_rank": 86
+        "adp_rank": 87
       },
       {
         "player_id": "00-0034960",
@@ -3165,7 +2516,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
         "team_color": "#006778",
         "adp": 87.6,
-        "adp_rank": 87
+        "adp_rank": 88
       },
       {
         "player_id": "00-0036139",
@@ -3176,17 +2527,6 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
         "team_color": "#000000",
         "adp": 88.1,
-        "adp_rank": 88
-      },
-      {
-        "player_id": "00-0038606",
-        "sleeper_id": "9487",
-        "player": "Parker Washington",
-        "team": "JAX",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
-        "team_color": "#006778",
-        "adp": 89.1,
         "adp_rank": 89
       },
       {
@@ -3289,17 +2629,6 @@
         "adp_rank": 98
       },
       {
-        "player_id": "00-0039916",
-        "sleeper_id": "11638",
-        "player": "Ricky Pearsall",
-        "team": "SF",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
-        "team_color": "#AA0000",
-        "adp": 99.8,
-        "adp_rank": 99
-      },
-      {
         "player_id": "00-0033873",
         "sleeper_id": "4046",
         "player": "Patrick Mahomes",
@@ -3308,7 +2637,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
         "team_color": "#E31837",
         "adp": 100.1,
-        "adp_rank": 100
+        "adp_rank": 99
       },
       {
         "player_id": "00-0038994",
@@ -3319,7 +2648,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
         "team_color": "#4F2683",
         "adp": 100.7,
-        "adp_rank": 101
+        "adp_rank": 100
       },
       {
         "player_id": "00-0038544",
@@ -3330,7 +2659,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
         "team_color": "#007BC7",
         "adp": 102.6,
-        "adp_rank": 102
+        "adp_rank": 101
       },
       {
         "player_id": "00-0036252",
@@ -3341,7 +2670,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
         "team_color": "#000000",
         "adp": 102.9,
-        "adp_rank": 103
+        "adp_rank": 102
       },
       {
         "player_id": "00-0038117",
@@ -3352,7 +2681,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
         "team_color": "#4495D2",
         "adp": 103.0,
-        "adp_rank": 104
+        "adp_rank": 103
       },
       {
         "player_id": "00-0037834",
@@ -3363,7 +2692,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
         "team_color": "#AA0000",
         "adp": 103.5,
-        "adp_rank": 105
+        "adp_rank": 104
       },
       {
         "player_id": "00-0038041",
@@ -3374,7 +2703,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
         "team_color": "#002244",
         "adp": 104.0,
-        "adp_rank": 106
+        "adp_rank": 105
       },
       {
         "player_id": "00-0033090",
@@ -3385,7 +2714,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
         "team_color": "#002244",
         "adp": 106.2,
-        "adp_rank": 107
+        "adp_rank": 106
       },
       {
         "player_id": "00-0036919",
@@ -3396,7 +2725,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
         "team_color": "#A71930",
         "adp": 106.9,
-        "adp_rank": 108
+        "adp_rank": 107
       },
       {
         "player_id": "00-0030506",
@@ -3407,7 +2736,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
         "team_color": "#E31837",
         "adp": 107.1,
-        "adp_rank": 109
+        "adp_rank": 108
       },
       {
         "player_id": "00-0033293",
@@ -3418,7 +2747,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
         "team_color": "#4F2683",
         "adp": 108.8,
-        "adp_rank": 110
+        "adp_rank": 109
       },
       {
         "player_id": "00-0034351",
@@ -3429,7 +2758,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
         "team_color": "#004C54",
         "adp": 109.1,
-        "adp_rank": 111
+        "adp_rank": 110
       },
       {
         "player_id": "00-0034753",
@@ -3440,7 +2769,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
         "team_color": "#241773",
         "adp": 110.7,
-        "adp_rank": 112
+        "adp_rank": 111
       },
       {
         "player_id": "00-0040242",
@@ -3451,7 +2780,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
         "team_color": "#5A1414",
         "adp": 114.9,
-        "adp_rank": 113
+        "adp_rank": 112
       },
       {
         "player_id": "00-0026498",
@@ -3462,29 +2791,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
         "team_color": "#003594",
         "adp": 115.2,
-        "adp_rank": 114
-      },
-      {
-        "player_id": "00-0037816",
-        "sleeper_id": "8121",
-        "player": "Romeo Doubs",
-        "team": "NE",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-        "team_color": "#002244",
-        "adp": 115.3,
-        "adp_rank": 115
-      },
-      {
-        "player_id": "00-0039146",
-        "sleeper_id": "10222",
-        "player": "Jayden Reed",
-        "team": "GB",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
-        "team_color": "#203731",
-        "adp": 116.0,
-        "adp_rank": 116
+        "adp_rank": 113
       },
       {
         "player_id": "00-0037838",
@@ -3495,7 +2802,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
         "team_color": "#0B2265",
         "adp": 117.3,
-        "adp_rank": 117
+        "adp_rank": 114
       },
       {
         "player_id": "00-0041032",
@@ -3506,7 +2813,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
         "team_color": "#003F2D",
         "adp": 118.2,
-        "adp_rank": 118
+        "adp_rank": 115
       },
       {
         "player_id": "00-0039732",
@@ -3517,7 +2824,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
         "team_color": "#002244",
         "adp": 118.7,
-        "adp_rank": 119
+        "adp_rank": 116
       },
       {
         "player_id": "00-0033106",
@@ -3528,7 +2835,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
         "team_color": "#0076B6",
         "adp": 122.0,
-        "adp_rank": 120
+        "adp_rank": 117
       },
       {
         "player_id": "00-0037746",
@@ -3539,7 +2846,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
         "team_color": "#A71930",
         "adp": 123.8,
-        "adp_rank": 121
+        "adp_rank": 118
       },
       {
         "player_id": "00-0036264",
@@ -3550,18 +2857,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
         "team_color": "#203731",
         "adp": 124.8,
-        "adp_rank": 122
-      },
-      {
-        "player_id": "00-0038997",
-        "sleeper_id": "9500",
-        "player": "Josh Downs",
-        "team": "IND",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
-        "team_color": "#002C5F",
-        "adp": 125.1,
-        "adp_rank": 123
+        "adp_rank": 119
       },
       {
         "player_id": "00-0039165",
@@ -3572,18 +2868,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
         "team_color": "#002244",
         "adp": 125.8,
-        "adp_rank": 124
-      },
-      {
-        "player_id": "00-0031588",
-        "sleeper_id": "2449",
-        "player": "Stefon Diggs",
-        "team": "",
-        "position": "WR",
-        "logo": null,
-        "team_color": "#2563eb",
-        "adp": 125.9,
-        "adp_rank": 125
+        "adp_rank": 120
       },
       {
         "player_id": "00-0037256",
@@ -3594,7 +2879,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
         "team_color": "#5A1414",
         "adp": 127.2,
-        "adp_rank": 126
+        "adp_rank": 121
       },
       {
         "player_id": "00-0038935",
@@ -3605,7 +2890,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
         "team_color": "#006778",
         "adp": 128.8,
-        "adp_rank": 127
+        "adp_rank": 122
       },
       {
         "player_id": "00-0037525",
@@ -3616,18 +2901,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
         "team_color": "#4F2683",
         "adp": 130.5,
-        "adp_rank": 128
-      },
-      {
-        "player_id": "00-0040130",
-        "sleeper_id": "12484",
-        "player": "Jayden Higgins",
-        "team": "HOU",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
-        "team_color": "#03202F",
-        "adp": 131.1,
-        "adp_rank": 129
+        "adp_rank": 123
       },
       {
         "player_id": "00-0037263",
@@ -3638,40 +2912,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
         "team_color": "#97233F",
         "adp": 132.5,
-        "adp_rank": 130
-      },
-      {
-        "player_id": "00-0037261",
-        "sleeper_id": "8134",
-        "player": "Khalil Shakir",
-        "team": "BUF",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
-        "team_color": "#00338D",
-        "adp": 133.8,
-        "adp_rank": 131
-      },
-      {
-        "player_id": "00-0040667",
-        "sleeper_id": "12501",
-        "player": "Matthew Golden",
-        "team": "GB",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
-        "team_color": "#203731",
-        "adp": 134.1,
-        "adp_rank": 132
-      },
-      {
-        "player_id": "00-0039894",
-        "sleeper_id": "11624",
-        "player": "Xavier Worthy",
-        "team": "KC",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
-        "team_color": "#E31837",
-        "adp": 134.9,
-        "adp_rank": 133
+        "adp_rank": 124
       },
       {
         "player_id": "00-0036040",
@@ -3682,18 +2923,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
         "team_color": "#D3BC8D",
         "adp": 135.3,
-        "adp_rank": 134
-      },
-      {
-        "player_id": "00-0039491",
-        "sleeper_id": "11646",
-        "player": "Jalen Coker",
-        "team": "CAR",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/car.png",
-        "team_color": "#0085CA",
-        "adp": 136.3,
-        "adp_rank": 135
+        "adp_rank": 125
       },
       {
         "player_id": "00-0034383",
@@ -3704,7 +2934,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
         "team_color": "#03202F",
         "adp": 137.0,
-        "adp_rank": 136
+        "adp_rank": 126
       },
       {
         "player_id": "00-0038128",
@@ -3715,7 +2945,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png",
         "team_color": "#008E97",
         "adp": 137.8,
-        "adp_rank": 137
+        "adp_rank": 127
       },
       {
         "player_id": "00-0039344",
@@ -3726,7 +2956,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/car.png",
         "team_color": "#0085CA",
         "adp": 138.0,
-        "adp_rank": 138
+        "adp_rank": 128
       },
       {
         "player_id": "00-0034855",
@@ -3737,7 +2967,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
         "team_color": "#A71930",
         "adp": 140.9,
-        "adp_rank": 139
+        "adp_rank": 129
       },
       {
         "player_id": "00-0035229",
@@ -3748,7 +2978,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
         "team_color": "#4F2683",
         "adp": 141.2,
-        "adp_rank": 140
+        "adp_rank": 130
       },
       {
         "player_id": "00-0040583",
@@ -3759,18 +2989,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
         "team_color": "#03202F",
         "adp": 141.2,
-        "adp_rank": 141
-      },
-      {
-        "player_id": "00-0038611",
-        "sleeper_id": "10219",
-        "player": "Chris Rodriguez",
-        "team": "JAX",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
-        "team_color": "#006778",
-        "adp": 141.6,
-        "adp_rank": 142
+        "adp_rank": 131
       },
       {
         "player_id": "00-0035228",
@@ -3781,18 +3000,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
         "team_color": "#4F2683",
         "adp": 142.2,
-        "adp_rank": 143
-      },
-      {
-        "player_id": "00-0041547",
-        "sleeper_id": "13298",
-        "player": "KC Concepcion",
-        "team": "CLE",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
-        "team_color": "#FF3C00",
-        "adp": 143.2,
-        "adp_rank": 144
+        "adp_rank": 132
       },
       {
         "player_id": "00-0040743",
@@ -3803,29 +3011,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
         "team_color": "#D3BC8D",
         "adp": 144.4,
-        "adp_rank": 145
-      },
-      {
-        "player_id": "00-0041496",
-        "sleeper_id": "13345",
-        "player": "Jonah Coleman",
-        "team": "DEN",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
-        "team_color": "#002244",
-        "adp": 145.0,
-        "adp_rank": 146
-      },
-      {
-        "player_id": "00-0039384",
-        "sleeper_id": "11655",
-        "player": "Tyrone Tracy",
-        "team": "NYG",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
-        "team_color": "#0B2265",
-        "adp": 145.3,
-        "adp_rank": 147
+        "adp_rank": 133
       },
       {
         "player_id": "00-0037809",
@@ -3836,51 +3022,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
         "team_color": "#5A1414",
         "adp": 146.2,
-        "adp_rank": 148
-      },
-      {
-        "player_id": "00-0036259",
-        "sleeper_id": "7049",
-        "player": "Jauan Jennings",
-        "team": "MIN",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
-        "team_color": "#4F2683",
-        "adp": 146.3,
-        "adp_rank": 149
-      },
-      {
-        "player_id": "00-0041037",
-        "sleeper_id": "13346",
-        "player": "Denzel Boston",
-        "team": "CLE",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
-        "team_color": "#FF3C00",
-        "adp": 147.5,
-        "adp_rank": 150
-      },
-      {
-        "player_id": "00-0041511",
-        "sleeper_id": "13276",
-        "player": "Omar Cooper",
-        "team": "NYJ",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
-        "team_color": "#003F2D",
-        "adp": 149.3,
-        "adp_rank": 151
-      },
-      {
-        "player_id": "00-0041013",
-        "sleeper_id": "13337",
-        "player": "Emmett Johnson",
-        "team": "KC",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
-        "team_color": "#E31837",
-        "adp": 149.7,
-        "adp_rank": 152
+        "adp_rank": 134
       },
       {
         "player_id": "00-0039793",
@@ -3891,51 +3033,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
         "team_color": "#002244",
         "adp": 150.1,
-        "adp_rank": 153
-      },
-      {
-        "player_id": "00-0039032",
-        "sleeper_id": "9508",
-        "player": "Tyjae Spears",
-        "team": "TEN",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
-        "team_color": "#4495D2",
-        "adp": 151.9,
-        "adp_rank": 154
-      },
-      {
-        "player_id": "00-0033553",
-        "sleeper_id": "4137",
-        "player": "James Conner",
-        "team": "ARI",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
-        "team_color": "#97233F",
-        "adp": 152.2,
-        "adp_rank": 155
-      },
-      {
-        "player_id": "00-0037545",
-        "sleeper_id": "8676",
-        "player": "Rashid Shaheed",
-        "team": "SEA",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
-        "team_color": "#002244",
-        "adp": 152.2,
-        "adp_rank": 156
-      },
-      {
-        "player_id": "00-0033906",
-        "sleeper_id": "4035",
-        "player": "Alvin Kamara",
-        "team": "NO",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
-        "team_color": "#D3BC8D",
-        "adp": 157.7,
-        "adp_rank": 157
+        "adp_rank": 135
       },
       {
         "player_id": "00-0040737",
@@ -3946,29 +3044,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
         "team_color": "#003594",
         "adp": 158.7,
-        "adp_rank": 158
-      },
-      {
-        "player_id": "00-0040718",
-        "sleeper_id": "12530",
-        "player": "Travis Hunter",
-        "team": "JAX",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
-        "team_color": "#006778",
-        "adp": 160.2,
-        "adp_rank": 159
-      },
-      {
-        "player_id": "00-0038129",
-        "sleeper_id": "8111",
-        "player": "Cade Otton",
-        "team": "TB",
-        "position": "TE",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
-        "team_color": "#A71930",
-        "adp": 162.7,
-        "adp_rank": 160
+        "adp_rank": 136
       },
       {
         "player_id": "00-0039163",
@@ -3979,40 +3055,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
         "team_color": "#03202F",
         "adp": 163.4,
-        "adp_rank": 161
-      },
-      {
-        "player_id": "00-0039855",
-        "sleeper_id": "11618",
-        "player": "Jalen McMillan",
-        "team": "TB",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
-        "team_color": "#A71930",
-        "adp": 163.7,
-        "adp_rank": 162
-      },
-      {
-        "player_id": "00-0035719",
-        "sleeper_id": "5872",
-        "player": "Deebo Samuel",
-        "team": "SF",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
-        "team_color": "#AA0000",
-        "adp": 164.3,
-        "adp_rank": 163
-      },
-      {
-        "player_id": "00-0038454",
-        "sleeper_id": "9511",
-        "player": "Keaton Mitchell",
-        "team": "LAC",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
-        "team_color": "#007BC7",
-        "adp": 164.9,
-        "adp_rank": 164
+        "adp_rank": 137
       },
       {
         "player_id": "00-0034869",
@@ -4023,7 +3066,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
         "team_color": "#002244",
         "adp": 165.3,
-        "adp_rank": 165
+        "adp_rank": 138
       },
       {
         "player_id": "00-0040676",
@@ -4034,51 +3077,7 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
         "team_color": "#4495D2",
         "adp": 165.9,
-        "adp_rank": 166
-      },
-      {
-        "player_id": "00-0040162",
-        "sleeper_id": "12469",
-        "player": "Dylan Sampson",
-        "team": "CLE",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
-        "team_color": "#FF3C00",
-        "adp": 166.4,
-        "adp_rank": 167
-      },
-      {
-        "player_id": "00-0037291",
-        "sleeper_id": "8180",
-        "player": "Jalen Nailor",
-        "team": "LV",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png",
-        "team_color": "#000000",
-        "adp": 166.5,
-        "adp_rank": 168
-      },
-      {
-        "player_id": "00-0037197",
-        "sleeper_id": "8205",
-        "player": "Isiah Pacheco",
-        "team": "DET",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
-        "team_color": "#0076B6",
-        "adp": 167.2,
-        "adp_rank": 169
-      },
-      {
-        "player_id": "00-0041040",
-        "sleeper_id": "13301",
-        "player": "Antonio Williams",
-        "team": "WAS",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
-        "team_color": "#5A1414",
-        "adp": 168.1,
-        "adp_rank": 170
+        "adp_rank": 139
       },
       {
         "player_id": "sleeper:13269",
@@ -4089,328 +3088,9 @@
         "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png",
         "team_color": "#000000",
         "adp": 169.5,
-        "adp_rank": 171
-      },
-      {
-        "player_id": "00-0033885",
-        "sleeper_id": "4033",
-        "player": "David Njoku",
-        "team": "LAC",
-        "position": "TE",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
-        "team_color": "#007BC7",
-        "adp": 172.4,
-        "adp_rank": 172
-      },
-      {
-        "player_id": "00-0036407",
-        "sleeper_id": "6783",
-        "player": "Jerry Jeudy",
-        "team": "CLE",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
-        "team_color": "#FF3C00",
-        "adp": 173.5,
-        "adp_rank": 173
-      },
-      {
-        "player_id": "00-0041483",
-        "sleeper_id": "13349",
-        "player": "Eli Stowers",
-        "team": "PHI",
-        "position": "TE",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
-        "team_color": "#004C54",
-        "adp": 173.9,
-        "adp_rank": 174
-      },
-      {
-        "player_id": "00-0033040",
-        "sleeper_id": "3321",
-        "player": "Tyreek Hill",
-        "team": "",
-        "position": "WR",
-        "logo": null,
-        "team_color": "#2563eb",
-        "adp": 174.0,
-        "adp_rank": 175
-      },
-      {
-        "player_id": "00-0039794",
-        "sleeper_id": "11576",
-        "player": "Braelon Allen",
-        "team": "NYJ",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
-        "team_color": "#003F2D",
-        "adp": 174.1,
-        "adp_rank": 176
-      },
-      {
-        "player_id": "00-0040886",
-        "sleeper_id": "13288",
-        "player": "Nicholas Singleton",
-        "team": "TEN",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
-        "team_color": "#4495D2",
-        "adp": 176.4,
-        "adp_rank": 177
-      },
-      {
-        "player_id": "00-0039890",
-        "sleeper_id": "11625",
-        "player": "Adonai Mitchell",
-        "team": "NYJ",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
-        "team_color": "#003F2D",
-        "adp": 177.9,
-        "adp_rank": 178
-      },
-      {
-        "player_id": "00-0038608",
-        "sleeper_id": "9504",
-        "player": "Kayshon Boutte",
-        "team": "NE",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
-        "team_color": "#002244",
-        "adp": 178.7,
-        "adp_rank": 179
-      },
-      {
-        "player_id": "sleeper:13305",
-        "sleeper_id": "13305",
-        "player": "Mike Washington",
-        "team": "LV",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png",
-        "team_color": "#000000",
-        "adp": 179.1,
-        "adp_rank": 180
-      },
-      {
-        "player_id": "00-0041044",
-        "sleeper_id": "13320",
-        "player": "Zachariah Branch",
-        "team": "ATL",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
-        "team_color": "#A71930",
-        "adp": 180.4,
-        "adp_rank": 181
-      },
-      {
-        "player_id": "00-0039391",
-        "sleeper_id": "11647",
-        "player": "Kimani Vidal",
-        "team": "LAC",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
-        "team_color": "#007BC7",
-        "adp": 181.1,
-        "adp_rank": 182
-      },
-      {
-        "player_id": "00-0041096",
-        "sleeper_id": "13405",
-        "player": "Kaytron Allen",
-        "team": "WAS",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
-        "team_color": "#5A1414",
-        "adp": 181.2,
-        "adp_rank": 183
-      },
-      {
-        "player_id": "00-0039921",
-        "sleeper_id": "11589",
-        "player": "Trey Benson",
-        "team": "ARI",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
-        "team_color": "#97233F",
-        "adp": 182.2,
-        "adp_rank": 184
-      },
-      {
-        "player_id": "00-0039868",
-        "sleeper_id": "11627",
-        "player": "Troy Franklin",
-        "team": "DEN",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
-        "team_color": "#002244",
-        "adp": 184.7,
-        "adp_rank": 185
-      },
-      {
-        "player_id": "00-0038555",
-        "sleeper_id": "9225",
-        "player": "Tank Bigsby",
-        "team": "PHI",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
-        "team_color": "#004C54",
-        "adp": 187.7,
-        "adp_rank": 186
-      },
-      {
-        "player_id": "00-0036261",
-        "sleeper_id": "6803",
-        "player": "Brandon Aiyuk",
-        "team": "SF",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
-        "team_color": "#AA0000",
-        "adp": 190.2,
-        "adp_rank": 187
-      },
-      {
-        "player_id": "00-0037112",
-        "sleeper_id": "8698",
-        "player": "Jake Tonges",
-        "team": "SF",
-        "position": "TE",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
-        "team_color": "#AA0000",
-        "adp": 191.4,
-        "adp_rank": 188
-      },
-      {
-        "player_id": "00-0038951",
-        "sleeper_id": "9506",
-        "player": "Sean Tucker",
-        "team": "TB",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
-        "team_color": "#A71930",
-        "adp": 192.8,
-        "adp_rank": 189
-      },
-      {
-        "player_id": "00-0039150",
-        "sleeper_id": "9228",
-        "player": "Bryce Young",
-        "team": "CAR",
-        "position": "QB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/car.png",
-        "team_color": "#0085CA",
-        "adp": 194.2,
-        "adp_rank": 190
-      },
-      {
-        "player_id": "00-0040727",
-        "sleeper_id": "12509",
-        "player": "Tre' Harris",
-        "team": "LAC",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
-        "team_color": "#007BC7",
-        "adp": 194.5,
-        "adp_rank": 191
-      },
-      {
-        "player_id": "00-0035710",
-        "sleeper_id": "5870",
-        "player": "Daniel Jones",
-        "team": "IND",
-        "position": "QB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
-        "team_color": "#002C5F",
-        "adp": 195.1,
-        "adp_rank": 192
-      },
-      {
-        "player_id": "00-0040870",
-        "sleeper_id": "13293",
-        "player": "Ja'Kobi Lane",
-        "team": "BAL",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
-        "team_color": "#241773",
-        "adp": 197.8,
-        "adp_rank": 193
-      },
-      {
-        "player_id": "00-0040669",
-        "sleeper_id": "12535",
-        "player": "Isaac TeSlaa",
-        "team": "DET",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
-        "team_color": "#0076B6",
-        "adp": 198.6,
-        "adp_rank": 194
-      },
-      {
-        "player_id": "00-0040170",
-        "sleeper_id": "12499",
-        "player": "Elic Ayomanor",
-        "team": "TEN",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
-        "team_color": "#4495D2",
-        "adp": 199.8,
-        "adp_rank": 195
-      },
-      {
-        "player_id": "00-0036244",
-        "sleeper_id": "6865",
-        "player": "Colby Parkinson",
-        "team": "LAR",
-        "position": "TE",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
-        "team_color": "#003594",
-        "adp": 200.2,
-        "adp_rank": 196
-      },
-      {
-        "player_id": "00-0040584",
-        "sleeper_id": "12502",
-        "player": "Gunnar Helm",
-        "team": "TEN",
-        "position": "TE",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
-        "team_color": "#4495D2",
-        "adp": 200.8,
-        "adp_rank": 197
-      },
-      {
-        "player_id": "00-0033119",
-        "sleeper_id": "3257",
-        "player": "Jacoby Brissett",
-        "team": "ARI",
-        "position": "QB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
-        "team_color": "#97233F",
-        "adp": 200.9,
-        "adp_rank": 198
-      },
-      {
-        "player_id": "00-0041035",
-        "sleeper_id": "13417",
-        "player": "De'Zhaun Stribling",
-        "team": "SF",
-        "position": "WR",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
-        "team_color": "#AA0000",
-        "adp": 202.4,
-        "adp_rank": 199
-      },
-      {
-        "player_id": "00-0038797",
-        "sleeper_id": "11435",
-        "player": "Emanuel Wilson",
-        "team": "SEA",
-        "position": "RB",
-        "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
-        "team_color": "#002244",
-        "adp": 203.3,
-        "adp_rank": 200
+        "adp_rank": 140
       }
     ]
   },
-  "last_updated": "2026-08-03T14:14:01Z"
+  "last_updated": "2026-08-03T18:02:39Z"
 }

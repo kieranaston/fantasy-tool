@@ -6946,5 +6946,113 @@
     "source_type": "beat_reporter",
     "needs_review": false,
     "triaged": true
+  },
+  {
+    "id": "943e9721-406c-4fcc-8134-f22ede0425fa",
+    "player_id": "00-0040236",
+    "player_name": "Kyle Monangai",
+    "timestamp": "2026-08-03T07:50:17-07:00",
+    "designation": "Back at practice Monday",
+    "source_text": "Kyle Monangai: Back at practice Monday",
+    "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6qo3ud3o25",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
+  },
+  {
+    "id": "d7815a78-00c4-4dd1-bd0f-5bf69e5d0ccc",
+    "player_id": "00-0036212",
+    "player_name": "Tua Tagovailoa",
+    "timestamp": "2026-08-03T08:20:36-07:00",
+    "designation": "Resumes 11-on-11 work",
+    "source_text": "Tua Tagovailoa: Resumes 11-on-11 work",
+    "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6sec6a2j2c",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
+  },
+  {
+    "id": "517aba97-7813-432d-840b-f3db62da816e",
+    "player_id": "00-0039139",
+    "player_name": "Jahmyr Gibbs",
+    "timestamp": "2026-08-03T09:05:18-07:00",
+    "designation": "Still not practicing",
+    "source_text": "Jahmyr Gibbs: Still not practicing",
+    "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6uua7cqh22",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
+  },
+  {
+    "id": "cceed931-0187-4f68-b498-afcbfa8daf3a",
+    "player_id": "00-0039894",
+    "player_name": "Xavier Worthy",
+    "timestamp": "2026-08-03T09:09:43-07:00",
+    "designation": "Dealing with sprained shoulder",
+    "source_text": "Xavier Worthy: Dealing with sprained shoulder",
+    "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6v455och2l",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
+  },
+  {
+    "id": "ebee22c2-e2fc-465f-9b7e-2230486ec448",
+    "player_id": "00-0031408",
+    "player_name": "Mike Evans",
+    "timestamp": "2026-08-03T10:13:30-07:00",
+    "designation": "Has strained quad",
+    "source_text": "Mike Evans: Has strained quad",
+    "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6yo6hoow2u",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
+  },
+  {
+    "id": "49115e54-badf-4926-85b2-f78616db4888",
+    "player_id": "00-0038933",
+    "player_name": "Dalton Kincaid",
+    "timestamp": "2026-08-03T10:20:38-07:00",
+    "designation": "Resumes practicing after brief exit",
+    "source_text": "Dalton Kincaid: Resumes practicing after brief exit",
+    "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6z2wl7sc2h",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
+  },
+  {
+    "id": "ca62100b-f32c-4b32-95c2-0fcc02cc34ea",
+    "player_id": "00-0041035",
+    "player_name": "De'Zhaun Stribling",
+    "timestamp": "2026-08-03T10:24:00-07:00",
+    "designation": "Missing practice again",
+    "source_text": "De'Zhaun Stribling: Missing practice again",
+    "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6zaxku7v2c",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
+  },
+  {
+    "id": "24d03728-2dee-4237-b79f-2e592ba176e5",
+    "player_id": "00-0035676",
+    "player_name": "A.J. Brown",
+    "timestamp": "2026-08-03T10:27:10-07:00",
+    "designation": "Works through thumb issue",
+    "source_text": "A.J. Brown: Works through thumb issue",
+    "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6zgmfg5f2c",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
+  },
+  {
+    "id": "15b06989-167b-4271-932e-00c98806b4a8",
+    "player_id": "00-0040867",
+    "player_name": "Makai Lemon",
+    "timestamp": "2026-08-03T10:58:51-07:00",
+    "designation": "Held out of team drills",
+    "source_text": "Makai Lemon: Held out of team drills",
+    "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms737bymah25",
+    "source_type": "beat_reporter",
+    "needs_review": false,
+    "triaged": true
   }
 ]

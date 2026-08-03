@@ -40,7 +40,7 @@ def detect_changes(
                 (last_url and report_url and last_url == report_url)
                 or (last_id and report_id and last_id == report_id)
             )
-            if same_report and has_summary:
+            if same_report and has_summary and not stored.get("summary_fallback"):
                 continue
             if not last_url and not last_id and has_summary:
                 if (report.get("timestamp") or "") <= (

@@ -31,6 +31,7 @@ from src.loaders.bluesky import (
     fetch_author_posts,
     posts_to_raw_reports,
 )
+from src.loaders.sleeper_adp import load_ranking_pool_ids
 
 ROOT = Path(__file__).resolve().parents[1]
 INJURIES_DIR = ROOT / "docs" / "data" / "injuries"
@@ -42,6 +43,8 @@ SUMMARIES_PATH = INJURIES_DIR / "summaries.json"
 REVIEW_PATH = INJURIES_DIR / "review_queue.json"
 
 EXTRACT_CHUNK = 8
+NARRATIVE_CHUNK = 4
+DOCS_DATA = ROOT / "docs" / "data"
 
 
 def _load_dotenv() -> None:
@@ -310,9 +313,16 @@ def _fallback_summary(player_name: str | None, report: dict) -> str:
     return f"{name}: {designation}."
 
 
-def process_changes(reports: list, status_current: dict) -> dict:
+def process_changes(
+    reports: list,
+    status_current: dict,
+    *,
+    allowed_player_ids: set[str] | None = None,
+) -> dict:
     """Summarize any matched player that is new or still missing a narrative."""
     changed = detect_changes(reports, status_current)
+    if allowed_player_ids is not None:
+        changed = [c for c in changed if c.get("player_id") in allowed_player_ids]
     print(f"  Change detection: {len(changed)} player(s) need summary")
     if not changed:
         return status_current
@@ -353,28 +363,17 @@ def process_changes(reports: list, status_current: dict) -> dict:
 
     summaries: dict = {}
     if gemini_available():
-        try:
-            summaries = build_narratives_batch(
-                [
-                    {
-                        "player_id": d["player_id"],
-                        "player_name": d.get("player_name"),
-                        "reports": d["reports"],
-                    }
-                    for d in narrative_inputs
-                ]
+        chunks = [
+            narrative_inputs[i : i + NARRATIVE_CHUNK]
+            for i in range(0, len(narrative_inputs), NARRATIVE_CHUNK)
+        ]
+        for index, chunk in enumerate(chunks):
+            if index:
+                time.sleep(8.0)
+            print(
+                f"  Narrative batch {index + 1}/{len(chunks)} "
+                f"({len(chunk)} player(s))"
             )
-        except Exception as exc:
-            print(f"  Narrative batch failed ({exc})")
-            print("  Falling back to plain RotoWire summaries where needed")
-            append_review_items(
-                REVIEW_PATH,
-                [review_item(reason=f"narrative_batch_error: {exc}")],
-            )
-            summaries = {}
-
-        missing = [d for d in narrative_inputs if not summaries.get(d["player_id"])]
-        if missing and summaries:
             try:
                 summaries.update(
                     build_narratives_batch(
@@ -384,15 +383,38 @@ def process_changes(reports: list, status_current: dict) -> dict:
                                 "player_name": d.get("player_name"),
                                 "reports": d["reports"],
                             }
-                            for d in missing
+                            for d in chunk
                         ]
                     )
                 )
             except Exception as exc:
+                print(f"  Narrative batch failed ({exc})")
                 append_review_items(
                     REVIEW_PATH,
-                    [review_item(reason=f"narrative_retry_error: {exc}")],
+                    [review_item(reason=f"narrative_batch_error: {exc}")],
                 )
+        missing = [d for d in narrative_inputs if not summaries.get(d["player_id"])]
+        if missing:
+            print(f"  Retrying {len(missing)} missing narrative(s) singly…")
+            for d in missing:
+                time.sleep(8.0)
+                try:
+                    summaries.update(
+                        build_narratives_batch(
+                            [
+                                {
+                                    "player_id": d["player_id"],
+                                    "player_name": d.get("player_name"),
+                                    "reports": d["reports"],
+                                }
+                            ]
+                        )
+                    )
+                except Exception as exc:
+                    append_review_items(
+                        REVIEW_PATH,
+                        [review_item(reason=f"narrative_retry_error: {exc}")],
+                    )
     else:
         print("  Summarization without Gemini (plain RotoWire text)")
 
@@ -479,18 +501,44 @@ def main() -> None:
     player_index = load_player_index()
     print(f"  Player index: {len(player_index)} names")
 
+    pool_ids = load_ranking_pool_ids(DOCS_DATA)
+    print(f"  Ranking pool: {len(pool_ids)} players")
+
     run_started = utc_now_iso()
     reports, bsky_new = ingest_bluesky(player_index, reports, poll_state)
     reports, _bsky_reprocessed = reprocess_pending_bluesky(player_index, reports)
 
-    # Scan all matched reports each run so quota failures are filled next day
-    status_current = process_changes(reports, status_current)
+    # Mark plain fallbacks so Gemini can replace them on this/next run
+    for pid, status in list(status_current.items()):
+        if pid not in pool_ids:
+            continue
+        if status.get("summary_fallback"):
+            continue
+        summary = (status.get("last_diff_summary") or "").strip()
+        name = (status.get("player_name") or "").strip()
+        if name and summary.lower().startswith(name.lower() + ":"):
+            status["summary_fallback"] = True
+
+    # Keep status only for ranking-pool players (site news is pool-scoped)
+    status_current = {
+        pid: status
+        for pid, status in status_current.items()
+        if pid in pool_ids
+    }
+
+    # Scan matched pool reports each run so quota failures are filled next day
+    status_current = process_changes(
+        reports,
+        status_current,
+        allowed_player_ids=pool_ids,
+    )
 
     now = utc_now_iso()
     summaries = build_summaries(
         status_current=status_current,
         reports=reports,
         last_updated=now,
+        allowed_player_ids=pool_ids,
     )
     write_json(SUMMARIES_PATH, summaries)
 
