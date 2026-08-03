@@ -8,6 +8,27 @@ import {
 let client = null;
 const SAVE_DEBOUNCE_MS = 600;
 
+function formatSyncError(err, fallback = "Sync failed") {
+  if (!err) return fallback;
+  if (typeof err === "string") return err;
+  if (typeof err.message === "string" && err.message && err.message !== "[object Object]") {
+    return err.message;
+  }
+  if (typeof err.details === "string" && err.details) return err.details;
+  if (typeof err.hint === "string" && err.hint) return err.hint;
+  if (typeof err.code === "string" && err.code) return `${fallback} (${err.code})`;
+  return fallback;
+}
+
+function isMissingColumnError(error, column) {
+  const text = `${error?.message || ""} ${error?.details || ""} ${error?.hint || ""}`.toLowerCase();
+  return text.includes(column.toLowerCase()) && (
+    text.includes("column") ||
+    text.includes("schema cache") ||
+    text.includes("does not exist")
+  );
+}
+
 function getClient() {
   if (!isSyncConfigured()) return null;
   if (!client) {
@@ -76,13 +97,23 @@ async function fetchBoard(position) {
   const user = await getUser();
   if (!sb || !user) return null;
 
-  const { data, error } = await sb
+  let result = await sb
     .from("ranking_boards")
     .select("orders, tier_breaks, excluded, updated_at")
     .eq("user_id", user.id)
     .eq("position", String(position).toUpperCase())
     .maybeSingle();
 
+  if (result.error && isMissingColumnError(result.error, "excluded")) {
+    result = await sb
+      .from("ranking_boards")
+      .select("orders, tier_breaks, updated_at")
+      .eq("user_id", user.id)
+      .eq("position", String(position).toUpperCase())
+      .maybeSingle();
+  }
+
+  const { data, error } = result;
   if (error) throw error;
   if (!data) return null;
   return {
@@ -106,17 +137,26 @@ async function saveBoard(board) {
   if (!sb || !user) return false;
 
   const updatedAt = board.updated_at || new Date().toISOString();
-  const { error } = await sb.from("ranking_boards").upsert(
-    {
-      user_id: user.id,
-      position: String(board.position).toUpperCase(),
-      orders: board.orders,
-      tier_breaks: board.tier_breaks,
-      excluded: board.excluded || [],
-      updated_at: updatedAt,
-    },
-    { onConflict: "user_id,position" }
-  );
+  const payload = {
+    user_id: user.id,
+    position: String(board.position).toUpperCase(),
+    orders: board.orders,
+    tier_breaks: board.tier_breaks,
+    excluded: board.excluded || [],
+    updated_at: updatedAt,
+  };
+
+  let { error } = await sb.from("ranking_boards").upsert(payload, {
+    onConflict: "user_id,position",
+  });
+
+  if (error && isMissingColumnError(error, "excluded")) {
+    const { excluded, ...legacyPayload } = payload;
+    ({ error } = await sb.from("ranking_boards").upsert(legacyPayload, {
+      onConflict: "user_id,position",
+    }));
+  }
+
   if (error) throw error;
   return true;
 }
@@ -135,7 +175,7 @@ function createDebouncedSaver(hooks = {}) {
       hooks.onSuccess?.();
     } catch (err) {
       console.error("Failed to sync rankings", err);
-      hooks.onError?.(err instanceof Error ? err : new Error(String(err)));
+      hooks.onError?.(err);
       throw err;
     }
   }
@@ -194,4 +234,5 @@ export {
   saveBoard,
   createDebouncedSaver,
   pickNewerBoard,
+  formatSyncError,
 };

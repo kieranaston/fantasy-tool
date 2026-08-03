@@ -55,7 +55,7 @@ GEMINI_MODEL=gemini-2.5-flash-lite   # optional override
 - Pool: Sleeper ADP depth (overall top 200; position caps QB 40 / RB 60 / WR 80 / TE 40)
 - Drag rows to reorder
 - **×** on a row crosses out a player you won't consider (syncs across devices when signed in)
-- **+** on a row toggles a tier break below it
+- **+** on a row toggles a tier break below it; drag across tier lines to move players between tiers
 - **Reset to ADP** restores ADP order and clears tiers for both formats
 - **Download spreadsheet** exports the current format as CSV
 - Without sync configured, order is saved in this browser only

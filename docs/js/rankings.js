@@ -36,11 +36,13 @@ function buildNewsIndex(summaries) {
   for (const player of summaries?.players || []) {
     if (!player?.player_id) continue;
     const designation = (player.current_designation || "").trim();
-    if (!designation && !player.diff_summary) continue;
+    const summary = String(player.diff_summary || "").trim();
+    if (!designation && !summary) continue;
     const entry = {
       player_id: player.player_id,
       designation: designation || "update",
       label: truncateLabel(designation || "News"),
+      summary: summary || designation || "News",
     };
     byId.set(player.player_id, entry);
     const key = normalizeName(player.player_name);
@@ -66,7 +68,7 @@ function playerCell(row, newsIndex) {
     : "";
   const news = newsForRow(row, newsIndex);
   const newsTag = news
-    ? `<a class="news-tag" href="../index.html#player-${encodeURIComponent(news.player_id)}" title="${escapeHtml(news.designation)}">${escapeHtml(news.label)}</a>`
+    ? `<a class="news-tag" href="../index.html#player-${encodeURIComponent(news.player_id)}" data-news-summary="${escapeHtml(news.summary)}" title="Hover for summary · click for full news">${escapeHtml(news.label)}</a>`
     : "";
   return `
     <div class="player-cell">

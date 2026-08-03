@@ -246,6 +246,23 @@ table.draft-table > thead > tr > th {
   border-bottom-color: var(--text);
 }
 
+.news-hover-tip {
+  position: fixed;
+  z-index: 1100;
+  max-width: min(22rem, calc(100vw - 1.5rem));
+  padding: 0.55rem 0.7rem;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid #d1d5db;
+  box-shadow: 0 6px 18px color-mix(in srgb, var(--text) 12%, transparent);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  pointer-events: none;
+}
+
 .status-chip {
   display: block;
   color: var(--accent);

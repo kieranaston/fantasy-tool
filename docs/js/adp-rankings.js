@@ -1,11 +1,11 @@
 import { fetchJSON, loadManifest, showError, formatTimestamp } from "./config.js";
-import { initColumnTooltips } from "./tables.js";
+import { initColumnTooltips, initNewsHoverPreviews } from "./tables.js?v=2";
 import {
   FORMAT_LABELS,
   buildNewsIndex,
   playerCell,
   escapeHtml,
-} from "./rankings.js?v=helpers2";
+} from "./rankings.js?v=helpers3";
 import {
   isSyncConfigured,
   getSession,
@@ -15,6 +15,7 @@ import {
   fetchBoard,
   createDebouncedSaver,
   pickNewerBoard,
+  formatSyncError,
 } from "./rankings-sync.js";
 
 const BOARD_FORMATS = ["half_ppr", "full_ppr"];
@@ -42,6 +43,110 @@ function cloneTier(tiers) {
 
 function cloneExcluded(excluded) {
   return [...new Set((excluded || []).filter(Boolean))];
+}
+
+/** Build tier groups from flat order + break indices (break = after this row). */
+function breaksToGroups(order, breaks) {
+  if (!order.length) return [];
+  const sorted = [...(breaks || [])].sort((a, b) => a - b);
+  const groups = [];
+  let start = 0;
+  for (const breakIdx of sorted) {
+    if (breakIdx < start - 1) continue;
+    groups.push(order.slice(start, breakIdx + 1));
+    start = breakIdx + 1;
+  }
+  groups.push(order.slice(start));
+  return groups.filter((tier) => tier.length > 0);
+}
+
+function groupsToOrder(groups) {
+  return (groups || []).flat();
+}
+
+function groupsToBreaks(groups) {
+  const breaks = [];
+  let end = -1;
+  for (let i = 0; i < (groups || []).length - 1; i += 1) {
+    end += groups[i].length;
+    breaks.push(end);
+  }
+  return breaks;
+}
+
+function locateInGroups(groups, flatIndex) {
+  let offset = 0;
+  for (let tierIdx = 0; tierIdx < groups.length; tierIdx += 1) {
+    const tier = groups[tierIdx];
+    if (flatIndex < offset + tier.length) {
+      return { tierIdx, posInTier: flatIndex - offset };
+    }
+    offset += tier.length;
+  }
+  const lastIdx = Math.max(0, groups.length - 1);
+  return { tierIdx: lastIdx, posInTier: groups[lastIdx]?.length || 0 };
+}
+
+function tierForFlatIndex(flatIndex, groups) {
+  const { tierIdx } = locateInGroups(groups, flatIndex);
+  return tierIdx + 1;
+}
+
+function appendMissingPlayers(groups, order) {
+  const seen = new Set(groups.flat());
+  const missing = order.filter((id) => !seen.has(id));
+  if (!missing.length) return groups;
+  const next = groups.map((tier) => [...tier]);
+  if (!next.length) return [order.slice()];
+  next[next.length - 1].push(...missing);
+  return next;
+}
+
+function movePlayerInGroups(groups, playerId, toFlatIndex) {
+  const next = groups.map((tier) => [...tier]);
+  const flat = next.flat();
+  const fromFlatIndex = flat.indexOf(playerId);
+  if (fromFlatIndex === -1 || fromFlatIndex === toFlatIndex) return next;
+
+  const src = locateInGroups(next, fromFlatIndex);
+  next[src.tierIdx].splice(src.posInTier, 1);
+
+  let adjustedTo = toFlatIndex;
+  if (fromFlatIndex < toFlatIndex) adjustedTo -= 1;
+
+  const compact = next.filter((tier) => tier.length > 0);
+  if (!compact.length) return [[playerId]];
+
+  const total = compact.flat().length;
+  if (adjustedTo >= total) {
+    compact[compact.length - 1].push(playerId);
+    return compact;
+  }
+
+  const dest = locateInGroups(compact, adjustedTo);
+  compact[dest.tierIdx].splice(dest.posInTier, 0, playerId);
+  return compact;
+}
+
+function toggleBreakInGroups(groups, afterFlatIndex, breaks) {
+  const next = groups.map((tier) => [...tier]);
+  const loc = locateInGroups(next, afterFlatIndex);
+  const hasBreak = (breaks || []).includes(afterFlatIndex);
+
+  if (hasBreak) {
+    if (loc.tierIdx < next.length - 1) {
+      next[loc.tierIdx] = [...next[loc.tierIdx], ...next[loc.tierIdx + 1]];
+      next.splice(loc.tierIdx + 1, 1);
+    }
+    return next.filter((tier) => tier.length > 0);
+  }
+
+  const tier = next[loc.tierIdx];
+  const left = tier.slice(0, loc.posInTier + 1);
+  const right = tier.slice(loc.posInTier + 1);
+  if (!right.length) return next;
+  next.splice(loc.tierIdx, 1, left, right);
+  return next.filter((tier) => tier.length > 0);
 }
 
 function adpLookup(adpPayload, format) {
@@ -117,16 +222,6 @@ function sanitizeTier(tiers, orders) {
   return cleaned;
 }
 
-/** Tier number for a 0-based index given break indices (after these rows). */
-function tierForIndex(index, breaks) {
-  let tier = 1;
-  for (const breakIdx of breaks || []) {
-    if (index > breakIdx) tier += 1;
-    else break;
-  }
-  return tier;
-}
-
 function ordersFromAdp(adpPayload) {
   const built = {};
   for (const fmt of BOARD_FORMATS) {
@@ -142,7 +237,7 @@ function downloadCsv({
   format,
   rows,
   isOverall,
-  breaks,
+  groups,
   excludedIds,
 }) {
   const header = isOverall
@@ -151,7 +246,7 @@ function downloadCsv({
   const lines = [header.map(csvEscape).join(",")];
   rows.forEach((row, index) => {
     const myRank = index + 1;
-    const tier = tierForIndex(index, breaks);
+    const tier = tierForFlatIndex(index, groups);
     const market = isOverall ? row.adp : row.adp_rank;
     const value = playerValue(myRank, market);
     const cols = isOverall
@@ -208,6 +303,7 @@ async function mountAdpRankingsPage(options) {
   let newsIndex = null;
   let orders = { half_ppr: [], full_ppr: [] };
   let tierBreaks = { half_ppr: [], full_ppr: [] };
+  let tierGroups = { half_ppr: [], full_ppr: [] };
   let excluded = [];
   let currentFormat = "half_ppr";
   let dragFromIndex = null;
@@ -219,7 +315,7 @@ async function mountAdpRankingsPage(options) {
       if (signedInEmail) setSyncStatus("Synced across devices");
     },
     onError: (err) => {
-      setSyncStatus(err.message || "Sync failed");
+      setSyncStatus(formatSyncError(err, "Sync failed"));
     },
   });
 
@@ -266,9 +362,11 @@ async function mountAdpRankingsPage(options) {
   }
 
   function setSyncStatus(text) {
-    syncStatus = text;
+    const message =
+      typeof text === "string" ? text : formatSyncError(text, "Sync failed");
+    syncStatus = message;
     const el = document.querySelector("[data-sync-status]");
-    if (el) el.textContent = text;
+    if (el) el.textContent = message;
   }
 
   function renderSyncBar() {
@@ -300,7 +398,7 @@ async function mountAdpRankingsPage(options) {
           setSyncStatus("Signed out — local only until you sign in");
           renderSyncBar();
         } catch (err) {
-          setSyncStatus(err.message || "Sign out failed");
+          setSyncStatus(formatSyncError(err, "Sign out failed"));
         }
       });
       return;
@@ -320,7 +418,7 @@ async function mountAdpRankingsPage(options) {
         await signInWithEmail(email);
         setSyncStatus("Check your email for the sign-in link");
       } catch (err) {
-        setSyncStatus(err.message || "Sign-in failed");
+        setSyncStatus(formatSyncError(err, "Sign-in failed"));
       }
     });
   }
@@ -334,12 +432,28 @@ async function mountAdpRankingsPage(options) {
     }
   }
 
+  function syncFormatFromGroups(fmt) {
+    tierGroups[fmt] = appendMissingPlayers(tierGroups[fmt] || [], orders[fmt] || []);
+    orders[fmt] = groupsToOrder(tierGroups[fmt]);
+    tierBreaks[fmt] = groupsToBreaks(tierGroups[fmt]);
+  }
+
+  function rebuildTierGroups(fmt) {
+    tierGroups[fmt] = breaksToGroups(orders[fmt] || [], tierBreaks[fmt] || []);
+    syncFormatFromGroups(fmt);
+  }
+
+  function rebuildAllTierGroups() {
+    for (const fmt of BOARD_FORMATS) rebuildTierGroups(fmt);
+  }
+
   function applyBoard(board) {
     if (!board?.orders) return;
     orders = mergeOrdersWithPool(cloneOrders(board.orders), allIds);
     tierBreaks = sanitizeTier(cloneTier(board.tier_breaks), orders);
     excluded = cloneExcluded(board.excluded).filter((id) => allIds.includes(id));
     orders = mergeOrdersWithPool(orders, allIds);
+    rebuildAllTierGroups();
   }
 
   function orderedRows() {
@@ -360,14 +474,15 @@ async function mountAdpRankingsPage(options) {
   }
 
   function renderTable() {
-    const rows = orderedRows();
+    const groups = tierGroups[currentFormat] || [];
     const breaks = tierBreaks[currentFormat] || [];
+    const rows = orderedRows();
     const tbody = document.querySelector(`#${tableId} tbody`);
     const parts = [];
+    const colSpan = isOverall ? 6 : 6;
 
     rows.forEach((row, index) => {
       const myRank = index + 1;
-      const tier = tierForIndex(index, breaks);
       const market = isOverall ? row.adp : row.adp_rank;
       const value = playerValue(myRank, market);
       const valueTitle = isOverall
@@ -391,7 +506,6 @@ async function mountAdpRankingsPage(options) {
             <span class="drag-handle" title="Drag to reorder" aria-hidden="true">⋮⋮</span>
             <span class="draft-rank">${myRank}</span>
           </td>
-          <td class="num tier-num" title="Tier ${tier}">T${tier}</td>
           <td>${playerCell(row, newsIndex)}</td>
           ${posCell}
           ${adpCell}
@@ -404,11 +518,12 @@ async function mountAdpRankingsPage(options) {
         </tr>`);
 
       if (breaks.includes(index) && index < rows.length - 1) {
+        const nextTier = tierForFlatIndex(index + 1, groups);
         parts.push(`
           <tr class="tier-break-row" data-break-index="${index}">
-            <td colspan="${isOverall ? 7 : 7}">
+            <td colspan="${colSpan}">
               <div class="tier-break-line">
-                <span>Tier ${tier + 1}</span>
+                <span>Tier ${nextTier}</span>
                 <button type="button" class="tier-break-remove" data-break-after="${index}" title="Remove tier break">Remove</button>
               </div>
             </td>
@@ -418,6 +533,7 @@ async function mountAdpRankingsPage(options) {
 
     tbody.innerHTML = parts.join("");
     initColumnTooltips();
+    initNewsHoverPreviews();
     bindDrag(tbody);
     bindTierButtons(tbody);
     bindExcludeButtons(tbody);
@@ -434,11 +550,12 @@ async function mountAdpRankingsPage(options) {
   }
 
   function toggleBreak(afterIndex) {
-    const current = new Set(tierBreaks[currentFormat] || []);
-    if (current.has(afterIndex)) current.delete(afterIndex);
-    else current.add(afterIndex);
-    tierBreaks[currentFormat] = [...current].sort((a, b) => a - b);
-    tierBreaks = sanitizeTier(tierBreaks, orders);
+    tierGroups[currentFormat] = toggleBreakInGroups(
+      tierGroups[currentFormat] || [],
+      afterIndex,
+      tierBreaks[currentFormat] || []
+    );
+    syncFormatFromGroups(currentFormat);
     persist();
     renderTable();
   }
@@ -482,17 +599,21 @@ async function mountAdpRankingsPage(options) {
         event.preventDefault();
         tr.classList.remove("drag-over");
         const toIndex = Number(tr.dataset.index);
+        const playerId = tr.dataset.playerId;
         if (
           dragFromIndex == null ||
           Number.isNaN(toIndex) ||
-          dragFromIndex === toIndex
+          dragFromIndex === toIndex ||
+          !playerId
         ) {
           return;
         }
-        const displayIds = orderedRows().map((r) => r.player_id);
-        const [moved] = displayIds.splice(dragFromIndex, 1);
-        displayIds.splice(toIndex, 0, moved);
-        orders[currentFormat] = displayIds;
+        tierGroups[currentFormat] = movePlayerInGroups(
+          tierGroups[currentFormat] || [],
+          playerId,
+          toIndex
+        );
+        syncFormatFromGroups(currentFormat);
         persist();
         renderTable();
       });
@@ -522,7 +643,7 @@ async function mountAdpRankingsPage(options) {
         format: currentFormat,
         rows: orderedRows(),
         isOverall,
-        breaks: tierBreaks[currentFormat] || [],
+        groups: tierGroups[currentFormat] || [],
         excludedIds: new Set(excluded),
       });
     });
@@ -538,6 +659,10 @@ async function mountAdpRankingsPage(options) {
         return;
       }
       orders = mergeOrdersWithPool(ordersFromAdp(adp), allIds);
+      tierGroups = {
+        half_ppr: [orders.half_ppr.slice()],
+        full_ppr: [orders.full_ppr.slice()],
+      };
       tierBreaks = { half_ppr: [], full_ppr: [] };
       excluded = [];
       persist();
@@ -562,7 +687,7 @@ async function mountAdpRankingsPage(options) {
           remote = await fetchBoard(position);
         }
       } catch (err) {
-        setSyncStatus(err.message || "Sync unavailable");
+        setSyncStatus(formatSyncError(err, "Sync unavailable"));
       }
     }
 
@@ -604,12 +729,17 @@ async function mountAdpRankingsPage(options) {
       persist();
     } else {
       orders = mergeOrdersWithPool(ordersFromAdp(adp), allIds);
+      tierGroups = {
+        half_ppr: [orders.half_ppr.slice()],
+        full_ppr: [orders.full_ppr.slice()],
+      };
       tierBreaks = { half_ppr: [], full_ppr: [] };
       excluded = [];
       persist();
     }
 
     orders = mergeOrdersWithPool(orders, allIds);
+    rebuildAllTierGroups();
     renderSyncBar();
   }
 
@@ -671,7 +801,7 @@ async function mountAdpRankingsPage(options) {
               setSyncStatus("Synced across devices");
             }
           } catch (err) {
-            setSyncStatus(err.message || "Sync failed");
+            setSyncStatus(formatSyncError(err, "Sync failed"));
           }
         } else if (!email) {
           setSyncStatus("Sign in to sync across devices");
@@ -687,7 +817,7 @@ async function mountAdpRankingsPage(options) {
       if (adp.last_updated) {
         parts.push(`updated ${formatTimestamp(adp.last_updated)}`);
       }
-      parts.push("Drag to rank · × crosses out · + adds a tier break");
+      parts.push("Drag to rank · drag across tier lines to change tiers · × crosses out · + adds a tier break");
       meta.textContent = parts.join(" · ");
     }
 
