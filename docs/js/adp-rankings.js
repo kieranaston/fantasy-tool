@@ -106,26 +106,27 @@ function movePlayerInGroups(groups, playerId, toFlatIndex) {
   const next = groups.map((tier) => [...tier]);
   const flat = next.flat();
   const fromFlatIndex = flat.indexOf(playerId);
-  if (fromFlatIndex === -1 || fromFlatIndex === toFlatIndex) return next;
-
-  const src = locateInGroups(next, fromFlatIndex);
-  next[src.tierIdx].splice(src.posInTier, 1);
-
-  let adjustedTo = toFlatIndex;
-  if (fromFlatIndex < toFlatIndex) adjustedTo -= 1;
-
-  const compact = next.filter((tier) => tier.length > 0);
-  if (!compact.length) return [[playerId]];
-
-  const total = compact.flat().length;
-  if (adjustedTo >= total) {
-    compact[compact.length - 1].push(playerId);
-    return compact;
+  if (fromFlatIndex === -1 || fromFlatIndex === toFlatIndex) {
+    return next;
   }
 
-  const dest = locateInGroups(compact, adjustedTo);
-  compact[dest.tierIdx].splice(dest.posInTier, 0, playerId);
-  return compact;
+  const src = locateInGroups(next, fromFlatIndex);
+  const dest = locateInGroups(next, toFlatIndex);
+  next[src.tierIdx].splice(src.posInTier, 1);
+
+  if (src.tierIdx === dest.tierIdx) {
+    // Same tier: mirror Array#splice(from); splice(to, 0, item) so
+    // dragging down onto the next row places you below them.
+    let insertAt = dest.posInTier;
+    next[src.tierIdx].splice(insertAt, 0, playerId);
+  } else {
+    // Cross-tier: join the destination tier at the drop target.
+    // Source removal only shifts later tiers if we compact; keep empty
+    // slots until the end so dest.tierIdx stays valid.
+    next[dest.tierIdx].splice(dest.posInTier, 0, playerId);
+  }
+
+  return next.filter((tier) => tier.length > 0);
 }
 
 function toggleBreakInGroups(groups, afterFlatIndex, breaks) {
