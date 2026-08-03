@@ -40,6 +40,10 @@ function cloneTier(tiers) {
   return out;
 }
 
+function cloneExcluded(excluded) {
+  return [...new Set((excluded || []).filter(Boolean))];
+}
+
 function adpLookup(adpPayload, format) {
   const map = new Map();
   for (const row of adpPayload?.players?.[format] || []) {
@@ -53,7 +57,7 @@ function formatAdp(adp) {
   return Number(adp).toFixed(1);
 }
 
-/** Per-player delta: market − my rank. Positive = you're higher than ADP. */
+/** Per-player value: market − my rank. Positive = value vs ADP. */
 function playerValue(myRank, marketRank) {
   if (marketRank == null || Number.isNaN(Number(marketRank))) return null;
   return Number(marketRank) - myRank;
@@ -64,10 +68,10 @@ function valueHtml(value, { title }) {
     return `<td class="draft-vs muted">—</td>`;
   }
   const rounded = Math.round(value * 10) / 10;
-  // Positive = you're higher than ADP (reach) → orange; negative → green.
+  // Positive = available later than your rank (value) → green.
   let color = "inherit";
-  if (rounded > 0) color = "#c2410c";
-  else if (rounded < 0) color = "#15803d";
+  if (rounded > 0) color = "#15803d";
+  else if (rounded < 0) color = "#64748b";
   const label =
     rounded === 0 ? "0" : rounded > 0 ? `+${rounded}` : String(rounded);
   return `<td class="draft-vs" style="color:${color};font-weight:600" title="${escapeHtml(title)}">${label}</td>`;
@@ -139,10 +143,11 @@ function downloadCsv({
   rows,
   isOverall,
   breaks,
+  excludedIds,
 }) {
   const header = isOverall
-    ? ["My Rank", "Tier", "Player", "Pos", "Team", "ADP", "Value", "Format"]
-    : ["My Rank", "Tier", "Player", "Team", "ADP", "ADP Rank", "Value", "Format", "Position"];
+    ? ["My Rank", "Tier", "Player", "Pos", "Team", "ADP", "Value", "Excluded", "Format"]
+    : ["My Rank", "Tier", "Player", "Team", "ADP", "ADP Rank", "Value", "Excluded", "Format", "Position"];
   const lines = [header.map(csvEscape).join(",")];
   rows.forEach((row, index) => {
     const myRank = index + 1;
@@ -158,6 +163,7 @@ function downloadCsv({
           row.team || "",
           row.adp ?? "",
           value ?? "",
+          excludedIds?.has(row.player_id) ? "yes" : "",
           formatLabel(format),
         ]
       : [
@@ -168,6 +174,7 @@ function downloadCsv({
           row.adp ?? "",
           row.adp_rank ?? "",
           value ?? "",
+          excludedIds?.has(row.player_id) ? "yes" : "",
           formatLabel(format),
           position.toUpperCase(),
         ];
@@ -201,6 +208,7 @@ async function mountAdpRankingsPage(options) {
   let newsIndex = null;
   let orders = { half_ppr: [], full_ppr: [] };
   let tierBreaks = { half_ppr: [], full_ppr: [] };
+  let excluded = [];
   let currentFormat = "half_ppr";
   let dragFromIndex = null;
   let allIds = [];
@@ -237,8 +245,24 @@ async function mountAdpRankingsPage(options) {
       formats: [...BOARD_FORMATS],
       orders: cloneOrders(orders),
       tier_breaks: cloneTier(tierBreaks),
+      excluded: cloneExcluded(excluded),
       updated_at: new Date().toISOString(),
     };
+  }
+
+  function isExcluded(playerId) {
+    return excluded.includes(playerId);
+  }
+
+  function toggleExcluded(playerId) {
+    if (!playerId) return;
+    if (isExcluded(playerId)) {
+      excluded = excluded.filter((id) => id !== playerId);
+    } else {
+      excluded = [...excluded, playerId];
+    }
+    persist();
+    renderTable();
   }
 
   function setSyncStatus(text) {
@@ -314,6 +338,7 @@ async function mountAdpRankingsPage(options) {
     if (!board?.orders) return;
     orders = mergeOrdersWithPool(cloneOrders(board.orders), allIds);
     tierBreaks = sanitizeTier(cloneTier(board.tier_breaks), orders);
+    excluded = cloneExcluded(board.excluded).filter((id) => allIds.includes(id));
     orders = mergeOrdersWithPool(orders, allIds);
   }
 
@@ -346,8 +371,9 @@ async function mountAdpRankingsPage(options) {
       const market = isOverall ? row.adp : row.adp_rank;
       const value = playerValue(myRank, market);
       const valueTitle = isOverall
-        ? "ADP minus my overall rank. Positive = you're higher than ADP (reach)."
-        : "Positional ADP rank minus my rank. Positive = you're higher than ADP (reach).";
+        ? "ADP minus my overall rank. Positive = value (market later than you)."
+        : "Positional ADP rank minus my rank. Positive = value.";
+      const crossedOut = isExcluded(row.player_id);
 
       const adpCell = `<td class="num">${formatAdp(row.adp)}</td>`;
       const marketCell = isOverall
@@ -360,7 +386,7 @@ async function mountAdpRankingsPage(options) {
         : "";
 
       parts.push(`
-        <tr draggable="true" data-player-id="${escapeHtml(row.player_id)}" data-index="${index}">
+        <tr draggable="true" class="${crossedOut ? "player-excluded" : ""}" data-player-id="${escapeHtml(row.player_id)}" data-index="${index}">
           <td class="draft-rank-cell">
             <span class="drag-handle" title="Drag to reorder" aria-hidden="true">⋮⋮</span>
             <span class="draft-rank">${myRank}</span>
@@ -372,6 +398,7 @@ async function mountAdpRankingsPage(options) {
           ${marketCell}
           ${valueHtml(value, { title: valueTitle })}
           <td class="tier-actions">
+            <button type="button" class="exclude-btn${crossedOut ? " is-excluded" : ""}" data-exclude-id="${escapeHtml(row.player_id)}" title="${crossedOut ? "Restore player" : "Cross out (won't consider)"}" aria-label="${crossedOut ? "Restore player" : "Cross out player"}">${crossedOut ? "↩" : "×"}</button>
             <button type="button" class="tier-break-btn" data-break-after="${index}" title="Toggle tier break below this player">+</button>
           </td>
         </tr>`);
@@ -393,6 +420,17 @@ async function mountAdpRankingsPage(options) {
     initColumnTooltips();
     bindDrag(tbody);
     bindTierButtons(tbody);
+    bindExcludeButtons(tbody);
+  }
+
+  function bindExcludeButtons(tbody) {
+    tbody.querySelectorAll("[data-exclude-id]").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        toggleExcluded(btn.dataset.excludeId);
+      });
+    });
   }
 
   function toggleBreak(afterIndex) {
@@ -485,6 +523,7 @@ async function mountAdpRankingsPage(options) {
         rows: orderedRows(),
         isOverall,
         breaks: tierBreaks[currentFormat] || [],
+        excludedIds: new Set(excluded),
       });
     });
   }
@@ -493,13 +532,14 @@ async function mountAdpRankingsPage(options) {
     resetBtn.addEventListener("click", () => {
       if (
         !window.confirm(
-          "Reset this board to Sleeper ADP order and clear tier breaks for both formats?"
+          "Reset this board to Sleeper ADP order, clear tier breaks, and restore all crossed-out players?"
         )
       ) {
         return;
       }
       orders = mergeOrdersWithPool(ordersFromAdp(adp), allIds);
       tierBreaks = { half_ppr: [], full_ppr: [] };
+      excluded = [];
       persist();
       renderTable();
     });
@@ -545,6 +585,7 @@ async function mountAdpRankingsPage(options) {
             formats: [...BOARD_FORMATS],
             orders: cloneOrders(orders),
             tier_breaks: cloneTier(tierBreaks),
+            excluded: cloneExcluded(excluded),
             updated_at: board.updated_at || new Date().toISOString(),
           })
         );
@@ -564,6 +605,7 @@ async function mountAdpRankingsPage(options) {
     } else {
       orders = mergeOrdersWithPool(ordersFromAdp(adp), allIds);
       tierBreaks = { half_ppr: [], full_ppr: [] };
+      excluded = [];
       persist();
     }
 
@@ -645,7 +687,7 @@ async function mountAdpRankingsPage(options) {
       if (adp.last_updated) {
         parts.push(`updated ${formatTimestamp(adp.last_updated)}`);
       }
-      parts.push("Drag to rank · + adds a tier break");
+      parts.push("Drag to rank · × crosses out · + adds a tier break");
       meta.textContent = parts.join(" · ");
     }
 

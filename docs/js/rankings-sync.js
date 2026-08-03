@@ -78,7 +78,7 @@ async function fetchBoard(position) {
 
   const { data, error } = await sb
     .from("ranking_boards")
-    .select("orders, tier_breaks, updated_at")
+    .select("orders, tier_breaks, excluded, updated_at")
     .eq("user_id", user.id)
     .eq("position", String(position).toUpperCase())
     .maybeSingle();
@@ -88,6 +88,7 @@ async function fetchBoard(position) {
   return {
     orders: data.orders || {},
     tier_breaks: data.tier_breaks || {},
+    excluded: data.excluded || [],
     updated_at: data.updated_at,
   };
 }
@@ -111,6 +112,7 @@ async function saveBoard(board) {
       position: String(board.position).toUpperCase(),
       orders: board.orders,
       tier_breaks: board.tier_breaks,
+      excluded: board.excluded || [],
       updated_at: updatedAt,
     },
     { onConflict: "user_id,position" }

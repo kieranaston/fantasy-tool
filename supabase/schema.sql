@@ -6,9 +6,14 @@ create table if not exists public.ranking_boards (
   position text not null,
   orders jsonb not null default '{}'::jsonb,
   tier_breaks jsonb not null default '{}'::jsonb,
+  excluded jsonb not null default '[]'::jsonb,
   updated_at timestamptz not null default now(),
   primary key (user_id, position)
 );
+
+-- If the table already exists without excluded:
+alter table public.ranking_boards
+  add column if not exists excluded jsonb not null default '[]'::jsonb;
 
 alter table public.ranking_boards enable row level security;
 

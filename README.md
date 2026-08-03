@@ -10,7 +10,7 @@ Boards are seeded from **Sleeper ADP** (includes rookies). Drag to set your rank
 
 | Board | Value |
 | --- | --- |
-| Overall | `ADP − myOverallRank` (positive = you're higher than ADP → reach) |
+| Overall | `ADP − myOverallRank` (positive = market later than you → value) |
 | QB / RB / WR / TE | `posAdpRank − myPosRank` (positional ADP rank vs your rank) |
 
 Half-PPR and PPR keep independent orders/tiers in this browser (`localStorage`).
@@ -54,6 +54,7 @@ GEMINI_MODEL=gemini-2.5-flash-lite   # optional override
 - Pages: **Overall / QB / RB / WR / TE Rankings**
 - Pool: Sleeper ADP depth (overall top 200; position caps QB 40 / RB 60 / WR 80 / TE 40)
 - Drag rows to reorder
+- **×** on a row crosses out a player you won't consider (syncs across devices when signed in)
 - **+** on a row toggles a tier break below it
 - **Reset to ADP** restores ADP order and clears tiers for both formats
 - **Download spreadsheet** exports the current format as CSV
@@ -64,7 +65,7 @@ GEMINI_MODEL=gemini-2.5-flash-lite   # optional override
 Site stays on GitHub Pages (no server for you to run). Rankings sync through a free Supabase project.
 
 1. Create a project at [supabase.com](https://supabase.com)
-2. SQL Editor → run [`supabase/schema.sql`](supabase/schema.sql)
+2. SQL Editor → run [`supabase/schema.sql`](supabase/schema.sql) (re-run after updates to pick up new columns)
 3. Authentication → Providers → enable **Email**
 4. Authentication → URL Configuration → add your site URL to **Redirect URLs**  
    (local: `http://localhost:8000/*`, Pages: `https://<user>.github.io/fantasy-tool/*`)

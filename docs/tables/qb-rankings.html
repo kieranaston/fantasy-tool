@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QB Rankings — Fantasy Reference</title>
-    <link rel="stylesheet" href="../css/site.css?v=3" />
+    <link rel="stylesheet" href="../css/site.css?v=5" />
   </head>
   <body>
     <div class="site-layout">
@@ -72,7 +72,7 @@
               <th>
                 <span class="th-inner">
                   <span class="th-label">Value</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Positional ADP rank minus my rank. Positive means you're higher than ADP (a reach); negative means you're lower">i</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Positional ADP rank minus my rank. Positive means the market ranks them lower than you (value)">i</span>
                 </span>
               </th>
               <th>
@@ -90,7 +90,7 @@
     </div>
 
     <script type="module">
-      import { mountAdpRankingsPage } from "../js/adp-rankings.js?v=6";
+      import { mountAdpRankingsPage } from "../js/adp-rankings.js?v=8";
       mountAdpRankingsPage({ position: "qb", tableId: "qb-rankings-table" });
     </script>
   </body>

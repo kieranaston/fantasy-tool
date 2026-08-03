@@ -558,15 +558,12 @@ table.draft-table > tbody > tr.drag-over {
 }
 
 .draft-vs-higher {
-  /* You're ranking them earlier than ADP — a reach, not a bargain. */
-  color: #c2410c;
+  color: #15803d;
   font-weight: 600;
 }
 
 .draft-vs-lower {
-  /* You're ranking them later than ADP — market pays up first. */
-  color: #15803d;
-  font-weight: 600;
+  color: var(--muted);
 }
 
 td.num {
@@ -604,6 +601,38 @@ td.tier-actions {
 
 .tier-break-btn:hover {
   color: var(--accent);
+}
+
+.exclude-btn {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 0.15rem 0.35rem;
+  line-height: 1;
+  margin-right: 0.15rem;
+}
+
+.exclude-btn:hover {
+  color: var(--danger);
+}
+
+.exclude-btn.is-excluded {
+  color: var(--accent);
+}
+
+table.draft-table > tbody > tr.player-excluded {
+  opacity: 0.55;
+}
+
+table.draft-table > tbody > tr.player-excluded .player-cell-name {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+table.draft-table > tbody > tr.player-excluded .news-tag {
+  text-decoration: line-through;
 }
 
 .tier-break-row td {
