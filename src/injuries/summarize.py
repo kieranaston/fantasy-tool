@@ -110,35 +110,6 @@ BATCH_NARRATIVE_SCHEMA: dict[str, Any] = {
     "required": ["results"],
 }
 
-HISTORY_SYSTEM = (
-    "You write one-sentence NFL injury/availability blurbs for fantasy managers.\n"
-    "Rules:\n"
-    "- Use ONLY the provided structured facts (games missed, Out/Doubtful weeks, "
-    "body parts). Games missed already exclude team bye weeks.\n"
-    "- Lead with games missed when present; mention official Out weeks if they "
-    "differ from the full absence span (e.g. IR gaps without weekly Out listings).\n"
-    "- No medical speculation, prognosis, or invented details.\n"
-    "- Max 35 words. One or two short sentences. No emoji."
-)
-
-HISTORY_BATCH_SCHEMA: dict[str, Any] = {
-    "type": "object",
-    "properties": {
-        "results": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "player_id": {"type": "string"},
-                    "summary": {"type": "string"},
-                },
-                "required": ["player_id", "summary"],
-            },
-        }
-    },
-    "required": ["results"],
-}
-
 _EMOJI_RE = re.compile(
     "["
     "\U0001F300-\U0001F9FF"
@@ -383,54 +354,4 @@ def build_narratives_batch(
         pid = row.get("player_id")
         if pid:
             out[str(pid)] = normalize_summary(str(row.get("summary") or "").strip())
-    return out
-
-
-def enhance_injury_history_summaries(
-    records: list[dict[str, Any]],
-    *,
-    chunk_size: int = 10,
-) -> dict[str, str]:
-    """Optional Gemini polish for injury-history records. Facts-only, no search."""
-    if not records or not gemini_available():
-        return {}
-
-    out: dict[str, str] = {}
-    for i in range(0, len(records), chunk_size):
-        chunk = records[i : i + chunk_size]
-        payload = [
-            {
-                "player_id": r["player_id"],
-                "player_name": r.get("player_name"),
-                "games_played": r.get("games_played"),
-                "team_games": r.get("team_games"),
-                "missed_weeks": r.get("missed_weeks") or [],
-                "out_weeks": r.get("out_weeks") or [],
-                "doubtful_weeks": r.get("doubtful_weeks") or [],
-                "injury_spans": r.get("injury_spans") or [],
-                "primary_injuries": r.get("primary_injuries") or [],
-            }
-            for r in chunk
-        ]
-        user = (
-            "For each player, write one fantasy injury-history sentence "
-            "from the facts only.\n\n"
-            f"{json.dumps(payload, indent=2)}"
-        )
-        try:
-            result = _generate_json(
-                system=HISTORY_SYSTEM,
-                user=user,
-                schema=HISTORY_BATCH_SCHEMA,
-                use_search=False,
-            )
-        except Exception as exc:
-            print(f"  injury-history Gemini chunk failed: {exc}")
-            continue
-        assert isinstance(result, dict)
-        for row in result.get("results") or []:
-            pid = row.get("player_id")
-            summary = normalize_summary(str(row.get("summary") or "").strip())
-            if pid and summary:
-                out[str(pid)] = summary
     return out

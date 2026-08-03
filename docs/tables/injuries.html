@@ -2,22 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Player News — Fantasy Reference</title>
-    <link rel="stylesheet" href="../css/site.css" />
+    <meta http-equiv="refresh" content="0; url=../index.html" />
+    <title>Redirecting…</title>
+    <script>
+      location.replace("../index.html" + location.hash);
+    </script>
   </head>
   <body>
-    <div class="container">
-      <p class="site-header">
-        <a href="../index.html">Home</a><span class="sep"> · </span><span class="nav-current">Player News</span>
-      </p>
-      <p class="meta" data-injuries="summary">Loading…</p>
-      <div id="injuries-container" class="injuries-list"></div>
-    </div>
-
-    <script type="module">
-      import { mountInjuriesPage } from "../js/injuries.js";
-      mountInjuriesPage();
-    </script>
+    <p><a href="../index.html">Player news has moved to the home page.</a></p>
   </body>
 </html>

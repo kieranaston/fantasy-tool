@@ -57,26 +57,7 @@ function newsForRow(row, newsIndex) {
   return newsIndex.byName.get(normalizeName(row.player)) || null;
 }
 
-/** Build player_id → injury-history lookup. */
-function buildHistoryIndex(history) {
-  const byId = new Map();
-  for (const player of history?.players || []) {
-    if (!player?.player_id || !player.label) continue;
-    byId.set(player.player_id, {
-      player_id: player.player_id,
-      label: truncateLabel(player.label, 36),
-      summary: player.summary || player.label,
-    });
-  }
-  return byId;
-}
-
-function historyForRow(row, historyIndex) {
-  if (!historyIndex || !row.player_id) return null;
-  return historyIndex.get(row.player_id) || null;
-}
-
-function playerCell(row, newsIndex, historyIndex) {
+function playerCell(row, newsIndex) {
   const logoHtml = row.logo
     ? `<img class="team-logo" src="${row.logo}" alt="${row.team}">`
     : `<span style="font-weight:600;color:${row.team_color}">${row.team}</span>`;
@@ -85,11 +66,7 @@ function playerCell(row, newsIndex, historyIndex) {
     : "";
   const news = newsForRow(row, newsIndex);
   const newsTag = news
-    ? `<a class="news-tag" href="injuries.html#player-${encodeURIComponent(news.player_id)}" title="${escapeHtml(news.designation)}">${escapeHtml(news.label)}</a>`
-    : "";
-  const history = historyForRow(row, historyIndex);
-  const historyTag = history
-    ? `<a class="history-tag" href="injury-history.html#player-${encodeURIComponent(history.player_id)}" title="${escapeHtml(history.summary)}">${escapeHtml(history.label)}</a>`
+    ? `<a class="news-tag" href="../index.html#player-${encodeURIComponent(news.player_id)}" title="${escapeHtml(news.designation)}">${escapeHtml(news.label)}</a>`
     : "";
   return `
     <div class="player-cell">
@@ -99,14 +76,12 @@ function playerCell(row, newsIndex, historyIndex) {
         ${teamChange}
       </div>
       ${newsTag}
-      ${historyTag}
     </div>`;
 }
 
 export {
   FORMAT_LABELS,
   buildNewsIndex,
-  buildHistoryIndex,
   playerCell,
   escapeHtml,
   normalizeName,

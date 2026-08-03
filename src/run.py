@@ -1,4 +1,4 @@
-"""CLI entry point: refresh manifest + season injury history for the static site."""
+"""CLI entry point: refresh site manifest for the static site."""
 
 from __future__ import annotations
 
@@ -8,7 +8,6 @@ from pathlib import Path
 from src.export.json_writer import MANIFEST_KEYS, write_json
 from src.loaders.nfl_data import get_latest_completed_season
 from src.loaders.sleeper_adp import FORMATS, POSITIONS
-from src.run_injury_history import export_injury_history
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS_DATA = ROOT / "docs" / "data"
@@ -32,8 +31,6 @@ def main() -> None:
     }
     write_json(DOCS_DATA / "manifest.json", manifest, MANIFEST_KEYS)
     print(f"Updated manifest (season {season}, upcoming {upcoming_season})")
-
-    export_injury_history(season=season)
 
 
 if __name__ == "__main__":

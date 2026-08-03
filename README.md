@@ -1,6 +1,6 @@
 # fantasy-tool
 
-Personal fantasy football reference site with editable rankings vs Sleeper ADP, player news, and season injury history.
+Personal fantasy football reference site with editable rankings vs Sleeper ADP and RotoWire player news on the home page.
 
 Data is pulled from [nflverse](https://github.com/nflverse) via [nflreadpy](https://github.com/nflverse/nflreadpy) and [Sleeper](https://docs.sleeper.com/) ADP, then published as static JSON for a GitHub Pages site in `/docs`. Player news is ingested from RotoWire’s Bluesky account (`rotowirenfl.bsky.social`) and grounded-summarized with Gemini.
 
@@ -10,7 +10,7 @@ Boards are seeded from **Sleeper ADP** (includes rookies). Drag to set your rank
 
 | Board | Value |
 | --- | --- |
-| Overall | `ADP − myOverallRank` (positive = market later than you → value) |
+| Overall | `ADP − myOverallRank` (positive = you're higher than ADP → reach) |
 | QB / RB / WR / TE | `posAdpRank − myPosRank` (positional ADP rank vs your rank) |
 
 Half-PPR and PPR keep independent orders/tiers in this browser (`localStorage`).
@@ -30,8 +30,7 @@ python -m venv .venv
 source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -e .
 
-python -m src.run                  # manifest + season injury history (ADP pool)
-python -m src.run_injury_history   # injury history only
+python -m src.run                  # site manifest
 python -m src.run_injuries         # writes docs/data/injuries/
 python -m src.run_adp              # Sleeper ADP + seeds my-rankings.json if missing
 python -m http.server 8000 --directory docs
@@ -81,7 +80,7 @@ The anon key is safe to commit when RLS from `schema.sql` is enabled.
 2. Settings → Pages → Build from branch `main`, folder `/docs`
 3. Site URL: `https://<username>.github.io/fantasy-tool/`
 
-Composite/injury-history refresh on the first Tuesday of each month (injury history uses the ADP player pool). Player news + Sleeper ADP refresh daily via **Refresh injuries**. Trigger either workflow manually from the Actions tab.
+Manifest refresh on the first Tuesday of each month. Player news + Sleeper ADP refresh daily via **Refresh injuries**. Trigger either workflow manually from the Actions tab.
 
 Repository secrets:
 
@@ -93,4 +92,4 @@ Missing Gemini summaries from quota limits are retried automatically on the next
 
 1. Export JSON under `docs/data/` (from `src/run*.py` or a new module)
 2. Add an HTML page under `docs/tables/`
-3. Link it from `docs/index.html`
+3. Add a link in [`docs/js/site-nav.js`](docs/js/site-nav.js)

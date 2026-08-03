@@ -3,10 +3,9 @@ import { initColumnTooltips } from "./tables.js";
 import {
   FORMAT_LABELS,
   buildNewsIndex,
-  buildHistoryIndex,
   playerCell,
   escapeHtml,
-} from "./rankings.js?v=helpers1";
+} from "./rankings.js?v=helpers2";
 import {
   isSyncConfigured,
   getSession,
@@ -54,7 +53,7 @@ function formatAdp(adp) {
   return Number(adp).toFixed(1);
 }
 
-/** Per-player value: market − my rank. Positive = value. */
+/** Per-player delta: market − my rank. Positive = you're higher than ADP. */
 function playerValue(myRank, marketRank) {
   if (marketRank == null || Number.isNaN(Number(marketRank))) return null;
   return Number(marketRank) - myRank;
@@ -199,7 +198,6 @@ async function mountAdpRankingsPage(options) {
 
   let adp = null;
   let newsIndex = null;
-  let historyIndex = null;
   let orders = { half_ppr: [], full_ppr: [] };
   let tierBreaks = { half_ppr: [], full_ppr: [] };
   let currentFormat = "half_ppr";
@@ -347,8 +345,8 @@ async function mountAdpRankingsPage(options) {
       const market = isOverall ? row.adp : row.adp_rank;
       const value = playerValue(myRank, market);
       const valueTitle = isOverall
-        ? "ADP minus my overall rank. Positive = value (market later than you)."
-        : "Positional ADP rank minus my rank. Positive = value.";
+        ? "ADP minus my overall rank. Positive = you're higher than ADP (reach)."
+        : "Positional ADP rank minus my rank. Positive = you're higher than ADP (reach).";
 
       const adpCell = `<td class="num">${formatAdp(row.adp)}</td>`;
       const marketCell = isOverall
@@ -367,7 +365,7 @@ async function mountAdpRankingsPage(options) {
             <span class="draft-rank">${myRank}</span>
           </td>
           <td class="num tier-num" title="Tier ${tier}">T${tier}</td>
-          <td>${playerCell(row, newsIndex, historyIndex)}</td>
+          <td>${playerCell(row, newsIndex)}</td>
           ${posCell}
           ${adpCell}
           ${marketCell}
@@ -574,16 +572,14 @@ async function mountAdpRankingsPage(options) {
 
   try {
     const posKey = String(position).toLowerCase();
-    const [adpData, seedData, summaries, history] = await Promise.all([
+    const [adpData, seedData, summaries] = await Promise.all([
       fetchJSON(`${posKey}/adp.json`),
       fetchJSON(`${posKey}/my-rankings.json`).catch(() => null),
       fetchJSON("injuries/summaries.json").catch(() => null),
-      fetchJSON("injuries/history.json").catch(() => null),
     ]);
 
     adp = adpData;
     newsIndex = buildNewsIndex(summaries);
-    historyIndex = buildHistoryIndex(history);
 
     allIds = (adp.players?.[currentFormat] || [])
       .map((r) => r.player_id)

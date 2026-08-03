@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="../css/site.css" />
   </head>
   <body>
-    <div class="container">
-      <p class="site-header">
-        <a href="../index.html">Home</a><span class="sep"> · </span><span class="nav-current">RB Rankings</span>
-      </p>
+    <div class="site-layout">
+      <aside id="site-nav" class="site-nav" aria-label="Site"></aside>
+      <main class="site-main">
+        <div class="container">
+          <h1 class="page-title">RB Rankings</h1>
       <p class="meta" data-draft="summary">Loading…</p>
 
       <div class="controls draft-controls">
@@ -61,7 +62,7 @@
               <th>
                 <span class="th-inner">
                   <span class="th-label">Value</span>
-                  <span class="col-info" tabindex="0" data-tooltip="Positional ADP rank minus my rank. Positive means the market ranks them lower than you (value)">i</span>
+                  <span class="col-info" tabindex="0" data-tooltip="Positional ADP rank minus my rank. Positive means you're higher than ADP (a reach); negative means you're lower">i</span>
                 </span>
               </th>
               <th>
@@ -74,10 +75,14 @@
           <tbody></tbody>
         </table>
       </div>
+        </div>
+      </main>
     </div>
 
     <script type="module">
-      import { mountAdpRankingsPage } from "../js/adp-rankings.js?v=4";
+      import { mountSiteNav } from "../js/site-nav.js";
+      import { mountAdpRankingsPage } from "../js/adp-rankings.js?v=5";
+      mountSiteNav({ current: "rb" });
       mountAdpRankingsPage({ position: "rb", tableId: "rb-rankings-table" });
     </script>
   </body>

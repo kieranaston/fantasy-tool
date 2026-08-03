@@ -3,23 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fantasy Football Reference</title>
+    <title>Player News — Fantasy Football Reference</title>
     <link rel="stylesheet" href="css/site.css" />
   </head>
   <body>
-    <div class="container">
-      <p class="site-header">Fantasy Football Reference</p>
-      <p>
-        <a href="tables/overall-rankings.html">Overall Rankings</a>
-        · <a href="tables/qb-rankings.html">QB</a>
-        · <a href="tables/rb-rankings.html">RB</a>
-        · <a href="tables/wr-rankings.html">WR</a>
-        · <a href="tables/te-rankings.html">TE</a>
-      </p>
-      <p>
-        <a href="tables/injuries.html">Player News</a>
-        · <a href="tables/injury-history.html">Season Injury History</a>
-      </p>
+    <div class="site-layout">
+      <aside id="site-nav" class="site-nav" aria-label="Site"></aside>
+      <main class="site-main">
+        <div class="container">
+          <h1 class="page-title">Player News</h1>
+          <p class="meta" data-injuries="summary">Loading…</p>
+          <div id="injuries-container" class="injuries-list"></div>
+        </div>
+      </main>
     </div>
+
+    <script type="module">
+      import { mountSiteNav } from "./js/site-nav.js";
+      import { mountInjuriesPage } from "./js/injuries.js";
+      mountSiteNav({ current: "home" });
+      mountInjuriesPage();
+    </script>
   </body>
 </html>
