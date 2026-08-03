@@ -36,6 +36,11 @@ function showError(container, message) {
   container.innerHTML = `<div class="error">${message}</div>`;
 }
 
+/** Show main content after async page data has rendered. */
+function revealPage() {
+  document.body.classList.remove("is-page-loading");
+}
+
 /** Load manifest and populate elements with data-manifest attributes. */
 async function loadManifest() {
   const manifest = await fetchJSON("manifest.json");
@@ -72,4 +77,4 @@ async function loadManifest() {
   return manifest;
 }
 
-export { dataPath, fetchJSON, showError, formatTimestamp, loadManifest };
+export { dataPath, fetchJSON, showError, revealPage, formatTimestamp, loadManifest };

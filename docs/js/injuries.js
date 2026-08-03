@@ -1,4 +1,4 @@
-import { fetchJSON, formatTimestamp, showError } from "./config.js";
+import { fetchJSON, formatTimestamp, showError, revealPage } from "./config.js";
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -125,11 +125,13 @@ async function mountInjuriesPage() {
 
     if (!players.length) {
       container.innerHTML = `<p class="meta">No player news yet.</p>`;
+      revealPage();
       return;
     }
 
     container.innerHTML = players.map(playerCard).join("");
     bindExpand(container);
+    revealPage();
 
     const hash = window.location.hash.replace(/^#/, "");
     if (hash) {
@@ -141,6 +143,7 @@ async function mountInjuriesPage() {
     }
   } catch (err) {
     showError(container, err.message);
+    revealPage();
   }
 }
 

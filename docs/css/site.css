@@ -67,6 +67,20 @@ a:hover {
 
 .site-main {
   min-width: 0;
+  position: relative;
+}
+
+/* Hide shell until data has rendered (empty thead would flash otherwise). */
+body.is-page-loading .site-main > .container {
+  visibility: hidden;
+}
+
+body.is-page-loading .site-main::before {
+  content: "Loading…";
+  display: block;
+  padding: 1.25rem;
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
 .container {

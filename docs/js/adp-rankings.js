@@ -1,4 +1,4 @@
-import { fetchJSON, loadManifest, showError, formatTimestamp } from "./config.js";
+import { fetchJSON, loadManifest, showError, revealPage, formatTimestamp } from "./config.js";
 import { initColumnTooltips, initNewsHoverPreviews } from "./tables.js?v=2";
 import {
   FORMAT_LABELS,
@@ -971,8 +971,10 @@ async function mountAdpRankingsPage(options) {
     }
 
     renderTable();
+    revealPage();
   } catch (err) {
     showError(container, err.message);
+    revealPage();
   }
 }
 
