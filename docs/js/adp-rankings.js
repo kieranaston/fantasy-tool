@@ -599,7 +599,9 @@ async function mountAdpRankingsPage(options) {
         event.preventDefault();
         tr.classList.remove("drag-over");
         const toIndex = Number(tr.dataset.index);
-        const playerId = tr.dataset.playerId;
+        const playerId =
+          event.dataTransfer.getData("text/plain") ||
+          orderedRows()[dragFromIndex]?.player_id;
         if (
           dragFromIndex == null ||
           Number.isNaN(toIndex) ||
