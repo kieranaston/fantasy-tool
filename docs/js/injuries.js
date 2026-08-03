@@ -124,8 +124,7 @@ async function mountInjuriesPage() {
     }
 
     if (!players.length) {
-      container.innerHTML =
-        `<p class="meta">No player news yet. Run <code>python -m src.run_injuries</code> after configuring <code>GEMINI_API_KEY</code>.</p>`;
+      container.innerHTML = `<p class="meta">No player news yet.</p>`;
       return;
     }
 

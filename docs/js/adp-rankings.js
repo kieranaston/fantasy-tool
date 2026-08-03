@@ -967,7 +967,6 @@ async function mountAdpRankingsPage(options) {
       if (adp.last_updated) {
         parts.push(`updated ${formatTimestamp(adp.last_updated)}`);
       }
-      parts.push("Drag to rank · drop on a tier line to land at the bottom of the tier above · × crosses out · + adds a tier break");
       meta.textContent = parts.join(" · ");
     }
 
