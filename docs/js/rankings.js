@@ -68,7 +68,7 @@ function playerCell(row, newsIndex) {
     : "";
   const news = newsForRow(row, newsIndex);
   const newsTag = news
-    ? `<a class="news-tag" href="../index.html#player-${encodeURIComponent(news.player_id)}" data-news-summary="${escapeHtml(news.summary)}" title="Hover for summary · click for full news">${escapeHtml(news.label)}</a>`
+    ? `<a class="news-tag" href="../index.html#player-${encodeURIComponent(news.player_id)}" data-news-summary="${escapeHtml(news.summary)}">${escapeHtml(news.label)}</a>`
     : "";
   return `
     <div class="player-cell">

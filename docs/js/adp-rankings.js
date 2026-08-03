@@ -5,7 +5,7 @@ import {
   buildNewsIndex,
   playerCell,
   escapeHtml,
-} from "./rankings.js?v=helpers3";
+} from "./rankings.js?v=helpers4";
 import {
   isSyncConfigured,
   getSession,
