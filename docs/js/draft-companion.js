@@ -2,15 +2,17 @@ import { fetchJSON, showError, revealPage, formatTimestamp } from "./config.js";
 import {
   scoreCandidates,
   nextPickNumbers,
+  rosterPositionCounts,
+  draftTargets,
   SKILL_POSITIONS,
-} from "./draft-scoring.js?v=3";
+} from "./draft-scoring.js?v=5";
 
-/** Fast while you're on the clock; slower while waiting (picks board still updates). */
-const POLL_ON_CLOCK_MS = 700;
-const POLL_WAITING_MS = 2000;
+/** Fast on your turn / on deck; slower while waiting. */
+const POLL_ON_CLOCK_MS = 500;
+const POLL_ON_DECK_MS = 800;
+const POLL_WAITING_MS = 1500;
 const POLL_IDLE_MS = 4000;
 const DRAFT_META_EVERY = 12;
-/** Only recompute recommendations when it's your turn. */
 const SCORE_WHEN_PICKS_UNTIL_MINE = 0;
 
 function escapeHtml(value) {
@@ -68,15 +70,11 @@ async function resolveDraftId(raw) {
   return String(drafts[0].draft_id);
 }
 
-function buildSlotRosters(picks, slotToRoster) {
-  const rosterToSlot = {};
-  for (const [slot, rosterId] of Object.entries(slotToRoster || {})) {
-    rosterToSlot[String(rosterId)] = Number(slot);
-  }
+function buildSlotRosters(picks) {
+  // Prefer draft_slot — reliable during live/mocks; roster_id maps can lag.
   const bySlot = {};
   for (const pick of picks) {
-    const rosterId = String(pick.roster_id ?? "");
-    const slot = rosterToSlot[rosterId] || Number(pick.draft_slot);
+    const slot = Number(pick.draft_slot);
     if (!slot) continue;
     const meta = pick.metadata || {};
     bySlot[slot] = bySlot[slot] || [];
@@ -87,6 +85,13 @@ function buildSlotRosters(picks, slotToRoster) {
     });
   }
   return bySlot;
+}
+
+function myRosterFingerprint(roster = []) {
+  return roster
+    .map((p) => `${p.player_id}:${p.position}`)
+    .sort()
+    .join("|");
 }
 
 function currentPickNo(picks) {
@@ -125,6 +130,7 @@ async function mountDraftCompanionPage() {
   let pollTick = 0;
   let scoreGen = 0;
   let lastScoredFingerprint = "";
+  let lastMyRosterFp = "";
   let hasScoredOnce = false;
 
   function setStatus(text) {
@@ -161,9 +167,10 @@ async function mountDraftCompanionPage() {
     const status = draft?.status;
     if (status !== "drafting" && status !== "pre_draft") return POLL_IDLE_MS;
     if (!draft) return POLL_WAITING_MS;
-    return pickTiming().until <= SCORE_WHEN_PICKS_UNTIL_MINE
-      ? POLL_ON_CLOCK_MS
-      : POLL_WAITING_MS;
+    const until = pickTiming().until;
+    if (until <= SCORE_WHEN_PICKS_UNTIL_MINE) return POLL_ON_CLOCK_MS;
+    if (until === 1) return POLL_ON_DECK_MS;
+    return POLL_WAITING_MS;
   }
 
   function schedulePoll() {
@@ -196,6 +203,10 @@ async function mountDraftCompanionPage() {
     return pickTiming().until <= SCORE_WHEN_PICKS_UNTIL_MINE;
   }
 
+  function currentBySlot() {
+    return buildSlotRosters(picks);
+  }
+
   function updateMeta(timing, { onClock } = {}) {
     if (!metaEl || !draft) return;
     const parts = [
@@ -209,12 +220,39 @@ async function mountDraftCompanionPage() {
       parts.push(
         timing.until === 1
           ? "on deck"
-          : `waiting (${timing.until} picks) · recs refresh on your turn`
+          : `waiting (${timing.until} picks)`
       );
     } else {
       parts.push("your pick");
     }
     metaEl.textContent = parts.join(" · ");
+  }
+
+  function renderRosterCounts(roster) {
+    const counts = rosterPositionCounts(roster);
+    const targets = draftTargets();
+    const rbWr = (counts.RB || 0) + (counts.WR || 0);
+    needsEl.innerHTML = `
+      <div class="draft-needs-grid">
+        ${["QB", "RB", "WR", "TE"]
+          .map((pos) => {
+            const min = targets.min[pos];
+            const max = targets[pos];
+            const have = counts[pos] || 0;
+            return `<div><strong>${pos}</strong> ${escapeHtml(String(have))} (min ${escapeHtml(
+              String(min)
+            )} · max ${escapeHtml(String(max))})</div>`;
+          })
+          .join("")}
+        <div><strong>RB+WR</strong> ${escapeHtml(String(rbWr))} / max ${escapeHtml(
+          String(targets.rbWrCombinedMax)
+        )}</div>
+      </div>`;
+  }
+
+  function renderWaitingState(roster) {
+    renderRosterCounts(roster);
+    recEl.innerHTML = `<p class="meta">Fresh recommendations appear on your turn (stale lists are cleared so old QB/TE advice can’t linger).</p>`;
   }
 
   function renderRecentPicks() {
@@ -244,24 +282,25 @@ async function mountDraftCompanionPage() {
     const settings = draft.settings || {};
     const timing = pickTiming();
     const onClock = timing.until <= SCORE_WHEN_PICKS_UNTIL_MINE;
+    const bySlot = currentBySlot();
+    const myRoster = bySlot[mySlot] || [];
+    const myFp = myRosterFingerprint(myRoster);
+    const myRosterChanged = myFp !== lastMyRosterFp;
     updateMeta(timing, { onClock });
 
-    if (!onClock) {
-      // Keep prior recommendations visible; only update needs lightly from last score path.
-      if (!hasScoredOnce) {
-        needsEl.innerHTML = `<p class="meta">Recommendations appear when it’s your pick.</p>`;
-        recEl.innerHTML = "";
-      }
+    // Between turns: never keep a stale recommendation list.
+    if (!onClock && !myRosterChanged) {
+      renderWaitingState(myRoster);
       return;
     }
 
-    const slotToRoster = draft.slot_to_roster_id || {};
-    const bySlot = buildSlotRosters(picks, slotToRoster);
+    lastMyRosterFp = myFp;
+
     const byPos = availableByPos();
     const result = scoreCandidates({
       available: null,
       availableByPos: byPos,
-      myRoster: bySlot[mySlot] || [],
+      myRoster,
       opponentRosters: bySlot,
       settings,
       teams: timing.teams,
@@ -273,21 +312,31 @@ async function mountDraftCompanionPage() {
     hasScoredOnce = true;
     lastScoredFingerprint = picksFingerprint(picks);
 
-    const needs = result.myNeeds;
-    const counts = result.myCounts || {};
+    const counts = result.myCounts || rosterPositionCounts(myRoster);
+    const targets = result.targets || draftTargets();
+    const rbWr = (counts.RB || 0) + (counts.WR || 0);
     needsEl.innerHTML = `
       <div class="draft-needs-grid">
-        ${["QB", "RB", "WR", "TE", "FLEX"]
-          .map(
-            (pos) =>
-              `<div><strong>${pos}</strong> need ${escapeHtml(String(needs[pos] ?? 0))}${
-                pos !== "FLEX" ? ` · have ${escapeHtml(String(counts[pos] ?? 0))}` : ""
-              }</div>`
-          )
+        ${["QB", "RB", "WR", "TE"]
+          .map((pos) => {
+            const min = targets.min[pos];
+            const max = targets[pos];
+            const have = counts[pos] ?? 0;
+            return `<div><strong>${pos}</strong> ${escapeHtml(String(have))} (min ${escapeHtml(
+              String(min)
+            )} · max ${escapeHtml(String(max))})</div>`;
+          })
           .join("")}
+        <div><strong>RB+WR</strong> ${escapeHtml(String(rbWr))} / max ${escapeHtml(
+          String(targets.rbWrCombinedMax)
+        )}</div>
       </div>`;
 
     const recs = result.recommendations.slice(0, 8);
+    if (!recs.length) {
+      recEl.innerHTML = `<p class="meta">No strong fits left under your roster caps.</p>`;
+      return;
+    }
     recEl.innerHTML = `
       <table class="draft-table cell-border">
         <thead>
@@ -323,17 +372,30 @@ async function mountDraftCompanionPage() {
 
   function queueScoreRender({ force = false } = {}) {
     const timing = draft ? pickTiming() : null;
+    const bySlot = currentBySlot();
+    const myRoster = bySlot[mySlot] || [];
+    const myFp = myRosterFingerprint(myRoster);
+    const myRosterChanged = myFp !== lastMyRosterFp;
     const onClock = timing ? timing.until <= SCORE_WHEN_PICKS_UNTIL_MINE : false;
-    if (!force && !onClock) {
+
+    if (!force && !onClock && !myRosterChanged) {
       if (timing) updateMeta(timing, { onClock: false });
+      renderWaitingState(myRoster);
       return;
     }
-    // Avoid duplicate scoring for the same board while you're still on the clock.
+
     const fp = picksFingerprint(picks);
-    if (!force && onClock && fp === lastScoredFingerprint && hasScoredOnce) {
+    if (
+      !force &&
+      onClock &&
+      fp === lastScoredFingerprint &&
+      myFp === lastMyRosterFp &&
+      hasScoredOnce
+    ) {
       if (timing) updateMeta(timing, { onClock: true });
       return;
     }
+
     const gen = ++scoreGen;
     requestAnimationFrame(() => {
       if (gen !== scoreGen) return;
@@ -390,6 +452,7 @@ async function mountDraftCompanionPage() {
     pollTick = 0;
     hasScoredOnce = false;
     lastScoredFingerprint = "";
+    lastMyRosterFp = "";
     if (pauseBtn) pauseBtn.textContent = "Pause";
     draftId = await resolveDraftId(input.value);
     draft = await sleeperGet(`/draft/${draftId}`);
@@ -419,6 +482,7 @@ async function mountDraftCompanionPage() {
     mySlot = Number(seatSelect.value) || 1;
     hasScoredOnce = false;
     lastScoredFingerprint = "";
+    lastMyRosterFp = "";
     queueScoreRender({ force: true });
   });
 

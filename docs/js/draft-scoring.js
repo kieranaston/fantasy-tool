@@ -27,17 +27,30 @@ function rosterPositionCounts(players = []) {
 }
 
 /**
- * How many of each position are actually useful to draft.
- * 1QB / 1TE leagues: stop after the starter. RB/WR keep bench depth.
+ * Personal roster construction baseline for recommendations.
+ * Independent of league starter slots (those still drive opponent hunger).
  */
-function draftTargets(settings = {}) {
-  const slots = starterSlotsFromSettings(settings);
+const ROSTER_BASELINE = {
+  QB: { min: 1, max: 2 },
+  RB: { min: 3, max: 6 },
+  WR: { min: 3, max: 6 },
+  TE: { min: 1, max: 2 },
+  rbWrCombinedMax: 10,
+};
+
+function draftTargets() {
   return {
-    QB: Math.max(1, slots.QB),
-    TE: Math.max(1, slots.TE),
-    // starters + flex + a couple bench pieces
-    RB: slots.RB + slots.FLEX + 2,
-    WR: slots.WR + slots.FLEX + 2,
+    QB: ROSTER_BASELINE.QB.max,
+    RB: ROSTER_BASELINE.RB.max,
+    WR: ROSTER_BASELINE.WR.max,
+    TE: ROSTER_BASELINE.TE.max,
+    min: {
+      QB: ROSTER_BASELINE.QB.min,
+      RB: ROSTER_BASELINE.RB.min,
+      WR: ROSTER_BASELINE.WR.min,
+      TE: ROSTER_BASELINE.TE.min,
+    },
+    rbWrCombinedMax: ROSTER_BASELINE.rbWrCombinedMax,
   };
 }
 
@@ -67,25 +80,45 @@ function positionHungry(need, position) {
   return false;
 }
 
+function unmetMinimums(counts) {
+  return SKILL_POSITIONS.filter(
+    (pos) => (counts[pos] || 0) < ROSTER_BASELINE[pos].min
+  );
+}
+
 /**
- * Strong roster construction prior.
- * Extra QBs/TEs are excluded once you have your starter.
+ * Roster-fit prior from the fixed baseline.
+ * Fill mins first; hard-stop at maxes; RB+WR combined ≤ 10.
  */
 function fitMultiplier(counts, settings, position) {
-  const slots = starterSlotsFromSettings(settings);
-  const targets = draftTargets(settings);
+  const base = ROSTER_BASELINE[position];
+  if (!base) return 0;
   const have = counts[position] || 0;
 
-  if (position === "QB" || position === "TE") {
-    if (have >= targets[position]) return 0;
-    return 1.3;
+  if (have >= base.max) return 0;
+  if (
+    (position === "RB" || position === "WR") &&
+    (counts.RB || 0) + (counts.WR || 0) >= ROSTER_BASELINE.rbWrCombinedMax
+  ) {
+    return 0;
   }
 
-  // RB / WR
-  if (have < slots[position]) return 1.25;
-  if (slots.FLEX > 0 && have < slots[position] + 1) return 1.12;
-  if (have < targets[position]) return 1.0;
-  return 0.25;
+  const missing = unmetMinimums(counts);
+
+  // Still under this position's minimum → high priority.
+  if (have < base.min) return 1.4;
+
+  // Already at min for QB/TE while other mins remain → deprioritize extras.
+  if (
+    (position === "QB" || position === "TE") &&
+    missing.some((pos) => pos === "RB" || pos === "WR")
+  ) {
+    return 0.35;
+  }
+
+  // Depth between min and max.
+  if (position === "RB" || position === "WR") return 1.0;
+  return 0.55; // optional 2nd QB/TE
 }
 
 /**
@@ -184,12 +217,21 @@ function scoreCandidates({
     needsBySlot[slot] = rosterNeeds(opponentRosters[slot] || [], settings);
   }
 
-  // Skip scoring QB/TE pools once those starters are filled.
+  // Skip scoring pools that are already at max for your baseline.
+  const targets = draftTargets();
   const SCORE_CAPS = {
-    QB: counts.QB >= draftTargets(settings).QB ? 0 : 10,
-    TE: counts.TE >= draftTargets(settings).TE ? 0 : 10,
-    RB: 40,
-    WR: 40,
+    QB: counts.QB >= targets.QB ? 0 : 10,
+    TE: counts.TE >= targets.TE ? 0 : 10,
+    RB:
+      counts.RB >= targets.RB ||
+      counts.RB + counts.WR >= targets.rbWrCombinedMax
+        ? 0
+        : 40,
+    WR:
+      counts.WR >= targets.WR ||
+      counts.RB + counts.WR >= targets.rbWrCombinedMax
+        ? 0
+        : 40,
   };
   const toScore = [];
   for (const pos of SKILL_POSITIONS) {
@@ -235,7 +277,7 @@ function scoreCandidates({
   return {
     myNeeds,
     myCounts: counts,
-    targets: draftTargets(settings),
+    targets: draftTargets(),
     nextPickNo: nextMine,
     picksUntilNext,
     recommendations: scored.slice(0, 12),
@@ -253,10 +295,12 @@ function round2(n) {
 export {
   starterSlotsFromSettings,
   rosterNeeds,
+  rosterPositionCounts,
   draftTargets,
   fitMultiplier,
   pickNumbersForSlot,
   nextPickNumbers,
   scoreCandidates,
   SKILL_POSITIONS,
+  ROSTER_BASELINE,
 };
