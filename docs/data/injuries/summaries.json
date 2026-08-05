@@ -1,7 +1,333 @@
 {
   "title": "Player News",
-  "last_updated": "2026-08-04T14:48:01Z",
+  "last_updated": "2026-08-05T13:42:12Z",
   "players": [
+    {
+      "player_id": "00-0036973",
+      "player_name": "Travis Etienne",
+      "team": null,
+      "current_designation": "Ceding third-down work to Kamara?",
+      "last_updated": "2026-08-04T16:46:51-07:00",
+      "diff_summary": "Travis Etienne was named the new lead back for New Orleans on March 9th. On July 15th, 128 days later, he was set to combine with Alvin Kamara. By August 4th, 20 days later, there were questions about him ceding third-down work to Kamara.",
+      "extraction": {
+        "status": "Ceding third-down work to Kamara?",
+        "designation": "Ceding third-down work to Kamara?",
+        "date": "2026-08-04T16:46:51-07:00",
+        "direct_quote": "Travis Etienne: Ceding third-down work to Kamara? \n\n https://www.rotowire.com/football/player/travis-etienne-15385",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msc74hk26f2a"
+      },
+      "timeline": [
+        {
+          "id": "2f7a7caf-160a-4339-a59c-c147507a75be",
+          "timestamp": "2026-08-04T16:46:51-07:00",
+          "designation": "Ceding third-down work to Kamara?",
+          "source_text": "Travis Etienne: Ceding third-down work to Kamara? \n\n https://www.rotowire.com/football/player/travis-etienne-15385",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msc74hk26f2a",
+          "source_type": "beat_reporter",
+          "player_name": "Travis Etienne"
+        },
+        {
+          "id": "6c453982-5cf1-42e2-bd0a-af2079396d7d",
+          "timestamp": "2026-07-15T13:40:44-07:00",
+          "designation": "Set to combine with Kamara",
+          "source_text": "Travis Etienne: Set to combine with Kamara \n\n https://www.rotowire.com/football/player/travis-etienne-15385",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqplfawmkk2r",
+          "source_type": "beat_reporter",
+          "player_name": "Travis Etienne"
+        },
+        {
+          "id": "dbe3c6af-b190-4896-9f1f-2b7e91136cdb",
+          "timestamp": "2026-03-09T11:06:47-07:00",
+          "designation": "New lead back for NOLA",
+          "source_text": "Travis Etienne: New lead back for NOLA \n\n https://www.rotowire.com/football/player/travis-etienne-15385",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnh44vpm42a",
+          "source_type": "beat_reporter",
+          "player_name": "Travis Etienne"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0038128",
+      "player_name": "Malik Willis",
+      "team": null,
+      "current_designation": "Looks sharp early in camp",
+      "last_updated": "2026-08-04T12:28:54-07:00",
+      "diff_summary": "Malik Willis signed a three-year contract with Miami on March 9th. By June 5th, 88 days later, his chemistry with wide receivers was noted as not yet established. On August 4th, 60 days later, Willis was reported to be looking sharp early in training camp.",
+      "extraction": {
+        "status": "Looks sharp early in camp",
+        "designation": "Looks sharp early in camp",
+        "date": "2026-08-04T12:28:54-07:00",
+        "direct_quote": "Malik Willis: Looks sharp early in camp \n\n https://www.rotowire.com/football/player/malik-willis-15872",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbqp7ek5b2a"
+      },
+      "timeline": [
+        {
+          "id": "4db03f6d-4f1e-4d43-bdb4-2342642ed2a9",
+          "timestamp": "2026-08-04T12:28:54-07:00",
+          "designation": "Looks sharp early in camp",
+          "source_text": "Malik Willis: Looks sharp early in camp \n\n https://www.rotowire.com/football/player/malik-willis-15872",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbqp7ek5b2a",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Willis"
+        },
+        {
+          "id": "e8bbc567-5ab9-4c86-911d-56a4707d08b6",
+          "timestamp": "2026-06-05T09:14:55-07:00",
+          "designation": "Chemistry with WRs not there yet",
+          "source_text": "Malik Willis: Chemistry with WRs not there yet \n\n https://www.rotowire.com/football/player/malik-willis-15872",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnkjv3uvoq2q",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Willis"
+        },
+        {
+          "id": "33e1238b-bdef-4508-ab91-ec716f78e724",
+          "timestamp": "2026-03-09T09:56:20-07:00",
+          "designation": "Gets three-year deal with Miami",
+          "source_text": "Malik Willis: Gets three-year deal with Miami \n\n https://www.rotowire.com/football/player/malik-willis-15872",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnd65qml72p",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Willis"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0041032",
+      "player_name": "Kenyon Sadiq",
+      "team": null,
+      "current_designation": "Optimism for Week 1 status",
+      "last_updated": "2026-08-04T08:57:34-07:00",
+      "diff_summary": "Kenyon Sadiq was selected by the Jets on April 23rd. Thirty-five days later, on May 28th, he underwent minor surgery and was out for Organized Team Activities. Sadiq returned to practice on July 29th, but on August 4th, 6 days later, he suffered a setback in his recovery, though optimism for his Week 1 status remained.",
+      "extraction": {
+        "status": "Optimism for Week 1 status",
+        "designation": "Optimism for Week 1 status",
+        "date": "2026-08-04T08:57:34-07:00",
+        "direct_quote": "Kenyon Sadiq: Optimism for Week 1 status",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbevd3gqr2a"
+      },
+      "timeline": [
+        {
+          "id": "e1b86e2d-3ff1-4f93-990d-d1b1491c1b5f",
+          "timestamp": "2026-08-04T08:57:34-07:00",
+          "designation": "Optimism for Week 1 status",
+          "source_text": "Kenyon Sadiq: Optimism for Week 1 status",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbevd3gqr2a",
+          "source_type": "beat_reporter",
+          "player_name": "Kenyon Sadiq"
+        },
+        {
+          "id": "a23f022e-47a4-4a09-8739-f73070279c5b",
+          "timestamp": "2026-08-04T07:43:17-07:00",
+          "designation": "Suffers setback in recovery",
+          "source_text": "Kenyon Sadiq: Suffers setback in recovery",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbaqiogpz2a",
+          "source_type": "beat_reporter",
+          "player_name": "Kenyon Sadiq"
+        },
+        {
+          "id": "89dbccad-514d-4adc-93ad-c3cff80a3498",
+          "timestamp": "2026-07-29T06:03:23-07:00",
+          "designation": "Back at practice",
+          "source_text": "Kenyon Sadiq: Back at practice",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrryedbwlx26",
+          "source_type": "beat_reporter",
+          "player_name": "Kenyon Sadiq"
+        },
+        {
+          "id": "874ae4de-0b6f-4c05-ba6d-21879f6b37f6",
+          "timestamp": "2026-05-28T08:29:17-07:00",
+          "designation": "Out for OTAs after minor surgery",
+          "source_text": "Kenyon Sadiq: Out for OTAs after minor surgery \n\n https://www.rotowire.com/football/player/kenyon-sadiq-19279",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmwdm5vepd2y",
+          "source_type": "beat_reporter",
+          "player_name": "Kenyon Sadiq"
+        },
+        {
+          "id": "6643b70a-47af-49c1-a344-e5b5b29f91d5",
+          "timestamp": "2026-04-23T18:49:35-07:00",
+          "designation": "Selected by Jets",
+          "source_text": "Kenyon Sadiq: Selected by Jets \n\n https://www.rotowire.com/football/player/kenyon-sadiq-19279",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mk7fx427ov2o",
+          "source_type": "beat_reporter",
+          "player_name": "Kenyon Sadiq"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0039064",
+      "player_name": "Zay Flowers",
+      "team": null,
+      "current_designation": "Signs extension",
+      "last_updated": "2026-08-04T08:45:14-07:00",
+      "diff_summary": "The Baltimore Ravens picked up Zay Flowers' fifth-year option on April 23rd. On July 16th, 84 days later, the Ravens expressed keenness on an extension. By August 4th, 19 days later, Flowers had signed an extension.",
+      "extraction": {
+        "status": "Signs extension",
+        "designation": "Signs extension",
+        "date": "2026-08-04T08:45:14-07:00",
+        "direct_quote": "Zay Flowers: Signs extension",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbe7awxv42o"
+      },
+      "timeline": [
+        {
+          "id": "8020e1b8-03e8-4d13-b914-19305acbc9f2",
+          "timestamp": "2026-08-04T08:45:14-07:00",
+          "designation": "Signs extension",
+          "source_text": "Zay Flowers: Signs extension",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbe7awxv42o",
+          "source_type": "beat_reporter",
+          "player_name": "Zay Flowers"
+        },
+        {
+          "id": "36ca5d91-112d-4ffc-8bca-1bbe43b57285",
+          "timestamp": "2026-07-16T09:13:07-07:00",
+          "designation": "Ravens keen on extension",
+          "source_text": "Zay Flowers: Ravens keen on extension",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqrmvn2ehv2r",
+          "source_type": "beat_reporter",
+          "player_name": "Zay Flowers"
+        },
+        {
+          "id": "bb3cf40e-3fb4-448a-98c9-9dc8350c73d6",
+          "timestamp": "2026-04-23T06:16:02-07:00",
+          "designation": "Fifth-year option picked up",
+          "source_text": "Zay Flowers: Fifth-year option picked up \n\n https://www.rotowire.com/football/player/zay-flowers-16919",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mk63tnrh6e2d",
+          "source_type": "beat_reporter",
+          "player_name": "Zay Flowers"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0038597",
+      "player_name": "Chase Brown",
+      "team": null,
+      "current_designation": "Still growing as a pass catcher",
+      "last_updated": "2026-08-04T07:53:27-07:00",
+      "diff_summary": "Chase Brown is continuing to develop as a pass catcher.",
+      "extraction": {
+        "status": "Still growing as a pass catcher",
+        "designation": "Still growing as a pass catcher",
+        "date": "2026-08-04T07:53:27-07:00",
+        "direct_quote": "Chase Brown: Still growing as a pass catcher",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbbcogtde2l"
+      },
+      "timeline": [
+        {
+          "id": "2570c715-8027-4b84-8b5e-ccb365266890",
+          "timestamp": "2026-08-04T07:53:27-07:00",
+          "designation": "Still growing as a pass catcher",
+          "source_text": "Chase Brown: Still growing as a pass catcher",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbbcogtde2l",
+          "source_type": "beat_reporter",
+          "player_name": "Chase Brown"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0036912",
+      "player_name": "DeVonta Smith",
+      "team": null,
+      "current_designation": "Sidelined by hamstring injury",
+      "last_updated": "2026-08-04T07:23:27-07:00",
+      "diff_summary": "DeVonta Smith was designated as Philadelphia's WR1 after the A.J. Brown trade on June 1st. He is currently sidelined by a hamstring injury as of August 4th.",
+      "extraction": {
+        "status": "Sidelined by hamstring injury",
+        "designation": "Sidelined by hamstring injury",
+        "date": "2026-08-04T07:23:27-07:00",
+        "direct_quote": "DeVonta Smith: Sidelined by hamstring injury",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msb7mzn4ir2a"
+      },
+      "timeline": [
+        {
+          "id": "c6b17bac-ef0b-4e18-84b5-fbe846230e36",
+          "timestamp": "2026-08-04T07:23:27-07:00",
+          "designation": "Sidelined by hamstring injury",
+          "source_text": "DeVonta Smith: Sidelined by hamstring injury",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msb7mzn4ir2a",
+          "source_type": "beat_reporter",
+          "player_name": "DeVonta Smith"
+        },
+        {
+          "id": "df3819df-76dd-4c2c-ac02-916e747d7df3",
+          "timestamp": "2026-06-01T13:59:33-07:00",
+          "designation": "Philly's WR1 after Brown trade",
+          "source_text": "DeVonta Smith: Philly's WR1 after Brown trade",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnaxwf3m3l2l",
+          "source_type": "beat_reporter",
+          "player_name": "DeVonta Smith"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0040867",
+      "player_name": "Makai Lemon",
+      "team": null,
+      "current_designation": "Dealing with minor hamstring injury",
+      "last_updated": "2026-08-04T07:22:48-07:00",
+      "diff_summary": "Makai Lemon was selected by the Eagles on April 23rd. He was dealing with a hamstring injury on June 2nd, but was ready for training camp on July 17th. However, he was held out of team drills on August 3rd and did not practice Tuesday due to a minor hamstring injury.",
+      "extraction": {
+        "status": "Dealing with minor hamstring injury",
+        "designation": "Dealing with minor hamstring injury",
+        "date": "2026-08-04T07:22:48-07:00",
+        "direct_quote": "Makai Lemon: Dealing with minor hamstring injury",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msb7lup2gk2c"
+      },
+      "timeline": [
+        {
+          "id": "0caa25dd-9697-4018-bd98-57bd6657c5fb",
+          "timestamp": "2026-08-04T07:22:48-07:00",
+          "designation": "Dealing with minor hamstring injury",
+          "source_text": "Makai Lemon: Dealing with minor hamstring injury",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msb7lup2gk2c",
+          "source_type": "beat_reporter",
+          "player_name": "Makai Lemon"
+        },
+        {
+          "id": "2a5e3f95-4d75-4bf9-b2c2-95038b628aea",
+          "timestamp": "2026-08-04T07:15:23-07:00",
+          "designation": "Not practicing Tuesday",
+          "source_text": "Makai Lemon: Not practicing Tuesday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msb76lxsfb26",
+          "source_type": "beat_reporter",
+          "player_name": "Makai Lemon"
+        },
+        {
+          "id": "15b06989-167b-4271-932e-00c98806b4a8",
+          "timestamp": "2026-08-03T10:58:51-07:00",
+          "designation": "Held out of team drills",
+          "source_text": "Makai Lemon: Held out of team drills",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms737bymah25",
+          "source_type": "beat_reporter",
+          "player_name": "Makai Lemon"
+        },
+        {
+          "id": "d7f89e1d-707f-446a-b4ce-181e38a3857e",
+          "timestamp": "2026-07-17T10:00:17-07:00",
+          "designation": "Ready for training camp",
+          "source_text": "Makai Lemon: Ready for training camp",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqu7yw7pcb26",
+          "source_type": "beat_reporter",
+          "player_name": "Makai Lemon"
+        },
+        {
+          "id": "e43a510d-8a2c-411c-93a9-33ec0491f9b2",
+          "timestamp": "2026-06-02T11:53:52-07:00",
+          "designation": "Dealing with hamstring injury",
+          "source_text": "Makai Lemon: Dealing with hamstring injury \n\n https://www.rotowire.com/football/player/makai-lemon-19231",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mndbel7iri2g",
+          "source_type": "beat_reporter",
+          "player_name": "Makai Lemon"
+        },
+        {
+          "id": "66d84a08-1ee8-4065-b6bc-5f59b510d111",
+          "timestamp": "2026-04-23T19:05:59-07:00",
+          "designation": "Selected by Eagles",
+          "source_text": "Makai Lemon: Selected by Eagles \n\n https://www.rotowire.com/football/player/makai-lemon-19231",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mk7gugpclc2a",
+          "source_type": "beat_reporter",
+          "player_name": "Makai Lemon"
+        }
+      ]
+    },
     {
       "player_id": "00-0038542",
       "player_name": "Bijan Robinson",
@@ -211,59 +537,6 @@
           "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgamhcgwns2e",
           "source_type": "beat_reporter",
           "player_name": "Dak Prescott"
-        }
-      ]
-    },
-    {
-      "player_id": "00-0040867",
-      "player_name": "Makai Lemon",
-      "team": null,
-      "current_designation": "Held out of team drills",
-      "last_updated": "2026-08-03T10:58:51-07:00",
-      "diff_summary": "Makai Lemon was drafted by the Eagles on April 23rd, 2026. He dealt with a hamstring injury in early June but was ready for training camp by July 17th, 2026. However, he was held out of team drills on August 3rd, 2026.",
-      "extraction": {
-        "status": "Held out of team drills",
-        "designation": "Held out of team drills",
-        "date": "2026-08-03T10:58:51-07:00",
-        "direct_quote": "Makai Lemon: Held out of team drills",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms737bymah25"
-      },
-      "timeline": [
-        {
-          "id": "15b06989-167b-4271-932e-00c98806b4a8",
-          "timestamp": "2026-08-03T10:58:51-07:00",
-          "designation": "Held out of team drills",
-          "source_text": "Makai Lemon: Held out of team drills",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms737bymah25",
-          "source_type": "beat_reporter",
-          "player_name": "Makai Lemon"
-        },
-        {
-          "id": "d7f89e1d-707f-446a-b4ce-181e38a3857e",
-          "timestamp": "2026-07-17T10:00:17-07:00",
-          "designation": "Ready for training camp",
-          "source_text": "Makai Lemon: Ready for training camp",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqu7yw7pcb26",
-          "source_type": "beat_reporter",
-          "player_name": "Makai Lemon"
-        },
-        {
-          "id": "e43a510d-8a2c-411c-93a9-33ec0491f9b2",
-          "timestamp": "2026-06-02T11:53:52-07:00",
-          "designation": "Dealing with hamstring injury",
-          "source_text": "Makai Lemon: Dealing with hamstring injury \n\n https://www.rotowire.com/football/player/makai-lemon-19231",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mndbel7iri2g",
-          "source_type": "beat_reporter",
-          "player_name": "Makai Lemon"
-        },
-        {
-          "id": "66d84a08-1ee8-4065-b6bc-5f59b510d111",
-          "timestamp": "2026-04-23T19:05:59-07:00",
-          "designation": "Selected by Eagles",
-          "source_text": "Makai Lemon: Selected by Eagles \n\n https://www.rotowire.com/football/player/makai-lemon-19231",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mk7gugpclc2a",
-          "source_type": "beat_reporter",
-          "player_name": "Makai Lemon"
         }
       ]
     },
@@ -495,7 +768,7 @@
       "team": null,
       "current_designation": "Back at practice Monday",
       "last_updated": "2026-08-03T07:50:17-07:00",
-      "diff_summary": "Kyle Monangai: Back at practice Monday.",
+      "diff_summary": "Kyle Monangai was sidelined Friday with a soft-tissue injury but returned to practice Monday, August 4th, 3 days later.",
       "extraction": {
         "status": "Back at practice Monday",
         "designation": "Back at practice Monday",
@@ -955,7 +1228,7 @@
       "team": null,
       "current_designation": "First-team split begins",
       "last_updated": "2026-07-31T07:06:20-07:00",
-      "diff_summary": "Jaylen Warren: First-team split begins.",
+      "diff_summary": "Jaylen Warren has begun seeing a split with the first-team offense as of July 31st.",
       "extraction": {
         "status": "First-team split begins",
         "designation": "First-team split begins",
@@ -1203,7 +1476,7 @@
       "team": null,
       "current_designation": "Frustrated by contract talks",
       "last_updated": "2026-07-30T10:03:24-07:00",
-      "diff_summary": "Baker Mayfield: Frustrated by contract talks.",
+      "diff_summary": "Baker Mayfield expressed a desire for a new contract before training camp, but talks have remained stalled as of July 28th, 53 days after his initial statement. He indicated he will play on his current deal, though he is reportedly frustrated by the lack of progress in negotiations.",
       "extraction": {
         "status": "Frustrated by contract talks",
         "designation": "Frustrated by contract talks",
@@ -1256,7 +1529,7 @@
       "team": null,
       "current_designation": "Practicing Thursday",
       "last_updated": "2026-07-30T08:56:35-07:00",
-      "diff_summary": "Rhamondre Stevenson: Practicing Thursday.",
+      "diff_summary": "Rhamondre Stevenson left practice early on July 28th but returned to practice on Thursday, July 30th, two days later.",
       "extraction": {
         "status": "Practicing Thursday",
         "designation": "Practicing Thursday",
@@ -1787,7 +2060,7 @@
       "team": null,
       "current_designation": "Early lead in RB competition?",
       "last_updated": "2026-07-29T09:16:20-07:00",
-      "diff_summary": "Bhayshul Tuten: Early lead in RB competition?",
+      "diff_summary": "Bhayshul Tuten was projected to be in a backfield timeshare on July 15th. Fourteen days later, on July 29th, reports suggested he might have an early lead in the running back competition.",
       "extraction": {
         "status": "Early lead in RB competition?",
         "designation": "Early lead in RB competition?",
@@ -2066,50 +2339,6 @@
       ]
     },
     {
-      "player_id": "00-0041032",
-      "player_name": "Kenyon Sadiq",
-      "team": null,
-      "current_designation": "Back at practice",
-      "last_updated": "2026-07-29T06:03:23-07:00",
-      "diff_summary": "Kenyon Sadiq was selected by the Jets on April 23rd, 2026. He missed Organized Team Activities (OTAs) after undergoing minor surgery, but returned to practice on July 29th, 2026.",
-      "extraction": {
-        "status": "Back at practice",
-        "designation": "Back at practice",
-        "date": "2026-07-29T06:03:23-07:00",
-        "direct_quote": "Kenyon Sadiq: Back at practice",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrryedbwlx26"
-      },
-      "timeline": [
-        {
-          "id": "89dbccad-514d-4adc-93ad-c3cff80a3498",
-          "timestamp": "2026-07-29T06:03:23-07:00",
-          "designation": "Back at practice",
-          "source_text": "Kenyon Sadiq: Back at practice",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrryedbwlx26",
-          "source_type": "beat_reporter",
-          "player_name": "Kenyon Sadiq"
-        },
-        {
-          "id": "874ae4de-0b6f-4c05-ba6d-21879f6b37f6",
-          "timestamp": "2026-05-28T08:29:17-07:00",
-          "designation": "Out for OTAs after minor surgery",
-          "source_text": "Kenyon Sadiq: Out for OTAs after minor surgery \n\n https://www.rotowire.com/football/player/kenyon-sadiq-19279",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmwdm5vepd2y",
-          "source_type": "beat_reporter",
-          "player_name": "Kenyon Sadiq"
-        },
-        {
-          "id": "6643b70a-47af-49c1-a344-e5b5b29f91d5",
-          "timestamp": "2026-04-23T18:49:35-07:00",
-          "designation": "Selected by Jets",
-          "source_text": "Kenyon Sadiq: Selected by Jets \n\n https://www.rotowire.com/football/player/kenyon-sadiq-19279",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mk7fx427ov2o",
-          "source_type": "beat_reporter",
-          "player_name": "Kenyon Sadiq"
-        }
-      ]
-    },
-    {
       "player_id": "00-0041029",
       "player_name": "Jordyn Tyson",
       "team": null,
@@ -2257,7 +2486,7 @@
       "team": null,
       "current_designation": "Expects to be full go for camp",
       "last_updated": "2026-07-28T10:34:04-07:00",
-      "diff_summary": "Ladd McConkey: Expects to be full go for camp.",
+      "diff_summary": "Ladd McConkey was limited to individual drills on June 16th due to a strained hamstring. As of July 28th, 42 days later, he expects to be a full participant for training camp.",
       "extraction": {
         "status": "Expects to be full go for camp",
         "designation": "Expects to be full go for camp",
@@ -2461,7 +2690,7 @@
       "team": null,
       "current_designation": "Will move around formation more",
       "last_updated": "2026-07-28T08:02:35-07:00",
-      "diff_summary": "DK Metcalf: Will move around formation more.",
+      "diff_summary": "DK Metcalf is expected to be utilized in various formations, as reported on July 28th.",
       "extraction": {
         "status": "Will move around formation more",
         "designation": "Will move around formation more",
@@ -2673,7 +2902,7 @@
       "team": null,
       "current_designation": "Cleared for training camp",
       "last_updated": "2026-07-21T15:22:29-07:00",
-      "diff_summary": "Sam LaPorta: Cleared for training camp.",
+      "diff_summary": "Sam LaPorta practiced on June 4th and was trending in the right direction by June 17th. He was cleared for training camp on July 21st and is expected to be a key part of a tight end-friendly scheme.",
       "extraction": {
         "status": "Cleared for training camp",
         "designation": "Cleared for training camp",
@@ -2770,7 +2999,7 @@
       "team": null,
       "current_designation": "Remains top tight end",
       "last_updated": "2026-07-16T12:52:16-07:00",
-      "diff_summary": "Hunter Henry: Remains top tight end.",
+      "diff_summary": "Hunter Henry remains the top tight end on his team as of July 16th.",
       "extraction": {
         "status": "Remains top tight end",
         "designation": "Remains top tight end",
@@ -2796,7 +3025,7 @@
       "team": null,
       "current_designation": "Draws praise for offseason work",
       "last_updated": "2026-07-16T10:39:49-07:00",
-      "diff_summary": "Trevor Lawrence: Draws praise for offseason work.",
+      "diff_summary": "Trevor Lawrence received praise for his offseason work, according to a report on July 16th.",
       "extraction": {
         "status": "Draws praise for offseason work",
         "designation": "Draws praise for offseason work",
@@ -2848,41 +3077,6 @@
           "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3miciaqrews2r",
           "source_type": "beat_reporter",
           "player_name": "Christian McCaffrey"
-        }
-      ]
-    },
-    {
-      "player_id": "00-0039064",
-      "player_name": "Zay Flowers",
-      "team": null,
-      "current_designation": "Ravens keen on extension",
-      "last_updated": "2026-07-16T09:13:07-07:00",
-      "diff_summary": "The Baltimore Ravens picked up Zay Flowers' fifth-year option on April 23rd, and 84 days later, on July 16th, the team expressed interest in extending his contract.",
-      "extraction": {
-        "status": "Ravens keen on extension",
-        "designation": "Ravens keen on extension",
-        "date": "2026-07-16T09:13:07-07:00",
-        "direct_quote": "Zay Flowers: Ravens keen on extension",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqrmvn2ehv2r"
-      },
-      "timeline": [
-        {
-          "id": "36ca5d91-112d-4ffc-8bca-1bbe43b57285",
-          "timestamp": "2026-07-16T09:13:07-07:00",
-          "designation": "Ravens keen on extension",
-          "source_text": "Zay Flowers: Ravens keen on extension",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqrmvn2ehv2r",
-          "source_type": "beat_reporter",
-          "player_name": "Zay Flowers"
-        },
-        {
-          "id": "bb3cf40e-3fb4-448a-98c9-9dc8350c73d6",
-          "timestamp": "2026-04-23T06:16:02-07:00",
-          "designation": "Fifth-year option picked up",
-          "source_text": "Zay Flowers: Fifth-year option picked up \n\n https://www.rotowire.com/football/player/zay-flowers-16919",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mk63tnrh6e2d",
-          "source_type": "beat_reporter",
-          "player_name": "Zay Flowers"
         }
       ]
     },
@@ -3003,41 +3197,6 @@
       ]
     },
     {
-      "player_id": "00-0036973",
-      "player_name": "Travis Etienne",
-      "team": null,
-      "current_designation": "Set to combine with Kamara",
-      "last_updated": "2026-07-15T13:40:44-07:00",
-      "diff_summary": "Travis Etienne is set to be the new lead back for New Orleans and will combine with Alvin Kamara.",
-      "extraction": {
-        "status": "Set to combine with Kamara",
-        "designation": "Set to combine with Kamara",
-        "date": "2026-07-15T13:40:44-07:00",
-        "direct_quote": "Travis Etienne: Set to combine with Kamara \n\n https://www.rotowire.com/football/player/travis-etienne-15385",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqplfawmkk2r"
-      },
-      "timeline": [
-        {
-          "id": "6c453982-5cf1-42e2-bd0a-af2079396d7d",
-          "timestamp": "2026-07-15T13:40:44-07:00",
-          "designation": "Set to combine with Kamara",
-          "source_text": "Travis Etienne: Set to combine with Kamara \n\n https://www.rotowire.com/football/player/travis-etienne-15385",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqplfawmkk2r",
-          "source_type": "beat_reporter",
-          "player_name": "Travis Etienne"
-        },
-        {
-          "id": "dbe3c6af-b190-4896-9f1f-2b7e91136cdb",
-          "timestamp": "2026-03-09T11:06:47-07:00",
-          "designation": "New lead back for NOLA",
-          "source_text": "Travis Etienne: New lead back for NOLA \n\n https://www.rotowire.com/football/player/travis-etienne-15385",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnh44vpm42a",
-          "source_type": "beat_reporter",
-          "player_name": "Travis Etienne"
-        }
-      ]
-    },
-    {
       "player_id": "00-0039338",
       "player_name": "Brock Bowers",
       "team": null,
@@ -3078,7 +3237,7 @@
       "team": null,
       "current_designation": "Could draw more 1-on-1 matchups",
       "last_updated": "2026-07-10T16:22:36-07:00",
-      "diff_summary": "Courtland Sutton: Could draw more 1-on-1 matchups.",
+      "diff_summary": "Courtland Sutton is expected to draw more one-on-one matchups in the upcoming season, as of July 10th.",
       "extraction": {
         "status": "Could draw more 1-on-1 matchups",
         "designation": "Could draw more 1-on-1 matchups",
@@ -3402,7 +3561,7 @@
       "team": null,
       "current_designation": "Excited for McDaniels' system",
       "last_updated": "2026-06-18T11:20:25-07:00",
-      "diff_summary": "Omarion Hampton: Excited for McDaniels' system.",
+      "diff_summary": "Omarion Hampton expressed excitement about playing in coach McDaniels' system on June 18th.",
       "extraction": {
         "status": "Excited for McDaniels' system",
         "designation": "Excited for McDaniels' system",
@@ -3463,7 +3622,7 @@
       "team": null,
       "current_designation": "Back at practice",
       "last_updated": "2026-06-17T13:10:05-07:00",
-      "diff_summary": "Jacory Croskey-Merritt: Back at practice.",
+      "diff_summary": "Jacory Croskey-Merritt was dealing with a soft-tissue injury as of June 11th. Six days later, on June 17th, he returned to practice.",
       "extraction": {
         "status": "Back at practice",
         "designation": "Back at practice",
@@ -3498,7 +3657,7 @@
       "team": null,
       "current_designation": "Full go at minicamp",
       "last_updated": "2026-06-16T12:42:19-07:00",
-      "diff_summary": "RJ Harvey: Full go at minicamp.",
+      "diff_summary": "RJ Harvey was recovering from a shoulder issue as of June 15th. The following day, he was a full participant at minicamp.",
       "extraction": {
         "status": "Full go at minicamp",
         "designation": "Full go at minicamp",
@@ -3581,47 +3740,12 @@
       ]
     },
     {
-      "player_id": "00-0038128",
-      "player_name": "Malik Willis",
-      "team": null,
-      "current_designation": "Chemistry with WRs not there yet",
-      "last_updated": "2026-06-05T09:14:55-07:00",
-      "diff_summary": "Malik Willis signed a three-year deal with Miami on March 9th, 2026. As of June 5th, 2026, 88 days later, his chemistry with wide receivers was still developing.",
-      "extraction": {
-        "status": "Chemistry with WRs not there yet",
-        "designation": "Chemistry with WRs not there yet",
-        "date": "2026-06-05T09:14:55-07:00",
-        "direct_quote": "Malik Willis: Chemistry with WRs not there yet \n\n https://www.rotowire.com/football/player/malik-willis-15872",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnkjv3uvoq2q"
-      },
-      "timeline": [
-        {
-          "id": "e8bbc567-5ab9-4c86-911d-56a4707d08b6",
-          "timestamp": "2026-06-05T09:14:55-07:00",
-          "designation": "Chemistry with WRs not there yet",
-          "source_text": "Malik Willis: Chemistry with WRs not there yet \n\n https://www.rotowire.com/football/player/malik-willis-15872",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnkjv3uvoq2q",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Willis"
-        },
-        {
-          "id": "33e1238b-bdef-4508-ab91-ec716f78e724",
-          "timestamp": "2026-03-09T09:56:20-07:00",
-          "designation": "Gets three-year deal with Miami",
-          "source_text": "Malik Willis: Gets three-year deal with Miami \n\n https://www.rotowire.com/football/player/malik-willis-15872",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnd65qml72p",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Willis"
-        }
-      ]
-    },
-    {
       "player_id": "00-0038124",
       "player_name": "Christian Watson",
       "team": null,
       "current_designation": "Gets four-year extension",
       "last_updated": "2026-06-04T08:29:47-07:00",
-      "diff_summary": "Christian Watson: Gets four-year extension.",
+      "diff_summary": "Christian Watson signed a four-year contract extension on June 4th.",
       "extraction": {
         "status": "Gets four-year extension",
         "designation": "Gets four-year extension",
@@ -3690,32 +3814,6 @@
           "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnd2kja27t2y",
           "source_type": "beat_reporter",
           "player_name": "Josh Jacobs"
-        }
-      ]
-    },
-    {
-      "player_id": "00-0036912",
-      "player_name": "DeVonta Smith",
-      "team": null,
-      "current_designation": "Philly's WR1 after Brown trade",
-      "last_updated": "2026-06-01T13:59:33-07:00",
-      "diff_summary": "DeVonta Smith is considered Philadelphia's wide receiver one following the A.J. Brown trade, as of June 1st.",
-      "extraction": {
-        "status": "Philly's WR1 after Brown trade",
-        "designation": "Philly's WR1 after Brown trade",
-        "date": "2026-06-01T13:59:33-07:00",
-        "direct_quote": "DeVonta Smith: Philly's WR1 after Brown trade",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnaxwf3m3l2l"
-      },
-      "timeline": [
-        {
-          "id": "df3819df-76dd-4c2c-ac02-916e747d7df3",
-          "timestamp": "2026-06-01T13:59:33-07:00",
-          "designation": "Philly's WR1 after Brown trade",
-          "source_text": "DeVonta Smith: Philly's WR1 after Brown trade",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnaxwf3m3l2l",
-          "source_type": "beat_reporter",
-          "player_name": "DeVonta Smith"
         }
       ]
     },
