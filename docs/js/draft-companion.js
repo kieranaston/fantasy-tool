@@ -5,7 +5,7 @@ import {
   rosterPositionCounts,
   draftTargets,
   SKILL_POSITIONS,
-} from "./draft-scoring.js?v=10";
+} from "./draft-scoring.js?v=11";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 500;

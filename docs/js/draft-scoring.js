@@ -41,6 +41,12 @@ const P_OPP_BASE = {
 const UPSIDE_ROLE_SET = new Set(["handcuff", "committee", "rookie_path", "depth"]);
 
 /**
+ * Contingent upside VORP is a full-season gap; regret is P(gone)×VORP.
+ * Scale upside into roughly comparable units before blending.
+ */
+const UPSIDE_SCORE_SCALE = 0.2;
+
+/**
  * Only count roster mates likely to start when measuring bye clustering.
  * Tunable: half-PPR season projection floor for "starter mass".
  */
@@ -237,6 +243,7 @@ function replacementPts(availableByPos, position, settings, teams) {
 
 /**
  * Ramp upside weight: early = mean VORP; late / mins met = handcuffs & rookies.
+ * Kept deliberately low — upside units are larger than P(gone)×VORP regret.
  */
 function upsideBlendWeight({ counts, settings, currentPickNo, teams, myNeeds }) {
   const slots = starterSlotsFromSettings(settings);
@@ -249,12 +256,12 @@ function upsideBlendWeight({ counts, settings, currentPickNo, teams, myNeeds }) 
   const minsMet = unmetMinimums(counts).length === 0;
   const round = Math.max(1, Math.ceil(Number(currentPickNo || 1) / Math.max(1, teams)));
 
-  if (starterHoles >= 3) return 0.12;
-  if (!minsMet && starterHoles >= 1) return 0.18;
-  if (!minsMet) return 0.3;
-  if (round >= 10) return 0.65;
-  if (round >= 7) return 0.55;
-  return 0.35;
+  if (starterHoles >= 3) return 0.05;
+  if (!minsMet && starterHoles >= 1) return 0.08;
+  if (!minsMet) return 0.12;
+  if (round >= 10) return 0.3;
+  if (round >= 7) return 0.22;
+  return 0.15;
 }
 
 function ownsStarter(player, myRoster = []) {
@@ -396,19 +403,24 @@ function scoreCandidates({
       const demand = opponentDemand(opponentRosters[slot] || [], settings, pos);
       hungry += demand.weight;
     }
-    const pSurvive = survivalProbability({
-      player,
-      picksUntilNext: picksUntilNext || 1,
-      hungryTeamsAhead: hungry,
-      currentPickNo,
-    });
-    const pGone = 1 - pSurvive;
+    // On the clock: regret is pure value (you lose the player if you pass).
+    // Do NOT fake picksUntilNext=1 — that zeros regret for anyone not ADP-due now.
+    const onClock = picksUntilNext <= 0;
+    const pSurvive = onClock
+      ? 0
+      : survivalProbability({
+          player,
+          picksUntilNext,
+          hungryTeamsAhead: hungry,
+          currentPickNo,
+        });
+    const pGone = onClock ? 1 : 1 - pSurvive;
     const regret = pGone * Math.max(0, vorp) * fit;
 
     const upsideVorp = contingentUpsideVorp(player, vorp, repl);
     const pOpp = opportunityPrior(player, myRoster);
     // Upside is role-contingent EV only — scarcity stays on regret (no P(gone) reuse).
-    const upsideScore = upsideVorp * pOpp * fit;
+    const upsideScore = UPSIDE_SCORE_SCALE * upsideVorp * pOpp * fit;
     const combined = (1 - blendW) * regret + blendW * upsideScore;
 
     scored.push({
