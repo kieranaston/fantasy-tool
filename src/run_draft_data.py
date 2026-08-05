@@ -11,8 +11,10 @@ import httpx
 
 from src.config.env import load_dotenv
 from src.export.json_writer import write_json
+from src.loaders.nfl_data import load_team_bye_weeks
 from src.loaders.sleeper_values import (
     build_projections_payload,
+    fetch_sleeper_players_map,
     fetch_sleeper_value_rows,
     normalize_value_players,
 )
@@ -57,8 +59,13 @@ def resolve_season() -> int:
 def write_projections(season: int) -> Path:
     print(f"  Fetching Sleeper RotoWire projections for {season}…")
     raw = fetch_sleeper_value_rows(season=season, order_by="adp_half_ppr")
-    players = normalize_value_players(raw)
+    print("  Fetching Sleeper players map (depth charts)…")
+    players_map = fetch_sleeper_players_map()
+    players = normalize_value_players(raw, players_map=players_map)
     print(f"  Normalized {len(players)} players with projected points")
+    print(f"  Loading {season} team bye weeks…")
+    bye_weeks = load_team_bye_weeks(season)
+    print(f"  Bye weeks for {len(bye_weeks)} teams")
 
     now = utc_now_iso()
     for format_key in ("half_ppr", "full_ppr", "std"):
@@ -66,6 +73,8 @@ def write_projections(season: int) -> Path:
             season=season,
             format_key=format_key,
             players=players,
+            players_map=players_map,
+            bye_weeks=bye_weeks,
         )
         path = DRAFT_DIR / f"projections-{format_key.replace('_', '-')}.json"
         write_json(

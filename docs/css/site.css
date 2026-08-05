@@ -528,6 +528,25 @@ table.draft-table > thead > tr > th {
   color: var(--muted);
 }
 
+.draft-player-cell {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.4rem;
+}
+
+.draft-tag {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  color: var(--muted);
+  border: 1px solid color-mix(in srgb, var(--muted) 35%, transparent);
+  padding: 0.05rem 0.35rem;
+  border-radius: 3px;
+}
+
 .draft-actions {
   display: flex;
   flex-wrap: wrap;

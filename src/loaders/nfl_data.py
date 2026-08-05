@@ -42,6 +42,30 @@ def load_teams() -> pl.DataFrame:
     return nfl.load_teams()
 
 
+def load_team_bye_weeks(season: int) -> dict[str, int]:
+    """Map team abbreviation → bye week for a regular season.
+
+    Derived from nflverse schedules: the unique week in 1–18 with no game.
+    """
+    schedules = nfl.load_schedules([season]).filter(pl.col("game_type") == "REG")
+    if schedules.is_empty():
+        return {}
+    teams = set(schedules["home_team"].to_list()) | set(
+        schedules["away_team"].to_list()
+    )
+    byes: dict[str, int] = {}
+    for team in teams:
+        played = set(
+            schedules.filter(
+                (pl.col("home_team") == team) | (pl.col("away_team") == team)
+            )["week"].to_list()
+        )
+        missing = sorted(set(range(1, 19)) - played)
+        if len(missing) == 1:
+            byes[str(team).upper()] = int(missing[0])
+    return byes
+
+
 def _latest_regular_season_week(stats: pl.DataFrame, season: int) -> int:
     season_stats = stats.filter(
         (pl.col("season") == season) & (pl.col("season_type") == "REG")

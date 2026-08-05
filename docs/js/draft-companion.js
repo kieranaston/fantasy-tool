@@ -5,7 +5,7 @@ import {
   rosterPositionCounts,
   draftTargets,
   SKILL_POSITIONS,
-} from "./draft-scoring.js?v=5";
+} from "./draft-scoring.js?v=10";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 500;
@@ -81,6 +81,7 @@ function buildSlotRosters(picks) {
     bySlot[slot].push({
       player_id: String(pick.player_id || ""),
       position: String(meta.position || "").toUpperCase(),
+      team: String(meta.team || meta.team_abbr || "").toUpperCase(),
       name: `${meta.first_name || ""} ${meta.last_name || ""}`.trim(),
     });
   }
@@ -118,6 +119,7 @@ async function mountDraftCompanionPage() {
 
   let projections = [];
   let projectionsByPos = { QB: [], RB: [], WR: [], TE: [] };
+  let projectionsById = new Map();
   let takenIndex = new Set();
   let pollTimer = null;
   let draftId = null;
@@ -139,13 +141,27 @@ async function mountDraftCompanionPage() {
 
   function indexProjections(players) {
     const byPos = { QB: [], RB: [], WR: [], TE: [] };
+    const byId = new Map();
     for (const p of players) {
       if (byPos[p.position]) byPos[p.position].push(p);
+      byId.set(String(p.sleeper_id), p);
     }
     for (const pos of SKILL_POSITIONS) {
       byPos[pos].sort((a, b) => Number(b.pts) - Number(a.pts));
     }
     projectionsByPos = byPos;
+    projectionsById = byId;
+  }
+
+  function enrichRoster(roster = []) {
+    return roster.map((p) => {
+      const proj = projectionsById.get(String(p.player_id));
+      return {
+        ...p,
+        pts: proj?.pts,
+        bye_week: proj?.bye_week ?? p.bye_week ?? null,
+      };
+    });
   }
 
   function availableByPos() {
@@ -277,13 +293,27 @@ async function mountDraftCompanionPage() {
       </table>`;
   }
 
+  function roleTags(r) {
+    const tags = [];
+    if (r.owns_starter) tags.push("your handcuff");
+    else if (r.role === "handcuff") tags.push("handcuff");
+    else if (r.role === "committee") tags.push("committee");
+    else if (r.role === "rookie_path") tags.push("rookie path");
+    if (r.is_rookie && r.role !== "rookie_path") tags.push("rookie");
+    if (Number(r.bye_fit) < 0.95) tags.push("bye stack");
+    if (!tags.length) return "";
+    return tags
+      .map((t) => `<span class="draft-tag">${escapeHtml(t)}</span>`)
+      .join(" ");
+  }
+
   function renderScores() {
     if (!draft) return;
     const settings = draft.settings || {};
     const timing = pickTiming();
     const onClock = timing.until <= SCORE_WHEN_PICKS_UNTIL_MINE;
     const bySlot = currentBySlot();
-    const myRoster = bySlot[mySlot] || [];
+    const myRoster = enrichRoster(bySlot[mySlot] || []);
     const myFp = myRosterFingerprint(myRoster);
     const myRosterChanged = myFp !== lastMyRosterFp;
     updateMeta(timing, { onClock });
@@ -315,6 +345,7 @@ async function mountDraftCompanionPage() {
     const counts = result.myCounts || rosterPositionCounts(myRoster);
     const targets = result.targets || draftTargets();
     const rbWr = (counts.RB || 0) + (counts.WR || 0);
+    const upsidePct = Math.round((result.upsideWeight || 0) * 100);
     needsEl.innerHTML = `
       <div class="draft-needs-grid">
         ${["QB", "RB", "WR", "TE"]
@@ -330,6 +361,7 @@ async function mountDraftCompanionPage() {
         <div><strong>RB+WR</strong> ${escapeHtml(String(rbWr))} / max ${escapeHtml(
           String(targets.rbWrCombinedMax)
         )}</div>
+        <div><strong>Upside weight</strong> ${escapeHtml(String(upsidePct))}%</div>
       </div>`;
 
     const recs = result.recommendations.slice(0, 8);
@@ -341,8 +373,8 @@ async function mountDraftCompanionPage() {
       <table class="draft-table cell-border">
         <thead>
           <tr>
-            <th>#</th><th>Player</th><th>Pos</th><th>Pts</th><th>VORP</th>
-            <th>ADP</th><th>P(survive)</th><th>Regret</th>
+            <th>#</th><th>Player</th><th>Pos</th><th>Bye</th><th>Pts</th><th>VORP</th>
+            <th>ADP</th><th>P(survive)</th><th>Regret</th><th>Upside</th><th>Combined</th>
           </tr>
         </thead>
         <tbody>
@@ -351,13 +383,21 @@ async function mountDraftCompanionPage() {
               (r, i) => `
             <tr>
               <td>${i + 1}</td>
-              <td>${escapeHtml(r.player)}</td>
+              <td>
+                <div class="draft-player-cell">
+                  <span>${escapeHtml(r.player)}</span>
+                  ${roleTags(r)}
+                </div>
+              </td>
               <td>${escapeHtml(r.position)}</td>
+              <td>${r.bye_week == null ? "—" : escapeHtml(r.bye_week)}</td>
               <td>${escapeHtml(r.pts)}</td>
               <td>${escapeHtml(r.vorp)}</td>
               <td>${r.adp == null ? "—" : escapeHtml(r.adp)}</td>
               <td>${escapeHtml(Math.round(r.p_survive * 100))}%</td>
-              <td><strong>${escapeHtml(r.regret)}</strong></td>
+              <td>${escapeHtml(r.regret)}</td>
+              <td>${escapeHtml(r.upside)}</td>
+              <td><strong>${escapeHtml(r.combined)}</strong></td>
             </tr>`
             )
             .join("")}
@@ -373,7 +413,7 @@ async function mountDraftCompanionPage() {
   function queueScoreRender({ force = false } = {}) {
     const timing = draft ? pickTiming() : null;
     const bySlot = currentBySlot();
-    const myRoster = bySlot[mySlot] || [];
+    const myRoster = enrichRoster(bySlot[mySlot] || []);
     const myFp = myRosterFingerprint(myRoster);
     const myRosterChanged = myFp !== lastMyRosterFp;
     const onClock = timing ? timing.until <= SCORE_WHEN_PICKS_UNTIL_MINE : false;
