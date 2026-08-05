@@ -1,7 +1,17 @@
 import { fetchJSON, showError, revealPage, formatTimestamp } from "./config.js";
-import { scoreCandidates } from "./draft-scoring.js?v=1";
+import {
+  scoreCandidates,
+  nextPickNumbers,
+  SKILL_POSITIONS,
+} from "./draft-scoring.js?v=3";
 
-const POLL_MS = 2500;
+/** Fast while you're on the clock; slower while waiting (picks board still updates). */
+const POLL_ON_CLOCK_MS = 700;
+const POLL_WAITING_MS = 2000;
+const POLL_IDLE_MS = 4000;
+const DRAFT_META_EVERY = 12;
+/** Only recompute recommendations when it's your turn. */
+const SCORE_WHEN_PICKS_UNTIL_MINE = 0;
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -83,6 +93,13 @@ function currentPickNo(picks) {
   return (picks?.length || 0) + 1;
 }
 
+function picksFingerprint(pickList) {
+  const n = pickList?.length || 0;
+  if (!n) return "0";
+  const last = pickList[n - 1];
+  return `${n}:${last?.player_id || ""}:${last?.pick_no || ""}`;
+}
+
 async function mountDraftCompanionPage() {
   const statusEl = document.querySelector("[data-draft-live='status']");
   const metaEl = document.querySelector("[data-draft-live='summary']");
@@ -95,66 +112,177 @@ async function mountDraftCompanionPage() {
   const seatSelect = document.getElementById("draft-seat");
 
   let projections = [];
+  let projectionsByPos = { QB: [], RB: [], WR: [], TE: [] };
+  let takenIndex = new Set();
   let pollTimer = null;
   let draftId = null;
   let draft = null;
   let picks = [];
+  let lastFingerprint = "";
   let mySlot = 1;
   let paused = false;
+  let inFlight = false;
+  let pollTick = 0;
+  let scoreGen = 0;
+  let lastScoredFingerprint = "";
+  let hasScoredOnce = false;
 
   function setStatus(text) {
     if (statusEl) statusEl.textContent = text;
   }
 
+  function indexProjections(players) {
+    const byPos = { QB: [], RB: [], WR: [], TE: [] };
+    for (const p of players) {
+      if (byPos[p.position]) byPos[p.position].push(p);
+    }
+    for (const pos of SKILL_POSITIONS) {
+      byPos[pos].sort((a, b) => Number(b.pts) - Number(a.pts));
+    }
+    projectionsByPos = byPos;
+  }
+
+  function availableByPos() {
+    const out = {};
+    for (const pos of SKILL_POSITIONS) {
+      out[pos] = (projectionsByPos[pos] || []).filter(
+        (p) => !takenIndex.has(String(p.sleeper_id))
+      );
+    }
+    return out;
+  }
+
   function stopTimers() {
-    if (pollTimer) clearInterval(pollTimer);
+    if (pollTimer) clearTimeout(pollTimer);
     pollTimer = null;
   }
 
-  function draftedIds(pickList) {
-    return new Set(pickList.map((p) => String(p.player_id)));
+  function pollDelay() {
+    const status = draft?.status;
+    if (status !== "drafting" && status !== "pre_draft") return POLL_IDLE_MS;
+    if (!draft) return POLL_WAITING_MS;
+    return pickTiming().until <= SCORE_WHEN_PICKS_UNTIL_MINE
+      ? POLL_ON_CLOCK_MS
+      : POLL_WAITING_MS;
   }
 
-  function render() {
-    if (!draft) return;
-    const settings = draft.settings || {};
+  function schedulePoll() {
+    stopTimers();
+    pollTimer = setTimeout(() => {
+      refreshLive()
+        .catch((err) => setStatus(`Poll error: ${err.message}`))
+        .finally(() => {
+          if (draftId && !paused) schedulePoll();
+        });
+    }, pollDelay());
+  }
+
+  function rebuildTaken() {
+    takenIndex = new Set(picks.map((p) => String(p.player_id)));
+  }
+
+  function pickTiming() {
+    const settings = draft?.settings || {};
     const teams = Number(settings.teams || 12);
     const rounds = Number(settings.rounds || 15);
+    const pickNo = currentPickNo(picks);
+    const mine = nextPickNumbers(mySlot, teams, rounds, pickNo);
+    const nextMine = mine[0] ?? pickNo;
+    const until = Math.max(0, nextMine - pickNo);
+    return { teams, rounds, pickNo, nextMine, until };
+  }
+
+  function shouldScoreNow() {
+    return pickTiming().until <= SCORE_WHEN_PICKS_UNTIL_MINE;
+  }
+
+  function updateMeta(timing, { onClock } = {}) {
+    if (!metaEl || !draft) return;
+    const parts = [
+      `${draft.metadata?.name || "Draft"}`,
+      `${draft.status}`,
+      `pick ${Math.min(timing.pickNo, timing.teams * timing.rounds)}`,
+      `you: slot ${mySlot}`,
+      `next yours: ${timing.nextMine}`,
+    ];
+    if (!onClock) {
+      parts.push(
+        timing.until === 1
+          ? "on deck"
+          : `waiting (${timing.until} picks) · recs refresh on your turn`
+      );
+    } else {
+      parts.push("your pick");
+    }
+    metaEl.textContent = parts.join(" · ");
+  }
+
+  function renderRecentPicks() {
+    const recent = [...picks].slice(-12).reverse();
+    boardEl.innerHTML = `
+      <table class="draft-table cell-border">
+        <thead><tr><th>Pick</th><th>Slot</th><th>Player</th><th>Pos</th></tr></thead>
+        <tbody>
+          ${recent
+            .map((p) => {
+              const meta = p.metadata || {};
+              const name = `${meta.first_name || ""} ${meta.last_name || ""}`.trim();
+              return `<tr>
+                <td>${escapeHtml(p.pick_no)}</td>
+                <td>${escapeHtml(p.draft_slot)}</td>
+                <td>${escapeHtml(name)}</td>
+                <td>${escapeHtml(meta.position || "")}</td>
+              </tr>`;
+            })
+            .join("") || `<tr><td colspan="4">No picks yet</td></tr>`}
+        </tbody>
+      </table>`;
+  }
+
+  function renderScores() {
+    if (!draft) return;
+    const settings = draft.settings || {};
+    const timing = pickTiming();
+    const onClock = timing.until <= SCORE_WHEN_PICKS_UNTIL_MINE;
+    updateMeta(timing, { onClock });
+
+    if (!onClock) {
+      // Keep prior recommendations visible; only update needs lightly from last score path.
+      if (!hasScoredOnce) {
+        needsEl.innerHTML = `<p class="meta">Recommendations appear when it’s your pick.</p>`;
+        recEl.innerHTML = "";
+      }
+      return;
+    }
+
     const slotToRoster = draft.slot_to_roster_id || {};
     const bySlot = buildSlotRosters(picks, slotToRoster);
-    const taken = draftedIds(picks);
-    const available = projections.filter((p) => !taken.has(String(p.sleeper_id)));
-    const pickNo = currentPickNo(picks);
+    const byPos = availableByPos();
     const result = scoreCandidates({
-      available,
+      available: null,
+      availableByPos: byPos,
       myRoster: bySlot[mySlot] || [],
       opponentRosters: bySlot,
       settings,
-      teams,
+      teams: timing.teams,
       mySlot,
-      currentPickNo: pickNo,
-      rounds,
+      currentPickNo: timing.pickNo,
+      rounds: timing.rounds,
     });
 
-    if (metaEl) {
-      const parts = [
-        `${draft.metadata?.name || "Draft"}`,
-        `${draft.status}`,
-        `pick ${Math.min(pickNo, teams * rounds)}`,
-        `you: slot ${mySlot}`,
-        `next yours: ${result.nextPickNo}`,
-      ];
-      if (projections[0]?.source) parts.push(projections[0].source);
-      metaEl.textContent = parts.join(" · ");
-    }
+    hasScoredOnce = true;
+    lastScoredFingerprint = picksFingerprint(picks);
 
     const needs = result.myNeeds;
+    const counts = result.myCounts || {};
     needsEl.innerHTML = `
       <div class="draft-needs-grid">
         ${["QB", "RB", "WR", "TE", "FLEX"]
           .map(
             (pos) =>
-              `<div><strong>${pos}</strong> need ${escapeHtml(String(needs[pos] ?? 0))}</div>`
+              `<div><strong>${pos}</strong> need ${escapeHtml(String(needs[pos] ?? 0))}${
+                pos !== "FLEX" ? ` · have ${escapeHtml(String(counts[pos] ?? 0))}` : ""
+              }</div>`
           )
           .join("")}
       </div>`;
@@ -186,26 +314,31 @@ async function mountDraftCompanionPage() {
             .join("")}
         </tbody>
       </table>`;
+  }
 
-    const recent = [...picks].slice(-12).reverse();
-    boardEl.innerHTML = `
-      <table class="draft-table cell-border">
-        <thead><tr><th>Pick</th><th>Slot</th><th>Player</th><th>Pos</th></tr></thead>
-        <tbody>
-          ${recent
-            .map((p) => {
-              const meta = p.metadata || {};
-              const name = `${meta.first_name || ""} ${meta.last_name || ""}`.trim();
-              return `<tr>
-                <td>${escapeHtml(p.pick_no)}</td>
-                <td>${escapeHtml(p.draft_slot)}</td>
-                <td>${escapeHtml(name)}</td>
-                <td>${escapeHtml(meta.position || "")}</td>
-              </tr>`;
-            })
-            .join("") || `<tr><td colspan="4">No picks yet</td></tr>`}
-        </tbody>
-      </table>`;
+  function renderAll() {
+    renderRecentPicks();
+    renderScores();
+  }
+
+  function queueScoreRender({ force = false } = {}) {
+    const timing = draft ? pickTiming() : null;
+    const onClock = timing ? timing.until <= SCORE_WHEN_PICKS_UNTIL_MINE : false;
+    if (!force && !onClock) {
+      if (timing) updateMeta(timing, { onClock: false });
+      return;
+    }
+    // Avoid duplicate scoring for the same board while you're still on the clock.
+    const fp = picksFingerprint(picks);
+    if (!force && onClock && fp === lastScoredFingerprint && hasScoredOnce) {
+      if (timing) updateMeta(timing, { onClock: true });
+      return;
+    }
+    const gen = ++scoreGen;
+    requestAnimationFrame(() => {
+      if (gen !== scoreGen) return;
+      renderScores();
+    });
   }
 
   function fillSeats() {
@@ -217,32 +350,56 @@ async function mountDraftCompanionPage() {
   }
 
   async function refreshLive() {
-    if (!draftId || paused) return;
-    const [detail, nextPicks] = await Promise.all([
-      sleeperGet(`/draft/${draftId}`),
-      sleeperGet(`/draft/${draftId}/picks`),
-    ]);
-    draft = detail;
-    picks = nextPicks || [];
-    setStatus(
-      `Live · ${draft.status} · ${picks.length} picks · polled ${new Date().toLocaleTimeString()}`
-    );
-    render();
+    if (!draftId || paused || inFlight) return;
+    inFlight = true;
+    try {
+      pollTick += 1;
+      const wantMeta = pollTick === 1 || pollTick % DRAFT_META_EVERY === 0;
+      const nextPicks = await sleeperGet(`/draft/${draftId}/picks`);
+      if (wantMeta) {
+        draft = await sleeperGet(`/draft/${draftId}`);
+      }
+      const next = nextPicks || [];
+      const fingerprint = picksFingerprint(next);
+      const changed = fingerprint !== lastFingerprint;
+      picks = next;
+      if (changed) {
+        lastFingerprint = fingerprint;
+        rebuildTaken();
+        renderRecentPicks();
+        queueScoreRender();
+      } else if (draft) {
+        // Still refresh the waiting/on-clock meta while polling.
+        updateMeta(pickTiming(), { onClock: shouldScoreNow() });
+      }
+      const timing = pickTiming();
+      setStatus(
+        `Live · ${draft?.status || "?"} · ${picks.length} picks` +
+          (timing.until === 0 ? " · YOUR PICK" : ` · yours in ${timing.until}`) +
+          ` · ${new Date().toLocaleTimeString()}`
+      );
+    } finally {
+      inFlight = false;
+    }
   }
 
   async function connectLive() {
     stopTimers();
     paused = false;
+    inFlight = false;
+    pollTick = 0;
+    hasScoredOnce = false;
+    lastScoredFingerprint = "";
     if (pauseBtn) pauseBtn.textContent = "Pause";
     draftId = await resolveDraftId(input.value);
     draft = await sleeperGet(`/draft/${draftId}`);
     picks = (await sleeperGet(`/draft/${draftId}/picks`)) || [];
+    lastFingerprint = picksFingerprint(picks);
+    rebuildTaken();
     fillSeats();
-    setStatus(`Connected to draft ${draftId}`);
-    render();
-    pollTimer = setInterval(() => {
-      refreshLive().catch((err) => setStatus(`Poll error: ${err.message}`));
-    }, POLL_MS);
+    setStatus(`Connected · ${draft.status} · ${picks.length} picks`);
+    renderAll();
+    schedulePoll();
   }
 
   connectBtn?.addEventListener("click", () => {
@@ -255,18 +412,20 @@ async function mountDraftCompanionPage() {
     paused = !paused;
     pauseBtn.textContent = paused ? "Resume" : "Pause";
     setStatus(paused ? "Paused" : "Live");
+    if (!paused && draftId) schedulePoll();
+    if (paused) stopTimers();
   });
   seatSelect?.addEventListener("change", () => {
     mySlot = Number(seatSelect.value) || 1;
-    render();
+    hasScoredOnce = false;
+    lastScoredFingerprint = "";
+    queueScoreRender({ force: true });
   });
 
   try {
     const data = await fetchJSON("draft/projections.json");
-    projections = (data.players || []).map((p) => ({
-      ...p,
-      source: data.source,
-    }));
+    projections = data.players || [];
+    indexProjections(projections);
     if (metaEl) {
       metaEl.textContent = data.last_updated
         ? `Projections ready · ${projections.length} players · updated ${formatTimestamp(data.last_updated)}`
