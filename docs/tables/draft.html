@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Draft Companion</title>
+    <link rel="stylesheet" href="../css/site.css?v=11" />
+  </head>
+  <body class="is-page-loading">
+    <nav class="site-nav" aria-label="Primary">
+      <a href="../index.html">Player News</a>
+      <a href="overall-rankings.html">Overall</a>
+      <a href="qb-rankings.html">QB</a>
+      <a href="rb-rankings.html">RB</a>
+      <a href="wr-rankings.html">WR</a>
+      <a href="te-rankings.html">TE</a>
+      <a href="draft.html" class="is-active" aria-current="page">Draft</a>
+    </nav>
+    <main class="site-main">
+      <div class="container">
+        <h1 class="page-title">Draft Companion</h1>
+        <p class="meta" data-draft-live="summary">Loading…</p>
+        <p class="meta" data-draft-live="status"></p>
+
+        <div class="controls draft-controls">
+          <div class="draft-connect-row">
+            <label for="draft-id-input">League / draft ID or URL</label>
+            <input
+              id="draft-id-input"
+              type="text"
+              spellcheck="false"
+              placeholder="Sleeper league id, draft id, or URL"
+            />
+          </div>
+          <div>
+            <label for="draft-seat">Your slot</label>
+            <select id="draft-seat"></select>
+          </div>
+          <div class="draft-actions">
+            <button type="button" id="draft-connect" class="draft-btn">Connect live</button>
+            <button type="button" id="draft-pause" class="draft-btn">Pause</button>
+          </div>
+        </div>
+
+        <section class="draft-panel">
+          <h2 class="draft-section-title">Your needs</h2>
+          <div id="draft-needs"></div>
+        </section>
+
+        <section class="draft-panel">
+          <h2 class="draft-section-title">Recommended now (by regret)</h2>
+          <div id="draft-recommendations" class="table-wrap"></div>
+        </section>
+
+        <section class="draft-panel">
+          <h2 class="draft-section-title">Recent picks</h2>
+          <div id="draft-board" class="table-wrap"></div>
+        </section>
+      </div>
+    </main>
+
+    <script type="module">
+      import { mountDraftCompanionPage } from "../js/draft-companion.js?v=2";
+      mountDraftCompanionPage();
+    </script>
+  </body>
+</html>

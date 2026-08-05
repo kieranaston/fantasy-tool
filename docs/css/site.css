@@ -485,6 +485,49 @@ table.draft-table > thead > tr > th {
   align-items: center;
 }
 
+.draft-connect-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1 1 16rem;
+}
+
+.draft-connect-row input,
+#draft-seat {
+  font-family: inherit;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.4rem;
+  border: none;
+  border-bottom: 1px solid #9ca3af;
+  background: transparent;
+  color: var(--text);
+  min-width: 12rem;
+}
+
+.draft-connect-row input:focus,
+#draft-seat:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
+.draft-panel {
+  margin: 1.25rem 0;
+}
+
+.draft-section-title {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.draft-needs-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
 .draft-actions {
   display: flex;
   flex-wrap: wrap;
