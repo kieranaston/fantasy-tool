@@ -4,8 +4,9 @@ import {
   nextPickNumbers,
   rosterPositionCounts,
   draftTargets,
+  resolveLeagueSettings,
   SKILL_POSITIONS,
-} from "./draft-scoring.js?v=11";
+} from "./draft-scoring.js?v=24";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 500;
@@ -13,7 +14,6 @@ const POLL_ON_DECK_MS = 800;
 const POLL_WAITING_MS = 1500;
 const POLL_IDLE_MS = 4000;
 const DRAFT_META_EVERY = 12;
-const SCORE_WHEN_PICKS_UNTIL_MINE = 0;
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -70,8 +70,25 @@ async function resolveDraftId(raw) {
   return String(drafts[0].draft_id);
 }
 
+function leagueIdFromDraft(draft) {
+  if (!draft) return null;
+  if (draft.league_id) return String(draft.league_id);
+  const metaId = draft.metadata?.league_id;
+  if (metaId) return String(metaId);
+  return null;
+}
+
+async function fetchLeagueForDraft(draft) {
+  const id = leagueIdFromDraft(draft);
+  if (!id) return null;
+  try {
+    return await sleeperGet(`/league/${id}`);
+  } catch {
+    return null;
+  }
+}
+
 function buildSlotRosters(picks) {
-  // Prefer draft_slot — reliable during live/mocks; roster_id maps can lag.
   const bySlot = {};
   for (const pick of picks) {
     const slot = Number(pick.draft_slot);
@@ -124,6 +141,8 @@ async function mountDraftCompanionPage() {
   let pollTimer = null;
   let draftId = null;
   let draft = null;
+  let league = null;
+  let leagueSettings = null;
   let picks = [];
   let lastFingerprint = "";
   let mySlot = 1;
@@ -137,6 +156,10 @@ async function mountDraftCompanionPage() {
 
   function setStatus(text) {
     if (statusEl) statusEl.textContent = text;
+  }
+
+  function refreshLeagueSettings() {
+    leagueSettings = resolveLeagueSettings(draft || {}, league);
   }
 
   function indexProjections(players) {
@@ -184,7 +207,7 @@ async function mountDraftCompanionPage() {
     if (status !== "drafting" && status !== "pre_draft") return POLL_IDLE_MS;
     if (!draft) return POLL_WAITING_MS;
     const until = pickTiming().until;
-    if (until <= SCORE_WHEN_PICKS_UNTIL_MINE) return POLL_ON_CLOCK_MS;
+    if (until <= 0) return POLL_ON_CLOCK_MS;
     if (until === 1) return POLL_ON_DECK_MS;
     return POLL_WAITING_MS;
   }
@@ -205,18 +228,14 @@ async function mountDraftCompanionPage() {
   }
 
   function pickTiming() {
-    const settings = draft?.settings || {};
+    const settings = leagueSettings || resolveLeagueSettings(draft || {}, league);
     const teams = Number(settings.teams || 12);
-    const rounds = Number(settings.rounds || 15);
+    const rounds = Number(settings.rounds || draft?.settings?.rounds || 15);
     const pickNo = currentPickNo(picks);
     const mine = nextPickNumbers(mySlot, teams, rounds, pickNo);
     const nextMine = mine[0] ?? pickNo;
     const until = Math.max(0, nextMine - pickNo);
-    return { teams, rounds, pickNo, nextMine, until };
-  }
-
-  function shouldScoreNow() {
-    return pickTiming().until <= SCORE_WHEN_PICKS_UNTIL_MINE;
+    return { teams, rounds, pickNo, nextMine, until, settings };
   }
 
   function currentBySlot() {
@@ -225,18 +244,19 @@ async function mountDraftCompanionPage() {
 
   function updateMeta(timing, { onClock } = {}) {
     if (!metaEl || !draft) return;
+    const src = timing.settings?.source === "league" ? "league slots" : "draft slots";
+    const slots = timing.settings;
     const parts = [
-      `${draft.metadata?.name || "Draft"}`,
+      `${draft.metadata?.name || league?.name || "Draft"}`,
       `${draft.status}`,
       `pick ${Math.min(timing.pickNo, timing.teams * timing.rounds)}`,
       `you: slot ${mySlot}`,
       `next yours: ${timing.nextMine}`,
+      `${src}: QB${slots.slots_qb}/RB${slots.slots_rb}/WR${slots.slots_wr}/TE${slots.slots_te}/FLEX${slots.slots_flex}`,
     ];
     if (!onClock) {
       parts.push(
-        timing.until === 1
-          ? "on deck"
-          : `waiting (${timing.until} picks)`
+        timing.until === 1 ? "on deck" : `waiting (${timing.until} picks)`
       );
     } else {
       parts.push("your pick");
@@ -244,31 +264,31 @@ async function mountDraftCompanionPage() {
     metaEl.textContent = parts.join(" · ");
   }
 
-  function renderRosterCounts(roster) {
+  function renderRosterCounts(roster, result = null) {
     const counts = rosterPositionCounts(roster);
-    const targets = draftTargets();
-    const rbWr = (counts.RB || 0) + (counts.WR || 0);
+    const targets = result?.targets || draftTargets(leagueSettings || {});
+    const total =
+      (counts.QB || 0) + (counts.RB || 0) + (counts.WR || 0) + (counts.TE || 0);
+    const need = result?.myNeeds;
     needsEl.innerHTML = `
       <div class="draft-needs-grid">
         ${["QB", "RB", "WR", "TE"]
           .map((pos) => {
             const min = targets.min[pos];
-            const max = targets[pos];
             const have = counts[pos] || 0;
-            return `<div><strong>${pos}</strong> ${escapeHtml(String(have))} (min ${escapeHtml(
-              String(min)
-            )} · max ${escapeHtml(String(max))})</div>`;
+            const open = need ? need[pos] : Math.max(0, min - have);
+            return `<div><strong>${pos}</strong> ${escapeHtml(String(have))} · starter holes ${escapeHtml(
+              String(open)
+            )}</div>`;
           })
           .join("")}
-        <div><strong>RB+WR</strong> ${escapeHtml(String(rbWr))} / max ${escapeHtml(
-          String(targets.rbWrCombinedMax)
+        <div><strong>FLEX open</strong> ${escapeHtml(
+          String(result?.myOpenFlex ?? "—")
+        )}</div>
+        <div><strong>Skill total</strong> ${escapeHtml(String(total))} / ${escapeHtml(
+          String(targets.total)
         )}</div>
       </div>`;
-  }
-
-  function renderWaitingState(roster) {
-    renderRosterCounts(roster);
-    recEl.innerHTML = `<p class="meta">Fresh recommendations appear on your turn (stale lists are cleared so old QB/TE advice can’t linger).</p>`;
   }
 
   function renderRecentPicks() {
@@ -295,12 +315,13 @@ async function mountDraftCompanionPage() {
 
   function roleTags(r) {
     const tags = [];
+    if (r.at_risk) tags.push("at risk");
     if (r.owns_starter) tags.push("your handcuff");
     else if (r.role === "handcuff") tags.push("handcuff");
     else if (r.role === "committee") tags.push("committee");
     else if (r.role === "rookie_path") tags.push("rookie path");
     if (r.is_rookie && r.role !== "rookie_path") tags.push("rookie");
-    if (Number(r.bye_fit) < 0.95) tags.push("bye stack");
+    if (r.bye_stack) tags.push("bye stack");
     if (!tags.length) return "";
     return tags
       .map((t) => `<span class="draft-tag">${escapeHtml(t)}</span>`)
@@ -309,22 +330,13 @@ async function mountDraftCompanionPage() {
 
   function renderScores() {
     if (!draft) return;
-    const settings = draft.settings || {};
     const timing = pickTiming();
-    const onClock = timing.until <= SCORE_WHEN_PICKS_UNTIL_MINE;
+    const settings = timing.settings;
+    const onClock = timing.until <= 0;
     const bySlot = currentBySlot();
     const myRoster = enrichRoster(bySlot[mySlot] || []);
-    const myFp = myRosterFingerprint(myRoster);
-    const myRosterChanged = myFp !== lastMyRosterFp;
     updateMeta(timing, { onClock });
-
-    // Between turns: never keep a stale recommendation list.
-    if (!onClock && !myRosterChanged) {
-      renderWaitingState(myRoster);
-      return;
-    }
-
-    lastMyRosterFp = myFp;
+    lastMyRosterFp = myRosterFingerprint(myRoster);
 
     const byPos = availableByPos();
     const result = scoreCandidates({
@@ -342,39 +354,30 @@ async function mountDraftCompanionPage() {
     hasScoredOnce = true;
     lastScoredFingerprint = picksFingerprint(picks);
 
-    const counts = result.myCounts || rosterPositionCounts(myRoster);
-    const targets = result.targets || draftTargets();
-    const rbWr = (counts.RB || 0) + (counts.WR || 0);
-    const upsidePct = Math.round((result.upsideWeight || 0) * 100);
-    needsEl.innerHTML = `
-      <div class="draft-needs-grid">
-        ${["QB", "RB", "WR", "TE"]
-          .map((pos) => {
-            const min = targets.min[pos];
-            const max = targets[pos];
-            const have = counts[pos] ?? 0;
-            return `<div><strong>${pos}</strong> ${escapeHtml(String(have))} (min ${escapeHtml(
-              String(min)
-            )} · max ${escapeHtml(String(max))})</div>`;
-          })
-          .join("")}
-        <div><strong>RB+WR</strong> ${escapeHtml(String(rbWr))} / max ${escapeHtml(
-          String(targets.rbWrCombinedMax)
-        )}</div>
-        <div><strong>Upside weight</strong> ${escapeHtml(String(upsidePct))}%</div>
-      </div>`;
+    renderRosterCounts(myRoster, result);
 
     const recs = result.recommendations.slice(0, 8);
     if (!recs.length) {
-      recEl.innerHTML = `<p class="meta">No strong fits left under your roster caps.</p>`;
+      recEl.innerHTML = `<p class="meta">No players left under your roster caps.</p>`;
       return;
     }
+
+    const atRiskCount = result.predictedAtRisk?.length || 0;
+    const beforeCount = result.predictedBeforeYou?.length || 0;
+    const tip =
+      result.topPick?.at_risk
+        ? `Take ${result.topPick.player} — highest VBD among players predicted gone before your next turn.`
+        : `No urgency — bank ${result.topPick?.player || "top VBD"} (highest VBD available).`;
+
     recEl.innerHTML = `
+      <p class="meta">${escapeHtml(tip)} · ADP sim: ${escapeHtml(
+        String(beforeCount)
+      )} before you, ${escapeHtml(String(atRiskCount))} at risk until next turn.</p>
       <table class="draft-table cell-border">
         <thead>
           <tr>
-            <th>#</th><th>Player</th><th>Pos</th><th>Bye</th><th>Pts</th><th>VORP</th>
-            <th>ADP</th><th>P(survive)</th><th>Regret</th><th>Upside</th><th>Combined</th>
+            <th>#</th><th>Player</th><th>Pos</th><th>Bye</th><th>VBD</th>
+            <th>ADP</th><th>At risk</th>
           </tr>
         </thead>
         <tbody>
@@ -391,13 +394,9 @@ async function mountDraftCompanionPage() {
               </td>
               <td>${escapeHtml(r.position)}</td>
               <td>${r.bye_week == null ? "—" : escapeHtml(r.bye_week)}</td>
-              <td>${escapeHtml(r.pts)}</td>
-              <td>${escapeHtml(r.vorp)}</td>
+              <td><strong>${escapeHtml(r.vbd)}</strong></td>
               <td>${r.adp == null ? "—" : escapeHtml(r.adp)}</td>
-              <td>${escapeHtml(Math.round(r.p_survive * 100))}%</td>
-              <td>${escapeHtml(r.regret)}</td>
-              <td>${escapeHtml(r.upside)}</td>
-              <td><strong>${escapeHtml(r.combined)}</strong></td>
+              <td>${r.at_risk ? "yes" : "—"}</td>
             </tr>`
             )
             .join("")}
@@ -415,24 +414,16 @@ async function mountDraftCompanionPage() {
     const bySlot = currentBySlot();
     const myRoster = enrichRoster(bySlot[mySlot] || []);
     const myFp = myRosterFingerprint(myRoster);
-    const myRosterChanged = myFp !== lastMyRosterFp;
-    const onClock = timing ? timing.until <= SCORE_WHEN_PICKS_UNTIL_MINE : false;
-
-    if (!force && !onClock && !myRosterChanged) {
-      if (timing) updateMeta(timing, { onClock: false });
-      renderWaitingState(myRoster);
-      return;
-    }
+    const onClock = timing ? timing.until <= 0 : false;
 
     const fp = picksFingerprint(picks);
     if (
       !force &&
-      onClock &&
       fp === lastScoredFingerprint &&
       myFp === lastMyRosterFp &&
       hasScoredOnce
     ) {
-      if (timing) updateMeta(timing, { onClock: true });
+      if (timing) updateMeta(timing, { onClock });
       return;
     }
 
@@ -444,7 +435,7 @@ async function mountDraftCompanionPage() {
   }
 
   function fillSeats() {
-    const teams = Number(draft?.settings?.teams || 12);
+    const teams = Number(leagueSettings?.teams || draft?.settings?.teams || 12);
     seatSelect.innerHTML = Array.from({ length: teams }, (_, i) => {
       const slot = i + 1;
       return `<option value="${slot}" ${slot === mySlot ? "selected" : ""}>Slot ${slot}</option>`;
@@ -460,6 +451,8 @@ async function mountDraftCompanionPage() {
       const nextPicks = await sleeperGet(`/draft/${draftId}/picks`);
       if (wantMeta) {
         draft = await sleeperGet(`/draft/${draftId}`);
+        if (!league) league = await fetchLeagueForDraft(draft);
+        refreshLeagueSettings();
       }
       const next = nextPicks || [];
       const fingerprint = picksFingerprint(next);
@@ -471,8 +464,7 @@ async function mountDraftCompanionPage() {
         renderRecentPicks();
         queueScoreRender();
       } else if (draft) {
-        // Still refresh the waiting/on-clock meta while polling.
-        updateMeta(pickTiming(), { onClock: shouldScoreNow() });
+        updateMeta(pickTiming(), { onClock: pickTiming().until <= 0 });
       }
       const timing = pickTiming();
       setStatus(
@@ -496,11 +488,16 @@ async function mountDraftCompanionPage() {
     if (pauseBtn) pauseBtn.textContent = "Pause";
     draftId = await resolveDraftId(input.value);
     draft = await sleeperGet(`/draft/${draftId}`);
+    league = await fetchLeagueForDraft(draft);
+    refreshLeagueSettings();
     picks = (await sleeperGet(`/draft/${draftId}/picks`)) || [];
     lastFingerprint = picksFingerprint(picks);
     rebuildTaken();
     fillSeats();
-    setStatus(`Connected · ${draft.status} · ${picks.length} picks`);
+    const src = leagueSettings?.source || "draft";
+    setStatus(
+      `Connected · ${draft.status} · ${picks.length} picks · slots from ${src}`
+    );
     renderAll();
     schedulePoll();
   }
