@@ -31,7 +31,7 @@ from src.loaders.bluesky import (
     fetch_author_posts,
     posts_to_raw_reports,
 )
-from src.loaders.sleeper_adp import load_ranking_pool_ids
+from src.loaders.sleeper_adp import load_news_pool_ids
 
 ROOT = Path(__file__).resolve().parents[1]
 INJURIES_DIR = ROOT / "docs" / "data" / "injuries"
@@ -44,7 +44,6 @@ REVIEW_PATH = INJURIES_DIR / "review_queue.json"
 
 EXTRACT_CHUNK = 8
 NARRATIVE_CHUNK = 4
-DOCS_DATA = ROOT / "docs" / "data"
 
 
 def _load_dotenv() -> None:
@@ -501,8 +500,8 @@ def main() -> None:
     player_index = load_player_index()
     print(f"  Player index: {len(player_index)} names")
 
-    pool_ids = load_ranking_pool_ids(DOCS_DATA)
-    print(f"  Ranking pool: {len(pool_ids)} players")
+    pool_ids = load_news_pool_ids()
+    print(f"  News pool: {len(pool_ids)} players")
 
     run_started = utc_now_iso()
     reports, bsky_new = ingest_bluesky(player_index, reports, poll_state)
@@ -519,7 +518,7 @@ def main() -> None:
         if name and summary.lower().startswith(name.lower() + ":"):
             status["summary_fallback"] = True
 
-    # Keep status only for ranking-pool players (site news is pool-scoped)
+    # Keep status only for news-pool players (site news is pool-scoped)
     status_current = {
         pid: status
         for pid, status in status_current.items()

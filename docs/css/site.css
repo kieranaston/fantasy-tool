@@ -111,19 +111,6 @@ body.is-page-loading .site-main::before {
     padding: 0.85rem 0.85rem 1.5rem;
   }
 
-  .sync-bar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .sync-login {
-    width: 100%;
-  }
-
-  .sync-login input[type="email"] {
-    min-width: 0;
-    width: 100%;
-  }
 }
 
 .meta {
@@ -141,7 +128,7 @@ body.is-page-loading .site-main::before {
   padding: 0.75rem 0;
 }
 
-/* Ranking / draft boards */
+/* Draft boards */
 table.draft-table {
   width: auto !important;
   max-width: 100%;
@@ -167,112 +154,6 @@ table.draft-table > thead > tr > th {
   border-bottom: 1px solid #9ca3af !important;
   position: relative;
   white-space: nowrap;
-}
-
-.th-inner {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.col-info {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 0.8rem;
-  height: 0.8rem;
-  border: 1px solid #cbd5e1;
-  border-radius: 50%;
-  font-size: 0.55rem;
-  font-weight: 600;
-  font-style: normal;
-  line-height: 1;
-  color: var(--muted);
-  cursor: help;
-  flex-shrink: 0;
-}
-
-.col-tooltip {
-  position: fixed;
-  z-index: 1000;
-  max-width: min(16rem, calc(100vw - 1rem));
-  padding: 0.4rem 0.55rem;
-  background: var(--bg);
-  color: var(--text);
-  border: 1px solid #d1d5db;
-  font-family: inherit;
-  font-size: 0.75rem;
-  font-weight: 400;
-  line-height: 1.35;
-  pointer-events: none;
-}
-
-.player-cell {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0.1rem;
-  width: max-content;
-  max-width: 100%;
-}
-
-.player-cell-top {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  white-space: nowrap;
-}
-
-.team-logo {
-  width: 18px;
-  height: 18px;
-  max-width: 18px;
-  max-height: 18px;
-  display: block;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.team-change {
-  color: var(--accent);
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-/* Size to the name row; don't let long status text widen the column */
-.news-tag {
-  color: var(--accent);
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-decoration: none;
-  border-bottom: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
-  width: 0;
-  min-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.news-tag:hover {
-  color: var(--text);
-  border-bottom-color: var(--text);
-}
-
-.news-hover-tip {
-  position: fixed;
-  z-index: 1100;
-  max-width: min(22rem, calc(100vw - 1.5rem));
-  padding: 0.55rem 0.7rem;
-  background: var(--bg);
-  color: var(--text);
-  border: 1px solid #d1d5db;
-  box-shadow: 0 6px 18px color-mix(in srgb, var(--text) 12%, transparent);
-  font-family: inherit;
-  font-size: 0.8rem;
-  font-weight: 400;
-  line-height: 1.4;
-  white-space: pre-wrap;
-  pointer-events: none;
 }
 
 .status-chip {
@@ -321,32 +202,6 @@ table.draft-table > thead > tr > th {
 .controls select:focus {
   outline: none;
   border-bottom-color: var(--accent);
-}
-
-.format-toggle {
-  display: inline-flex;
-  gap: 0.75rem;
-}
-
-.format-toggle button {
-  font-family: inherit;
-  font-size: inherit;
-  color: var(--muted);
-  background: none;
-  border: none;
-  border-bottom: 1px solid transparent;
-  padding: 0.1rem 0;
-  cursor: pointer;
-}
-
-.format-toggle button:hover {
-  color: var(--text);
-}
-
-.format-toggle button.active {
-  color: var(--text);
-  border-bottom-color: var(--text);
-  font-weight: 600;
 }
 
 .injuries-list {
@@ -544,8 +399,9 @@ table.draft-table > thead > tr > th {
 
 .draft-roster-slot {
   display: flex;
-  align-items: baseline;
-  gap: 0.4rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
   min-width: 0;
 }
 
@@ -557,6 +413,12 @@ table.draft-table > thead > tr > th {
 
 .draft-roster-players {
   color: var(--text);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
 }
 
 .draft-roster-empty {
@@ -589,58 +451,6 @@ table.draft-table > thead > tr > th {
   gap: 0.65rem 1rem;
 }
 
-.sync-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 0.85rem;
-  width: 100%;
-  margin-top: 0.35rem;
-  font-size: 0.8rem;
-  color: var(--muted);
-}
-
-.sync-login {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.4rem 0.6rem;
-}
-
-.sync-login input[type="email"] {
-  font-family: inherit;
-  font-size: 0.8rem;
-  padding: 0.2rem 0.4rem;
-  border: none;
-  border-bottom: 1px solid #9ca3af;
-  background: transparent;
-  color: var(--text);
-  min-width: 14rem;
-}
-
-.sync-login input[type="email"]:focus {
-  outline: none;
-  border-bottom-color: var(--accent);
-}
-
-.sync-user {
-  color: var(--text);
-}
-
-.sync-status {
-  color: var(--muted);
-}
-
-.draft-edit-status {
-  color: var(--muted);
-  font-size: 0.8rem;
-}
-
-.draft-edit-status.draft-dirty {
-  color: var(--text);
-  font-weight: 600;
-}
-
 .draft-btn {
   font-family: inherit;
   font-size: 0.8rem;
@@ -657,166 +467,7 @@ table.draft-table > thead > tr > th {
   border-bottom-color: var(--accent);
 }
 
-.draft-rank-cell {
-  white-space: nowrap;
-}
-
-.drag-handle {
-  display: inline-block;
-  color: var(--muted);
-  font-size: 0.75rem;
-  letter-spacing: -0.15em;
-  margin-right: 0.4rem;
-  cursor: grab;
-  user-select: none;
-}
-
-table.draft-table > tbody > tr[draggable="true"] {
-  cursor: grab;
-  position: relative;
-}
-
-table.draft-table > tbody.is-dragging > tr[draggable="true"]:not(.dragging) {
-  cursor: grabbing;
-}
-
-table.draft-table > tbody > tr.dragging {
-  opacity: 0.4;
-  background: color-mix(in srgb, var(--accent) 8%, var(--bg)) !important;
-}
-
-table.draft-table > tbody > tr.drop-before > td {
-  box-shadow: inset 0 3px 0 0 var(--accent);
-}
-
-table.draft-table > tbody > tr.drop-after > td {
-  box-shadow: inset 0 -3px 0 0 var(--accent);
-}
-
-table.draft-table > tbody > tr.tier-break-row.drop-at-break .tier-break-line {
-  border-top-color: var(--accent);
-  border-top-width: 3px;
-  color: var(--accent);
-}
-
-.draft-vs-higher {
-  color: #15803d;
-  font-weight: 600;
-}
-
-.draft-vs-lower {
-  color: var(--muted);
-}
-
-td.num {
-  text-align: right;
-  white-space: nowrap;
-}
-
-td.tier-num {
-  color: var(--muted);
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-td.pos-cell {
-  font-size: 0.8rem;
-  color: var(--muted);
-  font-weight: 600;
-}
-
-td.tier-actions {
-  width: 1%;
-  white-space: nowrap;
-  text-align: center;
-}
-
-.tier-break-btn {
-  border: none;
-  background: transparent;
-  color: var(--muted);
-  cursor: pointer;
-  font-size: 0.85rem;
-  padding: 0.15rem 0.35rem;
-  line-height: 1;
-}
-
-.tier-break-btn:hover {
-  color: var(--accent);
-}
-
-.exclude-btn {
-  border: none;
-  background: transparent;
-  color: var(--muted);
-  cursor: pointer;
-  font-size: 0.85rem;
-  padding: 0.15rem 0.35rem;
-  line-height: 1;
-  margin-right: 0.15rem;
-}
-
-.exclude-btn:hover {
-  color: var(--danger);
-}
-
-.exclude-btn.is-excluded {
-  color: var(--accent);
-}
-
-table.draft-table > tbody > tr.player-excluded {
-  opacity: 0.55;
-}
-
-table.draft-table > tbody > tr.player-excluded .player-cell-name {
-  text-decoration: line-through;
-  color: var(--muted);
-}
-
-table.draft-table > tbody > tr.player-excluded .news-tag {
-  text-decoration: line-through;
-}
-
-.tier-break-row td {
-  background: var(--bg) !important;
-  border-left: none !important;
-  border-right: none !important;
-  padding: 0.15rem 0.6rem !important;
-}
-
-.tier-break-line {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  border-top: 2px solid var(--accent);
-  padding-top: 0.25rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-
-.tier-break-remove {
-  border: none;
-  background: transparent;
-  color: var(--muted);
-  cursor: pointer;
-  font-size: 0.7rem;
-  text-transform: none;
-  letter-spacing: 0;
-  font-weight: 500;
-  padding: 0;
-}
-
-.tier-break-remove:hover {
-  color: var(--danger);
-}
-
 .muted {
   color: var(--muted);
 }
-
-
 

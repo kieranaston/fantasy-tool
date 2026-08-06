@@ -1,4 +1,4 @@
-"""Sleeper ADP from the undocumented projections endpoint.
+"""Sleeper ADP helpers used to scope player-news to a draft-relevant pool.
 
 ADP is not a projection — Sleeper attaches draft ADP fields on the same
 player-season payload that also carries RotoWire projections.
@@ -27,40 +27,13 @@ FORMATS = {
 
 POSITIONS = ("QB", "RB", "WR", "TE")
 
-# Draft-board depth by position ADP rank.
+# News-pool depth by position ADP rank (same caps as the old ranking boards).
 POSITION_LIMITS = {
     "QB": 25,
     "RB": 45,
     "WR": 45,
     "TE": 25,
 }
-
-
-def load_ranking_pool_ids(docs_data) -> set[str]:
-    """Player IDs currently on any rankings ADP board (overall ∪ positions)."""
-    import json
-    from pathlib import Path
-
-    root = Path(docs_data)
-    ids: set[str] = set()
-    for position in ("overall", *POSITIONS):
-        path = root / position.lower() / "adp.json"
-        if not path.exists():
-            continue
-        try:
-            payload = json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
-            continue
-        players = payload.get("players") or {}
-        for rows in players.values():
-            if not isinstance(rows, list):
-                continue
-            for row in rows:
-                pid = row.get("player_id") if isinstance(row, dict) else None
-                if pid:
-                    ids.add(str(pid))
-    return ids
-
 
 # Sleeper uses ~999 as a sentinel for "no ADP".
 ADP_SENTINEL = 900.0
@@ -235,53 +208,6 @@ def _position_pool_ids(
     return allowed
 
 
-def build_adp_payload(
-    *,
-    season: int,
-    position: str,
-    players: list[dict[str, Any]] | None = None,
-) -> dict[str, Any]:
-    """Build ADP JSON for OVERALL or a single position.
-
-    OVERALL is the union of the position pools (QB/TE top 25, RB/WR top 45),
-    ordered by overall ADP for each format.
-    """
-    position = position.upper()
-    if players is None:
-        raw = fetch_sleeper_projections(season=season, order_by="adp_ppr")
-        players = normalize_adp_players(raw)
-
-    by_format: dict[str, list[dict[str, Any]]] = {}
-    for format_key in FORMATS:
-        if position == "OVERALL":
-            pool_ids = _position_pool_ids(players, format_key=format_key)
-            pool_players = [p for p in players if p.get("player_id") in pool_ids]
-            by_format[format_key] = _ranked_for_format(
-                pool_players,
-                format_key=format_key,
-                position=None,
-                limit=len(pool_players),
-            )
-        else:
-            limit = POSITION_LIMITS.get(position)
-            if limit is None:
-                raise ValueError(f"Unknown position: {position}")
-            by_format[format_key] = _ranked_for_format(
-                players,
-                format_key=format_key,
-                position=position,
-                limit=limit,
-            )
-
-    return {
-        "season": season,
-        "position": position,
-        "formats": list(FORMATS.keys()),
-        "source": "sleeper",
-        "players": by_format,
-    }
-
-
 def draft_season_from_sleeper_state() -> int:
     """Read current fantasy season from Sleeper state (fallback: calendar)."""
     response = httpx.get(
@@ -293,3 +219,15 @@ def draft_season_from_sleeper_state() -> int:
     state = response.json()
     season = state.get("league_season") or state.get("season")
     return int(season)
+
+
+def load_news_pool_ids(*, season: int | None = None) -> set[str]:
+    """Player IDs in the ADP depth caps (overall union of position pools)."""
+    if season is None:
+        season = draft_season_from_sleeper_state()
+    raw = fetch_sleeper_projections(season=season, order_by="adp_ppr")
+    players = normalize_adp_players(raw)
+    ids: set[str] = set()
+    for format_key in FORMATS:
+        ids |= _position_pool_ids(players, format_key=format_key)
+    return ids

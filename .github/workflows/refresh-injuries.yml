@@ -37,17 +37,14 @@ jobs:
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
         run: python -m src.run_injuries
 
-      - name: Refresh Sleeper ADP + seed ranking boards
-        run: python -m src.run_adp
-
-      - name: Commit updated injury and ADP data
+      - name: Commit updated injury data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/data/injuries/ docs/data/*/adp.json docs/data/*/my-rankings.json
+          git add docs/data/injuries/
           if git diff --staged --quiet; then
-            echo "No injury/ADP data changes to commit."
+            echo "No injury data changes to commit."
           else
-            git commit -m "chore: refresh injury summaries and Sleeper ADP [skip ci]"
+            git commit -m "chore: refresh injury summaries [skip ci]"
             git push
           fi

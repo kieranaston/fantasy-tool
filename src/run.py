@@ -5,9 +5,9 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from pathlib import Path
 
+from src.config.scoring import FORMATS, SKILL_POSITIONS
 from src.export.json_writer import MANIFEST_KEYS, write_json
 from src.loaders.nfl_data import get_latest_completed_season
-from src.loaders.sleeper_adp import FORMATS, POSITIONS
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS_DATA = ROOT / "docs" / "data"
@@ -22,8 +22,8 @@ def main() -> None:
     manifest = {
         "season": season,
         "upcoming_season": upcoming_season,
-        "formats": list(FORMATS.keys()),
-        "positions": list(POSITIONS),
+        "formats": list(FORMATS),
+        "positions": list(SKILL_POSITIONS),
         "last_updated": datetime.now(timezone.utc)
         .replace(microsecond=0)
         .isoformat()

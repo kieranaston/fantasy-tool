@@ -2,11 +2,9 @@ import { fetchJSON, showError, revealPage } from "./config.js";
 import {
   scoreCandidates,
   nextPickNumbers,
-  rosterPositionCounts,
-  draftTargets,
   resolveLeagueSettings,
   SKILL_POSITIONS,
-} from "./draft-scoring.js?v=36";
+} from "./draft-scoring.js?v=48";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 500;
@@ -264,57 +262,26 @@ async function mountDraftCompanionPage() {
     metaEl.textContent = parts.join(" · ");
   }
 
-  /** RB/WR slack is the live lean; "forced" means that side has run out. */
-  function slackLabel(result) {
-    const slack = result?.slack;
-    if (!slack) return "—";
-    const parts = ["RB", "WR"]
-      .filter((pos) => slack[pos] != null)
-      .map((pos) => `${pos} ${slack[pos] === 0 ? "forced" : slack[pos]}`);
-    return parts.length ? parts.join(" · ") : "full";
-  }
-
   function renderRosterCounts(roster, result = null) {
-    const counts = rosterPositionCounts(roster);
-    const targets = result?.targets || draftTargets(leagueSettings || {});
-    const total =
-      (counts.QB || 0) + (counts.RB || 0) + (counts.WR || 0) + (counts.TE || 0);
     const byPos = {};
     for (const p of roster) {
       const pos = String(p.position || "").toUpperCase();
-      (byPos[pos] = byPos[pos] || []).push(p.name || p.player_id);
+      const key = pos === "DEF" || pos === "DST" ? "DST" : pos;
+      (byPos[key] = byPos[key] || []).push(p.name || p.player_id);
     }
     needsEl.innerHTML = `
       <div class="draft-roster-grid">
-        ${["QB", "RB", "WR", "TE"]
+        ${["QB", "RB", "WR", "TE", "K", "DST"]
           .map((pos) => {
             const names = byPos[pos] || [];
             const body = names.length
-              ? `<span class="draft-roster-players">${escapeHtml(
-                  names.join(", ")
-                )}</span>`
+              ? `<ul class="draft-roster-players">${names
+                  .map((n) => `<li>${escapeHtml(n)}</li>`)
+                  .join("")}</ul>`
               : `<span class="draft-roster-empty">—</span>`;
-            return `<div class="draft-roster-slot"><strong>${pos}</strong> ${body}</div>`;
+            return `<div class="draft-roster-slot"><strong>${pos}</strong>${body}</div>`;
           })
           .join("")}
-        <div class="draft-roster-slot">
-          <strong>RB+WR</strong>
-          <span class="draft-roster-players">${escapeHtml(
-            String(result?.rbWrUsed ?? (counts.RB || 0) + (counts.WR || 0))
-          )} / ${escapeHtml(
-            String(result?.rbWrBudget ?? targets.rbWrBudget)
-          )}</span>
-        </div>
-        <div class="draft-roster-slot">
-          <strong>SLACK</strong>
-          <span class="draft-roster-players">${escapeHtml(slackLabel(result))}</span>
-        </div>
-        <div class="draft-roster-slot">
-          <strong>TOTAL</strong>
-          <span class="draft-roster-players">${escapeHtml(
-            String(total)
-          )} / ${escapeHtml(String(targets.total))}</span>
-        </div>
       </div>`;
   }
 
@@ -374,7 +341,7 @@ async function mountDraftCompanionPage() {
 
     const recs = result.recommendations.slice(0, 8);
     if (!recs.length) {
-      recEl.innerHTML = `<p class="meta">Roster limits are met — remaining spots are for K/DEF.</p>`;
+      recEl.innerHTML = `<p class="meta">No skill players left on the board.</p>`;
       return;
     }
 
@@ -382,8 +349,8 @@ async function mountDraftCompanionPage() {
       <table class="draft-table cell-border">
         <thead>
           <tr>
-            <th>#</th><th>Player</th><th>Pos</th><th>Bye</th><th>Score</th>
-            <th>VORP</th><th>Need</th><th>ADP</th><th>At risk</th>
+            <th>#</th><th>Player</th><th>Pos</th><th>Bye</th>
+            <th>VORP</th><th>Need</th><th>ADP</th><th>Risk</th><th>Score</th>
           </tr>
         </thead>
         <tbody>
@@ -400,17 +367,21 @@ async function mountDraftCompanionPage() {
               </td>
               <td>${escapeHtml(r.position)}</td>
               <td>${r.bye_week == null ? "—" : escapeHtml(r.bye_week)}</td>
-              <td><strong>${escapeHtml(r.score)}</strong></td>
               <td>${escapeHtml(r.vorp)}</td>
               <td>${
-                r.slack === 0
-                  ? "forced"
-                  : r.need_bonus
-                    ? `+${escapeHtml(r.need_bonus)}`
+                r.need_bonus > 0
+                  ? `+${escapeHtml(r.need_bonus)}`
+                  : r.need_bonus < 0
+                    ? `${escapeHtml(r.need_bonus)}`
                     : "—"
               }</td>
               <td>${r.adp == null ? "—" : escapeHtml(r.adp)}</td>
-              <td>${r.at_risk ? "yes" : "—"}</td>
+              <td>${
+                r.risk > 0.05
+                  ? `${escapeHtml(Math.round(r.risk * 100))}%`
+                  : "—"
+              }</td>
+              <td><strong>${escapeHtml(r.score)}</strong></td>
             </tr>`
             )
             .join("")}

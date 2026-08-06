@@ -1,6 +1,6 @@
 """Shared pipeline constants."""
 
-# Formats used by ADP boards / manifest.
+# Formats used by the site manifest / draft projections.
 FORMATS = ("half_ppr", "full_ppr")
 
 SKILL_POSITIONS = ("QB", "RB", "WR", "TE")
