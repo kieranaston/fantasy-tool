@@ -41,3 +41,7 @@ jobs:
 
       - id: deploy
         uses: actions/deploy-pages@v5
+        with:
+          # The action defaults to giving up after 10 minutes. Pages deployment
+          # lag can exceed that, which aborts a deploy that would have landed.
+          timeout: 1800000
