@@ -498,20 +498,8 @@ function scoreCandidates({
   return {
     myOpenFlex: myState.openFlex,
     targets: draftTargets(settings),
-    predictedBeforeYou: beforeYou.map(summarizePredicted),
-    predictedAtRisk: atRiskTaken.map(summarizePredicted),
     topPick,
     recommendations: scored.slice(0, 12),
-  };
-}
-
-function summarizePredicted(player) {
-  return {
-    sleeper_id: playerId(player),
-    player: player.player,
-    position: normalizePos(player.position),
-    adp: player.adp ?? null,
-    pts: player.pts ?? null,
   };
 }
 

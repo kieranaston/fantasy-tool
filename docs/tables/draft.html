@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Draft Companion</title>
-    <link rel="stylesheet" href="../css/site.css?v=12" />
+    <link rel="stylesheet" href="../css/site.css?v=13" />
   </head>
   <body class="is-page-loading">
     <nav class="site-nav" aria-label="Primary">
@@ -39,24 +39,26 @@
         </div>
 
         <section class="draft-panel">
-          <h2 class="draft-section-title">Your needs</h2>
+          <h2 class="draft-section-title">Your roster</h2>
           <div id="draft-needs"></div>
         </section>
 
-        <section class="draft-panel">
-          <h2 class="draft-section-title">Recommended pick</h2>
-          <div id="draft-recommendations" class="table-wrap"></div>
-        </section>
+        <div class="draft-columns">
+          <section class="draft-panel">
+            <h2 class="draft-section-title">Recommended pick</h2>
+            <div id="draft-recommendations" class="table-wrap"></div>
+          </section>
 
-        <section class="draft-panel">
-          <h2 class="draft-section-title">Recent picks</h2>
-          <div id="draft-board" class="table-wrap"></div>
-        </section>
+          <section class="draft-panel">
+            <h2 class="draft-section-title">Recent picks</h2>
+            <div id="draft-board" class="table-wrap"></div>
+          </section>
+        </div>
       </div>
     </main>
 
     <script type="module">
-      import { mountDraftCompanionPage } from "../js/draft-companion.js?v=34";
+      import { mountDraftCompanionPage } from "../js/draft-companion.js?v=35";
       mountDraftCompanionPage();
     </script>
   </body>

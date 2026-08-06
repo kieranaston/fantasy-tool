@@ -7,6 +7,19 @@ import polars as pl
 
 from src.config.scoring import MIN_REG_WEEKS
 
+# nflverse and Sleeper disagree on some abbreviations — notably nflverse calls
+# the Rams "LA" while Sleeper calls them "LAR", which silently dropped every
+# Rams bye week. Historical relocations are included so old seasons resolve too.
+TEAM_ABBR_ALIASES: dict[str, tuple[str, ...]] = {
+    "LA": ("LAR",),
+    "LAR": ("LA",),
+    "STL": ("LA", "LAR"),
+    "OAK": ("LV",),
+    "SD": ("LAC",),
+    "WSH": ("WAS",),
+    "JAC": ("JAX",),
+}
+
 
 def get_current_season() -> int:
     """Return the NFL season year nflverse considers current."""
@@ -46,6 +59,8 @@ def load_team_bye_weeks(season: int) -> dict[str, int]:
     """Map team abbreviation → bye week for a regular season.
 
     Derived from nflverse schedules: the unique week in 1–18 with no game.
+    Keys are emitted under both the nflverse and Sleeper spellings so callers
+    can look up by either.
     """
     schedules = nfl.load_schedules([season]).filter(pl.col("game_type") == "REG")
     if schedules.is_empty():
@@ -62,7 +77,10 @@ def load_team_bye_weeks(season: int) -> dict[str, int]:
         )
         missing = sorted(set(range(1, 19)) - played)
         if len(missing) == 1:
-            byes[str(team).upper()] = int(missing[0])
+            key = str(team).upper()
+            byes[key] = int(missing[0])
+            for alias in TEAM_ABBR_ALIASES.get(key, ()):
+                byes[alias] = int(missing[0])
     return byes
 
 

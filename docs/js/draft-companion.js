@@ -6,7 +6,7 @@ import {
   draftTargets,
   resolveLeagueSettings,
   SKILL_POSITIONS,
-} from "./draft-scoring.js?v=34";
+} from "./draft-scoring.js?v=35";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 500;
@@ -269,25 +269,41 @@ async function mountDraftCompanionPage() {
     const targets = result?.targets || draftTargets(leagueSettings || {});
     const total =
       (counts.QB || 0) + (counts.RB || 0) + (counts.WR || 0) + (counts.TE || 0);
+    const byPos = {};
+    for (const p of roster) {
+      const pos = String(p.position || "").toUpperCase();
+      (byPos[pos] = byPos[pos] || []).push(p.name || p.player_id);
+    }
     needsEl.innerHTML = `
-      <div class="draft-needs-grid">
+      <div class="draft-roster-grid">
         ${["QB", "RB", "WR", "TE"]
           .map((pos) => {
-            const have = counts[pos] || 0;
-            return `<div><strong>${pos}</strong> ${escapeHtml(String(have))}</div>`;
+            const names = byPos[pos] || [];
+            const body = names.length
+              ? `<span class="draft-roster-players">${escapeHtml(
+                  names.join(", ")
+                )}</span>`
+              : `<span class="draft-roster-empty">—</span>`;
+            return `<div class="draft-roster-slot"><strong>${pos}</strong> ${body}</div>`;
           })
           .join("")}
-        <div><strong>FLEX open</strong> ${escapeHtml(
-          String(result?.myOpenFlex ?? "—")
-        )}</div>
-        <div><strong>Total</strong> ${escapeHtml(String(total))} / ${escapeHtml(
-          String(targets.total)
-        )}</div>
+        <div class="draft-roster-slot">
+          <strong>FLEX OPEN</strong>
+          <span class="draft-roster-players">${escapeHtml(
+            String(result?.myOpenFlex ?? "—")
+          )}</span>
+        </div>
+        <div class="draft-roster-slot">
+          <strong>TOTAL</strong>
+          <span class="draft-roster-players">${escapeHtml(
+            String(total)
+          )} / ${escapeHtml(String(targets.total))}</span>
+        </div>
       </div>`;
   }
 
   function renderRecentPicks() {
-    const recent = [...picks].slice(-12).reverse();
+    const recent = [...picks].slice(-10).reverse();
     boardEl.innerHTML = `
       <table class="draft-table cell-border">
         <thead><tr><th>Pick</th><th>Slot</th><th>Player</th><th>Pos</th></tr></thead>
@@ -346,23 +362,7 @@ async function mountDraftCompanionPage() {
       return;
     }
 
-    const atRiskCount = result.predictedAtRisk?.length || 0;
-    const beforeCount = result.predictedBeforeYou?.length || 0;
-    let tip;
-    if (result.topPick?.score > 0) {
-      tip = result.topPick.at_risk
-        ? `Take ${result.topPick.player} — best score among players predicted gone before your next turn.`
-        : `No urgency — bank ${result.topPick.player} (best score available).`;
-    } else {
-      tip = result.topPick?.at_risk
-        ? `No value over replacement left — take ${result.topPick.player} (at risk, best ADP).`
-        : `No value over replacement left — bank ${result.topPick?.player || "best ADP"} (lowest ADP available).`;
-    }
-
     recEl.innerHTML = `
-      <p class="meta">${escapeHtml(tip)} · ADP sim: ${escapeHtml(
-        String(beforeCount)
-      )} before you, ${escapeHtml(String(atRiskCount))} at risk until next turn.</p>
       <table class="draft-table cell-border">
         <thead>
           <tr>
