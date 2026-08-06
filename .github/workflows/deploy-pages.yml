@@ -18,10 +18,11 @@ permissions:
   pages: write
   id-token: write
 
-# Never let two deploys race; that wedges the Pages deployment lock.
+# Never let two deploys race; cancel an older queued/in-flight deploy when a
+# newer one starts so a wedged Pages lock cannot block the queue forever.
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: pages-deploy
+  cancel-in-progress: true
 
 jobs:
   deploy:
