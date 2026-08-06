@@ -1,7 +1,626 @@
 {
   "title": "Player News",
-  "last_updated": "2026-08-05T13:42:12Z",
+  "last_updated": "2026-08-06T13:40:10Z",
   "players": [
+    {
+      "player_id": "00-0040129",
+      "player_name": "Emeka Egbuka",
+      "team": null,
+      "current_designation": "Back at practice Thursday",
+      "last_updated": "2026-08-06T06:12:49-07:00",
+      "diff_summary": "Emeka Egbuka returned to practice on Thursday after dealing with soreness.",
+      "extraction": {
+        "status": "Back at practice Thursday",
+        "designation": "Back at practice Thursday",
+        "date": "2026-08-06T06:12:49-07:00",
+        "direct_quote": "Emeka Egbuka: Back at practice Thursday",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msg4mldmyl2v"
+      },
+      "timeline": [
+        {
+          "id": "60393d9f-2e3c-4051-83cc-84cb171ab83d",
+          "timestamp": "2026-08-06T06:12:49-07:00",
+          "designation": "Back at practice Thursday",
+          "source_text": "Emeka Egbuka: Back at practice Thursday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msg4mldmyl2v",
+          "source_type": "beat_reporter",
+          "player_name": "Emeka Egbuka"
+        },
+        {
+          "id": "34702edd-83f1-42d6-8044-583d08b08609",
+          "timestamp": "2026-08-05T14:31:05-07:00",
+          "designation": "Dealing with soreness",
+          "source_text": "Emeka Egbuka: Dealing with soreness",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msehymskcv2q",
+          "source_type": "beat_reporter",
+          "player_name": "Emeka Egbuka"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0039139",
+      "player_name": "Jahmyr Gibbs",
+      "team": null,
+      "current_designation": "Working off to side Thursday",
+      "last_updated": "2026-08-06T06:06:39-07:00",
+      "diff_summary": "Jahmyr Gibbs, whose backfield duo was broken up, had his fifth-year option picked up by Detroit and has been given the \"bell cow\" label by coach Campbell. He was not practicing as of July 29th while awaiting a new deal, but was present for practice on August 6th, though working off to the side.",
+      "extraction": {
+        "status": "Working off to side Thursday",
+        "designation": "Working off to side Thursday",
+        "date": "2026-08-06T06:06:39-07:00",
+        "direct_quote": "Jahmyr Gibbs: Working off to side Thursday",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msg4bjwif625"
+      },
+      "timeline": [
+        {
+          "id": "822e54ad-2bf9-44b4-8a3b-5ff2871f1354",
+          "timestamp": "2026-08-06T06:06:39-07:00",
+          "designation": "Working off to side Thursday",
+          "source_text": "Jahmyr Gibbs: Working off to side Thursday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msg4bjwif625",
+          "source_type": "beat_reporter",
+          "player_name": "Jahmyr Gibbs"
+        },
+        {
+          "id": "f05f5812-0390-44a5-91a8-dbb2b539333d",
+          "timestamp": "2026-08-06T05:41:58-07:00",
+          "designation": "Present for practice",
+          "source_text": "Jahmyr Gibbs: Present for practice",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msg2vfy6gl2q",
+          "source_type": "beat_reporter",
+          "player_name": "Jahmyr Gibbs"
+        },
+        {
+          "id": "517aba97-7813-432d-840b-f3db62da816e",
+          "timestamp": "2026-08-03T09:05:18-07:00",
+          "designation": "Still not practicing",
+          "source_text": "Jahmyr Gibbs: Still not practicing",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6uua7cqh22",
+          "source_type": "beat_reporter",
+          "player_name": "Jahmyr Gibbs"
+        },
+        {
+          "id": "ca9d860d-a92f-4e76-a0e7-9980d549c2a4",
+          "timestamp": "2026-07-30T09:15:48-07:00",
+          "designation": "Coach downplays absence",
+          "source_text": "Jahmyr Gibbs: Coach downplays absence",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrutlcnf2n2l",
+          "source_type": "beat_reporter",
+          "player_name": "Jahmyr Gibbs"
+        },
+        {
+          "id": "6d2b5903-c556-4bae-9643-bf904c66221e",
+          "timestamp": "2026-07-30T07:27:24-07:00",
+          "designation": "Not practicing Thursday",
+          "source_text": "Jahmyr Gibbs: Not practicing Thursday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrunjih46r2f",
+          "source_type": "beat_reporter",
+          "player_name": "Jahmyr Gibbs"
+        },
+        {
+          "id": "16fc9111-f2fd-46b3-bfd8-50489e20f438",
+          "timestamp": "2026-07-29T07:02:01-07:00",
+          "designation": "Not practicing, awaits new deal",
+          "source_text": "Jahmyr Gibbs: Not practicing, awaits new deal",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrs3n6azeq2l",
+          "source_type": "beat_reporter",
+          "player_name": "Jahmyr Gibbs"
+        },
+        {
+          "id": "4e77ee47-7e7f-4aa8-9725-732363881e05",
+          "timestamp": "2026-06-04T08:17:40-07:00",
+          "designation": "Gets \"bell cow\" label from Campbell",
+          "source_text": "Jahmyr Gibbs: Gets \"bell cow\" label from Campbell \n\n https://www.rotowire.com/football/player/jahmyr-gibbs-16808",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnhw7szexg2f",
+          "source_type": "beat_reporter",
+          "player_name": "Jahmyr Gibbs"
+        },
+        {
+          "id": "b2d69058-3142-40a3-899a-f0a1502d264d",
+          "timestamp": "2026-04-28T15:03:18-07:00",
+          "designation": "Detroit picks up fifth-year option",
+          "source_text": "Jahmyr Gibbs: Detroit picks up fifth-year option \n\n https://www.rotowire.com/football/player/jahmyr-gibbs-16808",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mklln3b5y62l",
+          "source_type": "beat_reporter",
+          "player_name": "Jahmyr Gibbs"
+        },
+        {
+          "id": "99e70031-8200-4ffa-b45b-97f573140f2e",
+          "timestamp": "2026-03-02T08:17:28-08:00",
+          "designation": "Backfield duo broken up",
+          "source_text": "Jahmyr Gibbs: Backfield duo broken up \n\n https://www.rotowire.com/football/player/jahmyr-gibbs-16808",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mg3nq7da422g",
+          "source_type": "beat_reporter",
+          "player_name": "Jahmyr Gibbs"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0036223",
+      "player_name": "Jonathan Taylor",
+      "team": null,
+      "current_designation": "Lands extension with Colts",
+      "last_updated": "2026-08-06T04:59:31-07:00",
+      "diff_summary": "Jonathan Taylor and the Indianapolis Colts have agreed to a contract extension. Taylor, entering his contract year, had expressed optimism about reaching a deal. He is expected to carry a significant workload for the team.",
+      "extraction": {
+        "status": "Lands extension with Colts",
+        "designation": "Lands extension with Colts",
+        "date": "2026-08-06T04:59:31-07:00",
+        "direct_quote": "Jonathan Taylor: Lands extension with Colts",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msfyjimglk23"
+      },
+      "timeline": [
+        {
+          "id": "6a036b70-f3e3-4fa6-bd81-3df4c4eb4f7a",
+          "timestamp": "2026-08-06T04:59:31-07:00",
+          "designation": "Lands extension with Colts",
+          "source_text": "Jonathan Taylor: Lands extension with Colts",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msfyjimglk23",
+          "source_type": "beat_reporter",
+          "player_name": "Jonathan Taylor"
+        },
+        {
+          "id": "730f186a-6848-4ed9-b51b-efc470deb099",
+          "timestamp": "2026-07-29T08:54:03-07:00",
+          "designation": "Optimistic regarding contract",
+          "source_text": "Jonathan Taylor: Optimistic regarding contract",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsbviph2r2f",
+          "source_type": "beat_reporter",
+          "player_name": "Jonathan Taylor"
+        },
+        {
+          "id": "dc2ea6e9-1f4b-42b9-8bf9-c75546b0521b",
+          "timestamp": "2026-07-16T07:04:46-07:00",
+          "designation": "Ready for contract year",
+          "source_text": "Jonathan Taylor: Ready for contract year",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqrfq4hb7m2t",
+          "source_type": "beat_reporter",
+          "player_name": "Jonathan Taylor"
+        },
+        {
+          "id": "41429b5a-ae03-48af-9d05-2b963ff4f9c7",
+          "timestamp": "2026-07-13T07:10:13-07:00",
+          "designation": "Coaching staff split on workload",
+          "source_text": "Jonathan Taylor: Coaching staff split on workload",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqjun47ttq2b",
+          "source_type": "beat_reporter",
+          "player_name": "Jonathan Taylor"
+        },
+        {
+          "id": "2ee44f35-4824-4906-a033-ebf36569f1aa",
+          "timestamp": "2026-06-19T07:47:21-07:00",
+          "designation": "Set for another huge workload?",
+          "source_text": "Jonathan Taylor: Set for another huge workload?",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3monljga7ci2a",
+          "source_type": "beat_reporter",
+          "player_name": "Jonathan Taylor"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0036139",
+      "player_name": "Rico Dowdle",
+      "team": null,
+      "current_designation": "Listed behind Warren on depth chart",
+      "last_updated": "2026-08-05T13:59:40-07:00",
+      "diff_summary": "Rico Dowdle was headed to Pittsburgh and has been splitting first-team reps. He is currently listed behind Warren on the depth chart.",
+      "extraction": {
+        "status": "Listed behind Warren on depth chart",
+        "designation": "Listed behind Warren on depth chart",
+        "date": "2026-08-05T13:59:40-07:00",
+        "direct_quote": "Rico Dowdle: Listed behind Warren on depth chart \n\n https://www.rotowire.com/football/player/rico-dowdle-14657",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msegah4s3s2q"
+      },
+      "timeline": [
+        {
+          "id": "8d934a30-a42a-4b68-b11e-7050e52f4592",
+          "timestamp": "2026-08-05T13:59:40-07:00",
+          "designation": "Listed behind Warren on depth chart",
+          "source_text": "Rico Dowdle: Listed behind Warren on depth chart \n\n https://www.rotowire.com/football/player/rico-dowdle-14657",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msegah4s3s2q",
+          "source_type": "beat_reporter",
+          "player_name": "Rico Dowdle"
+        },
+        {
+          "id": "145d9d1f-7c0f-4920-8975-13234fcce345",
+          "timestamp": "2026-07-31T07:10:59-07:00",
+          "designation": "Splitting first-team reps",
+          "source_text": "Rico Dowdle: Splitting first-team reps",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx532smrk22",
+          "source_type": "beat_reporter",
+          "player_name": "Rico Dowdle"
+        },
+        {
+          "id": "ea9d822c-8817-414a-9668-87aa62790def",
+          "timestamp": "2026-03-09T16:29:30-07:00",
+          "designation": "Headed to Pittsburgh",
+          "source_text": "Rico Dowdle: Headed to Pittsburgh \n\n https://www.rotowire.com/football/player/rico-dowdle-14657",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnz56iljh26",
+          "source_type": "beat_reporter",
+          "player_name": "Rico Dowdle"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0037228",
+      "player_name": "Jaylen Warren",
+      "team": null,
+      "current_designation": "Listed ahead of Dowdle",
+      "last_updated": "2026-08-05T13:49:50-07:00",
+      "diff_summary": "Jaylen Warren has been listed ahead of teammate Rico Dowdle and is seeing a split with the first-team offense.",
+      "extraction": {
+        "status": "Listed ahead of Dowdle",
+        "designation": "Listed ahead of Dowdle",
+        "date": "2026-08-05T13:49:50-07:00",
+        "direct_quote": "Jaylen Warren: Listed ahead of Dowdle",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msefotr4f72y"
+      },
+      "timeline": [
+        {
+          "id": "424440c8-e28d-4555-94eb-413a8d3dab09",
+          "timestamp": "2026-08-05T13:49:50-07:00",
+          "designation": "Listed ahead of Dowdle",
+          "source_text": "Jaylen Warren: Listed ahead of Dowdle",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msefotr4f72y",
+          "source_type": "beat_reporter",
+          "player_name": "Jaylen Warren"
+        },
+        {
+          "id": "5955c6aa-8f81-43c5-bd5d-ed6881d54e44",
+          "timestamp": "2026-07-31T07:06:20-07:00",
+          "designation": "First-team split begins",
+          "source_text": "Jaylen Warren: First-team split begins",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx4sq2awm2z",
+          "source_type": "beat_reporter",
+          "player_name": "Jaylen Warren"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0035659",
+      "player_name": "Terry McLaurin",
+      "team": null,
+      "current_designation": "New running mate in Diggs",
+      "last_updated": "2026-08-05T13:15:17-07:00",
+      "diff_summary": "Terry McLaurin is expected to see increased volume in 2026, especially with the addition of Stefon Diggs as a new teammate.",
+      "extraction": {
+        "status": "New running mate in Diggs",
+        "designation": "New running mate in Diggs",
+        "date": "2026-08-05T13:15:17-07:00",
+        "direct_quote": "Terry McLaurin: New running mate in Diggs",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msedr3hsns2k"
+      },
+      "timeline": [
+        {
+          "id": "285c4fe6-2fba-4eef-8010-4ba2185f6408",
+          "timestamp": "2026-08-05T13:15:17-07:00",
+          "designation": "New running mate in Diggs",
+          "source_text": "Terry McLaurin: New running mate in Diggs",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msedr3hsns2k",
+          "source_type": "beat_reporter",
+          "player_name": "Terry McLaurin"
+        },
+        {
+          "id": "083f3cf7-a684-4baf-a337-059639625cc3",
+          "timestamp": "2026-02-13T10:10:03-08:00",
+          "designation": "Headed for more volume in 2026?",
+          "source_text": "Terry McLaurin: Headed for more volume in 2026? \n\n https://www.rotowire.com/football/player/terry-mclaurin-13536",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mer43umzu42b",
+          "source_type": "beat_reporter",
+          "player_name": "Terry McLaurin"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0036613",
+      "player_name": "Jaylen Waddle",
+      "team": null,
+      "current_designation": "Bothered by muscle tightness",
+      "last_updated": "2026-08-05T11:30:28-07:00",
+      "diff_summary": "Jaylen Waddle was traded to Denver on March 17th. On August 5th, he exited practice early due to muscle tightness.",
+      "extraction": {
+        "status": "Bothered by muscle tightness",
+        "designation": "Bothered by muscle tightness",
+        "date": "2026-08-05T11:30:28-07:00",
+        "direct_quote": "Jaylen Waddle: Bothered by muscle tightness",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mse5vntiky23"
+      },
+      "timeline": [
+        {
+          "id": "125176f1-3f95-428e-906c-25d2a3b81449",
+          "timestamp": "2026-08-05T11:30:28-07:00",
+          "designation": "Bothered by muscle tightness",
+          "source_text": "Jaylen Waddle: Bothered by muscle tightness",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mse5vntiky23",
+          "source_type": "beat_reporter",
+          "player_name": "Jaylen Waddle"
+        },
+        {
+          "id": "5aa17e1e-0adf-42c9-9742-30da7cd17db0",
+          "timestamp": "2026-08-05T10:10:53-07:00",
+          "designation": "Exits practice Wednesday",
+          "source_text": "Jaylen Waddle: Exits practice Wednesday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msdzhdpmmr2l",
+          "source_type": "beat_reporter",
+          "player_name": "Jaylen Waddle"
+        },
+        {
+          "id": "c42a6366-1495-441b-b1c7-5af170c3658b",
+          "timestamp": "2026-03-24T08:06:37-07:00",
+          "designation": "Opens up cap space",
+          "source_text": "Jaylen Waddle: Opens up cap space \n\n https://www.rotowire.com/football/player/jaylen-waddle-15404",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mhstzr2qzj2j",
+          "source_type": "beat_reporter",
+          "player_name": "Jaylen Waddle"
+        },
+        {
+          "id": "c27fcb43-4226-4c29-bdcd-02ceef38aaac",
+          "timestamp": "2026-03-17T08:18:17-07:00",
+          "designation": "Dealt to Denver",
+          "source_text": "Jaylen Waddle: Dealt to Denver \n\n https://www.rotowire.com/football/player/jaylen-waddle-15404",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mhbbg6mfe22p",
+          "source_type": "beat_reporter",
+          "player_name": "Jaylen Waddle"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0038994",
+      "player_name": "Jordan Addison",
+      "team": null,
+      "current_designation": "Jams thumb, not practicing",
+      "last_updated": "2026-08-05T11:07:08-07:00",
+      "diff_summary": "Jordan Addison's fifth-year option was officially exercised on April 27th. On August 5th, he was not practicing due to a jammed thumb.",
+      "extraction": {
+        "status": "Jams thumb, not practicing",
+        "designation": "Jams thumb, not practicing",
+        "date": "2026-08-05T11:07:08-07:00",
+        "direct_quote": "Jordan Addison: Jams thumb, not practicing",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mse4lwa7ez2b"
+      },
+      "timeline": [
+        {
+          "id": "966b8552-95ea-4473-aaf9-943c07fa1c46",
+          "timestamp": "2026-08-05T11:07:08-07:00",
+          "designation": "Jams thumb, not practicing",
+          "source_text": "Jordan Addison: Jams thumb, not practicing",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mse4lwa7ez2b",
+          "source_type": "beat_reporter",
+          "player_name": "Jordan Addison"
+        },
+        {
+          "id": "84582563-3e29-4703-9128-20c546a7847c",
+          "timestamp": "2026-04-27T10:01:31-07:00",
+          "designation": "Fifth-year option made official",
+          "source_text": "Jordan Addison: Fifth-year option made official \n\n https://www.rotowire.com/football/player/jordan-addison-16895",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mkikcjkeyu2l",
+          "source_type": "beat_reporter",
+          "player_name": "Jordan Addison"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0031408",
+      "player_name": "Mike Evans",
+      "team": null,
+      "current_designation": "Remains sidelined",
+      "last_updated": "2026-08-05T10:46:27-07:00",
+      "diff_summary": "Mike Evans will play in 2026 and has joined Kyle Shanahan's team, though he may not return to Tampa Bay. He is currently sidelined with a minor quad strain and not practicing, but has been seen catching passes. Evans is reportedly winning over teammates and coaches.",
+      "extraction": {
+        "status": "Remains sidelined",
+        "designation": "Remains sidelined",
+        "date": "2026-08-05T10:46:27-07:00",
+        "direct_quote": "Mike Evans: Remains sidelined",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mse3gwmqow23"
+      },
+      "timeline": [
+        {
+          "id": "2e40ddac-a6d0-4c60-a4ee-35915f037557",
+          "timestamp": "2026-08-05T10:46:27-07:00",
+          "designation": "Remains sidelined",
+          "source_text": "Mike Evans: Remains sidelined",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mse3gwmqow23",
+          "source_type": "beat_reporter",
+          "player_name": "Mike Evans"
+        },
+        {
+          "id": "15e9231f-bd49-4606-bf24-7e9c7661a2b8",
+          "timestamp": "2026-08-03T12:31:52-07:00",
+          "designation": "Minor quad strain",
+          "source_text": "Mike Evans: Minor quad strain",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms7aflxu6x23",
+          "source_type": "beat_reporter",
+          "player_name": "Mike Evans"
+        },
+        {
+          "id": "6a823b7f-d429-411c-a9d7-fe8854423cf5",
+          "timestamp": "2026-08-03T12:19:00-07:00",
+          "designation": "Not practicing, but catches passes",
+          "source_text": "Mike Evans: Not practicing, but catches passes",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms77olqdva2l",
+          "source_type": "beat_reporter",
+          "player_name": "Mike Evans"
+        },
+        {
+          "id": "ebee22c2-e2fc-465f-9b7e-2230486ec448",
+          "timestamp": "2026-08-03T10:13:30-07:00",
+          "designation": "Has strained quad",
+          "source_text": "Mike Evans: Has strained quad",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6yo6hoow2u",
+          "source_type": "beat_reporter",
+          "player_name": "Mike Evans"
+        },
+        {
+          "id": "c2a55995-541e-4e86-ad88-f960e3ff0428",
+          "timestamp": "2026-06-04T11:35:19-07:00",
+          "designation": "Winning over teammates and coaches",
+          "source_text": "Mike Evans: Winning over teammates and coaches \n\n https://www.rotowire.com/football/player/mike-evans-9253",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnibbacgx42t",
+          "source_type": "beat_reporter",
+          "player_name": "Mike Evans"
+        },
+        {
+          "id": "a4417781-ff25-43c9-9b44-dcfa66bd97b9",
+          "timestamp": "2026-03-09T11:37:03-07:00",
+          "designation": "Joining forces with Kyle Shanahan",
+          "source_text": "Mike Evans: Joining forces with Kyle Shanahan \n\n https://www.rotowire.com/football/player/mike-evans-9253",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnisal6tq2q",
+          "source_type": "beat_reporter",
+          "player_name": "Mike Evans"
+        },
+        {
+          "id": "2a767648-3295-418a-ae8f-a67298269ef4",
+          "timestamp": "2026-03-08T09:06:11-07:00",
+          "designation": "May not return to Tampa Bay",
+          "source_text": "Mike Evans: May not return to Tampa Bay \n\n https://www.rotowire.com/football/player/mike-evans-9253",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgkpvkoxag2q",
+          "source_type": "beat_reporter",
+          "player_name": "Mike Evans"
+        },
+        {
+          "id": "77304176-e18d-4fe3-8bfc-4a3aad8f966a",
+          "timestamp": "2026-02-17T13:42:14-08:00",
+          "designation": "Will play in 2026",
+          "source_text": "Mike Evans: Will play in 2026 \n\n https://www.rotowire.com/football/player/mike-evans-9253",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mf3jsxkxab2t",
+          "source_type": "beat_reporter",
+          "player_name": "Mike Evans"
+        },
+        {
+          "id": "5841cfb9-ab6e-4810-8b10-433d0e33a323",
+          "timestamp": "2026-02-13T14:05:55-08:00",
+          "designation": "Not expected to retire",
+          "source_text": "Mike Evans: Not expected to retire \n\n https://www.rotowire.com/football/player/mike-evans-9253",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3merjbmsdwx2n",
+          "source_type": "beat_reporter",
+          "player_name": "Mike Evans"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0040666",
+      "player_name": "Omarion Hampton",
+      "team": null,
+      "current_designation": "Praised by McDaniel for recent growth",
+      "last_updated": "2026-08-05T09:52:17-07:00",
+      "diff_summary": "Omarion Hampton expressed excitement for coach McDaniels' system on June 18th. On August 5th, McDaniels praised Hampton for his recent growth.",
+      "extraction": {
+        "status": "Praised by McDaniel for recent growth",
+        "designation": "Praised by McDaniel for recent growth",
+        "date": "2026-08-05T09:52:17-07:00",
+        "direct_quote": "Omarion Hampton: Praised by McDaniel for recent growth",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msdyg3jpzq2j"
+      },
+      "timeline": [
+        {
+          "id": "e7ea72dd-27a8-4ec3-b9e5-14cffb8b58fe",
+          "timestamp": "2026-08-05T09:52:17-07:00",
+          "designation": "Praised by McDaniel for recent growth",
+          "source_text": "Omarion Hampton: Praised by McDaniel for recent growth",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msdyg3jpzq2j",
+          "source_type": "beat_reporter",
+          "player_name": "Omarion Hampton"
+        },
+        {
+          "id": "74371eb0-6ef0-46c3-98e3-65adfdc395e7",
+          "timestamp": "2026-06-18T11:20:25-07:00",
+          "designation": "Excited for McDaniels' system",
+          "source_text": "Omarion Hampton: Excited for McDaniels' system \n\n https://www.rotowire.com/football/player/omarion-hampton-18445",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3molgxii7lp2a",
+          "source_type": "beat_reporter",
+          "player_name": "Omarion Hampton"
+        }
+      ]
+    },
+    {
+      "player_id": "00-0037239",
+      "player_name": "Chris Olave",
+      "team": null,
+      "current_designation": "Leaves practice early with trainer",
+      "last_updated": "2026-08-05T09:00:37-07:00",
+      "diff_summary": "Chris Olave was limited during Organized Team Activities (OTAs) in June due to a blood clot, and remained limited at minicamp. He expressed a desire for a contract before training camp. On July 28th, Olave had no restrictions for camp, but the next day he did not participate in team drills. On July 30th, he signed a four-year contract extension. On July 31st, Olave participated in team drills during ramp-up, but on August 5th, he left practice early with a trainer.",
+      "extraction": {
+        "status": "Leaves practice early with trainer",
+        "designation": "Leaves practice early with trainer",
+        "date": "2026-08-05T09:00:37-07:00",
+        "direct_quote": "Chris Olave: Leaves practice early with trainer \n\n https://www.rotowire.com/football/player/chris-olave-15895",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msdvjpo77223"
+      },
+      "timeline": [
+        {
+          "id": "515c9ed9-82db-4ead-97cb-bebf8a619fc3",
+          "timestamp": "2026-08-05T09:00:37-07:00",
+          "designation": "Leaves practice early with trainer",
+          "source_text": "Chris Olave: Leaves practice early with trainer \n\n https://www.rotowire.com/football/player/chris-olave-15895",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msdvjpo77223",
+          "source_type": "beat_reporter",
+          "player_name": "Chris Olave"
+        },
+        {
+          "id": "af4f3179-3ed7-4700-82c6-bc33bc2e3e25",
+          "timestamp": "2026-07-31T13:15:31-07:00",
+          "designation": "Handles team-drills during ramp-up",
+          "source_text": "Chris Olave: Handles team-drills during ramp-up",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrxrgvlulo23",
+          "source_type": "beat_reporter",
+          "player_name": "Chris Olave"
+        },
+        {
+          "id": "69e44713-c96b-4a70-b2ea-82a0edaac8a3",
+          "timestamp": "2026-07-30T13:52:23-07:00",
+          "designation": "Signing four-year extension",
+          "source_text": "Chris Olave: Signing four-year extension",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrvczuzlar2z",
+          "source_type": "beat_reporter",
+          "player_name": "Chris Olave"
+        },
+        {
+          "id": "e6a45e89-c988-4f3b-927c-70e3f392917f",
+          "timestamp": "2026-07-29T08:22:12-07:00",
+          "designation": "Doesn't participate in team drills",
+          "source_text": "Chris Olave: Doesn't participate in team drills",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsa4kxcrn2r",
+          "source_type": "beat_reporter",
+          "player_name": "Chris Olave"
+        },
+        {
+          "id": "efab15b5-26cc-4b54-b2b3-b5c17376b7e3",
+          "timestamp": "2026-07-28T12:37:28-07:00",
+          "designation": "No restrictions for camp",
+          "source_text": "Chris Olave: No restrictions for camp",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrq5w3hvqb2z",
+          "source_type": "beat_reporter",
+          "player_name": "Chris Olave"
+        },
+        {
+          "id": "e53d924f-cf48-4cb1-baa4-ff261f3fef46",
+          "timestamp": "2026-06-24T12:13:28-07:00",
+          "designation": "Hopes for contract before camp",
+          "source_text": "Chris Olave: Hopes for contract before camp \n\n https://www.rotowire.com/football/player/chris-olave-15895",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mp2mpubqif2k",
+          "source_type": "beat_reporter",
+          "player_name": "Chris Olave"
+        },
+        {
+          "id": "064e7eb1-47f2-4333-b5a6-9314f9fc9726",
+          "timestamp": "2026-06-16T09:19:10-07:00",
+          "designation": "Remains limited at minicamp",
+          "source_text": "Chris Olave: Remains limited at minicamp",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mog7atfgnm2p",
+          "source_type": "beat_reporter",
+          "player_name": "Chris Olave"
+        },
+        {
+          "id": "35833508-a3de-47d6-8f32-6e53b8a2b1a1",
+          "timestamp": "2026-06-11T06:31:18-07:00",
+          "designation": "Limited at OTAs after blood clot",
+          "source_text": "Chris Olave: Limited at OTAs after blood clot",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnzdk2nxya2h",
+          "source_type": "beat_reporter",
+          "player_name": "Chris Olave"
+        }
+      ]
+    },
     {
       "player_id": "00-0036973",
       "player_name": "Travis Etienne",
@@ -399,95 +1018,6 @@
       ]
     },
     {
-      "player_id": "00-0031408",
-      "player_name": "Mike Evans",
-      "team": null,
-      "current_designation": "Minor quad strain",
-      "last_updated": "2026-08-03T12:31:52-07:00",
-      "diff_summary": "Mike Evans, who is not expected to retire and will play in 2026, may not return to Tampa Bay and is joining forces with Kyle Shanahan. He is currently dealing with a strained quad and is not practicing, but is catching passes. Evans has been winning over teammates and coaches.",
-      "extraction": {
-        "status": "Minor quad strain",
-        "designation": "Minor quad strain",
-        "date": "2026-08-03T12:31:52-07:00",
-        "direct_quote": "Mike Evans: Minor quad strain",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms7aflxu6x23"
-      },
-      "timeline": [
-        {
-          "id": "15e9231f-bd49-4606-bf24-7e9c7661a2b8",
-          "timestamp": "2026-08-03T12:31:52-07:00",
-          "designation": "Minor quad strain",
-          "source_text": "Mike Evans: Minor quad strain",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms7aflxu6x23",
-          "source_type": "beat_reporter",
-          "player_name": "Mike Evans"
-        },
-        {
-          "id": "6a823b7f-d429-411c-a9d7-fe8854423cf5",
-          "timestamp": "2026-08-03T12:19:00-07:00",
-          "designation": "Not practicing, but catches passes",
-          "source_text": "Mike Evans: Not practicing, but catches passes",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms77olqdva2l",
-          "source_type": "beat_reporter",
-          "player_name": "Mike Evans"
-        },
-        {
-          "id": "ebee22c2-e2fc-465f-9b7e-2230486ec448",
-          "timestamp": "2026-08-03T10:13:30-07:00",
-          "designation": "Has strained quad",
-          "source_text": "Mike Evans: Has strained quad",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6yo6hoow2u",
-          "source_type": "beat_reporter",
-          "player_name": "Mike Evans"
-        },
-        {
-          "id": "c2a55995-541e-4e86-ad88-f960e3ff0428",
-          "timestamp": "2026-06-04T11:35:19-07:00",
-          "designation": "Winning over teammates and coaches",
-          "source_text": "Mike Evans: Winning over teammates and coaches \n\n https://www.rotowire.com/football/player/mike-evans-9253",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnibbacgx42t",
-          "source_type": "beat_reporter",
-          "player_name": "Mike Evans"
-        },
-        {
-          "id": "a4417781-ff25-43c9-9b44-dcfa66bd97b9",
-          "timestamp": "2026-03-09T11:37:03-07:00",
-          "designation": "Joining forces with Kyle Shanahan",
-          "source_text": "Mike Evans: Joining forces with Kyle Shanahan \n\n https://www.rotowire.com/football/player/mike-evans-9253",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnisal6tq2q",
-          "source_type": "beat_reporter",
-          "player_name": "Mike Evans"
-        },
-        {
-          "id": "2a767648-3295-418a-ae8f-a67298269ef4",
-          "timestamp": "2026-03-08T09:06:11-07:00",
-          "designation": "May not return to Tampa Bay",
-          "source_text": "Mike Evans: May not return to Tampa Bay \n\n https://www.rotowire.com/football/player/mike-evans-9253",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgkpvkoxag2q",
-          "source_type": "beat_reporter",
-          "player_name": "Mike Evans"
-        },
-        {
-          "id": "77304176-e18d-4fe3-8bfc-4a3aad8f966a",
-          "timestamp": "2026-02-17T13:42:14-08:00",
-          "designation": "Will play in 2026",
-          "source_text": "Mike Evans: Will play in 2026 \n\n https://www.rotowire.com/football/player/mike-evans-9253",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mf3jsxkxab2t",
-          "source_type": "beat_reporter",
-          "player_name": "Mike Evans"
-        },
-        {
-          "id": "5841cfb9-ab6e-4810-8b10-433d0e33a323",
-          "timestamp": "2026-02-13T14:05:55-08:00",
-          "designation": "Not expected to retire",
-          "source_text": "Mike Evans: Not expected to retire \n\n https://www.rotowire.com/football/player/mike-evans-9253",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3merjbmsdwx2n",
-          "source_type": "beat_reporter",
-          "player_name": "Mike Evans"
-        }
-      ]
-    },
-    {
       "player_id": "00-0033077",
       "player_name": "Dak Prescott",
       "team": null,
@@ -683,86 +1213,6 @@
       ]
     },
     {
-      "player_id": "00-0039139",
-      "player_name": "Jahmyr Gibbs",
-      "team": null,
-      "current_designation": "Still not practicing",
-      "last_updated": "2026-08-03T09:05:18-07:00",
-      "diff_summary": "Jahmyr Gibbs' backfield duo in Detroit was broken up, and the team picked up his fifth-year option. Despite being labeled a \"bell cow\" by coach Dan Campbell, Gibbs has not been practicing as he awaits a new contract, though his absence has been downplayed by the coaching staff.",
-      "extraction": {
-        "status": "Still not practicing",
-        "designation": "Still not practicing",
-        "date": "2026-08-03T09:05:18-07:00",
-        "direct_quote": "Jahmyr Gibbs: Still not practicing",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6uua7cqh22"
-      },
-      "timeline": [
-        {
-          "id": "517aba97-7813-432d-840b-f3db62da816e",
-          "timestamp": "2026-08-03T09:05:18-07:00",
-          "designation": "Still not practicing",
-          "source_text": "Jahmyr Gibbs: Still not practicing",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6uua7cqh22",
-          "source_type": "beat_reporter",
-          "player_name": "Jahmyr Gibbs"
-        },
-        {
-          "id": "ca9d860d-a92f-4e76-a0e7-9980d549c2a4",
-          "timestamp": "2026-07-30T09:15:48-07:00",
-          "designation": "Coach downplays absence",
-          "source_text": "Jahmyr Gibbs: Coach downplays absence",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrutlcnf2n2l",
-          "source_type": "beat_reporter",
-          "player_name": "Jahmyr Gibbs"
-        },
-        {
-          "id": "6d2b5903-c556-4bae-9643-bf904c66221e",
-          "timestamp": "2026-07-30T07:27:24-07:00",
-          "designation": "Not practicing Thursday",
-          "source_text": "Jahmyr Gibbs: Not practicing Thursday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrunjih46r2f",
-          "source_type": "beat_reporter",
-          "player_name": "Jahmyr Gibbs"
-        },
-        {
-          "id": "16fc9111-f2fd-46b3-bfd8-50489e20f438",
-          "timestamp": "2026-07-29T07:02:01-07:00",
-          "designation": "Not practicing, awaits new deal",
-          "source_text": "Jahmyr Gibbs: Not practicing, awaits new deal",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrs3n6azeq2l",
-          "source_type": "beat_reporter",
-          "player_name": "Jahmyr Gibbs"
-        },
-        {
-          "id": "4e77ee47-7e7f-4aa8-9725-732363881e05",
-          "timestamp": "2026-06-04T08:17:40-07:00",
-          "designation": "Gets \"bell cow\" label from Campbell",
-          "source_text": "Jahmyr Gibbs: Gets \"bell cow\" label from Campbell \n\n https://www.rotowire.com/football/player/jahmyr-gibbs-16808",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnhw7szexg2f",
-          "source_type": "beat_reporter",
-          "player_name": "Jahmyr Gibbs"
-        },
-        {
-          "id": "b2d69058-3142-40a3-899a-f0a1502d264d",
-          "timestamp": "2026-04-28T15:03:18-07:00",
-          "designation": "Detroit picks up fifth-year option",
-          "source_text": "Jahmyr Gibbs: Detroit picks up fifth-year option \n\n https://www.rotowire.com/football/player/jahmyr-gibbs-16808",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mklln3b5y62l",
-          "source_type": "beat_reporter",
-          "player_name": "Jahmyr Gibbs"
-        },
-        {
-          "id": "99e70031-8200-4ffa-b45b-97f573140f2e",
-          "timestamp": "2026-03-02T08:17:28-08:00",
-          "designation": "Backfield duo broken up",
-          "source_text": "Jahmyr Gibbs: Backfield duo broken up \n\n https://www.rotowire.com/football/player/jahmyr-gibbs-16808",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mg3nq7da422g",
-          "source_type": "beat_reporter",
-          "player_name": "Jahmyr Gibbs"
-        }
-      ]
-    },
-    {
       "player_id": "00-0040236",
       "player_name": "Kyle Monangai",
       "team": null,
@@ -927,86 +1377,6 @@
           "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnefsfr4m2d",
           "source_type": "beat_reporter",
           "player_name": "Kenneth Gainwell"
-        }
-      ]
-    },
-    {
-      "player_id": "00-0037239",
-      "player_name": "Chris Olave",
-      "team": null,
-      "current_designation": "Handles team-drills during ramp-up",
-      "last_updated": "2026-07-31T13:15:31-07:00",
-      "diff_summary": "Chris Olave was limited during Organized Team Activities (OTAs) and minicamp in June due to a blood clot. He expressed a desire for a contract extension before training camp began. By July 28th, Olave had no restrictions for camp, but the following day he did not participate in team drills. On July 30th, he signed a four-year contract extension. By July 31st, Olave was handling team drills during the ramp-up period.",
-      "extraction": {
-        "status": "Handles team-drills during ramp-up",
-        "designation": "Handles team-drills during ramp-up",
-        "date": "2026-07-31T13:15:31-07:00",
-        "direct_quote": "Chris Olave: Handles team-drills during ramp-up",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrxrgvlulo23"
-      },
-      "timeline": [
-        {
-          "id": "af4f3179-3ed7-4700-82c6-bc33bc2e3e25",
-          "timestamp": "2026-07-31T13:15:31-07:00",
-          "designation": "Handles team-drills during ramp-up",
-          "source_text": "Chris Olave: Handles team-drills during ramp-up",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrxrgvlulo23",
-          "source_type": "beat_reporter",
-          "player_name": "Chris Olave"
-        },
-        {
-          "id": "69e44713-c96b-4a70-b2ea-82a0edaac8a3",
-          "timestamp": "2026-07-30T13:52:23-07:00",
-          "designation": "Signing four-year extension",
-          "source_text": "Chris Olave: Signing four-year extension",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrvczuzlar2z",
-          "source_type": "beat_reporter",
-          "player_name": "Chris Olave"
-        },
-        {
-          "id": "e6a45e89-c988-4f3b-927c-70e3f392917f",
-          "timestamp": "2026-07-29T08:22:12-07:00",
-          "designation": "Doesn't participate in team drills",
-          "source_text": "Chris Olave: Doesn't participate in team drills",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsa4kxcrn2r",
-          "source_type": "beat_reporter",
-          "player_name": "Chris Olave"
-        },
-        {
-          "id": "efab15b5-26cc-4b54-b2b3-b5c17376b7e3",
-          "timestamp": "2026-07-28T12:37:28-07:00",
-          "designation": "No restrictions for camp",
-          "source_text": "Chris Olave: No restrictions for camp",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrq5w3hvqb2z",
-          "source_type": "beat_reporter",
-          "player_name": "Chris Olave"
-        },
-        {
-          "id": "e53d924f-cf48-4cb1-baa4-ff261f3fef46",
-          "timestamp": "2026-06-24T12:13:28-07:00",
-          "designation": "Hopes for contract before camp",
-          "source_text": "Chris Olave: Hopes for contract before camp \n\n https://www.rotowire.com/football/player/chris-olave-15895",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mp2mpubqif2k",
-          "source_type": "beat_reporter",
-          "player_name": "Chris Olave"
-        },
-        {
-          "id": "064e7eb1-47f2-4333-b5a6-9314f9fc9726",
-          "timestamp": "2026-06-16T09:19:10-07:00",
-          "designation": "Remains limited at minicamp",
-          "source_text": "Chris Olave: Remains limited at minicamp",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mog7atfgnm2p",
-          "source_type": "beat_reporter",
-          "player_name": "Chris Olave"
-        },
-        {
-          "id": "35833508-a3de-47d6-8f32-6e53b8a2b1a1",
-          "timestamp": "2026-06-11T06:31:18-07:00",
-          "designation": "Limited at OTAs after blood clot",
-          "source_text": "Chris Olave: Limited at OTAs after blood clot",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnzdk2nxya2h",
-          "source_type": "beat_reporter",
-          "player_name": "Chris Olave"
         }
       ]
     },
@@ -1184,67 +1554,6 @@
           "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mfmqz5plik2s",
           "source_type": "beat_reporter",
           "player_name": "Quinshon Judkins"
-        }
-      ]
-    },
-    {
-      "player_id": "00-0036139",
-      "player_name": "Rico Dowdle",
-      "team": null,
-      "current_designation": "Splitting first-team reps",
-      "last_updated": "2026-07-31T07:10:59-07:00",
-      "diff_summary": "Rico Dowdle was traded to Pittsburgh on March 9th, 2026. On July 31st, 144 days later, he was splitting first-team reps during Organized Team Activities (OTAs).",
-      "extraction": {
-        "status": "Splitting first-team reps",
-        "designation": "Splitting first-team reps",
-        "date": "2026-07-31T07:10:59-07:00",
-        "direct_quote": "Rico Dowdle: Splitting first-team reps",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx532smrk22"
-      },
-      "timeline": [
-        {
-          "id": "145d9d1f-7c0f-4920-8975-13234fcce345",
-          "timestamp": "2026-07-31T07:10:59-07:00",
-          "designation": "Splitting first-team reps",
-          "source_text": "Rico Dowdle: Splitting first-team reps",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx532smrk22",
-          "source_type": "beat_reporter",
-          "player_name": "Rico Dowdle"
-        },
-        {
-          "id": "ea9d822c-8817-414a-9668-87aa62790def",
-          "timestamp": "2026-03-09T16:29:30-07:00",
-          "designation": "Headed to Pittsburgh",
-          "source_text": "Rico Dowdle: Headed to Pittsburgh \n\n https://www.rotowire.com/football/player/rico-dowdle-14657",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnz56iljh26",
-          "source_type": "beat_reporter",
-          "player_name": "Rico Dowdle"
-        }
-      ]
-    },
-    {
-      "player_id": "00-0037228",
-      "player_name": "Jaylen Warren",
-      "team": null,
-      "current_designation": "First-team split begins",
-      "last_updated": "2026-07-31T07:06:20-07:00",
-      "diff_summary": "Jaylen Warren has begun seeing a split with the first-team offense as of July 31st.",
-      "extraction": {
-        "status": "First-team split begins",
-        "designation": "First-team split begins",
-        "date": "2026-07-31T07:06:20-07:00",
-        "direct_quote": "Jaylen Warren: First-team split begins",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx4sq2awm2z"
-      },
-      "timeline": [
-        {
-          "id": "5955c6aa-8f81-43c5-bd5d-ed6881d54e44",
-          "timestamp": "2026-07-31T07:06:20-07:00",
-          "designation": "First-team split begins",
-          "source_text": "Jaylen Warren: First-team split begins",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx4sq2awm2z",
-          "source_type": "beat_reporter",
-          "player_name": "Jaylen Warren"
         }
       ]
     },
@@ -2086,59 +2395,6 @@
           "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqovoios732m",
           "source_type": "beat_reporter",
           "player_name": "Bhayshul Tuten"
-        }
-      ]
-    },
-    {
-      "player_id": "00-0036223",
-      "player_name": "Jonathan Taylor",
-      "team": null,
-      "current_designation": "Optimistic regarding contract",
-      "last_updated": "2026-07-29T08:54:03-07:00",
-      "diff_summary": "Jonathan Taylor's workload has been a topic of discussion among the coaching staff, with some uncertainty about his usage. He is entering a contract year and has expressed optimism regarding a new deal.",
-      "extraction": {
-        "status": "Optimistic regarding contract",
-        "designation": "Optimistic regarding contract",
-        "date": "2026-07-29T08:54:03-07:00",
-        "direct_quote": "Jonathan Taylor: Optimistic regarding contract",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsbviph2r2f"
-      },
-      "timeline": [
-        {
-          "id": "730f186a-6848-4ed9-b51b-efc470deb099",
-          "timestamp": "2026-07-29T08:54:03-07:00",
-          "designation": "Optimistic regarding contract",
-          "source_text": "Jonathan Taylor: Optimistic regarding contract",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsbviph2r2f",
-          "source_type": "beat_reporter",
-          "player_name": "Jonathan Taylor"
-        },
-        {
-          "id": "dc2ea6e9-1f4b-42b9-8bf9-c75546b0521b",
-          "timestamp": "2026-07-16T07:04:46-07:00",
-          "designation": "Ready for contract year",
-          "source_text": "Jonathan Taylor: Ready for contract year",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqrfq4hb7m2t",
-          "source_type": "beat_reporter",
-          "player_name": "Jonathan Taylor"
-        },
-        {
-          "id": "41429b5a-ae03-48af-9d05-2b963ff4f9c7",
-          "timestamp": "2026-07-13T07:10:13-07:00",
-          "designation": "Coaching staff split on workload",
-          "source_text": "Jonathan Taylor: Coaching staff split on workload",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqjun47ttq2b",
-          "source_type": "beat_reporter",
-          "player_name": "Jonathan Taylor"
-        },
-        {
-          "id": "2ee44f35-4824-4906-a033-ebf36569f1aa",
-          "timestamp": "2026-06-19T07:47:21-07:00",
-          "designation": "Set for another huge workload?",
-          "source_text": "Jonathan Taylor: Set for another huge workload?",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3monljga7ci2a",
-          "source_type": "beat_reporter",
-          "player_name": "Jonathan Taylor"
         }
       ]
     },
@@ -3556,32 +3812,6 @@
       ]
     },
     {
-      "player_id": "00-0040666",
-      "player_name": "Omarion Hampton",
-      "team": null,
-      "current_designation": "Excited for McDaniels' system",
-      "last_updated": "2026-06-18T11:20:25-07:00",
-      "diff_summary": "Omarion Hampton expressed excitement about playing in coach McDaniels' system on June 18th.",
-      "extraction": {
-        "status": "Excited for McDaniels' system",
-        "designation": "Excited for McDaniels' system",
-        "date": "2026-06-18T11:20:25-07:00",
-        "direct_quote": "Omarion Hampton: Excited for McDaniels' system \n\n https://www.rotowire.com/football/player/omarion-hampton-18445",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3molgxii7lp2a"
-      },
-      "timeline": [
-        {
-          "id": "74371eb0-6ef0-46c3-98e3-65adfdc395e7",
-          "timestamp": "2026-06-18T11:20:25-07:00",
-          "designation": "Excited for McDaniels' system",
-          "source_text": "Omarion Hampton: Excited for McDaniels' system \n\n https://www.rotowire.com/football/player/omarion-hampton-18445",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3molgxii7lp2a",
-          "source_type": "beat_reporter",
-          "player_name": "Omarion Hampton"
-        }
-      ]
-    },
-    {
       "player_id": "00-0037256",
       "player_name": "Rachaad White",
       "team": null,
@@ -4037,32 +4267,6 @@
       ]
     },
     {
-      "player_id": "00-0038994",
-      "player_name": "Jordan Addison",
-      "team": null,
-      "current_designation": "Fifth-year option made official",
-      "last_updated": "2026-04-27T10:01:31-07:00",
-      "diff_summary": "Jordan Addison's fifth-year option was officially made on April 27th.",
-      "extraction": {
-        "status": "Fifth-year option made official",
-        "designation": "Fifth-year option made official",
-        "date": "2026-04-27T10:01:31-07:00",
-        "direct_quote": "Jordan Addison: Fifth-year option made official \n\n https://www.rotowire.com/football/player/jordan-addison-16895",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mkikcjkeyu2l"
-      },
-      "timeline": [
-        {
-          "id": "84582563-3e29-4703-9128-20c546a7847c",
-          "timestamp": "2026-04-27T10:01:31-07:00",
-          "designation": "Fifth-year option made official",
-          "source_text": "Jordan Addison: Fifth-year option made official \n\n https://www.rotowire.com/football/player/jordan-addison-16895",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mkikcjkeyu2l",
-          "source_type": "beat_reporter",
-          "player_name": "Jordan Addison"
-        }
-      ]
-    },
-    {
       "player_id": "00-0036997",
       "player_name": "Javonte Williams",
       "team": null,
@@ -4172,41 +4376,6 @@
           "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mht57m4dfj2i",
           "source_type": "beat_reporter",
           "player_name": "Brian Robinson"
-        }
-      ]
-    },
-    {
-      "player_id": "00-0036613",
-      "player_name": "Jaylen Waddle",
-      "team": null,
-      "current_designation": "Opens up cap space",
-      "last_updated": "2026-03-24T08:06:37-07:00",
-      "diff_summary": "Jaylen Waddle was traded to Denver on March 17th. Seven days later, the team opened up cap space.",
-      "extraction": {
-        "status": "Opens up cap space",
-        "designation": "Opens up cap space",
-        "date": "2026-03-24T08:06:37-07:00",
-        "direct_quote": "Jaylen Waddle: Opens up cap space \n\n https://www.rotowire.com/football/player/jaylen-waddle-15404",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mhstzr2qzj2j"
-      },
-      "timeline": [
-        {
-          "id": "c42a6366-1495-441b-b1c7-5af170c3658b",
-          "timestamp": "2026-03-24T08:06:37-07:00",
-          "designation": "Opens up cap space",
-          "source_text": "Jaylen Waddle: Opens up cap space \n\n https://www.rotowire.com/football/player/jaylen-waddle-15404",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mhstzr2qzj2j",
-          "source_type": "beat_reporter",
-          "player_name": "Jaylen Waddle"
-        },
-        {
-          "id": "c27fcb43-4226-4c29-bdcd-02ceef38aaac",
-          "timestamp": "2026-03-17T08:18:17-07:00",
-          "designation": "Dealt to Denver",
-          "source_text": "Jaylen Waddle: Dealt to Denver \n\n https://www.rotowire.com/football/player/jaylen-waddle-15404",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mhbbg6mfe22p",
-          "source_type": "beat_reporter",
-          "player_name": "Jaylen Waddle"
         }
       ]
     },
@@ -4564,32 +4733,6 @@
           "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgdbmhk7q32w",
           "source_type": "beat_reporter",
           "player_name": "DJ Moore"
-        }
-      ]
-    },
-    {
-      "player_id": "00-0035659",
-      "player_name": "Terry McLaurin",
-      "team": null,
-      "current_designation": "Headed for more volume in 2026?",
-      "last_updated": "2026-02-13T10:10:03-08:00",
-      "diff_summary": "Terry McLaurin is expected to see increased volume in 2026.",
-      "extraction": {
-        "status": "Headed for more volume in 2026?",
-        "designation": "Headed for more volume in 2026?",
-        "date": "2026-02-13T10:10:03-08:00",
-        "direct_quote": "Terry McLaurin: Headed for more volume in 2026? \n\n https://www.rotowire.com/football/player/terry-mclaurin-13536",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mer43umzu42b"
-      },
-      "timeline": [
-        {
-          "id": "083f3cf7-a684-4baf-a337-059639625cc3",
-          "timestamp": "2026-02-13T10:10:03-08:00",
-          "designation": "Headed for more volume in 2026?",
-          "source_text": "Terry McLaurin: Headed for more volume in 2026? \n\n https://www.rotowire.com/football/player/terry-mclaurin-13536",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mer43umzu42b",
-          "source_type": "beat_reporter",
-          "player_name": "Terry McLaurin"
         }
       ]
     }
