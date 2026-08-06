@@ -1,4 +1,4 @@
-import { fetchJSON, showError, revealPage, formatTimestamp } from "./config.js";
+import { fetchJSON, showError, revealPage } from "./config.js";
 import {
   scoreCandidates,
   nextPickNumbers,
@@ -6,7 +6,7 @@ import {
   draftTargets,
   resolveLeagueSettings,
   SKILL_POSITIONS,
-} from "./draft-scoring.js?v=24";
+} from "./draft-scoring.js?v=32";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 500;
@@ -269,23 +269,18 @@ async function mountDraftCompanionPage() {
     const targets = result?.targets || draftTargets(leagueSettings || {});
     const total =
       (counts.QB || 0) + (counts.RB || 0) + (counts.WR || 0) + (counts.TE || 0);
-    const need = result?.myNeeds;
     needsEl.innerHTML = `
       <div class="draft-needs-grid">
         ${["QB", "RB", "WR", "TE"]
           .map((pos) => {
-            const min = targets.min[pos];
             const have = counts[pos] || 0;
-            const open = need ? need[pos] : Math.max(0, min - have);
-            return `<div><strong>${pos}</strong> ${escapeHtml(String(have))} · starter holes ${escapeHtml(
-              String(open)
-            )}</div>`;
+            return `<div><strong>${pos}</strong> ${escapeHtml(String(have))}</div>`;
           })
           .join("")}
         <div><strong>FLEX open</strong> ${escapeHtml(
           String(result?.myOpenFlex ?? "—")
         )}</div>
-        <div><strong>Skill total</strong> ${escapeHtml(String(total))} / ${escapeHtml(
+        <div><strong>Total</strong> ${escapeHtml(String(total))} / ${escapeHtml(
           String(targets.total)
         )}</div>
       </div>`;
@@ -314,18 +309,8 @@ async function mountDraftCompanionPage() {
   }
 
   function roleTags(r) {
-    const tags = [];
-    if (r.at_risk) tags.push("at risk");
-    if (r.owns_starter) tags.push("your handcuff");
-    else if (r.role === "handcuff") tags.push("handcuff");
-    else if (r.role === "committee") tags.push("committee");
-    else if (r.role === "rookie_path") tags.push("rookie path");
-    if (r.is_rookie && r.role !== "rookie_path") tags.push("rookie");
-    if (r.bye_stack) tags.push("bye stack");
-    if (!tags.length) return "";
-    return tags
-      .map((t) => `<span class="draft-tag">${escapeHtml(t)}</span>`)
-      .join(" ");
+    if (!r.is_rookie) return "";
+    return `<span class="draft-tag">rookie</span>`;
   }
 
   function renderScores() {
@@ -364,10 +349,16 @@ async function mountDraftCompanionPage() {
 
     const atRiskCount = result.predictedAtRisk?.length || 0;
     const beforeCount = result.predictedBeforeYou?.length || 0;
-    const tip =
-      result.topPick?.at_risk
-        ? `Take ${result.topPick.player} — highest VBD among players predicted gone before your next turn.`
-        : `No urgency — bank ${result.topPick?.player || "top VBD"} (highest VBD available).`;
+    let tip;
+    if (result.topPick?.score > 0) {
+      tip = result.topPick.at_risk
+        ? `Take ${result.topPick.player} — best score among players predicted gone before your next turn.`
+        : `No urgency — bank ${result.topPick.player} (best score available).`;
+    } else {
+      tip = result.topPick?.at_risk
+        ? `No value over replacement left — take ${result.topPick.player} (at risk, best ADP).`
+        : `No value over replacement left — bank ${result.topPick?.player || "best ADP"} (lowest ADP available).`;
+    }
 
     recEl.innerHTML = `
       <p class="meta">${escapeHtml(tip)} · ADP sim: ${escapeHtml(
@@ -376,8 +367,8 @@ async function mountDraftCompanionPage() {
       <table class="draft-table cell-border">
         <thead>
           <tr>
-            <th>#</th><th>Player</th><th>Pos</th><th>Bye</th><th>VBD</th>
-            <th>ADP</th><th>At risk</th>
+            <th>#</th><th>Player</th><th>Pos</th><th>Bye</th><th>Score</th>
+            <th>VORP</th><th>Need</th><th>ADP</th><th>At risk</th>
           </tr>
         </thead>
         <tbody>
@@ -394,7 +385,9 @@ async function mountDraftCompanionPage() {
               </td>
               <td>${escapeHtml(r.position)}</td>
               <td>${r.bye_week == null ? "—" : escapeHtml(r.bye_week)}</td>
-              <td><strong>${escapeHtml(r.vbd)}</strong></td>
+              <td><strong>${escapeHtml(r.score)}</strong></td>
+              <td>${escapeHtml(r.vorp)}</td>
+              <td>${r.need_bonus ? `+${escapeHtml(r.need_bonus)}` : "—"}</td>
               <td>${r.adp == null ? "—" : escapeHtml(r.adp)}</td>
               <td>${r.at_risk ? "yes" : "—"}</td>
             </tr>`
@@ -527,12 +520,6 @@ async function mountDraftCompanionPage() {
     const data = await fetchJSON("draft/projections.json");
     projections = data.players || [];
     indexProjections(projections);
-    if (metaEl) {
-      metaEl.textContent = data.last_updated
-        ? `Projections ready · ${projections.length} players · updated ${formatTimestamp(data.last_updated)}`
-        : `Projections ready · ${projections.length} players`;
-    }
-    setStatus("Paste a Sleeper league/draft link and connect live");
     const saved = localStorage.getItem("draft-companion:last-id");
     if (saved && input) input.value = saved;
     input?.addEventListener("change", () => {
@@ -541,7 +528,6 @@ async function mountDraftCompanionPage() {
     revealPage();
   } catch (err) {
     showError(recEl, err.message);
-    setStatus(err.message);
     revealPage();
   }
 }

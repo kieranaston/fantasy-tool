@@ -3,10 +3,14 @@
  *
  *  1. Baseline: empty starter slots leaguewide → replacement = pts of the
  *     player who would fill the last one.
- *  2. VBD = projected pts − baseline[pos].
+ *  2. VORP = max(0, pts − baseline[pos]) — never negative.
  *  3. Predict picks before you pick again, using ADP (need-aware).
- *  4. Those predicted picks are "at risk" (won't survive to your next turn).
- *  5. Take highest-VBD among at-risk; if none, bank highest VBD overall.
+ *  4. Those predicted picks are "at risk" (won't survive to your next turn),
+ *     plus a small buffer past it so ADP-boundary players still count.
+ *  5. Score = VORP + need bonus, where the bonus is the VORP this player has
+ *     over what you'd still get at that position next turn — counted only if
+ *     you need the spot (halved when it only fills flex).
+ *     Rank by score, then at-risk, then low ADP.
  */
 
 const SKILL_POSITIONS = ["QB", "RB", "WR", "TE"];
@@ -24,6 +28,13 @@ const DRAFT_CAPS = {
 
 const BYE_STARTER_PTS_FLOOR = 110;
 const ADP_MISSING = 9999;
+
+/**
+ * ADP is noisy, so a player predicted to survive by one or two picks is really
+ * a coin flip. Simulate this many picks past your next turn so borderline
+ * players count as at risk.
+ */
+const RISK_LOOKAHEAD_PICKS = 3;
 
 function starterSlotsFromSettings(settings = {}) {
   return {
@@ -161,6 +172,26 @@ function neededPositions(state) {
   return set;
 }
 
+/**
+ * How much YOU need this position right now.
+ *  2 = fills an empty mandatory starter
+ *  1 = can fill an open flex
+ *  0 = bench / already covered
+ */
+function myNeedPriority(position, state) {
+  const pos = normalizePos(position);
+  if ((state?.need?.[pos] || 0) > 0) return 2;
+  if ((state?.openFlex || 0) > 0 && FLEX_POSITIONS.includes(pos)) return 1;
+  return 0;
+}
+
+/** Share of a position's wait cost applied as a need bonus. */
+function needWeightFor(priority) {
+  if (priority >= 2) return 1;
+  if (priority === 1) return 0.5;
+  return 0;
+}
+
 function isHardCapped(counts, position) {
   const cap = DRAFT_CAPS[position];
   if (cap != null && (counts[position] || 0) >= cap) return true;
@@ -207,8 +238,11 @@ function slotForOverallPick(pickNo, teams) {
 }
 
 function adpValue(player) {
-  const adp = Number(player?.adp);
-  return Number.isFinite(adp) ? adp : ADP_MISSING;
+  // Number(null) === 0 — treat missing ADP as undrafted, not 1.01.
+  const raw = player?.adp;
+  if (raw == null || raw === "") return ADP_MISSING;
+  const adp = Number(raw);
+  return Number.isFinite(adp) && adp > 0 ? adp : ADP_MISSING;
 }
 
 function bestByAdp(players) {
@@ -233,6 +267,15 @@ function playerAtRank(pool, rank) {
 
 function playerId(player) {
   return String(player?.sleeper_id || player?.player_id || "");
+}
+
+function bestVorpForPos(players, baseline) {
+  let best = 0;
+  for (const p of players || []) {
+    const vorp = Math.max(0, (Number(p.pts) || 0) - baseline);
+    if (vorp > best) best = vorp;
+  }
+  return best;
 }
 
 /**
@@ -407,10 +450,14 @@ function scoreCandidates({
   });
 
   // Step 3–4: who won't survive until you pick again after this one.
-  const atRiskTaken = myPickAfter
+  const lastPickNo = teams * rounds;
+  const riskWindowEnd = myPickAfter
+    ? Math.min(lastPickNo + 1, myPickAfter + RISK_LOOKAHEAD_PICKS)
+    : null;
+  const atRiskTaken = riskWindowEnd
     ? simulateAdpPicks({
         startPick: myPick + 1,
-        endPick: myPickAfter,
+        endPick: riskWindowEnd,
         teams,
         mySlot,
         settings,
@@ -428,30 +475,55 @@ function scoreCandidates({
   );
   const byPosAtPick = groupByPos(availableAtPick);
 
+  // Fallback level per position: best VORP that survives the risk window.
+  // Skipping a position you need costs you the gap above that fallback.
+  const fallbackVorp = {};
+  const waitCost = {};
+  for (const pos of SKILL_POSITIONS) {
+    const baseline = baselines.baselineValue[pos] || 0;
+    const bestNow = bestVorpForPos(byPosAtPick[pos], baseline);
+    const bestLater = bestVorpForPos(
+      pool.filter((p) => normalizePos(p.position) === pos),
+      baseline
+    );
+    fallbackVorp[pos] = bestLater;
+    waitCost[pos] = Math.max(0, bestNow - bestLater);
+  }
+
   const scored = [];
   for (const pos of SKILL_POSITIONS) {
     if (isHardCapped(counts, pos)) continue;
     const baseline = baselines.baselineValue[pos] || 0;
+    const needPriority = myNeedPriority(pos, myState);
+    const weight = needWeightFor(needPriority);
+    const fallback = fallbackVorp[pos] || 0;
 
     for (const player of byPosAtPick[pos] || []) {
       const pts = Number(player.pts) || 0;
-      const vbd = pts - baseline;
+      // Never rank/display below-replacement as negative — floor at 0.
+      const vorp = Math.max(0, pts - baseline);
       const id = playerId(player);
       const atRisk = atRiskIds.has(id);
       const byeMates = byeStackMateCount(myRoster, player);
+      // Only the value this player captures over the wait-a-turn fallback.
+      const needBonus = weight * Math.max(0, vorp - fallback);
+      const score = vorp + needBonus;
 
       scored.push({
         ...player,
-        vbd: round1(vbd),
-        vorp: round1(vbd),
+        vbd: round1(vorp),
+        vorp: round1(vorp),
+        need_bonus: round1(needBonus),
+        score: round1(score),
         replacement: round1(baseline),
         baseline_rank: round1(baselines.baselineRank[pos] || 0),
         at_risk: atRisk,
         risk_flag: atRisk ? "AT_RISK" : "SAFE",
-        combined: round1(vbd),
-        regret: round1(vbd),
+        combined: round1(score),
+        regret: round1(vorp),
         picks_until_next: picksUntilNext,
-        need_fit: 1,
+        need_priority: needPriority,
+        need_fit: needPriority,
         bye_stack: byeMates > 0,
         bye_stack_mates: byeMates,
         owns_starter: ownsStarter(player, myRoster),
@@ -460,35 +532,26 @@ function scoreCandidates({
     }
   }
 
+  // Score = VORP + need bonus. No hard gate: a big value edge can outrank need.
+  // Once nothing scores above replacement, at-risk and low ADP decide.
   scored.sort(
     (a, b) =>
-      b.vbd - a.vbd ||
-      (Number(a.adp) || ADP_MISSING) - (Number(b.adp) || ADP_MISSING) ||
+      b.score - a.score ||
+      Number(b.at_risk) - Number(a.at_risk) ||
+      adpValue(a) - adpValue(b) ||
       b.pts - a.pts
   );
 
-  const atRiskSorted = scored.filter((p) => p.at_risk);
-  const topPick = atRiskSorted[0] || scored[0] || null;
+  const hasPositiveVorp = scored.some((p) => p.score > 0);
+  const topPick =
+    scored.find((p) => p.at_risk && p.score > 0) || scored[0] || null;
 
-  // Lead with the pick the loop chose; then other at-risk; then rest by VBD.
-  const recommendations = [];
-  const seen = new Set();
-  const push = (p) => {
-    if (!p) return;
-    const id = playerId(p);
-    if (seen.has(id)) return;
-    seen.add(id);
-    recommendations.push(p);
-  };
-  push(topPick);
-  for (const p of atRiskSorted) push(p);
-  for (const p of scored) push(p);
-
+  const recommendations = scored.slice(0, 12);
   for (let i = 0; i < recommendations.length; i += 1) {
     const next = recommendations[i + 1];
     recommendations[i].gap = next
-      ? round1(recommendations[i].vbd - next.vbd)
-      : round1(recommendations[i].vbd);
+      ? round1(recommendations[i].score - next.score)
+      : round1(recommendations[i].score);
   }
 
   return {
@@ -499,7 +562,8 @@ function scoreCandidates({
     nextPickNo: myPick,
     pickAfterNext: myPickAfter,
     picksUntilNext,
-    mode: "vbd",
+    mode: hasPositiveVorp ? "vorp" : "adp_scarcity",
+    hasPositiveVorp,
     predictedBeforeYou: beforeYou.map(summarizePredicted),
     predictedAtRisk: atRiskTaken.map(summarizePredicted),
     baselines: {
@@ -509,6 +573,8 @@ function scoreCandidates({
       baselineRank: mapRound1(baselines.baselineRank),
       baselineValue: mapRound1(baselines.baselineValue),
     },
+    waitCost: mapRound1(waitCost),
+    fallbackVorp: mapRound1(fallbackVorp),
     topPick,
     recommendations: recommendations.slice(0, 12),
     scored,
@@ -564,8 +630,11 @@ export {
   simulateAdpPicks,
   byeStackMateCount,
   teamNeed,
+  myNeedPriority,
+  needWeightFor,
   SKILL_POSITIONS,
   NEED_POSITIONS,
   FLEX_POSITIONS,
   DRAFT_CAPS,
+  RISK_LOOKAHEAD_PICKS,
 };
