@@ -376,7 +376,6 @@ function groupByPos(players) {
 }
 
 function scoreCandidates({
-  available,
   availableByPos: availableByPosIn,
   myRoster,
   opponentRosters,
@@ -391,17 +390,8 @@ function scoreCandidates({
   const myPicks = nextPickNumbers(mySlot, teams, rounds, currentPickNo);
   const myPick = myPicks[0] ?? currentPickNo;
   const myPickAfter = myPicks[1] ?? null;
-  const picksUntilNext = Math.max(0, myPick - currentPickNo);
 
-  let availableByPos = availableByPosIn;
-  if (!availableByPos) {
-    availableByPos = {};
-    for (const pos of SKILL_POSITIONS) {
-      availableByPos[pos] = (available || [])
-        .filter((p) => normalizePos(p.position) === pos)
-        .sort((a, b) => Number(b.pts) - Number(a.pts));
-    }
-  }
+  const availableByPos = { ...availableByPosIn };
   for (const pos of NEED_POSITIONS) {
     if (!availableByPos[pos]) availableByPos[pos] = [];
   }
@@ -459,16 +449,12 @@ function scoreCandidates({
   // Fallback level per position: best VORP that survives the risk window.
   // Skipping a position you need costs you the gap above that fallback.
   const fallbackVorp = {};
-  const waitCost = {};
   for (const pos of SKILL_POSITIONS) {
     const baseline = baselines.baselineValue[pos] || 0;
-    const bestNow = bestVorpForPos(byPosAtPick[pos], baseline);
-    const bestLater = bestVorpForPos(
+    fallbackVorp[pos] = bestVorpForPos(
       pool.filter((p) => normalizePos(p.position) === pos),
       baseline
     );
-    fallbackVorp[pos] = bestLater;
-    waitCost[pos] = Math.max(0, bestNow - bestLater);
   }
 
   const scored = [];
@@ -490,9 +476,7 @@ function scoreCandidates({
         ...player,
         vorp: round1(vorp),
         need_bonus: round1(needBonus),
-        need_priority: needPriority,
         score: round1(vorp + needBonus),
-        replacement: round1(baseline),
         at_risk: atRiskIds.has(playerId(player)),
       });
     }
@@ -512,27 +496,12 @@ function scoreCandidates({
     scored.find((p) => p.at_risk && p.score > 0) || scored[0] || null;
 
   return {
-    myNeeds: myState.need,
     myOpenFlex: myState.openFlex,
-    myCounts: counts,
     targets: draftTargets(settings),
-    nextPickNo: myPick,
-    pickAfterNext: myPickAfter,
-    picksUntilNext,
     predictedBeforeYou: beforeYou.map(summarizePredicted),
     predictedAtRisk: atRiskTaken.map(summarizePredicted),
-    baselines: {
-      totalNeed: baselines.totalNeed,
-      openFlexSlots: baselines.openFlexSlots,
-      flexShare: round1(baselines.flexShare),
-      baselineRank: mapRound1(baselines.baselineRank),
-      baselineValue: mapRound1(baselines.baselineValue),
-    },
-    waitCost: mapRound1(waitCost),
-    fallbackVorp: mapRound1(fallbackVorp),
     topPick,
     recommendations: scored.slice(0, 12),
-    scored,
   };
 }
 
@@ -546,34 +515,15 @@ function summarizePredicted(player) {
   };
 }
 
-function mapRound1(obj = {}) {
-  const out = {};
-  for (const [k, v] of Object.entries(obj)) out[k] = round1(v);
-  return out;
-}
-
 function round1(n) {
   return Math.round(Number(n) * 10) / 10;
 }
 
 export {
-  starterSlotsFromSettings,
   resolveLeagueSettings,
   rosterPositionCounts,
   draftTargets,
-  isHardCapped,
-  pickNumbersForSlot,
   nextPickNumbers,
   scoreCandidates,
-  computeBaselines,
-  predictAdpPick,
-  simulateAdpPicks,
-  teamNeed,
-  myNeedPriority,
-  needWeightFor,
   SKILL_POSITIONS,
-  NEED_POSITIONS,
-  FLEX_POSITIONS,
-  DRAFT_CAPS,
-  RISK_LOOKAHEAD_PICKS,
 };

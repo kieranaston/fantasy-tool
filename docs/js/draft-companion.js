@@ -6,7 +6,7 @@ import {
   draftTargets,
   resolveLeagueSettings,
   SKILL_POSITIONS,
-} from "./draft-scoring.js?v=33";
+} from "./draft-scoring.js?v=34";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 500;
@@ -325,7 +325,6 @@ async function mountDraftCompanionPage() {
 
     const byPos = availableByPos();
     const result = scoreCandidates({
-      available: null,
       availableByPos: byPos,
       myRoster,
       opponentRosters: bySlot,
