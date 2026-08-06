@@ -7,7 +7,11 @@
  *  3. Predict picks before you with −ADP + NEED_K × need[pos] (hard path).
  *  4. Risk to your next pick: soft opponent choices (softmax over the same
  *     score) → survival product → risk = 1 − survival.
- *  5. Score = VORP + NEED_K × need + RISK_K × risk + ADP_K / adp.
+ *  5. Blend VORP ↔ ADP from remaining above-replacement surplus:
+ *       surplus = Σ max(0, vorp) on the board you'll see
+ *       w = surplus / (surplus + SURPLUS_HALF)
+ *       score = w×VORP + (1−w)×(−ADP) + NEED_K×need + RISK_K×risk
+ *     Early (high surplus): VORP-led. Late (surplus → 0): ADP-led.
  *     Starter need can go negative when you overstock. Flex +1 applies to
  *     WR/RB only. Remaining roster picks add depth need to WR/RB only (not
  *     TE). Rank by score, then ADP.
@@ -31,10 +35,10 @@ const NEED_K = 12;
 const RISK_K = 3;
 
 /**
- * ADP preference: ADP_K / adp. Strong enough to separate a flat late board
- * without fully overriding need early (ADP ~10 ≈ half a need unit).
+ * Surplus of above-replacement VORP at which the blend is 50/50 VORP↔ADP.
+ * Higher → VORP stays primary deeper into the draft.
  */
-const ADP_K = 80;
+const SURPLUS_HALF = 120;
 
 /** Softmax over the top N opponent candidates each pick. */
 const RISK_SOFTMAX_TOP = 12;
@@ -246,11 +250,18 @@ function adpValue(player) {
   return Number.isFinite(adp) && adp > 0 ? adp : ADP_MISSING;
 }
 
-/** Light score bump favoring earlier ADP; 0 when ADP is missing. */
-function adpBonusFor(player) {
-  const adp = adpValue(player);
-  if (!(adp < ADP_MISSING)) return 0;
-  return ADP_K / adp;
+/**
+ * ADP as a VORP-scale term: lower ADP → higher score.
+ * Missing ADP sorts as undrafted (worst).
+ */
+function adpScoreFor(player) {
+  return -adpValue(player);
+}
+
+/** w∈[0,1]: 1 = full VORP, 0 = full ADP. Driven by remaining surplus. */
+function vorpWeightFromSurplus(surplus) {
+  const s = Math.max(0, Number(surplus) || 0);
+  return s / (s + SURPLUS_HALF);
 }
 
 function playerAtRank(pool, rank) {
@@ -548,7 +559,9 @@ function scoreCandidates({
 
   const myNeed = needState(myRoster, settings);
 
-  const scored = [];
+  // First pass: VORPs on the board you'll see → remaining surplus value.
+  const pending = [];
+  let surplus = 0;
   for (const pos of SKILL_POSITIONS) {
     const baseline = baselines.baselineValue[pos] || 0;
     const need = myNeed.need_count[pos] || 0;
@@ -556,26 +569,40 @@ function scoreCandidates({
 
     for (const player of byPosAtPick[pos] || []) {
       const pts = Number(player.pts) || 0;
-      // Below-replacement stays negative so late board still sorts by value.
       const vorp = pts - baseline;
-      const risk = riskById.get(playerId(player)) || 0;
-      const riskBonus = RISK_K * risk;
-      const adpBonus = adpBonusFor(player);
-
-      scored.push({
-        ...player,
-        vorp: round1(vorp),
-        need_bonus: round1(needBonus),
-        need_count: need,
-        risk: round1(risk),
-        risk_bonus: round1(riskBonus),
-        adp_bonus: round1(adpBonus),
-        score: round1(vorp + needBonus + riskBonus + adpBonus),
-      });
+      if (vorp > 0) surplus += vorp;
+      pending.push({ player, pos, vorp, need, needBonus });
     }
   }
 
-  // Score = VORP + need + risk + light ADP. ADP separates a flat late board.
+  const vorpWeight = vorpWeightFromSurplus(surplus);
+  const adpWeight = 1 - vorpWeight;
+
+  const scored = [];
+  for (const row of pending) {
+    const risk = riskById.get(playerId(row.player)) || 0;
+    const riskBonus = RISK_K * risk;
+    const adpScore = adpScoreFor(row.player);
+    const score =
+      vorpWeight * row.vorp +
+      adpWeight * adpScore +
+      row.needBonus +
+      riskBonus;
+
+    scored.push({
+      ...row.player,
+      vorp: round1(row.vorp),
+      need_bonus: round1(row.needBonus),
+      need_count: row.need,
+      risk: round1(risk),
+      risk_bonus: round1(riskBonus),
+      adp_score: round1(adpScore),
+      vorp_weight: round2(vorpWeight),
+      score: round1(score),
+    });
+  }
+
+  // Early: VORP-led. Late (surplus → 0): ADP-led. Need + risk always apply.
   scored.sort(
     (a, b) =>
       b.score - a.score ||
@@ -587,12 +614,18 @@ function scoreCandidates({
     targets: draftTargets(settings),
     need_count: myNeed.need_count,
     openFlex: myNeed.openFlex,
+    vorp_surplus: round1(surplus),
+    vorp_weight: round2(vorpWeight),
     recommendations: scored.slice(0, 12),
   };
 }
 
 function round1(n) {
   return Math.round(Number(n) * 10) / 10;
+}
+
+function round2(n) {
+  return Math.round(Number(n) * 100) / 100;
 }
 
 export {

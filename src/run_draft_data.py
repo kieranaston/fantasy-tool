@@ -59,7 +59,7 @@ def resolve_season() -> int:
 def write_projections(season: int) -> Path:
     print(f"  Fetching Sleeper RotoWire projections for {season}…")
     raw = fetch_sleeper_value_rows(season=season, order_by="adp_half_ppr")
-    print("  Fetching Sleeper players map (depth charts)…")
+    print("  Fetching Sleeper players map…")
     players_map = fetch_sleeper_players_map()
     players = normalize_value_players(raw, players_map=players_map)
     print(f"  Normalized {len(players)} players with projected points")
@@ -73,7 +73,6 @@ def write_projections(season: int) -> Path:
             season=season,
             format_key=format_key,
             players=players,
-            players_map=players_map,
             bye_weeks=bye_weeks,
         )
         path = DRAFT_DIR / f"projections-{format_key.replace('_', '-')}.json"

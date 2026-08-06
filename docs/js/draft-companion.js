@@ -271,7 +271,7 @@ async function mountDraftCompanionPage() {
     }
     needsEl.innerHTML = `
       <div class="draft-roster-grid">
-        ${["QB", "RB", "WR", "TE", "K", "DST"]
+        ${["QB", "RB", "WR", "TE"]
           .map((pos) => {
             const names = byPos[pos] || [];
             const body = names.length
@@ -307,11 +307,6 @@ async function mountDraftCompanionPage() {
       </table>`;
   }
 
-  function roleTags(r) {
-    if (!r.is_rookie) return "";
-    return `<span class="draft-tag">rookie</span>`;
-  }
-
   function renderScores() {
     if (!draft) return;
     const timing = pickTiming();
@@ -345,7 +340,9 @@ async function mountDraftCompanionPage() {
       return;
     }
 
+    const vorpPct = Math.round((Number(result.vorp_weight) || 0) * 100);
     recEl.innerHTML = `
+      <p class="meta">Blend: ${vorpPct}% VORP / ${100 - vorpPct}% ADP</p>
       <table class="draft-table cell-border">
         <thead>
           <tr>
@@ -359,12 +356,7 @@ async function mountDraftCompanionPage() {
               (r, i) => `
             <tr>
               <td>${i + 1}</td>
-              <td>
-                <div class="draft-player-cell">
-                  <span>${escapeHtml(r.player)}</span>
-                  ${roleTags(r)}
-                </div>
-              </td>
+              <td>${escapeHtml(r.player)}</td>
               <td>${escapeHtml(r.position)}</td>
               <td>${r.bye_week == null ? "—" : escapeHtml(r.bye_week)}</td>
               <td>${escapeHtml(r.vorp)}</td>
