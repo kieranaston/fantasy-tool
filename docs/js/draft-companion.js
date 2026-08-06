@@ -6,7 +6,7 @@ import {
   draftTargets,
   resolveLeagueSettings,
   SKILL_POSITIONS,
-} from "./draft-scoring.js?v=35";
+} from "./draft-scoring.js?v=36";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 500;
@@ -264,6 +264,16 @@ async function mountDraftCompanionPage() {
     metaEl.textContent = parts.join(" · ");
   }
 
+  /** RB/WR slack is the live lean; "forced" means that side has run out. */
+  function slackLabel(result) {
+    const slack = result?.slack;
+    if (!slack) return "—";
+    const parts = ["RB", "WR"]
+      .filter((pos) => slack[pos] != null)
+      .map((pos) => `${pos} ${slack[pos] === 0 ? "forced" : slack[pos]}`);
+    return parts.length ? parts.join(" · ") : "full";
+  }
+
   function renderRosterCounts(roster, result = null) {
     const counts = rosterPositionCounts(roster);
     const targets = result?.targets || draftTargets(leagueSettings || {});
@@ -288,10 +298,16 @@ async function mountDraftCompanionPage() {
           })
           .join("")}
         <div class="draft-roster-slot">
-          <strong>FLEX OPEN</strong>
+          <strong>RB+WR</strong>
           <span class="draft-roster-players">${escapeHtml(
-            String(result?.myOpenFlex ?? "—")
+            String(result?.rbWrUsed ?? (counts.RB || 0) + (counts.WR || 0))
+          )} / ${escapeHtml(
+            String(result?.rbWrBudget ?? targets.rbWrBudget)
           )}</span>
+        </div>
+        <div class="draft-roster-slot">
+          <strong>SLACK</strong>
+          <span class="draft-roster-players">${escapeHtml(slackLabel(result))}</span>
         </div>
         <div class="draft-roster-slot">
           <strong>TOTAL</strong>
@@ -358,7 +374,7 @@ async function mountDraftCompanionPage() {
 
     const recs = result.recommendations.slice(0, 8);
     if (!recs.length) {
-      recEl.innerHTML = `<p class="meta">No players left under your roster caps.</p>`;
+      recEl.innerHTML = `<p class="meta">Roster limits are met — remaining spots are for K/DEF.</p>`;
       return;
     }
 
@@ -386,7 +402,13 @@ async function mountDraftCompanionPage() {
               <td>${r.bye_week == null ? "—" : escapeHtml(r.bye_week)}</td>
               <td><strong>${escapeHtml(r.score)}</strong></td>
               <td>${escapeHtml(r.vorp)}</td>
-              <td>${r.need_bonus ? `+${escapeHtml(r.need_bonus)}` : "—"}</td>
+              <td>${
+                r.slack === 0
+                  ? "forced"
+                  : r.need_bonus
+                    ? `+${escapeHtml(r.need_bonus)}`
+                    : "—"
+              }</td>
               <td>${r.adp == null ? "—" : escapeHtml(r.adp)}</td>
               <td>${r.at_risk ? "yes" : "—"}</td>
             </tr>`

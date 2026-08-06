@@ -7,24 +7,37 @@
  *  3. Predict picks before you pick again, using ADP (need-aware).
  *  4. Those predicted picks are "at risk" (won't survive to your next turn),
  *     plus a small buffer past it so ADP-boundary players still count.
- *  5. Score = VORP + need bonus, where the bonus is the VORP this player has
- *     over what you'd still get at that position next turn — counted only if
- *     you need the spot (halved when it only fills flex).
- *     Rank by score, then at-risk, then low ADP.
+ *  5. Score = VORP + NEED_BONUS_K / (slack + 1), where slack is how many of
+ *     your remaining picks could go elsewhere before a position can no longer
+ *     reach its floor. Slack 0 is a hard override: take that position now.
+ *     Rank the one list by score, then at-risk, then low ADP.
+ *
+ * Roster construction is min/max per position, not named starter slots. RB and
+ * WR are one coupled constraint sharing a single budget, so you are choosing a
+ * lean between them rather than two independent counts.
  */
 
 const SKILL_POSITIONS = ["QB", "RB", "WR", "TE"];
 const NEED_POSITIONS = ["QB", "RB", "WR", "TE", "DEF", "K"];
 const FLEX_POSITIONS = ["RB", "WR", "TE"];
 
-/** Soft personal caps so the board doesn't recommend a 5th QB. */
-const DRAFT_CAPS = {
-  QB: 2,
-  RB: 6,
-  WR: 6,
-  TE: 2,
-  total: 16,
-};
+/**
+ * Positions you draft exactly one of. They leave the board once filled.
+ * K and DEF have no projections, so they never get recommended — they are
+ * listed here only to reserve the roster spots they will consume.
+ */
+const SINGLE_SLOT_POSITIONS = ["QB", "TE", "K", "DEF"];
+
+/** RB and WR split every pick the single-slot positions don't reserve. */
+const RB_WR_FLOOR = 5;
+const RB_WR_CAP = 7;
+
+/**
+ * How much VORP you'll trade to fix a shortage, sized to a typical gap between
+ * tiers. A slack of 1 is then worth about one tier-reach, while comfortable
+ * slack decays to noise and lets raw value decide.
+ */
+const NEED_BONUS_K = 4;
 
 const ADP_MISSING = 9999;
 
@@ -115,21 +128,22 @@ function rosterPositionCounts(players = []) {
   return counts;
 }
 
+/** You get one pick per round, so the roster is as big as the draft is long. */
+function rosterSize(settings = {}) {
+  return Math.max(1, Number(settings.rounds) || 16);
+}
+
+/** Whatever the one-of-each positions don't reserve belongs to RB and WR. */
+function rbWrBudget(settings = {}) {
+  return Math.max(0, rosterSize(settings) - SINGLE_SLOT_POSITIONS.length);
+}
+
 function draftTargets(settings = {}) {
-  const slots = starterSlotsFromSettings(settings);
   return {
-    QB: DRAFT_CAPS.QB,
-    RB: DRAFT_CAPS.RB,
-    WR: DRAFT_CAPS.WR,
-    TE: DRAFT_CAPS.TE,
-    total: DRAFT_CAPS.total,
-    min: {
-      QB: slots.QB,
-      RB: slots.RB,
-      WR: slots.WR,
-      TE: slots.TE,
-    },
-    slots,
+    total: rosterSize(settings),
+    rbWrBudget: rbWrBudget(settings),
+    rbWrFloor: RB_WR_FLOOR,
+    rbWrCap: RB_WR_CAP,
   };
 }
 
@@ -172,31 +186,54 @@ function neededPositions(state) {
 }
 
 /**
- * How much YOU need this position right now.
- *  2 = fills an empty mandatory starter
- *  1 = can fill an open flex
- *  0 = bench / already covered
+ * Live slack per position: how many of your remaining picks could go somewhere
+ * else before this position can no longer reach its floor.
+ *
+ * RB and WR share one budget, which makes them a single coupled constraint —
+ * with a budget of 12 and floors of 5, the only legal endpoints are 5-7, 6-6
+ * and 7-5, so spending on one directly squeezes the other. Slack 0 means every
+ * pick you have left has to go here, and slack decays to noise when a position
+ * is comfortable.
+ *
+ * Returns slack per position plus the positions that are done (at their max).
  */
-function myNeedPriority(position, state) {
-  const pos = normalizePos(position);
-  if ((state?.need?.[pos] || 0) > 0) return 2;
-  if ((state?.openFlex || 0) > 0 && FLEX_POSITIONS.includes(pos)) return 1;
-  return 0;
+function rosterPlan({ counts, settings, myPicksLeft }) {
+  const slack = {};
+  const done = new Set();
+
+  const budget = rbWrBudget(settings);
+  const rb = counts.RB || 0;
+  const wr = counts.WR || 0;
+  const remaining = budget - rb - wr;
+
+  for (const [pos, count] of [
+    ["RB", rb],
+    ["WR", wr],
+  ]) {
+    // Budget spent, or this side is full — the math forces the other side.
+    if (remaining <= 0 || count >= RB_WR_CAP) {
+      done.add(pos);
+      continue;
+    }
+    slack[pos] = Math.max(0, remaining - Math.max(0, RB_WR_FLOOR - count));
+  }
+
+  for (const pos of SINGLE_SLOT_POSITIONS) {
+    if ((counts[pos] || 0) >= 1) {
+      done.add(pos);
+      continue;
+    }
+    // One pick has to be kept back for this position; the rest are free.
+    slack[pos] = Math.max(0, myPicksLeft - 1);
+  }
+
+  return { slack, done, rbWrUsed: rb + wr, rbWrBudget: budget };
 }
 
-/** Share of a position's wait cost applied as a need bonus. */
-function needWeightFor(priority) {
-  if (priority >= 2) return 1;
-  if (priority === 1) return 0.5;
-  return 0;
-}
-
-function isHardCapped(counts, position) {
-  const cap = DRAFT_CAPS[position];
-  if (cap != null && (counts[position] || 0) >= cap) return true;
-  const skillTotal =
-    (counts.QB || 0) + (counts.RB || 0) + (counts.WR || 0) + (counts.TE || 0);
-  return skillTotal >= DRAFT_CAPS.total;
+/** Bonus decays as slack grows, so only real shortages move the ranking. */
+function needBonusFor(slack) {
+  if (!Number.isFinite(slack)) return 0;
+  return NEED_BONUS_K / (slack + 1);
 }
 
 function pickNumbersForSlot(slot, teams, rounds) {
@@ -250,15 +287,6 @@ function playerAtRank(pool, rank) {
 
 function playerId(player) {
   return String(player?.sleeper_id || player?.player_id || "");
-}
-
-function bestVorpForPos(players, baseline) {
-  let best = 0;
-  for (const p of players || []) {
-    const vorp = Math.max(0, (Number(p.pts) || 0) - baseline);
-    if (vorp > best) best = vorp;
-  }
-  return best;
 }
 
 /**
@@ -386,7 +414,6 @@ function scoreCandidates({
   rounds,
 }) {
   const counts = rosterPositionCounts(myRoster);
-  const myState = teamNeed(myRoster, settings);
   const myPicks = nextPickNumbers(mySlot, teams, rounds, currentPickNo);
   const myPick = myPicks[0] ?? currentPickNo;
   const myPickAfter = myPicks[1] ?? null;
@@ -446,36 +473,35 @@ function scoreCandidates({
   );
   const byPosAtPick = groupByPos(availableAtPick);
 
-  // Fallback level per position: best VORP that survives the risk window.
-  // Skipping a position you need costs you the gap above that fallback.
-  const fallbackVorp = {};
-  for (const pos of SKILL_POSITIONS) {
-    const baseline = baselines.baselineValue[pos] || 0;
-    fallbackVorp[pos] = bestVorpForPos(
-      pool.filter((p) => normalizePos(p.position) === pos),
-      baseline
-    );
-  }
+  const plan = rosterPlan({ counts, settings, myPicksLeft: myPicks.length });
+
+  // Positions still open to you, and of those the ones with no slack left.
+  // A forced position overrides value entirely: take it now or miss the floor.
+  // K/DEF can be forced but have no projections, so only force what we can
+  // actually recommend, otherwise the board would come back empty.
+  const openPositions = SKILL_POSITIONS.filter((pos) => !plan.done.has(pos));
+  const forced = openPositions.filter(
+    (pos) => plan.slack[pos] === 0 && (byPosAtPick[pos] || []).length > 0
+  );
+  const positions = forced.length ? forced : openPositions;
 
   const scored = [];
-  for (const pos of SKILL_POSITIONS) {
-    if (isHardCapped(counts, pos)) continue;
+  for (const pos of positions) {
     const baseline = baselines.baselineValue[pos] || 0;
-    const needPriority = myNeedPriority(pos, myState);
-    const weight = needWeightFor(needPriority);
-    const fallback = fallbackVorp[pos] || 0;
+    const slack = plan.slack[pos];
+    // Forced picks skip the formula — the override already decided.
+    const needBonus = forced.length ? 0 : needBonusFor(slack);
 
     for (const player of byPosAtPick[pos] || []) {
       const pts = Number(player.pts) || 0;
       // Never rank/display below-replacement as negative — floor at 0.
       const vorp = Math.max(0, pts - baseline);
-      // Only the value this player captures over the wait-a-turn fallback.
-      const needBonus = weight * Math.max(0, vorp - fallback);
 
       scored.push({
         ...player,
         vorp: round1(vorp),
         need_bonus: round1(needBonus),
+        slack,
         score: round1(vorp + needBonus),
         at_risk: atRiskIds.has(playerId(player)),
       });
@@ -492,13 +518,12 @@ function scoreCandidates({
       b.pts - a.pts
   );
 
-  const topPick =
-    scored.find((p) => p.at_risk && p.score > 0) || scored[0] || null;
-
   return {
-    myOpenFlex: myState.openFlex,
     targets: draftTargets(settings),
-    topPick,
+    slack: plan.slack,
+    forcedPositions: forced,
+    rbWrUsed: plan.rbWrUsed,
+    rbWrBudget: plan.rbWrBudget,
     recommendations: scored.slice(0, 12),
   };
 }
