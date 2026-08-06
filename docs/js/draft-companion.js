@@ -6,7 +6,7 @@ import {
   draftTargets,
   resolveLeagueSettings,
   SKILL_POSITIONS,
-} from "./draft-scoring.js?v=32";
+} from "./draft-scoring.js?v=33";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 500;

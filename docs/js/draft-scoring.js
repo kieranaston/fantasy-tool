@@ -26,7 +26,6 @@ const DRAFT_CAPS = {
   total: 16,
 };
 
-const BYE_STARTER_PTS_FLOOR = 110;
 const ADP_MISSING = 9999;
 
 /**
@@ -200,24 +199,6 @@ function isHardCapped(counts, position) {
   return skillTotal >= DRAFT_CAPS.total;
 }
 
-function byeStackMateCount(myRoster = [], candidate = {}) {
-  const bye = Number(candidate.bye_week);
-  if (!Number.isFinite(bye) || bye <= 0) return 0;
-  return myRoster.filter((p) => {
-    if (Number(p.bye_week) !== bye) return false;
-    const pts = Number(p.pts);
-    if (!Number.isFinite(pts)) return true;
-    return pts >= BYE_STARTER_PTS_FLOOR;
-  }).length;
-}
-
-function ownsStarter(player, myRoster = []) {
-  const starterId = player?.starter_sleeper_id;
-  if (!starterId) return false;
-  const sid = String(starterId);
-  return myRoster.some((p) => String(p.player_id || "") === sid);
-}
-
 function pickNumbersForSlot(slot, teams, rounds) {
   const picks = [];
   for (let round = 1; round <= rounds; round += 1) {
@@ -260,7 +241,9 @@ function bestByAdp(players) {
 }
 
 function playerAtRank(pool, rank) {
-  if (!pool?.length || rank <= 0) return 0;
+  if (!pool?.length) return 0;
+  // Rank 0 means nobody in the league needs a starter here, so the best player
+  // left IS freely available — replacement level, not zero.
   const idx = Math.min(pool.length, Math.max(1, Math.round(rank))) - 1;
   return Number(pool[idx].pts) || 0;
 }
@@ -342,7 +325,6 @@ function simulateAdpPicks({
   settings,
   pool,
   rosters,
-  skipSlots = null,
 }) {
   const taken = [];
   if (!(endPick > startPick)) return taken;
@@ -350,7 +332,6 @@ function simulateAdpPicks({
   for (let pickNo = startPick; pickNo < endPick; pickNo += 1) {
     const slot = slotForOverallPick(pickNo, teams);
     if (slot === mySlot) continue;
-    if (skipSlots?.has(slot)) continue;
     if (!pool.length) break;
 
     const pick = predictAdpPick(rosters[slot] || [], settings, pool);
@@ -502,32 +483,17 @@ function scoreCandidates({
       const pts = Number(player.pts) || 0;
       // Never rank/display below-replacement as negative — floor at 0.
       const vorp = Math.max(0, pts - baseline);
-      const id = playerId(player);
-      const atRisk = atRiskIds.has(id);
-      const byeMates = byeStackMateCount(myRoster, player);
       // Only the value this player captures over the wait-a-turn fallback.
       const needBonus = weight * Math.max(0, vorp - fallback);
-      const score = vorp + needBonus;
 
       scored.push({
         ...player,
-        vbd: round1(vorp),
         vorp: round1(vorp),
         need_bonus: round1(needBonus),
-        score: round1(score),
-        replacement: round1(baseline),
-        baseline_rank: round1(baselines.baselineRank[pos] || 0),
-        at_risk: atRisk,
-        risk_flag: atRisk ? "AT_RISK" : "SAFE",
-        combined: round1(score),
-        regret: round1(vorp),
-        picks_until_next: picksUntilNext,
         need_priority: needPriority,
-        need_fit: needPriority,
-        bye_stack: byeMates > 0,
-        bye_stack_mates: byeMates,
-        owns_starter: ownsStarter(player, myRoster),
-        mode: "vbd",
+        score: round1(vorp + needBonus),
+        replacement: round1(baseline),
+        at_risk: atRiskIds.has(playerId(player)),
       });
     }
   }
@@ -542,17 +508,8 @@ function scoreCandidates({
       b.pts - a.pts
   );
 
-  const hasPositiveVorp = scored.some((p) => p.score > 0);
   const topPick =
     scored.find((p) => p.at_risk && p.score > 0) || scored[0] || null;
-
-  const recommendations = scored.slice(0, 12);
-  for (let i = 0; i < recommendations.length; i += 1) {
-    const next = recommendations[i + 1];
-    recommendations[i].gap = next
-      ? round1(recommendations[i].score - next.score)
-      : round1(recommendations[i].score);
-  }
 
   return {
     myNeeds: myState.need,
@@ -562,8 +519,6 @@ function scoreCandidates({
     nextPickNo: myPick,
     pickAfterNext: myPickAfter,
     picksUntilNext,
-    mode: hasPositiveVorp ? "vorp" : "adp_scarcity",
-    hasPositiveVorp,
     predictedBeforeYou: beforeYou.map(summarizePredicted),
     predictedAtRisk: atRiskTaken.map(summarizePredicted),
     baselines: {
@@ -576,7 +531,7 @@ function scoreCandidates({
     waitCost: mapRound1(waitCost),
     fallbackVorp: mapRound1(fallbackVorp),
     topPick,
-    recommendations: recommendations.slice(0, 12),
+    recommendations: scored.slice(0, 12),
     scored,
   };
 }
@@ -601,26 +556,11 @@ function round1(n) {
   return Math.round(Number(n) * 10) / 10;
 }
 
-function fitMultiplier(counts, settings, position) {
-  return isHardCapped(counts, position) ? 0 : 1;
-}
-
-function softFitPreference(counts, settings, position) {
-  return fitMultiplier(counts, settings, position);
-}
-
-function rosterNeeds(players, settings) {
-  return teamNeed(players, settings).need;
-}
-
 export {
   starterSlotsFromSettings,
   resolveLeagueSettings,
-  rosterNeeds,
   rosterPositionCounts,
   draftTargets,
-  fitMultiplier,
-  softFitPreference,
   isHardCapped,
   pickNumbersForSlot,
   nextPickNumbers,
@@ -628,7 +568,6 @@ export {
   computeBaselines,
   predictAdpPick,
   simulateAdpPicks,
-  byeStackMateCount,
   teamNeed,
   myNeedPriority,
   needWeightFor,
