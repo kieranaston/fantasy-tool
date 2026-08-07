@@ -7,7 +7,7 @@ import {
   projectionsPathForFormat,
   rescoreProjectionBoard,
   SKILL_POSITIONS,
-} from "./draft-scoring.js?v=53";
+} from "./draft-scoring.js?v=54";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 500;
@@ -26,7 +26,7 @@ function escapeHtml(value) {
     .replaceAll('"', "&quot;");
 }
 
-function playerMediaHtml(player, { name } = {}) {
+function playerMediaHtml(player, { name, compact = false } = {}) {
   const display = escapeHtml(
     name || player?.player || player?.name || player?.player_name || ""
   );
@@ -36,17 +36,21 @@ function playerMediaHtml(player, { name } = {}) {
   const headshotHtml = headshot
     ? `<img class="player-headshot" src="${escapeHtml(headshot)}" alt="" width="28" height="28" loading="lazy" decoding="async" />`
     : `<span class="player-headshot player-headshot--empty" aria-hidden="true"></span>`;
-  const teamBits = [];
-  if (logo) {
-    teamBits.push(
-      `<img class="team-logo" src="${escapeHtml(logo)}" alt="" width="14" height="14" loading="lazy" decoding="async" />`
-    );
+  let teamHtml = "";
+  if (!compact) {
+    const teamBits = [];
+    if (logo) {
+      teamBits.push(
+        `<img class="team-logo" src="${escapeHtml(logo)}" alt="" width="14" height="14" loading="lazy" decoding="async" />`
+      );
+    }
+    if (team) teamBits.push(`<span>${escapeHtml(team)}</span>`);
+    teamHtml = teamBits.length
+      ? `<span class="player-media-team">${teamBits.join("")}</span>`
+      : "";
   }
-  if (team) teamBits.push(`<span>${escapeHtml(team)}</span>`);
-  const teamHtml = teamBits.length
-    ? `<span class="player-media-team">${teamBits.join("")}</span>`
-    : "";
-  return `<span class="player-media">${headshotHtml}<span class="player-media-text"><span class="player-media-name">${display}</span>${teamHtml}</span></span>`;
+  const mediaClass = compact ? "player-media player-media--compact" : "player-media";
+  return `<span class="${mediaClass}">${headshotHtml}<span class="player-media-text"><span class="player-media-name">${display}</span>${teamHtml}</span></span>`;
 }
 
 async function sleeperGet(path) {
@@ -455,7 +459,7 @@ async function mountDraftCompanionPage() {
               return `<tr>
                 <td>${escapeHtml(p.pick_no)}</td>
                 <td>${escapeHtml(p.draft_slot)}</td>
-                <td>${playerMediaHtml(proj, { name })}</td>
+                <td>${playerMediaHtml(proj, { name, compact: true })}</td>
                 <td>${escapeHtml(meta.position || "")}</td>
               </tr>`;
             })

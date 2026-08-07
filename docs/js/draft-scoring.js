@@ -9,9 +9,9 @@
  *     score) → survival product → risk = 1 − survival.
  *  5. Blend VORP ↔ ADP from remaining above-replacement surplus:
  *       surplus = Σ max(0, vorp) on the board you'll see
- *       w = surplus / (surplus + SURPLUS_HALF)
+ *       w = min(1, surplus / SURPLUS_FULL)   // 100% VORP until surplus dips
  *       score = w×VORP + (1−w)×(−ADP) + NEED_K×need + RISK_K×risk
- *     Early (high surplus): VORP-led. Late (surplus → 0): ADP-led.
+ *     Early (surplus ≥ SURPLUS_FULL): pure VORP. Late (surplus → 0): ADP-led.
  *     Starter need can go negative when you overstock. Flex +1 applies to
  *     WR/RB only. Remaining roster picks add depth need to WR/RB only (not
  *     TE). Rank by score, then ADP.
@@ -35,10 +35,11 @@ const NEED_K = 12;
 const RISK_K = 3;
 
 /**
- * Surplus of above-replacement VORP at which the blend is 50/50 VORP↔ADP.
- * Higher → VORP stays primary deeper into the draft.
+ * Remaining above-replacement VORP at which the blend is still 100% VORP.
+ * Below this, weight falls linearly toward full ADP as surplus → 0.
+ * Early boards (thousands of surplus) stay pure VORP; ADP only mixes late.
  */
-const SURPLUS_HALF = 120;
+const SURPLUS_FULL = 400;
 
 /** Softmax over the top N opponent candidates each pick. */
 const RISK_SOFTMAX_TOP = 12;
@@ -426,10 +427,11 @@ function adpScoreFor(player) {
   return -adpValue(player);
 }
 
-/** w∈[0,1]: 1 = full VORP, 0 = full ADP. Driven by remaining surplus. */
+/** w∈[0,1]: 1 = full VORP, 0 = full ADP. Stays 1 until surplus < SURPLUS_FULL. */
 function vorpWeightFromSurplus(surplus) {
   const s = Math.max(0, Number(surplus) || 0);
-  return s / (s + SURPLUS_HALF);
+  if (SURPLUS_FULL <= 0) return 0;
+  return Math.min(1, s / SURPLUS_FULL);
 }
 
 function playerAtRank(pool, rank) {
