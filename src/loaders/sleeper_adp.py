@@ -11,7 +11,7 @@ from typing import Any
 import httpx
 
 from src.injuries.match import sleeper_id_to_gsis
-from src.loaders.nfl_data import load_teams
+from src.loaders.nfl_data import attach_team_branding, team_branding
 
 SLEEPER_ADP_URL = (
     "https://api.sleeper.com/projections/nfl/{season}"
@@ -70,18 +70,7 @@ def _display_name(player: dict[str, Any], sleeper_id: str) -> str:
 
 
 def _team_meta() -> dict[str, dict[str, str | None]]:
-    teams = load_teams()
-    return {
-        str(row["team_abbr"]): {
-            "logo": row.get("team_logo_espn"),
-            "team_color": row.get("team_color") or "#2563eb",
-        }
-        for row in teams.select(
-            "team_abbr",
-            "team_logo_espn",
-            "team_color",
-        ).iter_rows(named=True)
-    }
+    return team_branding()
 
 
 def normalize_adp_players(
@@ -124,7 +113,7 @@ def normalize_adp_players(
         player_id = gsis or f"sleeper:{sleeper_id}"
         team = (item.get("team") or player.get("team") or player.get("team_abbr") or "")
         team = str(team).upper() if team else ""
-        meta = logos.get(team, {"logo": None, "team_color": "#2563eb"})
+        meta = attach_team_branding(team, logos)
 
         existing = best.get(player_id)
         if existing is None:

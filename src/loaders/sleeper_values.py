@@ -6,6 +6,13 @@ from typing import Any
 
 import httpx
 
+from src.loaders.nfl_data import (
+    DEFAULT_TEAM_COLOR,
+    attach_team_branding,
+    player_media_index,
+    team_branding,
+)
+
 POSITIONS = ("QB", "RB", "WR", "TE")
 ADP_SENTINEL = 900.0
 SLEEPER_PROJ_URL = (
@@ -15,7 +22,6 @@ SLEEPER_PROJ_URL = (
     "&order_by={order_by}"
 )
 SLEEPER_PLAYERS_URL = "https://api.sleeper.app/v1/players/nfl"
-
 PTS_FIELDS = {
     "half_ppr": "pts_half_ppr",
     "full_ppr": "pts_ppr",
@@ -76,10 +82,14 @@ def normalize_value_players(
     rows: list[dict[str, Any]],
     *,
     players_map: dict[str, dict[str, Any]] | None = None,
+    season: int | None = None,
 ) -> list[dict[str, Any]]:
     """Collapse Sleeper projection rows into draft value records."""
     best: dict[str, dict[str, Any]] = {}
     players_map = players_map or {}
+    branding = team_branding()
+    media = player_media_index(season=season)
+    by_sleeper = media["by_sleeper_id"]
 
     for item in rows:
         sleeper_id = str(item.get("player_id") or "").strip()
@@ -121,15 +131,18 @@ def normalize_value_players(
         if not pts:
             continue
 
+        media_row = by_sleeper.get(sleeper_id) or {}
         team = (
             item.get("team")
             or player.get("team")
             or player.get("team_abbr")
             or meta.get("team")
             or meta.get("team_abbr")
+            or media_row.get("team")
             or ""
         )
         team = str(team).upper() if team else ""
+        brand = attach_team_branding(team, branding)
 
         existing = best.get(sleeper_id)
         if existing is None:
@@ -142,8 +155,9 @@ def normalize_value_players(
                 ),
                 "team": team,
                 "position": position,
-                "logo": None,
-                "team_color": "#2563eb",
+                "logo": brand["logo"],
+                "headshot": media_row.get("headshot"),
+                "team_color": brand["team_color"] or DEFAULT_TEAM_COLOR,
                 "pts": {k: round(v, 2) for k, v in pts.items()},
                 "adp": {k: round(v, 1) for k, v in adp.items()},
                 "source": "sleeper_rotowire",
@@ -160,6 +174,10 @@ def normalize_value_players(
                 existing["adp"][fmt] = round(value, 1)
         if team and not existing.get("team"):
             existing["team"] = team
+            existing["logo"] = brand["logo"]
+            existing["team_color"] = brand["team_color"] or DEFAULT_TEAM_COLOR
+        if not existing.get("headshot") and media_row.get("headshot"):
+            existing["headshot"] = media_row.get("headshot")
 
     return list(best.values())
 
@@ -179,7 +197,9 @@ def build_projections_payload(
         raw = fetch_sleeper_value_rows(season=season)
         if players_map is None:
             players_map = fetch_sleeper_players_map()
-        players = normalize_value_players(raw, players_map=players_map)
+        players = normalize_value_players(
+            raw, players_map=players_map, season=season
+        )
 
     bye_weeks = bye_weeks or {}
     ranked = sorted(
@@ -200,6 +220,7 @@ def build_projections_payload(
                 "team": player["team"],
                 "position": player["position"],
                 "logo": player.get("logo"),
+                "headshot": player.get("headshot"),
                 "team_color": player.get("team_color") or "#2563eb",
                 "pts": round(float(pts), 2),
                 "adp": round(float(adp), 1) if adp is not None else None,

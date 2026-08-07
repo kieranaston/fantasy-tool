@@ -66,6 +66,174 @@ function starterSlotsFromSettings(settings = {}) {
   };
 }
 
+/** Projection board keys we ship under docs/data/draft/. */
+const SCORING_FORMATS = ["half_ppr", "full_ppr", "std"];
+
+const FORMAT_LABELS = {
+  half_ppr: "Half PPR",
+  full_ppr: "Full PPR",
+  std: "Standard",
+};
+
+/**
+ * Map Sleeper draft.metadata.scoring_type → board key.
+ * Common values: ppr, half_ppr, std / standard.
+ */
+function formatFromScoringType(raw) {
+  const key = String(raw || "")
+    .toLowerCase()
+    .trim()
+    .replace(/[\s-]+/g, "_");
+  if (!key) return null;
+  if (
+    key === "ppr" ||
+    key === "full_ppr" ||
+    key === "fullppr" ||
+    key === "full"
+  ) {
+    return "full_ppr";
+  }
+  if (
+    key === "half_ppr" ||
+    key === "halfppr" ||
+    key === "half" ||
+    key === "0.5_ppr" ||
+    key === "0_5_ppr"
+  ) {
+    return "half_ppr";
+  }
+  if (
+    key === "std" ||
+    key === "standard" ||
+    key === "non_ppr" ||
+    key === "nonppr" ||
+    key === "zero_ppr" ||
+    key === "0_ppr"
+  ) {
+    return "std";
+  }
+  return null;
+}
+
+/**
+ * Map league.scoring_settings.rec (pts per reception) → board key.
+ */
+function formatFromReceptionPoints(rec) {
+  if (rec == null || !Number.isFinite(Number(rec))) return null;
+  const r = Number(rec);
+  if (r >= 0.75) return "full_ppr";
+  if (r >= 0.25) return "half_ppr";
+  return "std";
+}
+
+/**
+ * Prefer league reception points when present; else draft scoring_type.
+ * Defaults to half_ppr (matches projections.json alias).
+ */
+function resolveScoringFormat(draft = {}, league = null) {
+  const fromRec = formatFromReceptionPoints(league?.scoring_settings?.rec);
+  if (fromRec) {
+    return {
+      format: fromRec,
+      label: FORMAT_LABELS[fromRec],
+      source: "league.rec",
+      rec: Number(league.scoring_settings.rec),
+    };
+  }
+
+  const rawType = draft?.metadata?.scoring_type;
+  const fromType = formatFromScoringType(rawType);
+  if (fromType) {
+    return {
+      format: fromType,
+      label: FORMAT_LABELS[fromType],
+      source: "draft.scoring_type",
+      scoring_type: String(rawType),
+    };
+  }
+
+  return {
+    format: "half_ppr",
+    label: FORMAT_LABELS.half_ppr,
+    source: "default",
+  };
+}
+
+/** Relative path under docs/data/ for the format board. */
+function projectionsPathForFormat(format = "half_ppr") {
+  if (format === "custom") return "draft/projections-custom.json";
+  const key = SCORING_FORMATS.includes(format) ? format : "half_ppr";
+  return `draft/projections-${key.replaceAll("_", "-")}.json`;
+}
+
+/** Prefer league-scored FantasyPros board when present. */
+function projectionsPathForBoard(format = "half_ppr", { preferCustom = true } = {}) {
+  if (preferCustom) return "draft/projections-custom.json";
+  return projectionsPathForFormat(format);
+}
+
+/** FantasyPros / raw season stats → Sleeper scoring_settings keys. */
+const STAT_SCORING_KEYS = {
+  pass_yd: "pass_yd",
+  pass_td: "pass_td",
+  pass_int: "pass_int",
+  pass_2pt: "pass_2pt",
+  rush_yd: "rush_yd",
+  rush_td: "rush_td",
+  rush_2pt: "rush_2pt",
+  rec: "rec",
+  rec_yd: "rec_yd",
+  rec_td: "rec_td",
+  rec_2pt: "rec_2pt",
+  fum_lost: "fum_lost",
+  fum: "fum",
+};
+
+function numStat(value) {
+  const n = Number(value);
+  return Number.isFinite(n) ? n : 0;
+}
+
+/**
+ * Apply a Sleeper league's scoring_settings to a raw season-stat object.
+ * Mirrors src/scoring/league_points.py.
+ */
+function projectedPoints(stats = {}, scoringSettings = {}, position = "") {
+  let total = 0;
+  for (const [statKey, scoringKey] of Object.entries(STAT_SCORING_KEYS)) {
+    const weight = scoringSettings[scoringKey];
+    if (weight == null) continue;
+    total += numStat(stats[statKey]) * numStat(weight);
+  }
+  const pos = String(position || "").toUpperCase();
+  if (scoringSettings.bonus_rec_te != null && pos === "TE") {
+    total += numStat(stats.rec) * numStat(scoringSettings.bonus_rec_te);
+  }
+  return Math.round(total * 100) / 100;
+}
+
+/**
+ * Re-rank a FantasyPros custom board for a live league's scoring_settings.
+ * Players without ``stats`` keep their baked-in pts.
+ */
+function rescoreProjectionBoard(players = [], scoringSettings = {}) {
+  const scored = players.map((p) => {
+    if (!p?.stats || !scoringSettings || !Object.keys(scoringSettings).length) {
+      return { ...p };
+    }
+    return {
+      ...p,
+      pts: projectedPoints(p.stats, scoringSettings, p.position),
+    };
+  });
+  scored.sort(
+    (a, b) =>
+      Number(b.pts) - Number(a.pts) ||
+      String(a.player || "").localeCompare(String(b.player || ""))
+  );
+  return scored.map((p, i) => ({ ...p, proj_rank: i + 1 }));
+}
+
 /**
  * Prefer league.roster_positions when available; else draft.settings slots_*.
  */
@@ -630,6 +798,11 @@ function round2(n) {
 
 export {
   resolveLeagueSettings,
+  resolveScoringFormat,
+  projectionsPathForFormat,
+  projectionsPathForBoard,
+  projectedPoints,
+  rescoreProjectionBoard,
   rosterPositionCounts,
   draftTargets,
   needCounts,
@@ -637,4 +810,6 @@ export {
   nextPickNumbers,
   scoreCandidates,
   SKILL_POSITIONS,
+  SCORING_FORMATS,
+  FORMAT_LABELS,
 };

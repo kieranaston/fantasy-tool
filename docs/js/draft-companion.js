@@ -3,8 +3,11 @@ import {
   scoreCandidates,
   nextPickNumbers,
   resolveLeagueSettings,
+  resolveScoringFormat,
+  projectionsPathForFormat,
+  rescoreProjectionBoard,
   SKILL_POSITIONS,
-} from "./draft-scoring.js?v=48";
+} from "./draft-scoring.js?v=53";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 500;
@@ -12,6 +15,8 @@ const POLL_ON_DECK_MS = 800;
 const POLL_WAITING_MS = 1500;
 const POLL_IDLE_MS = 4000;
 const DRAFT_META_EVERY = 12;
+const LS_LEAGUE = "draft-companion:league-id";
+const LS_DRAFT = "draft-companion:draft-id";
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -19,6 +24,29 @@ function escapeHtml(value) {
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;");
+}
+
+function playerMediaHtml(player, { name } = {}) {
+  const display = escapeHtml(
+    name || player?.player || player?.name || player?.player_name || ""
+  );
+  const headshot = player?.headshot;
+  const logo = player?.logo;
+  const team = player?.team ? String(player.team).toUpperCase() : "";
+  const headshotHtml = headshot
+    ? `<img class="player-headshot" src="${escapeHtml(headshot)}" alt="" width="28" height="28" loading="lazy" decoding="async" />`
+    : `<span class="player-headshot player-headshot--empty" aria-hidden="true"></span>`;
+  const teamBits = [];
+  if (logo) {
+    teamBits.push(
+      `<img class="team-logo" src="${escapeHtml(logo)}" alt="" width="14" height="14" loading="lazy" decoding="async" />`
+    );
+  }
+  if (team) teamBits.push(`<span>${escapeHtml(team)}</span>`);
+  const teamHtml = teamBits.length
+    ? `<span class="player-media-team">${teamBits.join("")}</span>`
+    : "";
+  return `<span class="player-media">${headshotHtml}<span class="player-media-text"><span class="player-media-name">${display}</span>${teamHtml}</span></span>`;
 }
 
 async function sleeperGet(path) {
@@ -29,7 +57,7 @@ async function sleeperGet(path) {
   return response.json();
 }
 
-function parseDraftInput(raw) {
+function parseSleeperIdInput(raw, { prefer = "unknown" } = {}) {
   const text = String(raw || "").trim();
   if (!text) return null;
   const parts = text.replaceAll("?", "/").split("/").filter(Boolean);
@@ -44,13 +72,13 @@ function parseDraftInput(raw) {
     const id = parts.slice(idx + 1).find((p) => /^\d+$/.test(p));
     if (id) return { type: "league", id };
   }
-  if (/^\d+$/.test(text)) return { type: "unknown", id: text };
+  if (/^\d+$/.test(text)) return { type: prefer, id: text };
   return null;
 }
 
 async function resolveDraftId(raw) {
-  const parsed = parseDraftInput(raw);
-  if (!parsed) throw new Error("Enter a Sleeper league id, draft id, or URL");
+  const parsed = parseSleeperIdInput(raw, { prefer: "draft" });
+  if (!parsed) throw new Error("Enter a Sleeper draft id or draft URL");
   if (parsed.type === "draft") return parsed.id;
   if (parsed.type === "league") {
     const drafts = await sleeperGet(`/league/${parsed.id}/drafts`);
@@ -61,11 +89,18 @@ async function resolveDraftId(raw) {
     const draft = await sleeperGet(`/draft/${parsed.id}`);
     if (draft?.draft_id) return String(draft.draft_id);
   } catch {
-    /* fall through */
+    /* fall through — maybe they pasted a league id in the draft box */
   }
   const drafts = await sleeperGet(`/league/${parsed.id}/drafts`);
   if (!drafts?.length) throw new Error("Could not resolve draft id");
   return String(drafts[0].draft_id);
+}
+
+function resolveLeagueIdInput(raw) {
+  const parsed = parseSleeperIdInput(raw, { prefer: "league" });
+  if (!parsed) return null;
+  if (parsed.type === "league" || parsed.type === "unknown") return parsed.id;
+  return null;
 }
 
 function leagueIdFromDraft(draft) {
@@ -76,11 +111,16 @@ function leagueIdFromDraft(draft) {
   return null;
 }
 
+async function fetchLeagueById(leagueId) {
+  if (!leagueId) return null;
+  return sleeperGet(`/league/${leagueId}`);
+}
+
 async function fetchLeagueForDraft(draft) {
   const id = leagueIdFromDraft(draft);
   if (!id) return null;
   try {
-    return await sleeperGet(`/league/${id}`);
+    return await fetchLeagueById(id);
   } catch {
     return null;
   }
@@ -129,12 +169,20 @@ async function mountDraftCompanionPage() {
   const needsEl = document.getElementById("draft-needs");
   const connectBtn = document.getElementById("draft-connect");
   const pauseBtn = document.getElementById("draft-pause");
-  const input = document.getElementById("draft-id-input");
+  const draftInput = document.getElementById("draft-id-input");
+  const leagueInput = document.getElementById("draft-league-input");
   const seatSelect = document.getElementById("draft-seat");
 
   let projections = [];
   let projectionsByPos = { QB: [], RB: [], WR: [], TE: [] };
   let projectionsById = new Map();
+  let scoringFormat = resolveScoringFormat();
+  /** Baked league.json fallback from the data pipeline. */
+  let defaultLeague = null;
+  /** Active league for scoring/slots (user league ID or default). */
+  let configuredLeague = null;
+  /** Raw FantasyPros custom board (with stats) before live re-score. */
+  let customBoardRaw = null;
   let takenIndex = new Set();
   let pollTimer = null;
   let draftId = null;
@@ -156,8 +204,24 @@ async function mountDraftCompanionPage() {
     if (statusEl) statusEl.textContent = text;
   }
 
+  function persistInputs() {
+    if (leagueInput) {
+      localStorage.setItem(LS_LEAGUE, leagueInput.value.trim());
+    }
+    if (draftInput) {
+      localStorage.setItem(LS_DRAFT, draftInput.value.trim());
+    }
+  }
+
+  /** Prefer user/configured league over the draft's linked league. */
+  function leagueForSettings() {
+    return configuredLeague || league;
+  }
+
   function refreshLeagueSettings() {
-    leagueSettings = resolveLeagueSettings(draft || {}, league);
+    const srcLeague = leagueForSettings();
+    leagueSettings = resolveLeagueSettings(draft || {}, srcLeague);
+    scoringFormat = resolveScoringFormat(draft || {}, srcLeague);
   }
 
   function indexProjections(players) {
@@ -172,6 +236,83 @@ async function mountDraftCompanionPage() {
     }
     projectionsByPos = byPos;
     projectionsById = byId;
+  }
+
+  function applyScoredPlayers(players, formatInfo, meta = {}) {
+    projections = players;
+    indexProjections(projections);
+    const custom = Boolean(meta.custom);
+    scoringFormat = {
+      ...formatInfo,
+      format: custom ? "custom" : meta.format || formatInfo.format,
+      label: custom
+        ? `${formatInfo?.label || "Custom"} · FantasyPros`
+        : formatInfo?.label || meta.format || "Half PPR",
+      board_source: meta.source || (custom ? "fantasypros_csv" : "sleeper"),
+      league_id:
+        meta.league_id ||
+        configuredLeague?.league_id ||
+        defaultLeague?.league_id ||
+        null,
+    };
+  }
+
+  async function loadProjectionsForFormat(formatInfo) {
+    const scoring = leagueForSettings()?.scoring_settings || {};
+
+    if (!customBoardRaw) {
+      try {
+        const data = await fetchJSON("draft/projections-custom.json");
+        if (data?.players?.length) customBoardRaw = data;
+      } catch {
+        customBoardRaw = null;
+      }
+    }
+
+    if (customBoardRaw?.players?.length) {
+      const scored = rescoreProjectionBoard(customBoardRaw.players, scoring);
+      applyScoredPlayers(scored, formatInfo, {
+        custom: true,
+        source: "fantasypros_csv",
+        league_id: configuredLeague?.league_id || customBoardRaw.league_id,
+        format: "custom",
+      });
+      return;
+    }
+
+    const path = projectionsPathForFormat(formatInfo?.format);
+    const data = await fetchJSON(path);
+    applyScoredPlayers(data.players || [], formatInfo, {
+      custom: false,
+      source: data.source || "sleeper",
+      format: data.format,
+      league_id: configuredLeague?.league_id || null,
+    });
+  }
+
+  /**
+   * Load scoring/slots from the league ID field (falls back to league.json).
+   */
+  async function loadConfiguredLeague({ required = false } = {}) {
+    const raw = leagueInput?.value?.trim() || "";
+    const leagueId = resolveLeagueIdInput(raw);
+    if (leagueId) {
+      try {
+        configuredLeague = await fetchLeagueById(leagueId);
+        if (leagueInput && !raw.includes(leagueId)) {
+          leagueInput.value = leagueId;
+        }
+        return configuredLeague;
+      } catch (err) {
+        if (required) throw new Error(`League lookup failed: ${err.message}`);
+        setStatus(`League lookup failed (${err.message}); using defaults`);
+      }
+    }
+    configuredLeague = defaultLeague;
+    if (!configuredLeague && required) {
+      throw new Error("Enter a Sleeper league ID for custom scoring");
+    }
+    return configuredLeague;
   }
 
   function enrichRoster(roster = []) {
@@ -226,7 +367,7 @@ async function mountDraftCompanionPage() {
   }
 
   function pickTiming() {
-    const settings = leagueSettings || resolveLeagueSettings(draft || {}, league);
+    const settings = leagueSettings || resolveLeagueSettings(draft || {}, leagueForSettings());
     const teams = Number(settings.teams || 12);
     const rounds = Number(settings.rounds || draft?.settings?.rounds || 15);
     const pickNo = currentPickNo(picks);
@@ -242,11 +383,16 @@ async function mountDraftCompanionPage() {
 
   function updateMeta(timing, { onClock } = {}) {
     if (!metaEl || !draft) return;
-    const src = timing.settings?.source === "league" ? "league slots" : "draft slots";
+    const src = configuredLeague
+      ? configuredLeague.name || "league settings"
+      : timing.settings?.source === "league"
+        ? "league slots"
+        : "draft slots";
     const slots = timing.settings;
     const parts = [
       `${draft.metadata?.name || league?.name || "Draft"}`,
       `${draft.status}`,
+      scoringFormat?.label || "Half PPR",
       `pick ${Math.min(timing.pickNo, timing.teams * timing.rounds)}`,
       `you: slot ${mySlot}`,
       `next yours: ${timing.nextMine}`,
@@ -267,16 +413,22 @@ async function mountDraftCompanionPage() {
     for (const p of roster) {
       const pos = String(p.position || "").toUpperCase();
       const key = pos === "DEF" || pos === "DST" ? "DST" : pos;
-      (byPos[key] = byPos[key] || []).push(p.name || p.player_id);
+      (byPos[key] = byPos[key] || []).push(p);
     }
     needsEl.innerHTML = `
       <div class="draft-roster-grid">
         ${["QB", "RB", "WR", "TE"]
           .map((pos) => {
-            const names = byPos[pos] || [];
-            const body = names.length
-              ? `<ul class="draft-roster-players">${names
-                  .map((n) => `<li>${escapeHtml(n)}</li>`)
+            const players = byPos[pos] || [];
+            const body = players.length
+              ? `<ul class="draft-roster-players">${players
+                  .map((p) => {
+                    const proj =
+                      projectionsById.get(String(p.player_id)) || p;
+                    return `<li>${playerMediaHtml(proj, {
+                      name: p.name || proj.player || p.player_id,
+                    })}</li>`;
+                  })
                   .join("")}</ul>`
               : `<span class="draft-roster-empty">—</span>`;
             return `<div class="draft-roster-slot"><strong>${pos}</strong>${body}</div>`;
@@ -295,10 +447,15 @@ async function mountDraftCompanionPage() {
             .map((p) => {
               const meta = p.metadata || {};
               const name = `${meta.first_name || ""} ${meta.last_name || ""}`.trim();
+              const proj = projectionsById.get(String(p.player_id)) || {
+                player: name,
+                team: meta.team || meta.team_abbr,
+                position: meta.position,
+              };
               return `<tr>
                 <td>${escapeHtml(p.pick_no)}</td>
                 <td>${escapeHtml(p.draft_slot)}</td>
-                <td>${escapeHtml(name)}</td>
+                <td>${playerMediaHtml(proj, { name })}</td>
                 <td>${escapeHtml(meta.position || "")}</td>
               </tr>`;
             })
@@ -356,7 +513,7 @@ async function mountDraftCompanionPage() {
               (r, i) => `
             <tr>
               <td>${i + 1}</td>
-              <td>${escapeHtml(r.player)}</td>
+              <td>${playerMediaHtml(r)}</td>
               <td>${escapeHtml(r.position)}</td>
               <td>${r.bye_week == null ? "—" : escapeHtml(r.bye_week)}</td>
               <td>${escapeHtml(r.vorp)}</td>
@@ -429,7 +586,25 @@ async function mountDraftCompanionPage() {
       if (wantMeta) {
         draft = await sleeperGet(`/draft/${draftId}`);
         if (!league) league = await fetchLeagueForDraft(draft);
+        const prevFormat = scoringFormat?.format;
+        const wasCustom =
+          scoringFormat?.board_source === "fantasypros_csv" ||
+          scoringFormat?.format === "custom";
         refreshLeagueSettings();
+        if (wasCustom) {
+          scoringFormat = {
+            ...scoringFormat,
+            format: "custom",
+            label: `${scoringFormat.label} · FantasyPros`,
+            board_source: "fantasypros_csv",
+          };
+        } else if (scoringFormat.format !== prevFormat) {
+          await loadProjectionsForFormat(scoringFormat);
+          hasScoredOnce = false;
+          lastScoredFingerprint = "";
+          lastMyRosterFp = "";
+          queueScoreRender({ force: true });
+        }
       }
       const next = nextPicks || [];
       const fingerprint = picksFingerprint(next);
@@ -445,7 +620,7 @@ async function mountDraftCompanionPage() {
       }
       const timing = pickTiming();
       setStatus(
-        `Live · ${draft?.status || "?"} · ${picks.length} picks` +
+        `Live · ${draft?.status || "?"} · ${picks.length} picks · ${scoringFormat.label}` +
           (timing.until === 0 ? " · YOUR PICK" : ` · yours in ${timing.until}`) +
           ` · ${new Date().toLocaleTimeString()}`
       );
@@ -463,17 +638,34 @@ async function mountDraftCompanionPage() {
     lastScoredFingerprint = "";
     lastMyRosterFp = "";
     if (pauseBtn) pauseBtn.textContent = "Pause";
-    draftId = await resolveDraftId(input.value);
+    persistInputs();
+
+    await loadConfiguredLeague({ required: false });
+    if (!draftInput?.value?.trim()) {
+      throw new Error("Enter a Sleeper draft id or draft URL");
+    }
+    draftId = await resolveDraftId(draftInput.value);
     draft = await sleeperGet(`/draft/${draftId}`);
     league = await fetchLeagueForDraft(draft);
+
+    // If no league ID entered, adopt the draft's league when available.
+    if (!resolveLeagueIdInput(leagueInput?.value || "") && league) {
+      configuredLeague = league;
+      if (leagueInput && league.league_id) {
+        leagueInput.value = String(league.league_id);
+        persistInputs();
+      }
+    }
+
     refreshLeagueSettings();
+    await loadProjectionsForFormat(scoringFormat);
     picks = (await sleeperGet(`/draft/${draftId}/picks`)) || [];
     lastFingerprint = picksFingerprint(picks);
     rebuildTaken();
     fillSeats();
-    const src = leagueSettings?.source || "draft";
+    const leagueName = configuredLeague?.name || "draft settings";
     setStatus(
-      `Connected · ${draft.status} · ${picks.length} picks · slots from ${src}`
+      `Connected · ${draft.status} · ${picks.length} picks · ${scoringFormat.label} · ${leagueName}`
     );
     renderAll();
     schedulePoll();
@@ -500,15 +692,52 @@ async function mountDraftCompanionPage() {
     queueScoreRender({ force: true });
   });
 
+  function bindPersist(el) {
+    el?.addEventListener("change", persistInputs);
+    el?.addEventListener("blur", persistInputs);
+  }
+  bindPersist(leagueInput);
+  bindPersist(draftInput);
+
+  leagueInput?.addEventListener("change", () => {
+    loadConfiguredLeague({ required: false })
+      .then(() => {
+        refreshLeagueSettings();
+        return loadProjectionsForFormat(scoringFormat);
+      })
+      .then(() => {
+        const name = configuredLeague?.name || "default";
+        setStatus(`League · ${name} · ${scoringFormat.label}`);
+        if (draftId) queueScoreRender({ force: true });
+      })
+      .catch((err) => setStatus(err.message));
+  });
+
   try {
-    const data = await fetchJSON("draft/projections.json");
-    projections = data.players || [];
-    indexProjections(projections);
-    const saved = localStorage.getItem("draft-companion:last-id");
-    if (saved && input) input.value = saved;
-    input?.addEventListener("change", () => {
-      localStorage.setItem("draft-companion:last-id", input.value.trim());
-    });
+    try {
+      defaultLeague = await fetchJSON("draft/league.json");
+    } catch {
+      defaultLeague = null;
+    }
+
+    const savedLeague =
+      localStorage.getItem(LS_LEAGUE) ||
+      defaultLeague?.league_id ||
+      "";
+    const savedDraft =
+      localStorage.getItem(LS_DRAFT) ||
+      localStorage.getItem("draft-companion:last-id") ||
+      "";
+    if (leagueInput && savedLeague) leagueInput.value = savedLeague;
+    if (draftInput && savedDraft) draftInput.value = savedDraft;
+
+    await loadConfiguredLeague({ required: false });
+    refreshLeagueSettings();
+    await loadProjectionsForFormat(scoringFormat);
+    const leagueLabel = configuredLeague?.name
+      ? `${configuredLeague.name} · ${scoringFormat.label}`
+      : `${scoringFormat.label} board`;
+    setStatus(`Ready · ${leagueLabel}`);
     revealPage();
   } catch (err) {
     showError(recEl, err.message);

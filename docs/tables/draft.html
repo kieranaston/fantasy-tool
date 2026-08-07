@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Draft Companion</title>
-    <link rel="stylesheet" href="../css/site.css?v=16" />
+    <link rel="stylesheet" href="../css/site.css?v=18" />
   </head>
   <body class="is-page-loading">
     <nav class="site-nav" aria-label="Primary">
@@ -15,12 +15,21 @@
       <div class="container">
         <div class="controls draft-controls">
           <div class="draft-connect-row">
-            <label for="draft-id-input">League / draft ID or URL</label>
+            <label for="draft-league-input">Sleeper league ID</label>
+            <input
+              id="draft-league-input"
+              type="text"
+              spellcheck="false"
+              placeholder="League id or sleeper.com/leagues/… URL"
+            />
+          </div>
+          <div class="draft-connect-row">
+            <label for="draft-id-input">Draft ID / URL</label>
             <input
               id="draft-id-input"
               type="text"
               spellcheck="false"
-              placeholder="Sleeper league id, draft id, or URL"
+              placeholder="Draft id or sleeper.com/draft/… URL"
             />
           </div>
           <div>
@@ -32,6 +41,8 @@
             <button type="button" id="draft-pause" class="draft-btn">Pause</button>
           </div>
         </div>
+        <p class="meta" data-draft-live="status">Ready</p>
+        <p class="meta" data-draft-live="summary"></p>
 
         <section class="draft-panel">
           <h2 class="draft-section-title">Your roster</h2>
@@ -53,7 +64,7 @@
     </main>
 
     <script type="module">
-      import { mountDraftCompanionPage } from "../js/draft-companion.js?v=48";
+      import { mountDraftCompanionPage } from "../js/draft-companion.js?v=53";
       mountDraftCompanionPage();
     </script>
   </body>

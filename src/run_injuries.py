@@ -20,6 +20,7 @@ from src.injuries.store import (
     utc_now_iso,
     write_json,
 )
+from src.loaders.nfl_data import get_current_season
 from src.injuries.summarize import (
     build_narratives_batch,
     extract_bluesky_batch,
@@ -538,6 +539,7 @@ def main() -> None:
         reports=reports,
         last_updated=now,
         allowed_player_ids=pool_ids,
+        season=get_current_season(),
     )
     write_json(SUMMARIES_PATH, summaries)
 

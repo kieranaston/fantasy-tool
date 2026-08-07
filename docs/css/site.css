@@ -251,14 +251,6 @@ table.draft-table > thead > tr > th {
   margin-bottom: 0.25rem;
 }
 
-.injury-card-identity {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.35rem 0.5rem;
-  min-width: 0;
-}
-
 .player-name {
   font-weight: 600;
   font-size: 0.95rem;
@@ -267,6 +259,97 @@ table.draft-table > thead > tr > th {
 .player-team {
   color: var(--muted);
   font-size: 0.8rem;
+}
+
+.player-media {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.player-headshot,
+.team-logo {
+  flex-shrink: 0;
+  object-fit: cover;
+  background: color-mix(in srgb, var(--border) 55%, transparent);
+}
+
+.player-headshot {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+}
+
+.player-headshot--empty {
+  display: inline-block;
+}
+
+.team-logo {
+  width: 0.95rem;
+  height: 0.95rem;
+  object-fit: contain;
+  background: transparent;
+}
+
+.player-media-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  min-width: 0;
+}
+
+.player-media-name {
+  font-weight: 600;
+  line-height: 1.15;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player-media-team {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.1;
+}
+
+.injury-card-identity {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.injury-card-identity .player-media {
+  min-width: 0;
+}
+
+.injury-card-identity .player-headshot {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.draft-roster-players .player-media {
+  gap: 0.35rem;
+}
+
+.draft-roster-players .player-headshot {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.draft-roster-players .player-media-name {
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.draft-table td .player-media {
+  max-width: 14rem;
 }
 
 .update-tag {

@@ -8,6 +8,27 @@ function escapeHtml(value) {
     .replace(/"/g, "&quot;");
 }
 
+function playerMediaHtml(player, { name } = {}) {
+  const display = escapeHtml(name || player?.player_name || player?.player || "Unknown");
+  const headshot = player?.headshot;
+  const logo = player?.logo;
+  const team = player?.team ? String(player.team).toUpperCase() : "";
+  const headshotHtml = headshot
+    ? `<img class="player-headshot" src="${escapeHtml(headshot)}" alt="" width="36" height="36" loading="lazy" decoding="async" />`
+    : `<span class="player-headshot player-headshot--empty" aria-hidden="true"></span>`;
+  const teamBits = [];
+  if (logo) {
+    teamBits.push(
+      `<img class="team-logo" src="${escapeHtml(logo)}" alt="" width="16" height="16" loading="lazy" decoding="async" />`
+    );
+  }
+  if (team) teamBits.push(`<span>${escapeHtml(team)}</span>`);
+  const teamHtml = teamBits.length
+    ? `<span class="player-media-team">${teamBits.join("")}</span>`
+    : "";
+  return `<span class="player-media">${headshotHtml}<span class="player-media-text"><span class="player-media-name">${display}</span>${teamHtml}</span></span>`;
+}
+
 function ordinalDay(day) {
   const j = day % 10;
   const k = day % 100;
@@ -55,8 +76,6 @@ function sourcesHtml(timeline) {
 
 function playerCard(player) {
   const id = escapeHtml(player.player_id);
-  const name = escapeHtml(player.player_name || "Unknown player");
-  const team = player.team ? ` · ${escapeHtml(player.team)}` : "";
   const updateDay = formatUpdateDay(player.last_updated);
   const updateTag = updateDay
     ? `<span class="update-tag">${escapeHtml(updateDay)}</span>`
@@ -76,8 +95,7 @@ function playerCard(player) {
       <div class="injury-card-main">
         <div class="injury-card-title">
           <div class="injury-card-identity">
-            <span class="player-name">${name}</span>
-            <span class="player-team">${team}</span>
+            ${playerMediaHtml(player)}
           </div>
           ${updateTag}
         </div>

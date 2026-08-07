@@ -21,7 +21,7 @@ pip install -e .
 
 python -m src.run                  # site manifest
 python -m src.run_injuries         # writes docs/data/injuries/
-python -m src.run_draft_data       # draft projections
+python -m src.run_draft_data       # draft projections (+ custom FP board)
 python -m http.server 8000 --directory docs
 ```
 
@@ -36,7 +36,20 @@ Create a `.env` in the repo root (gitignored):
 ```bash
 GEMINI_API_KEY=...             # Bluesky triage + grounded summaries
 GEMINI_MODEL=gemini-2.5-flash-lite   # optional override
+SLEEPER_LEAGUE_ID=...          # your league → docs/data/draft/league.json
+FANTASYPROS_API_KEY=...        # optional
 ```
+
+### FantasyPros custom projections
+
+Drop per-position CSVs under `data/fantasypros/projections/{season}/` (gitignored), e.g.:
+
+```
+data/fantasypros/projections/2026/FantasyPros_Fantasy_Football_Projections_QB.csv
+..._RB.csv / ..._WR.csv / ..._TE.csv
+```
+
+`run_draft_data` loads `SLEEPER_LEAGUE_ID` scoring settings, scores each player's raw stats, matches names to Sleeper IDs, and writes `docs/data/draft/projections-custom.json`. The draft companion prefers that board when present (ADP still comes from Sleeper).
 
 ## GitHub Pages
 
