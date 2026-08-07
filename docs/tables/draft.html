@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Draft Companion</title>
-    <link rel="stylesheet" href="../css/site.css?v=19" />
+    <link rel="stylesheet" href="../css/site.css?v=20" />
   </head>
   <body class="is-page-loading">
     <nav class="site-nav" aria-label="Primary">
@@ -32,7 +32,7 @@
               placeholder="Draft id or sleeper.com/draft/… URL"
             />
           </div>
-          <div>
+          <div class="draft-connect-row draft-connect-row--seat">
             <label for="draft-seat">Your slot</label>
             <select id="draft-seat"></select>
           </div>
@@ -41,8 +41,6 @@
             <button type="button" id="draft-pause" class="draft-btn">Pause</button>
           </div>
         </div>
-        <p class="meta" data-draft-live="status">Ready</p>
-        <p class="meta" data-draft-live="summary"></p>
 
         <section class="draft-panel">
           <h2 class="draft-section-title">Your roster</h2>
@@ -64,7 +62,7 @@
     </main>
 
     <script type="module">
-      import { mountDraftCompanionPage } from "../js/draft-companion.js?v=54";
+      import { mountDraftCompanionPage } from "../js/draft-companion.js?v=55";
       mountDraftCompanionPage();
     </script>
   </body>

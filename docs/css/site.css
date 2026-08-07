@@ -424,7 +424,7 @@ table.draft-table > thead > tr > th {
 }
 
 .draft-controls {
-  align-items: center;
+  align-items: flex-end;
 }
 
 .draft-connect-row {
@@ -434,7 +434,16 @@ table.draft-table > thead > tr > th {
   flex: 1 1 16rem;
 }
 
+.draft-connect-row--seat {
+  flex: 0 1 8rem;
+}
+
+.draft-connect-row label {
+  margin-right: 0;
+}
+
 .draft-connect-row input,
+.draft-connect-row select,
 #draft-seat {
   font-family: inherit;
   font-size: 0.85rem;
@@ -443,10 +452,17 @@ table.draft-table > thead > tr > th {
   border-bottom: 1px solid #9ca3af;
   background: transparent;
   color: var(--text);
-  min-width: 12rem;
+  min-width: 0;
+  width: 100%;
+}
+
+.draft-connect-row--seat select,
+#draft-seat {
+  min-width: 6rem;
 }
 
 .draft-connect-row input:focus,
+.draft-connect-row select:focus,
 #draft-seat:focus {
   outline: none;
   border-bottom-color: var(--accent);
