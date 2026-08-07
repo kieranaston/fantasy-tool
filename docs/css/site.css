@@ -555,6 +555,26 @@ table.draft-table > thead > tr > th {
   border-radius: 3px;
 }
 
+.draft-compare-table td,
+.draft-compare-table th {
+  text-align: right;
+}
+
+.draft-compare-table th:nth-child(1),
+.draft-compare-table th:nth-child(2),
+.draft-compare-table td:nth-child(1),
+.draft-compare-table td:nth-child(2) {
+  text-align: left;
+}
+
+.draft-compare-mine {
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.draft-compare-mine td {
+  font-weight: 600;
+}
+
 .draft-actions {
   display: flex;
   flex-wrap: wrap;

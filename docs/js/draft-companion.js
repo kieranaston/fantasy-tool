@@ -6,8 +6,9 @@ import {
   resolveScoringFormat,
   projectionsPathForFormat,
   rescoreProjectionBoard,
+  compareDraftRosters,
   SKILL_POSITIONS,
-} from "./draft-scoring.js?v=54";
+} from "./draft-scoring.js?v=56";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 500;
@@ -171,6 +172,8 @@ async function mountDraftCompanionPage() {
   const recEl = document.getElementById("draft-recommendations");
   const boardEl = document.getElementById("draft-board");
   const needsEl = document.getElementById("draft-needs");
+  const compareEl = document.getElementById("draft-comparison");
+  const comparePanel = document.getElementById("draft-comparison-panel");
   const connectBtn = document.getElementById("draft-connect");
   const pauseBtn = document.getElementById("draft-pause");
   const draftInput = document.getElementById("draft-id-input");
@@ -468,6 +471,68 @@ async function mountDraftCompanionPage() {
       </table>`;
   }
 
+  function renderComparison() {
+    if (!compareEl || !comparePanel) return;
+    if (!draft || draft.status !== "complete") {
+      comparePanel.hidden = true;
+      compareEl.innerHTML = "";
+      return;
+    }
+
+    const timing = pickTiming();
+    const settings = timing.settings;
+    const bySlotRaw = currentBySlot();
+    const bySlot = {};
+    for (const [slot, roster] of Object.entries(bySlotRaw)) {
+      bySlot[slot] = enrichRoster(roster);
+    }
+
+    const rows = compareDraftRosters({
+      bySlot,
+      settings,
+      mySlot,
+      teams: timing.teams,
+    });
+
+    comparePanel.hidden = false;
+    compareEl.innerHTML = `
+      <p class="meta">Optimal starters from projected points (league slots).</p>
+      <table class="draft-table cell-border draft-compare-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Slot</th>
+            <th>Starter pts</th>
+            <th>QB</th>
+            <th>RB</th>
+            <th>WR</th>
+            <th>TE</th>
+            <th>FLEX</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows
+            .map((row) => {
+              const mine = row.isMine ? " class=\"draft-compare-mine\"" : "";
+              const slotLabel = row.isMine
+                ? `Slot ${row.slot} (you)`
+                : `Slot ${row.slot}`;
+              return `<tr${mine}>
+                <td>${escapeHtml(row.rank)}</td>
+                <td>${escapeHtml(slotLabel)}</td>
+                <td><strong>${escapeHtml(row.totalPts)}</strong></td>
+                <td>${escapeHtml(row.byPosPts.QB)}</td>
+                <td>${escapeHtml(row.byPosPts.RB)}</td>
+                <td>${escapeHtml(row.byPosPts.WR)}</td>
+                <td>${escapeHtml(row.byPosPts.TE)}</td>
+                <td>${escapeHtml(row.byPosPts.FLEX)}</td>
+              </tr>`;
+            })
+            .join("")}
+        </tbody>
+      </table>`;
+  }
+
   function renderScores() {
     if (!draft) return;
     const timing = pickTiming();
@@ -494,6 +559,12 @@ async function mountDraftCompanionPage() {
     lastScoredFingerprint = picksFingerprint(picks);
 
     renderRosterCounts(myRoster, result);
+    renderComparison();
+
+    if (draft.status === "complete") {
+      recEl.innerHTML = `<p class="meta">Draft complete — see starter comparison below.</p>`;
+      return;
+    }
 
     const recs = result.recommendations.slice(0, 8);
     if (!recs.length) {
