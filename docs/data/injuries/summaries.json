@@ -5,10 +5,17 @@
     {
       "player_id": "00-0040129",
       "player_name": "Emeka Egbuka",
+      "team": "TB",
       "current_designation": "Back at practice Thursday",
       "last_updated": "2026-08-06T06:12:49-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Emeka Egbuka returned to practice on Thursday after dealing with soreness.",
+      "extraction": {
+        "status": "Back at practice Thursday",
+        "designation": "Back at practice Thursday",
+        "date": "2026-08-06T06:12:49-07:00",
+        "direct_quote": "Emeka Egbuka: Back at practice Thursday",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msg4mldmyl2v"
+      },
       "timeline": [
         {
           "id": "60393d9f-2e3c-4051-83cc-84cb171ab83d",
@@ -29,7 +36,6 @@
           "player_name": "Emeka Egbuka"
         }
       ],
-      "team": "TB",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qolqqtwamffi0pi4np7h",
       "team_color": "#A71930"
@@ -37,10 +43,17 @@
     {
       "player_id": "00-0039139",
       "player_name": "Jahmyr Gibbs",
+      "team": "DET",
       "current_designation": "Working off to side Thursday",
       "last_updated": "2026-08-06T06:06:39-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Jahmyr Gibbs, whose backfield duo was broken up, had his fifth-year option picked up by Detroit and has been given the \"bell cow\" label by coach Campbell. He was not practicing as of July 29th while awaiting a new deal, but was present for practice on August 6th, though working off to the side.",
+      "extraction": {
+        "status": "Working off to side Thursday",
+        "designation": "Working off to side Thursday",
+        "date": "2026-08-06T06:06:39-07:00",
+        "direct_quote": "Jahmyr Gibbs: Working off to side Thursday",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msg4bjwif625"
+      },
       "timeline": [
         {
           "id": "822e54ad-2bf9-44b4-8a3b-5ff2871f1354",
@@ -124,7 +137,6 @@
           "player_name": "Jahmyr Gibbs"
         }
       ],
-      "team": "DET",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hjxk3judytgsxkqiilre",
       "team_color": "#0076B6"
@@ -132,10 +144,17 @@
     {
       "player_id": "00-0036223",
       "player_name": "Jonathan Taylor",
+      "team": "IND",
       "current_designation": "Lands extension with Colts",
       "last_updated": "2026-08-06T04:59:31-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Jonathan Taylor and the Indianapolis Colts have agreed to a contract extension. Taylor, entering his contract year, had expressed optimism about reaching a deal. He is expected to carry a significant workload for the team.",
+      "extraction": {
+        "status": "Lands extension with Colts",
+        "designation": "Lands extension with Colts",
+        "date": "2026-08-06T04:59:31-07:00",
+        "direct_quote": "Jonathan Taylor: Lands extension with Colts",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msfyjimglk23"
+      },
       "timeline": [
         {
           "id": "6a036b70-f3e3-4fa6-bd81-3df4c4eb4f7a",
@@ -183,7 +202,6 @@
           "player_name": "Jonathan Taylor"
         }
       ],
-      "team": "IND",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uwmnrhwtwug0wrgkomjk",
       "team_color": "#002C5F"
@@ -191,10 +209,17 @@
     {
       "player_id": "00-0036139",
       "player_name": "Rico Dowdle",
+      "team": "CAR",
       "current_designation": "Listed behind Warren on depth chart",
       "last_updated": "2026-08-05T13:59:40-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Rico Dowdle was headed to Pittsburgh and has been splitting first-team reps. He is currently listed behind Warren on the depth chart.",
+      "extraction": {
+        "status": "Listed behind Warren on depth chart",
+        "designation": "Listed behind Warren on depth chart",
+        "date": "2026-08-05T13:59:40-07:00",
+        "direct_quote": "Rico Dowdle: Listed behind Warren on depth chart \n\n https://www.rotowire.com/football/player/rico-dowdle-14657",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msegah4s3s2q"
+      },
       "timeline": [
         {
           "id": "8d934a30-a42a-4b68-b11e-7050e52f4592",
@@ -224,7 +249,6 @@
           "player_name": "Rico Dowdle"
         }
       ],
-      "team": "CAR",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/car.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cvnrzndsiaojvvxz8vo5",
       "team_color": "#0085CA"
@@ -232,10 +256,17 @@
     {
       "player_id": "00-0037228",
       "player_name": "Jaylen Warren",
+      "team": "PIT",
       "current_designation": "Listed ahead of Dowdle",
       "last_updated": "2026-08-05T13:49:50-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Jaylen Warren has been listed ahead of teammate Rico Dowdle and is seeing a split with the first-team offense.",
+      "extraction": {
+        "status": "Listed ahead of Dowdle",
+        "designation": "Listed ahead of Dowdle",
+        "date": "2026-08-05T13:49:50-07:00",
+        "direct_quote": "Jaylen Warren: Listed ahead of Dowdle",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msefotr4f72y"
+      },
       "timeline": [
         {
           "id": "424440c8-e28d-4555-94eb-413a8d3dab09",
@@ -256,7 +287,6 @@
           "player_name": "Jaylen Warren"
         }
       ],
-      "team": "PIT",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/f3txbqdarbabqtq4sx98",
       "team_color": "#000000"
@@ -264,10 +294,17 @@
     {
       "player_id": "00-0035659",
       "player_name": "Terry McLaurin",
+      "team": "WAS",
       "current_designation": "New running mate in Diggs",
       "last_updated": "2026-08-05T13:15:17-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Terry McLaurin is expected to see increased volume in 2026, especially with the addition of Stefon Diggs as a new teammate.",
+      "extraction": {
+        "status": "New running mate in Diggs",
+        "designation": "New running mate in Diggs",
+        "date": "2026-08-05T13:15:17-07:00",
+        "direct_quote": "Terry McLaurin: New running mate in Diggs",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msedr3hsns2k"
+      },
       "timeline": [
         {
           "id": "285c4fe6-2fba-4eef-8010-4ba2185f6408",
@@ -288,7 +325,6 @@
           "player_name": "Terry McLaurin"
         }
       ],
-      "team": "WAS",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wokz1etv1wj1vhbmvxgs",
       "team_color": "#5A1414"
@@ -296,10 +332,17 @@
     {
       "player_id": "00-0036613",
       "player_name": "Jaylen Waddle",
+      "team": "MIA",
       "current_designation": "Bothered by muscle tightness",
       "last_updated": "2026-08-05T11:30:28-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Jaylen Waddle was traded to Denver on March 17th. On August 5th, he exited practice early due to muscle tightness.",
+      "extraction": {
+        "status": "Bothered by muscle tightness",
+        "designation": "Bothered by muscle tightness",
+        "date": "2026-08-05T11:30:28-07:00",
+        "direct_quote": "Jaylen Waddle: Bothered by muscle tightness",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mse5vntiky23"
+      },
       "timeline": [
         {
           "id": "125176f1-3f95-428e-906c-25d2a3b81449",
@@ -338,7 +381,6 @@
           "player_name": "Jaylen Waddle"
         }
       ],
-      "team": "MIA",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dsxd2zcqm42wsv4ewtfc",
       "team_color": "#008E97"
@@ -346,10 +388,17 @@
     {
       "player_id": "00-0038994",
       "player_name": "Jordan Addison",
+      "team": "MIN",
       "current_designation": "Jams thumb, not practicing",
       "last_updated": "2026-08-05T11:07:08-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Jordan Addison's fifth-year option was officially exercised on April 27th. On August 5th, he was not practicing due to a jammed thumb.",
+      "extraction": {
+        "status": "Jams thumb, not practicing",
+        "designation": "Jams thumb, not practicing",
+        "date": "2026-08-05T11:07:08-07:00",
+        "direct_quote": "Jordan Addison: Jams thumb, not practicing",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mse4lwa7ez2b"
+      },
       "timeline": [
         {
           "id": "966b8552-95ea-4473-aaf9-943c07fa1c46",
@@ -370,7 +419,6 @@
           "player_name": "Jordan Addison"
         }
       ],
-      "team": "MIN",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/s2ey8g5memyqvxc52uzy",
       "team_color": "#4F2683"
@@ -378,10 +426,17 @@
     {
       "player_id": "00-0031408",
       "player_name": "Mike Evans",
+      "team": "TB",
       "current_designation": "Remains sidelined",
       "last_updated": "2026-08-05T10:46:27-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Mike Evans will play in 2026 and has joined Kyle Shanahan's team, though he may not return to Tampa Bay. He is currently sidelined with a minor quad strain and not practicing, but has been seen catching passes. Evans is reportedly winning over teammates and coaches.",
+      "extraction": {
+        "status": "Remains sidelined",
+        "designation": "Remains sidelined",
+        "date": "2026-08-05T10:46:27-07:00",
+        "direct_quote": "Mike Evans: Remains sidelined",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mse3gwmqow23"
+      },
       "timeline": [
         {
           "id": "2e40ddac-a6d0-4c60-a4ee-35915f037557",
@@ -465,7 +520,6 @@
           "player_name": "Mike Evans"
         }
       ],
-      "team": "TB",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yaxorbdsvk1ucfuiyrkj",
       "team_color": "#A71930"
@@ -473,10 +527,17 @@
     {
       "player_id": "00-0040666",
       "player_name": "Omarion Hampton",
+      "team": "LAC",
       "current_designation": "Praised by McDaniel for recent growth",
       "last_updated": "2026-08-05T09:52:17-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Omarion Hampton expressed excitement for coach McDaniels' system on June 18th. On August 5th, McDaniels praised Hampton for his recent growth.",
+      "extraction": {
+        "status": "Praised by McDaniel for recent growth",
+        "designation": "Praised by McDaniel for recent growth",
+        "date": "2026-08-05T09:52:17-07:00",
+        "direct_quote": "Omarion Hampton: Praised by McDaniel for recent growth",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msdyg3jpzq2j"
+      },
       "timeline": [
         {
           "id": "e7ea72dd-27a8-4ec3-b9e5-14cffb8b58fe",
@@ -497,7 +558,6 @@
           "player_name": "Omarion Hampton"
         }
       ],
-      "team": "LAC",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ck7xcbwuka7wu2zwhssk",
       "team_color": "#007BC7"
@@ -505,10 +565,17 @@
     {
       "player_id": "00-0037239",
       "player_name": "Chris Olave",
+      "team": "NO",
       "current_designation": "Leaves practice early with trainer",
       "last_updated": "2026-08-05T09:00:37-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Chris Olave was limited during Organized Team Activities (OTAs) in June due to a blood clot, and remained limited at minicamp. He expressed a desire for a contract before training camp. On July 28th, Olave had no restrictions for camp, but the next day he did not participate in team drills. On July 30th, he signed a four-year contract extension. On July 31st, Olave participated in team drills during ramp-up, but on August 5th, he left practice early with a trainer.",
+      "extraction": {
+        "status": "Leaves practice early with trainer",
+        "designation": "Leaves practice early with trainer",
+        "date": "2026-08-05T09:00:37-07:00",
+        "direct_quote": "Chris Olave: Leaves practice early with trainer \n\n https://www.rotowire.com/football/player/chris-olave-15895",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msdvjpo77223"
+      },
       "timeline": [
         {
           "id": "515c9ed9-82db-4ead-97cb-bebf8a619fc3",
@@ -583,7 +650,6 @@
           "player_name": "Chris Olave"
         }
       ],
-      "team": "NO",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vrrmyvpvujynckag9jop",
       "team_color": "#D3BC8D"
@@ -591,10 +657,17 @@
     {
       "player_id": "00-0036973",
       "player_name": "Travis Etienne",
+      "team": "JAX",
       "current_designation": "Ceding third-down work to Kamara?",
       "last_updated": "2026-08-04T16:46:51-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Travis Etienne was named the new lead back for New Orleans on March 9th. On July 15th, 128 days later, he was set to combine with Alvin Kamara. By August 4th, 20 days later, there were questions about him ceding third-down work to Kamara.",
+      "extraction": {
+        "status": "Ceding third-down work to Kamara?",
+        "designation": "Ceding third-down work to Kamara?",
+        "date": "2026-08-04T16:46:51-07:00",
+        "direct_quote": "Travis Etienne: Ceding third-down work to Kamara? \n\n https://www.rotowire.com/football/player/travis-etienne-15385",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msc74hk26f2a"
+      },
       "timeline": [
         {
           "id": "2f7a7caf-160a-4339-a59c-c147507a75be",
@@ -624,7 +697,6 @@
           "player_name": "Travis Etienne"
         }
       ],
-      "team": "JAX",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gc0iljgj34piecyfueyd",
       "team_color": "#006778"
@@ -632,10 +704,17 @@
     {
       "player_id": "00-0038128",
       "player_name": "Malik Willis",
+      "team": "GB",
       "current_designation": "Looks sharp early in camp",
       "last_updated": "2026-08-04T12:28:54-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Malik Willis signed a three-year contract with Miami on March 9th. By June 5th, 88 days later, his chemistry with wide receivers was noted as not yet established. On August 4th, 60 days later, Willis was reported to be looking sharp early in training camp.",
+      "extraction": {
+        "status": "Looks sharp early in camp",
+        "designation": "Looks sharp early in camp",
+        "date": "2026-08-04T12:28:54-07:00",
+        "direct_quote": "Malik Willis: Looks sharp early in camp \n\n https://www.rotowire.com/football/player/malik-willis-15872",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbqp7ek5b2a"
+      },
       "timeline": [
         {
           "id": "4db03f6d-4f1e-4d43-bdb4-2342642ed2a9",
@@ -665,7 +744,6 @@
           "player_name": "Malik Willis"
         }
       ],
-      "team": "GB",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hsnetccy7bquili3gcqq",
       "team_color": "#203731"
@@ -673,10 +751,17 @@
     {
       "player_id": "00-0041032",
       "player_name": "Kenyon Sadiq",
+      "team": "NYJ",
       "current_designation": "Optimism for Week 1 status",
       "last_updated": "2026-08-04T08:57:34-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Kenyon Sadiq was selected by the Jets on April 23rd. Thirty-five days later, on May 28th, he underwent minor surgery and was out for Organized Team Activities. Sadiq returned to practice on July 29th, but on August 4th, 6 days later, he suffered a setback in his recovery, though optimism for his Week 1 status remained.",
+      "extraction": {
+        "status": "Optimism for Week 1 status",
+        "designation": "Optimism for Week 1 status",
+        "date": "2026-08-04T08:57:34-07:00",
+        "direct_quote": "Kenyon Sadiq: Optimism for Week 1 status",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbevd3gqr2a"
+      },
       "timeline": [
         {
           "id": "e1b86e2d-3ff1-4f93-990d-d1b1491c1b5f",
@@ -724,7 +809,6 @@
           "player_name": "Kenyon Sadiq"
         }
       ],
-      "team": "NYJ",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mnswulwto4yqkgmugoiq",
       "team_color": "#003F2D"
@@ -732,10 +816,17 @@
     {
       "player_id": "00-0039064",
       "player_name": "Zay Flowers",
+      "team": "BAL",
       "current_designation": "Signs extension",
       "last_updated": "2026-08-04T08:45:14-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "The Baltimore Ravens picked up Zay Flowers' fifth-year option on April 23rd. On July 16th, 84 days later, the Ravens expressed keenness on an extension. By August 4th, 19 days later, Flowers had signed an extension.",
+      "extraction": {
+        "status": "Signs extension",
+        "designation": "Signs extension",
+        "date": "2026-08-04T08:45:14-07:00",
+        "direct_quote": "Zay Flowers: Signs extension",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbe7awxv42o"
+      },
       "timeline": [
         {
           "id": "8020e1b8-03e8-4d13-b914-19305acbc9f2",
@@ -765,7 +856,6 @@
           "player_name": "Zay Flowers"
         }
       ],
-      "team": "BAL",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sqqh8gmxdpo55qwpsszj",
       "team_color": "#241773"
@@ -773,10 +863,17 @@
     {
       "player_id": "00-0038597",
       "player_name": "Chase Brown",
+      "team": "CIN",
       "current_designation": "Still growing as a pass catcher",
       "last_updated": "2026-08-04T07:53:27-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Chase Brown is continuing to develop as a pass catcher.",
+      "extraction": {
+        "status": "Still growing as a pass catcher",
+        "designation": "Still growing as a pass catcher",
+        "date": "2026-08-04T07:53:27-07:00",
+        "direct_quote": "Chase Brown: Still growing as a pass catcher",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbbcogtde2l"
+      },
       "timeline": [
         {
           "id": "2570c715-8027-4b84-8b5e-ccb365266890",
@@ -788,7 +885,6 @@
           "player_name": "Chase Brown"
         }
       ],
-      "team": "CIN",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pv3sq3uzosixxexbznq5",
       "team_color": "#FB4F14"
@@ -796,10 +892,17 @@
     {
       "player_id": "00-0036912",
       "player_name": "DeVonta Smith",
+      "team": "PHI",
       "current_designation": "Sidelined by hamstring injury",
       "last_updated": "2026-08-04T07:23:27-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "DeVonta Smith was designated as Philadelphia's WR1 after the A.J. Brown trade on June 1st. He is currently sidelined by a hamstring injury as of August 4th.",
+      "extraction": {
+        "status": "Sidelined by hamstring injury",
+        "designation": "Sidelined by hamstring injury",
+        "date": "2026-08-04T07:23:27-07:00",
+        "direct_quote": "DeVonta Smith: Sidelined by hamstring injury",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msb7mzn4ir2a"
+      },
       "timeline": [
         {
           "id": "c6b17bac-ef0b-4e18-84b5-fbe846230e36",
@@ -820,7 +923,6 @@
           "player_name": "DeVonta Smith"
         }
       ],
-      "team": "PHI",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vj2fz8veorg1k5qthnjm",
       "team_color": "#004C54"
@@ -828,10 +930,17 @@
     {
       "player_id": "00-0040867",
       "player_name": "Makai Lemon",
+      "team": "PHI",
       "current_designation": "Dealing with minor hamstring injury",
       "last_updated": "2026-08-04T07:22:48-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Makai Lemon was selected by the Eagles on April 23rd. He was dealing with a hamstring injury on June 2nd, but was ready for training camp on July 17th. However, he was held out of team drills on August 3rd and did not practice Tuesday due to a minor hamstring injury.",
+      "extraction": {
+        "status": "Dealing with minor hamstring injury",
+        "designation": "Dealing with minor hamstring injury",
+        "date": "2026-08-04T07:22:48-07:00",
+        "direct_quote": "Makai Lemon: Dealing with minor hamstring injury",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msb7lup2gk2c"
+      },
       "timeline": [
         {
           "id": "0caa25dd-9697-4018-bd98-57bd6657c5fb",
@@ -888,7 +997,6 @@
           "player_name": "Makai Lemon"
         }
       ],
-      "team": "PHI",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dpblreqh0qjtgrisngw0",
       "team_color": "#004C54"
@@ -896,10 +1004,17 @@
     {
       "player_id": "00-0038542",
       "player_name": "Bijan Robinson",
+      "team": "ATL",
       "current_designation": "Agrees to three-year extension",
       "last_updated": "2026-08-04T04:57:12-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Bijan Robinson's fifth-year option was exercised on April 10th. He was not practicing as of July 29th amid contract talks. Robinson agreed to a three-year extension on August 4th.",
+      "extraction": {
+        "status": "Agrees to three-year extension",
+        "designation": "Agrees to three-year extension",
+        "date": "2026-08-04T04:57:12-07:00",
+        "direct_quote": "Bijan Robinson: Agrees to three-year extension",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msaxhjmtui25"
+      },
       "timeline": [
         {
           "id": "d270d8b6-34bf-45d6-aae2-820c6816a9b3",
@@ -929,7 +1044,6 @@
           "player_name": "Bijan Robinson"
         }
       ],
-      "team": "ATL",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rjaf9auhx3lrktzgwpfb",
       "team_color": "#A71930"
@@ -937,10 +1051,17 @@
     {
       "player_id": "00-0038606",
       "player_name": "Parker Washington",
+      "team": "JAX",
       "current_designation": "Strong start in training camp",
       "last_updated": "2026-08-03T15:42:52-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Parker Washington has had a strong start to training camp.",
+      "extraction": {
+        "status": "Strong start in training camp",
+        "designation": "Strong start in training camp",
+        "date": "2026-08-03T15:42:52-07:00",
+        "direct_quote": "Parker Washington: Strong start in training camp",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms7l35qys42o"
+      },
       "timeline": [
         {
           "id": "18f616f2-e9fd-421e-a5d1-89db09fe94da",
@@ -952,7 +1073,6 @@
           "player_name": "Parker Washington"
         }
       ],
-      "team": "JAX",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sqgxayp6nrrpvwonksdm",
       "team_color": "#006778"
@@ -960,10 +1080,17 @@
     {
       "player_id": "00-0033077",
       "player_name": "Dak Prescott",
+      "team": "DAL",
       "current_designation": "Won't play in preseason",
       "last_updated": "2026-08-03T11:38:02-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Dak Prescott cleared cap space on March 4th. He was managing a sore knee as of June 16th. By July 29th, Prescott was on the field to open training camp. However, he will not play in any preseason games, as of August 3rd.",
+      "extraction": {
+        "status": "Won't play in preseason",
+        "designation": "Won't play in preseason",
+        "date": "2026-08-03T11:38:02-07:00",
+        "direct_quote": "Dak Prescott: Won't play in preseason",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms75fd6yei2l"
+      },
       "timeline": [
         {
           "id": "4fead9aa-c05b-4a64-b0ba-e2bfa9bca4fc",
@@ -1002,7 +1129,6 @@
           "player_name": "Dak Prescott"
         }
       ],
-      "team": "DAL",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/blixemm3s9sa4gmqk5yn",
       "team_color": "#002244"
@@ -1010,10 +1136,17 @@
     {
       "player_id": "00-0035676",
       "player_name": "A.J. Brown",
+      "team": "PHI",
       "current_designation": "Works through thumb issue",
       "last_updated": "2026-08-03T10:27:10-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "A.J. Brown was reportedly a trade target for the Eagles and potentially the Patriots, with trade speculation ongoing through March and April 2026. He was ultimately traded to the Patriots on June 1st, 2026. Early reports on July 28th, 2026, indicated chemistry issues with quarterback Maye, but by July 31st, 2026, their connection was described as building. Brown worked through a thumb issue as of August 3rd, 2026.",
+      "extraction": {
+        "status": "Works through thumb issue",
+        "designation": "Works through thumb issue",
+        "date": "2026-08-03T10:27:10-07:00",
+        "direct_quote": "A.J. Brown: Works through thumb issue",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6zgmfg5f2c"
+      },
       "timeline": [
         {
           "id": "24d03728-2dee-4237-b79f-2e592ba176e5",
@@ -1106,7 +1239,6 @@
           "player_name": "A.J. Brown"
         }
       ],
-      "team": "PHI",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
       "headshot": "https://static.www.nfl.com/image/private/f_auto,q_auto/league/a014sgzctarbvhwb35lw",
       "team_color": "#004C54"
@@ -1114,10 +1246,17 @@
     {
       "player_id": "00-0038933",
       "player_name": "Dalton Kincaid",
+      "team": "BUF",
       "current_designation": "Resumes practicing after brief exit",
       "last_updated": "2026-08-03T10:20:38-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "The Buffalo Bills picked up the fifth-year option for tight end Dalton Kincaid on March 30th, 2026. On August 3rd, 2026, 126 days later, Kincaid resumed practicing after a brief exit from drills.",
+      "extraction": {
+        "status": "Resumes practicing after brief exit",
+        "designation": "Resumes practicing after brief exit",
+        "date": "2026-08-03T10:20:38-07:00",
+        "direct_quote": "Dalton Kincaid: Resumes practicing after brief exit",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6z2wl7sc2h"
+      },
       "timeline": [
         {
           "id": "49115e54-badf-4926-85b2-f78616db4888",
@@ -1138,7 +1277,6 @@
           "player_name": "Dalton Kincaid"
         }
       ],
-      "team": "BUF",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zwkeaiecuyafkidllebz",
       "team_color": "#00338D"
@@ -1146,10 +1284,17 @@
     {
       "player_id": "00-0040236",
       "player_name": "Kyle Monangai",
+      "team": "CHI",
       "current_designation": "Back at practice Monday",
       "last_updated": "2026-08-03T07:50:17-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Kyle Monangai was sidelined Friday with a soft-tissue injury but returned to practice Monday, August 4th, 3 days later.",
+      "extraction": {
+        "status": "Back at practice Monday",
+        "designation": "Back at practice Monday",
+        "date": "2026-08-03T07:50:17-07:00",
+        "direct_quote": "Kyle Monangai: Back at practice Monday",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6qo3ud3o25"
+      },
       "timeline": [
         {
           "id": "943e9721-406c-4fcc-8134-f22ede0425fa",
@@ -1179,7 +1324,6 @@
           "player_name": "Kyle Monangai"
         }
       ],
-      "team": "CHI",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cici2wf1walmoluhe95i",
       "team_color": "#0B162A"
@@ -1187,10 +1331,17 @@
     {
       "player_id": "00-0038996",
       "player_name": "Tucker Kraft",
+      "team": "GB",
       "current_designation": "Logs first practice since ACL tear",
       "last_updated": "2026-07-31T15:53:35-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Tucker Kraft was ahead of schedule in his recovery from an ACL tear and was expected to be ready for training camp. He anticipated playing Week 1, but was placed on the Physically Unable to Perform (PUP) list on July 27th. Two days later, on July 31st, Kraft was activated from the PUP list and logged his first practice since the injury.",
+      "extraction": {
+        "status": "Logs first practice since ACL tear",
+        "designation": "Logs first practice since ACL tear",
+        "date": "2026-07-31T15:53:35-07:00",
+        "direct_quote": "Tucker Kraft: Logs first practice since ACL tear",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mry2bjwpxc27"
+      },
       "timeline": [
         {
           "id": "010bb3fe-ffd3-4743-87bc-6ea9fcc52a65",
@@ -1265,7 +1416,6 @@
           "player_name": "Tucker Kraft"
         }
       ],
-      "team": "GB",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yr6nj1zqaqg6nbdnxu3q",
       "team_color": "#203731"
@@ -1273,10 +1423,17 @@
     {
       "player_id": "00-0036919",
       "player_name": "Kenneth Gainwell",
+      "team": "PIT",
       "current_designation": "Getting receiving work in camp",
       "last_updated": "2026-07-31T13:21:03-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Kenneth Gainwell is headed to Tampa Bay, as reported on March 9th, 2026. On July 31st, 2026, 144 days later, he was observed getting receiving work during camp.",
+      "extraction": {
+        "status": "Getting receiving work in camp",
+        "designation": "Getting receiving work in camp",
+        "date": "2026-07-31T13:21:03-07:00",
+        "direct_quote": "Kenneth Gainwell: Getting receiving work in camp",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrxrqrw5nh25"
+      },
       "timeline": [
         {
           "id": "4494d9f8-6404-4b44-a0c4-dd19cbd5e872",
@@ -1297,7 +1454,6 @@
           "player_name": "Kenneth Gainwell"
         }
       ],
-      "team": "PIT",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/f74x1ywy7oo5kq81vblh",
       "team_color": "#000000"
@@ -1305,10 +1461,17 @@
     {
       "player_id": "00-0039851",
       "player_name": "Drake Maye",
+      "team": "NE",
       "current_designation": "Connecting with Brown in practice",
       "last_updated": "2026-07-31T12:38:03-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Drake Maye had previously resolved a shoulder issue. By July 31st, he was observed connecting with new wide receiver Davante Adams during practice.",
+      "extraction": {
+        "status": "Connecting with Brown in practice",
+        "designation": "Connecting with Brown in practice",
+        "date": "2026-07-31T12:38:03-07:00",
+        "direct_quote": "Drake Maye: Connecting with Brown in practice",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrxpdvhlrd2d"
+      },
       "timeline": [
         {
           "id": "dc1cdc5e-3005-453d-a9ea-8c855b0626cd",
@@ -1338,7 +1501,6 @@
           "player_name": "Drake Maye"
         }
       ],
-      "team": "NE",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/oyap81gtzcvnfmripis1",
       "team_color": "#002244"
@@ -1346,10 +1508,17 @@
     {
       "player_id": "00-0039067",
       "player_name": "Rashee Rice",
+      "team": "KC",
       "current_designation": "Easing back in",
       "last_updated": "2026-07-31T10:59:04-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Rashee Rice was not facing league discipline as of April 3rd. He reportedly violated probation on May 19th, the same day it was reported he had a knee procedure the previous week. Rice may be ready for training camp by June 11th and was cleared to practice on July 24th, but was easing back in as of July 31st.",
+      "extraction": {
+        "status": "Easing back in",
+        "designation": "Easing back in",
+        "date": "2026-07-31T10:59:04-07:00",
+        "direct_quote": "Rashee Rice: Easing back in",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrxjsvagqa25"
+      },
       "timeline": [
         {
           "id": "17d39fbf-ecd6-4e0e-b222-280b9b734996",
@@ -1406,7 +1575,6 @@
           "player_name": "Rashee Rice"
         }
       ],
-      "team": "KC",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/iy0uidp9wokc6a7u8lwq",
       "team_color": "#E31837"
@@ -1414,10 +1582,17 @@
     {
       "player_id": "00-0040784",
       "player_name": "Quinshon Judkins",
+      "team": "CLE",
       "current_designation": "Praised by RB coach",
       "last_updated": "2026-07-31T09:31:20-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Quinshon Judkins is on track for training camp after being out of his boot. He participated in voluntary minicamp and is taking 11-on-11 reps, drawing praise from the running back coach.",
+      "extraction": {
+        "status": "Praised by RB coach",
+        "designation": "Praised by RB coach",
+        "date": "2026-07-31T09:31:20-07:00",
+        "direct_quote": "Quinshon Judkins: Praised by RB coach \n\n https://www.rotowire.com/football/player/quinshon-judkins-18516",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrxevyx32d2f"
+      },
       "timeline": [
         {
           "id": "6738a152-aa55-4c41-9215-fc16b7f393bd",
@@ -1465,7 +1640,6 @@
           "player_name": "Quinshon Judkins"
         }
       ],
-      "team": "CLE",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ojtce2im0wp2ltyel0vc",
       "team_color": "#FF3C00"
@@ -1473,10 +1647,17 @@
     {
       "player_id": "00-0041512",
       "player_name": "Jadarian Price",
+      "team": "SEA",
       "current_designation": "First up for first-team reps",
       "last_updated": "2026-07-31T06:58:47-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Jadarian Price was selected by Seattle on April 23rd, 2026. He began receiving first-team reps in early June and was splitting them by July 27th, 2026, being listed as first up for first-team reps on July 31st, 2026.",
+      "extraction": {
+        "status": "First up for first-team reps",
+        "designation": "First up for first-team reps",
+        "date": "2026-07-31T06:58:47-07:00",
+        "direct_quote": "Jadarian Price: First up for first-team reps",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx4fahir22i"
+      },
       "timeline": [
         {
           "id": "57d7b892-4350-439e-9ef1-9aeab60103ff",
@@ -1515,7 +1696,6 @@
           "player_name": "Jadarian Price"
         }
       ],
-      "team": "SEA",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/toy90i08oumgbdlvctja",
       "team_color": "#002244"
@@ -1523,10 +1703,17 @@
     {
       "player_id": "00-0039337",
       "player_name": "Malik Nabers",
+      "team": "NYG",
       "current_designation": "Feeling 'great' at practice",
       "last_updated": "2026-07-30T12:33:55-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Malik Nabers' general manager expressed hope for his Week 1 availability on March 30th, 2026. He attended voluntary workouts on April 7th, 2026, 8 days later, but underwent a second procedure on May 13th, 2026, 36 days after that. By June 10th, 2026, 20 days later, Nabers was reportedly at 80 percent in his rehab process. He was making progress per his coach on July 13th, 2026, 33 days later, and was expected to be brought along slowly. On July 29th, 2026, 16 days later, Nabers was taking part in individual drills and looked good at practice, with reports the next day, 1 day later, that he felt 'great'.",
+      "extraction": {
+        "status": "Feeling 'great' at practice",
+        "designation": "Feeling 'great' at practice",
+        "date": "2026-07-30T12:33:55-07:00",
+        "direct_quote": "Malik Nabers: Feeling 'great' at practice",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrv6nkymg42v"
+      },
       "timeline": [
         {
           "id": "fb1bf984-f50b-4f18-ba19-d1480961a3da",
@@ -1619,7 +1806,6 @@
           "player_name": "Malik Nabers"
         }
       ],
-      "team": "NYG",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/w3edoyyuomqlovvp9ixc",
       "team_color": "#0B2265"
@@ -1627,10 +1813,17 @@
     {
       "player_id": "00-0039075",
       "player_name": "Puka Nacua",
+      "team": "LA",
       "current_designation": "Strong start to training camp",
       "last_updated": "2026-07-30T11:22:39-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Puka Nacua entered a rehab facility on April 1st but was present for voluntary workouts by April 20th. He is entering the final year of his rookie deal, and an extension is unlikely this summer. Nacua had a strong start to training camp as of July 30th.",
+      "extraction": {
+        "status": "Strong start to training camp",
+        "designation": "Strong start to training camp",
+        "date": "2026-07-30T11:22:39-07:00",
+        "direct_quote": "Puka Nacua: Strong start to training camp",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrv2o53g4u2i"
+      },
       "timeline": [
         {
           "id": "3af5a22e-d0a6-420a-945a-2278b71c2602",
@@ -1678,7 +1871,6 @@
           "player_name": "Puka Nacua"
         }
       ],
-      "team": "LA",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zvi4hdm6fywcekfe7ceb",
       "team_color": "#003594"
@@ -1686,10 +1878,17 @@
     {
       "player_id": "00-0034855",
       "player_name": "Baker Mayfield",
+      "team": "TB",
       "current_designation": "Frustrated by contract talks",
       "last_updated": "2026-07-30T10:03:24-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Baker Mayfield expressed a desire for a new contract before training camp, but talks have remained stalled as of July 28th, 53 days after his initial statement. He indicated he will play on his current deal, though he is reportedly frustrated by the lack of progress in negotiations.",
+      "extraction": {
+        "status": "Frustrated by contract talks",
+        "designation": "Frustrated by contract talks",
+        "date": "2026-07-30T10:03:24-07:00",
+        "direct_quote": "Baker Mayfield: Frustrated by contract talks",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mruwagdcrj2l"
+      },
       "timeline": [
         {
           "id": "3f55f0b9-f4e6-4709-862f-ef315541a054",
@@ -1728,7 +1927,6 @@
           "player_name": "Baker Mayfield"
         }
       ],
-      "team": "TB",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/i2uufyghiphx4oihgucm",
       "team_color": "#A71930"
@@ -1736,10 +1934,17 @@
     {
       "player_id": "00-0036875",
       "player_name": "Rhamondre Stevenson",
+      "team": "NE",
       "current_designation": "Practicing Thursday",
       "last_updated": "2026-07-30T08:56:35-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Rhamondre Stevenson left practice early on July 28th but returned to practice on Thursday, July 30th, two days later.",
+      "extraction": {
+        "status": "Practicing Thursday",
+        "designation": "Practicing Thursday",
+        "date": "2026-07-30T08:56:35-07:00",
+        "direct_quote": "Rhamondre Stevenson: Practicing Thursday",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrusix7adm2z"
+      },
       "timeline": [
         {
           "id": "5f0980c9-9e14-4bd6-99bf-505444579b5f",
@@ -1760,7 +1965,6 @@
           "player_name": "Rhamondre Stevenson"
         }
       ],
-      "team": "NE",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ed09migntlyy8ntgvcu1",
       "team_color": "#002244"
@@ -1768,10 +1972,17 @@
     {
       "player_id": "00-0039919",
       "player_name": "Rome Odunze",
+      "team": "CHI",
       "current_designation": "Says foot feels great",
       "last_updated": "2026-07-30T08:56:22-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Rome Odunze was bothered by his foot on June 4th, but 56 days later, on July 30th, he stated that his foot felt great.",
+      "extraction": {
+        "status": "Says foot feels great",
+        "designation": "Says foot feels great",
+        "date": "2026-07-30T08:56:22-07:00",
+        "direct_quote": "Rome Odunze: Says foot feels great",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrusil7pr62i"
+      },
       "timeline": [
         {
           "id": "44e60527-ee64-467f-ad60-5d827854589d",
@@ -1792,7 +2003,6 @@
           "player_name": "Rome Odunze"
         }
       ],
-      "team": "CHI",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yqjdhpsno75du0n72u4w",
       "team_color": "#0B162A"
@@ -1800,10 +2010,17 @@
     {
       "player_id": "00-0037238",
       "player_name": "Drake London",
+      "team": "ATL",
       "current_designation": "Healthy for start of camp",
       "last_updated": "2026-07-30T06:41:41-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Drake London inked an extension with the Falcons on June 2nd. Fifteen days later, on June 17th, he was nursing a minor injury, but by July 30th, he was healthy for the start of camp.",
+      "extraction": {
+        "status": "Healthy for start of camp",
+        "designation": "Healthy for start of camp",
+        "date": "2026-07-30T06:41:41-07:00",
+        "direct_quote": "Drake London: Healthy for start of camp",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrukxqccrm2i"
+      },
       "timeline": [
         {
           "id": "a71dfabc-3efd-44be-92f0-dc85681c57db",
@@ -1833,7 +2050,6 @@
           "player_name": "Drake London"
         }
       ],
-      "team": "ATL",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/np91pvk7mczra1iyjkmo",
       "team_color": "#A71930"
@@ -1841,10 +2057,17 @@
     {
       "player_id": "00-0037248",
       "player_name": "James Cook",
+      "team": "BUF",
       "current_designation": "More balanced approach in 2026?",
       "last_updated": "2026-07-29T16:38:42-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "James Cook was absent for the start of Organized Team Activities (OTAs). By July 29th, there was speculation about a more balanced offensive approach for him in 2026.",
+      "extraction": {
+        "status": "More balanced approach in 2026?",
+        "designation": "More balanced approach in 2026?",
+        "date": "2026-07-29T16:38:42-07:00",
+        "direct_quote": "James Cook: More balanced approach in 2026? \n\n https://www.rotowire.com/football/player/james-cook-15876",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrt3ue53ez2h"
+      },
       "timeline": [
         {
           "id": "a6630407-bdc3-48a4-8e73-5fd4d3cc1e39",
@@ -1865,7 +2088,6 @@
           "player_name": "James Cook"
         }
       ],
-      "team": "BUF",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/anjbznqb9i21wzcgrtbs",
       "team_color": "#00338D"
@@ -1873,10 +2095,17 @@
     {
       "player_id": "00-0036358",
       "player_name": "CeeDee Lamb",
+      "team": "DAL",
       "current_designation": "Playing usual role in training camp",
       "last_updated": "2026-07-29T15:31:54-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "CeeDee Lamb agreed to a contract restructure on March 4th. He was playing his usual role in training camp as of July 29th.",
+      "extraction": {
+        "status": "Playing usual role in training camp",
+        "designation": "Playing usual role in training camp",
+        "date": "2026-07-29T15:31:54-07:00",
+        "direct_quote": "CeeDee Lamb: Playing usual role in training camp",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsy4wmrci2r"
+      },
       "timeline": [
         {
           "id": "c30f86e7-e46f-4dd9-bc88-f910e8eb74d2",
@@ -1897,7 +2126,6 @@
           "player_name": "CeeDee Lamb"
         }
       ],
-      "team": "DAL",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ijxzvtumjhqu3zva1bwc",
       "team_color": "#002244"
@@ -1905,10 +2133,17 @@
     {
       "player_id": "00-0035710",
       "player_name": "Daniel Jones",
+      "team": "IND",
       "current_designation": "Takes all the first-team reps",
       "last_updated": "2026-07-29T10:37:08-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Daniel Jones received the transition tag from the Colts on March 3rd, and the team expressed a desire for a long-term deal. Two days later, Jones finalized a two-year contract with Indianapolis, which was made official on March 12th. By April 20th, the team was optimistic about his availability for Week 1. Jones was seen throwing at Organized Team Activities (OTAs) on May 27th and progressed to 7-on-7 drills by June 1st. He is expected to participate in 11-on-11 work in July. On July 27th, Jones declared himself fully healthy, and two days later, he took all first-team reps.",
+      "extraction": {
+        "status": "Takes all the first-team reps",
+        "designation": "Takes all the first-team reps",
+        "date": "2026-07-29T10:37:08-07:00",
+        "direct_quote": "Daniel Jones: Takes all the first-team reps",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrshntwovx2p"
+      },
       "timeline": [
         {
           "id": "9875b714-2255-4b54-8bb4-1bd90a899446",
@@ -2001,7 +2236,6 @@
           "player_name": "Daniel Jones"
         }
       ],
-      "team": "IND",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nhuiypfjzpkisxllinyv",
       "team_color": "#002C5F"
@@ -2009,10 +2243,17 @@
     {
       "player_id": "00-0039732",
       "player_name": "Bo Nix",
+      "team": "DEN",
       "current_designation": "Works fully Wednesday",
       "last_updated": "2026-07-29T10:35:49-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Bo Nix underwent a clean-up procedure on his ankle on April 28th, but was on track for minicamp by May 9th. He participated in 7-on-7 drills on June 17th and was expected to be a full participant in training camp. Nix was still on track for the start of camp as of July 21st and practiced fully on July 29th.",
+      "extraction": {
+        "status": "Works fully Wednesday",
+        "designation": "Works fully Wednesday",
+        "date": "2026-07-29T10:35:49-07:00",
+        "direct_quote": "Bo Nix: Works fully Wednesday",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrshlhvfrm2z"
+      },
       "timeline": [
         {
           "id": "deb7586d-bdf4-4593-9033-b06c67bbf49e",
@@ -2105,7 +2346,6 @@
           "player_name": "Bo Nix"
         }
       ],
-      "team": "DEN",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/igirshmrr6lqtxcpxsea",
       "team_color": "#002244"
@@ -2113,10 +2353,17 @@
     {
       "player_id": "00-0041027",
       "player_name": "Jeremiyah Love",
+      "team": "ARI",
       "current_designation": "Mixing in behind Allgeier",
       "last_updated": "2026-07-29T10:17:22-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Jeremiyah Love impressed with his 40-yard dash time and was selected by the Cardinals in the 2026 NFL Draft. He is currently working behind Tyler Allgeier on the depth chart.",
+      "extraction": {
+        "status": "Mixing in behind Allgeier",
+        "designation": "Mixing in behind Allgeier",
+        "date": "2026-07-29T10:17:22-07:00",
+        "direct_quote": "Jeremiyah Love: Mixing in behind Allgeier",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsgki4axv26"
+      },
       "timeline": [
         {
           "id": "ef54526e-bdf6-473a-98bd-6559f5f0e04c",
@@ -2146,7 +2393,6 @@
           "player_name": "Jeremiyah Love"
         }
       ],
-      "team": "ARI",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/b12gtjsylmql5v7iyyla",
       "team_color": "#97233F"
@@ -2154,10 +2400,17 @@
     {
       "player_id": "00-0040715",
       "player_name": "Cam Skattebo",
+      "team": "NYG",
       "current_designation": "Declared ready for camp",
       "last_updated": "2026-07-29T10:08:19-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Cam Skattebo was looking fully healthy on March 30th, 2026, and attended voluntary workouts on April 7th, 2026, 8 days later. He stated on May 19th, 2026, 42 days later, that he would be ready for Week 1. Skattebo participated in drills at minicamp on June 8th, 2026, and was doing 11-on-11 drills the next day. On July 13th, 2026, 34 days later, he was expected for early camp work, and on July 20th, 2026, 7 days later, declared himself ready for camp. On July 29th, 2026, 9 days later, Skattebo was declared ready for camp.",
+      "extraction": {
+        "status": "Declared ready for camp",
+        "designation": "Declared ready for camp",
+        "date": "2026-07-29T10:08:19-07:00",
+        "direct_quote": "Cam Skattebo: Declared ready for camp",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsg2cshxi2t"
+      },
       "timeline": [
         {
           "id": "a1fe7a2b-c3ae-4819-b868-5e162171f22f",
@@ -2232,7 +2485,6 @@
           "player_name": "Cam Skattebo"
         }
       ],
-      "team": "NYG",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vnftthkbvw7ucsqtqjpq",
       "team_color": "#0B2265"
@@ -2240,10 +2492,17 @@
     {
       "player_id": "00-0040719",
       "player_name": "Bhayshul Tuten",
+      "team": "JAX",
       "current_designation": "Early lead in RB competition?",
       "last_updated": "2026-07-29T09:16:20-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Bhayshul Tuten was projected to be in a backfield timeshare on July 15th. Fourteen days later, on July 29th, reports suggested he might have an early lead in the running back competition.",
+      "extraction": {
+        "status": "Early lead in RB competition?",
+        "designation": "Early lead in RB competition?",
+        "date": "2026-07-29T09:16:20-07:00",
+        "direct_quote": "Bhayshul Tuten: Early lead in RB competition?",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsd5e3tm62v"
+      },
       "timeline": [
         {
           "id": "ddf40d3c-0248-4612-8efc-947bcf5fa6ef",
@@ -2264,7 +2523,6 @@
           "player_name": "Bhayshul Tuten"
         }
       ],
-      "team": "JAX",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uf6bidyfjeemrlgsibiz",
       "team_color": "#006778"
@@ -2272,10 +2530,17 @@
     {
       "player_id": "00-0033873",
       "player_name": "Patrick Mahomes",
+      "team": "KC",
       "current_designation": "Taking part in 11-on-11s",
       "last_updated": "2026-07-29T08:00:13-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Patrick Mahomes agreed to a contract restructure and is rehabbing at voluntary workouts. He is expected to participate in and is on the field for Organized Team Activities (OTAs), though limited to 7-on-7 work. The Chiefs added two years to his contract, and he aims to play Week 1, having been cleared to practice in full and taking part in 11-on-11s.",
+      "extraction": {
+        "status": "Taking part in 11-on-11s",
+        "designation": "Taking part in 11-on-11s",
+        "date": "2026-07-29T08:00:13-07:00",
+        "direct_quote": "Patrick Mahomes: Taking part in 11-on-11s",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrs6vawzlu2r"
+      },
       "timeline": [
         {
           "id": "a089eb44-1d9e-412f-8c72-421fdfe63f5b",
@@ -2368,7 +2633,6 @@
           "player_name": "Patrick Mahomes"
         }
       ],
-      "team": "KC",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/iireqbn32cpg9fn4sfy7",
       "team_color": "#E31837"
@@ -2376,10 +2640,17 @@
     {
       "player_id": "00-0039361",
       "player_name": "Bucky Irving",
+      "team": "TB",
       "current_designation": "Full-go for training camp",
       "last_updated": "2026-07-29T07:20:11-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Bucky Irving's team added Gainwell to the backfield on March 9th, 2026. A shoulder injury was still lingering as of May 13th, 2026, 65 days later, and he was not practicing yet on May 26th, 2026. Initially, it was suggested he might not be ready until \"summer or fall,\" but on the same day, he was reported as likely healthy for training camp. By June 11th, 2026, 16 days later, he was spotted at Organized Team Activities (OTAs) practice. He stated on July 20th, 2026, 39 days later, that he would be ready for camp, and on July 29th, 2026, 9 days later, he was a full participant for training camp.",
+      "extraction": {
+        "status": "Full-go for training camp",
+        "designation": "Full-go for training camp",
+        "date": "2026-07-29T07:20:11-07:00",
+        "direct_quote": "Bucky Irving: Full-go for training camp",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrs4nnlxsa2z"
+      },
       "timeline": [
         {
           "id": "aae92db0-86e6-4129-9947-e42744e22939",
@@ -2454,7 +2725,6 @@
           "player_name": "Bucky Irving"
         }
       ],
-      "team": "TB",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hmgpumoxwhvrrkcjuuuw",
       "team_color": "#A71930"
@@ -2462,10 +2732,17 @@
     {
       "player_id": "00-0041029",
       "player_name": "Jordyn Tyson",
+      "team": "NO",
       "current_designation": "Ready for training camp",
       "last_updated": "2026-07-28T12:33:09-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Jordyn Tyson planned to work out on April 17th, and was subsequently selected by the Saints on April 23rd. He sat out practice on May 9th, continuing rehab at minicamp on June 16th, and was ready for training camp as of July 28th.",
+      "extraction": {
+        "status": "Ready for training camp",
+        "designation": "Ready for training camp",
+        "date": "2026-07-28T12:33:09-07:00",
+        "direct_quote": "Jordyn Tyson: Ready for training camp",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrq5oefnmt2h"
+      },
       "timeline": [
         {
           "id": "66afb971-6edf-4357-a06d-50bd19b86326",
@@ -2513,7 +2790,6 @@
           "player_name": "Jordyn Tyson"
         }
       ],
-      "team": "NO",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/al6fifxstyc6omsenzhd",
       "team_color": "#D3BC8D"
@@ -2521,10 +2797,17 @@
     {
       "player_id": "00-0035228",
       "player_name": "Kyler Murray",
+      "team": "ARI",
       "current_designation": "To share reps with McCarthy",
       "last_updated": "2026-07-28T11:13:25-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Kyler Murray's time with the Arizona Cardinals officially ended on March 11th, after which he posted a goodbye message to the city. He visited Minnesota and signed a one-year deal, and is expected to share reps with McCarthy.",
+      "extraction": {
+        "status": "To share reps with McCarthy",
+        "designation": "To share reps with McCarthy",
+        "date": "2026-07-28T11:13:25-07:00",
+        "direct_quote": "Kyler Murray: To share reps with McCarthy",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrpz7snt662f"
+      },
       "timeline": [
         {
           "id": "601eee77-ef45-4e5c-a404-e5dcaabd98c5",
@@ -2590,7 +2873,6 @@
           "player_name": "Kyler Murray"
         }
       ],
-      "team": "ARI",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/flezsremqighwuiyu77f",
       "team_color": "#97233F"
@@ -2598,10 +2880,17 @@
     {
       "player_id": "00-0039915",
       "player_name": "Ladd McConkey",
+      "team": "LAC",
       "current_designation": "Expects to be full go for camp",
       "last_updated": "2026-07-28T10:34:04-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Ladd McConkey was limited to individual drills on June 16th due to a strained hamstring. As of July 28th, 42 days later, he expects to be a full participant for training camp.",
+      "extraction": {
+        "status": "Expects to be full go for camp",
+        "designation": "Expects to be full go for camp",
+        "date": "2026-07-28T10:34:04-07:00",
+        "direct_quote": "Ladd McConkey: Expects to be full go for camp",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrpwzguclt2t"
+      },
       "timeline": [
         {
           "id": "0e154fdd-61e5-46b4-abd2-1b85b405132b",
@@ -2631,7 +2920,6 @@
           "player_name": "Ladd McConkey"
         }
       ],
-      "team": "LAC",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qsvdiebsa34jtkcrjpju",
       "team_color": "#007BC7"
@@ -2639,10 +2927,17 @@
     {
       "player_id": "00-0037664",
       "player_name": "Alec Pierce",
+      "team": "IND",
       "current_designation": "Will miss 1-2 more weeks",
       "last_updated": "2026-07-28T08:14:54-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Alec Pierce initially wanted to test free agency but agreed to stay with the Colts on March 9th. He underwent an ankle procedure around April 20th and, as of June 9th, might miss the start of training camp. Pierce discussed his ankle surgery on June 10th. He opened camp on the Physically Unable to Perform (PUP) list on July 27th and was expected to miss one to two more weeks as of July 28th.",
+      "extraction": {
+        "status": "Will miss 1-2 more weeks",
+        "designation": "Will miss 1-2 more weeks",
+        "date": "2026-07-28T08:14:54-07:00",
+        "direct_quote": "Alec Pierce: Will miss 1-2 more weeks",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrppalihpc26"
+      },
       "timeline": [
         {
           "id": "32289166-2c31-4620-b21a-17e9f463ff86",
@@ -2708,7 +3003,6 @@
           "player_name": "Alec Pierce"
         }
       ],
-      "team": "IND",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zeghrjc8rir3r3zi6det",
       "team_color": "#002C5F"
@@ -2716,10 +3010,17 @@
     {
       "player_id": "00-0039040",
       "player_name": "De'Von Achane",
+      "team": "MIA",
       "current_designation": "Cleared for start of training camp",
       "last_updated": "2026-07-28T08:09:19-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "The Dolphins were not listening to offers for De'Von Achane on March 18th. He was absent from voluntary workouts on April 7th but returned on April 16th. Twenty days later, Achane signed a four-year, $68 million extension. On May 27th, 14 days later, he was rehabbing his shoulder at Organized Team Activities (OTAs). Seven days after that, he was taking individual reps at minicamp. On July 28th, 55 days later, Achane was cleared for the start of training camp.",
+      "extraction": {
+        "status": "Cleared for start of training camp",
+        "designation": "Cleared for start of training camp",
+        "date": "2026-07-28T08:09:19-07:00",
+        "direct_quote": "De'Von Achane: Cleared for start of training camp",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrpowlwqx32i"
+      },
       "timeline": [
         {
           "id": "a07a0fbe-86ec-4bae-988e-63fb57e9ff5b",
@@ -2785,7 +3086,6 @@
           "player_name": "De'Von Achane"
         }
       ],
-      "team": "MIA",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xk1xwio0bryfxo1ylweu",
       "team_color": "#008E97"
@@ -2793,10 +3093,17 @@
     {
       "player_id": "00-0035640",
       "player_name": "DK Metcalf",
+      "team": "PIT",
       "current_designation": "Will move around formation more",
       "last_updated": "2026-07-28T08:02:35-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "DK Metcalf is expected to be utilized in various formations, as reported on July 28th.",
+      "extraction": {
+        "status": "Will move around formation more",
+        "designation": "Will move around formation more",
+        "date": "2026-07-28T08:02:35-07:00",
+        "direct_quote": "DK Metcalf: Will move around formation more",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrpokkfquk26"
+      },
       "timeline": [
         {
           "id": "d2e05d27-eae2-4658-91f9-d7d0a9c323ff",
@@ -2808,7 +3115,6 @@
           "player_name": "DK Metcalf"
         }
       ],
-      "team": "PIT",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/pit.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tknefloqsleltfmslj2y",
       "team_color": "#000000"
@@ -2816,10 +3122,17 @@
     {
       "player_id": "00-0038543",
       "player_name": "Jaxon Smith-Njigba",
+      "team": "SEA",
       "current_designation": "Eyes yet another step forward",
       "last_updated": "2026-07-28T07:37:42-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Jaxon Smith-Njigba had his fifth-year option picked up by the Seahawks on March 20th. Three days later, he became the new highest-paid wide receiver. On July 28th, he expressed his intention to take another step forward in his performance.",
+      "extraction": {
+        "status": "Eyes yet another step forward",
+        "designation": "Eyes yet another step forward",
+        "date": "2026-07-28T07:37:42-07:00",
+        "direct_quote": "Jaxon Smith-Njigba: Eyes yet another step forward",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrpn62jlu52r"
+      },
       "timeline": [
         {
           "id": "c1230cea-d1ad-4488-b2d4-0e97c343db0c",
@@ -2849,7 +3162,6 @@
           "player_name": "Jaxon Smith-Njigba"
         }
       ],
-      "team": "SEA",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jpvhsregfvw46mlyckzj",
       "team_color": "#002244"
@@ -2857,10 +3169,17 @@
     {
       "player_id": "00-0033288",
       "player_name": "George Kittle",
+      "team": "SF",
       "current_designation": "Starting training camp on PUP",
       "last_updated": "2026-07-25T11:25:21-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "George Kittle's general manager hoped for a Week 1 return on March 29th, a target Kittle himself aimed for and felt was on track by June 23rd. He stated he was ahead of schedule on June 4th, but began training camp on the Physically Unable to Perform (PUP) list as of July 25th.",
+      "extraction": {
+        "status": "Starting training camp on PUP",
+        "designation": "Starting training camp on PUP",
+        "date": "2026-07-25T11:25:21-07:00",
+        "direct_quote": "George Kittle: Starting training camp on PUP",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mriiiefntg2p"
+      },
       "timeline": [
         {
           "id": "40920f83-730a-41e9-847e-0feb1cc5404d",
@@ -2917,7 +3236,6 @@
           "player_name": "George Kittle"
         }
       ],
-      "team": "SF",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ztz3xqjaqgok9m4nylgs",
       "team_color": "#AA0000"
@@ -2925,10 +3243,17 @@
     {
       "player_id": "00-0039165",
       "player_name": "Zach Charbonnet",
+      "team": "SEA",
       "current_designation": "Placed on PUP list",
       "last_updated": "2026-07-22T09:47:43-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Zach Charbonnet underwent surgery on February 20th and is expected to play in 2026. He is progressing well in recovery and has been getting in light on-field work, but is currently on the Physically Unable to Perform (PUP) list and is looking at a midseason return.",
+      "extraction": {
+        "status": "Placed on PUP list",
+        "designation": "Placed on PUP list",
+        "date": "2026-07-22T09:47:43-07:00",
+        "direct_quote": "Zach Charbonnet: Placed on PUP list",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrarmzq42e2r"
+      },
       "timeline": [
         {
           "id": "b32ab92e-5612-4f9b-a743-7e4487424b2b",
@@ -2985,7 +3310,6 @@
           "player_name": "Zach Charbonnet"
         }
       ],
-      "team": "SEA",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jqbzg5e8pdltbnb7hc8p",
       "team_color": "#002244"
@@ -2993,10 +3317,17 @@
     {
       "player_id": "00-0039065",
       "player_name": "Sam LaPorta",
+      "team": "DET",
       "current_designation": "Cleared for training camp",
       "last_updated": "2026-07-21T15:22:29-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Sam LaPorta practiced on June 4th and was trending in the right direction by June 17th. He was cleared for training camp on July 21st and is expected to be a key part of a tight end-friendly scheme.",
+      "extraction": {
+        "status": "Cleared for training camp",
+        "designation": "Cleared for training camp",
+        "date": "2026-07-21T15:22:29-07:00",
+        "direct_quote": "Sam LaPorta: Cleared for training camp",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mr6tuq66lw2t"
+      },
       "timeline": [
         {
           "id": "dc317e42-f893-49c0-a82e-c048b0c8fdfc",
@@ -3035,7 +3366,6 @@
           "player_name": "Sam LaPorta"
         }
       ],
-      "team": "DET",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qfcy3taaoage00rrl0cc",
       "team_color": "#0076B6"
@@ -3043,10 +3373,17 @@
     {
       "player_id": "00-0036554",
       "player_name": "Nico Collins",
+      "team": "HOU",
       "current_designation": "Injury-free entering camp",
       "last_updated": "2026-07-21T09:30:31-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Nico Collins received a raise via a contract restructure on May 26th, 33 days after teams had inquired about his availability. He enters training camp injury-free as of July 21st.",
+      "extraction": {
+        "status": "Injury-free entering camp",
+        "designation": "Injury-free entering camp",
+        "date": "2026-07-21T09:30:31-07:00",
+        "direct_quote": "Nico Collins: Injury-free entering camp",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mr6a7dntlb2h"
+      },
       "timeline": [
         {
           "id": "d66f2ffb-6825-4300-a740-d9f1f7b7aba0",
@@ -3076,7 +3413,6 @@
           "player_name": "Nico Collins"
         }
       ],
-      "team": "HOU",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/osmqyvmib3pssxi6cyic",
       "team_color": "#03202F"
@@ -3084,10 +3420,17 @@
     {
       "player_id": "00-0033090",
       "player_name": "Hunter Henry",
+      "team": "NE",
       "current_designation": "Remains top tight end",
       "last_updated": "2026-07-16T12:52:16-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Hunter Henry remains the top tight end on his team as of July 16th.",
+      "extraction": {
+        "status": "Remains top tight end",
+        "designation": "Remains top tight end",
+        "date": "2026-07-16T12:52:16-07:00",
+        "direct_quote": "Hunter Henry: Remains top tight end",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqrz5ioem52v"
+      },
       "timeline": [
         {
           "id": "a22182c6-c6a4-49a9-92d6-ac5fd53a38dd",
@@ -3099,7 +3442,6 @@
           "player_name": "Hunter Henry"
         }
       ],
-      "team": "NE",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ne.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/l0fsrutz9fwbohx10lcf",
       "team_color": "#002244"
@@ -3107,10 +3449,17 @@
     {
       "player_id": "00-0036971",
       "player_name": "Trevor Lawrence",
+      "team": "JAX",
       "current_designation": "Draws praise for offseason work",
       "last_updated": "2026-07-16T10:39:49-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Trevor Lawrence received praise for his offseason work, according to a report on July 16th.",
+      "extraction": {
+        "status": "Draws praise for offseason work",
+        "designation": "Draws praise for offseason work",
+        "date": "2026-07-16T10:39:49-07:00",
+        "direct_quote": "Trevor Lawrence: Draws praise for offseason work",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqrrqo4fgr2i"
+      },
       "timeline": [
         {
           "id": "3e14c0ec-699e-482d-843e-ea9a6805c17e",
@@ -3122,7 +3471,6 @@
           "player_name": "Trevor Lawrence"
         }
       ],
-      "team": "JAX",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/d75srntioly7fq0z8vip",
       "team_color": "#006778"
@@ -3130,10 +3478,17 @@
     {
       "player_id": "00-0033280",
       "player_name": "Christian McCaffrey",
+      "team": "SF",
       "current_designation": "Wins Best Comeback Athlete",
       "last_updated": "2026-07-16T10:18:28-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Christian McCaffrey is expected to receive more rest during the 2026 season, as announced on March 30th, 2026. On July 16th, 2026, 108 days later, he was recognized as the winner of the Best Comeback Athlete award.",
+      "extraction": {
+        "status": "Wins Best Comeback Athlete",
+        "designation": "Wins Best Comeback Athlete",
+        "date": "2026-07-16T10:18:28-07:00",
+        "direct_quote": "Christian McCaffrey: Wins Best Comeback Athlete",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqrqkiekwj2v"
+      },
       "timeline": [
         {
           "id": "166e7803-3551-468f-ab7e-feb6f6a9fce3",
@@ -3154,7 +3509,6 @@
           "player_name": "Christian McCaffrey"
         }
       ],
-      "team": "SF",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/resjdwihunsqckohcorj",
       "team_color": "#AA0000"
@@ -3162,10 +3516,17 @@
     {
       "player_id": "00-0037247",
       "player_name": "George Pickens",
+      "team": "DAL",
       "current_designation": "Tag deadline passes",
       "last_updated": "2026-07-15T14:05:59-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "George Pickens was officially franchise-tagged on February 27th, 2026, after initial reports on February 23rd. He was not negotiating a long-term deal and the team was optimistic he would sign the tag, which he did by April 29th, 2026. Pickens was expected back for minicamp and reported on June 15th, 2026, with reps managed during practices. The franchise tag deadline passed on July 15th, 2026.",
+      "extraction": {
+        "status": "Tag deadline passes",
+        "designation": "Tag deadline passes",
+        "date": "2026-07-15T14:05:59-07:00",
+        "direct_quote": "George Pickens: Tag deadline passes \n\n https://www.rotowire.com/football/player/george-pickens-15853",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqpmsfexsq2r"
+      },
       "timeline": [
         {
           "id": "5fd4c2f3-9781-4d82-9c0c-1c9a5c1b0960",
@@ -3267,7 +3628,6 @@
           "player_name": "George Pickens"
         }
       ],
-      "team": "DAL",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cbpyykoguf7rsxezqzvk",
       "team_color": "#002244"
@@ -3275,10 +3635,17 @@
     {
       "player_id": "00-0039338",
       "player_name": "Brock Bowers",
+      "team": "LV",
       "current_designation": "Fully healthy ahead of camp",
       "last_updated": "2026-07-11T20:30:20-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Brock Bowers participated in Organized Team Activities (OTAs) on May 28th and was reported fully healthy ahead of training camp on July 11th.",
+      "extraction": {
+        "status": "Fully healthy ahead of camp",
+        "designation": "Fully healthy ahead of camp",
+        "date": "2026-07-11T20:30:20-07:00",
+        "direct_quote": "Brock Bowers: Fully healthy ahead of camp \n\n https://www.rotowire.com/football/player/brock-bowers-17693",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqgafxucpi23"
+      },
       "timeline": [
         {
           "id": "f7bb8899-795e-4142-aba8-0e6cd8016490",
@@ -3299,7 +3666,6 @@
           "player_name": "Brock Bowers"
         }
       ],
-      "team": "LV",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uzp2ffi0lomamxofsrhy",
       "team_color": "#000000"
@@ -3307,10 +3673,17 @@
     {
       "player_id": "00-0034348",
       "player_name": "Courtland Sutton",
+      "team": "DEN",
       "current_designation": "Could draw more 1-on-1 matchups",
       "last_updated": "2026-07-10T16:22:36-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Courtland Sutton is expected to draw more one-on-one matchups in the upcoming season, as of July 10th.",
+      "extraction": {
+        "status": "Could draw more 1-on-1 matchups",
+        "designation": "Could draw more 1-on-1 matchups",
+        "date": "2026-07-10T16:22:36-07:00",
+        "direct_quote": "Courtland Sutton: Could draw more 1-on-1 matchups \n\n https://www.rotowire.com/football/player/courtland-sutton-12586",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqdc43snow2z"
+      },
       "timeline": [
         {
           "id": "5aee81d4-d751-465e-889d-705751b18868",
@@ -3322,7 +3695,6 @@
           "player_name": "Courtland Sutton"
         }
       ],
-      "team": "DEN",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/r2sr6cbma4c7wc3isejj",
       "team_color": "#002244"
@@ -3330,10 +3702,17 @@
     {
       "player_id": "00-0035685",
       "player_name": "David Montgomery",
+      "team": "DET",
       "current_designation": "Viewed as three-down back",
       "last_updated": "2026-07-07T12:47:10-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "David Montgomery was traded to the Houston Texans and received an upgraded contract. He is viewed as a central figure in the Texans' offensive plans and is expected to be a three-down back.",
+      "extraction": {
+        "status": "Viewed as three-down back",
+        "designation": "Viewed as three-down back",
+        "date": "2026-07-07T12:47:10-07:00",
+        "direct_quote": "David Montgomery: Viewed as three-down back \n\n https://www.rotowire.com/football/player/david-montgomery-13556",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mq3eo4jyvw2c"
+      },
       "timeline": [
         {
           "id": "d4c4b4fd-dcc6-411d-b36c-e171b81e28c9",
@@ -3372,7 +3751,6 @@
           "player_name": "David Montgomery"
         }
       ],
-      "team": "DET",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xeb6fq4zimgkksq7uari",
       "team_color": "#0076B6"
@@ -3380,10 +3758,17 @@
     {
       "player_id": "00-0041438",
       "player_name": "Carnell Tate",
+      "team": "TEN",
       "current_designation": "Looked polished at OTAs",
       "last_updated": "2026-06-29T07:38:58-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Carnell Tate was added by Tennessee on April 23rd. He looked polished during Organized Team Activities (OTAs), as noted on June 29th, 67 days later.",
+      "extraction": {
+        "status": "Looked polished at OTAs",
+        "designation": "Looked polished at OTAs",
+        "date": "2026-06-29T07:38:58-07:00",
+        "direct_quote": "Carnell Tate: Looked polished at OTAs",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mpgppmkwz42v"
+      },
       "timeline": [
         {
           "id": "80ffa658-70e5-464f-980d-1dd68c0fa771",
@@ -3404,7 +3789,6 @@
           "player_name": "Carnell Tate"
         }
       ],
-      "team": "TEN",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ghpmpzcnigxrdbyvcxke",
       "team_color": "#4495D2"
@@ -3412,10 +3796,17 @@
     {
       "player_id": "00-0036442",
       "player_name": "Joe Burrow",
+      "team": "CIN",
       "current_designation": "Working under center more",
       "last_updated": "2026-06-25T07:54:23-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Joe Burrow was noted to be working under center more frequently as of June 25th.",
+      "extraction": {
+        "status": "Working under center more",
+        "designation": "Working under center more",
+        "date": "2026-06-25T07:54:23-07:00",
+        "direct_quote": "Joe Burrow: Working under center more \n\n https://www.rotowire.com/football/player/joe-burrow-14442",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mp4opjbwal2q"
+      },
       "timeline": [
         {
           "id": "908f3d34-ac3b-4c72-a71f-1ffcefc76de1",
@@ -3436,7 +3827,6 @@
           "player_name": "Joe Burrow"
         }
       ],
-      "team": "CIN",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gnnvcgui1cijybukk2w7",
       "team_color": "#FB4F14"
@@ -3444,10 +3834,17 @@
     {
       "player_id": "00-0038935",
       "player_name": "Brenton Strange",
+      "team": "JAX",
       "current_designation": "Agrees to three-year extension",
       "last_updated": "2026-06-24T12:18:50-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Brenton Strange has agreed to a three-year contract extension.",
+      "extraction": {
+        "status": "Agrees to three-year extension",
+        "designation": "Agrees to three-year extension",
+        "date": "2026-06-24T12:18:50-07:00",
+        "direct_quote": "Brenton Strange: Agrees to three-year extension",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mp2mzhvv2h2s"
+      },
       "timeline": [
         {
           "id": "16842290-bce5-4742-ace2-004701f18a2c",
@@ -3459,7 +3856,6 @@
           "player_name": "Brenton Strange"
         }
       ],
-      "team": "JAX",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yabpcvadjlrkxzducv7k",
       "team_color": "#006778"
@@ -3467,10 +3863,17 @@
     {
       "player_id": "00-0036970",
       "player_name": "Kyle Pitts",
+      "team": "ATL",
       "current_designation": "Agrees to three-year extension",
       "last_updated": "2026-06-23T13:32:53-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Kyle Pitts was officially franchise-tagged on February 24th, 2026, following earlier reports. He signed the tag and participated in workouts by April 7th, 2026, securing his status for the 2026 season. On June 23rd, 2026, Pitts agreed to a three-year contract extension.",
+      "extraction": {
+        "status": "Agrees to three-year extension",
+        "designation": "Agrees to three-year extension",
+        "date": "2026-06-23T13:32:53-07:00",
+        "direct_quote": "Kyle Pitts: Agrees to three-year extension",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3moyaoxuu3y2e"
+      },
       "timeline": [
         {
           "id": "ffa17d59-6cc1-4d1d-a920-343b37c2c7eb",
@@ -3518,7 +3921,6 @@
           "player_name": "Kyle Pitts"
         }
       ],
-      "team": "ATL",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tbec213me3pszzszecqo",
       "team_color": "#A71930"
@@ -3526,10 +3928,17 @@
     {
       "player_id": "00-0038544",
       "player_name": "Quentin Johnston",
+      "team": "LAC",
       "current_designation": "Expects more YAC in new scheme",
       "last_updated": "2026-06-23T09:38:04-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Quentin Johnston had his fifth-year option exercised on April 28th. Fifty-six days later, on June 23rd, Johnston expressed expectations of achieving more yards after the catch (YAC) within the team's new scheme.",
+      "extraction": {
+        "status": "Expects more YAC in new scheme",
+        "designation": "Expects more YAC in new scheme",
+        "date": "2026-06-23T09:38:04-07:00",
+        "direct_quote": "Quentin Johnston: Expects more YAC in new scheme \n\n https://www.rotowire.com/football/player/quentin-johnston-16899",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3moxtl3egs32m"
+      },
       "timeline": [
         {
           "id": "60e98ef1-0817-4df1-a44d-af6abfa65b98",
@@ -3550,7 +3959,6 @@
           "player_name": "Quentin Johnston"
         }
       ],
-      "team": "LAC",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bpzdpin1xp1kjxmbkq6d",
       "team_color": "#007BC7"
@@ -3558,10 +3966,17 @@
     {
       "player_id": "00-0036264",
       "player_name": "Jordan Love",
+      "team": "GB",
       "current_designation": "Confident in young pass catchers",
       "last_updated": "2026-06-19T09:33:54-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Jordan Love expressed confidence in his young pass-catching options.",
+      "extraction": {
+        "status": "Confident in young pass catchers",
+        "designation": "Confident in young pass catchers",
+        "date": "2026-06-19T09:33:54-07:00",
+        "direct_quote": "Jordan Love: Confident in young pass catchers \n\n https://www.rotowire.com/football/player/jordan-love-14371",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3monrhwtwpd2u"
+      },
       "timeline": [
         {
           "id": "efeda36b-6d98-4994-a4da-1e97508bb447",
@@ -3573,7 +3988,6 @@
           "player_name": "Jordan Love"
         }
       ],
-      "team": "GB",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uneiwen9drvci9ahuebp",
       "team_color": "#203731"
@@ -3581,10 +3995,17 @@
     {
       "player_id": "00-0039910",
       "player_name": "Jayden Daniels",
+      "team": "WAS",
       "current_designation": "Still learning new offense",
       "last_updated": "2026-06-19T06:57:27-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Jayden Daniels is still in the process of learning the new offense.",
+      "extraction": {
+        "status": "Still learning new offense",
+        "designation": "Still learning new offense",
+        "date": "2026-06-19T06:57:27-07:00",
+        "direct_quote": "Jayden Daniels: Still learning new offense",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3moniq6fcxe2y"
+      },
       "timeline": [
         {
           "id": "fd21dce1-bf9f-4a85-a1db-7808910f6a6f",
@@ -3596,7 +4017,6 @@
           "player_name": "Jayden Daniels"
         }
       ],
-      "team": "WAS",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vrdweg39v1ay4zoc0lgp",
       "team_color": "#5A1414"
@@ -3604,10 +4024,17 @@
     {
       "player_id": "00-0037256",
       "player_name": "Rachaad White",
+      "team": "TB",
       "current_designation": "Named as offseason standout",
       "last_updated": "2026-06-18T10:21:00-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Rachaad White signed with the Commanders on March 12th. On June 18th, 98 days later, he was named an offseason standout.",
+      "extraction": {
+        "status": "Named as offseason standout",
+        "designation": "Named as offseason standout",
+        "date": "2026-06-18T10:21:00-07:00",
+        "direct_quote": "Rachaad White: Named as offseason standout",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3moldnal5y52y"
+      },
       "timeline": [
         {
           "id": "7c72f0cd-9cbb-442f-82c0-2cc53025d265",
@@ -3628,7 +4055,6 @@
           "player_name": "Rachaad White"
         }
       ],
-      "team": "TB",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sxugbms8ketvgmilnlu3",
       "team_color": "#A71930"
@@ -3636,10 +4062,17 @@
     {
       "player_id": "00-0040242",
       "player_name": "Jacory Croskey-Merritt",
+      "team": "WAS",
       "current_designation": "Back at practice",
       "last_updated": "2026-06-17T13:10:05-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Jacory Croskey-Merritt was dealing with a soft-tissue injury as of June 11th. Six days later, on June 17th, he returned to practice.",
+      "extraction": {
+        "status": "Back at practice",
+        "designation": "Back at practice",
+        "date": "2026-06-17T13:10:05-07:00",
+        "direct_quote": "Jacory Croskey-Merritt: Back at practice \n\n https://www.rotowire.com/football/player/jacory-croskey-merritt-18811",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3moj4mo6dap26"
+      },
       "timeline": [
         {
           "id": "adf25573-686d-43a8-87ea-598b482f2650",
@@ -3660,7 +4093,6 @@
           "player_name": "Jacory Croskey-Merritt"
         }
       ],
-      "team": "WAS",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/wsh.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tklzj7zzve1t4z2hhr1g",
       "team_color": "#5A1414"
@@ -3668,10 +4100,17 @@
     {
       "player_id": "00-0040730",
       "player_name": "RJ Harvey",
+      "team": "DEN",
       "current_designation": "Full go at minicamp",
       "last_updated": "2026-06-16T12:42:19-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "RJ Harvey was recovering from a shoulder issue as of June 15th. The following day, he was a full participant at minicamp.",
+      "extraction": {
+        "status": "Full go at minicamp",
+        "designation": "Full go at minicamp",
+        "date": "2026-06-16T12:42:19-07:00",
+        "direct_quote": "RJ Harvey: Full go at minicamp",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mogkm3y5wl23"
+      },
       "timeline": [
         {
           "id": "a14e3699-78b5-4c9d-ae66-356a117fa370",
@@ -3692,7 +4131,6 @@
           "player_name": "RJ Harvey"
         }
       ],
-      "team": "DEN",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/i1qxzydetb2orrynzvzk",
       "team_color": "#002244"
@@ -3700,10 +4138,17 @@
     {
       "player_id": "00-0040124",
       "player_name": "Tetairoa McMillan",
+      "team": "CAR",
       "current_designation": "On track for training camp",
       "last_updated": "2026-06-10T11:59:01-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Tetairoa McMillan was dealing with a minor injury on May 26th and remained idle with a foot injury a week later. Seven days after that, he returned to practice, and one day later, he was on track for training camp.",
+      "extraction": {
+        "status": "On track for training camp",
+        "designation": "On track for training camp",
+        "date": "2026-06-10T11:59:01-07:00",
+        "direct_quote": "Tetairoa McMillan: On track for training camp",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnxff5ccya2s"
+      },
       "timeline": [
         {
           "id": "8f7d4c62-dae3-4600-947f-83dfa7fc6262",
@@ -3742,7 +4187,6 @@
           "player_name": "Tetairoa McMillan"
         }
       ],
-      "team": "CAR",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/car.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hokqp6gl5xujtlqwecg8",
       "team_color": "#0085CA"
@@ -3750,10 +4194,17 @@
     {
       "player_id": "00-0038124",
       "player_name": "Christian Watson",
+      "team": "GB",
       "current_designation": "Gets four-year extension",
       "last_updated": "2026-06-04T08:29:47-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Christian Watson signed a four-year contract extension on June 4th.",
+      "extraction": {
+        "status": "Gets four-year extension",
+        "designation": "Gets four-year extension",
+        "date": "2026-06-04T08:29:47-07:00",
+        "direct_quote": "Christian Watson: Gets four-year extension",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnhwvi2kqy2r"
+      },
       "timeline": [
         {
           "id": "41007f0e-b245-4d54-8c7c-cceb54836a31",
@@ -3765,7 +4216,6 @@
           "player_name": "Christian Watson"
         }
       ],
-      "team": "GB",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/syljognztlbghfeqyqn1",
       "team_color": "#203731"
@@ -3773,10 +4223,17 @@
     {
       "player_id": "00-0036355",
       "player_name": "Justin Herbert",
+      "team": "LAC",
       "current_designation": "Focused on improving footwork",
       "last_updated": "2026-06-03T09:15:44-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Justin Herbert was focused on improving his footwork as of June 3rd.",
+      "extraction": {
+        "status": "Focused on improving footwork",
+        "designation": "Focused on improving footwork",
+        "date": "2026-06-03T09:15:44-07:00",
+        "direct_quote": "Justin Herbert: Focused on improving footwork",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnfiyqhimu2v"
+      },
       "timeline": [
         {
           "id": "10ec84fb-4917-404c-83a0-b43807b11092",
@@ -3788,7 +4245,6 @@
           "player_name": "Justin Herbert"
         }
       ],
-      "team": "LAC",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lac.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/s1oelyaroiaalgilbeqk",
       "team_color": "#007BC7"
@@ -3796,10 +4252,17 @@
     {
       "player_id": "00-0035700",
       "player_name": "Josh Jacobs",
+      "team": "GB",
       "current_designation": "Practicing with team Tuesday",
       "last_updated": "2026-06-02T09:51:55-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Josh Jacobs was practicing with the team on Tuesday, June 2nd.",
+      "extraction": {
+        "status": "Practicing with team Tuesday",
+        "designation": "Practicing with team Tuesday",
+        "date": "2026-06-02T09:51:55-07:00",
+        "direct_quote": "Josh Jacobs: Practicing with team Tuesday",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnd2kja27t2y"
+      },
       "timeline": [
         {
           "id": "6c50f54b-4692-48eb-b1bf-d8ca8f252656",
@@ -3811,7 +4274,6 @@
           "player_name": "Josh Jacobs"
         }
       ],
-      "team": "GB",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/drtobqw2mk7yw3edjgwo",
       "team_color": "#203731"
@@ -3819,10 +4281,17 @@
     {
       "player_id": "00-0026498",
       "player_name": "Matthew Stafford",
+      "team": "LA",
       "current_designation": "Inks massive contract extension",
       "last_updated": "2026-05-21T16:34:33-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Matthew Stafford inked a massive contract extension on May 21st.",
+      "extraction": {
+        "status": "Inks massive contract extension",
+        "designation": "Inks massive contract extension",
+        "date": "2026-05-21T16:34:33-07:00",
+        "direct_quote": "Matthew Stafford: Inks massive contract extension \n\n https://www.rotowire.com/football/player/matthew-stafford-5971",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmflhg4jru2l"
+      },
       "timeline": [
         {
           "id": "d6dce072-77f5-44b0-884d-7a77915842eb",
@@ -3834,7 +4303,6 @@
           "player_name": "Matthew Stafford"
         }
       ],
-      "team": "LA",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/svxl2pk2cuqf26zrhii4",
       "team_color": "#003594"
@@ -3842,10 +4310,17 @@
     {
       "player_id": "00-0040676",
       "player_name": "Cam Ward",
+      "team": "TEN",
       "current_designation": "Deemed 100 percent healthy",
       "last_updated": "2026-05-21T09:07:05-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Cam Ward was deemed 100 percent healthy on May 21st, 35 days after reports indicated he might throw passes at minicamp.",
+      "extraction": {
+        "status": "Deemed 100 percent healthy",
+        "designation": "Deemed 100 percent healthy",
+        "date": "2026-05-21T09:07:05-07:00",
+        "direct_quote": "Cam Ward: Deemed 100 percent healthy \n\n https://www.rotowire.com/football/player/cam-ward-16997",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmeshbv7vs24"
+      },
       "timeline": [
         {
           "id": "5e73ff59-e17e-4ec6-97f4-dd4dd130abee",
@@ -3866,7 +4341,6 @@
           "player_name": "Cam Ward"
         }
       ],
-      "team": "TEN",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/viadutkbvligsopnd2qn",
       "team_color": "#4495D2"
@@ -3874,10 +4348,17 @@
     {
       "player_id": "00-0034857",
       "player_name": "Josh Allen",
+      "team": "BUF",
       "current_designation": "Healthy for OTAs",
       "last_updated": "2026-05-19T12:23:23-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Josh Allen restructured his contract on March 11th, 2026. He was healthy for Organized Team Activities (OTAs) 69 days later, on May 19th.",
+      "extraction": {
+        "status": "Healthy for OTAs",
+        "designation": "Healthy for OTAs",
+        "date": "2026-05-19T12:23:23-07:00",
+        "direct_quote": "Josh Allen: Healthy for OTAs \n\n https://www.rotowire.com/football/player/josh-allen-12483",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mma4iht5rp24"
+      },
       "timeline": [
         {
           "id": "66c8a16b-6ab6-4ed1-a989-00271d3a24b6",
@@ -3898,7 +4379,6 @@
           "player_name": "Josh Allen"
         }
       ],
-      "team": "BUF",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/servs1fpsynfxep4rz2z",
       "team_color": "#00338D"
@@ -3906,10 +4386,17 @@
     {
       "player_id": "00-0038120",
       "player_name": "Breece Hall",
+      "team": "NYJ",
       "current_designation": "Lands three-year extension",
       "last_updated": "2026-05-08T12:01:00-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Breece Hall was tagged by the Jets on March 3rd and subsequently signed a three-year contract extension on May 8th.",
+      "extraction": {
+        "status": "Lands three-year extension",
+        "designation": "Lands three-year extension",
+        "date": "2026-05-08T12:01:00-07:00",
+        "direct_quote": "Breece Hall: Lands three-year extension \n\n https://www.rotowire.com/football/player/breece-hall-15810",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mleg4da4po2g"
+      },
       "timeline": [
         {
           "id": "69c16f83-e56e-4185-903a-aa63be046c1a",
@@ -3948,7 +4435,6 @@
           "player_name": "Breece Hall"
         }
       ],
-      "team": "NYJ",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/m3dviruymtm2wl2zcpmr",
       "team_color": "#003F2D"
@@ -3956,10 +4442,17 @@
     {
       "player_id": "00-0039163",
       "player_name": "C.J. Stroud",
+      "team": "HOU",
       "current_designation": "Shedding weight",
       "last_updated": "2026-05-06T14:13:13-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "C.J. Stroud's fifth-year option was picked up by the team, and he is reportedly shedding weight. The general manager has stated he will not be traded.",
+      "extraction": {
+        "status": "Shedding weight",
+        "designation": "Shedding weight",
+        "date": "2026-05-06T14:13:13-07:00",
+        "direct_quote": "C.J. Stroud: Shedding weight \n\n https://www.rotowire.com/football/player/cj-stroud-16886",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ml7mkvajii2g"
+      },
       "timeline": [
         {
           "id": "1329e89c-d47c-4282-a7f1-c2d3e78fd9cb",
@@ -3989,7 +4482,6 @@
           "player_name": "C.J. Stroud"
         }
       ],
-      "team": "HOU",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tt4zrtxlhifaljhj0rn7",
       "team_color": "#03202F"
@@ -3997,10 +4489,17 @@
     {
       "player_id": "00-0039344",
       "player_name": "Jonathon Brooks",
+      "team": "CAR",
       "current_designation": "Fully cleared for offseason program",
       "last_updated": "2026-04-28T11:35:49-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Jonathon Brooks has been fully cleared for the offseason program as of April 28th.",
+      "extraction": {
+        "status": "Fully cleared for offseason program",
+        "designation": "Fully cleared for offseason program",
+        "date": "2026-04-28T11:35:49-07:00",
+        "direct_quote": "Jonathon Brooks: Fully cleared for offseason program \n\n https://www.rotowire.com/football/player/jonathon-brooks-17747",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mkla23i7xq2o"
+      },
       "timeline": [
         {
           "id": "f0a87f0f-6fb6-4d0f-98b1-c882a8f50dca",
@@ -4012,7 +4511,6 @@
           "player_name": "Jonathon Brooks"
         }
       ],
-      "team": "CAR",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/car.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jah18lvdpgwurx7dgys4",
       "team_color": "#0085CA"
@@ -4020,10 +4518,17 @@
     {
       "player_id": "00-0036997",
       "player_name": "Javonte Williams",
+      "team": "DAL",
       "current_designation": "Backfield untouched in NFL Draft",
       "last_updated": "2026-04-27T08:40:41-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Javonte Williams signed a three-year contract with Dallas on February 21st, 2026. The team's backfield remained untouched during the NFL Draft, suggesting Williams will be a key part of their plans.",
+      "extraction": {
+        "status": "Backfield untouched in NFL Draft",
+        "designation": "Backfield untouched in NFL Draft",
+        "date": "2026-04-27T08:40:41-07:00",
+        "direct_quote": "Javonte Williams: Backfield untouched in NFL Draft \n\n https://www.rotowire.com/football/player/javonte-williams-15306",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mkifryl4sw2o"
+      },
       "timeline": [
         {
           "id": "8377d068-2307-433f-9907-0defc4c4cb7c",
@@ -4044,7 +4549,6 @@
           "player_name": "Javonte Williams"
         }
       ],
-      "team": "DAL",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hwzske22c4wrlf27qrih",
       "team_color": "#002244"
@@ -4052,10 +4556,17 @@
     {
       "player_id": "00-0041496",
       "player_name": "Jonah Coleman",
+      "team": "DEN",
       "current_designation": "Welcomed by Denver",
       "last_updated": "2026-04-25T09:41:06-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Jonah Coleman was welcomed by the Denver Broncos on April 25th.",
+      "extraction": {
+        "status": "Welcomed by Denver",
+        "designation": "Welcomed by Denver",
+        "date": "2026-04-25T09:41:06-07:00",
+        "direct_quote": "Jonah Coleman: Welcomed by Denver \n\n https://www.rotowire.com/football/player/jonah-coleman-19241",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mkdia6xjxu24"
+      },
       "timeline": [
         {
           "id": "7ff682db-7887-41f3-b480-759f505960f9",
@@ -4067,7 +4578,6 @@
           "player_name": "Jonah Coleman"
         }
       ],
-      "team": "DEN",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qbauucaxakkhtxihuvmr",
       "team_color": "#002244"
@@ -4075,10 +4585,17 @@
     {
       "player_id": "00-0037740",
       "player_name": "Garrett Wilson",
+      "team": "NYJ",
       "current_designation": "Team drafts TE, WR in Round 1",
       "last_updated": "2026-04-24T08:00:00-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Garrett Wilson's team drafted a tight end and a wide receiver in the first round on April 24th, 2026.",
+      "extraction": {
+        "status": "Team drafts TE, WR in Round 1",
+        "designation": "Team drafts TE, WR in Round 1",
+        "date": "2026-04-24T08:00:00-07:00",
+        "direct_quote": "Garrett Wilson: Team drafts TE, WR in Round 1 \n\n https://www.rotowire.com/football/player/garrett-wilson-15829",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mkas4i7tcx2a"
+      },
       "timeline": [
         {
           "id": "cea43bc4-0273-4af6-91c6-2601850b7d38",
@@ -4090,7 +4607,6 @@
           "player_name": "Garrett Wilson"
         }
       ],
-      "team": "NYJ",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyj.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/kbijsheobhwej7lh8mvf",
       "team_color": "#003F2D"
@@ -4098,10 +4614,17 @@
     {
       "player_id": "00-0037746",
       "player_name": "Brian Robinson",
+      "team": "SF",
       "current_designation": "In line to sign with Atlanta",
       "last_updated": "2026-03-24T10:50:56-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Brian Robinson is in line to sign with the Atlanta Falcons, as reported on March 24th.",
+      "extraction": {
+        "status": "In line to sign with Atlanta",
+        "designation": "In line to sign with Atlanta",
+        "date": "2026-03-24T10:50:56-07:00",
+        "direct_quote": "Brian Robinson: In line to sign with Atlanta \n\n https://www.rotowire.com/football/player/brian-robinson-15907",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mht57m4dfj2i"
+      },
       "timeline": [
         {
           "id": "4f451dd8-336e-4f5e-803a-7211f53c93ac",
@@ -4113,7 +4636,6 @@
           "player_name": "Brian Robinson"
         }
       ],
-      "team": "SF",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/n1xhex1ytisxcbcggqu7",
       "team_color": "#AA0000"
@@ -4121,10 +4643,17 @@
     {
       "player_id": "00-0030506",
       "player_name": "Travis Kelce",
+      "team": "KC",
       "current_designation": "Officially re-signs with Chiefs",
       "last_updated": "2026-03-23T11:27:38-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Travis Kelce is expected to continue his career in 2026 and officially re-signed with the Chiefs on March 23rd, 2026, after initial reports surfaced on March 8th and March 9th.",
+      "extraction": {
+        "status": "Officially re-signs with Chiefs",
+        "designation": "Officially re-signs with Chiefs",
+        "date": "2026-03-23T11:27:38-07:00",
+        "direct_quote": "Travis Kelce: Officially re-signs with Chiefs \n\n https://www.rotowire.com/football/player/travis-kelce-8783",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mhqosc5k4j26"
+      },
       "timeline": [
         {
           "id": "421a0461-45e9-41e2-a6b5-2df5f572a875",
@@ -4163,7 +4692,6 @@
           "player_name": "Travis Kelce"
         }
       ],
-      "team": "KC",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ebc5j60djpinc9elvlc5",
       "team_color": "#E31837"
@@ -4171,10 +4699,17 @@
     {
       "player_id": "00-0034351",
       "player_name": "Dallas Goedert",
+      "team": "PHI",
       "current_designation": "Inks one-year deal with Philly",
       "last_updated": "2026-03-15T13:06:30-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Dallas Goedert was technically under contract with the Eagles on March 11th, and four days later, he inked a one-year deal with the team.",
+      "extraction": {
+        "status": "Inks one-year deal with Philly",
+        "designation": "Inks one-year deal with Philly",
+        "date": "2026-03-15T13:06:30-07:00",
+        "direct_quote": "Dallas Goedert: Inks one-year deal with Philly \n\n https://www.rotowire.com/football/player/dallas-goedert-12860",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mh4qlpuuhv2e"
+      },
       "timeline": [
         {
           "id": "7f684e45-f86e-4222-a204-9d596fab0bfe",
@@ -4195,7 +4730,6 @@
           "player_name": "Dallas Goedert"
         }
       ],
-      "team": "PHI",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/a6ljhwvkehvyiufdx3d1",
       "team_color": "#004C54"
@@ -4203,10 +4737,17 @@
     {
       "player_id": "00-0037809",
       "player_name": "Chig Okonkwo",
+      "team": "TEN",
       "current_designation": "Set to join Commanders",
       "last_updated": "2026-03-11T12:12:53-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Chig Okonkwo is set to join the Commanders, as reported on March 11th, 2026.",
+      "extraction": {
+        "status": "Set to join Commanders",
+        "designation": "Set to join Commanders",
+        "date": "2026-03-11T12:12:53-07:00",
+        "direct_quote": "Chig Okonkwo: Set to join Commanders \n\n https://www.rotowire.com/football/player/chig-okonkwo-16042",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgslq5nvwf2t"
+      },
       "timeline": [
         {
           "id": "a2c98638-bcab-4cca-8dfc-4caa136f37dc",
@@ -4218,7 +4759,6 @@
           "player_name": "Chig Okonkwo"
         }
       ],
-      "team": "TEN",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ten.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/omm5z5iq6dlmidqz1sgz",
       "team_color": "#4495D2"
@@ -4226,10 +4766,17 @@
     {
       "player_id": "00-0033293",
       "player_name": "Aaron Jones",
+      "team": "MIN",
       "current_designation": "Revises deal to stay in MIN",
       "last_updated": "2026-03-11T11:54:53-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Aaron Jones was initially set to be released by the Green Bay Packers but revised his contract to remain with the team.",
+      "extraction": {
+        "status": "Revises deal to stay in MIN",
+        "designation": "Revises deal to stay in MIN",
+        "date": "2026-03-11T11:54:53-07:00",
+        "direct_quote": "Aaron Jones: Revises deal to stay in MIN \n\n https://www.rotowire.com/football/player/aaron-jones-11763",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgskpxunuw2q"
+      },
       "timeline": [
         {
           "id": "17e38ef6-7ca7-4bfc-86a5-83baa1a9c1f6",
@@ -4250,7 +4797,6 @@
           "player_name": "Aaron Jones"
         }
       ],
-      "team": "MIN",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/min.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bktkfvgfwujkdbzkcfim",
       "team_color": "#4F2683"
@@ -4258,10 +4804,17 @@
     {
       "player_id": "00-0033106",
       "player_name": "Jared Goff",
+      "team": "DET",
       "current_designation": "Agrees to restructure",
       "last_updated": "2026-03-11T08:35:09-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Jared Goff agreed to a contract restructure on March 11th, 2026.",
+      "extraction": {
+        "status": "Agrees to restructure",
+        "designation": "Agrees to restructure",
+        "date": "2026-03-11T08:35:09-07:00",
+        "direct_quote": "Jared Goff: Agrees to restructure \n\n https://www.rotowire.com/football/player/jared-goff-10729",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgs7kt3xpj25"
+      },
       "timeline": [
         {
           "id": "c05741da-e47b-48c4-8eea-5b984418a6d0",
@@ -4273,7 +4826,6 @@
           "player_name": "Jared Goff"
         }
       ],
-      "team": "DET",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/det.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yggfwr4ak4po9byj0qor",
       "team_color": "#0076B6"
@@ -4281,10 +4833,17 @@
     {
       "player_id": "00-0036158",
       "player_name": "J.K. Dobbins",
+      "team": "DEN",
       "current_designation": "Staying in Denver for two years",
       "last_updated": "2026-03-09T12:38:12-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "J.K. Dobbins is staying in Denver on a two-year deal.",
+      "extraction": {
+        "status": "Staying in Denver for two years",
+        "designation": "Staying in Denver for two years",
+        "date": "2026-03-09T12:38:12-07:00",
+        "direct_quote": "J.K. Dobbins: Staying in Denver for two years \n\n https://www.rotowire.com/football/player/jk-dobbins-14418",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnm7loyh72g"
+      },
       "timeline": [
         {
           "id": "b957ac2d-8bfd-47cf-a188-f709dc8e189b",
@@ -4296,7 +4855,6 @@
           "player_name": "J.K. Dobbins"
         }
       ],
-      "team": "DEN",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cevotvl3ho5h1mioruyg",
       "team_color": "#002244"
@@ -4304,10 +4862,17 @@
     {
       "player_id": "00-0038117",
       "player_name": "Wan'Dale Robinson",
+      "team": "NYG",
       "current_designation": "Joining Titans WR corps",
       "last_updated": "2026-03-09T11:10:25-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Wan'Dale Robinson is joining the Titans' wide receiver corps.",
+      "extraction": {
+        "status": "Joining Titans WR corps",
+        "designation": "Joining Titans WR corps",
+        "date": "2026-03-09T11:10:25-07:00",
+        "direct_quote": "Wan'Dale Robinson: Joining Titans WR corps \n\n https://www.rotowire.com/football/player/wandale-robinson-15838",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnhcmlmev2w"
+      },
       "timeline": [
         {
           "id": "96a71b64-0a97-4d5a-ac47-8d08351f8222",
@@ -4319,7 +4884,6 @@
           "player_name": "Wan'Dale Robinson"
         }
       ],
-      "team": "NYG",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yzcvyhmilvxedfjfjglc",
       "team_color": "#0B2265"
@@ -4327,10 +4891,17 @@
     {
       "player_id": "00-0037263",
       "player_name": "Tyler Allgeier",
+      "team": "ATL",
       "current_designation": "Finds home with Cardinals",
       "last_updated": "2026-03-09T10:56:21-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Tyler Allgeier has found a new home with the Cardinals.",
+      "extraction": {
+        "status": "Finds home with Cardinals",
+        "designation": "Finds home with Cardinals",
+        "date": "2026-03-09T10:56:21-07:00",
+        "direct_quote": "Tyler Allgeier: Finds home with Cardinals \n\n https://www.rotowire.com/football/player/tyler-allgeier-15976",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgngji5gve2d"
+      },
       "timeline": [
         {
           "id": "2cff4645-e87d-40fd-90d1-a822d85f8764",
@@ -4342,7 +4913,6 @@
           "player_name": "Tyler Allgeier"
         }
       ],
-      "team": "ATL",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/buwaomfsz4y6orgb0cyg",
       "team_color": "#A71930"
@@ -4350,10 +4920,17 @@
     {
       "player_id": "00-0037838",
       "player_name": "Isaiah Likely",
+      "team": "BAL",
       "current_designation": "Signing with Giants",
       "last_updated": "2026-03-09T09:58:19-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Isaiah Likely is signing with the Giants, as reported on March 9th, 2026.",
+      "extraction": {
+        "status": "Signing with Giants",
+        "designation": "Signing with Giants",
+        "date": "2026-03-09T09:58:19-07:00",
+        "direct_quote": "Isaiah Likely: Signing with Giants \n\n https://www.rotowire.com/football/player/isaiah-likely-16033",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgndbphk5b25"
+      },
       "timeline": [
         {
           "id": "749853da-34d0-4c00-93e2-2edb8ccd76f2",
@@ -4365,7 +4942,6 @@
           "player_name": "Isaiah Likely"
         }
       ],
-      "team": "BAL",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ssrjtyvnyfflobmi0mb8",
       "team_color": "#241773"
@@ -4373,10 +4949,17 @@
     {
       "player_id": "00-0036252",
       "player_name": "Michael Pittman",
+      "team": "IND",
       "current_designation": "Headed to Steelers",
       "last_updated": "2026-03-09T09:51:44-07:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Michael Pittman was traded to the Pittsburgh Steelers on March 9th, 2026.",
+      "extraction": {
+        "status": "Headed to Steelers",
+        "designation": "Headed to Steelers",
+        "date": "2026-03-09T09:51:44-07:00",
+        "direct_quote": "Michael Pittman: Headed to Steelers \n\n https://www.rotowire.com/football/player/michael-pittman-14378",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgncvw6kki2w"
+      },
       "timeline": [
         {
           "id": "b72954b6-d5ec-4fa8-bf78-e64e7078c2ff",
@@ -4388,7 +4971,6 @@
           "player_name": "Michael Pittman"
         }
       ],
-      "team": "IND",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/z78xpye9hing1e7wke8b",
       "team_color": "#002C5F"
@@ -4396,10 +4978,17 @@
     {
       "player_id": "00-0034383",
       "player_name": "Dalton Schultz",
+      "team": "HOU",
       "current_designation": "Inks extension through 2027",
       "last_updated": "2026-03-06T14:38:08-08:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "Dalton Schultz signed an contract extension with his team through the 2027 season on March 6th, 2026.",
+      "extraction": {
+        "status": "Inks extension through 2027",
+        "designation": "Inks extension through 2027",
+        "date": "2026-03-06T14:38:08-08:00",
+        "direct_quote": "Dalton Schultz: Inks extension through 2027 \n\n https://www.rotowire.com/football/player/dalton-schultz-12514",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mggeuliryq2s"
+      },
       "timeline": [
         {
           "id": "5d950014-0e65-474d-98bb-d712ee14a17e",
@@ -4411,7 +5000,6 @@
           "player_name": "Dalton Schultz"
         }
       ],
-      "team": "HOU",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xbl9mhuamzv5udb4hyzj",
       "team_color": "#03202F"
@@ -4419,10 +5007,17 @@
     {
       "player_id": "00-0034827",
       "player_name": "DJ Moore",
+      "team": "CHI",
       "current_designation": "Getting traded to Buffalo",
       "last_updated": "2026-03-05T09:01:55-08:00",
-      "diff_summary": null,
-      "extraction": null,
+      "diff_summary": "DJ Moore was traded to the Buffalo Bills on March 5th, 2026.",
+      "extraction": {
+        "status": "Getting traded to Buffalo",
+        "designation": "Getting traded to Buffalo",
+        "date": "2026-03-05T09:01:55-08:00",
+        "direct_quote": "DJ Moore: Getting traded to Buffalo \n\n https://www.rotowire.com/football/player/dj-moore-12477",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgdbmhk7q32w"
+      },
       "timeline": [
         {
           "id": "0d971a50-1342-4537-a15a-1f9bc86a9888",
@@ -4434,7 +5029,6 @@
           "player_name": "DJ Moore"
         }
       ],
-      "team": "CHI",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qphturmeiifnqrnf5pax",
       "team_color": "#0B162A"
