@@ -763,6 +763,7 @@ function scoreCandidates({
   mySlot,
   currentPickNo,
   rounds,
+  limit = 12,
 }) {
   const myPicks = nextPickNumbers(mySlot, teams, rounds, currentPickNo);
   const myPick = myPicks[0] ?? currentPickNo;
@@ -875,13 +876,18 @@ function scoreCandidates({
       b.pts - a.pts
   );
 
+  const capped =
+    limit == null || !Number.isFinite(Number(limit))
+      ? scored
+      : scored.slice(0, Math.max(0, Number(limit)));
+
   return {
     targets: draftTargets(settings),
     need_count: myNeed.need_count,
     openFlex: myNeed.openFlex,
     vorp_surplus: round1(surplus),
     vorp_weight: round2(vorpWeight),
-    recommendations: scored.slice(0, 12),
+    recommendations: capped,
   };
 }
 
