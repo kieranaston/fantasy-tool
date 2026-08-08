@@ -1,7 +1,451 @@
 {
   "title": "Player News",
-  "last_updated": "2026-08-07T12:38:52Z",
+  "last_updated": "2026-08-08T12:25:07Z",
   "players": [
+    {
+      "player_id": "00-0035700",
+      "player_name": "Josh Jacobs",
+      "current_designation": "DNP again Friday",
+      "last_updated": "2026-08-07T18:02:06-07:00",
+      "diff_summary": "Josh Jacobs was practicing with the team on June 2nd. However, 65 days later on August 6th, he was sitting out due to a groin injury. He did not practice again on Friday, August 7th.",
+      "extraction": {
+        "status": "DNP again Friday",
+        "designation": "DNP again Friday",
+        "date": "2026-08-07T18:02:06-07:00",
+        "direct_quote": "Josh Jacobs: DNP again Friday",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msjups4fbj2f"
+      },
+      "timeline": [
+        {
+          "id": "43984001-9748-4bde-9e29-8f78f3f5b5f7",
+          "timestamp": "2026-08-07T18:02:06-07:00",
+          "designation": "DNP again Friday",
+          "source_text": "Josh Jacobs: DNP again Friday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msjups4fbj2f",
+          "source_type": "beat_reporter",
+          "player_name": "Josh Jacobs"
+        },
+        {
+          "id": "57f8f4a5-0a21-460c-b48e-d773306b44de",
+          "timestamp": "2026-08-06T08:52:23-07:00",
+          "designation": "Sitting out due to groin Thursday",
+          "source_text": "Josh Jacobs: Sitting out due to groin Thursday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msgfjvikgj2m",
+          "source_type": "beat_reporter",
+          "player_name": "Josh Jacobs"
+        },
+        {
+          "id": "6c50f54b-4692-48eb-b1bf-d8ca8f252656",
+          "timestamp": "2026-06-02T09:51:55-07:00",
+          "designation": "Practicing with team Tuesday",
+          "source_text": "Josh Jacobs: Practicing with team Tuesday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnd2kja27t2y",
+          "source_type": "beat_reporter",
+          "player_name": "Josh Jacobs"
+        }
+      ],
+      "team": "GB",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/drtobqw2mk7yw3edjgwo",
+      "team_color": "#203731"
+    },
+    {
+      "player_id": "00-0040715",
+      "player_name": "Cam Skattebo",
+      "current_designation": "Harbaugh downplays exit from practice",
+      "last_updated": "2026-08-07T13:23:55-07:00",
+      "diff_summary": "Cam Skattebo is looking fully healthy and attended voluntary workouts in April. He stated he would be ready for Week 1 and participated in drills at minicamp in June, including 11-on-11s. Skattebo was expected for early camp work and declared himself ready for camp by July 20th. His coach, Harbaugh, downplayed an exit from practice on August 7th.",
+      "extraction": {
+        "status": "Harbaugh downplays exit from practice",
+        "designation": "Harbaugh downplays exit from practice",
+        "date": "2026-08-07T13:23:55-07:00",
+        "direct_quote": "Cam Skattebo: Harbaugh downplays exit from practice",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msjf6ee3322v"
+      },
+      "timeline": [
+        {
+          "id": "6829e3ce-4294-42d5-b83b-6995ae12b177",
+          "timestamp": "2026-08-07T13:23:55-07:00",
+          "designation": "Harbaugh downplays exit from practice",
+          "source_text": "Cam Skattebo: Harbaugh downplays exit from practice",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msjf6ee3322v",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        },
+        {
+          "id": "a1fe7a2b-c3ae-4819-b868-5e162171f22f",
+          "timestamp": "2026-07-29T10:08:19-07:00",
+          "designation": "Declared ready for camp",
+          "source_text": "Cam Skattebo: Declared ready for camp",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsg2cshxi2t",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        },
+        {
+          "id": "b6feb556-9ea6-4ed0-b8b5-a47982ce029c",
+          "timestamp": "2026-07-20T06:30:52-07:00",
+          "designation": "Says he's ready for camp",
+          "source_text": "Cam Skattebo: Says he's ready for camp",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mr3fp6n4362t",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        },
+        {
+          "id": "2255a383-d406-4fd0-a36c-a4a554c37c4c",
+          "timestamp": "2026-07-13T14:39:42-07:00",
+          "designation": "Expected for early camp work",
+          "source_text": "Cam Skattebo: Expected for early camp work \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqknqugrug2k",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        },
+        {
+          "id": "d95f6521-36b5-49b8-8534-303ff82f01a2",
+          "timestamp": "2026-06-09T11:36:17-07:00",
+          "designation": "Doing 11-on-11 drills Tuesday",
+          "source_text": "Cam Skattebo: Doing 11-on-11 drills Tuesday \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnutnkt7em2x",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        },
+        {
+          "id": "ae0fa59e-28ce-43ad-ae8a-ec9610646b9b",
+          "timestamp": "2026-06-08T11:07:04-07:00",
+          "designation": "Taking part in drills at minicamp",
+          "source_text": "Cam Skattebo: Taking part in drills at minicamp",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnsbkg7i432t",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        },
+        {
+          "id": "1cbf4362-990a-4d05-9b37-9d157335a88a",
+          "timestamp": "2026-05-19T20:29:17-07:00",
+          "designation": "Says he'll be ready for Week 1",
+          "source_text": "Cam Skattebo: Says he'll be ready for Week 1 \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmaxncxalw2d",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        },
+        {
+          "id": "a31ce3d6-1640-4454-a407-d6b0b80c2081",
+          "timestamp": "2026-04-07T13:22:43-07:00",
+          "designation": "Attending voluntary workouts",
+          "source_text": "Cam Skattebo: Attending voluntary workouts \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3miwm7uu4ef24",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        },
+        {
+          "id": "6e73bf65-52e4-4509-b0bb-dede36c409e8",
+          "timestamp": "2026-03-30T17:02:49-07:00",
+          "designation": "Looking fully healthy",
+          "source_text": "Cam Skattebo: Looking fully healthy \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3micus3rme62m",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        }
+      ],
+      "team": "NYG",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vnftthkbvw7ucsqtqjpq",
+      "team_color": "#0B2265"
+    },
+    {
+      "player_id": "00-0040719",
+      "player_name": "Bhayshul Tuten",
+      "current_designation": "Rotates with Rodriguez in Friday's scrimmage",
+      "last_updated": "2026-08-07T10:50:54-07:00",
+      "diff_summary": "Bhayshul Tuten was projected for a backfield timeshare on July 15th, and 14 days later on July 29th, he was considered to have an early lead in the running back competition. On August 7th, nine days later, Tuten rotated with Rodriguez in the team's scrimmage.",
+      "extraction": {
+        "status": "Rotates with Rodriguez in Friday's scrimmage",
+        "designation": "Rotates with Rodriguez in Friday's scrimmage",
+        "date": "2026-08-07T10:50:54-07:00",
+        "direct_quote": "Bhayshul Tuten: Rotates with Rodriguez in Friday's scrimmage \n\n https://www.rotowire.com/football/player/bhayshul-tuten-18524",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msj4mq634t24"
+      },
+      "timeline": [
+        {
+          "id": "01687902-67d3-4649-bfd1-11d15fb4f6a0",
+          "timestamp": "2026-08-07T10:50:54-07:00",
+          "designation": "Rotates with Rodriguez in Friday's scrimmage",
+          "source_text": "Bhayshul Tuten: Rotates with Rodriguez in Friday's scrimmage \n\n https://www.rotowire.com/football/player/bhayshul-tuten-18524",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msj4mq634t24",
+          "source_type": "beat_reporter",
+          "player_name": "Bhayshul Tuten"
+        },
+        {
+          "id": "ddf40d3c-0248-4612-8efc-947bcf5fa6ef",
+          "timestamp": "2026-07-29T09:16:20-07:00",
+          "designation": "Early lead in RB competition?",
+          "source_text": "Bhayshul Tuten: Early lead in RB competition?",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsd5e3tm62v",
+          "source_type": "beat_reporter",
+          "player_name": "Bhayshul Tuten"
+        },
+        {
+          "id": "775727b9-f259-4f07-aa39-5d1d35dbf428",
+          "timestamp": "2026-07-15T07:12:12-07:00",
+          "designation": "Backfield timeshare likely",
+          "source_text": "Bhayshul Tuten: Backfield timeshare likely \n\n https://www.rotowire.com/football/player/bhayshul-tuten-18524",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqovoios732m",
+          "source_type": "beat_reporter",
+          "player_name": "Bhayshul Tuten"
+        }
+      ],
+      "team": "JAX",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uf6bidyfjeemrlgsibiz",
+      "team_color": "#006778"
+    },
+    {
+      "player_id": "00-0033873",
+      "player_name": "Patrick Mahomes",
+      "current_designation": "Not likely to play in preseason opener",
+      "last_updated": "2026-08-07T09:23:27-07:00",
+      "diff_summary": "Patrick Mahomes restructured his contract in February and was rehabbing during voluntary workouts in April. He participated in Organized Team Activities (OTAs) in May, though he was limited to 7-on-7 work. The Chiefs added two years to his contract in June. Mahomes aims to play Week 1 and was cleared to practice in full on July 24th, taking part in 11-on-11s by July 29th. He is not expected to play in the preseason opener.",
+      "extraction": {
+        "status": "Not likely to play in preseason opener",
+        "designation": "Not likely to play in preseason opener",
+        "date": "2026-08-07T09:23:27-07:00",
+        "direct_quote": "Patrick Mahomes: Not likely to play in preseason opener",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msixqelusu25"
+      },
+      "timeline": [
+        {
+          "id": "f7c8a870-2072-44a5-8aba-7e71a85338d8",
+          "timestamp": "2026-08-07T09:23:27-07:00",
+          "designation": "Not likely to play in preseason opener",
+          "source_text": "Patrick Mahomes: Not likely to play in preseason opener",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msixqelusu25",
+          "source_type": "beat_reporter",
+          "player_name": "Patrick Mahomes"
+        },
+        {
+          "id": "a089eb44-1d9e-412f-8c72-421fdfe63f5b",
+          "timestamp": "2026-07-29T08:00:13-07:00",
+          "designation": "Taking part in 11-on-11s",
+          "source_text": "Patrick Mahomes: Taking part in 11-on-11s",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrs6vawzlu2r",
+          "source_type": "beat_reporter",
+          "player_name": "Patrick Mahomes"
+        },
+        {
+          "id": "c2e624a9-c738-4c1d-8612-55f14f111f2c",
+          "timestamp": "2026-07-24T13:00:47-07:00",
+          "designation": "Cleared to practice in full",
+          "source_text": "Patrick Mahomes: Cleared to practice in full \n\n https://www.rotowire.com/football/player/patrick-mahomes-11839",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrg5e3ucay2r",
+          "source_type": "beat_reporter",
+          "player_name": "Patrick Mahomes"
+        },
+        {
+          "id": "fd036301-6a8f-452c-be80-1f5bc400ea05",
+          "timestamp": "2026-07-15T12:37:35-07:00",
+          "designation": "Aims to play Week 1",
+          "source_text": "Patrick Mahomes: Aims to play Week 1",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqphudijhp2t",
+          "source_type": "beat_reporter",
+          "player_name": "Patrick Mahomes"
+        },
+        {
+          "id": "2134bbb0-2aea-4bba-ade1-93ed82f8665d",
+          "timestamp": "2026-06-11T08:00:35-07:00",
+          "designation": "Expected back for camp?",
+          "source_text": "Patrick Mahomes: Expected back for camp?",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnzijpvvv32c",
+          "source_type": "beat_reporter",
+          "player_name": "Patrick Mahomes"
+        },
+        {
+          "id": "d9b8f8e7-55f0-4757-81f3-7d31fc6283d0",
+          "timestamp": "2026-06-10T13:29:02-07:00",
+          "designation": "Chiefs add two years to contract",
+          "source_text": "Patrick Mahomes: Chiefs add two years to contract",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnxkg4otdw2x",
+          "source_type": "beat_reporter",
+          "player_name": "Patrick Mahomes"
+        },
+        {
+          "id": "98e21987-0417-463f-875d-55cf8a3bc3ab",
+          "timestamp": "2026-05-28T11:12:48-07:00",
+          "designation": "Limited to 7-on-7 work at OTAs",
+          "source_text": "Patrick Mahomes: Limited to 7-on-7 work at OTAs \n\n https://www.rotowire.com/football/player/patrick-mahomes-11839",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmwmqjsn642g",
+          "source_type": "beat_reporter",
+          "player_name": "Patrick Mahomes"
+        },
+        {
+          "id": "daba4273-15b4-4e10-8da8-6dc26f48b564",
+          "timestamp": "2026-05-26T15:46:13-07:00",
+          "designation": "On the field for OTAs",
+          "source_text": "Patrick Mahomes: On the field for OTAs \n\n https://www.rotowire.com/football/player/patrick-mahomes-11839",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mms33m5nu32d",
+          "source_type": "beat_reporter",
+          "player_name": "Patrick Mahomes"
+        },
+        {
+          "id": "b946a091-76c7-4c9d-982d-008a28e2cf64",
+          "timestamp": "2026-05-02T18:48:32-07:00",
+          "designation": "Expected to participate in OTAs",
+          "source_text": "Patrick Mahomes: Expected to participate in OTAs \n\n https://www.rotowire.com/football/player/patrick-mahomes-11839",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mkw23jast32o",
+          "source_type": "beat_reporter",
+          "player_name": "Patrick Mahomes"
+        },
+        {
+          "id": "a86ec104-cc7e-4215-8da4-961afd555196",
+          "timestamp": "2026-04-20T11:24:04-07:00",
+          "designation": "Rehabbing at voluntary workouts",
+          "source_text": "Patrick Mahomes: Rehabbing at voluntary workouts \n\n https://www.rotowire.com/football/player/patrick-mahomes-11839",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mjx3np5mmh24",
+          "source_type": "beat_reporter",
+          "player_name": "Patrick Mahomes"
+        },
+        {
+          "id": "39ab3833-664b-4e60-80c2-ad441a7ad570",
+          "timestamp": "2026-02-18T07:03:18-08:00",
+          "designation": "Agrees to contract restructure",
+          "source_text": "Patrick Mahomes: Agrees to contract restructure \n\n https://www.rotowire.com/football/player/patrick-mahomes-11839",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mf5dykev5626",
+          "source_type": "beat_reporter",
+          "player_name": "Patrick Mahomes"
+        }
+      ],
+      "team": "KC",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/iireqbn32cpg9fn4sfy7",
+      "team_color": "#E31837"
+    },
+    {
+      "player_id": "00-0040867",
+      "player_name": "Makai Lemon",
+      "current_designation": "Still sidelined by hamstring injury",
+      "last_updated": "2026-08-07T07:25:29-07:00",
+      "diff_summary": "Makai Lemon, selected by the Eagles, was dealing with a hamstring injury in early June. He was ready for training camp by July 17th but was held out of team drills starting August 3rd. Lemon did not practice on August 4th due to a minor hamstring injury and remained sidelined by the issue as of August 7th.",
+      "extraction": {
+        "status": "Still sidelined by hamstring injury",
+        "designation": "Still sidelined by hamstring injury",
+        "date": "2026-08-07T07:25:29-07:00",
+        "direct_quote": "Makai Lemon: Still sidelined by hamstring injury",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msir5gp3dv2g"
+      },
+      "timeline": [
+        {
+          "id": "a8228139-b3a3-4ec6-b960-8e56517dd554",
+          "timestamp": "2026-08-07T07:25:29-07:00",
+          "designation": "Still sidelined by hamstring injury",
+          "source_text": "Makai Lemon: Still sidelined by hamstring injury",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msir5gp3dv2g",
+          "source_type": "beat_reporter",
+          "player_name": "Makai Lemon"
+        },
+        {
+          "id": "0caa25dd-9697-4018-bd98-57bd6657c5fb",
+          "timestamp": "2026-08-04T07:22:48-07:00",
+          "designation": "Dealing with minor hamstring injury",
+          "source_text": "Makai Lemon: Dealing with minor hamstring injury",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msb7lup2gk2c",
+          "source_type": "beat_reporter",
+          "player_name": "Makai Lemon"
+        },
+        {
+          "id": "2a5e3f95-4d75-4bf9-b2c2-95038b628aea",
+          "timestamp": "2026-08-04T07:15:23-07:00",
+          "designation": "Not practicing Tuesday",
+          "source_text": "Makai Lemon: Not practicing Tuesday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msb76lxsfb26",
+          "source_type": "beat_reporter",
+          "player_name": "Makai Lemon"
+        },
+        {
+          "id": "15b06989-167b-4271-932e-00c98806b4a8",
+          "timestamp": "2026-08-03T10:58:51-07:00",
+          "designation": "Held out of team drills",
+          "source_text": "Makai Lemon: Held out of team drills",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms737bymah25",
+          "source_type": "beat_reporter",
+          "player_name": "Makai Lemon"
+        },
+        {
+          "id": "d7f89e1d-707f-446a-b4ce-181e38a3857e",
+          "timestamp": "2026-07-17T10:00:17-07:00",
+          "designation": "Ready for training camp",
+          "source_text": "Makai Lemon: Ready for training camp",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqu7yw7pcb26",
+          "source_type": "beat_reporter",
+          "player_name": "Makai Lemon"
+        },
+        {
+          "id": "e43a510d-8a2c-411c-93a9-33ec0491f9b2",
+          "timestamp": "2026-06-02T11:53:52-07:00",
+          "designation": "Dealing with hamstring injury",
+          "source_text": "Makai Lemon: Dealing with hamstring injury \n\n https://www.rotowire.com/football/player/makai-lemon-19231",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mndbel7iri2g",
+          "source_type": "beat_reporter",
+          "player_name": "Makai Lemon"
+        },
+        {
+          "id": "66d84a08-1ee8-4065-b6bc-5f59b510d111",
+          "timestamp": "2026-04-23T19:05:59-07:00",
+          "designation": "Selected by Eagles",
+          "source_text": "Makai Lemon: Selected by Eagles \n\n https://www.rotowire.com/football/player/makai-lemon-19231",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mk7gugpclc2a",
+          "source_type": "beat_reporter",
+          "player_name": "Makai Lemon"
+        }
+      ],
+      "team": "PHI",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ys2i2o7c0bl36xvlrojz",
+      "team_color": "#004C54"
+    },
+    {
+      "player_id": "00-0036912",
+      "player_name": "DeVonta Smith",
+      "current_designation": "Missing another practice",
+      "last_updated": "2026-08-07T07:20:48-07:00",
+      "diff_summary": "DeVonta Smith is considered Philadelphia's wide receiver one after the A.J. Brown trade. He has been sidelined by a hamstring injury since August 4th and missed another practice on August 7th.",
+      "extraction": {
+        "status": "Missing another practice",
+        "designation": "Missing another practice",
+        "date": "2026-08-07T07:20:48-07:00",
+        "direct_quote": "DeVonta Smith: Missing another practice",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msiqv2qrg52f"
+      },
+      "timeline": [
+        {
+          "id": "f29d44ad-1360-4041-bbfd-7e35bf9482e8",
+          "timestamp": "2026-08-07T07:20:48-07:00",
+          "designation": "Missing another practice",
+          "source_text": "DeVonta Smith: Missing another practice",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msiqv2qrg52f",
+          "source_type": "beat_reporter",
+          "player_name": "DeVonta Smith"
+        },
+        {
+          "id": "c6b17bac-ef0b-4e18-84b5-fbe846230e36",
+          "timestamp": "2026-08-04T07:23:27-07:00",
+          "designation": "Sidelined by hamstring injury",
+          "source_text": "DeVonta Smith: Sidelined by hamstring injury",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msb7mzn4ir2a",
+          "source_type": "beat_reporter",
+          "player_name": "DeVonta Smith"
+        },
+        {
+          "id": "df3819df-76dd-4c2c-ac02-916e747d7df3",
+          "timestamp": "2026-06-01T13:59:33-07:00",
+          "designation": "Philly's WR1 after Brown trade",
+          "source_text": "DeVonta Smith: Philly's WR1 after Brown trade",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnaxwf3m3l2l",
+          "source_type": "beat_reporter",
+          "player_name": "DeVonta Smith"
+        }
+      ],
+      "team": "PHI",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vj2fz8veorg1k5qthnjm",
+      "team_color": "#004C54"
+    },
     {
       "player_id": "00-0039337",
       "player_name": "Malik Nabers",
@@ -589,44 +1033,6 @@
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vrrmyvpvujynckag9jop",
       "team_color": "#D3BC8D"
-    },
-    {
-      "player_id": "00-0035700",
-      "player_name": "Josh Jacobs",
-      "current_designation": "Sitting out due to groin Thursday",
-      "last_updated": "2026-08-06T08:52:23-07:00",
-      "diff_summary": "Josh Jacobs was practicing with the team on June 2nd. However, he was sitting out due to a groin issue on August 6th.",
-      "extraction": {
-        "status": "Sitting out due to groin Thursday",
-        "designation": "Sitting out due to groin Thursday",
-        "date": "2026-08-06T08:52:23-07:00",
-        "direct_quote": "Josh Jacobs: Sitting out due to groin Thursday",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msgfjvikgj2m"
-      },
-      "timeline": [
-        {
-          "id": "57f8f4a5-0a21-460c-b48e-d773306b44de",
-          "timestamp": "2026-08-06T08:52:23-07:00",
-          "designation": "Sitting out due to groin Thursday",
-          "source_text": "Josh Jacobs: Sitting out due to groin Thursday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msgfjvikgj2m",
-          "source_type": "beat_reporter",
-          "player_name": "Josh Jacobs"
-        },
-        {
-          "id": "6c50f54b-4692-48eb-b1bf-d8ca8f252656",
-          "timestamp": "2026-06-02T09:51:55-07:00",
-          "designation": "Practicing with team Tuesday",
-          "source_text": "Josh Jacobs: Practicing with team Tuesday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnd2kja27t2y",
-          "source_type": "beat_reporter",
-          "player_name": "Josh Jacobs"
-        }
-      ],
-      "team": "GB",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/drtobqw2mk7yw3edjgwo",
-      "team_color": "#203731"
     },
     {
       "player_id": "00-0041032",
@@ -1366,118 +1772,6 @@
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pv3sq3uzosixxexbznq5",
       "team_color": "#FB4F14"
-    },
-    {
-      "player_id": "00-0036912",
-      "player_name": "DeVonta Smith",
-      "current_designation": "Sidelined by hamstring injury",
-      "last_updated": "2026-08-04T07:23:27-07:00",
-      "diff_summary": "DeVonta Smith was designated as Philadelphia's WR1 after the A.J. Brown trade on June 1st. He is currently sidelined by a hamstring injury as of August 4th.",
-      "extraction": {
-        "status": "Sidelined by hamstring injury",
-        "designation": "Sidelined by hamstring injury",
-        "date": "2026-08-04T07:23:27-07:00",
-        "direct_quote": "DeVonta Smith: Sidelined by hamstring injury",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msb7mzn4ir2a"
-      },
-      "timeline": [
-        {
-          "id": "c6b17bac-ef0b-4e18-84b5-fbe846230e36",
-          "timestamp": "2026-08-04T07:23:27-07:00",
-          "designation": "Sidelined by hamstring injury",
-          "source_text": "DeVonta Smith: Sidelined by hamstring injury",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msb7mzn4ir2a",
-          "source_type": "beat_reporter",
-          "player_name": "DeVonta Smith"
-        },
-        {
-          "id": "df3819df-76dd-4c2c-ac02-916e747d7df3",
-          "timestamp": "2026-06-01T13:59:33-07:00",
-          "designation": "Philly's WR1 after Brown trade",
-          "source_text": "DeVonta Smith: Philly's WR1 after Brown trade",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnaxwf3m3l2l",
-          "source_type": "beat_reporter",
-          "player_name": "DeVonta Smith"
-        }
-      ],
-      "team": "PHI",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vj2fz8veorg1k5qthnjm",
-      "team_color": "#004C54"
-    },
-    {
-      "player_id": "00-0040867",
-      "player_name": "Makai Lemon",
-      "current_designation": "Dealing with minor hamstring injury",
-      "last_updated": "2026-08-04T07:22:48-07:00",
-      "diff_summary": "Makai Lemon was selected by the Eagles on April 23rd. He was dealing with a hamstring injury on June 2nd, but was ready for training camp on July 17th. However, he was held out of team drills on August 3rd and did not practice Tuesday due to a minor hamstring injury.",
-      "extraction": {
-        "status": "Dealing with minor hamstring injury",
-        "designation": "Dealing with minor hamstring injury",
-        "date": "2026-08-04T07:22:48-07:00",
-        "direct_quote": "Makai Lemon: Dealing with minor hamstring injury",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msb7lup2gk2c"
-      },
-      "timeline": [
-        {
-          "id": "0caa25dd-9697-4018-bd98-57bd6657c5fb",
-          "timestamp": "2026-08-04T07:22:48-07:00",
-          "designation": "Dealing with minor hamstring injury",
-          "source_text": "Makai Lemon: Dealing with minor hamstring injury",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msb7lup2gk2c",
-          "source_type": "beat_reporter",
-          "player_name": "Makai Lemon"
-        },
-        {
-          "id": "2a5e3f95-4d75-4bf9-b2c2-95038b628aea",
-          "timestamp": "2026-08-04T07:15:23-07:00",
-          "designation": "Not practicing Tuesday",
-          "source_text": "Makai Lemon: Not practicing Tuesday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msb76lxsfb26",
-          "source_type": "beat_reporter",
-          "player_name": "Makai Lemon"
-        },
-        {
-          "id": "15b06989-167b-4271-932e-00c98806b4a8",
-          "timestamp": "2026-08-03T10:58:51-07:00",
-          "designation": "Held out of team drills",
-          "source_text": "Makai Lemon: Held out of team drills",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms737bymah25",
-          "source_type": "beat_reporter",
-          "player_name": "Makai Lemon"
-        },
-        {
-          "id": "d7f89e1d-707f-446a-b4ce-181e38a3857e",
-          "timestamp": "2026-07-17T10:00:17-07:00",
-          "designation": "Ready for training camp",
-          "source_text": "Makai Lemon: Ready for training camp",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqu7yw7pcb26",
-          "source_type": "beat_reporter",
-          "player_name": "Makai Lemon"
-        },
-        {
-          "id": "e43a510d-8a2c-411c-93a9-33ec0491f9b2",
-          "timestamp": "2026-06-02T11:53:52-07:00",
-          "designation": "Dealing with hamstring injury",
-          "source_text": "Makai Lemon: Dealing with hamstring injury \n\n https://www.rotowire.com/football/player/makai-lemon-19231",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mndbel7iri2g",
-          "source_type": "beat_reporter",
-          "player_name": "Makai Lemon"
-        },
-        {
-          "id": "66d84a08-1ee8-4065-b6bc-5f59b510d111",
-          "timestamp": "2026-04-23T19:05:59-07:00",
-          "designation": "Selected by Eagles",
-          "source_text": "Makai Lemon: Selected by Eagles \n\n https://www.rotowire.com/football/player/makai-lemon-19231",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mk7gugpclc2a",
-          "source_type": "beat_reporter",
-          "player_name": "Makai Lemon"
-        }
-      ],
-      "team": "PHI",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/phi.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ys2i2o7c0bl36xvlrojz",
-      "team_color": "#004C54"
     },
     {
       "player_id": "00-0038542",
@@ -2760,250 +3054,10 @@
           "player_name": "Jeremiyah Love"
         }
       ],
-      "team": "ARI",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
+      "team": "AZ",
+      "logo": null,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/b12gtjsylmql5v7iyyla",
-      "team_color": "#97233F"
-    },
-    {
-      "player_id": "00-0040715",
-      "player_name": "Cam Skattebo",
-      "current_designation": "Declared ready for camp",
-      "last_updated": "2026-07-29T10:08:19-07:00",
-      "diff_summary": "Cam Skattebo was looking fully healthy on March 30th, 2026, and attended voluntary workouts on April 7th, 2026, 8 days later. He stated on May 19th, 2026, 42 days later, that he would be ready for Week 1. Skattebo participated in drills at minicamp on June 8th, 2026, and was doing 11-on-11 drills the next day. On July 13th, 2026, 34 days later, he was expected for early camp work, and on July 20th, 2026, 7 days later, declared himself ready for camp. On July 29th, 2026, 9 days later, Skattebo was declared ready for camp.",
-      "extraction": {
-        "status": "Declared ready for camp",
-        "designation": "Declared ready for camp",
-        "date": "2026-07-29T10:08:19-07:00",
-        "direct_quote": "Cam Skattebo: Declared ready for camp",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsg2cshxi2t"
-      },
-      "timeline": [
-        {
-          "id": "a1fe7a2b-c3ae-4819-b868-5e162171f22f",
-          "timestamp": "2026-07-29T10:08:19-07:00",
-          "designation": "Declared ready for camp",
-          "source_text": "Cam Skattebo: Declared ready for camp",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsg2cshxi2t",
-          "source_type": "beat_reporter",
-          "player_name": "Cam Skattebo"
-        },
-        {
-          "id": "b6feb556-9ea6-4ed0-b8b5-a47982ce029c",
-          "timestamp": "2026-07-20T06:30:52-07:00",
-          "designation": "Says he's ready for camp",
-          "source_text": "Cam Skattebo: Says he's ready for camp",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mr3fp6n4362t",
-          "source_type": "beat_reporter",
-          "player_name": "Cam Skattebo"
-        },
-        {
-          "id": "2255a383-d406-4fd0-a36c-a4a554c37c4c",
-          "timestamp": "2026-07-13T14:39:42-07:00",
-          "designation": "Expected for early camp work",
-          "source_text": "Cam Skattebo: Expected for early camp work \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqknqugrug2k",
-          "source_type": "beat_reporter",
-          "player_name": "Cam Skattebo"
-        },
-        {
-          "id": "d95f6521-36b5-49b8-8534-303ff82f01a2",
-          "timestamp": "2026-06-09T11:36:17-07:00",
-          "designation": "Doing 11-on-11 drills Tuesday",
-          "source_text": "Cam Skattebo: Doing 11-on-11 drills Tuesday \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnutnkt7em2x",
-          "source_type": "beat_reporter",
-          "player_name": "Cam Skattebo"
-        },
-        {
-          "id": "ae0fa59e-28ce-43ad-ae8a-ec9610646b9b",
-          "timestamp": "2026-06-08T11:07:04-07:00",
-          "designation": "Taking part in drills at minicamp",
-          "source_text": "Cam Skattebo: Taking part in drills at minicamp",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnsbkg7i432t",
-          "source_type": "beat_reporter",
-          "player_name": "Cam Skattebo"
-        },
-        {
-          "id": "1cbf4362-990a-4d05-9b37-9d157335a88a",
-          "timestamp": "2026-05-19T20:29:17-07:00",
-          "designation": "Says he'll be ready for Week 1",
-          "source_text": "Cam Skattebo: Says he'll be ready for Week 1 \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmaxncxalw2d",
-          "source_type": "beat_reporter",
-          "player_name": "Cam Skattebo"
-        },
-        {
-          "id": "a31ce3d6-1640-4454-a407-d6b0b80c2081",
-          "timestamp": "2026-04-07T13:22:43-07:00",
-          "designation": "Attending voluntary workouts",
-          "source_text": "Cam Skattebo: Attending voluntary workouts \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3miwm7uu4ef24",
-          "source_type": "beat_reporter",
-          "player_name": "Cam Skattebo"
-        },
-        {
-          "id": "6e73bf65-52e4-4509-b0bb-dede36c409e8",
-          "timestamp": "2026-03-30T17:02:49-07:00",
-          "designation": "Looking fully healthy",
-          "source_text": "Cam Skattebo: Looking fully healthy \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3micus3rme62m",
-          "source_type": "beat_reporter",
-          "player_name": "Cam Skattebo"
-        }
-      ],
-      "team": "NYG",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vnftthkbvw7ucsqtqjpq",
-      "team_color": "#0B2265"
-    },
-    {
-      "player_id": "00-0040719",
-      "player_name": "Bhayshul Tuten",
-      "current_designation": "Early lead in RB competition?",
-      "last_updated": "2026-07-29T09:16:20-07:00",
-      "diff_summary": "Bhayshul Tuten was projected to be in a backfield timeshare on July 15th. Fourteen days later, on July 29th, reports suggested he might have an early lead in the running back competition.",
-      "extraction": {
-        "status": "Early lead in RB competition?",
-        "designation": "Early lead in RB competition?",
-        "date": "2026-07-29T09:16:20-07:00",
-        "direct_quote": "Bhayshul Tuten: Early lead in RB competition?",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsd5e3tm62v"
-      },
-      "timeline": [
-        {
-          "id": "ddf40d3c-0248-4612-8efc-947bcf5fa6ef",
-          "timestamp": "2026-07-29T09:16:20-07:00",
-          "designation": "Early lead in RB competition?",
-          "source_text": "Bhayshul Tuten: Early lead in RB competition?",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsd5e3tm62v",
-          "source_type": "beat_reporter",
-          "player_name": "Bhayshul Tuten"
-        },
-        {
-          "id": "775727b9-f259-4f07-aa39-5d1d35dbf428",
-          "timestamp": "2026-07-15T07:12:12-07:00",
-          "designation": "Backfield timeshare likely",
-          "source_text": "Bhayshul Tuten: Backfield timeshare likely \n\n https://www.rotowire.com/football/player/bhayshul-tuten-18524",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqovoios732m",
-          "source_type": "beat_reporter",
-          "player_name": "Bhayshul Tuten"
-        }
-      ],
-      "team": "JAX",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/jax.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uf6bidyfjeemrlgsibiz",
-      "team_color": "#006778"
-    },
-    {
-      "player_id": "00-0033873",
-      "player_name": "Patrick Mahomes",
-      "current_designation": "Taking part in 11-on-11s",
-      "last_updated": "2026-07-29T08:00:13-07:00",
-      "diff_summary": "Patrick Mahomes agreed to a contract restructure and is rehabbing at voluntary workouts. He is expected to participate in and is on the field for Organized Team Activities (OTAs), though limited to 7-on-7 work. The Chiefs added two years to his contract, and he aims to play Week 1, having been cleared to practice in full and taking part in 11-on-11s.",
-      "extraction": {
-        "status": "Taking part in 11-on-11s",
-        "designation": "Taking part in 11-on-11s",
-        "date": "2026-07-29T08:00:13-07:00",
-        "direct_quote": "Patrick Mahomes: Taking part in 11-on-11s",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrs6vawzlu2r"
-      },
-      "timeline": [
-        {
-          "id": "a089eb44-1d9e-412f-8c72-421fdfe63f5b",
-          "timestamp": "2026-07-29T08:00:13-07:00",
-          "designation": "Taking part in 11-on-11s",
-          "source_text": "Patrick Mahomes: Taking part in 11-on-11s",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrs6vawzlu2r",
-          "source_type": "beat_reporter",
-          "player_name": "Patrick Mahomes"
-        },
-        {
-          "id": "c2e624a9-c738-4c1d-8612-55f14f111f2c",
-          "timestamp": "2026-07-24T13:00:47-07:00",
-          "designation": "Cleared to practice in full",
-          "source_text": "Patrick Mahomes: Cleared to practice in full \n\n https://www.rotowire.com/football/player/patrick-mahomes-11839",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrg5e3ucay2r",
-          "source_type": "beat_reporter",
-          "player_name": "Patrick Mahomes"
-        },
-        {
-          "id": "fd036301-6a8f-452c-be80-1f5bc400ea05",
-          "timestamp": "2026-07-15T12:37:35-07:00",
-          "designation": "Aims to play Week 1",
-          "source_text": "Patrick Mahomes: Aims to play Week 1",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqphudijhp2t",
-          "source_type": "beat_reporter",
-          "player_name": "Patrick Mahomes"
-        },
-        {
-          "id": "2134bbb0-2aea-4bba-ade1-93ed82f8665d",
-          "timestamp": "2026-06-11T08:00:35-07:00",
-          "designation": "Expected back for camp?",
-          "source_text": "Patrick Mahomes: Expected back for camp?",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnzijpvvv32c",
-          "source_type": "beat_reporter",
-          "player_name": "Patrick Mahomes"
-        },
-        {
-          "id": "d9b8f8e7-55f0-4757-81f3-7d31fc6283d0",
-          "timestamp": "2026-06-10T13:29:02-07:00",
-          "designation": "Chiefs add two years to contract",
-          "source_text": "Patrick Mahomes: Chiefs add two years to contract",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnxkg4otdw2x",
-          "source_type": "beat_reporter",
-          "player_name": "Patrick Mahomes"
-        },
-        {
-          "id": "98e21987-0417-463f-875d-55cf8a3bc3ab",
-          "timestamp": "2026-05-28T11:12:48-07:00",
-          "designation": "Limited to 7-on-7 work at OTAs",
-          "source_text": "Patrick Mahomes: Limited to 7-on-7 work at OTAs \n\n https://www.rotowire.com/football/player/patrick-mahomes-11839",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmwmqjsn642g",
-          "source_type": "beat_reporter",
-          "player_name": "Patrick Mahomes"
-        },
-        {
-          "id": "daba4273-15b4-4e10-8da8-6dc26f48b564",
-          "timestamp": "2026-05-26T15:46:13-07:00",
-          "designation": "On the field for OTAs",
-          "source_text": "Patrick Mahomes: On the field for OTAs \n\n https://www.rotowire.com/football/player/patrick-mahomes-11839",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mms33m5nu32d",
-          "source_type": "beat_reporter",
-          "player_name": "Patrick Mahomes"
-        },
-        {
-          "id": "b946a091-76c7-4c9d-982d-008a28e2cf64",
-          "timestamp": "2026-05-02T18:48:32-07:00",
-          "designation": "Expected to participate in OTAs",
-          "source_text": "Patrick Mahomes: Expected to participate in OTAs \n\n https://www.rotowire.com/football/player/patrick-mahomes-11839",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mkw23jast32o",
-          "source_type": "beat_reporter",
-          "player_name": "Patrick Mahomes"
-        },
-        {
-          "id": "a86ec104-cc7e-4215-8da4-961afd555196",
-          "timestamp": "2026-04-20T11:24:04-07:00",
-          "designation": "Rehabbing at voluntary workouts",
-          "source_text": "Patrick Mahomes: Rehabbing at voluntary workouts \n\n https://www.rotowire.com/football/player/patrick-mahomes-11839",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mjx3np5mmh24",
-          "source_type": "beat_reporter",
-          "player_name": "Patrick Mahomes"
-        },
-        {
-          "id": "39ab3833-664b-4e60-80c2-ad441a7ad570",
-          "timestamp": "2026-02-18T07:03:18-08:00",
-          "designation": "Agrees to contract restructure",
-          "source_text": "Patrick Mahomes: Agrees to contract restructure \n\n https://www.rotowire.com/football/player/patrick-mahomes-11839",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mf5dykev5626",
-          "source_type": "beat_reporter",
-          "player_name": "Patrick Mahomes"
-        }
-      ],
-      "team": "KC",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/iireqbn32cpg9fn4sfy7",
-      "team_color": "#E31837"
+      "team_color": "#2563eb"
     },
     {
       "player_id": "00-0039361",
