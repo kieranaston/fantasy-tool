@@ -554,6 +554,9 @@ def main() -> None:
     write_json(POLL_PATH, poll_state)
 
     print(f"Exported {len(summaries.get('players', []))} players → {SUMMARIES_PATH}")
+    dropped = summaries.get("dropped_stale")
+    if dropped:
+        print(f"  Dropped {dropped} stale player(s) older than news window")
 
 
 if __name__ == "__main__":

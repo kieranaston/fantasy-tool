@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from datetime import datetime, timedelta, timezone
 from typing import Any
 
 from src.loaders.nfl_data import (
@@ -11,6 +12,38 @@ from src.loaders.nfl_data import (
     team_branding,
 )
 
+# Drop players whose newest post/status is older than this.
+NEWS_MAX_AGE = timedelta(days=90)
+
+
+def _parse_timestamp(raw: Any) -> datetime | None:
+    if not raw:
+        return None
+    text = str(raw).strip()
+    if not text:
+        return None
+    if text.endswith("Z"):
+        text = text[:-1] + "+00:00"
+    try:
+        dt = datetime.fromisoformat(text)
+    except ValueError:
+        return None
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc)
+
+
+def _player_is_fresh(player: dict[str, Any], *, cutoff: datetime) -> bool:
+    """Keep players whose most recent update is on/after cutoff."""
+    ts = _parse_timestamp(player.get("last_updated"))
+    if ts is None:
+        timeline = player.get("timeline") or []
+        if timeline:
+            ts = _parse_timestamp(timeline[0].get("timestamp"))
+    if ts is None:
+        return False
+    return ts >= cutoff
+
 
 def build_summaries(
     *,
@@ -19,6 +52,7 @@ def build_summaries(
     last_updated: str,
     allowed_player_ids: set[str] | None = None,
     season: int | None = None,
+    now: datetime | None = None,
 ) -> dict[str, Any]:
     """Aggregate current status + report timeline per player."""
     by_player: dict[str, list[dict[str, Any]]] = {}
@@ -101,6 +135,11 @@ def build_summaries(
             }
         )
 
+    cutoff = (now or datetime.now(timezone.utc)) - NEWS_MAX_AGE
+    before = len(players)
+    players = [p for p in players if _player_is_fresh(p, cutoff=cutoff)]
+    dropped = before - len(players)
+
     players.sort(
         key=lambda p: p.get("last_updated") or "",
         reverse=True,
@@ -110,4 +149,6 @@ def build_summaries(
         "title": "Player News",
         "last_updated": last_updated,
         "players": players,
+        "news_max_age_days": NEWS_MAX_AGE.days,
+        "dropped_stale": dropped,
     }
