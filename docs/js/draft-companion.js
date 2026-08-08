@@ -8,7 +8,7 @@ import {
   rescoreProjectionBoard,
   compareDraftRosters,
   SKILL_POSITIONS,
-} from "./draft-scoring.js?v=57";
+} from "./draft-scoring.js?v=58";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 500;
@@ -702,7 +702,7 @@ async function mountDraftCompanionPage() {
         return {
           player: p,
           scored,
-          sortScore: scored?.score ?? Number(p.pts) || 0,
+          sortScore: scored?.score ?? (Number(p.pts) || 0),
         };
       })
       .sort((a, b) => b.sortScore - a.sortScore)
