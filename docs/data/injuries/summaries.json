@@ -1,7 +1,339 @@
 {
   "title": "Player News",
-  "last_updated": "2026-08-08T12:25:07Z",
+  "last_updated": "2026-08-09T12:27:08Z",
   "players": [
+    {
+      "player_id": "00-0041512",
+      "player_name": "Jadarian Price",
+      "current_designation": "Expected back soon",
+      "last_updated": "2026-08-08T19:19:04-07:00",
+      "diff_summary": "Jadarian Price, selected by Seattle, is dealing with lower-body soreness as of August 8th but is expected back soon. He has been splitting first-team reps in training camp.",
+      "extraction": {
+        "status": "Expected back soon",
+        "designation": "Expected back soon",
+        "date": "2026-08-08T19:19:04-07:00",
+        "direct_quote": "Jadarian Price: Expected back soon",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msmjidigwp24"
+      },
+      "timeline": [
+        {
+          "id": "3c60af67-b755-4096-be93-5695698db612",
+          "timestamp": "2026-08-08T19:19:04-07:00",
+          "designation": "Expected back soon",
+          "source_text": "Jadarian Price: Expected back soon",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msmjidigwp24",
+          "source_type": "beat_reporter",
+          "player_name": "Jadarian Price"
+        },
+        {
+          "id": "0d89e2cd-4bdb-494d-b0aa-23298bc0666f",
+          "timestamp": "2026-08-08T14:29:32-07:00",
+          "designation": "Dealing with lower-body soreness",
+          "source_text": "Jadarian Price: Dealing with lower-body soreness",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mslzcm5gqs2g",
+          "source_type": "beat_reporter",
+          "player_name": "Jadarian Price"
+        },
+        {
+          "id": "57d7b892-4350-439e-9ef1-9aeab60103ff",
+          "timestamp": "2026-07-31T06:58:47-07:00",
+          "designation": "First up for first-team reps",
+          "source_text": "Jadarian Price: First up for first-team reps",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx4fahir22i",
+          "source_type": "beat_reporter",
+          "player_name": "Jadarian Price"
+        },
+        {
+          "id": "8ded7c3a-bc9d-4d36-a7a7-4d24dfcd1ac5",
+          "timestamp": "2026-07-27T10:21:18-07:00",
+          "designation": "Splitting first-team reps",
+          "source_text": "Jadarian Price: Splitting first-team reps",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrnftp4puw2z",
+          "source_type": "beat_reporter",
+          "player_name": "Jadarian Price"
+        },
+        {
+          "id": "8c2dd924-4e36-46f6-9037-3c9b2189df32",
+          "timestamp": "2026-06-10T10:13:16-07:00",
+          "designation": "Getting first-team reps already",
+          "source_text": "Jadarian Price: Getting first-team reps already \n\n https://www.rotowire.com/football/player/jadarian-price-19299",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnx7i2hy5k2l",
+          "source_type": "beat_reporter",
+          "player_name": "Jadarian Price"
+        },
+        {
+          "id": "a33b2ff8-74fc-41eb-890b-348b904fc146",
+          "timestamp": "2026-04-23T20:10:53-07:00",
+          "designation": "Selected by Seattle",
+          "source_text": "Jadarian Price: Selected by Seattle \n\n https://www.rotowire.com/football/player/jadarian-price-19299",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mk7kihyw2e2g",
+          "source_type": "beat_reporter",
+          "player_name": "Jadarian Price"
+        }
+      ],
+      "team": "SEA",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/toy90i08oumgbdlvctja",
+      "team_color": "#002244"
+    },
+    {
+      "player_id": "00-0031408",
+      "player_name": "Mike Evans",
+      "current_designation": "Nearing return to practice",
+      "last_updated": "2026-08-08T14:19:43-07:00",
+      "diff_summary": "Mike Evans will play in 2026 and is joining the San Francisco 49ers. He is currently dealing with a strained quad and has not practiced since August 3rd, but is nearing a return to practice.",
+      "extraction": {
+        "status": "Nearing return to practice",
+        "designation": "Nearing return to practice",
+        "date": "2026-08-08T14:19:43-07:00",
+        "direct_quote": "Mike Evans: Nearing return to practice",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mslyr2bflo2x"
+      },
+      "timeline": [
+        {
+          "id": "b9743c73-723b-4399-a880-96ce0bc2ef5d",
+          "timestamp": "2026-08-08T14:19:43-07:00",
+          "designation": "Nearing return to practice",
+          "source_text": "Mike Evans: Nearing return to practice",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mslyr2bflo2x",
+          "source_type": "beat_reporter",
+          "player_name": "Mike Evans"
+        },
+        {
+          "id": "2e40ddac-a6d0-4c60-a4ee-35915f037557",
+          "timestamp": "2026-08-05T10:46:27-07:00",
+          "designation": "Remains sidelined",
+          "source_text": "Mike Evans: Remains sidelined",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mse3gwmqow23",
+          "source_type": "beat_reporter",
+          "player_name": "Mike Evans"
+        },
+        {
+          "id": "15e9231f-bd49-4606-bf24-7e9c7661a2b8",
+          "timestamp": "2026-08-03T12:31:52-07:00",
+          "designation": "Minor quad strain",
+          "source_text": "Mike Evans: Minor quad strain",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms7aflxu6x23",
+          "source_type": "beat_reporter",
+          "player_name": "Mike Evans"
+        },
+        {
+          "id": "6a823b7f-d429-411c-a9d7-fe8854423cf5",
+          "timestamp": "2026-08-03T12:19:00-07:00",
+          "designation": "Not practicing, but catches passes",
+          "source_text": "Mike Evans: Not practicing, but catches passes",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms77olqdva2l",
+          "source_type": "beat_reporter",
+          "player_name": "Mike Evans"
+        },
+        {
+          "id": "ebee22c2-e2fc-465f-9b7e-2230486ec448",
+          "timestamp": "2026-08-03T10:13:30-07:00",
+          "designation": "Has strained quad",
+          "source_text": "Mike Evans: Has strained quad",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6yo6hoow2u",
+          "source_type": "beat_reporter",
+          "player_name": "Mike Evans"
+        },
+        {
+          "id": "c2a55995-541e-4e86-ad88-f960e3ff0428",
+          "timestamp": "2026-06-04T11:35:19-07:00",
+          "designation": "Winning over teammates and coaches",
+          "source_text": "Mike Evans: Winning over teammates and coaches \n\n https://www.rotowire.com/football/player/mike-evans-9253",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnibbacgx42t",
+          "source_type": "beat_reporter",
+          "player_name": "Mike Evans"
+        },
+        {
+          "id": "a4417781-ff25-43c9-9b44-dcfa66bd97b9",
+          "timestamp": "2026-03-09T11:37:03-07:00",
+          "designation": "Joining forces with Kyle Shanahan",
+          "source_text": "Mike Evans: Joining forces with Kyle Shanahan \n\n https://www.rotowire.com/football/player/mike-evans-9253",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnisal6tq2q",
+          "source_type": "beat_reporter",
+          "player_name": "Mike Evans"
+        },
+        {
+          "id": "2a767648-3295-418a-ae8f-a67298269ef4",
+          "timestamp": "2026-03-08T09:06:11-07:00",
+          "designation": "May not return to Tampa Bay",
+          "source_text": "Mike Evans: May not return to Tampa Bay \n\n https://www.rotowire.com/football/player/mike-evans-9253",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgkpvkoxag2q",
+          "source_type": "beat_reporter",
+          "player_name": "Mike Evans"
+        },
+        {
+          "id": "77304176-e18d-4fe3-8bfc-4a3aad8f966a",
+          "timestamp": "2026-02-17T13:42:14-08:00",
+          "designation": "Will play in 2026",
+          "source_text": "Mike Evans: Will play in 2026 \n\n https://www.rotowire.com/football/player/mike-evans-9253",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mf3jsxkxab2t",
+          "source_type": "beat_reporter",
+          "player_name": "Mike Evans"
+        },
+        {
+          "id": "5841cfb9-ab6e-4810-8b10-433d0e33a323",
+          "timestamp": "2026-02-13T14:05:55-08:00",
+          "designation": "Not expected to retire",
+          "source_text": "Mike Evans: Not expected to retire \n\n https://www.rotowire.com/football/player/mike-evans-9253",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3merjbmsdwx2n",
+          "source_type": "beat_reporter",
+          "player_name": "Mike Evans"
+        }
+      ],
+      "team": "TB",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yaxorbdsvk1ucfuiyrkj",
+      "team_color": "#A71930"
+    },
+    {
+      "player_id": "00-0039064",
+      "player_name": "Zay Flowers",
+      "current_designation": "Day-to-day with quad bruise",
+      "last_updated": "2026-08-08T10:05:19-07:00",
+      "diff_summary": "Zay Flowers signed an extension with the Ravens on August 4th after the team picked up his fifth-year option. He exited practice on August 8th with a quad bruise and is considered day-to-day.",
+      "extraction": {
+        "status": "Day-to-day with quad bruise",
+        "designation": "Day-to-day with quad bruise",
+        "date": "2026-08-08T10:05:19-07:00",
+        "direct_quote": "Zay Flowers: Day-to-day with quad bruise",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mslkk563qm2g"
+      },
+      "timeline": [
+        {
+          "id": "77cf4f6f-7b72-451c-bf84-d791fe7f8754",
+          "timestamp": "2026-08-08T10:05:19-07:00",
+          "designation": "Day-to-day with quad bruise",
+          "source_text": "Zay Flowers: Day-to-day with quad bruise",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mslkk563qm2g",
+          "source_type": "beat_reporter",
+          "player_name": "Zay Flowers"
+        },
+        {
+          "id": "da72781c-f3b5-4169-b3c9-7403e80f0ebe",
+          "timestamp": "2026-08-08T09:57:53-07:00",
+          "designation": "Exits practice with leg injury",
+          "source_text": "Zay Flowers: Exits practice with leg injury",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mslk4tzjau2v",
+          "source_type": "beat_reporter",
+          "player_name": "Zay Flowers"
+        },
+        {
+          "id": "8020e1b8-03e8-4d13-b914-19305acbc9f2",
+          "timestamp": "2026-08-04T08:45:14-07:00",
+          "designation": "Signs extension",
+          "source_text": "Zay Flowers: Signs extension",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbe7awxv42o",
+          "source_type": "beat_reporter",
+          "player_name": "Zay Flowers"
+        },
+        {
+          "id": "36ca5d91-112d-4ffc-8bca-1bbe43b57285",
+          "timestamp": "2026-07-16T09:13:07-07:00",
+          "designation": "Ravens keen on extension",
+          "source_text": "Zay Flowers: Ravens keen on extension",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqrmvn2ehv2r",
+          "source_type": "beat_reporter",
+          "player_name": "Zay Flowers"
+        },
+        {
+          "id": "bb3cf40e-3fb4-448a-98c9-9dc8350c73d6",
+          "timestamp": "2026-04-23T06:16:02-07:00",
+          "designation": "Fifth-year option picked up",
+          "source_text": "Zay Flowers: Fifth-year option picked up \n\n https://www.rotowire.com/football/player/zay-flowers-16919",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mk63tnrh6e2d",
+          "source_type": "beat_reporter",
+          "player_name": "Zay Flowers"
+        }
+      ],
+      "team": "BAL",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sqqh8gmxdpo55qwpsszj",
+      "team_color": "#241773"
+    },
+    {
+      "player_id": "00-0036613",
+      "player_name": "Jaylen Waddle",
+      "current_designation": "Sheds leg sleeve",
+      "last_updated": "2026-08-08T09:17:01-07:00",
+      "diff_summary": "Jaylen Waddle was traded to the Denver Broncos on March 17th. He exited practice on August 5th due to muscle tightness but shed his leg sleeve on August 8th and is expected back in 4-5 days.",
+      "extraction": {
+        "status": "Sheds leg sleeve",
+        "designation": "Sheds leg sleeve",
+        "date": "2026-08-08T09:17:01-07:00",
+        "direct_quote": "Jaylen Waddle: Sheds leg sleeve",
+        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mslhtrvfyc2m"
+      },
+      "timeline": [
+        {
+          "id": "87488376-7a74-47bc-9ad0-c290f3c08b28",
+          "timestamp": "2026-08-08T09:17:01-07:00",
+          "designation": "Sheds leg sleeve",
+          "source_text": "Jaylen Waddle: Sheds leg sleeve",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mslhtrvfyc2m",
+          "source_type": "beat_reporter",
+          "player_name": "Jaylen Waddle"
+        },
+        {
+          "id": "c680c5b2-aa76-4786-a95d-c1b1984addfb",
+          "timestamp": "2026-08-06T11:32:06-07:00",
+          "designation": "Should be back in 4-5 days",
+          "source_text": "Jaylen Waddle: Should be back in 4-5 days",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msgohi3t552k",
+          "source_type": "beat_reporter",
+          "player_name": "Jaylen Waddle"
+        },
+        {
+          "id": "47c84aa2-1e93-45ec-bf0e-922882b9c3f2",
+          "timestamp": "2026-08-06T09:30:27-07:00",
+          "designation": "Present for practice without helmet",
+          "source_text": "Jaylen Waddle: Present for practice without helmet",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msghnxqzd52v",
+          "source_type": "beat_reporter",
+          "player_name": "Jaylen Waddle"
+        },
+        {
+          "id": "125176f1-3f95-428e-906c-25d2a3b81449",
+          "timestamp": "2026-08-05T11:30:28-07:00",
+          "designation": "Bothered by muscle tightness",
+          "source_text": "Jaylen Waddle: Bothered by muscle tightness",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mse5vntiky23",
+          "source_type": "beat_reporter",
+          "player_name": "Jaylen Waddle"
+        },
+        {
+          "id": "5aa17e1e-0adf-42c9-9742-30da7cd17db0",
+          "timestamp": "2026-08-05T10:10:53-07:00",
+          "designation": "Exits practice Wednesday",
+          "source_text": "Jaylen Waddle: Exits practice Wednesday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msdzhdpmmr2l",
+          "source_type": "beat_reporter",
+          "player_name": "Jaylen Waddle"
+        },
+        {
+          "id": "c42a6366-1495-441b-b1c7-5af170c3658b",
+          "timestamp": "2026-03-24T08:06:37-07:00",
+          "designation": "Opens up cap space",
+          "source_text": "Jaylen Waddle: Opens up cap space \n\n https://www.rotowire.com/football/player/jaylen-waddle-15404",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mhstzr2qzj2j",
+          "source_type": "beat_reporter",
+          "player_name": "Jaylen Waddle"
+        },
+        {
+          "id": "c27fcb43-4226-4c29-bdcd-02ceef38aaac",
+          "timestamp": "2026-03-17T08:18:17-07:00",
+          "designation": "Dealt to Denver",
+          "source_text": "Jaylen Waddle: Dealt to Denver \n\n https://www.rotowire.com/football/player/jaylen-waddle-15404",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mhbbg6mfe22p",
+          "source_type": "beat_reporter",
+          "player_name": "Jaylen Waddle"
+        }
+      ],
+      "team": "MIA",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dsxd2zcqm42wsv4ewtfc",
+      "team_color": "#008E97"
+    },
     {
       "player_id": "00-0035700",
       "player_name": "Josh Jacobs",
@@ -813,80 +1145,6 @@
       "team_color": "#002244"
     },
     {
-      "player_id": "00-0036613",
-      "player_name": "Jaylen Waddle",
-      "current_designation": "Should be back in 4-5 days",
-      "last_updated": "2026-08-06T11:32:06-07:00",
-      "diff_summary": "Jaylen Waddle was traded to Denver on March 17th, opening up cap space for the team. He exited practice on August 5th due to muscle tightness and was present for practice on August 6th without a helmet, with an expected return in 4-5 days.",
-      "extraction": {
-        "status": "Should be back in 4-5 days",
-        "designation": "Should be back in 4-5 days",
-        "date": "2026-08-06T11:32:06-07:00",
-        "direct_quote": "Jaylen Waddle: Should be back in 4-5 days",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msgohi3t552k"
-      },
-      "timeline": [
-        {
-          "id": "c680c5b2-aa76-4786-a95d-c1b1984addfb",
-          "timestamp": "2026-08-06T11:32:06-07:00",
-          "designation": "Should be back in 4-5 days",
-          "source_text": "Jaylen Waddle: Should be back in 4-5 days",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msgohi3t552k",
-          "source_type": "beat_reporter",
-          "player_name": "Jaylen Waddle"
-        },
-        {
-          "id": "47c84aa2-1e93-45ec-bf0e-922882b9c3f2",
-          "timestamp": "2026-08-06T09:30:27-07:00",
-          "designation": "Present for practice without helmet",
-          "source_text": "Jaylen Waddle: Present for practice without helmet",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msghnxqzd52v",
-          "source_type": "beat_reporter",
-          "player_name": "Jaylen Waddle"
-        },
-        {
-          "id": "125176f1-3f95-428e-906c-25d2a3b81449",
-          "timestamp": "2026-08-05T11:30:28-07:00",
-          "designation": "Bothered by muscle tightness",
-          "source_text": "Jaylen Waddle: Bothered by muscle tightness",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mse5vntiky23",
-          "source_type": "beat_reporter",
-          "player_name": "Jaylen Waddle"
-        },
-        {
-          "id": "5aa17e1e-0adf-42c9-9742-30da7cd17db0",
-          "timestamp": "2026-08-05T10:10:53-07:00",
-          "designation": "Exits practice Wednesday",
-          "source_text": "Jaylen Waddle: Exits practice Wednesday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msdzhdpmmr2l",
-          "source_type": "beat_reporter",
-          "player_name": "Jaylen Waddle"
-        },
-        {
-          "id": "c42a6366-1495-441b-b1c7-5af170c3658b",
-          "timestamp": "2026-03-24T08:06:37-07:00",
-          "designation": "Opens up cap space",
-          "source_text": "Jaylen Waddle: Opens up cap space \n\n https://www.rotowire.com/football/player/jaylen-waddle-15404",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mhstzr2qzj2j",
-          "source_type": "beat_reporter",
-          "player_name": "Jaylen Waddle"
-        },
-        {
-          "id": "c27fcb43-4226-4c29-bdcd-02ceef38aaac",
-          "timestamp": "2026-03-17T08:18:17-07:00",
-          "designation": "Dealt to Denver",
-          "source_text": "Jaylen Waddle: Dealt to Denver \n\n https://www.rotowire.com/football/player/jaylen-waddle-15404",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mhbbg6mfe22p",
-          "source_type": "beat_reporter",
-          "player_name": "Jaylen Waddle"
-        }
-      ],
-      "team": "MIA",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/mia.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dsxd2zcqm42wsv4ewtfc",
-      "team_color": "#008E97"
-    },
-    {
       "player_id": "00-0034348",
       "player_name": "Courtland Sutton",
       "current_designation": "Healthy per head coach",
@@ -1465,107 +1723,6 @@
       "team_color": "#4F2683"
     },
     {
-      "player_id": "00-0031408",
-      "player_name": "Mike Evans",
-      "current_designation": "Remains sidelined",
-      "last_updated": "2026-08-05T10:46:27-07:00",
-      "diff_summary": "Mike Evans will play in 2026 and has joined Kyle Shanahan's team, though he may not return to Tampa Bay. He is currently sidelined with a minor quad strain and not practicing, but has been seen catching passes. Evans is reportedly winning over teammates and coaches.",
-      "extraction": {
-        "status": "Remains sidelined",
-        "designation": "Remains sidelined",
-        "date": "2026-08-05T10:46:27-07:00",
-        "direct_quote": "Mike Evans: Remains sidelined",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mse3gwmqow23"
-      },
-      "timeline": [
-        {
-          "id": "2e40ddac-a6d0-4c60-a4ee-35915f037557",
-          "timestamp": "2026-08-05T10:46:27-07:00",
-          "designation": "Remains sidelined",
-          "source_text": "Mike Evans: Remains sidelined",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mse3gwmqow23",
-          "source_type": "beat_reporter",
-          "player_name": "Mike Evans"
-        },
-        {
-          "id": "15e9231f-bd49-4606-bf24-7e9c7661a2b8",
-          "timestamp": "2026-08-03T12:31:52-07:00",
-          "designation": "Minor quad strain",
-          "source_text": "Mike Evans: Minor quad strain",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms7aflxu6x23",
-          "source_type": "beat_reporter",
-          "player_name": "Mike Evans"
-        },
-        {
-          "id": "6a823b7f-d429-411c-a9d7-fe8854423cf5",
-          "timestamp": "2026-08-03T12:19:00-07:00",
-          "designation": "Not practicing, but catches passes",
-          "source_text": "Mike Evans: Not practicing, but catches passes",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms77olqdva2l",
-          "source_type": "beat_reporter",
-          "player_name": "Mike Evans"
-        },
-        {
-          "id": "ebee22c2-e2fc-465f-9b7e-2230486ec448",
-          "timestamp": "2026-08-03T10:13:30-07:00",
-          "designation": "Has strained quad",
-          "source_text": "Mike Evans: Has strained quad",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6yo6hoow2u",
-          "source_type": "beat_reporter",
-          "player_name": "Mike Evans"
-        },
-        {
-          "id": "c2a55995-541e-4e86-ad88-f960e3ff0428",
-          "timestamp": "2026-06-04T11:35:19-07:00",
-          "designation": "Winning over teammates and coaches",
-          "source_text": "Mike Evans: Winning over teammates and coaches \n\n https://www.rotowire.com/football/player/mike-evans-9253",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnibbacgx42t",
-          "source_type": "beat_reporter",
-          "player_name": "Mike Evans"
-        },
-        {
-          "id": "a4417781-ff25-43c9-9b44-dcfa66bd97b9",
-          "timestamp": "2026-03-09T11:37:03-07:00",
-          "designation": "Joining forces with Kyle Shanahan",
-          "source_text": "Mike Evans: Joining forces with Kyle Shanahan \n\n https://www.rotowire.com/football/player/mike-evans-9253",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnisal6tq2q",
-          "source_type": "beat_reporter",
-          "player_name": "Mike Evans"
-        },
-        {
-          "id": "2a767648-3295-418a-ae8f-a67298269ef4",
-          "timestamp": "2026-03-08T09:06:11-07:00",
-          "designation": "May not return to Tampa Bay",
-          "source_text": "Mike Evans: May not return to Tampa Bay \n\n https://www.rotowire.com/football/player/mike-evans-9253",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgkpvkoxag2q",
-          "source_type": "beat_reporter",
-          "player_name": "Mike Evans"
-        },
-        {
-          "id": "77304176-e18d-4fe3-8bfc-4a3aad8f966a",
-          "timestamp": "2026-02-17T13:42:14-08:00",
-          "designation": "Will play in 2026",
-          "source_text": "Mike Evans: Will play in 2026 \n\n https://www.rotowire.com/football/player/mike-evans-9253",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mf3jsxkxab2t",
-          "source_type": "beat_reporter",
-          "player_name": "Mike Evans"
-        },
-        {
-          "id": "5841cfb9-ab6e-4810-8b10-433d0e33a323",
-          "timestamp": "2026-02-13T14:05:55-08:00",
-          "designation": "Not expected to retire",
-          "source_text": "Mike Evans: Not expected to retire \n\n https://www.rotowire.com/football/player/mike-evans-9253",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3merjbmsdwx2n",
-          "source_type": "beat_reporter",
-          "player_name": "Mike Evans"
-        }
-      ],
-      "team": "TB",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yaxorbdsvk1ucfuiyrkj",
-      "team_color": "#A71930"
-    },
-    {
       "player_id": "00-0040666",
       "player_name": "Omarion Hampton",
       "current_designation": "Praised by McDaniel for recent growth",
@@ -1696,53 +1853,6 @@
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hsnetccy7bquili3gcqq",
       "team_color": "#203731"
-    },
-    {
-      "player_id": "00-0039064",
-      "player_name": "Zay Flowers",
-      "current_designation": "Signs extension",
-      "last_updated": "2026-08-04T08:45:14-07:00",
-      "diff_summary": "The Baltimore Ravens picked up Zay Flowers' fifth-year option on April 23rd. On July 16th, 84 days later, the Ravens expressed keenness on an extension. By August 4th, 19 days later, Flowers had signed an extension.",
-      "extraction": {
-        "status": "Signs extension",
-        "designation": "Signs extension",
-        "date": "2026-08-04T08:45:14-07:00",
-        "direct_quote": "Zay Flowers: Signs extension",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbe7awxv42o"
-      },
-      "timeline": [
-        {
-          "id": "8020e1b8-03e8-4d13-b914-19305acbc9f2",
-          "timestamp": "2026-08-04T08:45:14-07:00",
-          "designation": "Signs extension",
-          "source_text": "Zay Flowers: Signs extension",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbe7awxv42o",
-          "source_type": "beat_reporter",
-          "player_name": "Zay Flowers"
-        },
-        {
-          "id": "36ca5d91-112d-4ffc-8bca-1bbe43b57285",
-          "timestamp": "2026-07-16T09:13:07-07:00",
-          "designation": "Ravens keen on extension",
-          "source_text": "Zay Flowers: Ravens keen on extension",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqrmvn2ehv2r",
-          "source_type": "beat_reporter",
-          "player_name": "Zay Flowers"
-        },
-        {
-          "id": "bb3cf40e-3fb4-448a-98c9-9dc8350c73d6",
-          "timestamp": "2026-04-23T06:16:02-07:00",
-          "designation": "Fifth-year option picked up",
-          "source_text": "Zay Flowers: Fifth-year option picked up \n\n https://www.rotowire.com/football/player/zay-flowers-16919",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mk63tnrh6e2d",
-          "source_type": "beat_reporter",
-          "player_name": "Zay Flowers"
-        }
-      ],
-      "team": "BAL",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/bal.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sqqh8gmxdpo55qwpsszj",
-      "team_color": "#241773"
     },
     {
       "player_id": "00-0038597",
@@ -2415,62 +2525,6 @@
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cle.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ojtce2im0wp2ltyel0vc",
       "team_color": "#FF3C00"
-    },
-    {
-      "player_id": "00-0041512",
-      "player_name": "Jadarian Price",
-      "current_designation": "First up for first-team reps",
-      "last_updated": "2026-07-31T06:58:47-07:00",
-      "diff_summary": "Jadarian Price was selected by Seattle on April 23rd, 2026. He began receiving first-team reps in early June and was splitting them by July 27th, 2026, being listed as first up for first-team reps on July 31st, 2026.",
-      "extraction": {
-        "status": "First up for first-team reps",
-        "designation": "First up for first-team reps",
-        "date": "2026-07-31T06:58:47-07:00",
-        "direct_quote": "Jadarian Price: First up for first-team reps",
-        "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx4fahir22i"
-      },
-      "timeline": [
-        {
-          "id": "57d7b892-4350-439e-9ef1-9aeab60103ff",
-          "timestamp": "2026-07-31T06:58:47-07:00",
-          "designation": "First up for first-team reps",
-          "source_text": "Jadarian Price: First up for first-team reps",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx4fahir22i",
-          "source_type": "beat_reporter",
-          "player_name": "Jadarian Price"
-        },
-        {
-          "id": "8ded7c3a-bc9d-4d36-a7a7-4d24dfcd1ac5",
-          "timestamp": "2026-07-27T10:21:18-07:00",
-          "designation": "Splitting first-team reps",
-          "source_text": "Jadarian Price: Splitting first-team reps",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrnftp4puw2z",
-          "source_type": "beat_reporter",
-          "player_name": "Jadarian Price"
-        },
-        {
-          "id": "8c2dd924-4e36-46f6-9037-3c9b2189df32",
-          "timestamp": "2026-06-10T10:13:16-07:00",
-          "designation": "Getting first-team reps already",
-          "source_text": "Jadarian Price: Getting first-team reps already \n\n https://www.rotowire.com/football/player/jadarian-price-19299",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnx7i2hy5k2l",
-          "source_type": "beat_reporter",
-          "player_name": "Jadarian Price"
-        },
-        {
-          "id": "a33b2ff8-74fc-41eb-890b-348b904fc146",
-          "timestamp": "2026-04-23T20:10:53-07:00",
-          "designation": "Selected by Seattle",
-          "source_text": "Jadarian Price: Selected by Seattle \n\n https://www.rotowire.com/football/player/jadarian-price-19299",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mk7kihyw2e2g",
-          "source_type": "beat_reporter",
-          "player_name": "Jadarian Price"
-        }
-      ],
-      "team": "SEA",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sea.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/toy90i08oumgbdlvctja",
-      "team_color": "#002244"
     },
     {
       "player_id": "00-0039075",

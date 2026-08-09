@@ -17,18 +17,18 @@
   },
   "00-0031408": {
     "player_name": "Mike Evans",
-    "current_designation": "Remains sidelined",
-    "last_updated": "2026-08-05T10:46:27-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mse3gwmqow23",
-    "last_report_id": "2e40ddac-a6d0-4c60-a4ee-35915f037557",
+    "current_designation": "Nearing return to practice",
+    "last_updated": "2026-08-08T14:19:43-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mslyr2bflo2x",
+    "last_report_id": "b9743c73-723b-4399-a880-96ce0bc2ef5d",
     "last_extraction": {
-      "status": "Remains sidelined",
-      "designation": "Remains sidelined",
-      "date": "2026-08-05T10:46:27-07:00",
-      "direct_quote": "Mike Evans: Remains sidelined",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mse3gwmqow23"
+      "status": "Nearing return to practice",
+      "designation": "Nearing return to practice",
+      "date": "2026-08-08T14:19:43-07:00",
+      "direct_quote": "Mike Evans: Nearing return to practice",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mslyr2bflo2x"
     },
-    "last_diff_summary": "Mike Evans will play in 2026 and has joined Kyle Shanahan's team, though he may not return to Tampa Bay. He is currently sidelined with a minor quad strain and not practicing, but has been seen catching passes. Evans is reportedly winning over teammates and coaches.",
+    "last_diff_summary": "Mike Evans will play in 2026 and is joining the San Francisco 49ers. He is currently dealing with a strained quad and has not practiced since August 3rd, but is nearing a return to practice.",
     "summary_fallback": false
   },
   "00-0033873": {
@@ -609,18 +609,18 @@
   },
   "00-0036613": {
     "player_name": "Jaylen Waddle",
-    "current_designation": "Should be back in 4-5 days",
-    "last_updated": "2026-08-06T11:32:06-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msgohi3t552k",
-    "last_report_id": "c680c5b2-aa76-4786-a95d-c1b1984addfb",
+    "current_designation": "Sheds leg sleeve",
+    "last_updated": "2026-08-08T09:17:01-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mslhtrvfyc2m",
+    "last_report_id": "87488376-7a74-47bc-9ad0-c290f3c08b28",
     "last_extraction": {
-      "status": "Should be back in 4-5 days",
-      "designation": "Should be back in 4-5 days",
-      "date": "2026-08-06T11:32:06-07:00",
-      "direct_quote": "Jaylen Waddle: Should be back in 4-5 days",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msgohi3t552k"
+      "status": "Sheds leg sleeve",
+      "designation": "Sheds leg sleeve",
+      "date": "2026-08-08T09:17:01-07:00",
+      "direct_quote": "Jaylen Waddle: Sheds leg sleeve",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mslhtrvfyc2m"
     },
-    "last_diff_summary": "Jaylen Waddle was traded to Denver on March 17th, opening up cap space for the team. He exited practice on August 5th due to muscle tightness and was present for practice on August 6th without a helmet, with an expected return in 4-5 days.",
+    "last_diff_summary": "Jaylen Waddle was traded to the Denver Broncos on March 17th. He exited practice on August 5th due to muscle tightness but shed his leg sleeve on August 8th and is expected back in 4-5 days.",
     "summary_fallback": false
   },
   "00-0039040": {
@@ -849,18 +849,18 @@
   },
   "00-0039064": {
     "player_name": "Zay Flowers",
-    "current_designation": "Signs extension",
-    "last_updated": "2026-08-04T08:45:14-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbe7awxv42o",
-    "last_report_id": "8020e1b8-03e8-4d13-b914-19305acbc9f2",
+    "current_designation": "Day-to-day with quad bruise",
+    "last_updated": "2026-08-08T10:05:19-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mslkk563qm2g",
+    "last_report_id": "77cf4f6f-7b72-451c-bf84-d791fe7f8754",
     "last_extraction": {
-      "status": "Signs extension",
-      "designation": "Signs extension",
-      "date": "2026-08-04T08:45:14-07:00",
-      "direct_quote": "Zay Flowers: Signs extension",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbe7awxv42o"
+      "status": "Day-to-day with quad bruise",
+      "designation": "Day-to-day with quad bruise",
+      "date": "2026-08-08T10:05:19-07:00",
+      "direct_quote": "Zay Flowers: Day-to-day with quad bruise",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mslkk563qm2g"
     },
-    "last_diff_summary": "The Baltimore Ravens picked up Zay Flowers' fifth-year option on April 23rd. On July 16th, 84 days later, the Ravens expressed keenness on an extension. By August 4th, 19 days later, Flowers had signed an extension.",
+    "last_diff_summary": "Zay Flowers signed an extension with the Ravens on August 4th after the team picked up his fifth-year option. He exited practice on August 8th with a quad bruise and is considered day-to-day.",
     "summary_fallback": false
   },
   "00-0036554": {
@@ -929,18 +929,18 @@
   },
   "00-0041512": {
     "player_name": "Jadarian Price",
-    "current_designation": "First up for first-team reps",
-    "last_updated": "2026-07-31T06:58:47-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx4fahir22i",
-    "last_report_id": "57d7b892-4350-439e-9ef1-9aeab60103ff",
+    "current_designation": "Expected back soon",
+    "last_updated": "2026-08-08T19:19:04-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msmjidigwp24",
+    "last_report_id": "3c60af67-b755-4096-be93-5695698db612",
     "last_extraction": {
-      "status": "First up for first-team reps",
-      "designation": "First up for first-team reps",
-      "date": "2026-07-31T06:58:47-07:00",
-      "direct_quote": "Jadarian Price: First up for first-team reps",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx4fahir22i"
+      "status": "Expected back soon",
+      "designation": "Expected back soon",
+      "date": "2026-08-08T19:19:04-07:00",
+      "direct_quote": "Jadarian Price: Expected back soon",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msmjidigwp24"
     },
-    "last_diff_summary": "Jadarian Price was selected by Seattle on April 23rd, 2026. He began receiving first-team reps in early June and was splitting them by July 27th, 2026, being listed as first up for first-team reps on July 31st, 2026.",
+    "last_diff_summary": "Jadarian Price, selected by Seattle, is dealing with lower-body soreness as of August 8th but is expected back soon. He has been splitting first-team reps in training camp.",
     "summary_fallback": false
   },
   "00-0037740": {

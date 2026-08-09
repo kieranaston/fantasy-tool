@@ -811,5 +811,23 @@
       "triaged": true
     },
     "extraction": null
+  },
+  {
+    "timestamp": "2026-08-09T12:27:06Z",
+    "reason": "unmatched_player_name",
+    "failed_fields": [],
+    "source": {
+      "id": "0089653e-cf21-451b-b9b7-33054d758ccc",
+      "player_id": null,
+      "player_name": "Luther Burden III",
+      "timestamp": "2026-08-08T08:38:36-07:00",
+      "designation": "Exits practice with apparent injury",
+      "source_text": "Luther Burden: Exits practice with apparent injury",
+      "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mslfp44jkb2q",
+      "source_type": "beat_reporter",
+      "needs_review": true,
+      "triaged": true
+    },
+    "extraction": null
   }
 ]
