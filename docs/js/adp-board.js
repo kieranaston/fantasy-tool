@@ -1,8 +1,9 @@
 import { fetchJSON, showError, revealPage } from "./config.js";
 import {
   projectionsPathForFormat,
+  formatAdpRoundPick,
   SKILL_POSITIONS,
-} from "./draft-scoring.js?v=59";
+} from "./draft-scoring.js?v=60";
 import { loadLikedIds, toggleLikedId } from "./draft-liked.js?v=1";
 
 const ADP_MISSING = 9999;
@@ -126,6 +127,7 @@ async function mountAdpBoardPage() {
     const starred = likedIds.size;
     summaryEl.textContent = [
       boardMeta.label || "ADP",
+      "12-team round.pick",
       `${visibleCount} players`,
       starred ? `${starred} starred` : "no stars yet",
       "Stars sync with Draft",
@@ -157,11 +159,12 @@ async function mountAdpBoardPage() {
               const id = sleeperIdOf(p);
               const liked = likedIds.has(id);
               const adp = adpNumber(p);
+              const adpLabel = adp == null ? null : formatAdpRoundPick(adp, 12);
               return `<tr class="${liked ? "draft-liked" : ""}">
                 <td>${i + 1}</td>
                 <td><span class="draft-player-cell">${starButtonHtml(id, liked)}${playerMediaHtml(p)}</span></td>
                 <td>${escapeHtml(p.position)}</td>
-                <td>${adp == null ? "—" : escapeHtml(adp)}</td>
+                <td>${adpLabel == null ? "—" : escapeHtml(adpLabel)}</td>
                 <td>${p.bye_week == null ? "—" : escapeHtml(p.bye_week)}</td>
                 <td>${p.pts == null ? "—" : escapeHtml(Number(p.pts).toFixed(1))}</td>
               </tr>`;

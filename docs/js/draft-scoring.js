@@ -419,6 +419,21 @@ function adpValue(player) {
   return Number.isFinite(adp) && adp > 0 ? adp : ADP_MISSING;
 }
 
+/** Format overall ADP as round.pick for a fixed team count (default 12). */
+function formatAdpRoundPick(adp, teams = 12) {
+  const overall = Number(adp);
+  if (!Number.isFinite(overall) || overall <= 0) return null;
+  const t = Math.max(1, Math.round(Number(teams) || 12));
+  let round = Math.floor((overall - 1) / t) + 1;
+  let pick = Math.round(((overall - 1) % t) + 1);
+  if (pick > t) {
+    pick = 1;
+    round += 1;
+  }
+  if (pick < 1) pick = 1;
+  return `${round}.${String(pick).padStart(2, "0")}`;
+}
+
 /**
  * ADP as a VORP-scale term: lower ADP → higher score.
  * Missing ADP sorts as undrafted (worst).
@@ -817,6 +832,7 @@ export {
   needState,
   nextPickNumbers,
   scoreCandidates,
+  formatAdpRoundPick,
   SKILL_POSITIONS,
   SCORING_FORMATS,
   FORMAT_LABELS,

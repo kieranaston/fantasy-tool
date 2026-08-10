@@ -6,8 +6,9 @@ import {
   resolveScoringFormat,
   projectionsPathForFormat,
   rescoreProjectionBoard,
+  formatAdpRoundPick,
   SKILL_POSITIONS,
-} from "./draft-scoring.js?v=59";
+} from "./draft-scoring.js?v=60";
 import {
   loadLikedIds,
   toggleLikedId,
@@ -84,6 +85,11 @@ function riskHtml(risk) {
   return "—";
 }
 
+function adpHtml(adp) {
+  const label = formatAdpRoundPick(adp, 12);
+  return label == null ? "—" : escapeHtml(label);
+}
+
 function scoreRowCells(r, { liked = false } = {}) {
   return `
     <td>${playerCellHtml(r, { liked })}</td>
@@ -91,7 +97,7 @@ function scoreRowCells(r, { liked = false } = {}) {
     <td>${r.bye_week == null ? "—" : escapeHtml(r.bye_week)}</td>
     <td>${escapeHtml(r.vorp)}</td>
     <td>${needBonusHtml(r.need_bonus)}</td>
-    <td>${r.adp == null ? "—" : escapeHtml(r.adp)}</td>
+    <td>${adpHtml(r.adp)}</td>
     <td>${riskHtml(r.risk)}</td>
     <td><strong>${escapeHtml(r.score)}</strong></td>`;
 }
@@ -669,7 +675,7 @@ async function mountDraftCompanionPage() {
                 <td>${player.bye_week == null ? "—" : escapeHtml(player.bye_week)}</td>
                 <td>${scored ? escapeHtml(scored.vorp) : "—"}</td>
                 <td>${scored ? needBonusHtml(scored.need_bonus) : "—"}</td>
-                <td>${player.adp == null ? "—" : escapeHtml(player.adp)}</td>
+                <td>${adpHtml(player.adp)}</td>
                 <td>${scored ? riskHtml(scored.risk) : "—"}</td>
                 ${scoreCell}
               </tr>`;
