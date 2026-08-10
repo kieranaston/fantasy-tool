@@ -126,29 +126,57 @@ function bindExpand(container) {
   });
 }
 
+function matchesNewsQuery(player, query) {
+  if (!query) return true;
+  const haystack = [
+    player.player_name,
+    player.team,
+    player.current_designation,
+    player.diff_summary,
+  ]
+    .map((v) => String(v || "").toLowerCase())
+    .join(" ");
+  return haystack.includes(query);
+}
+
 async function mountInjuriesPage() {
   const container = document.getElementById("injuries-container");
   const meta = document.querySelector("[data-injuries='summary']");
+  const searchInput = document.getElementById("news-player-search");
 
   try {
     const data = await fetchJSON("injuries/summaries.json");
     const players = [...(data.players || [])].sort((a, b) =>
       String(b.last_updated || "").localeCompare(String(a.last_updated || ""))
     );
-    if (meta) {
-      meta.textContent = data.last_updated
-        ? `Updated ${formatTimestamp(data.last_updated)} · ${players.length} players`
-        : `No refresh yet · ${players.length} players`;
+
+    function render(filtered) {
+      if (meta) {
+        const age = data.news_max_age_days;
+        const ageBit = age ? ` · last ${age}d` : "";
+        meta.textContent = data.last_updated
+          ? `Updated ${formatTimestamp(data.last_updated)} · ${filtered.length} players${ageBit}`
+          : `No refresh yet · ${filtered.length} players${ageBit}`;
+      }
+      if (!filtered.length) {
+        container.innerHTML = players.length
+          ? `<p class="meta">No players match.</p>`
+          : `<p class="meta">No player news yet.</p>`;
+        return;
+      }
+      container.innerHTML = filtered.map(playerCard).join("");
     }
 
-    if (!players.length) {
-      container.innerHTML = `<p class="meta">No player news yet.</p>`;
-      revealPage();
-      return;
+    function applyFilter() {
+      const query = String(searchInput?.value || "")
+        .trim()
+        .toLowerCase();
+      render(players.filter((p) => matchesNewsQuery(p, query)));
     }
 
-    container.innerHTML = players.map(playerCard).join("");
+    searchInput?.addEventListener("input", applyFilter);
     bindExpand(container);
+    applyFilter();
     revealPage();
 
     const hash = window.location.hash.replace(/^#/, "");

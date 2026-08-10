@@ -559,6 +559,27 @@ table.draft-table > thead > tr > th {
 
 
 
+.news-search-row {
+  margin: 0.65rem 0 1rem;
+}
+
+.news-search-row input {
+  width: 100%;
+  max-width: 28rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #9ca3af;
+  padding: 0.25rem 0;
+}
+
+.news-search-row input:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;

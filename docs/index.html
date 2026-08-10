@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Player News</title>
-    <link rel="stylesheet" href="css/site.css?v=24" />
+    <link rel="stylesheet" href="css/site.css?v=25" />
   </head>
   <body class="is-page-loading">
     <nav class="site-nav" aria-label="Primary">
@@ -16,12 +16,22 @@
       <div class="container">
         <h1 class="page-title">Player News</h1>
         <p class="meta" data-injuries="summary">Loading…</p>
+        <div class="news-search-row">
+          <label for="news-player-search" class="visually-hidden">Search player news</label>
+          <input
+            id="news-player-search"
+            type="search"
+            spellcheck="false"
+            autocomplete="off"
+            placeholder="Search by player, team, or status"
+          />
+        </div>
         <div id="injuries-container" class="injuries-list"></div>
       </div>
     </main>
 
     <script type="module">
-      import { mountInjuriesPage } from "./js/injuries.js?v=4";
+      import { mountInjuriesPage } from "./js/injuries.js?v=5";
       mountInjuriesPage();
     </script>
   </body>

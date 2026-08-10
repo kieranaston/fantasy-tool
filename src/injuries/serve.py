@@ -13,7 +13,7 @@ from src.loaders.nfl_data import (
 )
 
 # Drop players whose newest post/status is older than this.
-NEWS_MAX_AGE = timedelta(days=90)
+NEWS_MAX_AGE = timedelta(days=14)
 
 
 def _parse_timestamp(raw: Any) -> datetime | None:
