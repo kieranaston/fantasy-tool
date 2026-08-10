@@ -146,6 +146,8 @@ async function mountInjuriesPage() {
   const container = document.getElementById("injuries-container");
   const meta = document.querySelector("[data-injuries='summary']");
   const searchInput = document.getElementById("news-player-search");
+  // Never leave the page stuck on the hidden loading shell.
+  const failsafe = setTimeout(() => revealPage(), 4000);
 
   try {
     const data = await fetchJSON("injuries/summaries.json");
@@ -188,19 +190,21 @@ async function mountInjuriesPage() {
     });
     bindExpand(container, playersById);
     applyFilter();
-    revealPage();
-
-    const hash = window.location.hash.replace(/^#/, "");
-    if (hash) {
-      const target = document.getElementById(hash);
-      if (target) {
-        target.classList.add("injury-card-target");
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
   } catch (err) {
-    showError(container, err.message);
+    if (container) showError(container, err.message || String(err));
+    else if (meta) meta.textContent = err.message || String(err);
+  } finally {
+    clearTimeout(failsafe);
     revealPage();
+  }
+
+  const hash = window.location.hash.replace(/^#/, "");
+  if (hash) {
+    const target = document.getElementById(hash);
+    if (target) {
+      target.classList.add("injury-card-target");
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   }
 }
 
