@@ -7,6 +7,8 @@ import {
 import { loadLikedIds, toggleLikedId } from "./draft-liked.js?v=1";
 
 const ADP_MISSING = 9999;
+/** Roughly 10 rounds in a 12-team draft — enough to star without an endless list. */
+const ADP_BOARD_LIMIT = 120;
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -112,22 +114,41 @@ async function mountAdpBoardPage() {
       .trim()
       .toLowerCase();
     const onlyStarred = Boolean(starredOnly?.checked);
-    return sortByAdp(players).filter((p) => {
+    let list = sortByAdp(players).filter((p) => {
       const pos = String(p.position || "").toUpperCase();
       if (!SKILL_POSITIONS.includes(pos)) return false;
-      if (position !== "overall" && pos !== position) return false;
       const id = sleeperIdOf(p);
       if (onlyStarred && !likedIds.has(id)) return false;
       return matchesFilter(p, query);
     });
+    // Default board: top overall ADP window, then position tab.
+    if (!onlyStarred && !query) {
+      list = list
+        .filter((p) => adpNumber(p) != null)
+        .slice(0, ADP_BOARD_LIMIT)
+        .filter((p) => {
+          const pos = String(p.position || "").toUpperCase();
+          return position === "overall" || pos === position;
+        });
+    } else if (position !== "overall") {
+      list = list.filter(
+        (p) => String(p.position || "").toUpperCase() === position
+      );
+    }
+    return list;
   }
 
   function updateSummary(visibleCount) {
     if (!summaryEl) return;
     const starred = likedIds.size;
+    const query = String(searchInput?.value || "").trim();
+    const onlyStarred = Boolean(starredOnly?.checked);
+    const scope =
+      !onlyStarred && !query ? `top ${ADP_BOARD_LIMIT} ADP` : "filtered";
     summaryEl.textContent = [
       boardMeta.label || "ADP",
       "12-team round.pick",
+      scope,
       `${visibleCount} players`,
       starred ? `${starred} starred` : "no stars yet",
       "Stars sync with Draft",
