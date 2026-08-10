@@ -106,19 +106,22 @@ function playerCard(player) {
         <span class="sources-toggle-label">Sources (${sourceCount})</span>
         <span class="expand-hint" aria-hidden="true">+</span>
       </button>
-      <div class="injury-card-body" hidden>
-        ${sourcesHtml(player.timeline)}
-      </div>
+      <div class="injury-card-body" hidden data-lazy-sources="1"></div>
     </article>`;
 }
 
-function bindExpand(container) {
+function bindExpand(container, playersById) {
   container.addEventListener("click", (event) => {
     const header = event.target.closest(".injury-card-header");
     if (!header) return;
     const card = header.closest(".injury-card");
     const body = card.querySelector(".injury-card-body");
     const expanded = header.getAttribute("aria-expanded") === "true";
+    if (!expanded && body?.dataset.lazySources === "1") {
+      const player = playersById.get(card.getAttribute("data-player-id"));
+      body.innerHTML = sourcesHtml(player?.timeline);
+      delete body.dataset.lazySources;
+    }
     header.setAttribute("aria-expanded", expanded ? "false" : "true");
     body.hidden = expanded;
     const hint = header.querySelector(".expand-hint");
@@ -150,6 +153,11 @@ async function mountInjuriesPage() {
       String(b.last_updated || "").localeCompare(String(a.last_updated || ""))
     );
 
+    const playersById = new Map(
+      players.map((p) => [String(p.player_id), p])
+    );
+    let searchTimer = null;
+
     function render(filtered) {
       if (meta) {
         const age = data.news_max_age_days;
@@ -174,8 +182,11 @@ async function mountInjuriesPage() {
       render(players.filter((p) => matchesNewsQuery(p, query)));
     }
 
-    searchInput?.addEventListener("input", applyFilter);
-    bindExpand(container);
+    searchInput?.addEventListener("input", () => {
+      if (searchTimer) clearTimeout(searchTimer);
+      searchTimer = setTimeout(applyFilter, 120);
+    });
+    bindExpand(container, playersById);
     applyFilter();
     revealPage();
 

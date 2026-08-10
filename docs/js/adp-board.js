@@ -1,14 +1,20 @@
 import { fetchJSON, showError, revealPage } from "./config.js";
-import {
-  projectionsPathForFormat,
-  formatAdpRoundPick,
-  SKILL_POSITIONS,
-} from "./draft-scoring.js?v=60";
 import { loadLikedIds, toggleLikedId } from "./draft-liked.js?v=1";
 
 const ADP_MISSING = 9999;
-/** Roughly 10 rounds in a 12-team draft — enough to star without an endless list. */
+const SKILL_POSITIONS = ["QB", "RB", "WR", "TE"];
+/** Roughly 10 rounds in a 12-team draft. */
 const ADP_BOARD_LIMIT = 120;
+const FORMAT_PATHS = {
+  half_ppr: "draft/projections-half-ppr.json",
+  full_ppr: "draft/projections-full-ppr.json",
+  std: "draft/projections-std.json",
+};
+const FORMAT_LABELS = {
+  half_ppr: "Half PPR",
+  full_ppr: "Full PPR",
+  std: "Standard",
+};
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -30,25 +36,19 @@ function adpNumber(player) {
   return Number.isFinite(n) && n > 0 ? n : null;
 }
 
-function playerMediaHtml(player) {
-  const display = escapeHtml(player?.player || player?.name || "");
-  const headshot = player?.headshot;
-  const logo = player?.logo;
-  const team = player?.team ? String(player.team).toUpperCase() : "";
-  const headshotHtml = headshot
-    ? `<img class="player-headshot" src="${escapeHtml(headshot)}" alt="" width="28" height="28" loading="lazy" decoding="async" />`
-    : `<span class="player-headshot player-headshot--empty" aria-hidden="true"></span>`;
-  const teamBits = [];
-  if (logo) {
-    teamBits.push(
-      `<img class="team-logo" src="${escapeHtml(logo)}" alt="" width="14" height="14" loading="lazy" decoding="async" />`
-    );
+/** Format overall ADP as round.pick for a 12-team league. */
+function formatAdpRoundPick(adp, teams = 12) {
+  const overall = Number(adp);
+  if (!Number.isFinite(overall) || overall <= 0) return null;
+  const t = Math.max(1, Math.round(Number(teams) || 12));
+  let round = Math.floor((overall - 1) / t) + 1;
+  let pick = Math.round(((overall - 1) % t) + 1);
+  if (pick > t) {
+    pick = 1;
+    round += 1;
   }
-  if (team) teamBits.push(`<span>${escapeHtml(team)}</span>`);
-  const teamHtml = teamBits.length
-    ? `<span class="player-media-team">${teamBits.join("")}</span>`
-    : "";
-  return `<span class="player-media">${headshotHtml}<span class="player-media-text"><span class="player-media-name">${display}</span>${teamHtml}</span></span>`;
+  if (pick < 1) pick = 1;
+  return `${round}.${String(pick).padStart(2, "0")}`;
 }
 
 function starButtonHtml(playerId, liked) {
@@ -57,26 +57,35 @@ function starButtonHtml(playerId, liked) {
   return `<button type="button" class="draft-star${on ? " is-liked" : ""}" data-player-id="${id}" aria-label="${on ? "Unstar player" : "Star player"}" aria-pressed="${on ? "true" : "false"}">★</button>`;
 }
 
-async function loadBoardPlayers() {
-  try {
-    const custom = await fetchJSON("draft/projections-custom.json");
-    if (custom?.players?.length) {
-      return {
-        players: custom.players,
-        label: custom.league_name
-          ? `${custom.league_name} · FantasyPros`
-          : "FantasyPros · custom",
-        source: custom.source || "fantasypros_csv",
-      };
-    }
-  } catch {
-    /* fall through */
-  }
-  const data = await fetchJSON(projectionsPathForFormat("half_ppr"));
+function playerCellHtml(player, liked) {
+  const name = escapeHtml(player?.player || player?.name || "");
+  const team = player?.team ? String(player.team).toUpperCase() : "";
+  const teamHtml = team
+    ? `<span class="adp-player-team">${escapeHtml(team)}</span>`
+    : "";
+  return `<span class="draft-player-cell">${starButtonHtml(sleeperIdOf(player), liked)}<span class="adp-player-text"><span class="adp-player-name">${name}</span>${teamHtml}</span></span>`;
+}
+
+function slimPlayers(players) {
+  return (players || []).map((p) => ({
+    sleeper_id: sleeperIdOf(p),
+    player: p.player || p.name || "",
+    team: p.team || "",
+    position: String(p.position || "").toUpperCase(),
+    adp: p.adp,
+    bye_week: p.bye_week ?? null,
+    pts: p.pts,
+  }));
+}
+
+async function loadBoardPlayers(formatKey = "half_ppr") {
+  const path = FORMAT_PATHS[formatKey] || FORMAT_PATHS.half_ppr;
+  const data = await fetchJSON(path);
   return {
-    players: data.players || [],
-    label: data.format || "Half PPR",
+    players: slimPlayers(data.players || []),
+    label: FORMAT_LABELS[formatKey] || data.format || "Half PPR",
     source: data.source || "sleeper",
+    format: formatKey,
   };
 }
 
@@ -94,12 +103,16 @@ async function mountAdpBoardPage() {
   const searchInput = document.getElementById("adp-search");
   const starredOnly = document.getElementById("adp-starred-only");
   const tabs = [...document.querySelectorAll(".adp-tab")];
+  const formatTabs = [...document.querySelectorAll(".adp-format-tab")];
   const root = document.querySelector(".container") || document.body;
 
-  let players = [];
-  let boardMeta = { label: "", source: "" };
+  let playersSorted = [];
+  let boardMeta = { label: "", source: "", format: "half_ppr" };
   let position = "overall";
+  let formatKey = "half_ppr";
   let likedIds = loadLikedIds();
+  let searchTimer = null;
+  let loadGen = 0;
 
   function matchesFilter(player, query) {
     if (!query) return true;
@@ -114,26 +127,18 @@ async function mountAdpBoardPage() {
       .trim()
       .toLowerCase();
     const onlyStarred = Boolean(starredOnly?.checked);
-    let list = sortByAdp(players).filter((p) => {
-      const pos = String(p.position || "").toUpperCase();
-      if (!SKILL_POSITIONS.includes(pos)) return false;
-      const id = sleeperIdOf(p);
-      if (onlyStarred && !likedIds.has(id)) return false;
+    let list = playersSorted.filter((p) => {
+      if (!SKILL_POSITIONS.includes(p.position)) return false;
+      if (onlyStarred && !likedIds.has(p.sleeper_id)) return false;
       return matchesFilter(p, query);
     });
-    // Default board: top overall ADP window, then position tab.
     if (!onlyStarred && !query) {
       list = list
         .filter((p) => adpNumber(p) != null)
         .slice(0, ADP_BOARD_LIMIT)
-        .filter((p) => {
-          const pos = String(p.position || "").toUpperCase();
-          return position === "overall" || pos === position;
-        });
+        .filter((p) => position === "overall" || p.position === position);
     } else if (position !== "overall") {
-      list = list.filter(
-        (p) => String(p.position || "").toUpperCase() === position
-      );
+      list = list.filter((p) => p.position === position);
     }
     return list;
   }
@@ -144,7 +149,7 @@ async function mountAdpBoardPage() {
     const query = String(searchInput?.value || "").trim();
     const onlyStarred = Boolean(starredOnly?.checked);
     const scope =
-      !onlyStarred && !query ? `top ${ADP_BOARD_LIMIT} ADP` : "filtered";
+      !onlyStarred && !query ? `top ${ADP_BOARD_LIMIT}` : "filtered";
     summaryEl.textContent = [
       boardMeta.label || "ADP",
       "12-team round.pick",
@@ -162,6 +167,7 @@ async function mountAdpBoardPage() {
       boardEl.innerHTML = `<p class="meta">No players match.</p>`;
       return;
     }
+    // Text-only rows (no headshots) keep tab/filter switches snappy.
     boardEl.innerHTML = `
       <table class="draft-table cell-border adp-table">
         <thead>
@@ -177,13 +183,12 @@ async function mountAdpBoardPage() {
         <tbody>
           ${rows
             .map((p, i) => {
-              const id = sleeperIdOf(p);
-              const liked = likedIds.has(id);
+              const liked = likedIds.has(p.sleeper_id);
               const adp = adpNumber(p);
               const adpLabel = adp == null ? null : formatAdpRoundPick(adp, 12);
               return `<tr class="${liked ? "draft-liked" : ""}">
                 <td>${i + 1}</td>
-                <td><span class="draft-player-cell">${starButtonHtml(id, liked)}${playerMediaHtml(p)}</span></td>
+                <td>${playerCellHtml(p, liked)}</td>
                 <td>${escapeHtml(p.position)}</td>
                 <td>${adpLabel == null ? "—" : escapeHtml(adpLabel)}</td>
                 <td>${p.bye_week == null ? "—" : escapeHtml(p.bye_week)}</td>
@@ -205,24 +210,67 @@ async function mountAdpBoardPage() {
     render();
   }
 
+  async function setFormat(next) {
+    if (!FORMAT_PATHS[next] || next === formatKey) return;
+    formatKey = next;
+    for (const tab of formatTabs) {
+      const active = tab.dataset.format === formatKey;
+      tab.classList.toggle("is-active", active);
+      tab.setAttribute("aria-selected", active ? "true" : "false");
+    }
+    const gen = ++loadGen;
+    if (summaryEl) summaryEl.textContent = "Loading…";
+    try {
+      const board = await loadBoardPlayers(formatKey);
+      if (gen !== loadGen) return;
+      playersSorted = sortByAdp(
+        (board.players || []).filter((p) =>
+          SKILL_POSITIONS.includes(p.position)
+        )
+      );
+      boardMeta = board;
+      render();
+    } catch (err) {
+      if (gen !== loadGen) return;
+      showError(boardEl, err.message);
+    }
+  }
+
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => setPosition(tab.dataset.pos || "overall"));
   });
-  searchInput?.addEventListener("input", () => render());
+  formatTabs.forEach((tab) => {
+    tab.addEventListener("click", () => setFormat(tab.dataset.format || "half_ppr"));
+  });
+  searchInput?.addEventListener("input", () => {
+    if (searchTimer) clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => render(), 120);
+  });
   starredOnly?.addEventListener("change", () => render());
 
   root.addEventListener("click", (event) => {
     const btn = event.target.closest(".draft-star");
     if (!btn || !root.contains(btn)) return;
     event.preventDefault();
-    likedIds = toggleLikedId(likedIds, btn.getAttribute("data-player-id"));
-    render();
+    const id = btn.getAttribute("data-player-id");
+    likedIds = toggleLikedId(likedIds, id);
+    const on = likedIds.has(String(id || ""));
+    root
+      .querySelectorAll(`.draft-star[data-player-id="${CSS.escape(String(id || ""))}"]`)
+      .forEach((el) => {
+        el.classList.toggle("is-liked", on);
+        el.setAttribute("aria-pressed", on ? "true" : "false");
+        el.setAttribute("aria-label", on ? "Unstar player" : "Star player");
+        const row = el.closest("tr");
+        if (row) row.classList.toggle("draft-liked", on);
+      });
+    updateSummary(visiblePlayers().length);
   });
 
   try {
-    const board = await loadBoardPlayers();
-    players = (board.players || []).filter((p) =>
-      SKILL_POSITIONS.includes(String(p.position || "").toUpperCase())
+    const board = await loadBoardPlayers(formatKey);
+    playersSorted = sortByAdp(
+      (board.players || []).filter((p) => SKILL_POSITIONS.includes(p.position))
     );
     boardMeta = board;
     render();

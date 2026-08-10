@@ -6,19 +6,23 @@ import {
   resolveScoringFormat,
   projectionsPathForFormat,
   rescoreProjectionBoard,
+  overlayAdpFromPlayers,
+  formatFromReceptionPoints,
   formatAdpRoundPick,
   SKILL_POSITIONS,
-} from "./draft-scoring.js?v=60";
+  SCORING_FORMATS,
+  FORMAT_LABELS,
+} from "./draft-scoring.js?v=62";
 import {
   loadLikedIds,
   toggleLikedId,
 } from "./draft-liked.js?v=1";
 
 /** Fast on your turn / on deck; slower while waiting. */
-const POLL_ON_CLOCK_MS = 500;
-const POLL_ON_DECK_MS = 800;
-const POLL_WAITING_MS = 1500;
-const POLL_IDLE_MS = 4000;
+const POLL_ON_CLOCK_MS = 1200;
+const POLL_ON_DECK_MS = 1500;
+const POLL_WAITING_MS = 2500;
+const POLL_IDLE_MS = 5000;
 const DRAFT_META_EVERY = 12;
 const LS_LEAGUE = "draft-companion:league-id";
 const LS_DRAFT = "draft-companion:draft-id";
@@ -239,6 +243,40 @@ async function mountDraftCompanionPage() {
   let configuredLeague = null;
   /** Raw FantasyPros custom board (with stats) before live re-score. */
   let customBoardRaw = null;
+  /** Cached format boards used only for ADP overlays. */
+  const adpBoardCache = new Map();
+
+  async function loadAdpOverlayPlayers(formatKey) {
+    const key = SCORING_FORMATS.includes(formatKey) ? formatKey : "half_ppr";
+    if (adpBoardCache.has(key)) return adpBoardCache.get(key);
+    try {
+      const data = await fetchJSON(projectionsPathForFormat(key));
+      const players = data?.players || [];
+      adpBoardCache.set(key, players);
+      return players;
+    } catch {
+      adpBoardCache.set(key, []);
+      return [];
+    }
+  }
+
+  function adpFormatKey(formatInfo, scoring = {}) {
+    const fromInfo =
+      formatInfo?.format && formatInfo.format !== "custom"
+        ? formatInfo.format
+        : null;
+    if (fromInfo && SCORING_FORMATS.includes(fromInfo)) return fromInfo;
+    return formatFromReceptionPoints(scoring.rec) || "half_ppr";
+  }
+
+  async function withFormatAdp(players, formatInfo, scoring) {
+    const formatKey = adpFormatKey(formatInfo, scoring);
+    const adpPlayers = await loadAdpOverlayPlayers(formatKey);
+    return {
+      players: overlayAdpFromPlayers(players, adpPlayers),
+      adpFormat: formatKey,
+    };
+  }
   let takenIndex = new Set();
   let pollTimer = null;
   let draftId = null;
@@ -271,7 +309,15 @@ async function mountDraftCompanionPage() {
 
   function toggleLiked(id) {
     likedIds = toggleLikedId(likedIds, id);
-    renderLikedSurfaces();
+    const key = String(id || "");
+    const on = likedIds.has(key);
+    rootEl?.querySelectorAll(`.draft-star[data-player-id="${CSS.escape(key)}"]`).forEach((btn) => {
+      btn.classList.toggle("is-liked", on);
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+      btn.setAttribute("aria-label", on ? "Unstar player" : "Star player");
+      const row = btn.closest("tr, li");
+      if (row) row.classList.toggle("draft-liked", on);
+    });
   }
 
   function persistInputs() {
@@ -312,6 +358,9 @@ async function mountDraftCompanionPage() {
     projections = players;
     indexProjections(projections);
     const custom = Boolean(meta.custom);
+    const adpFormat = meta.adp_format || formatInfo?.format || null;
+    const adpLabel =
+      adpFormat && FORMAT_LABELS[adpFormat] ? FORMAT_LABELS[adpFormat] : null;
     scoringFormat = {
       ...formatInfo,
       format: custom ? "custom" : meta.format || formatInfo.format,
@@ -319,12 +368,16 @@ async function mountDraftCompanionPage() {
         ? `${formatInfo?.label || "Custom"} · FantasyPros`
         : formatInfo?.label || meta.format || "Half PPR",
       board_source: meta.source || (custom ? "fantasypros_csv" : "sleeper"),
+      adp_format: adpFormat,
       league_id:
         meta.league_id ||
         configuredLeague?.league_id ||
         defaultLeague?.league_id ||
         null,
     };
+    if (custom && adpLabel) {
+      scoringFormat.label = `${adpLabel} · FantasyPros`;
+    }
   }
 
   async function loadProjectionsForFormat(formatInfo) {
@@ -341,11 +394,21 @@ async function mountDraftCompanionPage() {
 
     if (customBoardRaw?.players?.length) {
       const scored = rescoreProjectionBoard(customBoardRaw.players, scoring);
-      applyScoredPlayers(scored, formatInfo, {
+      // Drop bulky raw stats after pts are baked — keeps memory/GC lighter.
+      for (const p of scored) {
+        if (p.stats) delete p.stats;
+      }
+      const { players: withAdp, adpFormat } = await withFormatAdp(
+        scored,
+        formatInfo,
+        scoring
+      );
+      applyScoredPlayers(withAdp, formatInfo, {
         custom: true,
         source: "fantasypros_csv",
         league_id: configuredLeague?.league_id || customBoardRaw.league_id,
         format: "custom",
+        adp_format: adpFormat,
       });
       return;
     }
@@ -357,6 +420,7 @@ async function mountDraftCompanionPage() {
       source: data.source || "sleeper",
       format: data.format,
       league_id: configuredLeague?.league_id || null,
+      adp_format: data.format,
     });
   }
 
@@ -712,7 +776,7 @@ async function mountDraftCompanionPage() {
       mySlot,
       currentPickNo: timing.pickNo,
       rounds: timing.rounds,
-      limit: Infinity,
+      limit: 40,
     });
 
     hasScoredOnce = true;

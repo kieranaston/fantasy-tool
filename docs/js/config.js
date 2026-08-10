@@ -23,8 +23,8 @@ function dataPath(relativePath) {
 }
 
 /** Fetch and parse a JSON file from docs/data/. */
-async function fetchJSON(relativePath) {
-  const response = await fetch(dataPath(relativePath), { cache: "no-store" });
+async function fetchJSON(relativePath, { cache = "force-cache" } = {}) {
+  const response = await fetch(dataPath(relativePath), { cache });
   if (!response.ok) {
     throw new Error(`Failed to load ${relativePath}: ${response.status}`);
   }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ADP Board</title>
-    <link rel="stylesheet" href="../css/site.css?v=24" />
+    <link rel="stylesheet" href="../css/site.css?v=26" />
   </head>
   <body class="is-page-loading">
     <nav class="site-nav" aria-label="Primary">
@@ -18,6 +18,11 @@
         <p class="meta" id="adp-summary">Loading…</p>
 
         <div class="adp-toolbar">
+          <div class="adp-tabs" role="tablist" aria-label="Scoring format">
+            <button type="button" class="adp-format-tab is-active" data-format="half_ppr" role="tab" aria-selected="true">Half PPR</button>
+            <button type="button" class="adp-format-tab" data-format="full_ppr" role="tab" aria-selected="false">Full PPR</button>
+            <button type="button" class="adp-format-tab" data-format="std" role="tab" aria-selected="false">Standard</button>
+          </div>
           <div class="adp-tabs" role="tablist" aria-label="Position">
             <button type="button" class="adp-tab is-active" data-pos="overall" role="tab" aria-selected="true">Overall</button>
             <button type="button" class="adp-tab" data-pos="QB" role="tab" aria-selected="false">QB</button>
@@ -41,7 +46,7 @@
     </main>
 
     <script type="module">
-      import { mountAdpBoardPage } from "../js/adp-board.js?v=3";
+      import { mountAdpBoardPage } from "../js/adp-board.js?v=5";
       mountAdpBoardPage();
     </script>
   </body>

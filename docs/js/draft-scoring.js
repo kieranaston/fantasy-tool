@@ -47,6 +47,15 @@ const RISK_SOFTMAX_TOP = 12;
 /** Temperature for opponent pick softmax (ADP-scale scores). */
 const RISK_SOFTMAX_TEMP = 10;
 
+/**
+ * Cap opponent sim/risk work to this many most-draftable players (by ADP).
+ * Full boards are 400+; scanning them every simulated pick freezes the UI.
+ */
+const SIM_POOL_SIZE = 100;
+
+/** Cap fully scored recommendation candidates after sim (UI + search). */
+const SCORE_POOL_SIZE = 80;
+
 const ADP_MISSING = 9999;
 
 /**
@@ -233,6 +242,32 @@ function rescoreProjectionBoard(players = [], scoringSettings = {}) {
       String(a.player || "").localeCompare(String(b.player || ""))
   );
   return scored.map((p, i) => ({ ...p, proj_rank: i + 1 }));
+}
+
+/**
+ * Replace ADP on a board from another format's projections (by sleeper_id).
+ * Custom FantasyPros boards bake one ADP; PPR mocks need full_ppr ADP, etc.
+ */
+function overlayAdpFromPlayers(players = [], adpPlayers = []) {
+  const byId = new Map();
+  for (const p of adpPlayers || []) {
+    const id = String(p?.sleeper_id || p?.player_id || "")
+      .replace(/^sleeper:/, "")
+      .trim();
+    if (!id) continue;
+    if (p.adp == null || p.adp === "") continue;
+    const adp = Number(p.adp);
+    if (!Number.isFinite(adp) || adp <= 0) continue;
+    byId.set(id, adp);
+  }
+  if (!byId.size) return (players || []).map((p) => ({ ...p }));
+  return (players || []).map((p) => {
+    const id = String(p?.sleeper_id || p?.player_id || "")
+      .replace(/^sleeper:/, "")
+      .trim();
+    if (!id || !byId.has(id)) return { ...p };
+    return { ...p, adp: byId.get(id) };
+  });
 }
 
 /**
@@ -661,6 +696,18 @@ function flattenAvailable(availableByPos) {
   return out;
 }
 
+/** Most draftable available players — used for opponent sim/risk only. */
+function simPoolFromAvailable(availableByPos, size = SIM_POOL_SIZE) {
+  return flattenAvailable(availableByPos)
+    .slice()
+    .sort(
+      (a, b) =>
+        adpValue(a) - adpValue(b) ||
+        (Number(b.pts) || 0) - (Number(a.pts) || 0)
+    )
+    .slice(0, Math.max(1, size));
+}
+
 function groupByPos(players) {
   const out = { QB: [], RB: [], WR: [], TE: [], DEF: [], K: [] };
   for (const p of players) {
@@ -702,7 +749,8 @@ function scoreCandidates({
     teams,
   });
 
-  const pool = flattenAvailable(availableByPos);
+  // Opponent modeling only needs the ADP-relevant pool — not 400+ deep sleepers.
+  const pool = simPoolFromAvailable(availableByPos, SIM_POOL_SIZE);
   const simRosters = cloneRosters(opponentRosters, teams);
   // Ensure your current roster is present for need math during sim.
   simRosters[mySlot] = [...(myRoster || [])];
@@ -741,11 +789,22 @@ function scoreCandidates({
   const availableAtPick = flattenAvailable(availableByPos).filter(
     (p) => !goneBeforeYou.has(playerId(p))
   );
-  const byPosAtPick = groupByPos(availableAtPick);
+  // Prefer scoring the same ADP-relevant slice; keeps UI/search fast.
+  const scoreFocus = new Set(
+    availableAtPick
+      .slice()
+      .sort(
+        (a, b) =>
+          adpValue(a) - adpValue(b) ||
+          (Number(b.pts) || 0) - (Number(a.pts) || 0)
+      )
+      .slice(0, SCORE_POOL_SIZE)
+      .map((p) => playerId(p))
+  );
 
   const myNeed = needState(myRoster, settings);
 
-  // First pass: VORPs on the board you'll see → remaining surplus value.
+  // Surplus uses the full board you'll see; only the focus set gets scored rows.
   const pending = [];
   let surplus = 0;
   for (const pos of SKILL_POSITIONS) {
@@ -753,10 +812,11 @@ function scoreCandidates({
     const need = myNeed.need_count[pos] || 0;
     const needBonus = NEED_K * need;
 
-    for (const player of byPosAtPick[pos] || []) {
+    for (const player of groupByPos(availableAtPick)[pos] || []) {
       const pts = Number(player.pts) || 0;
       const vorp = pts - baseline;
       if (vorp > 0) surplus += vorp;
+      if (!scoreFocus.has(playerId(player))) continue;
       pending.push({ player, pos, vorp, need, needBonus });
     }
   }
@@ -826,6 +886,8 @@ export {
   projectionsPathForBoard,
   projectedPoints,
   rescoreProjectionBoard,
+  overlayAdpFromPlayers,
+  formatFromReceptionPoints,
   rosterPositionCounts,
   draftTargets,
   needCounts,

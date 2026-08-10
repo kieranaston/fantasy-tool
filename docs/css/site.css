@@ -683,13 +683,42 @@ table.draft-table > thead > tr > th {
   cursor: pointer;
 }
 
-.adp-tab:hover {
+.adp-format-tab {
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--muted);
+  background: none;
+  border: none;
+  border-bottom: 1px solid transparent;
+  padding: 0.15rem 0;
+  cursor: pointer;
+}
+
+.adp-tab:hover,
+.adp-format-tab:hover {
   color: var(--text);
 }
 
-.adp-tab.is-active {
+.adp-tab.is-active,
+.adp-format-tab.is-active {
   color: var(--accent);
   border-bottom-color: var(--accent);
+}
+
+.adp-player-text {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  min-width: 0;
+}
+
+.adp-player-name {
+  font-weight: 600;
+}
+
+.adp-player-team {
+  font-size: 0.75rem;
+  color: var(--muted);
 }
 
 .adp-toolbar-actions {
