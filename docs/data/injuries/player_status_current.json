@@ -545,18 +545,18 @@
   },
   "00-0033106": {
     "player_name": "Jared Goff",
-    "current_designation": "Agrees to restructure",
-    "last_updated": "2026-03-11T08:35:09-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgs7kt3xpj25",
-    "last_report_id": "c05741da-e47b-48c4-8eea-5b984418a6d0",
+    "current_designation": "Won't play preseason opener",
+    "last_updated": "2026-08-09T09:58:40-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mso2n6pl5g2x",
+    "last_report_id": "5955b6b4-5bbe-4146-bd90-ea49bcb55995",
     "last_extraction": {
-      "status": "Agrees to restructure",
-      "designation": "Agrees to restructure",
-      "date": "2026-03-11T08:35:09-07:00",
-      "direct_quote": "Jared Goff: Agrees to restructure \n\n https://www.rotowire.com/football/player/jared-goff-10729",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgs7kt3xpj25"
+      "status": "Won't play preseason opener",
+      "designation": "Won't play preseason opener",
+      "date": "2026-08-09T09:58:40-07:00",
+      "direct_quote": "Jared Goff: Won't play preseason opener",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mso2n6pl5g2x"
     },
-    "last_diff_summary": "Jared Goff agreed to a contract restructure on March 11th, 2026.",
+    "last_diff_summary": "Jared Goff agreed to a contract restructure on March 11th. He will not play in the preseason opener on August 9th.",
     "summary_fallback": false
   },
   "00-0037809": {
@@ -737,18 +737,18 @@
   },
   "00-0039337": {
     "player_name": "Malik Nabers",
-    "current_designation": "Rejoins team drills",
-    "last_updated": "2026-08-06T15:59:58-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msh5ghryp42w",
-    "last_report_id": "c7a61c43-b689-481b-8c05-b54b2fcba4b8",
+    "current_designation": "Trending toward Week 1 return",
+    "last_updated": "2026-08-09T06:26:12-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msnorbdmk424",
+    "last_report_id": "b23cc270-0c22-4782-9450-8574fe47112b",
     "last_extraction": {
-      "status": "Rejoins team drills",
-      "designation": "Rejoins team drills",
-      "date": "2026-08-06T15:59:58-07:00",
-      "direct_quote": "Malik Nabers: Rejoins team drills",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msh5ghryp42w"
+      "status": "Trending toward Week 1 return",
+      "designation": "Trending toward Week 1 return",
+      "date": "2026-08-09T06:26:12-07:00",
+      "direct_quote": "Malik Nabers: Trending toward Week 1 return",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msnorbdmk424"
     },
-    "last_diff_summary": "Malik Nabers, who underwent a second procedure in May, is making progress in his recovery and was at 80 percent in his rehab process as of June 10th. He participated in individual drills by July 29th and rejoined team drills on August 6th. The General Manager is hopeful for his availability for Week 1.",
+    "last_diff_summary": "Malik Nabers underwent a second procedure in May and was at 80 percent in his rehab process as of June 10th. He was taking part in individual drills by July 29th and has since rejoined team drills, trending toward a Week 1 return.",
     "summary_fallback": false
   },
   "00-0040715": {
@@ -881,18 +881,18 @@
   },
   "00-0041438": {
     "player_name": "Carnell Tate",
-    "current_designation": "Looked polished at OTAs",
-    "last_updated": "2026-06-29T07:38:58-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mpgppmkwz42v",
-    "last_report_id": "80ffa658-70e5-464f-980d-1dd68c0fa771",
+    "current_designation": "Strong practice Sunday",
+    "last_updated": "2026-08-09T11:18:14-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mso73hnb7n2q",
+    "last_report_id": "00e9f4b3-a0df-45c4-a40e-681b33ff65b5",
     "last_extraction": {
-      "status": "Looked polished at OTAs",
-      "designation": "Looked polished at OTAs",
-      "date": "2026-06-29T07:38:58-07:00",
-      "direct_quote": "Carnell Tate: Looked polished at OTAs",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mpgppmkwz42v"
+      "status": "Strong practice Sunday",
+      "designation": "Strong practice Sunday",
+      "date": "2026-08-09T11:18:14-07:00",
+      "direct_quote": "Carnell Tate: Strong practice Sunday \n\n https://www.rotowire.com/football/player/carnell-tate-19268",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mso73hnb7n2q"
     },
-    "last_diff_summary": "Carnell Tate was added by Tennessee on April 23rd. He looked polished during Organized Team Activities (OTAs), as noted on June 29th, 67 days later.",
+    "last_diff_summary": "Carnell Tate was added by the Tennessee Titans on April 23rd. He looked polished during Organized Team Activities (OTAs) and had a strong practice on Sunday, August 9th.",
     "summary_fallback": false
   },
   "00-0041032": {
@@ -977,18 +977,18 @@
   },
   "00-0038994": {
     "player_name": "Jordan Addison",
-    "current_designation": "Jams thumb, not practicing",
-    "last_updated": "2026-08-05T11:07:08-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mse4lwa7ez2b",
-    "last_report_id": "966b8552-95ea-4473-aaf9-943c07fa1c46",
+    "current_designation": "Nearing full participation",
+    "last_updated": "2026-08-09T15:44:08-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msonwwmb6y25",
+    "last_report_id": "8dcc0ddd-30fd-4c88-92e5-eff50bbe9b43",
     "last_extraction": {
-      "status": "Jams thumb, not practicing",
-      "designation": "Jams thumb, not practicing",
-      "date": "2026-08-05T11:07:08-07:00",
-      "direct_quote": "Jordan Addison: Jams thumb, not practicing",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mse4lwa7ez2b"
+      "status": "Nearing full participation",
+      "designation": "Nearing full participation",
+      "date": "2026-08-09T15:44:08-07:00",
+      "direct_quote": "Jordan Addison: Nearing full participation",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msonwwmb6y25"
     },
-    "last_diff_summary": "Jordan Addison's fifth-year option was officially exercised on April 27th. On August 5th, he was not practicing due to a jammed thumb.",
+    "last_diff_summary": "Jordan Addison's fifth-year option was made official on April 27th. He was not practicing as of August 5th due to a jammed thumb but is nearing full participation as of August 9th.",
     "summary_fallback": false
   },
   "00-0039344": {
@@ -1457,18 +1457,18 @@
   },
   "00-0033090": {
     "player_name": "Hunter Henry",
-    "current_designation": "Remains top tight end",
-    "last_updated": "2026-07-16T12:52:16-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqrz5ioem52v",
-    "last_report_id": "a22182c6-c6a4-49a9-92d6-ac5fd53a38dd",
+    "current_designation": "Agrees to two-year extension",
+    "last_updated": "2026-08-10T05:10:47-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msq2zdjwre2d",
+    "last_report_id": "9ac65135-99a1-47fa-848d-14f26e934260",
     "last_extraction": {
-      "status": "Remains top tight end",
-      "designation": "Remains top tight end",
-      "date": "2026-07-16T12:52:16-07:00",
-      "direct_quote": "Hunter Henry: Remains top tight end",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqrz5ioem52v"
+      "status": "Agrees to two-year extension",
+      "designation": "Agrees to two-year extension",
+      "date": "2026-08-10T05:10:47-07:00",
+      "direct_quote": "Hunter Henry: Agrees to two-year extension",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msq2zdjwre2d"
     },
-    "last_diff_summary": "Hunter Henry remains the top tight end on his team as of July 16th.",
+    "last_diff_summary": "Hunter Henry remains a top tight end. On August 10th, 25 days after being noted as a top tight end, Henry agreed to a two-year contract extension with the New England Patriots.",
     "summary_fallback": false
   },
   "00-0035640": {

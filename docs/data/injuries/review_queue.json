@@ -829,5 +829,59 @@
       "triaged": true
     },
     "extraction": null
+  },
+  {
+    "timestamp": "2026-08-10T12:42:46Z",
+    "reason": "unmatched_player_name",
+    "failed_fields": [],
+    "source": {
+      "id": "66bb8954-a4c0-4ac9-a23a-a94cb7ba2d73",
+      "player_id": null,
+      "player_name": "Luther Burden III",
+      "timestamp": "2026-08-09T10:49:05-07:00",
+      "designation": "Will miss time with groin injury",
+      "source_text": "Luther Burden: Will miss time with groin injury",
+      "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mso5hddwzi2g",
+      "source_type": "beat_reporter",
+      "needs_review": true,
+      "triaged": true
+    },
+    "extraction": null
+  },
+  {
+    "timestamp": "2026-08-10T12:42:46Z",
+    "reason": "unmatched_player_name",
+    "failed_fields": [],
+    "source": {
+      "id": "0d165ff2-8cce-4dbf-b002-77e3fa50f5df",
+      "player_id": null,
+      "player_name": "Luther Burden III",
+      "timestamp": "2026-08-09T21:34:27-07:00",
+      "designation": "Expected to miss one month",
+      "source_text": "Luther Burden: Expected to miss one month",
+      "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mspbjdo2zk2g",
+      "source_type": "beat_reporter",
+      "needs_review": true,
+      "triaged": true
+    },
+    "extraction": null
+  },
+  {
+    "timestamp": "2026-08-10T12:42:46Z",
+    "reason": "unmatched_player_name",
+    "failed_fields": [],
+    "source": {
+      "id": "ceb3e7d8-3231-4caf-9886-352c03bdf759",
+      "player_id": null,
+      "player_name": "Luther Burden III",
+      "timestamp": "2026-08-10T05:31:44-07:00",
+      "designation": "Should be back for regular-season opener",
+      "source_text": "Luther Burden: Should be back for regular-season opener",
+      "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msq46rkm6f2g",
+      "source_type": "beat_reporter",
+      "needs_review": true,
+      "triaged": true
+    },
+    "extraction": null
   }
 ]
