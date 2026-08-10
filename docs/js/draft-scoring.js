@@ -392,101 +392,6 @@ function needState(roster, settings) {
   return needCounts(roster, settings);
 }
 
-function playerPts(player) {
-  const n = Number(player?.pts);
-  return Number.isFinite(n) ? n : 0;
-}
-
-/**
- * Optimal skill starters for one roster from projected pts.
- * Fill QB/RB/WR/TE slots first (highest pts), then FLEX from leftover RB/WR/TE.
- */
-function optimalStarters(roster = [], settings = {}) {
-  const slots = starterSlotsFromSettings(settings);
-  const lineup = { QB: [], RB: [], WR: [], TE: [], FLEX: [] };
-  const pools = { QB: [], RB: [], WR: [], TE: [] };
-
-  for (const p of roster || []) {
-    const pos = normalizePos(p.position);
-    if (pools[pos]) pools[pos].push(p);
-  }
-  for (const pos of SKILL_POSITIONS) {
-    pools[pos].sort((a, b) => playerPts(b) - playerPts(a));
-  }
-
-  const take = (pos, count) => {
-    const n = Math.max(0, Number(count) || 0);
-    const chosen = pools[pos].splice(0, n);
-    lineup[pos].push(...chosen);
-    return chosen;
-  };
-
-  take("QB", slots.QB);
-  take("RB", slots.RB);
-  take("WR", slots.WR);
-  take("TE", slots.TE);
-
-  const flexPool = [...pools.RB, ...pools.WR, ...pools.TE].sort(
-    (a, b) => playerPts(b) - playerPts(a)
-  );
-  lineup.FLEX = flexPool.slice(0, Math.max(0, Number(slots.FLEX) || 0));
-
-  const byPosPts = {
-    QB: round1(lineup.QB.reduce((s, p) => s + playerPts(p), 0)),
-    RB: round1(lineup.RB.reduce((s, p) => s + playerPts(p), 0)),
-    WR: round1(lineup.WR.reduce((s, p) => s + playerPts(p), 0)),
-    TE: round1(lineup.TE.reduce((s, p) => s + playerPts(p), 0)),
-    FLEX: round1(lineup.FLEX.reduce((s, p) => s + playerPts(p), 0)),
-  };
-  const totalPts = round1(
-    byPosPts.QB + byPosPts.RB + byPosPts.WR + byPosPts.TE + byPosPts.FLEX
-  );
-
-  return { lineup, byPosPts, totalPts };
-}
-
-/**
- * Rank every draft slot by optimal starter projected points.
- * `bySlot` values should already be enriched with `pts` when available.
- */
-function compareDraftRosters({
-  bySlot = {},
-  settings = {},
-  mySlot = null,
-  teams = null,
-  seatLabels = null,
-} = {}) {
-  const teamCount = Math.max(
-    1,
-    Number(teams) ||
-      Number(settings.teams) ||
-      Object.keys(bySlot).reduce((m, k) => Math.max(m, Number(k) || 0), 0) ||
-      12
-  );
-
-  const rows = [];
-  for (let slot = 1; slot <= teamCount; slot += 1) {
-    const roster = bySlot[slot] || [];
-    const starters = optimalStarters(roster, settings);
-    const label =
-      (seatLabels && seatLabels[slot]) ||
-      (seatLabels && seatLabels[String(slot)]) ||
-      `Slot ${slot}`;
-    rows.push({
-      slot,
-      label,
-      isMine: mySlot != null && Number(mySlot) === slot,
-      totalPts: starters.totalPts,
-      byPosPts: starters.byPosPts,
-      lineup: starters.lineup,
-      rosterSize: roster.length,
-    });
-  }
-
-  rows.sort((a, b) => b.totalPts - a.totalPts || a.slot - b.slot);
-  return rows.map((row, i) => ({ ...row, rank: i + 1 }));
-}
-
 function pickNumbersForSlot(slot, teams, rounds) {
   const picks = [];
   for (let round = 1; round <= rounds; round += 1) {
@@ -910,8 +815,6 @@ export {
   draftTargets,
   needCounts,
   needState,
-  optimalStarters,
-  compareDraftRosters,
   nextPickNumbers,
   scoreCandidates,
   SKILL_POSITIONS,

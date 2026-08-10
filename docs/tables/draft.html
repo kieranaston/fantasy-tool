@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Draft Companion</title>
-    <link rel="stylesheet" href="../css/site.css?v=22" />
+    <link rel="stylesheet" href="../css/site.css?v=24" />
   </head>
   <body class="is-page-loading">
     <nav class="site-nav" aria-label="Primary">
       <a href="../index.html">Player News</a>
+      <a href="adp.html">ADP</a>
       <a href="draft.html" class="is-active" aria-current="page">Draft</a>
     </nav>
     <main class="site-main">
@@ -76,15 +77,11 @@
           </section>
         </div>
 
-        <section id="draft-comparison-panel" class="draft-panel" hidden>
-          <h2 class="draft-section-title">Starter comparison</h2>
-          <div id="draft-comparison" class="table-wrap"></div>
-        </section>
       </div>
     </main>
 
     <script type="module">
-      import { mountDraftCompanionPage } from "../js/draft-companion.js?v=58";
+      import { mountDraftCompanionPage } from "../js/draft-companion.js?v=60";
       mountDraftCompanionPage();
     </script>
   </body>

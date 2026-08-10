@@ -6,9 +6,12 @@ import {
   resolveScoringFormat,
   projectionsPathForFormat,
   rescoreProjectionBoard,
-  compareDraftRosters,
   SKILL_POSITIONS,
-} from "./draft-scoring.js?v=58";
+} from "./draft-scoring.js?v=59";
+import {
+  loadLikedIds,
+  toggleLikedId,
+} from "./draft-liked.js?v=1";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 500;
@@ -18,7 +21,6 @@ const POLL_IDLE_MS = 4000;
 const DRAFT_META_EVERY = 12;
 const LS_LEAGUE = "draft-companion:league-id";
 const LS_DRAFT = "draft-companion:draft-id";
-const LS_LIKED = "draft-companion:liked";
 const SEARCH_LIMIT = 24;
 
 function escapeHtml(value) {
@@ -31,28 +33,6 @@ function escapeHtml(value) {
 
 function sleeperIdOf(player) {
   return String(player?.sleeper_id || player?.player_id || "");
-}
-
-function loadLikedIds() {
-  try {
-    const raw = localStorage.getItem(LS_LIKED);
-    if (!raw) return new Set();
-    const parsed = JSON.parse(raw);
-    const ids = Array.isArray(parsed?.ids) ? parsed.ids : [];
-    return new Set(ids.map(String).filter(Boolean));
-  } catch {
-    return new Set();
-  }
-}
-
-function saveLikedIds(ids) {
-  localStorage.setItem(
-    LS_LIKED,
-    JSON.stringify({
-      ids: [...ids],
-      updated_at: new Date().toISOString(),
-    })
-  );
 }
 
 function playerMediaHtml(player, { name, compact = false } = {}) {
@@ -234,8 +214,6 @@ async function mountDraftCompanionPage() {
   const recEl = document.getElementById("draft-recommendations");
   const boardEl = document.getElementById("draft-board");
   const needsEl = document.getElementById("draft-needs");
-  const compareEl = document.getElementById("draft-comparison");
-  const comparePanel = document.getElementById("draft-comparison-panel");
   const searchInput = document.getElementById("draft-player-search");
   const searchEl = document.getElementById("draft-search-results");
   const connectBtn = document.getElementById("draft-connect");
@@ -286,11 +264,7 @@ async function mountDraftCompanionPage() {
   }
 
   function toggleLiked(id) {
-    const key = String(id || "");
-    if (!key) return;
-    if (likedIds.has(key)) likedIds.delete(key);
-    else likedIds.add(key);
-    saveLikedIds(likedIds);
+    likedIds = toggleLikedId(likedIds, id);
     renderLikedSurfaces();
   }
 
@@ -568,73 +542,11 @@ async function mountDraftCompanionPage() {
       </table>`;
   }
 
-  function renderComparison() {
-    if (!compareEl || !comparePanel) return;
-    if (!draft || draft.status !== "complete") {
-      comparePanel.hidden = true;
-      compareEl.innerHTML = "";
-      return;
-    }
-
-    const timing = pickTiming();
-    const settings = timing.settings;
-    const bySlotRaw = currentBySlot();
-    const bySlot = {};
-    for (const [slot, roster] of Object.entries(bySlotRaw)) {
-      bySlot[slot] = enrichRoster(roster);
-    }
-
-    const rows = compareDraftRosters({
-      bySlot,
-      settings,
-      mySlot,
-      teams: timing.teams,
-    });
-
-    comparePanel.hidden = false;
-    compareEl.innerHTML = `
-      <p class="meta">Optimal starters from projected points (league slots).</p>
-      <table class="draft-table cell-border draft-compare-table">
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Slot</th>
-            <th>Starter pts</th>
-            <th>QB</th>
-            <th>RB</th>
-            <th>WR</th>
-            <th>TE</th>
-            <th>FLEX</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rows
-            .map((row) => {
-              const mine = row.isMine ? " class=\"draft-compare-mine\"" : "";
-              const slotLabel = row.isMine
-                ? `Slot ${row.slot} (you)`
-                : `Slot ${row.slot}`;
-              return `<tr${mine}>
-                <td>${escapeHtml(row.rank)}</td>
-                <td>${escapeHtml(slotLabel)}</td>
-                <td><strong>${escapeHtml(row.totalPts)}</strong></td>
-                <td>${escapeHtml(row.byPosPts.QB)}</td>
-                <td>${escapeHtml(row.byPosPts.RB)}</td>
-                <td>${escapeHtml(row.byPosPts.WR)}</td>
-                <td>${escapeHtml(row.byPosPts.TE)}</td>
-                <td>${escapeHtml(row.byPosPts.FLEX)}</td>
-              </tr>`;
-            })
-            .join("")}
-        </tbody>
-      </table>`;
-  }
-
   function renderRecommendationsFromCache() {
     if (!recEl) return;
     if (!draft) return;
     if (draft.status === "complete") {
-      recEl.innerHTML = `<p class="meta">Draft complete — see starter comparison below.</p>`;
+      recEl.innerHTML = `<p class="meta">Draft complete.</p>`;
       return;
     }
     const result = lastScoreResult;
@@ -802,7 +714,6 @@ async function mountDraftCompanionPage() {
     cacheScoreResult(result);
 
     renderRosterCounts(myRoster);
-    renderComparison();
     renderRecommendationsFromCache();
     renderSearchResults();
   }

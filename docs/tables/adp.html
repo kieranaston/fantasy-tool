@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ADP Board</title>
+    <link rel="stylesheet" href="../css/site.css?v=24" />
+  </head>
+  <body class="is-page-loading">
+    <nav class="site-nav" aria-label="Primary">
+      <a href="../index.html">Player News</a>
+      <a href="adp.html" class="is-active" aria-current="page">ADP</a>
+      <a href="draft.html">Draft</a>
+    </nav>
+    <main class="site-main">
+      <div class="container">
+        <h1 class="page-title">ADP Board</h1>
+        <p class="meta" id="adp-summary">Loading…</p>
+
+        <div class="adp-toolbar">
+          <div class="adp-tabs" role="tablist" aria-label="Position">
+            <button type="button" class="adp-tab is-active" data-pos="overall" role="tab" aria-selected="true">Overall</button>
+            <button type="button" class="adp-tab" data-pos="QB" role="tab" aria-selected="false">QB</button>
+            <button type="button" class="adp-tab" data-pos="RB" role="tab" aria-selected="false">RB</button>
+            <button type="button" class="adp-tab" data-pos="WR" role="tab" aria-selected="false">WR</button>
+            <button type="button" class="adp-tab" data-pos="TE" role="tab" aria-selected="false">TE</button>
+          </div>
+          <div class="adp-toolbar-actions">
+            <label class="adp-filter">
+              <input type="search" id="adp-search" spellcheck="false" autocomplete="off" placeholder="Filter players" />
+            </label>
+            <label class="adp-starred-only">
+              <input type="checkbox" id="adp-starred-only" />
+              Starred only
+            </label>
+          </div>
+        </div>
+
+        <div id="adp-board" class="table-wrap"></div>
+      </div>
+    </main>
+
+    <script type="module">
+      import { mountAdpBoardPage } from "../js/adp-board.js?v=1";
+      mountAdpBoardPage();
+    </script>
+  </body>
+</html>

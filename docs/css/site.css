@@ -555,25 +555,9 @@ table.draft-table > thead > tr > th {
   border-radius: 3px;
 }
 
-.draft-compare-table td,
-.draft-compare-table th {
-  text-align: right;
-}
 
-.draft-compare-table th:nth-child(1),
-.draft-compare-table th:nth-child(2),
-.draft-compare-table td:nth-child(1),
-.draft-compare-table td:nth-child(2) {
-  text-align: left;
-}
 
-.draft-compare-mine {
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
-}
 
-.draft-compare-mine td {
-  font-weight: 600;
-}
 
 .visually-hidden {
   position: absolute;
@@ -650,6 +634,85 @@ table.draft-table > thead > tr > th {
   font-size: 0.75rem;
   font-weight: 600;
   color: #6b7280;
+}
+
+.adp-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem 1.25rem;
+  margin: 0.75rem 0 1rem;
+}
+
+.adp-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+}
+
+.adp-tab {
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--muted);
+  background: none;
+  border: none;
+  border-bottom: 1px solid transparent;
+  padding: 0.15rem 0;
+  cursor: pointer;
+}
+
+.adp-tab:hover {
+  color: var(--text);
+}
+
+.adp-tab.is-active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.adp-toolbar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+
+.adp-filter input {
+  font-family: inherit;
+  font-size: 0.85rem;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #9ca3af;
+  padding: 0.2rem 0;
+  min-width: 12rem;
+}
+
+.adp-filter input:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
+.adp-starred-only {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.adp-table td:nth-child(1),
+.adp-table th:nth-child(1),
+.adp-table td:nth-child(4),
+.adp-table th:nth-child(4),
+.adp-table td:nth-child(5),
+.adp-table th:nth-child(5),
+.adp-table td:nth-child(6),
+.adp-table th:nth-child(6) {
+  text-align: right;
+  white-space: nowrap;
 }
 
 .draft-actions {
