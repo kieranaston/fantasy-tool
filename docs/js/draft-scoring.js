@@ -7,14 +7,21 @@
  *  3. Predict picks before you with −ADP + NEED_K × need[pos] (hard path).
  *  4. Risk to your next pick: soft opponent choices (softmax over the same
  *     score) → survival product → risk = 1 − survival.
- *  5. Blend VORP ↔ ADP from remaining above-replacement surplus:
+ *  5. Blend VORP ↔ ADP from remaining above-replacement surplus. Both terms
+ *     are min-max normalized against the scored remaining pool, then scaled
+ *     back to the pool's VORP span so NEED_K / RISK_K stay in "points":
  *       surplus = Σ max(0, vorp) on the board you'll see
- *       w = min(1, surplus / SURPLUS_FULL)   // 100% VORP until surplus dips
- *       score = w×VORP + (1−w)×(−ADP) + NEED_K×need + RISK_K×risk
- *     Early (surplus ≥ SURPLUS_FULL): pure VORP. Late (surplus → 0): ADP-led.
- *     Starter need can go negative when you overstock. Flex +1 applies to
- *     WR/RB only. Remaining roster picks add depth need to WR/RB only (not
- *     TE). Rank by score, then ADP.
+ *       T = SURPLUS_FULL × (teams/12) × (skill starters/7)
+ *       w = min(1, surplus / T)
+ *       vorpN, adpN ∈ [0,1]  (adpN inverted: lower ADP → higher;
+ *         missing ADP excluded from the extent, then scored as adpN = 0;
+ *         empty known-ADP sample → skip ADP norm, adpN = 0 for everyone)
+ *       if VORP_span ≈ 0: skip blend → score = NEED_K·need + RISK_K·risk
+ *       else score = (w·vorpN + (1−w)·adpN)·VORP_span + NEED_K·need + RISK_K·risk
+ *     Early (surplus ≥ T): pure VORP. Late (surplus → 0): ADP-led without
+ *     raw pick-number swamp. Starter need can go negative when you overstock.
+ *     Flex +1 applies to WR/RB only. Remaining roster picks add depth need to
+ *     WR/RB only (not TE). Rank by score, then ADP.
  *
  * Need counts: starter holes per position. While flex is open, WR and RB each
  * get +1; filling flex clears that unit from both. TE never gets flex or
@@ -35,9 +42,10 @@ const NEED_K = 12;
 const RISK_K = 3;
 
 /**
- * Remaining above-replacement VORP at which the blend is still 100% VORP.
- * Below this, weight falls linearly toward full ADP as surplus → 0.
- * Early boards (thousands of surplus) stay pure VORP; ADP only mixes late.
+ * Remaining above-replacement VORP at which the blend is still 100% VORP,
+ * anchored to a 12-team / 7 skill-starter league. Scaled per draft via
+ * surplusFullThreshold(). Below the threshold, weight falls linearly toward
+ * full ADP as surplus → 0.
  */
 const SURPLUS_FULL = 400;
 
@@ -57,6 +65,9 @@ const SIM_POOL_SIZE = 100;
 const SCORE_POOL_SIZE = 80;
 
 const ADP_MISSING = 9999;
+
+/** Below this VORP range, treat the pool as flat and skip the VORP/ADP blend. */
+const VORP_SPAN_EPS = 0.5;
 
 /**
  * ADP is noisy, so include a few picks past your next turn so borderline
@@ -454,6 +465,44 @@ function adpValue(player) {
   return Number.isFinite(adp) && adp > 0 ? adp : ADP_MISSING;
 }
 
+/** True when the player has a usable ADP sample (excludes undrafted sentinels). */
+function hasKnownAdp(player) {
+  return adpValue(player) < ADP_MISSING;
+}
+
+/** Min/max/span over finite numbers; empty → zero extent. */
+function numericExtent(values) {
+  let lo = Infinity;
+  let hi = -Infinity;
+  for (const raw of values) {
+    const n = Number(raw);
+    if (!Number.isFinite(n)) continue;
+    if (n < lo) lo = n;
+    if (n > hi) hi = n;
+  }
+  if (!Number.isFinite(lo) || !Number.isFinite(hi)) {
+    return { lo: 0, hi: 0, span: 0 };
+  }
+  return { lo, hi, span: hi - lo };
+}
+
+/** Map value → [0, 1] within extent; mid-point if no spread. */
+function unitNormalize(value, extent) {
+  if (!(extent.span > 0)) return 0.5;
+  return (Number(value) - extent.lo) / extent.span;
+}
+
+/**
+ * Known ADP → [0, 1] (lower ADP higher). Missing ADP / empty sample → 0
+ * (worst) without entering the min-max, so undrafted sentinels don't skew.
+ * Flat non-empty sample (identical ADPs) → 0.5 so ADP doesn't differentiate.
+ */
+function adpUnitNormalize(player, extent, { emptySample = false } = {}) {
+  if (emptySample || !hasKnownAdp(player)) return 0;
+  if (!(extent.span > 0)) return 0.5;
+  return (extent.hi - adpValue(player)) / extent.span;
+}
+
 /** Format overall ADP as round.pick for a fixed team count (default 12). */
 function formatAdpRoundPick(adp, teams = 12) {
   const overall = Number(adp);
@@ -470,18 +519,28 @@ function formatAdpRoundPick(adp, teams = 12) {
 }
 
 /**
- * ADP as a VORP-scale term: lower ADP → higher score.
- * Missing ADP sorts as undrafted (worst).
+ * Scale the VORP→ADP surplus cutoff with league size and skill-starter count.
+ * Anchored so a default 12-team / 7-starter league uses SURPLUS_FULL as-is.
  */
-function adpScoreFor(player) {
-  return -adpValue(player);
+function surplusFullThreshold(settings = {}, teams = 12) {
+  const slots = starterSlotsFromSettings(settings);
+  const starters =
+    (slots.QB || 0) +
+    (slots.RB || 0) +
+    (slots.WR || 0) +
+    (slots.TE || 0) +
+    (slots.FLEX || 0);
+  const scale =
+    (Math.max(1, Number(teams) || 12) / 12) * (Math.max(1, starters) / 7);
+  return SURPLUS_FULL * scale;
 }
 
-/** w∈[0,1]: 1 = full VORP, 0 = full ADP. Stays 1 until surplus < SURPLUS_FULL. */
-function vorpWeightFromSurplus(surplus) {
+/** w∈[0,1]: 1 = full VORP, 0 = full ADP. Stays 1 until surplus < threshold. */
+function vorpWeightFromSurplus(surplus, threshold = SURPLUS_FULL) {
   const s = Math.max(0, Number(surplus) || 0);
-  if (SURPLUS_FULL <= 0) return 0;
-  return Math.min(1, s / SURPLUS_FULL);
+  const t = Math.max(0, Number(threshold) || 0);
+  if (t <= 0) return 0;
+  return Math.min(1, s / t);
 }
 
 function playerAtRank(pool, rank) {
@@ -821,19 +880,38 @@ function scoreCandidates({
     }
   }
 
-  const vorpWeight = vorpWeightFromSurplus(surplus);
+  const surplusThreshold = surplusFullThreshold(settings, teams);
+  const vorpWeight = vorpWeightFromSurplus(surplus, surplusThreshold);
   const adpWeight = 1 - vorpWeight;
+
+  // Put VORP and ADP on one unit interval, then rescale by the pool's VORP
+  // span so NEED_K / RISK_K stay comparable to blended value late-draft.
+  // Flat / near-flat VORP → skip blend (need + risk only). Missing ADP is
+  // kept out of the ADP extent so 9999 sentinels don't crush the scale.
+  // Empty known-ADP sample → skip ADP normalization (adpN = 0 for everyone).
+  const vorpExtent = numericExtent(pending.map((row) => row.vorp));
+  const knownAdpValues = pending
+    .filter((row) => hasKnownAdp(row.player))
+    .map((row) => adpValue(row.player));
+  const emptyAdpSample = knownAdpValues.length === 0;
+  const adpExtent = emptyAdpSample
+    ? { lo: 0, hi: 0, span: 0 }
+    : numericExtent(knownAdpValues);
+  const flatVorp = !(vorpExtent.span > VORP_SPAN_EPS);
 
   const scored = [];
   for (const row of pending) {
     const risk = riskById.get(playerId(row.player)) || 0;
     const riskBonus = RISK_K * risk;
-    const adpScore = adpScoreFor(row.player);
-    const score =
-      vorpWeight * row.vorp +
-      adpWeight * adpScore +
-      row.needBonus +
-      riskBonus;
+    let blend = 0;
+    let adpTerm = 0;
+    if (!flatVorp) {
+      const vorpN = unitNormalize(row.vorp, vorpExtent);
+      const adpN = adpUnitNormalize(row.player, adpExtent, { emptySample: emptyAdpSample });
+      blend = (vorpWeight * vorpN + adpWeight * adpN) * vorpExtent.span;
+      adpTerm = adpN * vorpExtent.span;
+    }
+    const score = blend + row.needBonus + riskBonus;
 
     scored.push({
       ...row.player,
@@ -842,7 +920,7 @@ function scoreCandidates({
       need_count: row.need,
       risk: round1(risk),
       risk_bonus: round1(riskBonus),
-      adp_score: round1(adpScore),
+      adp_score: round1(adpTerm),
       vorp_weight: round2(vorpWeight),
       score: round1(score),
     });
@@ -866,6 +944,7 @@ function scoreCandidates({
     need_count: myNeed.need_count,
     openFlex: myNeed.openFlex,
     vorp_surplus: round1(surplus),
+    vorp_surplus_full: round1(surplusThreshold),
     vorp_weight: round2(vorpWeight),
     recommendations: capped,
   };
