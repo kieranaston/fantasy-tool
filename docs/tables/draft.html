@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/site.css?v=28" />
+    <link rel="stylesheet" href="../css/site.css?v=30" />
     <script>
       setTimeout(function () {
         document.body.classList.remove("is-page-loading");
@@ -25,8 +25,8 @@
     </nav>
     <main class="site-main">
       <div class="container">
-        <p class="meta" data-draft-live="status">Loading board…</p>
-        <p class="meta" data-draft-live="summary"></p>
+        <p class="meta" data-draft-live="status">Loading…</p>
+        <div id="sync-bar" class="sync-bar" hidden></div>
 
         <div class="controls draft-controls">
           <div class="draft-connect-row">
@@ -35,7 +35,7 @@
               id="draft-league-input"
               type="text"
               spellcheck="false"
-              placeholder="League id or sleeper.com/leagues/… URL"
+              autocomplete="off"
             />
           </div>
           <div class="draft-connect-row">
@@ -44,7 +44,7 @@
               id="draft-id-input"
               type="text"
               spellcheck="false"
-              placeholder="Draft id or sleeper.com/draft/… URL"
+              autocomplete="off"
             />
           </div>
           <div class="draft-connect-row draft-connect-row--seat">
@@ -71,12 +71,10 @@
               type="search"
               spellcheck="false"
               autocomplete="off"
-              placeholder="Search by name, team, or position"
+              placeholder="search"
             />
           </div>
-          <div id="draft-search-results" class="table-wrap">
-            <p class="meta">Type to search players and see live scores.</p>
-          </div>
+          <div id="draft-search-results" class="table-wrap"></div>
         </section>
 
         <div class="draft-columns">
@@ -95,7 +93,7 @@
     </main>
 
     <script type="module">
-      import { mountDraftCompanionPage } from "../js/draft-companion.js?v=68";
+      import { mountDraftCompanionPage } from "../js/draft-companion.js?v=79";
       mountDraftCompanionPage();
     </script>
   </body>

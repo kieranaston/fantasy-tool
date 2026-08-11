@@ -1,5 +1,5 @@
-import { fetchJSON, showError, revealPage } from "./config.js?v=2";
-import { loadLikedIds, toggleLikedId } from "./draft-liked.js?v=1";
+import { fetchJSON, formatTimestamp, showError, revealPage } from "./config.js?v=2";
+import { loadLikedIds, toggleLikedId, mountStarSync } from "./draft-liked.js?v=3";
 
 const ADP_MISSING = 9999;
 const SKILL_POSITIONS = ["QB", "RB", "WR", "TE"];
@@ -10,13 +10,51 @@ const FORMAT_PATHS = {
   full_ppr: "draft/projections-full-ppr.json",
   std: "draft/projections-std.json",
 };
+const ADP_PATHS = {
+  half_ppr: "draft/adp-half-ppr.json",
+  full_ppr: "draft/adp-full-ppr.json",
+  std: "draft/adp-std.json",
+};
 const FORMAT_LABELS = {
   half_ppr: "Half PPR",
   full_ppr: "Full PPR",
   std: "Standard",
 };
 
+const SOURCE_LABELS = {
+  sleeper_adp: "Sleeper",
+  sleeper_rotowire: "Sleeper / Rotowire",
+  fantasypros_csv: "FantasyPros",
+  sleeper: "Sleeper",
+};
+
 const boardCache = new Map();
+
+function sourceLabel(raw) {
+  const key = String(raw || "").trim();
+  if (!key) return null;
+  return SOURCE_LABELS[key] || key.replaceAll("_", " ");
+}
+
+function stampLabel(iso) {
+  if (!iso) return null;
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return null;
+  return formatTimestamp(iso);
+}
+
+/** Projection freshness as calendar date (US Eastern). */
+function projectionDateLabel(iso) {
+  if (!iso) return null;
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return null;
+  return date.toLocaleDateString("en-US", {
+    timeZone: "America/New_York",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -56,7 +94,7 @@ function formatAdpRoundPick(adp, teams = 12) {
 function starButtonHtml(playerId, liked) {
   const id = escapeHtml(playerId);
   const on = Boolean(liked);
-  return `<button type="button" class="draft-star${on ? " is-liked" : ""}" data-player-id="${id}" aria-label="${on ? "Unstar player" : "Star player"}" aria-pressed="${on ? "true" : "false"}">★</button>`;
+  return `<button type="button" class="draft-star${on ? " is-liked" : ""}" data-player-id="${id}" aria-label="${on ? "Remove from favourites" : "Add to favourites"}" aria-pressed="${on ? "true" : "false"}">★</button>`;
 }
 
 function playerCellHtml(player, liked) {
@@ -80,16 +118,47 @@ function slimPlayers(players) {
   }));
 }
 
+function overlayAdp(players, adpPlayers) {
+  const byId = new Map();
+  for (const p of adpPlayers || []) {
+    const id = sleeperIdOf(p);
+    const adp = adpNumber(p);
+    if (!id || adp == null) continue;
+    byId.set(id, adp);
+  }
+  if (!byId.size) return players;
+  return (players || []).map((p) => {
+    const id = sleeperIdOf(p);
+    if (!id || !byId.has(id)) return p;
+    return { ...p, adp: byId.get(id) };
+  });
+}
+
 async function loadBoardPlayers(formatKey = "half_ppr") {
   const key = FORMAT_PATHS[formatKey] ? formatKey : "half_ppr";
   if (boardCache.has(key)) return boardCache.get(key);
-  const path = FORMAT_PATHS[key];
-  const data = await fetchJSON(path);
+  const data = await fetchJSON(FORMAT_PATHS[key]);
+  let players = slimPlayers(data.players || []);
+  let adpUpdated = data.adp_updated || null;
+  let adpSource = null;
+  try {
+    const adpData = await fetchJSON(ADP_PATHS[key]);
+    players = overlayAdp(players, adpData.players || []);
+    adpUpdated = adpData.last_updated || adpUpdated;
+    adpSource = adpData.source || null;
+  } catch {
+    // Fall back to ADP baked into the projection board.
+  }
+  // ADP board is ADP-first: drop anyone without a real ADP value.
+  players = players.filter((p) => adpNumber(p) != null);
   const board = {
-    players: slimPlayers(data.players || []),
+    players,
     label: FORMAT_LABELS[key] || data.format || "Half PPR",
     source: data.source || "sleeper",
     format: key,
+    adp_source: adpSource || "sleeper_adp",
+    adp_updated: adpUpdated,
+    projections_updated: data.last_updated || null,
   };
   boardCache.set(key, board);
   return board;
@@ -120,6 +189,15 @@ async function mountAdpBoardPage() {
   let searchTimer = null;
   let loadGen = 0;
 
+  const starSync = mountStarSync({
+    host: document.getElementById("sync-bar"),
+    getIds: () => likedIds,
+    setIds: (ids) => {
+      likedIds = ids;
+    },
+    onChange: () => render(),
+  });
+
   function matchesFilter(player, query) {
     if (!query) return true;
     const name = String(player.player || "").toLowerCase();
@@ -134,13 +212,13 @@ async function mountAdpBoardPage() {
       .toLowerCase();
     const onlyStarred = Boolean(starredOnly?.checked);
     let list = playersSorted.filter((p) => {
+      if (adpNumber(p) == null) return false;
       if (!SKILL_POSITIONS.includes(p.position)) return false;
       if (onlyStarred && !likedIds.has(p.sleeper_id)) return false;
       return matchesFilter(p, query);
     });
     if (!onlyStarred && !query) {
       list = list
-        .filter((p) => adpNumber(p) != null)
         .slice(0, ADP_BOARD_LIMIT)
         .filter((p) => position === "overall" || p.position === position);
     } else if (position !== "overall") {
@@ -149,26 +227,22 @@ async function mountAdpBoardPage() {
     return list;
   }
 
-  function updateSummary(visibleCount) {
+  function updateSummary() {
     if (!summaryEl) return;
-    const starred = likedIds.size;
-    const query = String(searchInput?.value || "").trim();
-    const onlyStarred = Boolean(starredOnly?.checked);
-    const scope =
-      !onlyStarred && !query ? `top ${ADP_BOARD_LIMIT}` : "filtered";
-    summaryEl.textContent = [
-      boardMeta.label || "ADP",
-      "12-team round.pick",
-      scope,
-      `${visibleCount} players`,
-      starred ? `${starred} starred` : "no stars yet",
-      "Stars sync with Draft",
-    ].join(" · ");
+    const adpSrc = sourceLabel(boardMeta.adp_source) || "Sleeper";
+    const adpWhen = stampLabel(boardMeta.adp_updated);
+    const projSrc = sourceLabel(boardMeta.source) || "Projections";
+    const projWhen = projectionDateLabel(boardMeta.projections_updated);
+    const adp = adpWhen ? `ADP · ${adpSrc} · ${adpWhen}` : `ADP · ${adpSrc}`;
+    const projections = projWhen
+      ? `${projSrc}: ${projWhen}`
+      : projSrc;
+    summaryEl.textContent = [adp, projections].join(" · ");
   }
 
   function render() {
     const rows = visiblePlayers();
-    updateSummary(rows.length);
+    updateSummary();
     if (!rows.length) {
       boardEl.innerHTML = `<p class="meta">No players match.</p>`;
       return;
@@ -191,12 +265,27 @@ async function mountAdpBoardPage() {
             .map((p, i) => {
               const liked = likedIds.has(p.sleeper_id);
               const adp = adpNumber(p);
-              const adpLabel = adp == null ? null : formatAdpRoundPick(adp, 12);
+              const overall =
+                adp == null ? null : Number(adp).toFixed(1);
+              const roundPick =
+                adp == null ? null : formatAdpRoundPick(adp, 12);
+              const adpCell =
+                overall == null
+                  ? "—"
+                  : `<span class="adp-overall">${escapeHtml(
+                      overall
+                    )}</span>${
+                      roundPick
+                        ? `<span class="adp-round-pick">${escapeHtml(
+                            roundPick
+                          )}</span>`
+                        : ""
+                    }`;
               return `<tr class="${liked ? "draft-liked" : ""}">
                 <td>${i + 1}</td>
                 <td>${playerCellHtml(p, liked)}</td>
                 <td>${escapeHtml(p.position)}</td>
-                <td>${adpLabel == null ? "—" : escapeHtml(adpLabel)}</td>
+                <td>${adpCell}</td>
                 <td>${p.bye_week == null ? "—" : escapeHtml(p.bye_week)}</td>
                 <td>${p.pts == null ? "—" : escapeHtml(Number(p.pts).toFixed(1))}</td>
               </tr>`;
@@ -260,20 +349,22 @@ async function mountAdpBoardPage() {
     event.preventDefault();
     const id = btn.getAttribute("data-player-id");
     likedIds = toggleLikedId(likedIds, id);
+    starSync.persistLocalAndMaybeRemote();
     const on = likedIds.has(String(id || ""));
     root
       .querySelectorAll(`.draft-star[data-player-id="${CSS.escape(String(id || ""))}"]`)
       .forEach((el) => {
         el.classList.toggle("is-liked", on);
         el.setAttribute("aria-pressed", on ? "true" : "false");
-        el.setAttribute("aria-label", on ? "Unstar player" : "Star player");
+        el.setAttribute("aria-label", on ? "Remove from favourites" : "Add to favourites");
         const row = el.closest("tr");
         if (row) row.classList.toggle("draft-liked", on);
       });
-    updateSummary(visiblePlayers().length);
+    updateSummary();
   });
 
   try {
+    await starSync.hydrate();
     const board = await loadBoardPlayers(formatKey);
     playersSorted = sortByAdp(
       (board.players || []).filter((p) => SKILL_POSITIONS.includes(p.position))

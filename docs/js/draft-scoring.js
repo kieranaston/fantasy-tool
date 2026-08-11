@@ -12,17 +12,18 @@
  *     back to the pool's VORP span so NEED_K / RISK_K stay in "points":
  *       surplus = Σ max(0, vorp) on the board you'll see
  *       T = SURPLUS_FULL × (teams/12) × (skill starters/7)
- *       w = min(1, surplus / T)
+ *       w = min(VORP_WEIGHT_CAP, surplus / T)   // ADP-led shortlist; VORP capped
  *       vorpN, adpN ∈ [0,1]  (adpN inverted: lower ADP → higher;
  *         missing ADP excluded from the extent, then scored as adpN = 0;
  *         empty known-ADP sample → skip ADP norm, adpN = 0 for everyone;
  *         flat known-ADP sample (max ≈ min) → adpN = 1 for known, 0 missing)
  *       if VORP_span ≈ 0: skip blend → score = NEED_K·need + RISK_K·risk
  *       else score = (w·vorpN + (1−w)·adpN)·VORP_span + NEED_K·need + RISK_K·risk
- *     Early (surplus ≥ T): pure VORP. Late (surplus → 0): ADP-led without
- *     raw pick-number swamp. Starter need can go negative when you overstock.
- *     Flex +1 applies to WR/RB only. Remaining roster picks add depth need to
- *     WR/RB only (not TE). Rank by score, then ADP.
+ *     Early: still mostly ADP (w ≤ VORP_WEIGHT_CAP) so consensus guys aren't
+ *     buried by projection noise; light VORP keeps true outliers visible.
+ *     Late (surplus → 0): full ADP. Starter need can go negative when you
+ *     overstock. Flex +1 applies to WR/RB only. Remaining roster picks add
+ *     depth need to WR/RB only (not TE). Rank by score, then ADP.
  *
  * Need counts: starter holes per position. While flex is open, WR and RB each
  * get +1; filling flex clears that unit from both. TE never gets flex or
@@ -43,12 +44,19 @@ const NEED_K = 12;
 const RISK_K = 3;
 
 /**
- * Remaining above-replacement VORP at which the blend is still 100% VORP,
+ * Remaining above-replacement VORP at which the blend hits VORP_WEIGHT_CAP,
  * anchored to a 12-team / 7 skill-starter league. Scaled per draft via
  * surplusFullThreshold(). Below the threshold, weight falls linearly toward
  * full ADP as surplus → 0.
  */
 const SURPLUS_FULL = 400;
+
+/**
+ * Cap on VORP's share of the value blend. Shortlists should stay ADP-led so
+ * consensus guys aren't buried by projection quirks; VORP still nudges true
+ * outliers and pairs with need for positional scarcity.
+ */
+const VORP_WEIGHT_CAP = 0.25;
 
 /** Softmax over the top N opponent candidates each pick. */
 const RISK_SOFTMAX_TOP = 12;
@@ -189,6 +197,12 @@ function projectionsPathForFormat(format = "half_ppr") {
   if (format === "custom") return "draft/projections-custom.json";
   const key = SCORING_FORMATS.includes(format) ? format : "half_ppr";
   return `draft/projections-${key.replaceAll("_", "-")}.json`;
+}
+
+/** Daily-refreshed Sleeper ADP boards (independent of projection rebuilds). */
+function adpPathForFormat(format = "half_ppr") {
+  const key = SCORING_FORMATS.includes(format) ? format : "half_ppr";
+  return `draft/adp-${key.replaceAll("_", "-")}.json`;
 }
 
 /** Prefer league-scored FantasyPros board when present. */
@@ -541,12 +555,12 @@ function surplusFullThreshold(settings = {}, teams = 12) {
   return SURPLUS_FULL * scale;
 }
 
-/** w∈[0,1]: 1 = full VORP, 0 = full ADP. Stays 1 until surplus < threshold. */
+/** w∈[0, VORP_WEIGHT_CAP]: capped VORP share; remainder is ADP. */
 function vorpWeightFromSurplus(surplus, threshold = SURPLUS_FULL) {
   const s = Math.max(0, Number(surplus) || 0);
   const t = Math.max(0, Number(threshold) || 0);
   if (t <= 0) return 0;
-  return Math.min(1, s / t);
+  return Math.min(VORP_WEIGHT_CAP, s / t);
 }
 
 function playerAtRank(pool, rank) {
@@ -974,6 +988,7 @@ export {
   resolveScoringFormat,
   projectionsPathForFormat,
   projectionsPathForBoard,
+  adpPathForFormat,
   projectedPoints,
   rescoreProjectionBoard,
   overlayAdpFromPlayers,

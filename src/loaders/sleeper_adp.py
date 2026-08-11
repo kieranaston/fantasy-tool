@@ -23,6 +23,7 @@ SLEEPER_ADP_URL = (
 FORMATS = {
     "half_ppr": "adp_half_ppr",
     "full_ppr": "adp_ppr",
+    "std": "adp_std",
 }
 
 POSITIONS = ("QB", "RB", "WR", "TE")
@@ -220,3 +221,90 @@ def load_news_pool_ids(*, season: int | None = None) -> set[str]:
     for format_key in FORMATS:
         ids |= _position_pool_ids(players, format_key=format_key)
     return ids
+
+
+def normalize_adp_slim(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """ADP-only records from Sleeper projection rows (no nflverse / media)."""
+    best: dict[str, dict[str, Any]] = {}
+    for item in rows:
+        sleeper_id = str(item.get("player_id") or "").strip()
+        if not sleeper_id:
+            continue
+        player = item.get("player") or {}
+        position = (player.get("position") or item.get("position") or "").upper()
+        if position not in POSITIONS:
+            continue
+
+        stats = item.get("stats") or {}
+        adp_values: dict[str, float] = {}
+        for format_key, field in FORMATS.items():
+            raw = stats.get(field)
+            if raw is None:
+                continue
+            try:
+                value = float(raw)
+            except (TypeError, ValueError):
+                continue
+            if value >= ADP_SENTINEL:
+                continue
+            adp_values[format_key] = value
+        if not adp_values:
+            continue
+
+        team = (item.get("team") or player.get("team") or player.get("team_abbr") or "")
+        team = str(team).upper() if team else ""
+        existing = best.get(sleeper_id)
+        if existing is None:
+            best[sleeper_id] = {
+                "sleeper_id": sleeper_id,
+                "player": _display_name(player, sleeper_id),
+                "team": team,
+                "position": position,
+                "adp": adp_values,
+            }
+            continue
+
+        for format_key, value in adp_values.items():
+            prev = existing["adp"].get(format_key)
+            if prev is None or value < prev:
+                existing["adp"][format_key] = value
+        if not existing.get("team") and team:
+            existing["team"] = team
+
+    return list(best.values())
+
+
+def adp_board_for_format(
+    players: list[dict[str, Any]],
+    *,
+    format_key: str,
+) -> list[dict[str, Any]]:
+    """Slim public ADP rows for one scoring format."""
+    out: list[dict[str, Any]] = []
+    for player in players:
+        adp = (player.get("adp") or {}).get(format_key)
+        if adp is None:
+            continue
+        out.append(
+            {
+                "sleeper_id": player["sleeper_id"],
+                "player": player["player"],
+                "team": player.get("team") or "",
+                "position": player["position"],
+                "adp": round(float(adp), 1),
+            }
+        )
+    out.sort(key=lambda row: (row["adp"], row["player"]))
+    return out
+
+
+def adp_by_sleeper_id(
+    players: list[dict[str, Any]],
+    *,
+    format_key: str,
+) -> dict[str, float]:
+    """sleeper_id → overall ADP for patching projection boards."""
+    out: dict[str, float] = {}
+    for row in adp_board_for_format(players, format_key=format_key):
+        out[str(row["sleeper_id"])] = float(row["adp"])
+    return out

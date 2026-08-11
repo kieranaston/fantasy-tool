@@ -25,16 +25,15 @@
     </nav>
     <main class="site-main">
       <div class="container">
-        <h1 class="page-title">Player News</h1>
         <p class="meta" data-injuries="summary">Loading…</p>
         <div class="news-search-row">
-          <label for="news-player-search" class="visually-hidden">Search player news</label>
+          <label for="news-player-search" class="visually-hidden">Search</label>
           <input
             id="news-player-search"
             type="search"
             spellcheck="false"
             autocomplete="off"
-            placeholder="Search by player, team, or status"
+            placeholder="search"
           />
         </div>
         <div id="injuries-container" class="injuries-list"></div>
@@ -42,7 +41,7 @@
     </main>
 
     <script type="module">
-      import { mountInjuriesPage } from "./js/injuries.js?v=9";
+      import { mountInjuriesPage } from "./js/injuries.js?v=10";
       mountInjuriesPage().catch(function (err) {
         document.body.classList.remove("is-page-loading");
         var el = document.getElementById("injuries-container");

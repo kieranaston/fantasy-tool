@@ -22,6 +22,7 @@ pip install -e .
 
 python -m src.run                  # site manifest
 python -m src.run_injuries         # state → data/injuries/; summaries → docs/
+python -m src.run_adp              # daily Sleeper ADP → docs/data/draft/adp-*.json
 python -m src.run_draft_data       # draft projections (+ custom FP board)
 python -m http.server 8000 --directory docs
 ```
@@ -50,7 +51,7 @@ data/fantasypros/projections/2026/FantasyPros_Fantasy_Football_Projections_QB.cs
 ..._RB.csv / ..._WR.csv / ..._TE.csv
 ```
 
-`run_draft_data` loads `SLEEPER_LEAGUE_ID` scoring settings, scores each player's raw stats, matches names to Sleeper IDs, and writes `docs/data/draft/projections-custom.json`. The draft companion prefers that board when present (ADP still comes from Sleeper).
+`run_draft_data` loads `SLEEPER_LEAGUE_ID` scoring settings, scores each player's raw stats, matches names to Sleeper IDs, and writes `docs/data/draft/projections-custom.json`. The draft companion prefers that board when present. **ADP is refreshed daily** from Sleeper into `docs/data/draft/adp-*.json` and overlaid at load time (not tied to the FantasyPros CSV rebuild).
 
 ## GitHub Pages
 
@@ -58,7 +59,7 @@ data/fantasypros/projections/2026/FantasyPros_Fantasy_Football_Projections_QB.cs
 2. Settings → Pages → Build from branch `main`, folder `/docs`
 3. Site URL: `https://<username>.github.io/fantasy-tool/`
 
-Manifest refresh on the first Tuesday of each month. Player news refreshes daily via **Refresh injuries**. Trigger either workflow manually from the Actions tab.
+Manifest refresh on the first Tuesday of each month. Player news refreshes daily via **Refresh injuries**. Sleeper ADP refreshes daily via **Refresh ADP** (independent of FantasyPros projection rebuilds). Trigger either workflow manually from the Actions tab.
 
 Repository secrets:
 

@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/site.css?v=28" />
+    <link rel="stylesheet" href="../css/site.css?v=30" />
     <script>
       setTimeout(function () {
         document.body.classList.remove("is-page-loading");
@@ -27,6 +27,7 @@
       <div class="container">
         <h1 class="page-title">ADP Board</h1>
         <p class="meta" id="adp-summary">Loading…</p>
+        <div id="sync-bar" class="sync-bar" hidden></div>
 
         <div class="adp-toolbar">
           <div class="adp-tabs" role="tablist" aria-label="Scoring format">
@@ -43,11 +44,11 @@
           </div>
           <div class="adp-toolbar-actions">
             <label class="adp-filter">
-              <input type="search" id="adp-search" spellcheck="false" autocomplete="off" placeholder="Filter players" />
+              <input type="search" id="adp-search" spellcheck="false" autocomplete="off" placeholder="search" />
             </label>
             <label class="adp-starred-only">
               <input type="checkbox" id="adp-starred-only" />
-              Starred only
+              Favourites only
             </label>
           </div>
         </div>
@@ -57,7 +58,7 @@
     </main>
 
     <script type="module">
-      import { mountAdpBoardPage } from "../js/adp-board.js?v=6";
+      import { mountAdpBoardPage } from "../js/adp-board.js?v=12";
       mountAdpBoardPage();
     </script>
   </body>

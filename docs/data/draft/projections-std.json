@@ -88,7 +88,7 @@
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gnnvcgui1cijybukk2w7",
       "team_color": "#FB4F14",
       "pts": 306.12,
-      "adp": 60.4,
+      "adp": 54.0,
       "proj_rank": 6,
       "bye_week": 6
     },
@@ -704,7 +704,7 @@
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gc0iljgj34piecyfueyd",
       "team_color": "#D3BC8D",
       "pts": 171.7,
-      "adp": 29.7,
+      "adp": 34.4,
       "proj_rank": 50,
       "bye_week": 8
     },
@@ -942,7 +942,7 @@
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/toy90i08oumgbdlvctja",
       "team_color": "#002244",
       "pts": 151.0,
-      "adp": 101.1,
+      "adp": 80.0,
       "proj_rank": 67,
       "bye_week": 11
     },
@@ -1054,7 +1054,7 @@
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/w3edoyyuomqlovvp9ixc",
       "team_color": "#0B2265",
       "pts": 145.3,
-      "adp": 34.3,
+      "adp": 30.3,
       "proj_rank": 75,
       "bye_week": 8
     },
@@ -1082,7 +1082,7 @@
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cfcux3dnfmbmz3qzrnco",
       "team_color": "#002244",
       "pts": 144.5,
-      "adp": 36.5,
+      "adp": 39.4,
       "proj_rank": 77,
       "bye_week": 11
     },
@@ -1180,7 +1180,7 @@
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sqgxayp6nrrpvwonksdm",
       "team_color": "#006778",
       "pts": 140.4,
-      "adp": 83.3,
+      "adp": 74.4,
       "proj_rank": 84,
       "bye_week": 7
     },
@@ -1264,7 +1264,7 @@
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cevotvl3ho5h1mioruyg",
       "team_color": "#002244",
       "pts": 134.2,
-      "adp": 74.7,
+      "adp": 68.3,
       "proj_rank": 90,
       "bye_week": 10
     },
@@ -1292,7 +1292,7 @@
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ixykwytfrfz1cdxlhj5w",
       "team_color": "#4F2683",
       "pts": 133.7,
-      "adp": 111.7,
+      "adp": 100.2,
       "proj_rank": 92,
       "bye_week": 6
     },
@@ -1348,7 +1348,7 @@
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tyjb6vfug7gaunvcune3",
       "team_color": "#0B162A",
       "pts": 131.4,
-      "adp": 49.5,
+      "adp": 46.6,
       "proj_rank": 96,
       "bye_week": 10
     },
@@ -1404,7 +1404,7 @@
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zeghrjc8rir3r3zi6det",
       "team_color": "#002C5F",
       "pts": 123.9,
-      "adp": 87.6,
+      "adp": 93.6,
       "proj_rank": 100,
       "bye_week": 13
     },
@@ -1544,7 +1544,7 @@
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/al6fifxstyc6omsenzhd",
       "team_color": "#D3BC8D",
       "pts": 112.6,
-      "adp": 69.8,
+      "adp": 62.4,
       "proj_rank": 110,
       "bye_week": 8
     },
@@ -1670,7 +1670,7 @@
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/i1qxzydetb2orrynzvzk",
       "team_color": "#002244",
       "pts": 107.1,
-      "adp": 40.1,
+      "adp": 56.4,
       "proj_rank": 119,
       "bye_week": 10
     },
@@ -1726,7 +1726,7 @@
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gqozitn9vxnp8acz6wwg",
       "team_color": "#002C5F",
       "pts": 106.4,
-      "adp": 133.4,
+      "adp": 111.1,
       "proj_rank": 123,
       "bye_week": 13
     },
@@ -1922,7 +1922,7 @@
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ntgyhqg6hq7fanhhsqiw",
       "team_color": "#AA0000",
       "pts": 99.7,
-      "adp": 149.6,
+      "adp": 138.4,
       "proj_rank": 137,
       "bye_week": 8
     },
@@ -2720,7 +2720,7 @@
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gjezd2a8imfrxyv16wuj",
       "team_color": "#241773",
       "pts": 58.1,
-      "adp": 181.9,
+      "adp": 168.3,
       "proj_rank": 194,
       "bye_week": 13
     },
@@ -7807,5 +7807,6 @@
       "bye_week": 14
     }
   ],
-  "last_updated": "2026-08-07T04:24:43Z"
+  "last_updated": "2026-08-07T04:24:43Z",
+  "adp_updated": "2026-08-11T17:51:36Z"
 }

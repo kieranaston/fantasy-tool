@@ -10,12 +10,8 @@ function escapeHtml(value) {
 
 function playerMediaHtml(player, { name } = {}) {
   const display = escapeHtml(name || player?.player_name || player?.player || "Unknown");
-  const headshot = player?.headshot;
   const logo = player?.logo;
   const team = player?.team ? String(player.team).toUpperCase() : "";
-  const headshotHtml = headshot
-    ? `<img class="player-headshot" src="${escapeHtml(headshot)}" alt="" width="36" height="36" loading="lazy" decoding="async" />`
-    : `<span class="player-headshot player-headshot--empty" aria-hidden="true"></span>`;
   const teamBits = [];
   if (logo) {
     teamBits.push(
@@ -26,7 +22,7 @@ function playerMediaHtml(player, { name } = {}) {
   const teamHtml = teamBits.length
     ? `<span class="player-media-team">${teamBits.join("")}</span>`
     : "";
-  return `<span class="player-media">${headshotHtml}<span class="player-media-text"><span class="player-media-name">${display}</span>${teamHtml}</span></span>`;
+  return `<span class="player-media player-media--text"><span class="player-media-text"><span class="player-media-name">${display}</span>${teamHtml}</span></span>`;
 }
 
 function ordinalDay(day) {
@@ -162,11 +158,9 @@ async function mountInjuriesPage() {
 
     function render(filtered) {
       if (meta) {
-        const age = data.news_max_age_days;
-        const ageBit = age ? ` · last ${age}d` : "";
         meta.textContent = data.last_updated
-          ? `Updated ${formatTimestamp(data.last_updated)} · ${filtered.length} players${ageBit}`
-          : `No refresh yet · ${filtered.length} players${ageBit}`;
+          ? formatTimestamp(data.last_updated)
+          : "No refresh yet";
       }
       if (!filtered.length) {
         container.innerHTML = players.length

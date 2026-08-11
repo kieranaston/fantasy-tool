@@ -5,6 +5,7 @@ import {
   resolveLeagueSettings,
   resolveScoringFormat,
   projectionsPathForFormat,
+  adpPathForFormat,
   rescoreProjectionBoard,
   overlayAdpFromPlayers,
   formatFromReceptionPoints,
@@ -12,11 +13,12 @@ import {
   SKILL_POSITIONS,
   SCORING_FORMATS,
   FORMAT_LABELS,
-} from "./draft-scoring.js?v=67";
+} from "./draft-scoring.js?v=70";
 import {
   loadLikedIds,
   toggleLikedId,
-} from "./draft-liked.js?v=1";
+  mountStarSync,
+} from "./draft-liked.js?v=3";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 1200;
@@ -24,9 +26,14 @@ const POLL_ON_DECK_MS = 1500;
 const POLL_WAITING_MS = 2500;
 const POLL_IDLE_MS = 5000;
 const DRAFT_META_EVERY = 12;
-const LS_LEAGUE = "draft-companion:league-id";
-const LS_DRAFT = "draft-companion:draft-id";
 const SEARCH_LIMIT = 24;
+
+const PROJECTION_SOURCE_LABELS = {
+  sleeper_adp: "Sleeper",
+  sleeper_rotowire: "Sleeper / Rotowire",
+  fantasypros_csv: "FantasyPros",
+  sleeper: "Sleeper",
+};
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -44,12 +51,8 @@ function playerMediaHtml(player, { name, compact = false } = {}) {
   const display = escapeHtml(
     name || player?.player || player?.name || player?.player_name || ""
   );
-  const headshot = player?.headshot;
   const logo = player?.logo;
   const team = player?.team ? String(player.team).toUpperCase() : "";
-  const headshotHtml = headshot
-    ? `<img class="player-headshot" src="${escapeHtml(headshot)}" alt="" width="28" height="28" loading="lazy" decoding="async" />`
-    : `<span class="player-headshot player-headshot--empty" aria-hidden="true"></span>`;
   let teamHtml = "";
   if (!compact) {
     const teamBits = [];
@@ -63,14 +66,16 @@ function playerMediaHtml(player, { name, compact = false } = {}) {
       ? `<span class="player-media-team">${teamBits.join("")}</span>`
       : "";
   }
-  const mediaClass = compact ? "player-media player-media--compact" : "player-media";
-  return `<span class="${mediaClass}">${headshotHtml}<span class="player-media-text"><span class="player-media-name">${display}</span>${teamHtml}</span></span>`;
+  const mediaClass = compact
+    ? "player-media player-media--compact player-media--text"
+    : "player-media player-media--text";
+  return `<span class="${mediaClass}"><span class="player-media-text"><span class="player-media-name">${display}</span>${teamHtml}</span></span>`;
 }
 
 function starButtonHtml(playerId, liked) {
   const id = escapeHtml(playerId);
   const on = Boolean(liked);
-  return `<button type="button" class="draft-star${on ? " is-liked" : ""}" data-player-id="${id}" aria-label="${on ? "Unstar player" : "Star player"}" aria-pressed="${on ? "true" : "false"}">★</button>`;
+  return `<button type="button" class="draft-star${on ? " is-liked" : ""}" data-player-id="${id}" aria-label="${on ? "Remove from favourites" : "Add to favourites"}" aria-pressed="${on ? "true" : "false"}">★</button>`;
 }
 
 function playerCellHtml(player, { name, compact = false, liked = false } = {}) {
@@ -89,19 +94,51 @@ function riskHtml(risk) {
   return "—";
 }
 
-function adpHtml(adp) {
-  const label = formatAdpRoundPick(adp, 12);
-  return label == null ? "—" : escapeHtml(label);
+/**
+ * Show overall ADP (Sleeper pick number) as the primary value.
+ * Round.pick is secondary so it isn't mistaken for overall ADP
+ * (e.g. Diggs ~125.9 → 11.06 in a 12-team league).
+ */
+function adpHtml(adp, teams = 12) {
+  const overall = Number(adp);
+  if (!Number.isFinite(overall) || overall <= 0) return "—";
+  const overallLabel = overall.toFixed(1);
+  const roundPick = formatAdpRoundPick(overall, teams);
+  if (!roundPick) return escapeHtml(overallLabel);
+  return `<span class="adp-overall" title="${escapeHtml(
+    String(teams)
+  )}-team round.pick ${escapeHtml(roundPick)}">${escapeHtml(
+    overallLabel
+  )}</span><span class="adp-round-pick">${escapeHtml(roundPick)}</span>`;
 }
 
-function scoreRowCells(r, { liked = false } = {}) {
+/** Short calendar date for projection freshness (US Eastern). */
+function projectionDateLabel(iso) {
+  if (!iso) return null;
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return null;
+  return date.toLocaleDateString("en-US", {
+    timeZone: "America/New_York",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+function projectionSourceLabel(raw) {
+  const key = String(raw || "").trim();
+  if (!key) return null;
+  return PROJECTION_SOURCE_LABELS[key] || key.replaceAll("_", " ");
+}
+
+function scoreRowCells(r, { liked = false, teams = 12 } = {}) {
   return `
     <td>${playerCellHtml(r, { liked })}</td>
     <td>${escapeHtml(r.position)}</td>
     <td>${r.bye_week == null ? "—" : escapeHtml(r.bye_week)}</td>
     <td>${escapeHtml(r.vorp)}</td>
     <td>${needBonusHtml(r.need_bonus)}</td>
-    <td>${adpHtml(r.adp)}</td>
+    <td>${adpHtml(r.adp, teams)}</td>
     <td>${riskHtml(r.risk)}</td>
     <td><strong>${escapeHtml(r.score)}</strong></td>`;
 }
@@ -220,7 +257,6 @@ function picksFingerprint(pickList) {
 
 async function mountDraftCompanionPage() {
   const statusEl = document.querySelector("[data-draft-live='status']");
-  const metaEl = document.querySelector("[data-draft-live='summary']");
   const recEl = document.getElementById("draft-recommendations");
   const boardEl = document.getElementById("draft-board");
   const needsEl = document.getElementById("draft-needs");
@@ -250,8 +286,18 @@ async function mountDraftCompanionPage() {
     const key = SCORING_FORMATS.includes(formatKey) ? formatKey : "half_ppr";
     if (adpBoardCache.has(key)) return adpBoardCache.get(key);
     try {
-      const data = await fetchJSON(projectionsPathForFormat(key));
-      const players = data?.players || [];
+      // Prefer daily ADP boards; fall back to baked projection ADP.
+      let players = [];
+      try {
+        const adpData = await fetchJSON(adpPathForFormat(key));
+        players = adpData?.players || [];
+      } catch {
+        players = [];
+      }
+      if (!players.length) {
+        const data = await fetchJSON(projectionsPathForFormat(key));
+        players = data?.players || [];
+      }
       adpBoardCache.set(key, players);
       return players;
     } catch {
@@ -299,8 +345,60 @@ async function mountDraftCompanionPage() {
   let searchTimer = null;
   let lastRosterForRender = [];
 
+  const starSync = mountStarSync({
+    host: document.getElementById("sync-bar"),
+    getIds: () => likedIds,
+    setIds: (ids) => {
+      likedIds = ids;
+    },
+    onChange: () => {
+      if (lastScoreResult) renderRecommendationsFromCache();
+      renderSearchResults();
+      renderRosterCounts();
+    },
+  });
+
+  function leagueTeamCount() {
+    const fromSettings = Number(leagueSettings?.teams);
+    if (Number.isFinite(fromSettings) && fromSettings > 0) return fromSettings;
+    const fromLeague = Number(
+      leagueForSettings()?.total_rosters || draft?.settings?.teams
+    );
+    if (Number.isFinite(fromLeague) && fromLeague > 0) return fromLeague;
+    return 12;
+  }
+
   function setStatus(text) {
     if (statusEl) statusEl.textContent = text;
+  }
+
+  function leagueDisplayName() {
+    const enteredId = resolveLeagueIdInput(leagueInput?.value || "");
+    if (enteredId && configuredLeague?.name) return configuredLeague.name;
+    // Live draft can supply the league name without filling the ID field.
+    if (league?.name) return league.name;
+    if (configuredLeague?.name && configuredLeague !== defaultLeague) {
+      return configuredLeague.name;
+    }
+    return null;
+  }
+
+  /** Top meta: League name · format · projection source · date */
+  function refreshHeader() {
+    const leagueName = leagueDisplayName() || "—";
+    const formatLabel =
+      scoringFormat?.format_label ||
+      FORMAT_LABELS[scoringFormat?.adp_format] ||
+      FORMAT_LABELS[scoringFormat?.format] ||
+      scoringFormat?.label ||
+      "Half PPR";
+    const source =
+      projectionSourceLabel(scoringFormat?.board_source) || "Projections";
+    const when = projectionDateLabel(scoringFormat?.last_updated);
+    const projections = when ? `${source}: ${when}` : source;
+    setStatus(
+      [`League: ${leagueName}`, formatLabel, projections].join(" · ")
+    );
   }
 
   function isLiked(id) {
@@ -309,24 +407,16 @@ async function mountDraftCompanionPage() {
 
   function toggleLiked(id) {
     likedIds = toggleLikedId(likedIds, id);
+    starSync.persistLocalAndMaybeRemote();
     const key = String(id || "");
     const on = likedIds.has(key);
     rootEl?.querySelectorAll(`.draft-star[data-player-id="${CSS.escape(key)}"]`).forEach((btn) => {
       btn.classList.toggle("is-liked", on);
       btn.setAttribute("aria-pressed", on ? "true" : "false");
-      btn.setAttribute("aria-label", on ? "Unstar player" : "Star player");
+      btn.setAttribute("aria-label", on ? "Remove from favourites" : "Add to favourites");
       const row = btn.closest("tr, li");
       if (row) row.classList.toggle("draft-liked", on);
     });
-  }
-
-  function persistInputs() {
-    if (leagueInput) {
-      localStorage.setItem(LS_LEAGUE, leagueInput.value.trim());
-    }
-    if (draftInput) {
-      localStorage.setItem(LS_DRAFT, draftInput.value.trim());
-    }
   }
 
   /** Prefer user/configured league over the draft's linked league. */
@@ -359,14 +449,18 @@ async function mountDraftCompanionPage() {
     indexProjections(projections);
     const custom = Boolean(meta.custom);
     const adpFormat = meta.adp_format || formatInfo?.format || null;
-    const adpLabel =
-      adpFormat && FORMAT_LABELS[adpFormat] ? FORMAT_LABELS[adpFormat] : null;
+    const formatLabel =
+      (adpFormat && FORMAT_LABELS[adpFormat]) ||
+      formatInfo?.label ||
+      meta.format ||
+      "Half PPR";
+    const lastUpdated = meta.last_updated || null;
     scoringFormat = {
       ...formatInfo,
       format: custom ? "custom" : meta.format || formatInfo.format,
-      label: custom
-        ? `${formatInfo?.label || "Custom"} · FantasyPros`
-        : formatInfo?.label || meta.format || "Half PPR",
+      format_label: formatLabel,
+      last_updated: lastUpdated,
+      label: formatLabel,
       board_source: meta.source || (custom ? "fantasypros_csv" : "sleeper"),
       adp_format: adpFormat,
       league_id:
@@ -375,9 +469,7 @@ async function mountDraftCompanionPage() {
         defaultLeague?.league_id ||
         null,
     };
-    if (custom && adpLabel) {
-      scoringFormat.label = `${adpLabel} · FantasyPros`;
-    }
+    refreshHeader();
   }
 
   async function loadProjectionsForFormat(formatInfo) {
@@ -409,6 +501,7 @@ async function mountDraftCompanionPage() {
         league_id: configuredLeague?.league_id || customBoardRaw.league_id,
         format: "custom",
         adp_format: adpFormat,
+        last_updated: customBoardRaw.last_updated || null,
       });
       return;
     }
@@ -421,6 +514,7 @@ async function mountDraftCompanionPage() {
       format: data.format,
       league_id: configuredLeague?.league_id || null,
       adp_format: data.format,
+      last_updated: data.last_updated || null,
     });
   }
 
@@ -433,9 +527,6 @@ async function mountDraftCompanionPage() {
     if (leagueId) {
       try {
         configuredLeague = await fetchLeagueById(leagueId);
-        if (leagueInput && !raw.includes(leagueId)) {
-          leagueInput.value = leagueId;
-        }
         return configuredLeague;
       } catch (err) {
         if (required) throw new Error(`League lookup failed: ${err.message}`);
@@ -515,31 +606,8 @@ async function mountDraftCompanionPage() {
     return buildSlotRosters(picks);
   }
 
-  function updateMeta(timing, { onClock } = {}) {
-    if (!metaEl || !draft) return;
-    const src = configuredLeague
-      ? configuredLeague.name || "league settings"
-      : timing.settings?.source === "league"
-        ? "league slots"
-        : "draft slots";
-    const slots = timing.settings;
-    const parts = [
-      `${draft.metadata?.name || league?.name || "Draft"}`,
-      `${draft.status}`,
-      scoringFormat?.label || "Half PPR",
-      `pick ${Math.min(timing.pickNo, timing.teams * timing.rounds)}`,
-      `you: slot ${mySlot}`,
-      `next yours: ${timing.nextMine}`,
-      `${src}: QB${slots.slots_qb}/RB${slots.slots_rb}/WR${slots.slots_wr}/TE${slots.slots_te}/FLEX${slots.slots_flex}`,
-    ];
-    if (!onClock) {
-      parts.push(
-        timing.until === 1 ? "on deck" : `waiting (${timing.until} picks)`
-      );
-    } else {
-      parts.push("your pick");
-    }
-    metaEl.textContent = parts.join(" · ");
+  function updateMeta() {
+    refreshHeader();
   }
 
   function cacheScoreResult(result) {
@@ -621,14 +689,15 @@ async function mountDraftCompanionPage() {
     }
     const result = lastScoreResult;
     if (!result) return;
-    const recs = (result.recommendations || []).slice(0, 8);
+    const recs = (result.recommendations || []).slice(0, 15);
     if (!recs.length) {
       recEl.innerHTML = `<p class="meta">No skill players left on the board.</p>`;
       return;
     }
     const vorpPct = Math.round((Number(result.vorp_weight) || 0) * 100);
+    const teams = leagueTeamCount();
     recEl.innerHTML = `
-      <p class="meta">Blend: ${vorpPct}% VORP / ${100 - vorpPct}% ADP</p>
+      <p class="meta">Blend: ${vorpPct}% VORP / ${100 - vorpPct}% ADP · ADP = overall pick (${teams}-team r.pk in gray)</p>
       <table class="draft-table cell-border">
         <thead>
           <tr>
@@ -643,7 +712,7 @@ async function mountDraftCompanionPage() {
               return `
             <tr class="${liked ? "draft-liked" : ""}">
               <td>${i + 1}</td>
-              ${scoreRowCells(r, { liked })}
+              ${scoreRowCells(r, { liked, teams })}
             </tr>`;
             })
             .join("")}
@@ -665,7 +734,7 @@ async function mountDraftCompanionPage() {
       .trim()
       .toLowerCase();
     if (!query) {
-      searchEl.innerHTML = `<p class="meta">Type to search players and see live scores.</p>`;
+      searchEl.innerHTML = "";
       return;
     }
 
@@ -703,6 +772,7 @@ async function mountDraftCompanionPage() {
     }
 
     const live = Boolean(draft && lastScoreById.size);
+    const teams = leagueTeamCount();
     searchEl.innerHTML = `
       <table class="draft-table cell-border">
         <thead>
@@ -739,7 +809,7 @@ async function mountDraftCompanionPage() {
                 <td>${player.bye_week == null ? "—" : escapeHtml(player.bye_week)}</td>
                 <td>${scored ? escapeHtml(scored.vorp) : "—"}</td>
                 <td>${scored ? needBonusHtml(scored.need_bonus) : "—"}</td>
-                <td>${adpHtml(player.adp)}</td>
+                <td>${adpHtml(player.adp, teams)}</td>
                 <td>${scored ? riskHtml(scored.risk) : "—"}</td>
                 ${scoreCell}
               </tr>`;
@@ -845,9 +915,17 @@ async function mountDraftCompanionPage() {
           scoringFormat = {
             ...scoringFormat,
             format: "custom",
-            label: `${scoringFormat.label} · FantasyPros`,
             board_source: "fantasypros_csv",
+            label:
+              scoringFormat.format_label ||
+              scoringFormat.label ||
+              "Half PPR",
+            format_label:
+              scoringFormat.format_label ||
+              scoringFormat.label ||
+              "Half PPR",
           };
+          refreshHeader();
         } else if (scoringFormat.format !== prevFormat) {
           await loadProjectionsForFormat(scoringFormat);
           hasScoredOnce = false;
@@ -866,14 +944,8 @@ async function mountDraftCompanionPage() {
         renderRecentPicks();
         queueScoreRender();
       } else if (draft) {
-        updateMeta(pickTiming(), { onClock: pickTiming().until <= 0 });
+        refreshHeader();
       }
-      const timing = pickTiming();
-      setStatus(
-        `Live · ${draft?.status || "?"} · ${picks.length} picks · ${scoringFormat.label}` +
-          (timing.until === 0 ? " · YOUR PICK" : ` · yours in ${timing.until}`) +
-          ` · ${new Date().toLocaleTimeString()}`
-      );
     } finally {
       inFlight = false;
     }
@@ -888,7 +960,6 @@ async function mountDraftCompanionPage() {
     lastScoredFingerprint = "";
     lastMyRosterFp = "";
     if (pauseBtn) pauseBtn.textContent = "Pause";
-    persistInputs();
 
     await loadConfiguredLeague({ required: false });
     if (!draftInput?.value?.trim()) {
@@ -898,13 +969,10 @@ async function mountDraftCompanionPage() {
     draft = await sleeperGet(`/draft/${draftId}`);
     league = await fetchLeagueForDraft(draft);
 
-    // If no league ID entered, adopt the draft's league when available.
+    // If no league ID entered, still use the draft's league for scoring/name,
+    // but leave the league ID field blank until the user fills it in.
     if (!resolveLeagueIdInput(leagueInput?.value || "") && league) {
       configuredLeague = league;
-      if (leagueInput && league.league_id) {
-        leagueInput.value = String(league.league_id);
-        persistInputs();
-      }
     }
 
     refreshLeagueSettings();
@@ -913,10 +981,7 @@ async function mountDraftCompanionPage() {
     lastFingerprint = picksFingerprint(picks);
     rebuildTaken();
     fillSeats();
-    const leagueName = configuredLeague?.name || "draft settings";
-    setStatus(
-      `Connected · ${draft.status} · ${picks.length} picks · ${scoringFormat.label} · ${leagueName}`
-    );
+    refreshHeader();
     renderAll();
     schedulePoll();
   }
@@ -942,7 +1007,6 @@ async function mountDraftCompanionPage() {
   pauseBtn?.addEventListener("click", () => {
     paused = !paused;
     pauseBtn.textContent = paused ? "Resume" : "Pause";
-    setStatus(paused ? "Paused" : "Live");
     if (!paused && draftId) schedulePoll();
     if (paused) stopTimers();
   });
@@ -954,13 +1018,6 @@ async function mountDraftCompanionPage() {
     queueScoreRender({ force: true });
   });
 
-  function bindPersist(el) {
-    el?.addEventListener("change", persistInputs);
-    el?.addEventListener("blur", persistInputs);
-  }
-  bindPersist(leagueInput);
-  bindPersist(draftInput);
-
   leagueInput?.addEventListener("change", () => {
     loadConfiguredLeague({ required: false })
       .then(() => {
@@ -968,8 +1025,7 @@ async function mountDraftCompanionPage() {
         return loadProjectionsForFormat(scoringFormat);
       })
       .then(() => {
-        const name = configuredLeague?.name || "default";
-        setStatus(`League · ${name} · ${scoringFormat.label}`);
+        refreshHeader();
         if (draftId) queueScoreRender({ force: true });
         else renderSearchResults();
       })
@@ -977,30 +1033,21 @@ async function mountDraftCompanionPage() {
   });
 
   try {
+    await starSync.hydrate();
     try {
       defaultLeague = await fetchJSON("draft/league.json");
     } catch {
       defaultLeague = null;
     }
 
-    const savedLeague =
-      localStorage.getItem(LS_LEAGUE) ||
-      defaultLeague?.league_id ||
-      "";
-    const savedDraft =
-      localStorage.getItem(LS_DRAFT) ||
-      localStorage.getItem("draft-companion:last-id") ||
-      "";
-    if (leagueInput && savedLeague) leagueInput.value = savedLeague;
-    if (draftInput && savedDraft) draftInput.value = savedDraft;
+    // League / draft IDs stay blank on refresh — enter them each session.
+    if (leagueInput) leagueInput.value = "";
+    if (draftInput) draftInput.value = "";
 
     await loadConfiguredLeague({ required: false });
     refreshLeagueSettings();
     await loadProjectionsForFormat(scoringFormat);
-    const leagueLabel = configuredLeague?.name
-      ? `${configuredLeague.name} · ${scoringFormat.label}`
-      : `${scoringFormat.label} board`;
-    setStatus(`Ready · ${leagueLabel}`);
+    refreshHeader();
     renderSearchResults();
     revealPage();
   } catch (err) {

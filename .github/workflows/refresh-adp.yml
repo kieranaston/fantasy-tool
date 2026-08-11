@@ -1,0 +1,42 @@
+name: Refresh ADP
+
+on:
+  schedule:
+    # Daily at 14:00 UTC (after injury refresh)
+    - cron: "0 14 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install .
+
+      - name: Refresh Sleeper ADP
+        run: python -m src.run_adp
+
+      - name: Commit updated ADP data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/draft/adp-*.json \
+            docs/data/draft/projections-half-ppr.json \
+            docs/data/draft/projections-full-ppr.json \
+            docs/data/draft/projections-std.json \
+            docs/data/draft/projections-custom.json
+          if git diff --staged --quiet; then
+            echo "No ADP changes to commit."
+          else
+            git commit -m "chore: refresh Sleeper ADP [skip ci]"
+            git push
+          fi
