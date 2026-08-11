@@ -15,7 +15,8 @@
  *       w = min(1, surplus / T)
  *       vorpN, adpN ∈ [0,1]  (adpN inverted: lower ADP → higher;
  *         missing ADP excluded from the extent, then scored as adpN = 0;
- *         empty known-ADP sample → skip ADP norm, adpN = 0 for everyone)
+ *         empty known-ADP sample → skip ADP norm, adpN = 0 for everyone;
+ *         flat known-ADP sample (max ≈ min) → adpN = 1 for known, 0 missing)
  *       if VORP_span ≈ 0: skip blend → score = NEED_K·need + RISK_K·risk
  *       else score = (w·vorpN + (1−w)·adpN)·VORP_span + NEED_K·need + RISK_K·risk
  *     Early (surplus ≥ T): pure VORP. Late (surplus → 0): ADP-led without
@@ -68,6 +69,9 @@ const ADP_MISSING = 9999;
 
 /** Below this VORP range, treat the pool as flat and skip the VORP/ADP blend. */
 const VORP_SPAN_EPS = 0.5;
+
+/** Below this ADP pick spread, treat known ADP as flat (skip min-max). */
+const ADP_SPAN_EPS = 1e-6;
 
 /**
  * ADP is noisy, so include a few picks past your next turn so borderline
@@ -493,13 +497,15 @@ function unitNormalize(value, extent) {
 }
 
 /**
- * Known ADP → [0, 1] (lower ADP higher). Missing ADP / empty sample → 0
- * (worst) without entering the min-max, so undrafted sentinels don't skew.
- * Flat non-empty sample (identical ADPs) → 0.5 so ADP doesn't differentiate.
+ * Known ADP → [0, 1] (lower ADP higher).
+ * - Missing ADP → 0 (worst / no sample for that player).
+ * - Empty known-ADP sample → 0 for everyone (no information).
+ * - Flat non-empty sample (adpMax ≈ adpMin) → 1 for known ADP so real
+ *   data still ranks above missing, without dividing by a ~0 span.
  */
-function adpUnitNormalize(player, extent, { emptySample = false } = {}) {
+function adpUnitNormalize(player, extent, { emptySample = false, flatSample = false } = {}) {
   if (emptySample || !hasKnownAdp(player)) return 0;
-  if (!(extent.span > 0)) return 0.5;
+  if (flatSample || !(extent.span > ADP_SPAN_EPS)) return 1;
   return (extent.hi - adpValue(player)) / extent.span;
 }
 
@@ -888,7 +894,8 @@ function scoreCandidates({
   // span so NEED_K / RISK_K stay comparable to blended value late-draft.
   // Flat / near-flat VORP → skip blend (need + risk only). Missing ADP is
   // kept out of the ADP extent so 9999 sentinels don't crush the scale.
-  // Empty known-ADP sample → skip ADP normalization (adpN = 0 for everyone).
+  // Empty known-ADP sample → adpN = 0 for everyone. Flat known sample
+  // (zero variance) → adpN = 1 for known ADP, 0 for missing — no /0.
   const vorpExtent = numericExtent(pending.map((row) => row.vorp));
   const knownAdpValues = pending
     .filter((row) => hasKnownAdp(row.player))
@@ -897,6 +904,7 @@ function scoreCandidates({
   const adpExtent = emptyAdpSample
     ? { lo: 0, hi: 0, span: 0 }
     : numericExtent(knownAdpValues);
+  const flatAdpSample = !emptyAdpSample && !(adpExtent.span > ADP_SPAN_EPS);
   const flatVorp = !(vorpExtent.span > VORP_SPAN_EPS);
 
   const scored = [];
@@ -907,7 +915,10 @@ function scoreCandidates({
     let adpTerm = 0;
     if (!flatVorp) {
       const vorpN = unitNormalize(row.vorp, vorpExtent);
-      const adpN = adpUnitNormalize(row.player, adpExtent, { emptySample: emptyAdpSample });
+      const adpN = adpUnitNormalize(row.player, adpExtent, {
+        emptySample: emptyAdpSample,
+        flatSample: flatAdpSample,
+      });
       blend = (vorpWeight * vorpN + adpWeight * adpN) * vorpExtent.span;
       adpTerm = adpN * vorpExtent.span;
     }

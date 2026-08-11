@@ -12,7 +12,7 @@ import {
   SKILL_POSITIONS,
   SCORING_FORMATS,
   FORMAT_LABELS,
-} from "./draft-scoring.js?v=66";
+} from "./draft-scoring.js?v=67";
 import {
   loadLikedIds,
   toggleLikedId,
