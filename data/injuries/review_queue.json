@@ -883,5 +883,23 @@
       "triaged": true
     },
     "extraction": null
+  },
+  {
+    "timestamp": "2026-08-11T12:39:47Z",
+    "reason": "unmatched_player_name",
+    "failed_fields": [],
+    "source": {
+      "id": "fa330f96-2521-4e20-9c19-73c100a1869b",
+      "player_id": null,
+      "player_name": "Michael Penix Jr.",
+      "timestamp": "2026-08-10T17:42:57-07:00",
+      "designation": "Remains working in 7-on-7 drills",
+      "source_text": "Michael Penix: Remains working in 7-on-7 drills \n\n https://www.rotowire.com/football/player/michael-penix-17700",
+      "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msrf2ceveg2q",
+      "source_type": "beat_reporter",
+      "needs_review": true,
+      "triaged": true
+    },
+    "extraction": null
   }
 ]
