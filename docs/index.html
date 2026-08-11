@@ -4,7 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Player News</title>
-    <link rel="stylesheet" href="css/site.css?v=26" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/site.css?v=28" />
+    <script>
+      setTimeout(function () {
+        document.body.classList.remove("is-page-loading");
+      }, 2500);
+    </script>
   </head>
   <body class="is-page-loading">
     <nav class="site-nav" aria-label="Primary">
@@ -31,8 +42,12 @@
     </main>
 
     <script type="module">
-      import { mountInjuriesPage } from "./js/injuries.js?v=7";
-      mountInjuriesPage();
+      import { mountInjuriesPage } from "./js/injuries.js?v=9";
+      mountInjuriesPage().catch(function (err) {
+        document.body.classList.remove("is-page-loading");
+        var el = document.getElementById("injuries-container");
+        if (el) el.innerHTML = '<div class="error">' + (err && err.message ? err.message : String(err)) + "</div>";
+      });
     </script>
   </body>
 </html>

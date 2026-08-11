@@ -138,7 +138,7 @@ function formatFromReceptionPoints(rec) {
 
 /**
  * Prefer league reception points when present; else draft scoring_type.
- * Defaults to half_ppr (matches projections.json alias).
+ * Defaults to half_ppr (projections-half-ppr.json).
  */
 function resolveScoringFormat(draft = {}, league = null) {
   const fromRec = formatFromReceptionPoints(league?.scoring_settings?.rec);

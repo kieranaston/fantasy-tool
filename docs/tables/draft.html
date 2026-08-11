@@ -4,7 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Draft Companion</title>
-    <link rel="stylesheet" href="../css/site.css?v=24" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/site.css?v=28" />
+    <script>
+      setTimeout(function () {
+        document.body.classList.remove("is-page-loading");
+      }, 2500);
+    </script>
   </head>
   <body class="is-page-loading">
     <nav class="site-nav" aria-label="Primary">
@@ -14,6 +25,9 @@
     </nav>
     <main class="site-main">
       <div class="container">
+        <p class="meta" data-draft-live="status">Loading board…</p>
+        <p class="meta" data-draft-live="summary"></p>
+
         <div class="controls draft-controls">
           <div class="draft-connect-row">
             <label for="draft-league-input">Sleeper league ID</label>
@@ -81,7 +95,7 @@
     </main>
 
     <script type="module">
-      import { mountDraftCompanionPage } from "../js/draft-companion.js?v=63";
+      import { mountDraftCompanionPage } from "../js/draft-companion.js?v=64";
       mountDraftCompanionPage();
     </script>
   </body>

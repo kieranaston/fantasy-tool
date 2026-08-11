@@ -96,10 +96,8 @@ def write_projections(season: int) -> Path:
         print(f"    wrote {path.relative_to(ROOT)} ({len(payload['players'])} players)")
 
     half = DRAFT_DIR / "projections-half-ppr.json"
-    alias = DRAFT_DIR / "projections.json"
-    alias.write_text(half.read_text(encoding="utf-8"), encoding="utf-8")
-    print(f"    wrote {alias.relative_to(ROOT)} (alias → half-ppr)")
-    return alias
+    # Frontend uses projections-half-ppr.json directly (no Pages alias).
+    return half
 
 
 def write_league_settings(league_id: str | None = None) -> tuple[Path | None, dict | None]:

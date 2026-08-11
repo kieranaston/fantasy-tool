@@ -1,4 +1,4 @@
-import { fetchJSON, formatTimestamp, showError, revealPage } from "./config.js";
+import { fetchJSON, formatTimestamp, showError, revealPage } from "./config.js?v=2";
 
 function escapeHtml(value) {
   return String(value ?? "")

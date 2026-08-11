@@ -7,7 +7,8 @@ Data is pulled from [nflverse](https://github.com/nflverse) via [nflreadpy](http
 ## Project structure
 
 ```
-docs/           GitHub Pages site (HTML, JS, CSS, generated JSON)
+docs/           GitHub Pages site (HTML, JS, CSS, public JSON)
+data/injuries/  Pipeline state (not published to Pages)
 src/            Python pipeline (loaders, injuries, export)
 .github/        Data refresh workflows
 ```
@@ -20,7 +21,7 @@ source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -e .
 
 python -m src.run                  # site manifest
-python -m src.run_injuries         # writes docs/data/injuries/
+python -m src.run_injuries         # state → data/injuries/; summaries → docs/
 python -m src.run_draft_data       # draft projections (+ custom FP board)
 python -m http.server 8000 --directory docs
 ```

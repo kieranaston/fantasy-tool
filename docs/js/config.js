@@ -14,21 +14,33 @@ function formatTimestamp(isoString) {
 
 /** Resolve a path relative to docs/data/. */
 function dataPath(relativePath) {
-  const base =
-    window.location.pathname.includes("/charts/") ||
-    window.location.pathname.includes("/tables/")
-      ? "../data"
-      : "./data";
+  const base = window.location.pathname.includes("/tables/")
+    ? "../data"
+    : "./data";
   return `${base}/${relativePath}`;
 }
 
 /** Fetch and parse a JSON file from docs/data/. */
-async function fetchJSON(relativePath, { cache = "no-store" } = {}) {
-  const response = await fetch(dataPath(relativePath), { cache });
-  if (!response.ok) {
-    throw new Error(`Failed to load ${relativePath}: ${response.status}`);
+async function fetchJSON(relativePath, { cache = "no-store", timeoutMs = 12000 } = {}) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    const response = await fetch(dataPath(relativePath), {
+      cache,
+      signal: ctrl.signal,
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to load ${relativePath}: ${response.status}`);
+    }
+    return await response.json();
+  } catch (err) {
+    if (err && err.name === "AbortError") {
+      throw new Error(`Timed out loading ${relativePath}`);
+    }
+    throw err;
+  } finally {
+    clearTimeout(timer);
   }
-  return response.json();
 }
 
 /** Render an error message into a container element. */
@@ -41,40 +53,4 @@ function revealPage() {
   document.body.classList.remove("is-page-loading");
 }
 
-/** Load manifest and populate elements with data-manifest attributes. */
-async function loadManifest() {
-  const manifest = await fetchJSON("manifest.json");
-  const summaryEls = document.querySelectorAll("[data-manifest='summary']");
-  if (summaryEls.length) {
-    let statusUpdated = null;
-    try {
-      const injuries = await fetchJSON("injuries/summaries.json");
-      statusUpdated = injuries.last_updated || null;
-    } catch {
-      statusUpdated = null;
-    }
-
-    const parts = [`Based on ${manifest.season}`];
-    if (manifest.last_updated) {
-      parts.push(`Teams last updated ${formatTimestamp(manifest.last_updated)}`);
-    }
-    if (statusUpdated) {
-      parts.push(`Player status updated ${formatTimestamp(statusUpdated)}`);
-    }
-
-    summaryEls.forEach((el) => {
-      el.textContent = parts.join(" · ");
-    });
-  }
-
-  document.querySelectorAll("[data-manifest]").forEach((el) => {
-    const key = el.getAttribute("data-manifest");
-    if (key === "summary") return;
-    if (key in manifest) {
-      el.textContent = manifest[key];
-    }
-  });
-  return manifest;
-}
-
-export { dataPath, fetchJSON, showError, revealPage, formatTimestamp, loadManifest };
+export { dataPath, fetchJSON, showError, revealPage, formatTimestamp };

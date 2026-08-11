@@ -1,4 +1,4 @@
-import { fetchJSON, showError, revealPage } from "./config.js";
+import { fetchJSON, showError, revealPage } from "./config.js?v=2";
 import { loadLikedIds, toggleLikedId } from "./draft-liked.js?v=1";
 
 const ADP_MISSING = 9999;
@@ -15,6 +15,8 @@ const FORMAT_LABELS = {
   full_ppr: "Full PPR",
   std: "Standard",
 };
+
+const boardCache = new Map();
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -79,14 +81,18 @@ function slimPlayers(players) {
 }
 
 async function loadBoardPlayers(formatKey = "half_ppr") {
-  const path = FORMAT_PATHS[formatKey] || FORMAT_PATHS.half_ppr;
+  const key = FORMAT_PATHS[formatKey] ? formatKey : "half_ppr";
+  if (boardCache.has(key)) return boardCache.get(key);
+  const path = FORMAT_PATHS[key];
   const data = await fetchJSON(path);
-  return {
+  const board = {
     players: slimPlayers(data.players || []),
-    label: FORMAT_LABELS[formatKey] || data.format || "Half PPR",
+    label: FORMAT_LABELS[key] || data.format || "Half PPR",
     source: data.source || "sleeper",
-    format: formatKey,
+    format: key,
   };
+  boardCache.set(key, board);
+  return board;
 }
 
 function sortByAdp(players) {

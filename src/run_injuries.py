@@ -35,13 +35,15 @@ from src.loaders.bluesky import (
 from src.loaders.sleeper_adp import load_news_pool_ids
 
 ROOT = Path(__file__).resolve().parents[1]
-INJURIES_DIR = ROOT / "docs" / "data" / "injuries"
+# Pipeline state stays off Pages; only summaries.json is published under docs/.
+STATE_DIR = ROOT / "data" / "injuries"
+PUBLIC_DIR = ROOT / "docs" / "data" / "injuries"
 
-RAW_PATH = INJURIES_DIR / "raw_reports.json"
-STATUS_PATH = INJURIES_DIR / "player_status_current.json"
-POLL_PATH = INJURIES_DIR / "poll_state.json"
-SUMMARIES_PATH = INJURIES_DIR / "summaries.json"
-REVIEW_PATH = INJURIES_DIR / "review_queue.json"
+RAW_PATH = STATE_DIR / "raw_reports.json"
+STATUS_PATH = STATE_DIR / "player_status_current.json"
+POLL_PATH = STATE_DIR / "poll_state.json"
+REVIEW_PATH = STATE_DIR / "review_queue.json"
+SUMMARIES_PATH = PUBLIC_DIR / "summaries.json"
 
 EXTRACT_CHUNK = 8
 NARRATIVE_CHUNK = 4
@@ -473,7 +475,8 @@ def process_changes(
 
 def main() -> None:
     _load_dotenv()
-    INJURIES_DIR.mkdir(parents=True, exist_ok=True)
+    STATE_DIR.mkdir(parents=True, exist_ok=True)
+    PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
 
     poll_state = load_poll_state(POLL_PATH)
     print("Player news pipeline…")

@@ -1,4 +1,4 @@
-import { fetchJSON, showError, revealPage } from "./config.js";
+import { fetchJSON, showError, revealPage } from "./config.js?v=2";
 import {
   scoreCandidates,
   nextPickNumbers,
@@ -12,7 +12,7 @@ import {
   SKILL_POSITIONS,
   SCORING_FORMATS,
   FORMAT_LABELS,
-} from "./draft-scoring.js?v=62";
+} from "./draft-scoring.js?v=63";
 import {
   loadLikedIds,
   toggleLikedId,

@@ -110,7 +110,6 @@ def build_summaries(
                 "current_designation": status.get("current_designation"),
                 "last_updated": status.get("last_updated"),
                 "diff_summary": status.get("last_diff_summary"),
-                "extraction": status.get("last_extraction"),
                 "timeline": timeline,
                 **media_fields,
             }
@@ -129,7 +128,6 @@ def build_summaries(
                 "current_designation": newest.get("designation"),
                 "last_updated": newest.get("timestamp"),
                 "diff_summary": None,
-                "extraction": None,
                 "timeline": timeline,
                 **media_fields,
             }
