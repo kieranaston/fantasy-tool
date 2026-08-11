@@ -18,7 +18,7 @@ import {
   loadLikedIds,
   toggleLikedId,
   mountStarSync,
-} from "./draft-liked.js?v=3";
+} from "./draft-liked.js?v=4";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 1200;
@@ -355,6 +355,7 @@ async function mountDraftCompanionPage() {
       if (lastScoreResult) renderRecommendationsFromCache();
       renderSearchResults();
       renderRosterCounts();
+      if (picks?.length) renderRecentPicks();
     },
   });
 
@@ -408,15 +409,6 @@ async function mountDraftCompanionPage() {
   function toggleLiked(id) {
     likedIds = toggleLikedId(likedIds, id);
     starSync.persistLocalAndMaybeRemote();
-    const key = String(id || "");
-    const on = likedIds.has(key);
-    rootEl?.querySelectorAll(`.draft-star[data-player-id="${CSS.escape(key)}"]`).forEach((btn) => {
-      btn.classList.toggle("is-liked", on);
-      btn.setAttribute("aria-pressed", on ? "true" : "false");
-      btn.setAttribute("aria-label", on ? "Remove from favourites" : "Add to favourites");
-      const row = btn.closest("tr, li");
-      if (row) row.classList.toggle("draft-liked", on);
-    });
   }
 
   /** Prefer user/configured league over the draft's linked league. */

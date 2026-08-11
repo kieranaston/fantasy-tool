@@ -1,5 +1,5 @@
 import { fetchJSON, formatTimestamp, showError, revealPage } from "./config.js?v=2";
-import { loadLikedIds, toggleLikedId, mountStarSync } from "./draft-liked.js?v=3";
+import { loadLikedIds, toggleLikedId, mountStarSync } from "./draft-liked.js?v=4";
 
 const ADP_MISSING = 9999;
 const SKILL_POSITIONS = ["QB", "RB", "WR", "TE"];
@@ -347,20 +347,10 @@ async function mountAdpBoardPage() {
     const btn = event.target.closest(".draft-star");
     if (!btn || !root.contains(btn)) return;
     event.preventDefault();
+    event.stopPropagation();
     const id = btn.getAttribute("data-player-id");
     likedIds = toggleLikedId(likedIds, id);
     starSync.persistLocalAndMaybeRemote();
-    const on = likedIds.has(String(id || ""));
-    root
-      .querySelectorAll(`.draft-star[data-player-id="${CSS.escape(String(id || ""))}"]`)
-      .forEach((el) => {
-        el.classList.toggle("is-liked", on);
-        el.setAttribute("aria-pressed", on ? "true" : "false");
-        el.setAttribute("aria-label", on ? "Remove from favourites" : "Add to favourites");
-        const row = el.closest("tr");
-        if (row) row.classList.toggle("draft-liked", on);
-      });
-    updateSummary();
   });
 
   try {

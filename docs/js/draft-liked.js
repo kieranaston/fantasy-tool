@@ -80,6 +80,9 @@ export function mountStarSync(options) {
   const { host, getIds, setIds, onChange } = options;
   let syncStatus = isSyncConfigured() ? "Checking sync…" : "Local only";
   let signedInEmail = null;
+  let hydrateDone = false;
+  /** Bumped on every local favourite edit; stale remote merges must not apply. */
+  let localEpoch = 0;
 
   const remoteSaver = createDebouncedStarSaver({
     onSuccess: () => {
@@ -104,11 +107,13 @@ export function mountStarSync(options) {
   }
 
   function persistLocalAndMaybeRemote() {
+    localEpoch += 1;
     const state = saveLikedIds(getIds());
     if (isSyncConfigured() && signedInEmail) {
       setSyncStatus("Saving favourites…");
       remoteSaver.schedule(state);
     }
+    onChange?.();
   }
 
   function renderSyncBar() {
@@ -159,7 +164,9 @@ export function mountStarSync(options) {
     });
   }
 
-  async function applyMergedState(localState, remoteState) {
+  async function applyMergedState(localState, remoteState, { epoch = localEpoch } = {}) {
+    if (epoch !== localEpoch) return;
+
     const { source, state } = pickNewerStars(localState, remoteState);
     if (!state) {
       if (!signedInEmail && isSyncConfigured()) {
@@ -169,6 +176,8 @@ export function mountStarSync(options) {
       }
       return;
     }
+
+    if (epoch !== localEpoch) return;
 
     setIds(new Set(normalizeIds(state.ids)));
     saveLikedIds(state.ids, state.updated_at || new Date().toISOString());
@@ -186,6 +195,14 @@ export function mountStarSync(options) {
     }
   }
 
+  async function hydrateFromRemote() {
+    const epoch = localEpoch;
+    const localState = loadLikedState();
+    const remote = await fetchStars();
+    if (epoch !== localEpoch) return;
+    await applyMergedState(localState, remote, { epoch });
+  }
+
   async function hydrate() {
     const localState = loadLikedState();
     setIds(new Set(localState.ids));
@@ -194,44 +211,65 @@ export function mountStarSync(options) {
       setSyncStatus("Local only");
       renderSyncBar();
       onChange?.();
+      hydrateDone = true;
       return { signedIn: false };
     }
 
     try {
       const session = await getSession();
       signedInEmail = session?.user?.email || null;
-      let remote = null;
       if (signedInEmail) {
-        remote = await fetchStars();
+        await hydrateFromRemote();
+      } else if (localState.ids.length) {
+        setSyncStatus("Sign in to sync favourites across devices");
+      } else {
+        setSyncStatus("Sign in to sync favourites across devices");
       }
-      await applyMergedState(localState, remote);
     } catch (err) {
       setSyncStatus(err.message || "Sync unavailable");
     }
     renderSyncBar();
     onChange?.();
+    hydrateDone = true;
     return { signedIn: Boolean(signedInEmail) };
   }
 
   if (isSyncConfigured()) {
-    onAuthChange(async (session) => {
+    onAuthChange(async (event, session) => {
       const email = session?.user?.email || null;
-      const wasSignedIn = Boolean(signedInEmail);
-      signedInEmail = email;
-      renderSyncBar();
-      if (email && !wasSignedIn) {
-        try {
-          const remote = await fetchStars();
-          await applyMergedState(loadLikedState(), remote);
-          renderSyncBar();
-        } catch (err) {
-          setSyncStatus(err.message || "Sync failed");
-          renderSyncBar();
-        }
-      } else if (!email) {
+
+      // Initial session is handled by hydrate(); ignore it to avoid a second
+      // fetch that can race with (and overwrite) favourites toggles.
+      if (event === "INITIAL_SESSION") {
+        if (!hydrateDone && email) signedInEmail = email;
+        return;
+      }
+
+      if (event === "SIGNED_OUT" || !email) {
+        signedInEmail = null;
         setSyncStatus("Sign in to sync favourites across devices");
         renderSyncBar();
+        return;
       }
+
+      if (event === "SIGNED_IN" || event === "USER_UPDATED") {
+        const wasSignedIn = Boolean(signedInEmail);
+        signedInEmail = email;
+        renderSyncBar();
+        if (!wasSignedIn || event === "SIGNED_IN") {
+          try {
+            await hydrateFromRemote();
+            renderSyncBar();
+          } catch (err) {
+            setSyncStatus(err.message || "Sync failed");
+            renderSyncBar();
+          }
+        }
+        return;
+      }
+
+      // TOKEN_REFRESHED etc. — keep email, don't re-merge.
+      if (email) signedInEmail = email;
     });
   }
 

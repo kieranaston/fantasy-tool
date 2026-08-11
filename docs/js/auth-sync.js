@@ -10,7 +10,7 @@ import {
 } from "./sync-config.js";
 
 let client = null;
-const SAVE_DEBOUNCE_MS = 500;
+const SAVE_DEBOUNCE_MS = 400;
 
 function getClient() {
   if (!isSyncConfigured()) return null;
@@ -39,15 +39,20 @@ async function getUser() {
   return session?.user || null;
 }
 
-/** @param {(session: object|null) => void} callback */
+/**
+ * Subscribe to auth changes.
+ * Callback is invoked asynchronously (never directly inside the Supabase
+ * auth listener) so we don't deadlock by calling getSession from it.
+ * @param {(event: string, session: object|null) => void} callback
+ */
 function onAuthChange(callback) {
   const sb = getClient();
   if (!sb) {
-    callback(null);
+    queueMicrotask(() => callback("SIGNED_OUT", null));
     return { data: { subscription: { unsubscribe() {} } } };
   }
-  return sb.auth.onAuthStateChange((_event, session) => {
-    callback(session);
+  return sb.auth.onAuthStateChange((event, session) => {
+    queueMicrotask(() => callback(event, session));
   });
 }
 
@@ -91,7 +96,19 @@ async function fetchStars() {
 
   if (error) throw error;
   if (!data) return null;
-  const ids = Array.isArray(data.ids) ? data.ids.map(String).filter(Boolean) : [];
+  const rawIds = data.ids;
+  const ids = Array.isArray(rawIds)
+    ? rawIds.map(String).filter(Boolean)
+    : typeof rawIds === "string"
+      ? (() => {
+          try {
+            const parsed = JSON.parse(rawIds);
+            return Array.isArray(parsed) ? parsed.map(String).filter(Boolean) : [];
+          } catch {
+            return [];
+          }
+        })()
+      : [];
   return { ids, updated_at: data.updated_at };
 }
 
@@ -119,18 +136,34 @@ async function saveStars(payload) {
 
 /**
  * Prefer the newer of local vs remote favourites payloads.
+ * Ties go to local so in-flight remote fetches can't clobber a just-made toggle.
  * @returns {{source: 'remote'|'local'|'none', state: {ids: string[], updated_at: string|null}|null}}
  */
 function pickNewerStars(localState, remoteState) {
   if (!localState && !remoteState) return { source: "none", state: null };
-  if (!localState?.ids?.length && remoteState) {
-    return { source: "remote", state: remoteState };
-  }
-  if (!remoteState) return { source: "local", state: localState };
+  if (!remoteState) return { source: "local", state: localState || null };
   if (!localState) return { source: "remote", state: remoteState };
-  if (tsValue(remoteState.updated_at) >= tsValue(localState.updated_at)) {
+
+  const localTs = tsValue(localState.updated_at);
+  const remoteTs = tsValue(remoteState.updated_at);
+  const localCount = localState.ids?.length || 0;
+  const remoteCount = remoteState.ids?.length || 0;
+
+  // Empty local + any remote row (including empty) → take remote on first sign-in.
+  if (!localCount && remoteState) {
     return { source: "remote", state: remoteState };
   }
+
+  // Strictly newer remote wins; equal or older → local (protects rapid toggles).
+  if (remoteTs > localTs) {
+    return { source: "remote", state: remoteState };
+  }
+  if (localTs > remoteTs) {
+    return { source: "local", state: localState };
+  }
+  // Same timestamp: prefer whichever has ids if the other is empty; else local.
+  if (localCount && !remoteCount) return { source: "local", state: localState };
+  if (remoteCount && !localCount) return { source: "remote", state: remoteState };
   return { source: "local", state: localState };
 }
 
