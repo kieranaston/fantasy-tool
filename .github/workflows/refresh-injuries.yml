@@ -41,7 +41,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/injuries/ docs/data/injuries/summaries.json
+          git add data/injuries/raw_reports.json \
+            data/injuries/player_status_current.json \
+            data/injuries/poll_state.json \
+            docs/data/injuries/summaries.json
           if git diff --staged --quiet; then
             echo "No injury data changes to commit."
           else

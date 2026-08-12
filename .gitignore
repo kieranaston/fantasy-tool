@@ -157,8 +157,14 @@ ENV/
 env.bak/
 venv.bak/
 
-# Local FantasyPros CSV downloads (not published)
+# Pipeline-only Gemini review dump (local / CI; not published)
+data/injuries/review_queue.json
+
+# Leftover local FantasyPros CSV drops (unused)
 data/fantasypros/
+
+# macOS
+.DS_Store
 
 # Spyder project settings
 .spyderproject

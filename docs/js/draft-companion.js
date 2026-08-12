@@ -1,19 +1,17 @@
 import { fetchJSON, showError, revealPage } from "./config.js?v=2";
+import { escapeHtml, sleeperIdOf, starButtonHtml } from "./shared.js?v=1";
 import {
   scoreCandidates,
   nextPickNumbers,
   resolveLeagueSettings,
   resolveScoringFormat,
-  projectionsPathForFormat,
   adpPathForFormat,
-  rescoreProjectionBoard,
-  overlayAdpFromPlayers,
   formatFromReceptionPoints,
   formatAdpRoundPick,
   SKILL_POSITIONS,
   SCORING_FORMATS,
   FORMAT_LABELS,
-} from "./draft-scoring.js?v=70";
+} from "./draft-scoring.js?v=80";
 import {
   loadLikedIds,
   toggleLikedId,
@@ -27,25 +25,6 @@ const POLL_WAITING_MS = 2500;
 const POLL_IDLE_MS = 5000;
 const DRAFT_META_EVERY = 12;
 const SEARCH_LIMIT = 24;
-
-const PROJECTION_SOURCE_LABELS = {
-  sleeper_adp: "Sleeper",
-  sleeper_rotowire: "Sleeper / Rotowire",
-  fantasypros_csv: "FantasyPros",
-  sleeper: "Sleeper",
-};
-
-function escapeHtml(value) {
-  return String(value ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
-}
-
-function sleeperIdOf(player) {
-  return String(player?.sleeper_id || player?.player_id || "");
-}
 
 function playerMediaHtml(player, { name, compact = false } = {}) {
   const display = escapeHtml(
@@ -72,12 +51,6 @@ function playerMediaHtml(player, { name, compact = false } = {}) {
   return `<span class="${mediaClass}"><span class="player-media-text"><span class="player-media-name">${display}</span>${teamHtml}</span></span>`;
 }
 
-function starButtonHtml(playerId, liked) {
-  const id = escapeHtml(playerId);
-  const on = Boolean(liked);
-  return `<button type="button" class="draft-star${on ? " is-liked" : ""}" data-player-id="${id}" aria-label="${on ? "Remove from favourites" : "Add to favourites"}" aria-pressed="${on ? "true" : "false"}">★</button>`;
-}
-
 function playerCellHtml(player, { name, compact = false, liked = false } = {}) {
   const id = sleeperIdOf(player);
   return `<span class="draft-player-cell">${starButtonHtml(id, liked)}${playerMediaHtml(player, { name, compact })}</span>`;
@@ -96,8 +69,7 @@ function riskHtml(risk) {
 
 /**
  * Show overall ADP (Sleeper pick number) as the primary value.
- * Round.pick is secondary so it isn't mistaken for overall ADP
- * (e.g. Diggs ~125.9 → 11.06 in a 12-team league).
+ * Round.pick is secondary so it isn't mistaken for overall ADP.
  */
 function adpHtml(adp, teams = 12) {
   const overall = Number(adp);
@@ -112,8 +84,7 @@ function adpHtml(adp, teams = 12) {
   )}</span><span class="adp-round-pick">${escapeHtml(roundPick)}</span>`;
 }
 
-/** Short calendar date for projection freshness (US Eastern). */
-function projectionDateLabel(iso) {
+function stampLabel(iso) {
   if (!iso) return null;
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return null;
@@ -125,18 +96,11 @@ function projectionDateLabel(iso) {
   });
 }
 
-function projectionSourceLabel(raw) {
-  const key = String(raw || "").trim();
-  if (!key) return null;
-  return PROJECTION_SOURCE_LABELS[key] || key.replaceAll("_", " ");
-}
-
 function scoreRowCells(r, { liked = false, teams = 12 } = {}) {
   return `
     <td>${playerCellHtml(r, { liked })}</td>
     <td>${escapeHtml(r.position)}</td>
     <td>${r.bye_week == null ? "—" : escapeHtml(r.bye_week)}</td>
-    <td>${escapeHtml(r.vorp)}</td>
     <td>${needBonusHtml(r.need_bonus)}</td>
     <td>${adpHtml(r.adp, teams)}</td>
     <td>${riskHtml(r.risk)}</td>
@@ -269,60 +233,14 @@ async function mountDraftCompanionPage() {
   const seatSelect = document.getElementById("draft-seat");
   const rootEl = document.querySelector(".container") || document.body;
 
-  let projections = [];
-  let projectionsByPos = { QB: [], RB: [], WR: [], TE: [] };
-  let projectionsById = new Map();
+  let boardPlayers = [];
+  let boardByPos = { QB: [], RB: [], WR: [], TE: [] };
+  let boardById = new Map();
   let scoringFormat = resolveScoringFormat();
-  /** Baked league.json fallback from the data pipeline. */
-  let defaultLeague = null;
-  /** Active league for scoring/slots (user league ID or default). */
+  /** Active league for slots (entered league ID or draft-linked league). */
   let configuredLeague = null;
-  /** Raw FantasyPros custom board (with stats) before live re-score. */
-  let customBoardRaw = null;
-  /** Cached format boards used only for ADP overlays. */
   const adpBoardCache = new Map();
 
-  async function loadAdpOverlayPlayers(formatKey) {
-    const key = SCORING_FORMATS.includes(formatKey) ? formatKey : "half_ppr";
-    if (adpBoardCache.has(key)) return adpBoardCache.get(key);
-    try {
-      // Prefer daily ADP boards; fall back to baked projection ADP.
-      let players = [];
-      try {
-        const adpData = await fetchJSON(adpPathForFormat(key));
-        players = adpData?.players || [];
-      } catch {
-        players = [];
-      }
-      if (!players.length) {
-        const data = await fetchJSON(projectionsPathForFormat(key));
-        players = data?.players || [];
-      }
-      adpBoardCache.set(key, players);
-      return players;
-    } catch {
-      adpBoardCache.set(key, []);
-      return [];
-    }
-  }
-
-  function adpFormatKey(formatInfo, scoring = {}) {
-    const fromInfo =
-      formatInfo?.format && formatInfo.format !== "custom"
-        ? formatInfo.format
-        : null;
-    if (fromInfo && SCORING_FORMATS.includes(fromInfo)) return fromInfo;
-    return formatFromReceptionPoints(scoring.rec) || "half_ppr";
-  }
-
-  async function withFormatAdp(players, formatInfo, scoring) {
-    const formatKey = adpFormatKey(formatInfo, scoring);
-    const adpPlayers = await loadAdpOverlayPlayers(formatKey);
-    return {
-      players: overlayAdpFromPlayers(players, adpPlayers),
-      adpFormat: formatKey,
-    };
-  }
   let takenIndex = new Set();
   let pollTimer = null;
   let draftId = null;
@@ -376,30 +294,22 @@ async function mountDraftCompanionPage() {
   function leagueDisplayName() {
     const enteredId = resolveLeagueIdInput(leagueInput?.value || "");
     if (enteredId && configuredLeague?.name) return configuredLeague.name;
-    // Live draft can supply the league name without filling the ID field.
     if (league?.name) return league.name;
-    if (configuredLeague?.name && configuredLeague !== defaultLeague) {
-      return configuredLeague.name;
-    }
+    if (configuredLeague?.name) return configuredLeague.name;
     return null;
   }
 
-  /** Top meta: League name · format · projection source · date */
+  /** Top meta: League name · format · ADP freshness */
   function refreshHeader() {
     const leagueName = leagueDisplayName() || "—";
     const formatLabel =
       scoringFormat?.format_label ||
-      FORMAT_LABELS[scoringFormat?.adp_format] ||
       FORMAT_LABELS[scoringFormat?.format] ||
       scoringFormat?.label ||
       "Half PPR";
-    const source =
-      projectionSourceLabel(scoringFormat?.board_source) || "Projections";
-    const when = projectionDateLabel(scoringFormat?.last_updated);
-    const projections = when ? `${source}: ${when}` : source;
-    setStatus(
-      [`League: ${leagueName}`, formatLabel, projections].join(" · ")
-    );
+    const when = stampLabel(scoringFormat?.last_updated);
+    const adp = when ? `Sleeper ADP: ${when}` : "Sleeper ADP";
+    setStatus([`League: ${leagueName}`, formatLabel, adp].join(" · "));
   }
 
   function isLiked(id) {
@@ -419,10 +329,17 @@ async function mountDraftCompanionPage() {
   function refreshLeagueSettings() {
     const srcLeague = leagueForSettings();
     leagueSettings = resolveLeagueSettings(draft || {}, srcLeague);
-    scoringFormat = resolveScoringFormat(draft || {}, srcLeague);
+    scoringFormat = {
+      ...resolveScoringFormat(draft || {}, srcLeague),
+      last_updated: scoringFormat?.last_updated || null,
+      format_label: null,
+    };
+    const key = scoringFormat.format;
+    scoringFormat.format_label = FORMAT_LABELS[key] || scoringFormat.label;
+    scoringFormat.label = scoringFormat.format_label;
   }
 
-  function indexProjections(players) {
+  function indexBoard(players) {
     const byPos = { QB: [], RB: [], WR: [], TE: [] };
     const byId = new Map();
     for (const p of players) {
@@ -430,88 +347,67 @@ async function mountDraftCompanionPage() {
       byId.set(String(p.sleeper_id), p);
     }
     for (const pos of SKILL_POSITIONS) {
-      byPos[pos].sort((a, b) => Number(b.pts) - Number(a.pts));
+      byPos[pos].sort(
+        (a, b) =>
+          Number(a.adp) - Number(b.adp) ||
+          String(a.player || "").localeCompare(String(b.player || ""))
+      );
     }
-    projectionsByPos = byPos;
-    projectionsById = byId;
+    boardByPos = byPos;
+    boardById = byId;
   }
 
-  function applyScoredPlayers(players, formatInfo, meta = {}) {
-    projections = players;
-    indexProjections(projections);
-    const custom = Boolean(meta.custom);
-    const adpFormat = meta.adp_format || formatInfo?.format || null;
+  function applyBoardPlayers(players, formatInfo, meta = {}) {
+    boardPlayers = players;
+    indexBoard(boardPlayers);
+    const formatKey = meta.format || formatInfo?.format || "half_ppr";
     const formatLabel =
-      (adpFormat && FORMAT_LABELS[adpFormat]) ||
-      formatInfo?.label ||
-      meta.format ||
-      "Half PPR";
-    const lastUpdated = meta.last_updated || null;
+      FORMAT_LABELS[formatKey] || formatInfo?.label || "Half PPR";
     scoringFormat = {
       ...formatInfo,
-      format: custom ? "custom" : meta.format || formatInfo.format,
+      format: formatKey,
       format_label: formatLabel,
-      last_updated: lastUpdated,
+      last_updated: meta.last_updated || null,
       label: formatLabel,
-      board_source: meta.source || (custom ? "fantasypros_csv" : "sleeper"),
-      adp_format: adpFormat,
-      league_id:
-        meta.league_id ||
-        configuredLeague?.league_id ||
-        defaultLeague?.league_id ||
-        null,
+      board_source: meta.source || "sleeper_adp",
+      league_id: meta.league_id || configuredLeague?.league_id || null,
     };
     refreshHeader();
   }
 
-  async function loadProjectionsForFormat(formatInfo) {
+  function adpFormatKey(formatInfo, scoring = {}) {
+    const fromInfo =
+      formatInfo?.format && SCORING_FORMATS.includes(formatInfo.format)
+        ? formatInfo.format
+        : null;
+    if (fromInfo) return fromInfo;
+    return formatFromReceptionPoints(scoring.rec) || "half_ppr";
+  }
+
+  async function loadAdpBoard(formatInfo) {
     const scoring = leagueForSettings()?.scoring_settings || {};
-
-    if (!customBoardRaw) {
-      try {
-        const data = await fetchJSON("draft/projections-custom.json");
-        if (data?.players?.length) customBoardRaw = data;
-      } catch {
-        customBoardRaw = null;
-      }
+    const formatKey = adpFormatKey(formatInfo, scoring);
+    let data;
+    if (adpBoardCache.has(formatKey)) {
+      data = adpBoardCache.get(formatKey);
+    } else {
+      data = await fetchJSON(adpPathForFormat(formatKey));
+      adpBoardCache.set(formatKey, data);
     }
-
-    if (customBoardRaw?.players?.length) {
-      const scored = rescoreProjectionBoard(customBoardRaw.players, scoring);
-      // Drop bulky raw stats after pts are baked — keeps memory/GC lighter.
-      for (const p of scored) {
-        if (p.stats) delete p.stats;
-      }
-      const { players: withAdp, adpFormat } = await withFormatAdp(
-        scored,
-        formatInfo,
-        scoring
-      );
-      applyScoredPlayers(withAdp, formatInfo, {
-        custom: true,
-        source: "fantasypros_csv",
-        league_id: configuredLeague?.league_id || customBoardRaw.league_id,
-        format: "custom",
-        adp_format: adpFormat,
-        last_updated: customBoardRaw.last_updated || null,
-      });
-      return;
-    }
-
-    const path = projectionsPathForFormat(formatInfo?.format);
-    const data = await fetchJSON(path);
-    applyScoredPlayers(data.players || [], formatInfo, {
-      custom: false,
-      source: data.source || "sleeper",
-      format: data.format,
+    const players = (data.players || []).map((p) => ({
+      ...p,
+      sleeper_id: sleeperIdOf(p),
+    }));
+    applyBoardPlayers(players, formatInfo, {
+      source: data.source || "sleeper_adp",
+      format: formatKey,
       league_id: configuredLeague?.league_id || null,
-      adp_format: data.format,
       last_updated: data.last_updated || null,
     });
   }
 
   /**
-   * Load scoring/slots from the league ID field (falls back to league.json).
+   * Load slots from the league ID field (else draft-linked league / defaults).
    */
   async function loadConfiguredLeague({ required = false } = {}) {
     const raw = leagueInput?.value?.trim() || "";
@@ -525,20 +421,19 @@ async function mountDraftCompanionPage() {
         setStatus(`League lookup failed (${err.message}); using defaults`);
       }
     }
-    configuredLeague = defaultLeague;
-    if (!configuredLeague && required) {
-      throw new Error("Enter a Sleeper league ID for custom scoring");
+    configuredLeague = null;
+    if (required) {
+      throw new Error("Enter a Sleeper league ID for roster settings");
     }
     return configuredLeague;
   }
 
   function enrichRoster(roster = []) {
     return roster.map((p) => {
-      const proj = projectionsById.get(String(p.player_id));
+      const board = boardById.get(String(p.player_id));
       return {
         ...p,
-        pts: proj?.pts,
-        bye_week: proj?.bye_week ?? p.bye_week ?? null,
+        bye_week: board?.bye_week ?? p.bye_week ?? null,
       };
     });
   }
@@ -546,7 +441,7 @@ async function mountDraftCompanionPage() {
   function availableByPos() {
     const out = {};
     for (const pos of SKILL_POSITIONS) {
-      out[pos] = (projectionsByPos[pos] || []).filter(
+      out[pos] = (boardByPos[pos] || []).filter(
         (p) => !takenIndex.has(String(p.sleeper_id))
       );
     }
@@ -584,7 +479,8 @@ async function mountDraftCompanionPage() {
   }
 
   function pickTiming() {
-    const settings = leagueSettings || resolveLeagueSettings(draft || {}, leagueForSettings());
+    const settings =
+      leagueSettings || resolveLeagueSettings(draft || {}, leagueForSettings());
     const teams = Number(settings.teams || 12);
     const rounds = Number(settings.rounds || draft?.settings?.rounds || 15);
     const pickNo = currentPickNo(picks);
@@ -627,10 +523,9 @@ async function mountDraftCompanionPage() {
                   .map((p) => {
                     const id = String(p.player_id || "");
                     const liked = isLiked(id);
-                    const proj =
-                      projectionsById.get(id) || p;
-                    return `<li class="${liked ? "draft-liked" : ""}">${playerCellHtml(proj, {
-                      name: p.name || proj.player || p.player_id,
+                    const board = boardById.get(id) || p;
+                    return `<li class="${liked ? "draft-liked" : ""}">${playerCellHtml(board, {
+                      name: p.name || board.player || p.player_id,
                       liked,
                     })}</li>`;
                   })
@@ -654,7 +549,7 @@ async function mountDraftCompanionPage() {
               const name = `${meta.first_name || ""} ${meta.last_name || ""}`.trim();
               const id = String(p.player_id || "");
               const liked = isLiked(id);
-              const proj = projectionsById.get(id) || {
+              const board = boardById.get(id) || {
                 sleeper_id: id,
                 player: name,
                 team: meta.team || meta.team_abbr,
@@ -663,7 +558,7 @@ async function mountDraftCompanionPage() {
               return `<tr class="${liked ? "draft-liked" : ""}">
                 <td>${escapeHtml(p.pick_no)}</td>
                 <td>${escapeHtml(p.draft_slot)}</td>
-                <td>${playerCellHtml(proj, { name, compact: true, liked })}</td>
+                <td>${playerCellHtml(board, { name, compact: true, liked })}</td>
                 <td>${escapeHtml(meta.position || "")}</td>
               </tr>`;
             })
@@ -686,15 +581,14 @@ async function mountDraftCompanionPage() {
       recEl.innerHTML = `<p class="meta">No skill players left on the board.</p>`;
       return;
     }
-    const vorpPct = Math.round((Number(result.vorp_weight) || 0) * 100);
     const teams = leagueTeamCount();
     recEl.innerHTML = `
-      <p class="meta">Blend: ${vorpPct}% VORP / ${100 - vorpPct}% ADP · ADP = overall pick (${teams}-team r.pk in gray)</p>
+      <p class="meta">Score = −ADP + need + draft risk · ADP = overall pick (${teams}-team r.pk in gray)</p>
       <table class="draft-table cell-border">
         <thead>
           <tr>
             <th>#</th><th>Player</th><th>Pos</th><th>Bye</th>
-            <th>VORP</th><th>Need</th><th>ADP</th><th>Risk</th><th>Score</th>
+            <th>Need</th><th>ADP</th><th>Risk</th><th>Score</th>
           </tr>
         </thead>
         <tbody>
@@ -732,7 +626,7 @@ async function mountDraftCompanionPage() {
 
     const available = [];
     const taken = [];
-    for (const p of projections) {
+    for (const p of boardPlayers) {
       if (!matchesSearch(p, query)) continue;
       const id = sleeperIdOf(p);
       if (takenIndex.has(id)) taken.push(p);
@@ -745,7 +639,7 @@ async function mountDraftCompanionPage() {
         return {
           player: p,
           scored,
-          sortScore: scored?.score ?? (Number(p.pts) || 0),
+          sortScore: scored?.score ?? -Number(p.adp || 9999),
         };
       })
       .sort((a, b) => b.sortScore - a.sortScore)
@@ -753,7 +647,7 @@ async function mountDraftCompanionPage() {
 
     const rankedTaken = taken
       .slice()
-      .sort((a, b) => (Number(b.pts) || 0) - (Number(a.pts) || 0))
+      .sort((a, b) => Number(a.adp) - Number(b.adp))
       .slice(0, Math.max(0, SEARCH_LIMIT - rankedAvailable.length))
       .map((p) => ({ player: p, scored: null, taken: true }));
 
@@ -770,7 +664,7 @@ async function mountDraftCompanionPage() {
         <thead>
           <tr>
             <th>Player</th><th>Pos</th><th>Bye</th>
-            <th>VORP</th><th>Need</th><th>ADP</th><th>Risk</th><th>Score</th>
+            <th>Need</th><th>ADP</th><th>Risk</th><th>Score</th>
           </tr>
         </thead>
         <tbody>
@@ -780,11 +674,10 @@ async function mountDraftCompanionPage() {
               const liked = isLiked(id);
               const row = scored || {
                 ...player,
-                vorp: "—",
                 need_bonus: 0,
                 adp: player.adp,
                 risk: 0,
-                score: live ? "—" : player.pts != null ? player.pts : "—",
+                score: live ? "—" : "—",
               };
               const classes = [
                 liked ? "draft-liked" : "",
@@ -799,7 +692,6 @@ async function mountDraftCompanionPage() {
                 <td>${playerCellHtml(player, { liked })}</td>
                 <td>${escapeHtml(player.position)}</td>
                 <td>${player.bye_week == null ? "—" : escapeHtml(player.bye_week)}</td>
-                <td>${scored ? escapeHtml(scored.vorp) : "—"}</td>
                 <td>${scored ? needBonusHtml(scored.need_bonus) : "—"}</td>
                 <td>${adpHtml(player.adp, teams)}</td>
                 <td>${scored ? riskHtml(scored.risk) : "—"}</td>
@@ -811,21 +703,13 @@ async function mountDraftCompanionPage() {
       </table>`;
   }
 
-  function renderLikedSurfaces() {
-    renderRosterCounts(lastRosterForRender);
-    renderRecentPicks();
-    renderRecommendationsFromCache();
-    renderSearchResults();
-  }
-
   function renderScores() {
     if (!draft) return;
     const timing = pickTiming();
     const settings = timing.settings;
-    const onClock = timing.until <= 0;
     const bySlot = currentBySlot();
     const myRoster = enrichRoster(bySlot[mySlot] || []);
-    updateMeta(timing, { onClock });
+    updateMeta(timing);
     lastMyRosterFp = myRosterFingerprint(myRoster);
 
     const byPos = availableByPos();
@@ -899,27 +783,9 @@ async function mountDraftCompanionPage() {
         draft = await sleeperGet(`/draft/${draftId}`);
         if (!league) league = await fetchLeagueForDraft(draft);
         const prevFormat = scoringFormat?.format;
-        const wasCustom =
-          scoringFormat?.board_source === "fantasypros_csv" ||
-          scoringFormat?.format === "custom";
         refreshLeagueSettings();
-        if (wasCustom) {
-          scoringFormat = {
-            ...scoringFormat,
-            format: "custom",
-            board_source: "fantasypros_csv",
-            label:
-              scoringFormat.format_label ||
-              scoringFormat.label ||
-              "Half PPR",
-            format_label:
-              scoringFormat.format_label ||
-              scoringFormat.label ||
-              "Half PPR",
-          };
-          refreshHeader();
-        } else if (scoringFormat.format !== prevFormat) {
-          await loadProjectionsForFormat(scoringFormat);
+        if (scoringFormat.format !== prevFormat) {
+          await loadAdpBoard(scoringFormat);
           hasScoredOnce = false;
           lastScoredFingerprint = "";
           lastMyRosterFp = "";
@@ -961,14 +827,12 @@ async function mountDraftCompanionPage() {
     draft = await sleeperGet(`/draft/${draftId}`);
     league = await fetchLeagueForDraft(draft);
 
-    // If no league ID entered, still use the draft's league for scoring/name,
-    // but leave the league ID field blank until the user fills it in.
     if (!resolveLeagueIdInput(leagueInput?.value || "") && league) {
       configuredLeague = league;
     }
 
     refreshLeagueSettings();
-    await loadProjectionsForFormat(scoringFormat);
+    await loadAdpBoard(scoringFormat);
     picks = (await sleeperGet(`/draft/${draftId}/picks`)) || [];
     lastFingerprint = picksFingerprint(picks);
     rebuildTaken();
@@ -1014,7 +878,7 @@ async function mountDraftCompanionPage() {
     loadConfiguredLeague({ required: false })
       .then(() => {
         refreshLeagueSettings();
-        return loadProjectionsForFormat(scoringFormat);
+        return loadAdpBoard(scoringFormat);
       })
       .then(() => {
         refreshHeader();
@@ -1026,19 +890,13 @@ async function mountDraftCompanionPage() {
 
   try {
     await starSync.hydrate();
-    try {
-      defaultLeague = await fetchJSON("draft/league.json");
-    } catch {
-      defaultLeague = null;
-    }
 
-    // League / draft IDs stay blank on refresh — enter them each session.
     if (leagueInput) leagueInput.value = "";
     if (draftInput) draftInput.value = "";
 
     await loadConfiguredLeague({ required: false });
     refreshLeagueSettings();
-    await loadProjectionsForFormat(scoringFormat);
+    await loadAdpBoard(scoringFormat);
     refreshHeader();
     renderSearchResults();
     revealPage();

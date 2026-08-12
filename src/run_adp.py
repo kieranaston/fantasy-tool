@@ -1,16 +1,15 @@
-"""Refresh Sleeper ADP daily — independent of FantasyPros projection rebuilds."""
+"""Refresh Sleeper ADP daily."""
 
 from __future__ import annotations
 
-import json
 from datetime import datetime, timezone
 from pathlib import Path
 
 from src.export.json_writer import write_json
+from src.loaders.nfl_data import load_team_bye_weeks
 from src.loaders.sleeper_adp import (
     FORMATS,
     adp_board_for_format,
-    adp_by_sleeper_id,
     draft_season_from_sleeper_state,
     fetch_sleeper_projections,
     normalize_adp_slim,
@@ -29,36 +28,6 @@ def utc_now_iso() -> str:
     )
 
 
-def _sleeper_id(player: dict) -> str:
-    return (
-        str(player.get("sleeper_id") or player.get("player_id") or "")
-        .replace("sleeper:", "")
-        .strip()
-    )
-
-
-def patch_board_adp(path: Path, adp_map: dict[str, float], *, now: str) -> int:
-    """Overwrite ``adp`` on an existing projection board. Returns rows updated."""
-    if not path.exists():
-        return 0
-    data = json.loads(path.read_text(encoding="utf-8"))
-    players = data.get("players") or []
-    updated = 0
-    for player in players:
-        sid = _sleeper_id(player)
-        if not sid or sid not in adp_map:
-            continue
-        new_adp = adp_map[sid]
-        if player.get("adp") != new_adp:
-            updated += 1
-        player["adp"] = new_adp
-    data["adp_updated"] = now
-    # Preserve existing schema; only require keys already on the board.
-    required = set(data.keys())
-    write_json(path, data, required)
-    return updated
-
-
 def main() -> None:
     season = draft_season_from_sleeper_state()
     now = utc_now_iso()
@@ -69,8 +38,14 @@ def main() -> None:
     players = normalize_adp_slim(raw)
     print(f"  {len(players)} players with ADP")
 
+    try:
+        byes = load_team_bye_weeks(season)
+    except Exception as err:  # noqa: BLE001 — bye is optional enrichment
+        print(f"  bye weeks unavailable ({err}); continuing without")
+        byes = {}
+
     for format_key in FORMATS:
-        board = adp_board_for_format(players, format_key=format_key)
+        board = adp_board_for_format(players, format_key=format_key, byes=byes)
         path = DRAFT_DIR / f"adp-{format_key.replace('_', '-')}.json"
         write_json(
             path,
@@ -84,21 +59,6 @@ def main() -> None:
             {"season", "format", "source", "last_updated", "players"},
         )
         print(f"  wrote {path.relative_to(ROOT)} ({len(board)} players)")
-
-        adp_map = adp_by_sleeper_id(players, format_key=format_key)
-        proj_name = f"projections-{format_key.replace('_', '-')}.json"
-        n = patch_board_adp(DRAFT_DIR / proj_name, adp_map, now=now)
-        if n or (DRAFT_DIR / proj_name).exists():
-            print(f"  patched ADP on {proj_name} ({n} changed)")
-
-    # Custom FantasyPros board keeps FP pts; overlay still uses adp-*.json,
-    # but keep baked ADP fresh for any fallback readers.
-    custom = DRAFT_DIR / "projections-custom.json"
-    if custom.exists():
-        # Prefer half-PPR ADP as the baked default on custom boards.
-        half_map = adp_by_sleeper_id(players, format_key="half_ppr")
-        n = patch_board_adp(custom, half_map, now=now)
-        print(f"  patched ADP on projections-custom.json ({n} changed)")
 
     print("Done.")
 

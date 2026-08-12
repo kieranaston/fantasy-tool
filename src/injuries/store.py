@@ -9,8 +9,6 @@ from pathlib import Path
 from typing import Any
 
 SOURCE_BEAT_REPORTER = "beat_reporter"
-# Legacy rows may still carry this; ingest no longer writes it.
-SOURCE_FANTASYPROS = "fantasypros"
 
 RAW_REPORT_KEYS = {
     "id",
@@ -91,12 +89,20 @@ def load_poll_state(path: Path) -> dict[str, Any]:
     return state
 
 
+REVIEW_QUEUE_MAX = 50
+
+
 def append_review_items(
     path: Path,
     items: list[dict[str, Any]],
 ) -> None:
+    """Append review items, keeping only the newest REVIEW_QUEUE_MAX entries."""
     if not items:
         return
     queue = load_json(path, [])
+    if not isinstance(queue, list):
+        queue = []
     queue.extend(items)
+    if len(queue) > REVIEW_QUEUE_MAX:
+        queue = queue[-REVIEW_QUEUE_MAX:]
     write_json(path, queue)

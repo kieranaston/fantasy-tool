@@ -2,21 +2,19 @@
 
 from __future__ import annotations
 
-import os
 import time
 from pathlib import Path
 
+from src.config.env import load_dotenv
 from src.injuries.detect import detect_changes
 from src.injuries.match import load_player_index
 from src.injuries.serve import build_summaries
 from src.injuries.store import (
     SOURCE_BEAT_REPORTER,
-    SOURCE_FANTASYPROS,
     append_reports,
     append_review_items,
     load_json,
     load_poll_state,
-    new_report_id,
     utc_now_iso,
     write_json,
 )
@@ -49,44 +47,9 @@ EXTRACT_CHUNK = 8
 NARRATIVE_CHUNK = 4
 
 
-def _load_dotenv() -> None:
-    """Load .env from repo root if present (no extra dependency)."""
-    env_path = ROOT / ".env"
-    if not env_path.exists():
-        return
-    for line in env_path.read_text(encoding="utf-8").splitlines():
-        line = line.strip()
-        if not line or line.startswith("#") or "=" not in line:
-            continue
-        key, _, value = line.partition("=")
-        os.environ.setdefault(
-            key.strip(),
-            value.strip().strip("'").strip('"'),
-        )
-
-
 def _newly_appended(before: list, after: list) -> list:
     before_ids = {r.get("id") for r in before}
     return [r for r in after if r.get("id") not in before_ids]
-
-
-def _shell_reports(posts: list[dict]) -> list[dict]:
-    """Store raw posts for later triage without calling Gemini now."""
-    return [
-        {
-            "id": new_report_id(),
-            "player_id": None,
-            "player_name": None,
-            "timestamp": post.get("created_at") or utc_now_iso(),
-            "designation": "",
-            "source_text": post.get("text") or "",
-            "url": post["url"],
-            "source_type": SOURCE_BEAT_REPORTER,
-            "needs_review": True,
-            "triaged": False,
-        }
-        for post in posts
-    ]
 
 
 def _extract_bluesky_chunks(posts: list[dict]) -> list[dict]:
@@ -103,40 +66,6 @@ def _extract_bluesky_chunks(posts: list[dict]) -> list[dict]:
         print(f"  Bluesky: extract batch {index + 1}/{len(chunks)} ({len(chunk)} posts)")
         extractions.extend(extract_bluesky_batch(chunk))
     return extractions
-
-
-def purge_fantasypros(
-    reports: list,
-    status_current: dict,
-) -> tuple[list, dict, int]:
-    """Drop FantasyPros rows and status that depended on them."""
-    kept = [r for r in reports if r.get("source_type") != SOURCE_FANTASYPROS]
-    removed = len(reports) - len(kept)
-    if removed == 0:
-        return reports, status_current, 0
-
-    matched_ids = {
-        r["player_id"]
-        for r in kept
-        if r.get("player_id") and not r.get("needs_review")
-    }
-    new_status: dict = {}
-    for pid, status in status_current.items():
-        if pid not in matched_ids:
-            continue
-        url = status.get("last_report_url") or ""
-        rid = str(status.get("last_report_id") or "")
-        if "fantasypros.com" in url or rid.startswith("fp-"):
-            # Clear so detect_changes retries from remaining Bluesky sources
-            status = {
-                **status,
-                "last_report_url": None,
-                "last_report_id": None,
-                "last_diff_summary": None,
-                "last_extraction": None,
-            }
-        new_status[pid] = status
-    return kept, new_status, removed
 
 
 def ingest_bluesky(player_index, reports: list, poll_state: dict) -> tuple[list, list]:
@@ -474,7 +403,7 @@ def process_changes(
 
 
 def main() -> None:
-    _load_dotenv()
+    load_dotenv()
     STATE_DIR.mkdir(parents=True, exist_ok=True)
     PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -484,12 +413,6 @@ def main() -> None:
     status_current = load_json(STATUS_PATH, {})
     if not isinstance(status_current, dict):
         status_current = {}
-
-    reports, status_current, removed_fp = purge_fantasypros(reports, status_current)
-    if removed_fp:
-        write_json(RAW_PATH, reports)
-        write_json(STATUS_PATH, status_current)
-        print(f"  Removed {removed_fp} FantasyPros report(s)")
 
     # Backfill triaged flag so reprocess doesn't re-hit Gemini for old rows
     dirty = False
@@ -552,7 +475,6 @@ def main() -> None:
         prev = poll_state.get("last_bluesky_at")
         if prev is None or newest > prev:
             poll_state["last_bluesky_at"] = newest
-    poll_state.pop("last_fantasypros_at", None)
     poll_state["last_run_at"] = run_started
     write_json(POLL_PATH, poll_state)
 

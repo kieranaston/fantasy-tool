@@ -28,7 +28,7 @@ FORMATS = {
 
 POSITIONS = ("QB", "RB", "WR", "TE")
 
-# News-pool depth by position ADP rank (same caps as the old ranking boards).
+# News-pool depth by position ADP rank.
 POSITION_LIMITS = {
     "QB": 25,
     "RB": 45,
@@ -278,33 +278,26 @@ def adp_board_for_format(
     players: list[dict[str, Any]],
     *,
     format_key: str,
+    byes: dict[str, int] | None = None,
 ) -> list[dict[str, Any]]:
     """Slim public ADP rows for one scoring format."""
+    bye_map = byes or {}
     out: list[dict[str, Any]] = []
     for player in players:
         adp = (player.get("adp") or {}).get(format_key)
         if adp is None:
             continue
-        out.append(
-            {
-                "sleeper_id": player["sleeper_id"],
-                "player": player["player"],
-                "team": player.get("team") or "",
-                "position": player["position"],
-                "adp": round(float(adp), 1),
-            }
-        )
+        team = player.get("team") or ""
+        row: dict[str, Any] = {
+            "sleeper_id": player["sleeper_id"],
+            "player": player["player"],
+            "team": team,
+            "position": player["position"],
+            "adp": round(float(adp), 1),
+        }
+        bye = bye_map.get(str(team).upper()) if team else None
+        if bye is not None:
+            row["bye_week"] = int(bye)
+        out.append(row)
     out.sort(key=lambda row: (row["adp"], row["player"]))
-    return out
-
-
-def adp_by_sleeper_id(
-    players: list[dict[str, Any]],
-    *,
-    format_key: str,
-) -> dict[str, float]:
-    """sleeper_id → overall ADP for patching projection boards."""
-    out: dict[str, float] = {}
-    for row in adp_board_for_format(players, format_key=format_key):
-        out[str(row["sleeper_id"])] = float(row["adp"])
     return out

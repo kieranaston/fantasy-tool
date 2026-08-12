@@ -19,6 +19,14 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Cache nflreadpy data
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/nflreadpy
+          key: nflreadpy-${{ runner.os }}-${{ hashFiles('pyproject.toml') }}
+          restore-keys: |
+            nflreadpy-${{ runner.os }}-
+
       - name: Install dependencies
         run: pip install .
 
@@ -29,11 +37,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/data/draft/adp-*.json \
-            docs/data/draft/projections-half-ppr.json \
-            docs/data/draft/projections-full-ppr.json \
-            docs/data/draft/projections-std.json \
-            docs/data/draft/projections-custom.json
+          git add docs/data/draft/adp-*.json
           if git diff --staged --quiet; then
             echo "No ADP changes to commit."
           else

@@ -6,14 +6,6 @@ import json
 from pathlib import Path
 from typing import Any
 
-MANIFEST_KEYS = {
-    "season",
-    "upcoming_season",
-    "formats",
-    "positions",
-    "last_updated",
-}
-
 
 def write_json(path: Path, payload: dict[str, Any], required_keys: set[str]) -> None:
     """Write JSON to disk after validating required top-level keys."""

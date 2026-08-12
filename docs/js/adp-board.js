@@ -1,100 +1,30 @@
-import { fetchJSON, formatTimestamp, showError, revealPage } from "./config.js?v=2";
+import {
+  fetchJSON,
+  formatTimestamp,
+  showError,
+  revealPage,
+} from "./config.js?v=2";
+import { escapeHtml, sleeperIdOf, starButtonHtml } from "./shared.js?v=1";
 import { loadLikedIds, toggleLikedId, mountStarSync } from "./draft-liked.js?v=4";
+import { FORMAT_LABELS, SCORING_FORMATS, formatAdpRoundPick } from "./draft-scoring.js?v=80";
 
 const ADP_MISSING = 9999;
 const SKILL_POSITIONS = ["QB", "RB", "WR", "TE"];
 /** Roughly 10 rounds in a 12-team draft. */
 const ADP_BOARD_LIMIT = 120;
-const FORMAT_PATHS = {
-  half_ppr: "draft/projections-half-ppr.json",
-  full_ppr: "draft/projections-full-ppr.json",
-  std: "draft/projections-std.json",
-};
 const ADP_PATHS = {
   half_ppr: "draft/adp-half-ppr.json",
   full_ppr: "draft/adp-full-ppr.json",
   std: "draft/adp-std.json",
 };
-const FORMAT_LABELS = {
-  half_ppr: "Half PPR",
-  full_ppr: "Full PPR",
-  std: "Standard",
-};
-
-const SOURCE_LABELS = {
-  sleeper_adp: "Sleeper",
-  sleeper_rotowire: "Sleeper / Rotowire",
-  fantasypros_csv: "FantasyPros",
-  sleeper: "Sleeper",
-};
 
 const boardCache = new Map();
-
-function sourceLabel(raw) {
-  const key = String(raw || "").trim();
-  if (!key) return null;
-  return SOURCE_LABELS[key] || key.replaceAll("_", " ");
-}
 
 function stampLabel(iso) {
   if (!iso) return null;
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return null;
   return formatTimestamp(iso);
-}
-
-/** Projection freshness as calendar date (US Eastern). */
-function projectionDateLabel(iso) {
-  if (!iso) return null;
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return null;
-  return date.toLocaleDateString("en-US", {
-    timeZone: "America/New_York",
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
-}
-
-function escapeHtml(value) {
-  return String(value ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
-}
-
-function sleeperIdOf(player) {
-  return String(player?.sleeper_id || player?.player_id || "").replace(
-    /^sleeper:/,
-    ""
-  );
-}
-
-function adpNumber(player) {
-  const n = Number(player?.adp);
-  return Number.isFinite(n) && n > 0 ? n : null;
-}
-
-/** Format overall ADP as round.pick for a 12-team league. */
-function formatAdpRoundPick(adp, teams = 12) {
-  const overall = Number(adp);
-  if (!Number.isFinite(overall) || overall <= 0) return null;
-  const t = Math.max(1, Math.round(Number(teams) || 12));
-  let round = Math.floor((overall - 1) / t) + 1;
-  let pick = Math.round(((overall - 1) % t) + 1);
-  if (pick > t) {
-    pick = 1;
-    round += 1;
-  }
-  if (pick < 1) pick = 1;
-  return `${round}.${String(pick).padStart(2, "0")}`;
-}
-
-function starButtonHtml(playerId, liked) {
-  const id = escapeHtml(playerId);
-  const on = Boolean(liked);
-  return `<button type="button" class="draft-star${on ? " is-liked" : ""}" data-player-id="${id}" aria-label="${on ? "Remove from favourites" : "Add to favourites"}" aria-pressed="${on ? "true" : "false"}">★</button>`;
 }
 
 function playerCellHtml(player, liked) {
@@ -106,6 +36,11 @@ function playerCellHtml(player, liked) {
   return `<span class="draft-player-cell">${starButtonHtml(sleeperIdOf(player), liked)}<span class="adp-player-text"><span class="adp-player-name">${name}</span>${teamHtml}</span></span>`;
 }
 
+function adpNumber(player) {
+  const n = Number(player?.adp);
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
 function slimPlayers(players) {
   return (players || []).map((p) => ({
     sleeper_id: sleeperIdOf(p),
@@ -114,51 +49,22 @@ function slimPlayers(players) {
     position: String(p.position || "").toUpperCase(),
     adp: p.adp,
     bye_week: p.bye_week ?? null,
-    pts: p.pts,
   }));
 }
 
-function overlayAdp(players, adpPlayers) {
-  const byId = new Map();
-  for (const p of adpPlayers || []) {
-    const id = sleeperIdOf(p);
-    const adp = adpNumber(p);
-    if (!id || adp == null) continue;
-    byId.set(id, adp);
-  }
-  if (!byId.size) return players;
-  return (players || []).map((p) => {
-    const id = sleeperIdOf(p);
-    if (!id || !byId.has(id)) return p;
-    return { ...p, adp: byId.get(id) };
-  });
-}
-
 async function loadBoardPlayers(formatKey = "half_ppr") {
-  const key = FORMAT_PATHS[formatKey] ? formatKey : "half_ppr";
+  const key = SCORING_FORMATS.includes(formatKey) ? formatKey : "half_ppr";
   if (boardCache.has(key)) return boardCache.get(key);
-  const data = await fetchJSON(FORMAT_PATHS[key]);
-  let players = slimPlayers(data.players || []);
-  let adpUpdated = data.adp_updated || null;
-  let adpSource = null;
-  try {
-    const adpData = await fetchJSON(ADP_PATHS[key]);
-    players = overlayAdp(players, adpData.players || []);
-    adpUpdated = adpData.last_updated || adpUpdated;
-    adpSource = adpData.source || null;
-  } catch {
-    // Fall back to ADP baked into the projection board.
-  }
-  // ADP board is ADP-first: drop anyone without a real ADP value.
-  players = players.filter((p) => adpNumber(p) != null);
+  const data = await fetchJSON(ADP_PATHS[key]);
+  const players = slimPlayers(data.players || []).filter(
+    (p) => adpNumber(p) != null
+  );
   const board = {
     players,
     label: FORMAT_LABELS[key] || data.format || "Half PPR",
-    source: data.source || "sleeper",
+    source: data.source || "sleeper_adp",
     format: key,
-    adp_source: adpSource || "sleeper_adp",
-    adp_updated: adpUpdated,
-    projections_updated: data.last_updated || null,
+    last_updated: data.last_updated || null,
   };
   boardCache.set(key, board);
   return board;
@@ -168,7 +74,7 @@ function sortByAdp(players) {
   return [...players].sort((a, b) => {
     const aa = adpNumber(a) ?? ADP_MISSING;
     const bb = adpNumber(b) ?? ADP_MISSING;
-    return aa - bb || (Number(b.pts) || 0) - (Number(a.pts) || 0);
+    return aa - bb || String(a.player || "").localeCompare(String(b.player || ""));
   });
 }
 
@@ -229,15 +135,11 @@ async function mountAdpBoardPage() {
 
   function updateSummary() {
     if (!summaryEl) return;
-    const adpSrc = sourceLabel(boardMeta.adp_source) || "Sleeper";
-    const adpWhen = stampLabel(boardMeta.adp_updated);
-    const projSrc = sourceLabel(boardMeta.source) || "Projections";
-    const projWhen = projectionDateLabel(boardMeta.projections_updated);
-    const adp = adpWhen ? `ADP · ${adpSrc} · ${adpWhen}` : `ADP · ${adpSrc}`;
-    const projections = projWhen
-      ? `${projSrc}: ${projWhen}`
-      : projSrc;
-    summaryEl.textContent = [adp, projections].join(" · ");
+    const when = stampLabel(boardMeta.last_updated);
+    const label = boardMeta.label || FORMAT_LABELS[formatKey] || "Half PPR";
+    summaryEl.textContent = when
+      ? `Sleeper ADP · ${label} · ${when}`
+      : `Sleeper ADP · ${label}`;
   }
 
   function render() {
@@ -247,7 +149,6 @@ async function mountAdpBoardPage() {
       boardEl.innerHTML = `<p class="meta">No players match.</p>`;
       return;
     }
-    // Text-only rows (no headshots) keep tab/filter switches snappy.
     boardEl.innerHTML = `
       <table class="draft-table cell-border adp-table">
         <thead>
@@ -257,7 +158,6 @@ async function mountAdpBoardPage() {
             <th>Pos</th>
             <th>ADP</th>
             <th>Bye</th>
-            <th>Proj</th>
           </tr>
         </thead>
         <tbody>
@@ -265,10 +165,8 @@ async function mountAdpBoardPage() {
             .map((p, i) => {
               const liked = likedIds.has(p.sleeper_id);
               const adp = adpNumber(p);
-              const overall =
-                adp == null ? null : Number(adp).toFixed(1);
-              const roundPick =
-                adp == null ? null : formatAdpRoundPick(adp, 12);
+              const overall = adp == null ? null : Number(adp).toFixed(1);
+              const roundPick = adp == null ? null : formatAdpRoundPick(adp, 12);
               const adpCell =
                 overall == null
                   ? "—"
@@ -287,7 +185,6 @@ async function mountAdpBoardPage() {
                 <td>${escapeHtml(p.position)}</td>
                 <td>${adpCell}</td>
                 <td>${p.bye_week == null ? "—" : escapeHtml(p.bye_week)}</td>
-                <td>${p.pts == null ? "—" : escapeHtml(Number(p.pts).toFixed(1))}</td>
               </tr>`;
             })
             .join("")}
@@ -306,7 +203,7 @@ async function mountAdpBoardPage() {
   }
 
   async function setFormat(next) {
-    if (!FORMAT_PATHS[next] || next === formatKey) return;
+    if (!SCORING_FORMATS.includes(next) || next === formatKey) return;
     formatKey = next;
     for (const tab of formatTabs) {
       const active = tab.dataset.format === formatKey;
