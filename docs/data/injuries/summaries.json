@@ -1,14 +1,23 @@
 {
   "title": "Player News",
-  "last_updated": "2026-08-12T12:44:15Z",
+  "last_updated": "2026-08-13T12:44:14Z",
   "players": [
     {
       "player_id": "00-0041512",
       "player_name": "Jadarian Price",
-      "current_designation": "Returns to limited practice",
-      "last_updated": "2026-08-11T16:31:22-07:00",
-      "diff_summary": "Jadarian Price was selected by Seattle on April 23rd. He began receiving first-team reps by June 10th and was splitting them by July 27th, first up for first-team reps by July 31st. Price experienced lower-body soreness as of August 8th but was expected back soon. Three days later, he returned to limited practice.",
+      "current_designation": "Takes part in Wednesday's walkthrough",
+      "last_updated": "2026-08-12T15:36:58-07:00",
+      "diff_summary": "Jadarian Price, selected by Seattle on April 23rd, began receiving first-team reps in Organized Team Activities (OTAs) and was splitting them by July 27th. He was listed as first up for first-team reps on July 31st. On August 8th, Price was dealing with lower-body soreness but was expected back soon. Three days later, he returned to limited practice and took part in Wednesday's walkthrough.",
       "timeline": [
+        {
+          "id": "c0359779-a763-4047-818e-6fa1a4bd6df1",
+          "timestamp": "2026-08-12T15:36:58-07:00",
+          "designation": "Takes part in Wednesday's walkthrough",
+          "source_text": "Jadarian Price: Takes part in Wednesday's walkthrough",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msw6wukkhy2z",
+          "source_type": "beat_reporter",
+          "player_name": "Jadarian Price"
+        },
         {
           "id": "4b3db5b4-6116-4a6e-80cf-a82921d959e6",
           "timestamp": "2026-08-11T16:31:22-07:00",
@@ -81,10 +90,19 @@
     {
       "player_id": "00-0039075",
       "player_name": "Puka Nacua",
-      "current_designation": "Dealing with minor groin soreness",
-      "last_updated": "2026-08-11T16:26:06-07:00",
-      "diff_summary": "Puka Nacua checked into a rehab facility on April 1st but was present for voluntary workouts by April 20th. Entering the final year of his rookie deal, an extension is unlikely this summer, though he had a strong start to training camp before leaving practice early on August 11th due to minor groin soreness.",
+      "current_designation": "May be sidelined 'a few days'",
+      "last_updated": "2026-08-12T13:43:03-07:00",
+      "diff_summary": "Puka Nacua attended voluntary workouts after a stint in a rehab facility. He is entering the final year of his rookie contract, and an extension is unlikely this summer. Nacua had a strong start to training camp but left practice early with minor groin soreness and may be sidelined for a few days.",
       "timeline": [
+        {
+          "id": "06681d47-da5d-4e51-a60d-179de5aeff52",
+          "timestamp": "2026-08-12T13:43:03-07:00",
+          "designation": "May be sidelined 'a few days'",
+          "source_text": "Puka Nacua: May be sidelined 'a few days'",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvyl5ubwm26",
+          "source_type": "beat_reporter",
+          "player_name": "Puka Nacua"
+        },
         {
           "id": "0053ffb9-2a04-4305-a2a4-3fde4d2e7cb6",
           "timestamp": "2026-08-11T16:26:06-07:00",
@@ -153,6 +171,757 @@
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zvi4hdm6fywcekfe7ceb",
       "team_color": "#003594"
+    },
+    {
+      "player_id": "00-0039337",
+      "player_name": "Malik Nabers",
+      "current_designation": "Likely to join team drills soon",
+      "last_updated": "2026-08-12T13:16:19-07:00",
+      "diff_summary": "Malik Nabers, who underwent a second procedure on May 13th, is aiming for a training camp return and is at 80 percent in his rehab process as of June 10th. He has been making progress and is being brought along slowly, participating in individual drills as of July 29th. Nabers rejoined team drills on August 6th and is trending toward a Week 1 return, though he remains in individual drills as of August 12th, with a likely return to team drills soon.",
+      "timeline": [
+        {
+          "id": "cdc1e4f2-f52f-4d65-8fc5-a072fd15eea5",
+          "timestamp": "2026-08-12T13:16:19-07:00",
+          "designation": "Likely to join team drills soon",
+          "source_text": "Malik Nabers: Likely to join team drills soon",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvx3ehsam2a",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "62a8b5cb-e56d-4d6c-9942-636407e13f70",
+          "timestamp": "2026-08-12T12:57:07-07:00",
+          "designation": "Still contained to individual drills",
+          "source_text": "Malik Nabers: Still contained to individual drills",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvvz23dat2c",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "b23cc270-0c22-4782-9450-8574fe47112b",
+          "timestamp": "2026-08-09T06:26:12-07:00",
+          "designation": "Trending toward Week 1 return",
+          "source_text": "Malik Nabers: Trending toward Week 1 return",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msnorbdmk424",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "c7a61c43-b689-481b-8c05-b54b2fcba4b8",
+          "timestamp": "2026-08-06T15:59:58-07:00",
+          "designation": "Rejoins team drills",
+          "source_text": "Malik Nabers: Rejoins team drills",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msh5ghryp42w",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "fb1bf984-f50b-4f18-ba19-d1480961a3da",
+          "timestamp": "2026-07-30T12:33:55-07:00",
+          "designation": "Feeling 'great' at practice",
+          "source_text": "Malik Nabers: Feeling 'great' at practice",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrv6nkymg42v",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "f6e55b7b-8c29-43f2-a235-31750d3182be",
+          "timestamp": "2026-07-29T14:10:56-07:00",
+          "designation": "Looks good at practice",
+          "source_text": "Malik Nabers: Looks good at practice",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrstm5nr7x2v",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "35bcb839-59cd-4bb5-a7f1-2e4a8bfaa323",
+          "timestamp": "2026-07-29T10:03:16-07:00",
+          "designation": "Taking part in individual drills",
+          "source_text": "Malik Nabers: Taking part in individual drills",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsfrc2oyc2o",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "a2447779-ce60-4e2f-860a-9f5774616648",
+          "timestamp": "2026-07-24T06:54:43-07:00",
+          "designation": "To be brought along slowly",
+          "source_text": "Malik Nabers: To be brought along slowly \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrfivj3hb426",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "83dc25f2-d986-4f42-8897-dd1b8c6d4b7c",
+          "timestamp": "2026-07-13T15:03:03-07:00",
+          "designation": "Making progress, per coach",
+          "source_text": "Malik Nabers: Making progress, per coach \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqkp2lzsku2s",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "1801cbb8-3491-4548-8444-dab848368917",
+          "timestamp": "2026-06-10T09:43:41-07:00",
+          "designation": "At 80 percent mark in rehab process",
+          "source_text": "Malik Nabers: At 80 percent mark in rehab process",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnx5t5ishx2x",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "f5da914d-b238-4bf4-ac48-f21627c31b9c",
+          "timestamp": "2026-05-21T11:55:48-07:00",
+          "designation": "Aiming for camp return?",
+          "source_text": "Malik Nabers: Aiming for camp return? \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmf3uxy6wm24",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "42344c96-c810-442c-9f24-2b283adde80d",
+          "timestamp": "2026-05-13T12:36:46-07:00",
+          "designation": "Recovering from second procedure",
+          "source_text": "Malik Nabers: Recovering from second procedure \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mlr2gv5m262g",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "3244e6d8-fc5a-43a3-b6b9-f51c143aab08",
+          "timestamp": "2026-04-07T09:43:50-07:00",
+          "designation": "Present for voluntary workouts",
+          "source_text": "Malik Nabers: Present for voluntary workouts \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3miw7yiwxl22h",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "5e3e4a73-a5d5-4e53-a7b5-abcc4e384bdc",
+          "timestamp": "2026-03-30T16:56:04-07:00",
+          "designation": "GM hopeful for Week 1 availability",
+          "source_text": "Malik Nabers: GM hopeful for Week 1 availability \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3micufzxo3t22",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        }
+      ],
+      "team": "NYG",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/w3edoyyuomqlovvp9ixc",
+      "team_color": "#0B2265"
+    },
+    {
+      "player_id": "00-0039732",
+      "player_name": "Bo Nix",
+      "current_designation": "Won't play preseason Week 1",
+      "last_updated": "2026-08-12T13:13:49-07:00",
+      "diff_summary": "Bo Nix underwent a clean-up procedure on his ankle but is ahead of schedule and on track for minicamp. He was on the field for drills and is expected to be a full participant in training camp. Nix will not play in the first preseason game but is unlocking his deep ball at camp.",
+      "timeline": [
+        {
+          "id": "7227949b-8370-433a-a64e-14345a959818",
+          "timestamp": "2026-08-12T13:13:49-07:00",
+          "designation": "Won't play preseason Week 1",
+          "source_text": "Bo Nix: Won't play preseason Week 1",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvwwvsu442o",
+          "source_type": "beat_reporter",
+          "player_name": "Bo Nix"
+        },
+        {
+          "id": "d51cfa4a-93cc-4247-89b9-324629f7407d",
+          "timestamp": "2026-08-11T07:27:51-07:00",
+          "designation": "Unlocking deep ball at camp",
+          "source_text": "Bo Nix: Unlocking deep ball at camp \n\n https://www.rotowire.com/football/player/bo-nix-16995",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msst5e36en2n",
+          "source_type": "beat_reporter",
+          "player_name": "Bo Nix"
+        },
+        {
+          "id": "deb7586d-bdf4-4593-9033-b06c67bbf49e",
+          "timestamp": "2026-07-29T10:35:49-07:00",
+          "designation": "Works fully Wednesday",
+          "source_text": "Bo Nix: Works fully Wednesday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrshlhvfrm2z",
+          "source_type": "beat_reporter",
+          "player_name": "Bo Nix"
+        },
+        {
+          "id": "8c22dae4-34a6-4cab-83e7-edea29e50ee5",
+          "timestamp": "2026-07-21T07:24:13-07:00",
+          "designation": "Still on track for start of camp",
+          "source_text": "Bo Nix: Still on track for start of camp",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mr5z5jiiyj2r",
+          "source_type": "beat_reporter",
+          "player_name": "Bo Nix"
+        },
+        {
+          "id": "69ebbda5-3198-4645-99b4-10f6d271f12d",
+          "timestamp": "2026-06-17T12:01:56-07:00",
+          "designation": "Takes part in 7-on-7 drills",
+          "source_text": "Bo Nix: Takes part in 7-on-7 drills",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3moiyssiwih2z",
+          "source_type": "beat_reporter",
+          "player_name": "Bo Nix"
+        },
+        {
+          "id": "4091e5ae-b54b-4ebf-98eb-af1813141e21",
+          "timestamp": "2026-06-16T17:53:17-07:00",
+          "designation": "Full-go training camp expected",
+          "source_text": "Bo Nix: Full-go training camp expected \n\n https://www.rotowire.com/football/player/bo-nix-16995",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3moh3y5gpw322",
+          "source_type": "beat_reporter",
+          "player_name": "Bo Nix"
+        },
+        {
+          "id": "9c5eec73-f364-4acf-836f-3ef52c599b76",
+          "timestamp": "2026-06-16T12:33:36-07:00",
+          "designation": "On field at minicamp",
+          "source_text": "Bo Nix: On field at minicamp",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mogk4jj3cb2b",
+          "source_type": "beat_reporter",
+          "player_name": "Bo Nix"
+        },
+        {
+          "id": "3e5367fa-8371-4a53-873f-a53b6bde2f9d",
+          "timestamp": "2026-06-11T11:27:20-07:00",
+          "designation": "In line to practice next week",
+          "source_text": "Bo Nix: In line to practice next week",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnzu3gdvzs2f",
+          "source_type": "beat_reporter",
+          "player_name": "Bo Nix"
+        },
+        {
+          "id": "41d4ce14-8512-44e9-981e-1ec025daea24",
+          "timestamp": "2026-06-04T13:13:15-07:00",
+          "designation": "Nearing practice return?",
+          "source_text": "Bo Nix: Nearing practice return? \n\n https://www.rotowire.com/football/player/bo-nix-16995",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnigqehcat2b",
+          "source_type": "beat_reporter",
+          "player_name": "Bo Nix"
+        },
+        {
+          "id": "f07fbed9-036a-4f35-a15d-6e0ec2d6a506",
+          "timestamp": "2026-05-09T12:50:40-07:00",
+          "designation": "On track for minicamp",
+          "source_text": "Bo Nix: On track for minicamp \n\n https://www.rotowire.com/football/player/bo-nix-16995",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mlgze24cyv2a",
+          "source_type": "beat_reporter",
+          "player_name": "Bo Nix"
+        },
+        {
+          "id": "e6d5216d-9621-484a-ae0c-bf91bc37f8df",
+          "timestamp": "2026-04-28T18:37:13-07:00",
+          "designation": "Has clean-up procedure on ankle",
+          "source_text": "Bo Nix: Has clean-up procedure on ankle \n\n https://www.rotowire.com/football/player/bo-nix-16995",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mklxlm4f3u2r",
+          "source_type": "beat_reporter",
+          "player_name": "Bo Nix"
+        },
+        {
+          "id": "fdb293e7-ca94-4ebb-b7cf-211bda01d9c5",
+          "timestamp": "2026-03-30T19:26:10-07:00",
+          "designation": "Ahead of schedule, per team owner",
+          "source_text": "Bo Nix: Ahead of schedule, per team owner \n\n https://www.rotowire.com/football/player/bo-nix-16995",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mid4sfyjlw2m",
+          "source_type": "beat_reporter",
+          "player_name": "Bo Nix"
+        }
+      ],
+      "team": "DEN",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/igirshmrr6lqtxcpxsea",
+      "team_color": "#002244"
+    },
+    {
+      "player_id": "00-0036158",
+      "player_name": "J.K. Dobbins",
+      "current_designation": "Practices again Wednesday",
+      "last_updated": "2026-08-12T13:12:05-07:00",
+      "diff_summary": "J.K. Dobbins signed a two-year deal with Denver on March 9th. He exited practice on August 10th with a soft-tissue injury but was back in pads and participating in individual drills the next day. Dobbins practiced again on Wednesday.",
+      "timeline": [
+        {
+          "id": "879de063-3019-43c9-870f-db107025fe0a",
+          "timestamp": "2026-08-12T13:12:05-07:00",
+          "designation": "Practices again Wednesday",
+          "source_text": "J.K. Dobbins: Practices again Wednesday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvwts4n6t2o",
+          "source_type": "beat_reporter",
+          "player_name": "J.K. Dobbins"
+        },
+        {
+          "id": "5ace2b0e-34af-4836-ad83-827bbfc8664e",
+          "timestamp": "2026-08-11T10:57:41-07:00",
+          "designation": "Works in individual drills Tuesday",
+          "source_text": "J.K. Dobbins: Works in individual drills Tuesday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mst6ukimyp2m",
+          "source_type": "beat_reporter",
+          "player_name": "J.K. Dobbins"
+        },
+        {
+          "id": "a092e894-01de-425a-b89c-bbc3cd144e8b",
+          "timestamp": "2026-08-11T08:59:27-07:00",
+          "designation": "Back in pads Tuesday",
+          "source_text": "J.K. Dobbins: Back in pads Tuesday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mssyb5dtb62x",
+          "source_type": "beat_reporter",
+          "player_name": "J.K. Dobbins"
+        },
+        {
+          "id": "6b30eca6-4c06-42e3-837d-c626efb72de6",
+          "timestamp": "2026-08-10T11:39:16-07:00",
+          "designation": "Soft-tissue injury; expected to be be fine",
+          "source_text": "J.K. Dobbins: Soft-tissue injury; expected to be be fine",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msqqpxyu3x2u",
+          "source_type": "beat_reporter",
+          "player_name": "J.K. Dobbins"
+        },
+        {
+          "id": "79147bcd-e96b-48fd-8d19-eb435dd4497e",
+          "timestamp": "2026-08-10T10:41:44-07:00",
+          "designation": "Exits Monday's practice",
+          "source_text": "J.K. Dobbins: Exits Monday's practice",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msqnj3zdoo2h",
+          "source_type": "beat_reporter",
+          "player_name": "J.K. Dobbins"
+        },
+        {
+          "id": "b957ac2d-8bfd-47cf-a188-f709dc8e189b",
+          "timestamp": "2026-03-09T12:38:12-07:00",
+          "designation": "Staying in Denver for two years",
+          "source_text": "J.K. Dobbins: Staying in Denver for two years \n\n https://www.rotowire.com/football/player/jk-dobbins-14418",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnm7loyh72g",
+          "source_type": "beat_reporter",
+          "player_name": "J.K. Dobbins"
+        }
+      ],
+      "team": "DEN",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cevotvl3ho5h1mioruyg",
+      "team_color": "#002244"
+    },
+    {
+      "player_id": "00-0039163",
+      "player_name": "C.J. Stroud",
+      "current_designation": "Not expected to see action in preseason opener",
+      "last_updated": "2026-08-12T13:10:44-07:00",
+      "diff_summary": "C.J. Stroud's fifth-year option was picked up on April 8th, 43 days after it was reported he would not be traded. He has been shedding weight since May 6th and is not expected to play in the preseason opener.",
+      "timeline": [
+        {
+          "id": "81e74b6f-5a79-4a5a-90dd-510a8f90b209",
+          "timestamp": "2026-08-12T13:10:44-07:00",
+          "designation": "Not expected to see action in preseason opener",
+          "source_text": "C.J. Stroud: Not expected to see action in preseason opener \n\n https://www.rotowire.com/football/player/cj-stroud-16886",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvwrfhzs326",
+          "source_type": "beat_reporter",
+          "player_name": "C.J. Stroud"
+        },
+        {
+          "id": "1329e89c-d47c-4282-a7f1-c2d3e78fd9cb",
+          "timestamp": "2026-05-06T14:13:13-07:00",
+          "designation": "Shedding weight",
+          "source_text": "C.J. Stroud: Shedding weight \n\n https://www.rotowire.com/football/player/cj-stroud-16886",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ml7mkvajii2g",
+          "source_type": "beat_reporter",
+          "player_name": "C.J. Stroud"
+        },
+        {
+          "id": "e76f1b4e-6dda-4fce-bed5-f64f80e58a79",
+          "timestamp": "2026-04-08T08:51:45-07:00",
+          "designation": "Fifth-year option picked up",
+          "source_text": "C.J. Stroud: Fifth-year option picked up \n\n https://www.rotowire.com/football/player/cj-stroud-16886",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3miynkbtlfd2n",
+          "source_type": "beat_reporter",
+          "player_name": "C.J. Stroud"
+        },
+        {
+          "id": "31bc2e9f-a5b3-4192-ad62-18b948bde943",
+          "timestamp": "2026-02-24T14:08:36-08:00",
+          "designation": "Won't be traded, per GM",
+          "source_text": "C.J. Stroud: Won't be traded, per GM \n\n https://www.rotowire.com/football/player/cj-stroud-16886",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mfn6kk6hc22d",
+          "source_type": "beat_reporter",
+          "player_name": "C.J. Stroud"
+        }
+      ],
+      "team": "HOU",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/hou.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tt4zrtxlhifaljhj0rn7",
+      "team_color": "#03202F"
+    },
+    {
+      "player_id": "00-0040129",
+      "player_name": "Emeka Egbuka",
+      "current_designation": "Toe sprain to be checked out",
+      "last_updated": "2026-08-12T12:16:17-07:00",
+      "diff_summary": "Emeka Egbuka was dealing with soreness on August 5th but returned to practice the following day. On August 12th, he limped off with trainers during practice, but the injury did not appear serious. He is dealing with a minor toe injury that is to be checked out.",
+      "timeline": [
+        {
+          "id": "92215f5f-59b8-451b-a1f3-1cbd24e7d9d5",
+          "timestamp": "2026-08-12T12:16:17-07:00",
+          "designation": "Toe sprain to be checked out",
+          "source_text": "Emeka Egbuka: Toe sprain to be checked out",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvtpyzk6q2n",
+          "source_type": "beat_reporter",
+          "player_name": "Emeka Egbuka"
+        },
+        {
+          "id": "0bf732c2-c523-4c9b-9787-606ecaabe796",
+          "timestamp": "2026-08-12T12:01:48-07:00",
+          "designation": "Dealing with minor toe injury",
+          "source_text": "Emeka Egbuka: Dealing with minor toe injury",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvsw4h77a2n",
+          "source_type": "beat_reporter",
+          "player_name": "Emeka Egbuka"
+        },
+        {
+          "id": "cdfea261-6705-4bcd-8f95-4ef92f922bd4",
+          "timestamp": "2026-08-12T08:55:41-07:00",
+          "designation": "Injury doesn't appear serious",
+          "source_text": "Emeka Egbuka: Injury doesn't appear serious",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvijctlca2v",
+          "source_type": "beat_reporter",
+          "player_name": "Emeka Egbuka"
+        },
+        {
+          "id": "482fea6a-2f2f-45d9-bbf7-fba185c0d4ad",
+          "timestamp": "2026-08-12T08:37:58-07:00",
+          "designation": "Limps off with trainers at Wednesday's practice",
+          "source_text": "Emeka Egbuka: Limps off with trainers at Wednesday's practice",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvhjmsr632u",
+          "source_type": "beat_reporter",
+          "player_name": "Emeka Egbuka"
+        },
+        {
+          "id": "60393d9f-2e3c-4051-83cc-84cb171ab83d",
+          "timestamp": "2026-08-06T06:12:49-07:00",
+          "designation": "Back at practice Thursday",
+          "source_text": "Emeka Egbuka: Back at practice Thursday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msg4mldmyl2v",
+          "source_type": "beat_reporter",
+          "player_name": "Emeka Egbuka"
+        },
+        {
+          "id": "34702edd-83f1-42d6-8044-583d08b08609",
+          "timestamp": "2026-08-05T14:31:05-07:00",
+          "designation": "Dealing with soreness",
+          "source_text": "Emeka Egbuka: Dealing with soreness",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msehymskcv2q",
+          "source_type": "beat_reporter",
+          "player_name": "Emeka Egbuka"
+        }
+      ],
+      "team": "TB",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qolqqtwamffi0pi4np7h",
+      "team_color": "#A71930"
+    },
+    {
+      "player_id": "00-0039067",
+      "player_name": "Rashee Rice",
+      "current_designation": "No further discipline expected, per NFL Insider",
+      "last_updated": "2026-08-12T12:06:07-07:00",
+      "diff_summary": "Rashee Rice is not facing league discipline despite a reported probation violation. He underwent a knee procedure last week and was cleared to practice, though he is easing back in. Rice is expected to be ready for training camp and no further discipline is anticipated.",
+      "timeline": [
+        {
+          "id": "cd482058-4836-48c0-a271-fab781f68cc6",
+          "timestamp": "2026-08-12T12:06:07-07:00",
+          "designation": "No further discipline expected, per NFL Insider",
+          "source_text": "Rashee Rice: No further discipline expected, per NFL Insider",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvt5u42v32g",
+          "source_type": "beat_reporter",
+          "player_name": "Rashee Rice"
+        },
+        {
+          "id": "17d39fbf-ecd6-4e0e-b222-280b9b734996",
+          "timestamp": "2026-07-31T10:59:04-07:00",
+          "designation": "Easing back in",
+          "source_text": "Rashee Rice: Easing back in",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrxjsvagqa25",
+          "source_type": "beat_reporter",
+          "player_name": "Rashee Rice"
+        },
+        {
+          "id": "998768ea-cb8d-4846-b5fb-53a19b7c096d",
+          "timestamp": "2026-07-24T13:05:42-07:00",
+          "designation": "Cleared to practice",
+          "source_text": "Rashee Rice: Cleared to practice \n\n https://www.rotowire.com/football/player/rashee-rice-16963",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrg5mv755m2z",
+          "source_type": "beat_reporter",
+          "player_name": "Rashee Rice"
+        },
+        {
+          "id": "39ca51ee-9249-47e1-be7a-8415cdfd1cda",
+          "timestamp": "2026-06-11T07:42:44-07:00",
+          "designation": "May be ready for training camp",
+          "source_text": "Rashee Rice: May be ready for training camp",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnzhjsnvw22x",
+          "source_type": "beat_reporter",
+          "player_name": "Rashee Rice"
+        },
+        {
+          "id": "854e4f3d-253b-4f41-b180-f59e7bb82e02",
+          "timestamp": "2026-05-19T16:28:18-07:00",
+          "designation": "Had knee procedure last week",
+          "source_text": "Rashee Rice: Had knee procedure last week \n\n https://www.rotowire.com/football/player/rashee-rice-16963",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmak6gcf3v2y",
+          "source_type": "beat_reporter",
+          "player_name": "Rashee Rice"
+        },
+        {
+          "id": "99aea507-49e0-4e9c-bb49-f4369026db48",
+          "timestamp": "2026-05-19T11:46:06-07:00",
+          "designation": "Reportedly violates probation",
+          "source_text": "Rashee Rice: Reportedly violates probation \n\n https://www.rotowire.com/football/player/rashee-rice-16963",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mma2fsh5yc24",
+          "source_type": "beat_reporter",
+          "player_name": "Rashee Rice"
+        },
+        {
+          "id": "18618937-9461-49d7-b6ae-36dc60149681",
+          "timestamp": "2026-04-03T14:56:50-07:00",
+          "designation": "Not facing league discipline",
+          "source_text": "Rashee Rice: Not facing league discipline \n\n https://www.rotowire.com/football/player/rashee-rice-16963",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mimpmimto42r",
+          "source_type": "beat_reporter",
+          "player_name": "Rashee Rice"
+        }
+      ],
+      "team": "KC",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/iy0uidp9wokc6a7u8lwq",
+      "team_color": "#E31837"
+    },
+    {
+      "player_id": "00-0039344",
+      "player_name": "Jonathon Brooks",
+      "current_designation": "Sharing work with Hubbard in next preseason game",
+      "last_updated": "2026-08-12T09:08:12-07:00",
+      "diff_summary": "Jonathon Brooks was fully cleared for the offseason program on April 28th. As of August 12th, he is expected to share work with Hubbard in the next preseason game.",
+      "timeline": [
+        {
+          "id": "3632eae5-d4ea-4c16-b27b-54f8555653b3",
+          "timestamp": "2026-08-12T09:08:12-07:00",
+          "designation": "Sharing work with Hubbard in next preseason game",
+          "source_text": "Jonathon Brooks: Sharing work with Hubbard in next preseason game",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvj7oxwwi2h",
+          "source_type": "beat_reporter",
+          "player_name": "Jonathon Brooks"
+        },
+        {
+          "id": "f0a87f0f-6fb6-4d0f-98b1-c882a8f50dca",
+          "timestamp": "2026-04-28T11:35:49-07:00",
+          "designation": "Fully cleared for offseason program",
+          "source_text": "Jonathon Brooks: Fully cleared for offseason program \n\n https://www.rotowire.com/football/player/jonathon-brooks-17747",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mkla23i7xq2o",
+          "source_type": "beat_reporter",
+          "player_name": "Jonathon Brooks"
+        }
+      ],
+      "team": "CAR",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500-dark/car.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jah18lvdpgwurx7dgys4",
+      "team_color": "#0085CA"
+    },
+    {
+      "player_id": "00-0040737",
+      "player_name": "Terrance Ferguson",
+      "current_designation": "Makes waves in joint practice",
+      "last_updated": "2026-08-12T07:02:13-07:00",
+      "diff_summary": "Terrance Ferguson made waves in joint practice on August 12th.",
+      "timeline": [
+        {
+          "id": "6c52a40e-4890-4934-9444-ae0f5ddcc462",
+          "timestamp": "2026-08-12T07:02:13-07:00",
+          "designation": "Makes waves in joint practice",
+          "source_text": "Terrance Ferguson: Makes waves in joint practice",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvc6fzkl32m",
+          "source_type": "beat_reporter",
+          "player_name": "Terrance Ferguson"
+        }
+      ],
+      "team": "LA",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lar.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/usa23ax8dratptvikr9a",
+      "team_color": "#003594"
+    },
+    {
+      "player_id": "00-0038128",
+      "player_name": "Malik Willis",
+      "current_designation": "On track to suit up in preseason opener",
+      "last_updated": "2026-08-12T06:52:13-07:00",
+      "diff_summary": "Malik Willis signed a three-year deal with Miami on March 9th. While chemistry with wide receivers was noted as needing improvement on June 5th, he has looked sharp in camp and is taking well to the new offense as of August 11th. He is on track to play in the preseason opener.",
+      "timeline": [
+        {
+          "id": "fc44137e-b62c-4bc9-8bd9-4b7f81a56a38",
+          "timestamp": "2026-08-12T06:52:13-07:00",
+          "designation": "On track to suit up in preseason opener",
+          "source_text": "Malik Willis: On track to suit up in preseason opener",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvbmk3djr2g",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Willis"
+        },
+        {
+          "id": "82ab7609-78a6-4a61-8161-9390af4d8641",
+          "timestamp": "2026-08-12T06:41:35-07:00",
+          "designation": "On track to suit up in preseason opener",
+          "source_text": "Malik Willis: On track to suit up in preseason opener",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvazjobsb2v",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Willis"
+        },
+        {
+          "id": "e2dc3b53-d7b7-4e3c-bc8e-1e04647c7431",
+          "timestamp": "2026-08-11T12:59:43-07:00",
+          "designation": "Taking well to new offense",
+          "source_text": "Malik Willis: Taking well to new offense",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mstforfltz2d",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Willis"
+        },
+        {
+          "id": "106c662b-7898-42ae-b8af-1b19a5e7632b",
+          "timestamp": "2026-08-11T12:59:27-07:00",
+          "designation": "Taking well to new offense",
+          "source_text": "Malik Willis: Taking well to new offense",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mstfocfsgl2v",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Willis"
+        },
+        {
+          "id": "4db03f6d-4f1e-4d43-bdb4-2342642ed2a9",
+          "timestamp": "2026-08-04T12:28:54-07:00",
+          "designation": "Looks sharp early in camp",
+          "source_text": "Malik Willis: Looks sharp early in camp \n\n https://www.rotowire.com/football/player/malik-willis-15872",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbqp7ek5b2a",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Willis"
+        },
+        {
+          "id": "e8bbc567-5ab9-4c86-911d-56a4707d08b6",
+          "timestamp": "2026-06-05T09:14:55-07:00",
+          "designation": "Chemistry with WRs not there yet",
+          "source_text": "Malik Willis: Chemistry with WRs not there yet \n\n https://www.rotowire.com/football/player/malik-willis-15872",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnkjv3uvoq2q",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Willis"
+        },
+        {
+          "id": "33e1238b-bdef-4508-ab91-ec716f78e724",
+          "timestamp": "2026-03-09T09:56:20-07:00",
+          "designation": "Gets three-year deal with Miami",
+          "source_text": "Malik Willis: Gets three-year deal with Miami \n\n https://www.rotowire.com/football/player/malik-willis-15872",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnd65qml72p",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Willis"
+        }
+      ],
+      "team": "GB",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hsnetccy7bquili3gcqq",
+      "team_color": "#203731"
+    },
+    {
+      "player_id": "00-0040715",
+      "player_name": "Cam Skattebo",
+      "current_designation": "Listed as co-starter with Tracy",
+      "last_updated": "2026-08-12T06:50:40-07:00",
+      "diff_summary": "Cam Skattebo appears healthy and participated in Organized Team Activities (OTAs) and minicamp drills, including 11-on-11 work. He is expected to be ready for early camp activities and has been listed as a co-starter with Tracy. Despite a brief exit from practice, his coach downplayed the situation.",
+      "timeline": [
+        {
+          "id": "d681d440-1be8-40cd-b58f-8fb173e2599d",
+          "timestamp": "2026-08-12T06:50:40-07:00",
+          "designation": "Listed as co-starter with Tracy",
+          "source_text": "Cam Skattebo: Listed as co-starter with Tracy",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvbjrj4sr2h",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        },
+        {
+          "id": "6829e3ce-4294-42d5-b83b-6995ae12b177",
+          "timestamp": "2026-08-07T13:23:55-07:00",
+          "designation": "Harbaugh downplays exit from practice",
+          "source_text": "Cam Skattebo: Harbaugh downplays exit from practice",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msjf6ee3322v",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        },
+        {
+          "id": "a1fe7a2b-c3ae-4819-b868-5e162171f22f",
+          "timestamp": "2026-07-29T10:08:19-07:00",
+          "designation": "Declared ready for camp",
+          "source_text": "Cam Skattebo: Declared ready for camp",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsg2cshxi2t",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        },
+        {
+          "id": "b6feb556-9ea6-4ed0-b8b5-a47982ce029c",
+          "timestamp": "2026-07-20T06:30:52-07:00",
+          "designation": "Says he's ready for camp",
+          "source_text": "Cam Skattebo: Says he's ready for camp",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mr3fp6n4362t",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        },
+        {
+          "id": "2255a383-d406-4fd0-a36c-a4a554c37c4c",
+          "timestamp": "2026-07-13T14:39:42-07:00",
+          "designation": "Expected for early camp work",
+          "source_text": "Cam Skattebo: Expected for early camp work \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqknqugrug2k",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        },
+        {
+          "id": "d95f6521-36b5-49b8-8534-303ff82f01a2",
+          "timestamp": "2026-06-09T11:36:17-07:00",
+          "designation": "Doing 11-on-11 drills Tuesday",
+          "source_text": "Cam Skattebo: Doing 11-on-11 drills Tuesday \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnutnkt7em2x",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        },
+        {
+          "id": "ae0fa59e-28ce-43ad-ae8a-ec9610646b9b",
+          "timestamp": "2026-06-08T11:07:04-07:00",
+          "designation": "Taking part in drills at minicamp",
+          "source_text": "Cam Skattebo: Taking part in drills at minicamp",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnsbkg7i432t",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        },
+        {
+          "id": "1cbf4362-990a-4d05-9b37-9d157335a88a",
+          "timestamp": "2026-05-19T20:29:17-07:00",
+          "designation": "Says he'll be ready for Week 1",
+          "source_text": "Cam Skattebo: Says he'll be ready for Week 1 \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmaxncxalw2d",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        },
+        {
+          "id": "a31ce3d6-1640-4454-a407-d6b0b80c2081",
+          "timestamp": "2026-04-07T13:22:43-07:00",
+          "designation": "Attending voluntary workouts",
+          "source_text": "Cam Skattebo: Attending voluntary workouts \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3miwm7uu4ef24",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        },
+        {
+          "id": "6e73bf65-52e4-4509-b0bb-dede36c409e8",
+          "timestamp": "2026-03-30T17:02:49-07:00",
+          "designation": "Looking fully healthy",
+          "source_text": "Cam Skattebo: Looking fully healthy \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3micus3rme62m",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Skattebo"
+        }
+      ],
+      "team": "NYG",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vnftthkbvw7ucsqtqjpq",
+      "team_color": "#0B2265"
     },
     {
       "player_id": "00-0036973",
@@ -224,64 +993,6 @@
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/lv.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/syspis1mntov9kgspb7r",
       "team_color": "#000000"
-    },
-    {
-      "player_id": "00-0038128",
-      "player_name": "Malik Willis",
-      "current_designation": "Taking well to new offense",
-      "last_updated": "2026-08-11T12:59:43-07:00",
-      "diff_summary": "Malik Willis signed a three-year contract with Miami on March 9th, 2026. Early in training camp, he is reportedly looking sharp and taking well to the new offense, though chemistry with wide receivers was noted as not yet established on June 5th, 2026.",
-      "timeline": [
-        {
-          "id": "e2dc3b53-d7b7-4e3c-bc8e-1e04647c7431",
-          "timestamp": "2026-08-11T12:59:43-07:00",
-          "designation": "Taking well to new offense",
-          "source_text": "Malik Willis: Taking well to new offense",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mstforfltz2d",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Willis"
-        },
-        {
-          "id": "106c662b-7898-42ae-b8af-1b19a5e7632b",
-          "timestamp": "2026-08-11T12:59:27-07:00",
-          "designation": "Taking well to new offense",
-          "source_text": "Malik Willis: Taking well to new offense",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mstfocfsgl2v",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Willis"
-        },
-        {
-          "id": "4db03f6d-4f1e-4d43-bdb4-2342642ed2a9",
-          "timestamp": "2026-08-04T12:28:54-07:00",
-          "designation": "Looks sharp early in camp",
-          "source_text": "Malik Willis: Looks sharp early in camp \n\n https://www.rotowire.com/football/player/malik-willis-15872",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbqp7ek5b2a",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Willis"
-        },
-        {
-          "id": "e8bbc567-5ab9-4c86-911d-56a4707d08b6",
-          "timestamp": "2026-06-05T09:14:55-07:00",
-          "designation": "Chemistry with WRs not there yet",
-          "source_text": "Malik Willis: Chemistry with WRs not there yet \n\n https://www.rotowire.com/football/player/malik-willis-15872",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnkjv3uvoq2q",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Willis"
-        },
-        {
-          "id": "33e1238b-bdef-4508-ab91-ec716f78e724",
-          "timestamp": "2026-03-09T09:56:20-07:00",
-          "designation": "Gets three-year deal with Miami",
-          "source_text": "Malik Willis: Gets three-year deal with Miami \n\n https://www.rotowire.com/football/player/malik-willis-15872",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnd65qml72p",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Willis"
-        }
-      ],
-      "team": "GB",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hsnetccy7bquili3gcqq",
-      "team_color": "#203731"
     },
     {
       "player_id": "00-0040676",
@@ -621,64 +1332,6 @@
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/z78xpye9hing1e7wke8b",
       "team_color": "#002C5F"
-    },
-    {
-      "player_id": "00-0036158",
-      "player_name": "J.K. Dobbins",
-      "current_designation": "Works in individual drills Tuesday",
-      "last_updated": "2026-08-11T10:57:41-07:00",
-      "diff_summary": "J.K. Dobbins re-signed with Denver on a two-year deal on March 9th, 2026. He exited practice on August 10th, 2026, with a soft-tissue injury that was deemed minor, and returned to practice in pads and individual drills the following day.",
-      "timeline": [
-        {
-          "id": "5ace2b0e-34af-4836-ad83-827bbfc8664e",
-          "timestamp": "2026-08-11T10:57:41-07:00",
-          "designation": "Works in individual drills Tuesday",
-          "source_text": "J.K. Dobbins: Works in individual drills Tuesday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mst6ukimyp2m",
-          "source_type": "beat_reporter",
-          "player_name": "J.K. Dobbins"
-        },
-        {
-          "id": "a092e894-01de-425a-b89c-bbc3cd144e8b",
-          "timestamp": "2026-08-11T08:59:27-07:00",
-          "designation": "Back in pads Tuesday",
-          "source_text": "J.K. Dobbins: Back in pads Tuesday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mssyb5dtb62x",
-          "source_type": "beat_reporter",
-          "player_name": "J.K. Dobbins"
-        },
-        {
-          "id": "6b30eca6-4c06-42e3-837d-c626efb72de6",
-          "timestamp": "2026-08-10T11:39:16-07:00",
-          "designation": "Soft-tissue injury; expected to be be fine",
-          "source_text": "J.K. Dobbins: Soft-tissue injury; expected to be be fine",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msqqpxyu3x2u",
-          "source_type": "beat_reporter",
-          "player_name": "J.K. Dobbins"
-        },
-        {
-          "id": "79147bcd-e96b-48fd-8d19-eb435dd4497e",
-          "timestamp": "2026-08-10T10:41:44-07:00",
-          "designation": "Exits Monday's practice",
-          "source_text": "J.K. Dobbins: Exits Monday's practice",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msqnj3zdoo2h",
-          "source_type": "beat_reporter",
-          "player_name": "J.K. Dobbins"
-        },
-        {
-          "id": "b957ac2d-8bfd-47cf-a188-f709dc8e189b",
-          "timestamp": "2026-03-09T12:38:12-07:00",
-          "designation": "Staying in Denver for two years",
-          "source_text": "J.K. Dobbins: Staying in Denver for two years \n\n https://www.rotowire.com/football/player/jk-dobbins-14418",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnm7loyh72g",
-          "source_type": "beat_reporter",
-          "player_name": "J.K. Dobbins"
-        }
-      ],
-      "team": "DEN",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cevotvl3ho5h1mioruyg",
-      "team_color": "#002244"
     },
     {
       "player_id": "00-0041027",
@@ -1632,118 +2285,6 @@
       "team_color": "#002C5F"
     },
     {
-      "player_id": "00-0039732",
-      "player_name": "Bo Nix",
-      "current_designation": "Unlocking deep ball at camp",
-      "last_updated": "2026-08-11T07:27:51-07:00",
-      "diff_summary": "Bo Nix underwent an ankle clean-up procedure on April 28th but was on track for minicamp by May 9th. He was expected to practice the week of June 11th and was on the field at minicamp on June 16th, with a full-go training camp expected. Nix participated in 7-on-7 drills on June 17th and worked fully on July 29th, and is currently unlocking his deep ball at camp.",
-      "timeline": [
-        {
-          "id": "d51cfa4a-93cc-4247-89b9-324629f7407d",
-          "timestamp": "2026-08-11T07:27:51-07:00",
-          "designation": "Unlocking deep ball at camp",
-          "source_text": "Bo Nix: Unlocking deep ball at camp \n\n https://www.rotowire.com/football/player/bo-nix-16995",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msst5e36en2n",
-          "source_type": "beat_reporter",
-          "player_name": "Bo Nix"
-        },
-        {
-          "id": "deb7586d-bdf4-4593-9033-b06c67bbf49e",
-          "timestamp": "2026-07-29T10:35:49-07:00",
-          "designation": "Works fully Wednesday",
-          "source_text": "Bo Nix: Works fully Wednesday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrshlhvfrm2z",
-          "source_type": "beat_reporter",
-          "player_name": "Bo Nix"
-        },
-        {
-          "id": "8c22dae4-34a6-4cab-83e7-edea29e50ee5",
-          "timestamp": "2026-07-21T07:24:13-07:00",
-          "designation": "Still on track for start of camp",
-          "source_text": "Bo Nix: Still on track for start of camp",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mr5z5jiiyj2r",
-          "source_type": "beat_reporter",
-          "player_name": "Bo Nix"
-        },
-        {
-          "id": "69ebbda5-3198-4645-99b4-10f6d271f12d",
-          "timestamp": "2026-06-17T12:01:56-07:00",
-          "designation": "Takes part in 7-on-7 drills",
-          "source_text": "Bo Nix: Takes part in 7-on-7 drills",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3moiyssiwih2z",
-          "source_type": "beat_reporter",
-          "player_name": "Bo Nix"
-        },
-        {
-          "id": "4091e5ae-b54b-4ebf-98eb-af1813141e21",
-          "timestamp": "2026-06-16T17:53:17-07:00",
-          "designation": "Full-go training camp expected",
-          "source_text": "Bo Nix: Full-go training camp expected \n\n https://www.rotowire.com/football/player/bo-nix-16995",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3moh3y5gpw322",
-          "source_type": "beat_reporter",
-          "player_name": "Bo Nix"
-        },
-        {
-          "id": "9c5eec73-f364-4acf-836f-3ef52c599b76",
-          "timestamp": "2026-06-16T12:33:36-07:00",
-          "designation": "On field at minicamp",
-          "source_text": "Bo Nix: On field at minicamp",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mogk4jj3cb2b",
-          "source_type": "beat_reporter",
-          "player_name": "Bo Nix"
-        },
-        {
-          "id": "3e5367fa-8371-4a53-873f-a53b6bde2f9d",
-          "timestamp": "2026-06-11T11:27:20-07:00",
-          "designation": "In line to practice next week",
-          "source_text": "Bo Nix: In line to practice next week",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnzu3gdvzs2f",
-          "source_type": "beat_reporter",
-          "player_name": "Bo Nix"
-        },
-        {
-          "id": "41d4ce14-8512-44e9-981e-1ec025daea24",
-          "timestamp": "2026-06-04T13:13:15-07:00",
-          "designation": "Nearing practice return?",
-          "source_text": "Bo Nix: Nearing practice return? \n\n https://www.rotowire.com/football/player/bo-nix-16995",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnigqehcat2b",
-          "source_type": "beat_reporter",
-          "player_name": "Bo Nix"
-        },
-        {
-          "id": "f07fbed9-036a-4f35-a15d-6e0ec2d6a506",
-          "timestamp": "2026-05-09T12:50:40-07:00",
-          "designation": "On track for minicamp",
-          "source_text": "Bo Nix: On track for minicamp \n\n https://www.rotowire.com/football/player/bo-nix-16995",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mlgze24cyv2a",
-          "source_type": "beat_reporter",
-          "player_name": "Bo Nix"
-        },
-        {
-          "id": "e6d5216d-9621-484a-ae0c-bf91bc37f8df",
-          "timestamp": "2026-04-28T18:37:13-07:00",
-          "designation": "Has clean-up procedure on ankle",
-          "source_text": "Bo Nix: Has clean-up procedure on ankle \n\n https://www.rotowire.com/football/player/bo-nix-16995",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mklxlm4f3u2r",
-          "source_type": "beat_reporter",
-          "player_name": "Bo Nix"
-        },
-        {
-          "id": "fdb293e7-ca94-4ebb-b7cf-211bda01d9c5",
-          "timestamp": "2026-03-30T19:26:10-07:00",
-          "designation": "Ahead of schedule, per team owner",
-          "source_text": "Bo Nix: Ahead of schedule, per team owner \n\n https://www.rotowire.com/football/player/bo-nix-16995",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mid4sfyjlw2m",
-          "source_type": "beat_reporter",
-          "player_name": "Bo Nix"
-        }
-      ],
-      "team": "DEN",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/igirshmrr6lqtxcpxsea",
-      "team_color": "#002244"
-    },
-    {
       "player_id": "00-0036912",
       "player_name": "DeVonta Smith",
       "current_designation": "Not practicing, but should play Week 1",
@@ -2595,221 +3136,6 @@
       "team_color": "#0076B6"
     },
     {
-      "player_id": "00-0039337",
-      "player_name": "Malik Nabers",
-      "current_designation": "Trending toward Week 1 return",
-      "last_updated": "2026-08-09T06:26:12-07:00",
-      "diff_summary": "Malik Nabers underwent a second procedure in May and was at 80 percent in his rehab process as of June 10th. He was taking part in individual drills by July 29th and has since rejoined team drills, trending toward a Week 1 return.",
-      "timeline": [
-        {
-          "id": "b23cc270-0c22-4782-9450-8574fe47112b",
-          "timestamp": "2026-08-09T06:26:12-07:00",
-          "designation": "Trending toward Week 1 return",
-          "source_text": "Malik Nabers: Trending toward Week 1 return",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msnorbdmk424",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "c7a61c43-b689-481b-8c05-b54b2fcba4b8",
-          "timestamp": "2026-08-06T15:59:58-07:00",
-          "designation": "Rejoins team drills",
-          "source_text": "Malik Nabers: Rejoins team drills",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msh5ghryp42w",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "fb1bf984-f50b-4f18-ba19-d1480961a3da",
-          "timestamp": "2026-07-30T12:33:55-07:00",
-          "designation": "Feeling 'great' at practice",
-          "source_text": "Malik Nabers: Feeling 'great' at practice",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrv6nkymg42v",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "f6e55b7b-8c29-43f2-a235-31750d3182be",
-          "timestamp": "2026-07-29T14:10:56-07:00",
-          "designation": "Looks good at practice",
-          "source_text": "Malik Nabers: Looks good at practice",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrstm5nr7x2v",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "35bcb839-59cd-4bb5-a7f1-2e4a8bfaa323",
-          "timestamp": "2026-07-29T10:03:16-07:00",
-          "designation": "Taking part in individual drills",
-          "source_text": "Malik Nabers: Taking part in individual drills",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsfrc2oyc2o",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "a2447779-ce60-4e2f-860a-9f5774616648",
-          "timestamp": "2026-07-24T06:54:43-07:00",
-          "designation": "To be brought along slowly",
-          "source_text": "Malik Nabers: To be brought along slowly \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrfivj3hb426",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "83dc25f2-d986-4f42-8897-dd1b8c6d4b7c",
-          "timestamp": "2026-07-13T15:03:03-07:00",
-          "designation": "Making progress, per coach",
-          "source_text": "Malik Nabers: Making progress, per coach \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqkp2lzsku2s",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "1801cbb8-3491-4548-8444-dab848368917",
-          "timestamp": "2026-06-10T09:43:41-07:00",
-          "designation": "At 80 percent mark in rehab process",
-          "source_text": "Malik Nabers: At 80 percent mark in rehab process",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnx5t5ishx2x",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "f5da914d-b238-4bf4-ac48-f21627c31b9c",
-          "timestamp": "2026-05-21T11:55:48-07:00",
-          "designation": "Aiming for camp return?",
-          "source_text": "Malik Nabers: Aiming for camp return? \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmf3uxy6wm24",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "42344c96-c810-442c-9f24-2b283adde80d",
-          "timestamp": "2026-05-13T12:36:46-07:00",
-          "designation": "Recovering from second procedure",
-          "source_text": "Malik Nabers: Recovering from second procedure \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mlr2gv5m262g",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "3244e6d8-fc5a-43a3-b6b9-f51c143aab08",
-          "timestamp": "2026-04-07T09:43:50-07:00",
-          "designation": "Present for voluntary workouts",
-          "source_text": "Malik Nabers: Present for voluntary workouts \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3miw7yiwxl22h",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "5e3e4a73-a5d5-4e53-a7b5-abcc4e384bdc",
-          "timestamp": "2026-03-30T16:56:04-07:00",
-          "designation": "GM hopeful for Week 1 availability",
-          "source_text": "Malik Nabers: GM hopeful for Week 1 availability \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3micufzxo3t22",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        }
-      ],
-      "team": "NYG",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/w3edoyyuomqlovvp9ixc",
-      "team_color": "#0B2265"
-    },
-    {
-      "player_id": "00-0040715",
-      "player_name": "Cam Skattebo",
-      "current_designation": "Harbaugh downplays exit from practice",
-      "last_updated": "2026-08-07T13:23:55-07:00",
-      "diff_summary": "Cam Skattebo is looking fully healthy and attended voluntary workouts in April. He stated he would be ready for Week 1 and participated in drills at minicamp in June, including 11-on-11s. Skattebo was expected for early camp work and declared himself ready for camp by July 20th. His coach, Harbaugh, downplayed an exit from practice on August 7th.",
-      "timeline": [
-        {
-          "id": "6829e3ce-4294-42d5-b83b-6995ae12b177",
-          "timestamp": "2026-08-07T13:23:55-07:00",
-          "designation": "Harbaugh downplays exit from practice",
-          "source_text": "Cam Skattebo: Harbaugh downplays exit from practice",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msjf6ee3322v",
-          "source_type": "beat_reporter",
-          "player_name": "Cam Skattebo"
-        },
-        {
-          "id": "a1fe7a2b-c3ae-4819-b868-5e162171f22f",
-          "timestamp": "2026-07-29T10:08:19-07:00",
-          "designation": "Declared ready for camp",
-          "source_text": "Cam Skattebo: Declared ready for camp",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsg2cshxi2t",
-          "source_type": "beat_reporter",
-          "player_name": "Cam Skattebo"
-        },
-        {
-          "id": "b6feb556-9ea6-4ed0-b8b5-a47982ce029c",
-          "timestamp": "2026-07-20T06:30:52-07:00",
-          "designation": "Says he's ready for camp",
-          "source_text": "Cam Skattebo: Says he's ready for camp",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mr3fp6n4362t",
-          "source_type": "beat_reporter",
-          "player_name": "Cam Skattebo"
-        },
-        {
-          "id": "2255a383-d406-4fd0-a36c-a4a554c37c4c",
-          "timestamp": "2026-07-13T14:39:42-07:00",
-          "designation": "Expected for early camp work",
-          "source_text": "Cam Skattebo: Expected for early camp work \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqknqugrug2k",
-          "source_type": "beat_reporter",
-          "player_name": "Cam Skattebo"
-        },
-        {
-          "id": "d95f6521-36b5-49b8-8534-303ff82f01a2",
-          "timestamp": "2026-06-09T11:36:17-07:00",
-          "designation": "Doing 11-on-11 drills Tuesday",
-          "source_text": "Cam Skattebo: Doing 11-on-11 drills Tuesday \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnutnkt7em2x",
-          "source_type": "beat_reporter",
-          "player_name": "Cam Skattebo"
-        },
-        {
-          "id": "ae0fa59e-28ce-43ad-ae8a-ec9610646b9b",
-          "timestamp": "2026-06-08T11:07:04-07:00",
-          "designation": "Taking part in drills at minicamp",
-          "source_text": "Cam Skattebo: Taking part in drills at minicamp",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnsbkg7i432t",
-          "source_type": "beat_reporter",
-          "player_name": "Cam Skattebo"
-        },
-        {
-          "id": "1cbf4362-990a-4d05-9b37-9d157335a88a",
-          "timestamp": "2026-05-19T20:29:17-07:00",
-          "designation": "Says he'll be ready for Week 1",
-          "source_text": "Cam Skattebo: Says he'll be ready for Week 1 \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmaxncxalw2d",
-          "source_type": "beat_reporter",
-          "player_name": "Cam Skattebo"
-        },
-        {
-          "id": "a31ce3d6-1640-4454-a407-d6b0b80c2081",
-          "timestamp": "2026-04-07T13:22:43-07:00",
-          "designation": "Attending voluntary workouts",
-          "source_text": "Cam Skattebo: Attending voluntary workouts \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3miwm7uu4ef24",
-          "source_type": "beat_reporter",
-          "player_name": "Cam Skattebo"
-        },
-        {
-          "id": "6e73bf65-52e4-4509-b0bb-dede36c409e8",
-          "timestamp": "2026-03-30T17:02:49-07:00",
-          "designation": "Looking fully healthy",
-          "source_text": "Cam Skattebo: Looking fully healthy \n\n https://www.rotowire.com/football/player/cam-skattebo-18514",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3micus3rme62m",
-          "source_type": "beat_reporter",
-          "player_name": "Cam Skattebo"
-        }
-      ],
-      "team": "NYG",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/nyg.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vnftthkbvw7ucsqtqjpq",
-      "team_color": "#0B2265"
-    },
-    {
       "player_id": "00-0033873",
       "player_name": "Patrick Mahomes",
       "current_designation": "Not likely to play in preseason opener",
@@ -3287,37 +3613,6 @@
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vrrmyvpvujynckag9jop",
       "team_color": "#D3BC8D"
-    },
-    {
-      "player_id": "00-0040129",
-      "player_name": "Emeka Egbuka",
-      "current_designation": "Back at practice Thursday",
-      "last_updated": "2026-08-06T06:12:49-07:00",
-      "diff_summary": "Emeka Egbuka returned to practice on Thursday after dealing with soreness.",
-      "timeline": [
-        {
-          "id": "60393d9f-2e3c-4051-83cc-84cb171ab83d",
-          "timestamp": "2026-08-06T06:12:49-07:00",
-          "designation": "Back at practice Thursday",
-          "source_text": "Emeka Egbuka: Back at practice Thursday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msg4mldmyl2v",
-          "source_type": "beat_reporter",
-          "player_name": "Emeka Egbuka"
-        },
-        {
-          "id": "34702edd-83f1-42d6-8044-583d08b08609",
-          "timestamp": "2026-08-05T14:31:05-07:00",
-          "designation": "Dealing with soreness",
-          "source_text": "Emeka Egbuka: Dealing with soreness",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msehymskcv2q",
-          "source_type": "beat_reporter",
-          "player_name": "Emeka Egbuka"
-        }
-      ],
-      "team": "TB",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qolqqtwamffi0pi4np7h",
-      "team_color": "#A71930"
     },
     {
       "player_id": "00-0036223",
@@ -3818,73 +4113,6 @@
       "team_color": "#000000"
     },
     {
-      "player_id": "00-0039067",
-      "player_name": "Rashee Rice",
-      "current_designation": "Easing back in",
-      "last_updated": "2026-07-31T10:59:04-07:00",
-      "diff_summary": "Rashee Rice was not facing league discipline as of April 3rd. He reportedly violated probation on May 19th, the same day it was reported he had a knee procedure the previous week. Rice may be ready for training camp by June 11th and was cleared to practice on July 24th, but was easing back in as of July 31st.",
-      "timeline": [
-        {
-          "id": "17d39fbf-ecd6-4e0e-b222-280b9b734996",
-          "timestamp": "2026-07-31T10:59:04-07:00",
-          "designation": "Easing back in",
-          "source_text": "Rashee Rice: Easing back in",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrxjsvagqa25",
-          "source_type": "beat_reporter",
-          "player_name": "Rashee Rice"
-        },
-        {
-          "id": "998768ea-cb8d-4846-b5fb-53a19b7c096d",
-          "timestamp": "2026-07-24T13:05:42-07:00",
-          "designation": "Cleared to practice",
-          "source_text": "Rashee Rice: Cleared to practice \n\n https://www.rotowire.com/football/player/rashee-rice-16963",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrg5mv755m2z",
-          "source_type": "beat_reporter",
-          "player_name": "Rashee Rice"
-        },
-        {
-          "id": "39ca51ee-9249-47e1-be7a-8415cdfd1cda",
-          "timestamp": "2026-06-11T07:42:44-07:00",
-          "designation": "May be ready for training camp",
-          "source_text": "Rashee Rice: May be ready for training camp",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnzhjsnvw22x",
-          "source_type": "beat_reporter",
-          "player_name": "Rashee Rice"
-        },
-        {
-          "id": "854e4f3d-253b-4f41-b180-f59e7bb82e02",
-          "timestamp": "2026-05-19T16:28:18-07:00",
-          "designation": "Had knee procedure last week",
-          "source_text": "Rashee Rice: Had knee procedure last week \n\n https://www.rotowire.com/football/player/rashee-rice-16963",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmak6gcf3v2y",
-          "source_type": "beat_reporter",
-          "player_name": "Rashee Rice"
-        },
-        {
-          "id": "99aea507-49e0-4e9c-bb49-f4369026db48",
-          "timestamp": "2026-05-19T11:46:06-07:00",
-          "designation": "Reportedly violates probation",
-          "source_text": "Rashee Rice: Reportedly violates probation \n\n https://www.rotowire.com/football/player/rashee-rice-16963",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mma2fsh5yc24",
-          "source_type": "beat_reporter",
-          "player_name": "Rashee Rice"
-        },
-        {
-          "id": "18618937-9461-49d7-b6ae-36dc60149681",
-          "timestamp": "2026-04-03T14:56:50-07:00",
-          "designation": "Not facing league discipline",
-          "source_text": "Rashee Rice: Not facing league discipline \n\n https://www.rotowire.com/football/player/rashee-rice-16963",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mimpmimto42r",
-          "source_type": "beat_reporter",
-          "player_name": "Rashee Rice"
-        }
-      ],
-      "team": "KC",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/kc.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/iy0uidp9wokc6a7u8lwq",
-      "team_color": "#E31837"
-    },
-    {
       "player_id": "00-0036875",
       "player_name": "Rhamondre Stevenson",
       "current_designation": "Practicing Thursday",
@@ -3984,122 +4212,6 @@
       "team": "ATL",
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/np91pvk7mczra1iyjkmo",
-      "team_color": "#A71930"
-    },
-    {
-      "player_id": "00-0036358",
-      "player_name": "CeeDee Lamb",
-      "current_designation": "Playing usual role in training camp",
-      "last_updated": "2026-07-29T15:31:54-07:00",
-      "diff_summary": "CeeDee Lamb agreed to a contract restructure on March 4th. He was playing his usual role in training camp as of July 29th.",
-      "timeline": [
-        {
-          "id": "c30f86e7-e46f-4dd9-bc88-f910e8eb74d2",
-          "timestamp": "2026-07-29T15:31:54-07:00",
-          "designation": "Playing usual role in training camp",
-          "source_text": "CeeDee Lamb: Playing usual role in training camp",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsy4wmrci2r",
-          "source_type": "beat_reporter",
-          "player_name": "CeeDee Lamb"
-        },
-        {
-          "id": "cc5ef518-e294-4838-a4c9-14de807cc2a1",
-          "timestamp": "2026-03-04T08:37:06-08:00",
-          "designation": "Agrees to contract restructure",
-          "source_text": "CeeDee Lamb: Agrees to contract restructure \n\n https://www.rotowire.com/football/player/ceedee-lamb-14411",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgapr623ei2q",
-          "source_type": "beat_reporter",
-          "player_name": "CeeDee Lamb"
-        }
-      ],
-      "team": "DAL",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/dal.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ijxzvtumjhqu3zva1bwc",
-      "team_color": "#002244"
-    },
-    {
-      "player_id": "00-0039361",
-      "player_name": "Bucky Irving",
-      "current_designation": "Full-go for training camp",
-      "last_updated": "2026-07-29T07:20:11-07:00",
-      "diff_summary": "Bucky Irving's team added Gainwell to the backfield on March 9th, 2026. A shoulder injury was still lingering as of May 13th, 2026, 65 days later, and he was not practicing yet on May 26th, 2026. Initially, it was suggested he might not be ready until \"summer or fall,\" but on the same day, he was reported as likely healthy for training camp. By June 11th, 2026, 16 days later, he was spotted at Organized Team Activities (OTAs) practice. He stated on July 20th, 2026, 39 days later, that he would be ready for camp, and on July 29th, 2026, 9 days later, he was a full participant for training camp.",
-      "timeline": [
-        {
-          "id": "aae92db0-86e6-4129-9947-e42744e22939",
-          "timestamp": "2026-07-29T07:20:11-07:00",
-          "designation": "Full-go for training camp",
-          "source_text": "Bucky Irving: Full-go for training camp",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrs4nnlxsa2z",
-          "source_type": "beat_reporter",
-          "player_name": "Bucky Irving"
-        },
-        {
-          "id": "41c2c0c2-baeb-4119-a730-8ec6b3222d8f",
-          "timestamp": "2026-07-20T14:40:26-07:00",
-          "designation": "Says he'll be ready for camp",
-          "source_text": "Bucky Irving: Says he'll be ready for camp \n\n https://www.rotowire.com/football/player/bucky-irving-17784",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mr4b2m3y7b2i",
-          "source_type": "beat_reporter",
-          "player_name": "Bucky Irving"
-        },
-        {
-          "id": "5f0f1131-fccd-49aa-be11-740efe7cc70f",
-          "timestamp": "2026-06-11T09:59:46-07:00",
-          "designation": "Spotted at OTA practice",
-          "source_text": "Bucky Irving: Spotted at OTA practice \n\n https://www.rotowire.com/football/player/bucky-irving-17784",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnzp6sxl3y2h",
-          "source_type": "beat_reporter",
-          "player_name": "Bucky Irving"
-        },
-        {
-          "id": "653547fc-0214-48c6-91da-fb8f0fbeafd4",
-          "timestamp": "2026-05-26T15:03:58-07:00",
-          "designation": "Likely healthy for training camp",
-          "source_text": "Bucky Irving: Likely healthy for training camp \n\n https://www.rotowire.com/football/player/bucky-irving-17784",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmryq2exec2l",
-          "source_type": "beat_reporter",
-          "player_name": "Bucky Irving"
-        },
-        {
-          "id": "d08af8cc-048d-41e3-98e7-cecee3614475",
-          "timestamp": "2026-05-26T11:48:11-07:00",
-          "designation": "May not be ready until \"summer or fall\"",
-          "source_text": "Bucky Irving: May not be ready until \"summer or fall\" \n\n https://www.rotowire.com/football/player/bucky-irving-17784",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmrnry4it524",
-          "source_type": "beat_reporter",
-          "player_name": "Bucky Irving"
-        },
-        {
-          "id": "0fc473bc-dc67-46a5-b73e-7ced41fdf282",
-          "timestamp": "2026-05-26T10:28:15-07:00",
-          "designation": "Not practicing yet",
-          "source_text": "Bucky Irving: Not practicing yet \n\n https://www.rotowire.com/football/player/bucky-irving-17784",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmrjczo4zl2a",
-          "source_type": "beat_reporter",
-          "player_name": "Bucky Irving"
-        },
-        {
-          "id": "7872d95d-39f5-456d-9c89-cb20a2940316",
-          "timestamp": "2026-05-13T09:00:10-07:00",
-          "designation": "Shoulder injury still lingering",
-          "source_text": "Bucky Irving: Shoulder injury still lingering \n\n https://www.rotowire.com/football/player/bucky-irving-17784",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mlqodktsly2o",
-          "source_type": "beat_reporter",
-          "player_name": "Bucky Irving"
-        },
-        {
-          "id": "cd547f86-6ff0-4f7f-9dd7-e00acd75f734",
-          "timestamp": "2026-03-09T10:26:02-07:00",
-          "designation": "Team adds Gainwell to backfield",
-          "source_text": "Bucky Irving: Team adds Gainwell to backfield \n\n https://www.rotowire.com/football/player/bucky-irving-17784",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnetaog7u2q",
-          "source_type": "beat_reporter",
-          "player_name": "Bucky Irving"
-        }
-      ],
-      "team": "TB",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/tb.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hmgpumoxwhvrrkcjuuuw",
       "team_color": "#A71930"
     }
   ],
