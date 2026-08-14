@@ -17,34 +17,34 @@
   },
   "00-0031408": {
     "player_name": "Mike Evans",
-    "current_designation": "Gets in individual work",
-    "last_updated": "2026-08-11T12:34:34-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mstebrqo6i23",
-    "last_report_id": "cdf40bc0-8522-45b5-bec2-c6a1dd017d28",
+    "current_designation": "Not suited up Thursday",
+    "last_updated": "2026-08-13T17:34:17-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msyvxlfro42s",
+    "last_report_id": "93f9fd05-212b-4187-a5e7-f4b09a6af298",
     "last_extraction": {
-      "status": "Gets in individual work",
-      "designation": "Gets in individual work",
-      "date": "2026-08-11T12:34:34-07:00",
-      "direct_quote": "Mike Evans: Gets in individual work",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mstebrqo6i23"
+      "status": "Not suited up Thursday",
+      "designation": "Not suited up Thursday",
+      "date": "2026-08-13T17:34:17-07:00",
+      "direct_quote": "Mike Evans: Not suited up Thursday",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msyvxlfro42s"
     },
-    "last_diff_summary": "Mike Evans will play in 2026 and is not expected to retire, though he may not return to Tampa Bay. He is joining forces with Kyle Shanahan and has been winning over teammates and coaches. Evans has been sidelined with a strained quad since August 3rd, but has been seen catching passes and is nearing a return to practice, participating in individual work as of August 11th.",
+    "last_diff_summary": "Mike Evans will play in 2026 and is joining the San Francisco 49ers, but may not return to Tampa Bay. He was winning over teammates and coaches during Organized Team Activities (OTAs). Evans has a strained quad and has not been practicing, though he has been catching passes. He remains sidelined as of August 5th but is nearing a return to practice and was present for practice on August 11th, getting in individual work. However, he was not suited up on Thursday, August 13th.",
     "summary_fallback": false
   },
   "00-0033873": {
     "player_name": "Patrick Mahomes",
-    "current_designation": "Not likely to play in preseason opener",
-    "last_updated": "2026-08-07T09:23:27-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msixqelusu25",
-    "last_report_id": "f7c8a870-2072-44a5-8aba-7e71a85338d8",
+    "current_designation": "Won't play in preseason opener",
+    "last_updated": "2026-08-13T08:32:58-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msxxpmicxc2o",
+    "last_report_id": "a1b36a29-b7be-496a-b726-0b7b4a5630d6",
     "last_extraction": {
-      "status": "Not likely to play in preseason opener",
-      "designation": "Not likely to play in preseason opener",
-      "date": "2026-08-07T09:23:27-07:00",
-      "direct_quote": "Patrick Mahomes: Not likely to play in preseason opener",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msixqelusu25"
+      "status": "Won't play in preseason opener",
+      "designation": "Won't play in preseason opener",
+      "date": "2026-08-13T08:32:58-07:00",
+      "direct_quote": "Patrick Mahomes: Won't play in preseason opener",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msxxpmicxc2o"
     },
-    "last_diff_summary": "Patrick Mahomes restructured his contract in February and was rehabbing during voluntary workouts in April. He participated in Organized Team Activities (OTAs) in May, though he was limited to 7-on-7 work. The Chiefs added two years to his contract in June. Mahomes aims to play Week 1 and was cleared to practice in full on July 24th, taking part in 11-on-11s by July 29th. He is not expected to play in the preseason opener.",
+    "last_diff_summary": "Patrick Mahomes agreed to a contract restructure and had two years added to his deal with the Chiefs. He was rehabbing during voluntary workouts and participated in Organized Team Activities (OTAs), though limited to 7-on-7 work. Mahomes was cleared to practice in full on July 24th and has been taking part in 11-on-11 drills. He aims to play Week 1 and is not likely to play in the preseason opener, confirming he won't play in the preseason opener on August 13th.",
     "summary_fallback": false
   },
   "00-0039165": {
@@ -161,18 +161,18 @@
   },
   "00-0039163": {
     "player_name": "C.J. Stroud",
-    "current_designation": "Not expected to see action in preseason opener",
-    "last_updated": "2026-08-12T13:10:44-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvwrfhzs326",
-    "last_report_id": "81e74b6f-5a79-4a5a-90dd-510a8f90b209",
+    "current_designation": "DNP in preseason opener",
+    "last_updated": "2026-08-13T20:02:58-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz6bghqcr24",
+    "last_report_id": "8e65157d-7f4c-4e12-a1eb-30295fb98180",
     "last_extraction": {
-      "status": "Not expected to see action in preseason opener",
-      "designation": "Not expected to see action in preseason opener",
-      "date": "2026-08-12T13:10:44-07:00",
-      "direct_quote": "C.J. Stroud: Not expected to see action in preseason opener \n\n https://www.rotowire.com/football/player/cj-stroud-16886",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvwrfhzs326"
+      "status": "DNP in preseason opener",
+      "designation": "DNP in preseason opener",
+      "date": "2026-08-13T20:02:58-07:00",
+      "direct_quote": "C.J. Stroud: DNP in preseason opener",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz6bghqcr24"
     },
-    "last_diff_summary": "C.J. Stroud's fifth-year option was picked up on April 8th, 43 days after it was reported he would not be traded. He has been shedding weight since May 6th and is not expected to play in the preseason opener.",
+    "last_diff_summary": "C.J. Stroud's fifth-year option was picked up, and the Houston Texans' General Manager stated he will not be traded. Stroud has been shedding weight and is not expected to see action in the preseason opener, ultimately not playing in the game on August 13th.",
     "summary_fallback": false
   },
   "00-0035228": {
@@ -193,18 +193,18 @@
   },
   "00-0041027": {
     "player_name": "Jeremiyah Love",
-    "current_designation": "In line to play Thursday",
-    "last_updated": "2026-08-11T10:53:23-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mst6muqaon25",
-    "last_report_id": "7f48acfa-f5c4-4940-bf84-f7d60cb4d6ca",
+    "current_designation": "Has ankle injury",
+    "last_updated": "2026-08-13T20:12:44-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz6svr3nz2z",
+    "last_report_id": "9f0dcd0c-bca8-450b-81b1-c5b42a37236a",
     "last_extraction": {
-      "status": "In line to play Thursday",
-      "designation": "In line to play Thursday",
-      "date": "2026-08-11T10:53:23-07:00",
-      "direct_quote": "Jeremiyah Love: In line to play Thursday",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mst6muqaon25"
+      "status": "Has ankle injury",
+      "designation": "Has ankle injury",
+      "date": "2026-08-13T20:12:44-07:00",
+      "direct_quote": "Jeremiyah Love: Has ankle injury",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz6svr3nz2z"
     },
-    "last_diff_summary": "Jeremiyah Love, who impressed with his 40-yard dash time at the NFL Combine, was selected by the Cardinals. He has been mixing in behind Allgeier and is in line to play on Thursday.",
+    "last_diff_summary": "Jeremiyah Love, picked by the Arizona Cardinals, turned in an impressive 40-yard dash time. He has been mixing in behind Allgeier and was in line to play in the preseason opener on Thursday, August 13th. Love was efficient with 14 touches in the game but sustained an ankle injury.",
     "summary_fallback": false
   },
   "00-0033293": {
@@ -369,18 +369,18 @@
   },
   "00-0036252": {
     "player_name": "Michael Pittman",
-    "current_designation": "Misses practice Tuesday",
-    "last_updated": "2026-08-11T11:05:40-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mst7ctlsw62n",
-    "last_report_id": "ae3319de-7918-4c00-80ab-2da3a93d1377",
+    "current_designation": "Not slated to play preseason opener",
+    "last_updated": "2026-08-13T15:37:21-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msypghz2lp24",
+    "last_report_id": "e00e3162-17b2-4113-a240-0ab789f93016",
     "last_extraction": {
-      "status": "Misses practice Tuesday",
-      "designation": "Misses practice Tuesday",
-      "date": "2026-08-11T11:05:40-07:00",
-      "direct_quote": "Michael Pittman: Misses practice Tuesday \n\n https://www.rotowire.com/football/player/michael-pittman-14378",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mst7ctlsw62n"
+      "status": "Not slated to play preseason opener",
+      "designation": "Not slated to play preseason opener",
+      "date": "2026-08-13T15:37:21-07:00",
+      "direct_quote": "Michael Pittman: Not slated to play preseason opener",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msypghz2lp24"
     },
-    "last_diff_summary": "Michael Pittman was traded to the Steelers on March 9th. He was not seen at practice on August 10th and missed practice again on August 11th.",
+    "last_diff_summary": "Michael Pittman was traded to the Steelers on March 9th. He has not been spotted at practice as of August 10th and missed practice on Tuesday, August 11th. Pittman is not slated to play in the preseason opener on Saturday, August 15th.",
     "summary_fallback": false
   },
   "00-0038128": {
@@ -449,18 +449,18 @@
   },
   "00-0037263": {
     "player_name": "Tyler Allgeier",
-    "current_designation": "Finds home with Cardinals",
-    "last_updated": "2026-03-09T10:56:21-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgngji5gve2d",
-    "last_report_id": "2cff4645-e87d-40fd-90d1-a822d85f8764",
+    "current_designation": "Sees action with starters",
+    "last_updated": "2026-08-13T20:41:01-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszafi6fnq2a",
+    "last_report_id": "97f273fb-e15f-40ad-924b-832a03f26165",
     "last_extraction": {
-      "status": "Finds home with Cardinals",
-      "designation": "Finds home with Cardinals",
-      "date": "2026-03-09T10:56:21-07:00",
-      "direct_quote": "Tyler Allgeier: Finds home with Cardinals \n\n https://www.rotowire.com/football/player/tyler-allgeier-15976",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgngji5gve2d"
+      "status": "Sees action with starters",
+      "designation": "Sees action with starters",
+      "date": "2026-08-13T20:41:01-07:00",
+      "direct_quote": "Tyler Allgeier: Sees action with starters",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszafi6fnq2a"
     },
-    "last_diff_summary": "Tyler Allgeier has found a new home with the Cardinals.",
+    "last_diff_summary": "Tyler Allgeier found a new home with the Cardinals on March 9th. He was seen taking snaps with the starters on August 13th.",
     "summary_fallback": false
   },
   "00-0036973": {
@@ -481,18 +481,18 @@
   },
   "00-0038117": {
     "player_name": "Wan'Dale Robinson",
-    "current_designation": "Joining Titans WR corps",
-    "last_updated": "2026-03-09T11:10:25-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnhcmlmev2w",
-    "last_report_id": "96a71b64-0a97-4d5a-ac47-8d08351f8222",
+    "current_designation": "Two catches in team debut",
+    "last_updated": "2026-08-13T21:58:57-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszeqtjft422",
+    "last_report_id": "2ecc4fe8-0794-48a0-9cbb-52937944e9e2",
     "last_extraction": {
-      "status": "Joining Titans WR corps",
-      "designation": "Joining Titans WR corps",
-      "date": "2026-03-09T11:10:25-07:00",
-      "direct_quote": "Wan'Dale Robinson: Joining Titans WR corps \n\n https://www.rotowire.com/football/player/wandale-robinson-15838",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnhcmlmev2w"
+      "status": "Two catches in team debut",
+      "designation": "Two catches in team debut",
+      "date": "2026-08-13T21:58:57-07:00",
+      "direct_quote": "Wan'Dale Robinson: Two catches in team debut",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszeqtjft422"
     },
-    "last_diff_summary": "Wan'Dale Robinson is joining the Titans' wide receiver corps.",
+    "last_diff_summary": "Wan'Dale Robinson joined the Titans' wide receiver corps on March 9th. He recorded two catches in his team debut on August 13th.",
     "summary_fallback": false
   },
   "00-0036158": {
@@ -529,34 +529,34 @@
   },
   "00-0034857": {
     "player_name": "Josh Allen",
-    "current_designation": "Healthy for OTAs",
-    "last_updated": "2026-05-19T12:23:23-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mma4iht5rp24",
-    "last_report_id": "66c8a16b-6ab6-4ed1-a989-00271d3a24b6",
+    "current_designation": "In line to play Saturday",
+    "last_updated": "2026-08-13T08:03:06-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msxw27ygxc2o",
+    "last_report_id": "388ce8ae-087d-4540-bbfc-b5d82332f6b0",
     "last_extraction": {
-      "status": "Healthy for OTAs",
-      "designation": "Healthy for OTAs",
-      "date": "2026-05-19T12:23:23-07:00",
-      "direct_quote": "Josh Allen: Healthy for OTAs \n\n https://www.rotowire.com/football/player/josh-allen-12483",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mma4iht5rp24"
+      "status": "In line to play Saturday",
+      "designation": "In line to play Saturday",
+      "date": "2026-08-13T08:03:06-07:00",
+      "direct_quote": "Josh Allen: In line to play Saturday",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msxw27ygxc2o"
     },
-    "last_diff_summary": "Josh Allen restructured his contract on March 11th, 2026. He was healthy for Organized Team Activities (OTAs) 69 days later, on May 19th.",
+    "last_diff_summary": "Josh Allen restructured his contract on March 11th and was healthy for Organized Team Activities (OTAs) on May 19th. He is in line to play on Saturday, August 15th.",
     "summary_fallback": false
   },
   "00-0033106": {
     "player_name": "Jared Goff",
-    "current_designation": "Won't play preseason opener",
-    "last_updated": "2026-08-09T09:58:40-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mso2n6pl5g2x",
-    "last_report_id": "5955b6b4-5bbe-4146-bd90-ea49bcb55995",
+    "current_designation": "Sits out preseason opener",
+    "last_updated": "2026-08-13T19:40:49-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz4zszdvf2w",
+    "last_report_id": "1c7d8669-7ce4-4c0b-b47c-422c56f9cc0c",
     "last_extraction": {
-      "status": "Won't play preseason opener",
-      "designation": "Won't play preseason opener",
-      "date": "2026-08-09T09:58:40-07:00",
-      "direct_quote": "Jared Goff: Won't play preseason opener",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mso2n6pl5g2x"
+      "status": "Sits out preseason opener",
+      "designation": "Sits out preseason opener",
+      "date": "2026-08-13T19:40:49-07:00",
+      "direct_quote": "Jared Goff: Sits out preseason opener",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz4zszdvf2w"
     },
-    "last_diff_summary": "Jared Goff agreed to a contract restructure on March 11th. He will not play in the preseason opener on August 9th.",
+    "last_diff_summary": "Jared Goff agreed to a contract restructure on March 11th. He will not play in the preseason opener on August 9th, and was also held out of practice on August 13th.",
     "summary_fallback": false
   },
   "00-0037809": {
@@ -673,18 +673,18 @@
   },
   "00-0041029": {
     "player_name": "Jordyn Tyson",
-    "current_designation": "Ready for training camp",
-    "last_updated": "2026-07-28T12:33:09-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrq5oefnmt2h",
-    "last_report_id": "66afb971-6edf-4357-a06d-50bd19b86326",
+    "current_designation": "Exits Thursday's practice",
+    "last_updated": "2026-08-13T09:12:32-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msxzwejfag2o",
+    "last_report_id": "37c3b4bb-e5a4-460a-871c-a928812e469b",
     "last_extraction": {
-      "status": "Ready for training camp",
-      "designation": "Ready for training camp",
-      "date": "2026-07-28T12:33:09-07:00",
-      "direct_quote": "Jordyn Tyson: Ready for training camp",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrq5oefnmt2h"
+      "status": "Exits Thursday's practice",
+      "designation": "Exits Thursday's practice",
+      "date": "2026-08-13T09:12:32-07:00",
+      "direct_quote": "Jordyn Tyson: Exits Thursday's practice",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msxzwejfag2o"
     },
-    "last_diff_summary": "Jordyn Tyson planned to work out on April 17th, and was subsequently selected by the Saints on April 23rd. He sat out practice on May 9th, continuing rehab at minicamp on June 16th, and was ready for training camp as of July 28th.",
+    "last_diff_summary": "Jordyn Tyson plans to work out on April 17th and was selected by the Saints on April 23rd. He missed practice on May 9th, continued rehab at minicamp in June, and was ready for training camp on July 28th. Tyson exited practice on August 13th.",
     "summary_fallback": false
   },
   "00-0033288": {
@@ -737,18 +737,18 @@
   },
   "00-0039337": {
     "player_name": "Malik Nabers",
-    "current_designation": "Likely to join team drills soon",
-    "last_updated": "2026-08-12T13:16:19-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvx3ehsam2a",
-    "last_report_id": "cdc1e4f2-f52f-4d65-8fc5-a072fd15eea5",
+    "current_designation": "Takes team reps in Thursday's light practice",
+    "last_updated": "2026-08-13T13:21:24-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msyhtekysx2s",
+    "last_report_id": "645afdfd-73b7-4c56-b3d9-6f76feccedee",
     "last_extraction": {
-      "status": "Likely to join team drills soon",
-      "designation": "Likely to join team drills soon",
-      "date": "2026-08-12T13:16:19-07:00",
-      "direct_quote": "Malik Nabers: Likely to join team drills soon",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvx3ehsam2a"
+      "status": "Takes team reps in Thursday's light practice",
+      "designation": "Takes team reps in Thursday's light practice",
+      "date": "2026-08-13T13:21:24-07:00",
+      "direct_quote": "Malik Nabers: Takes team reps in Thursday's light practice",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msyhtekysx2s"
     },
-    "last_diff_summary": "Malik Nabers, who underwent a second procedure on May 13th, is aiming for a training camp return and is at 80 percent in his rehab process as of June 10th. He has been making progress and is being brought along slowly, participating in individual drills as of July 29th. Nabers rejoined team drills on August 6th and is trending toward a Week 1 return, though he remains in individual drills as of August 12th, with a likely return to team drills soon.",
+    "last_diff_summary": "Malik Nabers' general manager was hopeful for his Week 1 availability on March 30th, and he was present for voluntary workouts on April 7th. After a second procedure on May 13th, he was aiming for a training camp return and was at 80 percent in his rehab process by June 10th. Nabers was making progress as of July 13th and was to be brought along slowly, but took part in individual drills on July 29th, looking and feeling \"great\" at practice. He rejoined team drills on August 6th and is trending toward a Week 1 return. Nabers was still in individual drills on August 12th but is expected to join team drills soon and took team reps in a light practice on August 13th.",
     "summary_fallback": false
   },
   "00-0040715": {
@@ -785,18 +785,18 @@
   },
   "00-0039075": {
     "player_name": "Puka Nacua",
-    "current_designation": "May be sidelined 'a few days'",
-    "last_updated": "2026-08-12T13:43:03-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvyl5ubwm26",
-    "last_report_id": "06681d47-da5d-4e51-a60d-179de5aeff52",
+    "current_designation": "Expected to be \"ready to go\" next week, per coach",
+    "last_updated": "2026-08-13T13:02:34-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msygrorxfh2a",
+    "last_report_id": "c075fad6-79e4-46d3-9b36-1dd4c950f989",
     "last_extraction": {
-      "status": "May be sidelined 'a few days'",
-      "designation": "May be sidelined 'a few days'",
-      "date": "2026-08-12T13:43:03-07:00",
-      "direct_quote": "Puka Nacua: May be sidelined 'a few days'",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvyl5ubwm26"
+      "status": "Expected to be \"ready to go\" next week, per coach",
+      "designation": "Expected to be \"ready to go\" next week, per coach",
+      "date": "2026-08-13T13:02:34-07:00",
+      "direct_quote": "Puka Nacua: Expected to be \"ready to go\" next week, per coach",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msygrorxfh2a"
     },
-    "last_diff_summary": "Puka Nacua attended voluntary workouts after a stint in a rehab facility. He is entering the final year of his rookie contract, and an extension is unlikely this summer. Nacua had a strong start to training camp but left practice early with minor groin soreness and may be sidelined for a few days.",
+    "last_diff_summary": "Puka Nacua checked into a rehab facility on April 1st and was present for voluntary workouts on April 20th. Entering the final year of his rookie deal, an extension was unlikely this summer. Nacua had a strong start to training camp but left practice early on August 11th with minor groin soreness. He may be sidelined a few days and was not spotted at practice on August 13th, though he worked on the side and is expected to practice next week and be \"ready to go.\"",
     "summary_fallback": false
   },
   "00-0039067": {
@@ -833,34 +833,34 @@
   },
   "00-0040676": {
     "player_name": "Cam Ward",
-    "current_designation": "Likely playing Thursday night",
-    "last_updated": "2026-08-11T12:42:11-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mstepfshli2v",
-    "last_report_id": "0f76a688-1ecd-4b89-b309-a006fb92893d",
+    "current_designation": "Uneven performance in preseason opener",
+    "last_updated": "2026-08-13T21:30:42-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszd6czcy72d",
+    "last_report_id": "17742918-2161-4b62-b88b-a739135a90a7",
     "last_extraction": {
-      "status": "Likely playing Thursday night",
-      "designation": "Likely playing Thursday night",
-      "date": "2026-08-11T12:42:11-07:00",
-      "direct_quote": "Cam Ward: Likely playing Thursday night",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mstepfshli2v"
+      "status": "Uneven performance in preseason opener",
+      "designation": "Uneven performance in preseason opener",
+      "date": "2026-08-13T21:30:42-07:00",
+      "direct_quote": "Cam Ward: Uneven performance in preseason opener",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszd6czcy72d"
     },
-    "last_diff_summary": "Cam Ward was deemed 100 percent healthy by May 21st after potentially throwing passes at minicamp in April. He is likely to play in Thursday night's game.",
+    "last_diff_summary": "Cam Ward may throw passes at minicamp and was deemed 100 percent healthy on May 21st. He is likely to play in Thursday night's preseason game, though he had an uneven performance in the opener.",
     "summary_fallback": false
   },
   "00-0039064": {
     "player_name": "Zay Flowers",
-    "current_designation": "Making return to practice",
-    "last_updated": "2026-08-11T07:58:46-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mssuumrk6g2x",
-    "last_report_id": "f9f2cc5e-5aa3-46b3-9691-225eb65e94b6",
+    "current_designation": "Participating in team drills",
+    "last_updated": "2026-08-13T09:09:02-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msxzq4fbip26",
+    "last_report_id": "5e410d6a-ffc9-4f85-ab78-389b88e4a4cc",
     "last_extraction": {
-      "status": "Making return to practice",
-      "designation": "Making return to practice",
-      "date": "2026-08-11T07:58:46-07:00",
-      "direct_quote": "Zay Flowers: Making return to practice",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mssuumrk6g2x"
+      "status": "Participating in team drills",
+      "designation": "Participating in team drills",
+      "date": "2026-08-13T09:09:02-07:00",
+      "direct_quote": "Zay Flowers: Participating in team drills \n\n https://www.rotowire.com/football/player/zay-flowers-16919",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msxzq4fbip26"
     },
-    "last_diff_summary": "Zay Flowers had his fifth-year option picked up in April, and the Ravens were keen on an extension, which he signed on August 4th. He exited practice on August 8th with a quad bruise and was considered day-to-day, but returned to practice on August 11th.",
+    "last_diff_summary": "Zay Flowers had his fifth-year option picked up and the Ravens are keen on an extension, which he signed on August 4th. He exited practice on August 8th with a leg injury, later diagnosed as a day-to-day quad bruise, but returned to practice on August 11th and is participating in team drills.",
     "summary_fallback": false
   },
   "00-0036554": {
@@ -881,18 +881,18 @@
   },
   "00-0041438": {
     "player_name": "Carnell Tate",
-    "current_designation": "Strong practice Sunday",
-    "last_updated": "2026-08-09T11:18:14-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mso73hnb7n2q",
-    "last_report_id": "00e9f4b3-a0df-45c4-a40e-681b33ff65b5",
+    "current_designation": "Blanked on three targets",
+    "last_updated": "2026-08-13T21:14:00-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszcahhfxo2o",
+    "last_report_id": "8f689c3b-e2ad-4a47-ab32-4a6692e92fc3",
     "last_extraction": {
-      "status": "Strong practice Sunday",
-      "designation": "Strong practice Sunday",
-      "date": "2026-08-09T11:18:14-07:00",
-      "direct_quote": "Carnell Tate: Strong practice Sunday \n\n https://www.rotowire.com/football/player/carnell-tate-19268",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mso73hnb7n2q"
+      "status": "Blanked on three targets",
+      "designation": "Blanked on three targets",
+      "date": "2026-08-13T21:14:00-07:00",
+      "direct_quote": "Carnell Tate: Blanked on three targets",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszcahhfxo2o"
     },
-    "last_diff_summary": "Carnell Tate was added by the Tennessee Titans on April 23rd. He looked polished during Organized Team Activities (OTAs) and had a strong practice on Sunday, August 9th.",
+    "last_diff_summary": "Carnell Tate was added by Tennessee and looked polished at Organized Team Activities (OTAs). He had a strong practice on Sunday, August 9th, but was blanked on three targets in his most recent outing.",
     "summary_fallback": false
   },
   "00-0041032": {
@@ -913,18 +913,18 @@
   },
   "00-0040867": {
     "player_name": "Makai Lemon",
-    "current_designation": "Unlikely to break camp as starter",
-    "last_updated": "2026-08-10T06:18:34-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msq6sk6hal25",
-    "last_report_id": "b543ad74-0ff6-4ad6-9d3d-de66bf59849b",
+    "current_designation": "Still slowed by hamstring injury",
+    "last_updated": "2026-08-13T06:35:23-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msxr5enfkv2c",
+    "last_report_id": "98da28e5-3169-464d-b5fc-994b366f5b54",
     "last_extraction": {
-      "status": "Unlikely to break camp as starter",
-      "designation": "Unlikely to break camp as starter",
-      "date": "2026-08-10T06:18:34-07:00",
-      "direct_quote": "Makai Lemon: Unlikely to break camp as starter",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msq6sk6hal25"
+      "status": "Still slowed by hamstring injury",
+      "designation": "Still slowed by hamstring injury",
+      "date": "2026-08-13T06:35:23-07:00",
+      "direct_quote": "Makai Lemon: Still slowed by hamstring injury",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msxr5enfkv2c"
     },
-    "last_diff_summary": "Makai Lemon was selected by the Eagles on April 23rd. He was dealing with a hamstring injury as of June 2nd, but was expected to be ready for training camp on July 17th. However, he was held out of team drills and did not practice on August 4th due to a minor hamstring issue. As of August 7th, Lemon was still sidelined by the injury and is unlikely to break camp as a starter.",
+    "last_diff_summary": "Makai Lemon, selected by the Eagles, dealt with a hamstring injury that kept him out of team drills and practice on August 4th. He was ready for training camp and is still slowed by the hamstring injury, making him unlikely to break camp as a starter.",
     "summary_fallback": false
   },
   "00-0041512": {
@@ -993,18 +993,18 @@
   },
   "00-0039344": {
     "player_name": "Jonathon Brooks",
-    "current_designation": "Sharing work with Hubbard in next preseason game",
-    "last_updated": "2026-08-12T09:08:12-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvj7oxwwi2h",
-    "last_report_id": "3632eae5-d4ea-4c16-b27b-54f8555653b3",
+    "current_designation": "Set to start preseason opener",
+    "last_updated": "2026-08-13T08:26:56-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msxxetf7ie24",
+    "last_report_id": "58a7f1e3-d784-480a-a34c-acd00a2f7b6a",
     "last_extraction": {
-      "status": "Sharing work with Hubbard in next preseason game",
-      "designation": "Sharing work with Hubbard in next preseason game",
-      "date": "2026-08-12T09:08:12-07:00",
-      "direct_quote": "Jonathon Brooks: Sharing work with Hubbard in next preseason game",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvj7oxwwi2h"
+      "status": "Set to start preseason opener",
+      "designation": "Set to start preseason opener",
+      "date": "2026-08-13T08:26:56-07:00",
+      "direct_quote": "Jonathon Brooks: Set to start preseason opener",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msxxetf7ie24"
     },
-    "last_diff_summary": "Jonathon Brooks was fully cleared for the offseason program on April 28th. As of August 12th, he is expected to share work with Hubbard in the next preseason game.",
+    "last_diff_summary": "Jonathon Brooks was fully cleared for the offseason program on April 28th. He is set to start the preseason opener on August 13th and will share work with Hubbard in the next preseason game.",
     "summary_fallback": false
   },
   "00-0038544": {
@@ -1025,50 +1025,50 @@
   },
   "00-0038996": {
     "player_name": "Tucker Kraft",
-    "current_designation": "Runs routes in full pads",
-    "last_updated": "2026-08-10T09:22:06-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msqj2paf5z2v",
-    "last_report_id": "b93c7b3f-5b07-4484-8a6f-7726468130d4",
+    "current_designation": "Trending toward active status Week 1",
+    "last_updated": "2026-08-13T15:44:36-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msyptgrf2w26",
+    "last_report_id": "a7531839-47e4-40e6-a5a9-21ed1b8b6587",
     "last_extraction": {
-      "status": "Runs routes in full pads",
-      "designation": "Runs routes in full pads",
-      "date": "2026-08-10T09:22:06-07:00",
-      "direct_quote": "Tucker Kraft: Runs routes in full pads",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msqj2paf5z2v"
+      "status": "Trending toward active status Week 1",
+      "designation": "Trending toward active status Week 1",
+      "date": "2026-08-13T15:44:36-07:00",
+      "direct_quote": "Tucker Kraft: Trending toward active status Week 1",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msyptgrf2w26"
     },
-    "last_diff_summary": "Tucker Kraft was ahead of schedule in his recovery from an ACL tear as of May 6th and was expected to be ready for training camp by May 27th. He anticipated playing Week 1 as of June 10th. On July 20th, it was suggested he might start camp on the Physically Unable to Perform (PUP) list, and he was officially placed on the PUP list on July 27th. However, Week 1 remained in play, and he was activated off the PUP list on July 31st, logging his first practice since the injury. By August 10th, Kraft was running routes in full pads.",
+    "last_diff_summary": "Tucker Kraft was ahead of schedule in his recovery from an ACL tear as of May 6th and expected to be ready for training camp. He initially expected to play Week 1, but was placed on the Physically Unable to Perform (PUP) list on July 27th. Two days later, on July 29th, Week 1 remained in play, and he was activated off the PUP list on July 31st, logging his first practice since the injury. By August 10th, he was running routes in full pads and is trending toward active status for Week 1 as of August 13th.",
     "summary_fallback": false
   },
   "00-0039851": {
     "player_name": "Drake Maye",
-    "current_designation": "Slated to sit out preseason opener",
-    "last_updated": "2026-08-11T06:35:51-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mssqae55222n",
-    "last_report_id": "297417a4-6384-4b6c-975a-7464fa127a96",
+    "current_designation": "Gets night off Thursday",
+    "last_updated": "2026-08-13T23:43:45-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszkmaixyz2c",
+    "last_report_id": "994b8765-4403-4042-b884-772c048795cc",
     "last_extraction": {
-      "status": "Slated to sit out preseason opener",
-      "designation": "Slated to sit out preseason opener",
-      "date": "2026-08-11T06:35:51-07:00",
-      "direct_quote": "Drake Maye: Slated to sit out preseason opener",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mssqae55222n"
+      "status": "Gets night off Thursday",
+      "designation": "Gets night off Thursday",
+      "date": "2026-08-13T23:43:45-07:00",
+      "direct_quote": "Drake Maye: Gets night off Thursday",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszkmaixyz2c"
     },
-    "last_diff_summary": "Drake Maye was past his shoulder issue by May 7th. The Patriots added a new wide receiver on June 1st. Maye was connecting with his new receiver in practice by July 31st. He is slated to sit out the preseason opener.",
+    "last_diff_summary": "Drake Maye was past his shoulder issue by May 7th and was connecting with new wideout Kendrick Bourne in practice as of July 31st. He was slated to sit out the preseason opener on August 11th and received a night off on August 13th.",
     "summary_fallback": false
   },
   "00-0036442": {
     "player_name": "Joe Burrow",
-    "current_designation": "Set to play in preseason opener",
-    "last_updated": "2026-08-11T08:29:06-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msswkuisxi2m",
-    "last_report_id": "4c7d4cd6-7547-4e2d-b4f1-a9b897684b8b",
+    "current_designation": "Plays two drives in Week 1 of preseason",
+    "last_updated": "2026-08-13T19:28:22-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz4dlc66y2a",
+    "last_report_id": "b35981d8-6c6e-4b7a-b8ad-7b083d57a2d9",
     "last_extraction": {
-      "status": "Set to play in preseason opener",
-      "designation": "Set to play in preseason opener",
-      "date": "2026-08-11T08:29:06-07:00",
-      "direct_quote": "Joe Burrow: Set to play in preseason opener",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msswkuisxi2m"
+      "status": "Plays two drives in Week 1 of preseason",
+      "designation": "Plays two drives in Week 1 of preseason",
+      "date": "2026-08-13T19:28:22-07:00",
+      "direct_quote": "Joe Burrow: Plays two drives in Week 1 of preseason",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz4dlc66y2a"
     },
-    "last_diff_summary": "Joe Burrow was noted for continuity on offense and more help on defense on May 8th. By June 25th, he was working under center more. Burrow is set to play in the preseason opener.",
+    "last_diff_summary": "Joe Burrow is set to play in the preseason opener and saw action on two drives in Week 1 of the preseason. Earlier in the offseason, he was noted for working under center more.",
     "summary_fallback": false
   },
   "00-0037248": {
@@ -1137,18 +1137,18 @@
   },
   "00-0036912": {
     "player_name": "DeVonta Smith",
-    "current_designation": "Not practicing, but should play Week 1",
-    "last_updated": "2026-08-11T07:27:01-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msst3u72fs2u",
-    "last_report_id": "643c09ed-de7c-40b8-81c6-d21523de8185",
+    "current_designation": "Not practicing, but working out Thursday",
+    "last_updated": "2026-08-13T06:24:28-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msxqjtgrmp2s",
+    "last_report_id": "cd6017df-eec6-4957-9956-4309ee950a70",
     "last_extraction": {
-      "status": "Not practicing, but should play Week 1",
-      "designation": "Not practicing, but should play Week 1",
-      "date": "2026-08-11T07:27:01-07:00",
-      "direct_quote": "DeVonta Smith: Not practicing, but should play Week 1",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msst3u72fs2u"
+      "status": "Not practicing, but working out Thursday",
+      "designation": "Not practicing, but working out Thursday",
+      "date": "2026-08-13T06:24:28-07:00",
+      "direct_quote": "DeVonta Smith: Not practicing, but working out Thursday",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msxqjtgrmp2s"
     },
-    "last_diff_summary": "DeVonta Smith was designated WR1 for Philadelphia after the A.J. Brown trade on June 1st. He has been sidelined with a hamstring injury since August 4th and missed subsequent practices on August 7th and August 10th. Despite not practicing, Smith is expected to play in Week 1.",
+    "last_diff_summary": "DeVonta Smith, who was designated as Philadelphia's WR1 after a trade, has been sidelined by a hamstring injury since August 4th. He missed multiple practices but is expected to play in Week 1, though he was still not practicing as of August 11th and was working out on August 13th.",
     "summary_fallback": false
   },
   "00-0035700": {
@@ -1217,18 +1217,18 @@
   },
   "00-0038124": {
     "player_name": "Christian Watson",
-    "current_designation": "Gets four-year extension",
-    "last_updated": "2026-06-04T08:29:47-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnhwvi2kqy2r",
-    "last_report_id": "41007f0e-b245-4d54-8c7c-cceb54836a31",
+    "current_designation": "Cameo appearance in preseason opener",
+    "last_updated": "2026-08-13T22:42:12-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszh65vhjr2d",
+    "last_report_id": "987bebc3-1dde-49bb-9bc9-aeda115b9ae1",
     "last_extraction": {
-      "status": "Gets four-year extension",
-      "designation": "Gets four-year extension",
-      "date": "2026-06-04T08:29:47-07:00",
-      "direct_quote": "Christian Watson: Gets four-year extension",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnhwvi2kqy2r"
+      "status": "Cameo appearance in preseason opener",
+      "designation": "Cameo appearance in preseason opener",
+      "date": "2026-08-13T22:42:12-07:00",
+      "direct_quote": "Christian Watson: Cameo appearance in preseason opener",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszh65vhjr2d"
     },
-    "last_diff_summary": "Christian Watson signed a four-year contract extension on June 4th.",
+    "last_diff_summary": "Christian Watson signed a four-year contract extension on June 4th and made a brief appearance in the preseason opener.",
     "summary_fallback": false
   },
   "00-0039065": {
@@ -1377,18 +1377,18 @@
   },
   "00-0036264": {
     "player_name": "Jordan Love",
-    "current_designation": "Expected to play in preseason opener",
-    "last_updated": "2026-08-11T07:41:21-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msstvhqvx62m",
-    "last_report_id": "e1513a1e-00f9-4823-8c27-bc849b8340dd",
+    "current_designation": "Gets one series Thursday",
+    "last_updated": "2026-08-13T22:37:10-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszgv6g4qr2s",
+    "last_report_id": "d3131d87-ea0d-404c-8135-4febca81498e",
     "last_extraction": {
-      "status": "Expected to play in preseason opener",
-      "designation": "Expected to play in preseason opener",
-      "date": "2026-08-11T07:41:21-07:00",
-      "direct_quote": "Jordan Love: Expected to play in preseason opener",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msstvhqvx62m"
+      "status": "Gets one series Thursday",
+      "designation": "Gets one series Thursday",
+      "date": "2026-08-13T22:37:10-07:00",
+      "direct_quote": "Jordan Love: Gets one series Thursday",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszgv6g4qr2s"
     },
-    "last_diff_summary": "Jordan Love expressed confidence in his young pass catchers on June 19th. He is expected to play in the preseason opener.",
+    "last_diff_summary": "Jordan Love is expected to play in the preseason opener and received one series in the first preseason game. He expressed confidence in his young pass catchers earlier in the offseason.",
     "summary_fallback": false
   },
   "00-0038935": {
@@ -1473,18 +1473,18 @@
   },
   "00-0035640": {
     "player_name": "DK Metcalf",
-    "current_designation": "Dealing with unspecified injury",
-    "last_updated": "2026-08-11T10:01:39-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mst3qdx5zi2m",
-    "last_report_id": "aeae21ae-1716-4543-ad25-f75c71bae505",
+    "current_designation": "Not in uniform for preseason opener",
+    "last_updated": "2026-08-13T15:34:37-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msypblbuz72s",
+    "last_report_id": "8f8ad9c0-37d2-491c-8aaf-e5d0f72eec58",
     "last_extraction": {
-      "status": "Dealing with unspecified injury",
-      "designation": "Dealing with unspecified injury",
-      "date": "2026-08-11T10:01:39-07:00",
-      "direct_quote": "DK Metcalf: Dealing with unspecified injury",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mst3qdx5zi2m"
+      "status": "Not in uniform for preseason opener",
+      "designation": "Not in uniform for preseason opener",
+      "date": "2026-08-13T15:34:37-07:00",
+      "direct_quote": "DK Metcalf: Not in uniform for preseason opener",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msypblbuz72s"
     },
-    "last_diff_summary": "DK Metcalf is dealing with an unspecified injury as of August 11th. He was expected to move around the formation more, according to a report on July 28th.",
+    "last_diff_summary": "DK Metcalf is expected to move around the formation more this season. However, he is dealing with an unspecified injury and was not in uniform for the preseason opener on August 13th.",
     "summary_fallback": false
   },
   "00-0036875": {
@@ -1553,18 +1553,18 @@
   },
   "00-0038597": {
     "player_name": "Chase Brown",
-    "current_designation": "Still growing as a pass catcher",
-    "last_updated": "2026-08-04T07:53:27-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbbcogtde2l",
-    "last_report_id": "2570c715-8027-4b84-8b5e-ccb365266890",
+    "current_designation": "Five carries in preseason opener",
+    "last_updated": "2026-08-13T19:29:43-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz4fxpbea2a",
+    "last_report_id": "3c458815-cf30-4998-bb8c-2912664d8f80",
     "last_extraction": {
-      "status": "Still growing as a pass catcher",
-      "designation": "Still growing as a pass catcher",
-      "date": "2026-08-04T07:53:27-07:00",
-      "direct_quote": "Chase Brown: Still growing as a pass catcher",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msbbcogtde2l"
+      "status": "Five carries in preseason opener",
+      "designation": "Five carries in preseason opener",
+      "date": "2026-08-13T19:29:43-07:00",
+      "direct_quote": "Chase Brown: Five carries in preseason opener",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz4fxpbea2a"
     },
-    "last_diff_summary": "Chase Brown is continuing to develop as a pass catcher.",
+    "last_diff_summary": "Chase Brown is continuing to develop as a pass catcher. He recorded five carries in the preseason opener on August 13th.",
     "summary_fallback": false
   },
   "00-0040129": {
@@ -1649,34 +1649,34 @@
   },
   "00-0036900": {
     "player_name": "Ja'Marr Chase",
-    "current_designation": "Expected to play Thursday",
-    "last_updated": "2026-08-11T08:43:19-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mssxebpokh23",
-    "last_report_id": "a24a59a1-aee2-4a91-bbf1-05cc511091c9",
+    "current_designation": "One catch in preseason opener",
+    "last_updated": "2026-08-13T19:25:33-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz46jkxt22l",
+    "last_report_id": "e112281b-d134-4f19-8c40-f0ace9dcaf91",
     "last_extraction": {
-      "status": "Expected to play Thursday",
-      "designation": "Expected to play Thursday",
-      "date": "2026-08-11T08:43:19-07:00",
-      "direct_quote": "Ja'Marr Chase: Expected to play Thursday \n\n https://www.rotowire.com/football/player/jamarr-chase-15183",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mssxebpokh23"
+      "status": "One catch in preseason opener",
+      "designation": "One catch in preseason opener",
+      "date": "2026-08-13T19:25:33-07:00",
+      "direct_quote": "Ja'Marr Chase: One catch in preseason opener",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz46jkxt22l"
     },
-    "last_diff_summary": "Ja'Marr Chase is expected to play in Thursday's game.",
+    "last_diff_summary": "Ja'Marr Chase was expected to play in the preseason opener on Thursday, August 13th, and recorded one catch.",
     "summary_fallback": false
   },
   "00-0040122": {
     "player_name": "Ashton Jeanty",
-    "current_designation": "Starters in line to play Thursday",
-    "last_updated": "2026-08-11T13:16:59-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mstgnn2yyn2v",
-    "last_report_id": "f222b5fd-0adf-4875-91e9-4a357cb9c5c1",
+    "current_designation": "Solid in preseason cameo",
+    "last_updated": "2026-08-13T20:12:03-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz6rohfpe2x",
+    "last_report_id": "b440af9f-b4c7-44df-b67e-459fb8dbd91f",
     "last_extraction": {
-      "status": "Starters in line to play Thursday",
-      "designation": "Starters in line to play Thursday",
-      "date": "2026-08-11T13:16:59-07:00",
-      "direct_quote": "Ashton Jeanty: Starters in line to play Thursday \n\n https://www.rotowire.com/football/player/ashton-jeanty-18487",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mstgnn2yyn2v"
+      "status": "Solid in preseason cameo",
+      "designation": "Solid in preseason cameo",
+      "date": "2026-08-13T20:12:03-07:00",
+      "direct_quote": "Ashton Jeanty: Solid in preseason cameo",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz6rohfpe2x"
     },
-    "last_diff_summary": "Ashton Jeanty and other starters are in line to play on Thursday.",
+    "last_diff_summary": "Ashton Jeanty was in line to play in the preseason opener on Thursday, August 13th, and had a solid cameo performance.",
     "summary_fallback": false
   },
   "00-0040737": {
@@ -1693,6 +1693,118 @@
       "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvc6fzkl32m"
     },
     "last_diff_summary": "Terrance Ferguson made waves in joint practice on August 12th.",
+    "summary_fallback": false
+  },
+  "00-0039146": {
+    "player_name": "Jayden Reed",
+    "current_designation": "Sees field in preseason opener",
+    "last_updated": "2026-08-13T22:47:33-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszhhq5bgn2o",
+    "last_report_id": "4cd2663c-b094-48bc-837b-ff5aabf79b0f",
+    "last_extraction": {
+      "status": "Sees field in preseason opener",
+      "designation": "Sees field in preseason opener",
+      "date": "2026-08-13T22:47:33-07:00",
+      "direct_quote": "Jayden Reed: Sees field in preseason opener",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszhhq5bgn2o"
+    },
+    "last_diff_summary": "Jayden Reed signed a three-year contract extension with the Packers on April 24th. He was healthy for training camp as of July 30th but was nursing an ankle injury on August 9th. Reed returned to practice on August 11th and saw action in the preseason opener on August 13th.",
+    "summary_fallback": false
+  },
+  "00-0036555": {
+    "player_name": "Chuba Hubbard",
+    "current_designation": "Coach confident regarding RB's Week 1 status",
+    "last_updated": "2026-08-13T08:38:20-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msxxz7rlc426",
+    "last_report_id": "1837304f-4d9d-44c3-a2dc-4954bdb5e7a5",
+    "last_extraction": {
+      "status": "Coach confident regarding RB's Week 1 status",
+      "designation": "Coach confident regarding RB's Week 1 status",
+      "date": "2026-08-13T08:38:20-07:00",
+      "direct_quote": "Chuba Hubbard: Coach confident regarding RB's Week 1 status",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msxxz7rlc426"
+    },
+    "last_diff_summary": "Chuba Hubbard is considered week-to-week with a hamstring issue, but his coach is confident in his Week 1 status.",
+    "summary_fallback": false
+  },
+  "00-0039918": {
+    "player_name": "Caleb Williams",
+    "current_designation": "Not in line to play Saturday",
+    "last_updated": "2026-08-13T10:02:02-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msy4ovhtny2a",
+    "last_report_id": "5701463f-2e64-4fe5-a7f0-53d7f1bfbc95",
+    "last_extraction": {
+      "status": "Not in line to play Saturday",
+      "designation": "Not in line to play Saturday",
+      "date": "2026-08-13T10:02:02-07:00",
+      "direct_quote": "Caleb Williams: Not in line to play Saturday",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msy4ovhtny2a"
+    },
+    "last_diff_summary": "Caleb Williams is not expected to play in Saturday's preseason game.",
+    "summary_fallback": false
+  },
+  "00-0037834": {
+    "player_name": "Brock Purdy",
+    "current_designation": "Not slated to play in preseason opener",
+    "last_updated": "2026-08-13T12:05:53-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msydmdqv4z22",
+    "last_report_id": "4c0fdf1c-35e1-4315-a62e-d459e9dc320e",
+    "last_extraction": {
+      "status": "Not slated to play in preseason opener",
+      "designation": "Not slated to play in preseason opener",
+      "date": "2026-08-13T12:05:53-07:00",
+      "direct_quote": "Brock Purdy: Not slated to play in preseason opener \n\n https://www.rotowire.com/football/player/brock-purdy-15834",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msydmdqv4z22"
+    },
+    "last_diff_summary": "Brock Purdy is not slated to play in the team's preseason opener.",
+    "summary_fallback": false
+  },
+  "00-0038559": {
+    "player_name": "Michael Wilson",
+    "current_designation": "Pair of catches in preseason opener",
+    "last_updated": "2026-08-13T20:20:42-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz7b52goo26",
+    "last_report_id": "5e107c9a-bbf9-4026-9970-48888af97b7b",
+    "last_extraction": {
+      "status": "Pair of catches in preseason opener",
+      "designation": "Pair of catches in preseason opener",
+      "date": "2026-08-13T20:20:42-07:00",
+      "direct_quote": "Michael Wilson: Pair of catches in preseason opener",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz7b52goo26"
+    },
+    "last_diff_summary": "Michael Wilson recorded a pair of catches in the preseason opener.",
+    "summary_fallback": false
+  },
+  "00-0041562": {
+    "player_name": "Fernando Mendoza",
+    "current_designation": "Tosses TD in preseason opener",
+    "last_updated": "2026-08-13T20:34:04-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz7z2mb7m2x",
+    "last_report_id": "c3ac0327-2bc9-4e68-a960-1785704c14c5",
+    "last_extraction": {
+      "status": "Tosses TD in preseason opener",
+      "designation": "Tosses TD in preseason opener",
+      "date": "2026-08-13T20:34:04-07:00",
+      "direct_quote": "Fernando Mendoza: Tosses TD in preseason opener",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz7z2mb7m2x"
+    },
+    "last_diff_summary": "Fernando Mendoza threw a touchdown pass in the preseason opener on August 13th.",
+    "summary_fallback": false
+  },
+  "00-0035261": {
+    "player_name": "Tony Pollard",
+    "current_designation": "Scores TD in preseason opener",
+    "last_updated": "2026-08-13T21:08:35-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszbwrgvlt2z",
+    "last_report_id": "186bd483-6c4f-40d0-ad3d-5baa515a90fb",
+    "last_extraction": {
+      "status": "Scores TD in preseason opener",
+      "designation": "Scores TD in preseason opener",
+      "date": "2026-08-13T21:08:35-07:00",
+      "direct_quote": "Tony Pollard: Scores TD in preseason opener",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszbwrgvlt2z"
+    },
+    "last_diff_summary": "Tony Pollard scored a touchdown in the preseason opener on August 13th.",
     "summary_fallback": false
   }
 }
