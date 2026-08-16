@@ -149,19 +149,16 @@ function pickNewerStars(localState, remoteState) {
   const localCount = localState.ids?.length || 0;
   const remoteCount = remoteState.ids?.length || 0;
 
-  // Empty local + any remote row (including empty) → take remote on first sign-in.
-  if (!localCount && remoteState) {
-    return { source: "remote", state: remoteState };
-  }
-
-  // Strictly newer remote wins; equal or older → local (protects rapid toggles).
+  // Strictly newer side wins. Equal timestamps: prefer local so a just-made
+  // toggle (including clearing the last favourite) isn't clobbered by a
+  // stale remote fetch mid-debounce.
   if (remoteTs > localTs) {
     return { source: "remote", state: remoteState };
   }
   if (localTs > remoteTs) {
     return { source: "local", state: localState };
   }
-  // Same timestamp: prefer whichever has ids if the other is empty; else local.
+  // Same timestamp / both missing: prefer whichever has ids if the other is empty.
   if (localCount && !remoteCount) return { source: "local", state: localState };
   if (remoteCount && !localCount) return { source: "remote", state: remoteState };
   return { source: "local", state: localState };

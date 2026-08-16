@@ -16,7 +16,7 @@ import {
   loadLikedIds,
   toggleLikedId,
   mountStarSync,
-} from "./draft-liked.js?v=4";
+} from "./draft-liked.js?v=5";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 1200;
@@ -576,7 +576,7 @@ async function mountDraftCompanionPage() {
     }
     const result = lastScoreResult;
     if (!result) return;
-    const recs = (result.recommendations || []).slice(0, 15);
+    const recs = (result.recommendations || []).slice(0, 24);
     if (!recs.length) {
       recEl.innerHTML = `<p class="meta">No skill players left on the board.</p>`;
       return;

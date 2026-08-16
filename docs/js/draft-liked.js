@@ -9,12 +9,14 @@ import {
   fetchStars,
   pickNewerStars,
   createDebouncedStarSaver,
-} from "./auth-sync.js";
+} from "./auth-sync.js?v=2";
 
 export const LS_LIKED = "draft-companion:liked";
 
 function normalizeIds(ids) {
-  return [...new Set((ids || []).map(String).filter(Boolean))];
+  const list =
+    ids == null ? [] : Array.isArray(ids) ? ids : [...ids];
+  return [...new Set(list.map(String).filter(Boolean))];
 }
 
 export function loadLikedState() {

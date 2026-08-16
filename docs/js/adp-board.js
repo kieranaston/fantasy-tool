@@ -5,7 +5,7 @@ import {
   revealPage,
 } from "./config.js?v=2";
 import { escapeHtml, sleeperIdOf, starButtonHtml } from "./shared.js?v=1";
-import { loadLikedIds, toggleLikedId, mountStarSync } from "./draft-liked.js?v=4";
+import { loadLikedIds, toggleLikedId, mountStarSync } from "./draft-liked.js?v=5";
 import { FORMAT_LABELS, SCORING_FORMATS, formatAdpRoundPick } from "./draft-scoring.js?v=80";
 
 const ADP_MISSING = 9999;
