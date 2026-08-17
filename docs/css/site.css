@@ -756,6 +756,18 @@ table.draft-table > thead > tr > th {
   color: var(--danger);
 }
 
+.risk-high {
+  color: var(--danger);
+}
+
+.risk-mid {
+  color: #e6c07b;
+}
+
+.risk-low {
+  color: var(--muted);
+}
+
 .adp-toolbar {
   display: flex;
   flex-wrap: wrap;

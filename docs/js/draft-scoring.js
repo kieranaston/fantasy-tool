@@ -1,10 +1,13 @@
 /**
  * Draft assistant — ADP first, with overstock penalties. Risk is display-only.
  *
- * Every pick:
- *  1. Predict opponent picks until you are on the clock (same score you use).
- *  2. Rank remaining: score = −ADP + NEED_K × need (need ≤ 0).
- *  3. Risk column: ADP vs the wait until your next pick. Not in the score.
+ * On the clock:
+ *  1. Rank available: score = −ADP + NEED_K × need (need ≤ 0).
+ *  2. Risk: P(taken before your next pick) from the same score. Each opponent
+ *     pick is a softmax over remaining players; survival mass is depleted
+ *     sequentially (need updates after each team's most likely pick).
+ *
+ * Live picks before you're on the clock come from Sleeper — not simulated here.
  *
  * WR/RB: starter slots plus shared flex seats are "enough." Surplus beyond
  * that is overstock (a 4th RB while flex is already filled is penalized).
@@ -26,18 +29,14 @@ const NEED_K = 12;
  */
 const SINGLETON_SURPLUS_PENALTY = 2;
 
-/**
- * Cap opponent "gone before you" sim to this many most-draftable players.
- * Full boards are 400+; scanning them every simulated pick freezes the UI.
- */
-const SIM_POOL_SIZE = 80;
-
 const ADP_MISSING = 9999;
 
 /**
- * ADP is noisy, so risk uses a few picks past your next turn.
+ * Softmax temperature in score units (1 unit ≈ 1 ADP pick). Smaller → closer
+ * to greedy; larger → more ADP noise. 4 means a 3-pick ADP gap is about 2:1
+ * and a 10-pick gap is about 12:1, so close players swap but reaches are rare.
  */
-const RISK_LOOKAHEAD_PICKS = 3;
+const SOFTMAX_TEMPERATURE = 4;
 
 /** Scoring formats for daily Sleeper ADP boards under docs/data/draft/. */
 const SCORING_FORMATS = ["half_ppr", "full_ppr", "std"];
@@ -392,27 +391,9 @@ function playerId(player) {
   );
 }
 
-/**
- * One opponent pick: best ADP unless that roster is overstocked at the position.
- * `pool` must be sorted by ADP ascending. Need is ≤ 0, so we can stop once
- * remaining ADP cannot beat the current best.
- */
-function predictNeedAdpPick(roster, settings, pool) {
-  if (!pool.length) return null;
-  const { need_count } = needCounts(roster, settings);
-  let best = null;
-  let bestScore = -Infinity;
-  for (const player of pool) {
-    const adp = adpValue(player);
-    if (-adp < bestScore) break;
-    const pos = normalizePos(player.position);
-    const score = -adp + NEED_K * (need_count[pos] || 0);
-    if (score > bestScore) {
-      bestScore = score;
-      best = player;
-    }
-  }
-  return best;
+function needAdpScore(player, need_count) {
+  const pos = normalizePos(player.position);
+  return -adpValue(player) + NEED_K * (need_count[pos] || 0);
 }
 
 function cloneRosters(rosters, teams) {
@@ -423,26 +404,16 @@ function cloneRosters(rosters, teams) {
   return out;
 }
 
-function applyPickToSim(rosters, slot, pick, pool) {
-  const id = playerId(pick);
-  const idx = pool.indexOf(pick);
-  if (idx >= 0) pool.splice(idx, 1);
-
-  rosters[slot] = rosters[slot] || [];
-  rosters[slot].push({
-    player_id: id,
-    position: normalizePos(pick.position),
-    team: pick.team,
-    name: pick.player,
-  });
-  return id;
-}
-
 /**
- * Simulate hard need+ADP picks in [startPick, endPick) and return taken players.
- * Mutates pool + rosters. `pool` must stay ADP-sorted.
+ * P(player taken in [startPick, endPick)) under sequential softmax picks.
+ *
+ * Same score you rank with: s = −ADP + NEED_K × need. Each opponent converts
+ * those scores to pick probabilities (softmax). A player's remaining "still
+ * available" mass is reduced by that pick probability, so later teams draft
+ * from what's left (without-replacement). Roster need then follows the most
+ * likely pick so a team that picks twice does not treat both the same.
  */
-function simulateAdpPicks({
+function simulateGoneProbabilities({
   startPick,
   endPick,
   teams,
@@ -452,30 +423,71 @@ function simulateAdpPicks({
   rosters,
   ownerSlotByPick,
 }) {
-  const taken = [];
-  if (!(endPick > startPick)) return taken;
+  const n = pool.length;
+  const out = new Map();
+  for (const player of pool) out.set(playerId(player), 0);
+  if (!(endPick > startPick) || !n) return out;
+
+  const mass = new Float64Array(n).fill(1);
+  const localRosters = cloneRosters(rosters, teams);
+  const invT = 1 / Math.max(1e-9, SOFTMAX_TEMPERATURE);
 
   for (let pickNo = startPick; pickNo < endPick; pickNo += 1) {
     const slot = ownerSlotAtPick(pickNo, teams, ownerSlotByPick);
     if (slot === mySlot) continue;
-    if (!pool.length) break;
 
-    const pick = predictNeedAdpPick(rosters[slot] || [], settings, pool);
-    if (!pick) break;
+    const { need_count } = needCounts(localRosters[slot] || [], settings);
+    const scores = new Array(n);
+    let maxS = -Infinity;
+    for (let i = 0; i < n; i += 1) {
+      if (mass[i] <= 1e-12) {
+        scores[i] = -Infinity;
+        continue;
+      }
+      const s = needAdpScore(pool[i], need_count);
+      scores[i] = s;
+      if (s > maxS) maxS = s;
+    }
+    if (!Number.isFinite(maxS)) break;
 
-    applyPickToSim(rosters, slot, pick, pool);
-    taken.push(pick);
+    let sumW = 0;
+    const weights = new Array(n);
+    for (let i = 0; i < n; i += 1) {
+      if (mass[i] <= 1e-12 || !Number.isFinite(scores[i])) {
+        weights[i] = 0;
+        continue;
+      }
+      const w = mass[i] * Math.exp((scores[i] - maxS) * invT);
+      weights[i] = w;
+      sumW += w;
+    }
+    if (sumW <= 0) break;
+
+    let bestI = 0;
+    let bestP = -1;
+    for (let i = 0; i < n; i += 1) {
+      const pPick = weights[i] / sumW;
+      mass[i] = Math.max(0, mass[i] - pPick);
+      if (pPick > bestP) {
+        bestP = pPick;
+        bestI = i;
+      }
+    }
+
+    const pick = pool[bestI];
+    localRosters[slot] = localRosters[slot] || [];
+    localRosters[slot].push({
+      player_id: playerId(pick),
+      position: normalizePos(pick.position),
+      team: pick.team,
+      name: pick.player,
+    });
   }
-  return taken;
-}
 
-/** Display-only: 1 if ADP is due now, 0 if ADP is after the wait window. */
-function adpWindowRisk(adp, windowStart, windowEnd) {
-  if (!(windowEnd > windowStart)) return 0;
-  if (!Number.isFinite(adp) || adp <= 0 || adp >= ADP_MISSING) return 0;
-  if (adp <= windowStart) return 1;
-  if (adp >= windowEnd) return 0;
-  return (windowEnd - adp) / (windowEnd - windowStart);
+  for (let i = 0; i < n; i += 1) {
+    out.set(playerId(pool[i]), Math.min(1, Math.max(0, 1 - mass[i])));
+  }
+  return out;
 }
 
 /** Merge ADP-sorted per-position lists (caller keeps each list sorted). */
@@ -504,17 +516,17 @@ function flattenAvailable(availableByPos) {
   return out;
 }
 
-function annotateScore(player, need_count, { riskStart = null, riskEnd = null } = {}) {
+function annotateScore(player, need_count, { risk = 0 } = {}) {
   const pos = normalizePos(player.position);
   const need = need_count[pos] || 0;
   const needBonus = NEED_K * need;
   const adp = adpValue(player);
-  const risk = riskEnd ? adpWindowRisk(adp, riskStart, riskEnd) : 0;
+  const p = Number(risk);
   return {
     ...player,
     need_bonus: round1(needBonus),
     need_count: need,
-    risk: round1(risk),
+    risk: Number.isFinite(p) ? Math.round(p * 100) / 100 : 0,
     score: round1(-adp + needBonus),
   };
 }
@@ -540,17 +552,19 @@ function scoreCandidates({
   );
   const myPick = myPicks[0] ?? currentPickNo;
   const myPickAfter = myPicks[1] ?? null;
+  const onClock = myPick === currentPickNo;
 
   const sortedAvailable = flattenAvailable(availableByPosIn);
-  const pool = sortedAvailable.slice(0, SIM_POOL_SIZE);
+  const simCap = Math.max(1, Number(limit) || 40);
+  const pool = sortedAvailable.slice(0, simCap);
+  const simRosters = cloneRosters(opponentRosters, teams);
+  simRosters[mySlot] = [...(myRoster || [])];
 
-  let goneBeforeYou = new Set();
-  if (myPick > currentPickNo) {
-    const simRosters = cloneRosters(opponentRosters, teams);
-    simRosters[mySlot] = [...(myRoster || [])];
-    const beforeYou = simulateAdpPicks({
-      startPick: currentPickNo,
-      endPick: myPick,
+  let goneProbById = new Map();
+  if (onClock && myPickAfter && myPickAfter > myPick + 1) {
+    goneProbById = simulateGoneProbabilities({
+      startPick: myPick + 1,
+      endPick: myPickAfter,
       teams,
       mySlot,
       settings,
@@ -558,24 +572,14 @@ function scoreCandidates({
       rosters: simRosters,
       ownerSlotByPick,
     });
-    goneBeforeYou = new Set(beforeYou.map((p) => playerId(p)));
   }
 
-  const lastPickNo = teams * rounds;
-  const riskStart = myPick + 1;
-  const riskEnd = myPickAfter
-    ? Math.min(lastPickNo + 1, myPickAfter + RISK_LOOKAHEAD_PICKS)
-    : null;
-
   const myNeed = needCounts(myRoster, settings);
-  // Score every remaining skill player. Arithmetic is cheap; SIM_POOL_SIZE
-  // is what keeps opponent simulation off the full board.
   const scored = [];
   for (const player of sortedAvailable) {
-    if (goneBeforeYou.has(playerId(player))) continue;
-    scored.push(
-      annotateScore(player, myNeed.need_count, { riskStart, riskEnd })
-    );
+    const id = playerId(player);
+    const risk = goneProbById.get(id) || 0;
+    scored.push(annotateScore(player, myNeed.need_count, { risk }));
   }
 
   scored.sort((a, b) => b.score - a.score || adpValue(a) - adpValue(b));
@@ -591,8 +595,6 @@ function scoreCandidates({
     openFlex: myNeed.openFlex,
     recommendations: capped,
     scored,
-    risk_start: riskStart,
-    risk_end: riskEnd,
   };
 }
 

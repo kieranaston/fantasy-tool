@@ -13,7 +13,7 @@ import {
   SKILL_POSITIONS,
   SCORING_FORMATS,
   FORMAT_LABELS,
-} from "./draft-scoring.js?v=87";
+} from "./draft-scoring.js?v=91";
 import { createFavourites } from "./draft-liked.js?v=9";
 
 /** Fast on your turn / on deck; slower while waiting. */
@@ -41,7 +41,8 @@ function scoreRowCells(r, { liked = false, teams = 12 } = {}) {
     <td class="num">${adpHtml(r.adp, teams)}</td>
     <td class="num col-wide">${needBonusHtml(r.need_bonus)}</td>
     <td class="num">${escapeHtml(r.score)}</td>
-    <td class="num">${gapHtml(r.gap)}</td>`;
+    <td class="num">${gapHtml(r.gap)}</td>
+    <td class="num">${riskHtml(r)}</td>`;
 }
 
 /** Score minus the next same-position player still on the board. */
@@ -67,6 +68,13 @@ function withPosGaps(recs, scored) {
 function gapHtml(gap) {
   if (gap == null || !Number.isFinite(Number(gap))) return "—";
   return Number(gap).toFixed(1);
+}
+
+function riskHtml(r) {
+  const pct = Math.round(Number(r?.risk) * 100);
+  if (!Number.isFinite(pct) || pct <= 0) return "—";
+  const cls = pct >= 70 ? "risk-high" : pct >= 40 ? "risk-mid" : "risk-low";
+  return `<span class="${cls}" title="Chance taken before your next pick">${pct}%</span>`;
 }
 
 /**
@@ -748,6 +756,7 @@ async function mountDraftCompanionPage() {
             <th>Player</th><th>Pos</th><th class="num">ADP</th>
             <th class="num col-wide">Need</th><th class="num">Score</th>
             <th class="num" title="Score minus the next player at this position">Δ</th>
+            <th class="num" title="Chance taken before your next pick">Risk</th>
           </tr>
         </thead>
         <tbody>
@@ -796,10 +805,7 @@ async function mountDraftCompanionPage() {
         const scored =
           lastScoreById.get(sleeperIdOf(p)) ||
           (lastScoreResult
-            ? annotateScore(p, lastScoreResult.need_count || {}, {
-                riskStart: lastScoreResult.risk_start,
-                riskEnd: lastScoreResult.risk_end,
-              })
+            ? annotateScore(p, lastScoreResult.need_count || {})
             : null);
         return {
           player: p,
