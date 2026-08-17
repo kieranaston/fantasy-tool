@@ -6,7 +6,7 @@ import {
 } from "./config.js?v=2";
 import { escapeHtml, sleeperIdOf, starButtonHtml } from "./shared.js?v=1";
 import { loadLikedIds, toggleLikedId, mountStarSync } from "./draft-liked.js?v=5";
-import { FORMAT_LABELS, SCORING_FORMATS, formatAdpRoundPick } from "./draft-scoring.js?v=80";
+import { FORMAT_LABELS, SCORING_FORMATS, formatAdpRoundPick } from "./draft-scoring.js?v=86";
 
 const ADP_MISSING = 9999;
 const SKILL_POSITIONS = ["QB", "RB", "WR", "TE"];

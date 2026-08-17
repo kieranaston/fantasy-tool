@@ -2,16 +2,17 @@ import { fetchJSON, showError, revealPage } from "./config.js?v=2";
 import { escapeHtml, sleeperIdOf, starButtonHtml } from "./shared.js?v=1";
 import {
   scoreCandidates,
-  nextPickNumbers,
+  nextOwnedPickNumbers,
   resolveLeagueSettings,
   resolveScoringFormat,
   adpPathForFormat,
   formatFromReceptionPoints,
   formatAdpRoundPick,
+  slotForOverallPick,
   SKILL_POSITIONS,
   SCORING_FORMATS,
   FORMAT_LABELS,
-} from "./draft-scoring.js?v=80";
+} from "./draft-scoring.js?v=86";
 import {
   loadLikedIds,
   toggleLikedId,
@@ -57,9 +58,58 @@ function playerCellHtml(player, { name, compact = false, liked = false } = {}) {
 }
 
 function needBonusHtml(needBonus) {
-  if (needBonus > 0) return `+${escapeHtml(needBonus)}`;
-  if (needBonus < 0) return `${escapeHtml(needBonus)}`;
+  if (needBonus > 0) {
+    return `<span class="need-boost">+${escapeHtml(needBonus)}</span>`;
+  }
+  if (needBonus < 0) {
+    return `<span class="need-penalty">${escapeHtml(needBonus)}</span>`;
+  }
   return "—";
+}
+
+function gapHtml(gap) {
+  if (gap == null || !Number.isFinite(Number(gap))) return "—";
+  const n = Number(gap);
+  const label = n > 0 ? `+${n}` : String(n);
+  const tight = Math.abs(n) < 2;
+  return `<span class="${tight ? "score-gap is-tight" : "score-gap"}" title="Score difference vs the next player on this list">${escapeHtml(label)}</span>`;
+}
+
+function jumpHtml(jump) {
+  const n = Number(jump);
+  if (!Number.isFinite(n) || n === 0) {
+    return `<span class="score-jump is-flat" title="Same order as ADP on this list">—</span>`;
+  }
+  if (n > 0) {
+    return `<span class="score-jump is-up" title="Ranked ${n} spot${n === 1 ? "" : "s"} above ADP order because other positions are penalized">${escapeHtml(`↑${n}`)}</span>`;
+  }
+  const down = Math.abs(n);
+  return `<span class="score-jump is-down" title="Ranked ${down} spot${down === 1 ? "" : "s"} below ADP order (this position is penalized)">${escapeHtml(`↓${down}`)}</span>`;
+}
+
+function withListContext(recs) {
+  const adpOrder = recs
+    .map((r, i) => ({ i, adp: Number(r.adp) }))
+    .sort((a, b) => {
+      const aa = Number.isFinite(a.adp) && a.adp > 0 ? a.adp : 9999;
+      const ba = Number.isFinite(b.adp) && b.adp > 0 ? b.adp : 9999;
+      return aa - ba || a.i - b.i;
+    });
+  const adpRankAt = [];
+  adpOrder.forEach((row, rank) => {
+    adpRankAt[row.i] = rank + 1;
+  });
+  return recs.map((r, i) => {
+    const score = Number(r.score);
+    const nextScore = Number(recs[i + 1]?.score);
+    const gap =
+      recs[i + 1] != null && Number.isFinite(score) && Number.isFinite(nextScore)
+        ? Math.round((score - nextScore) * 10) / 10
+        : null;
+    const adpRank = adpRankAt[i];
+    const jump = adpRank - (i + 1);
+    return { ...r, gap, jump };
+  });
 }
 
 function riskHtml(risk) {
@@ -104,7 +154,11 @@ function scoreRowCells(r, { liked = false, teams = 12 } = {}) {
     <td>${needBonusHtml(r.need_bonus)}</td>
     <td>${adpHtml(r.adp, teams)}</td>
     <td>${riskHtml(r.risk)}</td>
-    <td><strong>${escapeHtml(r.score)}</strong></td>`;
+    <td>${gapHtml(r.gap)}</td>
+    <td>${jumpHtml(r.jump)}</td>
+    <td><strong class="${
+      r.jump > 0 ? "score-value is-up" : r.jump < 0 ? "score-value is-down" : ""
+    }">${escapeHtml(r.score)}</strong></td>`;
 }
 
 async function sleeperGet(path) {
@@ -184,10 +238,108 @@ async function fetchLeagueForDraft(draft) {
   }
 }
 
-function buildSlotRosters(picks) {
+function slotToRosterMaps(draft, rosters = []) {
+  const slotToRoster = {};
+  const rosterToSlot = {};
+  const raw = draft?.slot_to_roster_id;
+  if (raw && typeof raw === "object") {
+    for (const [slot, rid] of Object.entries(raw)) {
+      const s = Number(slot);
+      const r = Number(rid);
+      if (!s || !Number.isFinite(r) || r <= 0) continue;
+      slotToRoster[s] = r;
+      rosterToSlot[r] = s;
+    }
+  }
+  const userToSlot = userToSlotMap(draft);
+  for (const row of rosters || []) {
+    const rid = Number(row?.roster_id);
+    const slot = userToSlot[String(row?.owner_id || "")];
+    if (!rid || !slot) continue;
+    if (!rosterToSlot[rid]) rosterToSlot[rid] = slot;
+    if (!slotToRoster[slot]) slotToRoster[slot] = rid;
+  }
+  return { slotToRoster, rosterToSlot };
+}
+
+/** Sleeper draft_order is user_id → slot (occasionally inverted). */
+function userToSlotMap(draft) {
+  const order = draft?.draft_order;
+  if (!order || typeof order !== "object") return {};
+  const keys = Object.keys(order);
+  if (!keys.length) return {};
+  const keysLookLikeSlots = keys.every((k) => {
+    const n = Number(k);
+    return Number.isInteger(n) && n >= 1 && n <= 24;
+  });
+  const userToSlot = {};
+  if (keysLookLikeSlots) {
+    for (const [slot, userId] of Object.entries(order)) {
+      if (userId) userToSlot[String(userId)] = Number(slot);
+    }
+  } else {
+    for (const [userId, slot] of Object.entries(order)) {
+      const s = Number(slot);
+      if (userId && s > 0) userToSlot[String(userId)] = s;
+    }
+  }
+  return userToSlot;
+}
+
+/**
+ * Assign a completed pick to a draft seat.
+ * Ownership of that overall pick (snake + trades) wins. Board column
+ * (draft_slot) is last resort — traded picks stay in the original column.
+ */
+function slotForCompletedPick(pick, draft, ownerSlotByPick, rosters = []) {
+  const draftSlot = Number(pick?.draft_slot) || 0;
+  const pickNo = Number(pick?.pick_no);
+  const { rosterToSlot } = slotToRosterMaps(draft, rosters);
+  const userToSlot = userToSlotMap(draft);
+
+  const tradeSlot = Number(
+    ownerSlotByPick?.[pickNo] ?? ownerSlotByPick?.[String(pickNo)]
+  );
+  if (tradeSlot > 0 && draftSlot && tradeSlot !== draftSlot) return tradeSlot;
+
+  const rosterSlot = rosterToSlot[Number(pick?.roster_id)] || 0;
+  if (rosterSlot && draftSlot && rosterSlot !== draftSlot) return rosterSlot;
+
+  const userSlot = userToSlot[String(pick?.picked_by || "").trim()] || 0;
+  if (userSlot && draftSlot && userSlot !== draftSlot) return userSlot;
+
+  if (tradeSlot > 0) return tradeSlot;
+  if (rosterSlot) return rosterSlot;
+  if (userSlot) return userSlot;
+  return draftSlot;
+}
+
+/** Overall pick → draft slot of the team that currently owns that pick. */
+function buildOwnerSlotByPick(draft, tradedPicks, teams, rounds, rosters = []) {
+  const { rosterToSlot } = slotToRosterMaps(draft, rosters);
+  const byPick = {};
+  const last = teams * rounds;
+  for (let n = 1; n <= last; n += 1) {
+    byPick[n] = slotForOverallPick(n, teams);
+  }
+  const season = String(draft?.season || "");
+  for (const t of tradedPicks || []) {
+    if (season && t.season != null && String(t.season) !== season) continue;
+    const origSlot = rosterToSlot[Number(t.roster_id)];
+    const newSlot = rosterToSlot[Number(t.owner_id)];
+    const round = Number(t.round);
+    if (!origSlot || !newSlot || !(round > 0) || origSlot === newSlot) continue;
+    const inRound = round % 2 === 1 ? origSlot : teams - origSlot + 1;
+    const pickNo = (round - 1) * teams + inRound;
+    if (pickNo >= 1 && pickNo <= last) byPick[pickNo] = newSlot;
+  }
+  return byPick;
+}
+
+function buildSlotRosters(picks, draft, ownerSlotByPick, rosters = []) {
   const bySlot = {};
   for (const pick of picks) {
-    const slot = Number(pick.draft_slot);
+    const slot = slotForCompletedPick(pick, draft, ownerSlotByPick, rosters);
     if (!slot) continue;
     const meta = pick.metadata || {};
     bySlot[slot] = bySlot[slot] || [];
@@ -248,6 +400,9 @@ async function mountDraftCompanionPage() {
   let league = null;
   let leagueSettings = null;
   let picks = [];
+  let tradedPicks = [];
+  let leagueRosters = [];
+  let ownerSlotByPick = null;
   let lastFingerprint = "";
   let mySlot = 1;
   let paused = false;
@@ -478,20 +633,94 @@ async function mountDraftCompanionPage() {
     takenIndex = new Set(picks.map((p) => String(p.player_id)));
   }
 
+  function rebuildPickOwners() {
+    if (!draft) {
+      ownerSlotByPick = null;
+      return;
+    }
+    const teams = Number(leagueSettings?.teams || draft?.settings?.teams || 12);
+    const rounds = Number(draft?.settings?.rounds || leagueSettings?.rounds || 15);
+    ownerSlotByPick = buildOwnerSlotByPick(
+      draft,
+      tradedPicks,
+      teams,
+      rounds,
+      leagueRosters
+    );
+  }
+
+  function activeLeagueId() {
+    return (
+      leagueIdFromDraft(draft) ||
+      resolveLeagueIdInput(leagueInput?.value || "") ||
+      league?.league_id ||
+      configuredLeague?.league_id ||
+      null
+    );
+  }
+
+  async function loadLeagueRosters() {
+    const leagueId = activeLeagueId();
+    if (!leagueId) {
+      leagueRosters = [];
+      return;
+    }
+    try {
+      leagueRosters = (await sleeperGet(`/league/${leagueId}/rosters`)) || [];
+    } catch {
+      leagueRosters = [];
+    }
+  }
+
+  async function loadTradedPicks() {
+    const bags = [];
+    if (draftId) {
+      try {
+        bags.push(...((await sleeperGet(`/draft/${draftId}/traded_picks`)) || []));
+      } catch {
+        /* some drafts 404 this endpoint */
+      }
+    }
+    const leagueId = activeLeagueId();
+    if (leagueId) {
+      try {
+        bags.push(...((await sleeperGet(`/league/${leagueId}/traded_picks`)) || []));
+      } catch {
+        /* optional */
+      }
+    }
+    const season = String(draft?.season || "");
+    const seen = new Set();
+    tradedPicks = [];
+    for (const t of bags) {
+      if (season && t.season != null && String(t.season) !== season) continue;
+      const key = `${t.round}:${t.roster_id}:${t.owner_id}:${t.season}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      tradedPicks.push(t);
+    }
+  }
+
   function pickTiming() {
     const settings =
       leagueSettings || resolveLeagueSettings(draft || {}, leagueForSettings());
     const teams = Number(settings.teams || 12);
     const rounds = Number(settings.rounds || draft?.settings?.rounds || 15);
     const pickNo = currentPickNo(picks);
-    const mine = nextPickNumbers(mySlot, teams, rounds, pickNo);
+    const mine = nextOwnedPickNumbers(
+      mySlot,
+      teams,
+      rounds,
+      pickNo,
+      ownerSlotByPick
+    );
     const nextMine = mine[0] ?? pickNo;
     const until = Math.max(0, nextMine - pickNo);
     return { teams, rounds, pickNo, nextMine, until, settings };
   }
 
   function currentBySlot() {
-    return buildSlotRosters(picks);
+    return buildSlotRosters(picks, draft, ownerSlotByPick, leagueRosters);
   }
 
   function updateMeta() {
@@ -582,21 +811,24 @@ async function mountDraftCompanionPage() {
       return;
     }
     const teams = leagueTeamCount();
+    const rows = withListContext(recs);
     recEl.innerHTML = `
-      <p class="meta">Score = −ADP + need + draft risk · ADP = overall pick (${teams}-team r.pk in gray)</p>
+      <p class="meta">Score = −ADP + need (need is 0 or a penalty). Gap = vs next on this list. vs ADP = spots moved by need — empty QB/TE are not boosted. Risk ≈ ADP gone before your next pick (not in the score). ADP = overall pick (${teams}-team r.pk in gray)</p>
       <table class="draft-table cell-border">
         <thead>
           <tr>
             <th>#</th><th>Player</th><th>Pos</th><th>Bye</th>
-            <th>Need</th><th>ADP</th><th>Risk</th><th>Score</th>
+            <th>Need</th><th>ADP</th><th>Risk</th><th>Gap</th><th>vs ADP</th><th>Score</th>
           </tr>
         </thead>
         <tbody>
-          ${recs
+          ${rows
             .map((r, i) => {
               const liked = isLiked(sleeperIdOf(r));
+              const jumpClass =
+                r.jump > 0 ? "is-need-up" : r.jump < 0 ? "is-need-down" : "";
               return `
-            <tr class="${liked ? "draft-liked" : ""}">
+            <tr class="${[liked ? "draft-liked" : "", jumpClass].filter(Boolean).join(" ")}">
               <td>${i + 1}</td>
               ${scoreRowCells(r, { liked, teams })}
             </tr>`;
@@ -723,6 +955,7 @@ async function mountDraftCompanionPage() {
       currentPickNo: timing.pickNo,
       rounds: timing.rounds,
       limit: 40,
+      ownerSlotByPick,
     });
 
     hasScoredOnce = true;
@@ -782,6 +1015,13 @@ async function mountDraftCompanionPage() {
       if (wantMeta) {
         draft = await sleeperGet(`/draft/${draftId}`);
         if (!league) league = await fetchLeagueForDraft(draft);
+        try {
+          await loadLeagueRosters();
+          await loadTradedPicks();
+        } catch {
+          tradedPicks = tradedPicks || [];
+        }
+        rebuildPickOwners();
         const prevFormat = scoringFormat?.format;
         refreshLeagueSettings();
         if (scoringFormat.format !== prevFormat) {
@@ -826,12 +1066,19 @@ async function mountDraftCompanionPage() {
     draftId = await resolveDraftId(draftInput.value);
     draft = await sleeperGet(`/draft/${draftId}`);
     league = await fetchLeagueForDraft(draft);
+    try {
+      await loadLeagueRosters();
+      await loadTradedPicks();
+    } catch {
+      tradedPicks = [];
+    }
 
     if (!resolveLeagueIdInput(leagueInput?.value || "") && league) {
       configuredLeague = league;
     }
 
     refreshLeagueSettings();
+    rebuildPickOwners();
     await loadAdpBoard(scoringFormat);
     picks = (await sleeperGet(`/draft/${draftId}/picks`)) || [];
     lastFingerprint = picksFingerprint(picks);

@@ -637,6 +637,34 @@ table.draft-table > thead > tr > th {
   color: #6b7280;
 }
 
+.need-penalty {
+  color: var(--danger);
+}
+
+.score-gap.is-tight,
+.score-jump.is-flat {
+  color: var(--muted);
+}
+
+.score-jump.is-up,
+.score-value.is-up {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.score-jump.is-down,
+.score-value.is-down {
+  color: var(--muted);
+}
+
+tr.is-need-up {
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+tr.is-need-down {
+  background: color-mix(in srgb, var(--muted) 10%, transparent);
+}
+
 .adp-toolbar {
   display: flex;
   flex-wrap: wrap;
