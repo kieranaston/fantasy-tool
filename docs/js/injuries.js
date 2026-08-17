@@ -1,46 +1,12 @@
-import { fetchJSON, formatTimestamp, showError, revealPage } from "./config.js?v=2";
+import { fetchJSON, formatTimestamp, formatUpdated, showError, revealPage } from "./config.js?v=3";
+import { escapeHtml, playerMediaHtml } from "./shared.js?v=3";
 
-function escapeHtml(value) {
-  return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
-function playerMediaHtml(player, { name } = {}) {
-  const display = escapeHtml(name || player?.player_name || player?.player || "Unknown");
-  const logo = player?.logo;
-  const team = player?.team ? String(player.team).toUpperCase() : "";
-  const teamBits = [];
-  if (logo) {
-    teamBits.push(
-      `<img class="team-logo" src="${escapeHtml(logo)}" alt="" width="16" height="16" loading="lazy" decoding="async" />`
-    );
-  }
-  if (team) teamBits.push(`<span>${escapeHtml(team)}</span>`);
-  const teamHtml = teamBits.length
-    ? `<span class="player-media-team">${teamBits.join("")}</span>`
-    : "";
-  return `<span class="player-media player-media--text"><span class="player-media-text"><span class="player-media-name">${display}</span>${teamHtml}</span></span>`;
-}
-
-function ordinalDay(day) {
-  const j = day % 10;
-  const k = day % 100;
-  if (j === 1 && k !== 11) return `${day}st`;
-  if (j === 2 && k !== 12) return `${day}nd`;
-  if (j === 3 && k !== 13) return `${day}rd`;
-  return `${day}th`;
-}
-
-/** Format like "July 27th". */
+/** Format like "Jul 27". */
 function formatUpdateDay(isoString) {
   if (!isoString) return null;
   const date = new Date(isoString);
   if (Number.isNaN(date.getTime())) return null;
-  const month = date.toLocaleString(undefined, { month: "long" });
-  return `${month} ${ordinalDay(date.getDate())}`;
+  return date.toLocaleString(undefined, { month: "short", day: "numeric" });
 }
 
 function sourcesHtml(timeline) {
@@ -93,9 +59,8 @@ function playerCard(player) {
           <div class="injury-card-identity">
             ${playerMediaHtml(player)}
           </div>
-          ${updateTag}
+          <span class="injury-card-meta">${statusChip}${updateTag}</span>
         </div>
-        ${statusChip}
         <p class="${blurbClass}">${blurb}</p>
       </div>
       <button type="button" class="injury-card-header" aria-expanded="false">
@@ -158,9 +123,7 @@ async function mountInjuriesPage() {
 
     function render(filtered) {
       if (meta) {
-        meta.textContent = data.last_updated
-          ? formatTimestamp(data.last_updated)
-          : "No refresh yet";
+        meta.textContent = formatUpdated(data.last_updated);
       }
       if (!filtered.length) {
         container.innerHTML = players.length

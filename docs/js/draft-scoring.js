@@ -9,11 +9,11 @@
  * WR/RB: starter slots plus shared flex seats are "enough." Surplus beyond
  * that is overstock (a 4th RB while flex is already filled is penalized).
  * QB/TE: no boost while empty; after one, a hard surplus penalty (one of
- * each is a complete plan). TE does not fill flex.
+ * each is a complete plan). Superflex seats count as extra QB capacity so a
+ * 2nd QB is not penalized until those seats are filled. TE does not fill flex.
  */
 
 const SKILL_POSITIONS = ["QB", "RB", "WR", "TE"];
-const NEED_POSITIONS = ["QB", "RB", "WR", "TE", "DEF", "K"];
 
 /**
  * How many ADP picks one unit of overstock penalty is worth.
@@ -31,9 +31,6 @@ const SINGLETON_SURPLUS_PENALTY = 2;
  * Full boards are 400+; scanning them every simulated pick freezes the UI.
  */
 const SIM_POOL_SIZE = 80;
-
-/** Cap fully scored recommendation candidates (UI + search). */
-const SCORE_POOL_SIZE = 48;
 
 const ADP_MISSING = 9999;
 
@@ -58,6 +55,9 @@ function starterSlotsFromSettings(settings = {}) {
     WR: Number(settings.slots_wr ?? 2),
     TE: Number(settings.slots_te ?? 1),
     FLEX: Number(settings.slots_flex ?? 1),
+    SUPER_FLEX: Number(
+      settings.slots_super_flex ?? settings.slots_superflex ?? 0
+    ),
     DEF: Number(settings.slots_def ?? 0),
     K: Number(settings.slots_k ?? 0),
   };
@@ -164,7 +164,16 @@ function resolveLeagueSettings(draft = {}, league = null) {
   const rounds = Number(ds.rounds || 15);
 
   if (Array.isArray(league?.roster_positions) && league.roster_positions.length) {
-    const counts = { QB: 0, RB: 0, WR: 0, TE: 0, FLEX: 0, DEF: 0, K: 0 };
+    const counts = {
+      QB: 0,
+      RB: 0,
+      WR: 0,
+      TE: 0,
+      FLEX: 0,
+      SUPER_FLEX: 0,
+      DEF: 0,
+      K: 0,
+    };
     for (const raw of league.roster_positions) {
       const p = String(raw || "").toUpperCase();
       if (p === "QB") counts.QB += 1;
@@ -173,7 +182,7 @@ function resolveLeagueSettings(draft = {}, league = null) {
       else if (p === "TE") counts.TE += 1;
       else if (p === "FLEX" || p === "W/R/T" || p === "WRRBTE") counts.FLEX += 1;
       else if (p === "SUPER_FLEX" || p === "Q/W/R/T" || p === "SUPERFLEX") {
-        counts.FLEX += 1;
+        counts.SUPER_FLEX += 1;
       } else if (p === "DEF" || p === "DST") counts.DEF += 1;
       else if (p === "K" || p === "PK") counts.K += 1;
     }
@@ -183,6 +192,7 @@ function resolveLeagueSettings(draft = {}, league = null) {
       slots_wr: counts.WR,
       slots_te: counts.TE,
       slots_flex: counts.FLEX,
+      slots_super_flex: counts.SUPER_FLEX,
       slots_def: counts.DEF,
       slots_k: counts.K,
       teams,
@@ -197,6 +207,7 @@ function resolveLeagueSettings(draft = {}, league = null) {
     slots_wr: Number(ds.slots_wr ?? 2),
     slots_te: Number(ds.slots_te ?? 1),
     slots_flex: Number(ds.slots_flex ?? 1),
+    slots_super_flex: Number(ds.slots_super_flex ?? ds.slots_superflex ?? 0),
     slots_def: Number(ds.slots_def ?? 1),
     slots_k: Number(ds.slots_k ?? 1),
     teams,
@@ -271,7 +282,8 @@ function wrRbOverstock(surplus, flexCredit) {
  * Unfilled → 0 (ADP decides). Overstock → negative.
  * WR/RB surplus first fills shared flex; leftover surplus is the penalty.
  * QB/TE: 0 until you have the starter, then −SINGLETON_SURPLUS_PENALTY
- * (and worse for extra copies).
+ * (and worse for extra copies). Superflex seats add to QB capacity, so a
+ * 2nd QB is unpenalized until those seats are filled.
  */
 function needCounts(roster, settings) {
   const { slots, counts, openFlex } = teamNeed(roster, settings);
@@ -287,8 +299,9 @@ function needCounts(roster, settings) {
     flexCredit.WR = (absorbed * surplusWR) / surplusTotal;
   }
 
+  const qbCapacity = slots.QB + (slots.SUPER_FLEX || 0);
   const need_count = {
-    QB: singletonNeed(slots.QB, counts.QB),
+    QB: singletonNeed(qbCapacity, counts.QB),
     TE: singletonNeed(slots.TE, counts.TE),
     DEF: Math.min(0, slots.DEF - (counts.DEF || 0)),
     K: Math.min(0, slots.K - (counts.K || 0)),
@@ -300,10 +313,6 @@ function needCounts(roster, settings) {
     openFlex,
     counts,
   };
-}
-
-function needState(roster, settings) {
-  return needCounts(roster, settings);
 }
 
 function pickNumbersForSlot(slot, teams, rounds) {
@@ -390,7 +399,7 @@ function playerId(player) {
  */
 function predictNeedAdpPick(roster, settings, pool) {
   if (!pool.length) return null;
-  const { need_count } = needState(roster, settings);
+  const { need_count } = needCounts(roster, settings);
   let best = null;
   let bestScore = -Infinity;
   for (const player of pool) {
@@ -469,12 +478,45 @@ function adpWindowRisk(adp, windowStart, windowEnd) {
   return (windowEnd - adp) / (windowEnd - windowStart);
 }
 
+/** Merge ADP-sorted per-position lists (caller keeps each list sorted). */
 function flattenAvailable(availableByPos) {
+  const lists = SKILL_POSITIONS.map((pos) => availableByPos[pos] || []);
+  const heads = lists.map(() => 0);
+  const total = lists.reduce((n, arr) => n + arr.length, 0);
   const out = [];
-  for (const pos of SKILL_POSITIONS) {
-    for (const p of availableByPos[pos] || []) out.push(p);
+  while (out.length < total) {
+    let bestI = -1;
+    let bestAdp = Infinity;
+    for (let i = 0; i < lists.length; i += 1) {
+      const arr = lists[i];
+      const h = heads[i];
+      if (h >= arr.length) continue;
+      const adp = adpValue(arr[h]);
+      if (adp < bestAdp) {
+        bestAdp = adp;
+        bestI = i;
+      }
+    }
+    if (bestI < 0) break;
+    out.push(lists[bestI][heads[bestI]]);
+    heads[bestI] += 1;
   }
   return out;
+}
+
+function annotateScore(player, need_count, { riskStart = null, riskEnd = null } = {}) {
+  const pos = normalizePos(player.position);
+  const need = need_count[pos] || 0;
+  const needBonus = NEED_K * need;
+  const adp = adpValue(player);
+  const risk = riskEnd ? adpWindowRisk(adp, riskStart, riskEnd) : 0;
+  return {
+    ...player,
+    need_bonus: round1(needBonus),
+    need_count: need,
+    risk: round1(risk),
+    score: round1(-adp + needBonus),
+  };
 }
 
 function scoreCandidates({
@@ -499,9 +541,7 @@ function scoreCandidates({
   const myPick = myPicks[0] ?? currentPickNo;
   const myPickAfter = myPicks[1] ?? null;
 
-  const sortedAvailable = flattenAvailable(availableByPosIn).sort(
-    (a, b) => adpValue(a) - adpValue(b)
-  );
+  const sortedAvailable = flattenAvailable(availableByPosIn);
   const pool = sortedAvailable.slice(0, SIM_POOL_SIZE);
 
   let goneBeforeYou = new Set();
@@ -527,23 +567,15 @@ function scoreCandidates({
     ? Math.min(lastPickNo + 1, myPickAfter + RISK_LOOKAHEAD_PICKS)
     : null;
 
-  const myNeed = needState(myRoster, settings);
+  const myNeed = needCounts(myRoster, settings);
+  // Score every remaining skill player. Arithmetic is cheap; SIM_POOL_SIZE
+  // is what keeps opponent simulation off the full board.
   const scored = [];
   for (const player of sortedAvailable) {
     if (goneBeforeYou.has(playerId(player))) continue;
-    const pos = normalizePos(player.position);
-    const need = myNeed.need_count[pos] || 0;
-    const needBonus = NEED_K * need;
-    const adp = adpValue(player);
-    const risk = riskEnd ? adpWindowRisk(adp, riskStart, riskEnd) : 0;
-    scored.push({
-      ...player,
-      need_bonus: round1(needBonus),
-      need_count: need,
-      risk: round1(risk),
-      score: round1(-adp + needBonus),
-    });
-    if (scored.length >= SCORE_POOL_SIZE) break;
+    scored.push(
+      annotateScore(player, myNeed.need_count, { riskStart, riskEnd })
+    );
   }
 
   scored.sort((a, b) => b.score - a.score || adpValue(a) - adpValue(b));
@@ -558,6 +590,9 @@ function scoreCandidates({
     need_count: myNeed.need_count,
     openFlex: myNeed.openFlex,
     recommendations: capped,
+    scored,
+    risk_start: riskStart,
+    risk_end: riskEnd,
   };
 }
 
@@ -573,11 +608,11 @@ export {
   rosterPositionCounts,
   draftTargets,
   needCounts,
-  needState,
   nextPickNumbers,
   nextOwnedPickNumbers,
   slotForOverallPick,
   scoreCandidates,
+  annotateScore,
   formatAdpRoundPick,
   SKILL_POSITIONS,
   SCORING_FORMATS,

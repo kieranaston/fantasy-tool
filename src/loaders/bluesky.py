@@ -3,13 +3,12 @@
 from __future__ import annotations
 
 import re
-from datetime import datetime, timezone
 from typing import Any
 from urllib.parse import quote
 
 import httpx
 
-from src.injuries.calendar import post_super_bowl_cutoff
+from src.injuries.calendar import parse_iso_datetime, post_super_bowl_cutoff
 
 BSKY_FEED_URL = (
     "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed"
@@ -24,21 +23,6 @@ _ROTOWIRE_LINE = re.compile(
     re.MULTILINE,
 )
 _URL_LINE = re.compile(r"https?://\S+")
-
-
-def _parse_iso(value: str | None) -> datetime | None:
-    if not value:
-        return None
-    text = value.strip()
-    if text.endswith("Z"):
-        text = text[:-1] + "+00:00"
-    try:
-        dt = datetime.fromisoformat(text)
-    except ValueError:
-        return None
-    if dt.tzinfo is None:
-        dt = dt.replace(tzinfo=timezone.utc)
-    return dt
 
 
 def at_uri_to_web_url(uri: str, handle: str) -> str:
@@ -59,7 +43,7 @@ def fetch_author_posts(
     extracts player/designation fields rather than relevance-filtering.
     """
     known_urls = known_urls or set()
-    since = _parse_iso(since_iso)
+    since = parse_iso_datetime(since_iso)
     if since is None:
         since = post_super_bowl_cutoff()
 
@@ -88,7 +72,7 @@ def fetch_author_posts(
                 post = entry.get("post") or {}
                 record = post.get("record") or {}
                 created_at = record.get("createdAt") or post.get("indexedAt")
-                created_dt = _parse_iso(created_at)
+                created_dt = parse_iso_datetime(created_at)
                 if created_dt is not None and created_dt <= since:
                     stop = True
                     continue
@@ -171,9 +155,14 @@ def posts_to_raw_reports(
     player_index: list[Any],
 ) -> list[dict[str, Any]]:
     """Join Gemini Bluesky extractions back to posts as raw_reports rows."""
-    from src.injuries.match import match_player_name
+    from src.injuries.match import match_player_name, name_choices
     from src.injuries.store import SOURCE_BEAT_REPORTER, new_report_id
 
+    choices = (
+        player_index
+        if isinstance(player_index, dict)
+        else name_choices(player_index)
+    )
     by_url = {p["url"]: p for p in posts if p.get("url")}
     reports: list[dict[str, Any]] = []
 
@@ -190,7 +179,7 @@ def posts_to_raw_reports(
         source_text = (post or {}).get("text") or item.get("direct_quote") or ""
         timestamp = (post or {}).get("created_at") or item.get("date") or ""
         player_name = item.get("player_name")
-        match = match_player_name(player_name, player_index)
+        match = match_player_name(player_name, choices)
         needs_review = bool(item.get("needs_review")) or match.needs_review or (
             player_name is None
         )

@@ -2,10 +2,9 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timezone
 from pathlib import Path
 
-from src.export.json_writer import write_json
+from src.export.json_writer import utc_now_iso, write_json
 from src.loaders.nfl_data import load_team_bye_weeks
 from src.loaders.sleeper_adp import (
     FORMATS,
@@ -17,15 +16,6 @@ from src.loaders.sleeper_adp import (
 
 ROOT = Path(__file__).resolve().parents[1]
 DRAFT_DIR = ROOT / "docs" / "data" / "draft"
-
-
-def utc_now_iso() -> str:
-    return (
-        datetime.now(timezone.utc)
-        .replace(microsecond=0)
-        .isoformat()
-        .replace("+00:00", "Z")
-    )
 
 
 def main() -> None:

@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
     <title>ADP Board</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -10,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/site.css?v=31" />
+    <link rel="stylesheet" href="../css/site.css?v=38" />
     <script>
       setTimeout(function () {
         document.body.classList.remove("is-page-loading");
@@ -19,36 +20,33 @@
   </head>
   <body class="is-page-loading">
     <nav class="site-nav" aria-label="Primary">
-      <a href="../index.html">Player News</a>
+      <a href="../index.html">News</a>
       <a href="adp.html" class="is-active" aria-current="page">ADP</a>
       <a href="draft.html">Draft</a>
     </nav>
     <main class="site-main">
       <div class="container">
-        <h1 class="page-title">ADP Board</h1>
-        <p class="meta" id="adp-summary">Loading…</p>
-        <div id="sync-bar" class="sync-bar" hidden></div>
+        <div class="page-head">
+          <p class="meta" id="adp-summary">Loading…</p>
+          <div id="sync-bar" class="sync-bar" hidden></div>
+        </div>
 
         <div class="adp-toolbar">
-          <div class="adp-tabs" role="tablist" aria-label="Scoring format">
+          <div class="toolbar-group" role="tablist" aria-label="Scoring format">
             <button type="button" class="adp-format-tab is-active" data-format="half_ppr" role="tab" aria-selected="true">Half PPR</button>
             <button type="button" class="adp-format-tab" data-format="full_ppr" role="tab" aria-selected="false">Full PPR</button>
             <button type="button" class="adp-format-tab" data-format="std" role="tab" aria-selected="false">Standard</button>
           </div>
-          <div class="adp-tabs" role="tablist" aria-label="Position">
+          <div class="toolbar-group" role="tablist" aria-label="Position">
             <button type="button" class="adp-tab is-active" data-pos="overall" role="tab" aria-selected="true">Overall</button>
             <button type="button" class="adp-tab" data-pos="QB" role="tab" aria-selected="false">QB</button>
             <button type="button" class="adp-tab" data-pos="RB" role="tab" aria-selected="false">RB</button>
             <button type="button" class="adp-tab" data-pos="WR" role="tab" aria-selected="false">WR</button>
             <button type="button" class="adp-tab" data-pos="TE" role="tab" aria-selected="false">TE</button>
           </div>
-          <div class="adp-toolbar-actions">
+          <div class="toolbar-group toolbar-group--filters">
             <label class="adp-filter">
               <input type="search" id="adp-search" spellcheck="false" autocomplete="off" placeholder="search" />
-            </label>
-            <label class="adp-starred-only">
-              <input type="checkbox" id="adp-starred-only" />
-              Favourites only
             </label>
           </div>
         </div>
@@ -58,7 +56,7 @@
     </main>
 
     <script type="module">
-      import { mountAdpBoardPage } from "../js/adp-board.js?v=20";
+      import { mountAdpBoardPage } from "../js/adp-board.js?v=25";
       mountAdpBoardPage();
     </script>
   </body>

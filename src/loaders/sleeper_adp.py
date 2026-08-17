@@ -6,12 +6,14 @@ player-season payload that also carries RotoWire projections.
 
 from __future__ import annotations
 
+import json
+from pathlib import Path
 from typing import Any
 
 import httpx
 
-from src.injuries.match import sleeper_id_to_gsis
-from src.loaders.nfl_data import attach_team_branding, team_branding
+from src.config.scoring import FORMATS as FORMAT_KEYS
+from src.config.scoring import SKILL_POSITIONS
 
 SLEEPER_ADP_URL = (
     "https://api.sleeper.com/projections/nfl/{season}"
@@ -26,7 +28,7 @@ FORMATS = {
     "std": "adp_std",
 }
 
-POSITIONS = ("QB", "RB", "WR", "TE")
+POSITIONS = SKILL_POSITIONS
 
 # News-pool depth by position ADP rank.
 POSITION_LIMITS = {
@@ -70,134 +72,6 @@ def _display_name(player: dict[str, Any], sleeper_id: str) -> str:
     return name or sleeper_id
 
 
-def _team_meta() -> dict[str, dict[str, str | None]]:
-    return team_branding()
-
-
-def normalize_adp_players(
-    rows: list[dict[str, Any]],
-    *,
-    sleeper_to_gsis: dict[str, str] | None = None,
-) -> list[dict[str, Any]]:
-    """Collapse projection rows to one player record with ADP by format."""
-    if sleeper_to_gsis is None:
-        sleeper_to_gsis = sleeper_id_to_gsis()
-    logos = _team_meta()
-
-    best: dict[str, dict[str, Any]] = {}
-    for item in rows:
-        sleeper_id = str(item.get("player_id") or "").strip()
-        if not sleeper_id:
-            continue
-        player = item.get("player") or {}
-        position = (player.get("position") or item.get("position") or "").upper()
-        if position not in POSITIONS:
-            continue
-
-        stats = item.get("stats") or {}
-        adp_values: dict[str, float] = {}
-        for format_key, field in FORMATS.items():
-            raw = stats.get(field)
-            if raw is None:
-                continue
-            try:
-                value = float(raw)
-            except (TypeError, ValueError):
-                continue
-            if value >= ADP_SENTINEL:
-                continue
-            adp_values[format_key] = value
-        if not adp_values:
-            continue
-
-        gsis = sleeper_to_gsis.get(sleeper_id)
-        player_id = gsis or f"sleeper:{sleeper_id}"
-        team = (item.get("team") or player.get("team") or player.get("team_abbr") or "")
-        team = str(team).upper() if team else ""
-        meta = attach_team_branding(team, logos)
-
-        existing = best.get(player_id)
-        if existing is None:
-            best[player_id] = {
-                "player_id": player_id,
-                "sleeper_id": sleeper_id,
-                "player": _display_name(player, sleeper_id),
-                "team": team,
-                "position": position,
-                "logo": meta["logo"],
-                "team_color": meta["team_color"],
-                "adp": adp_values,
-            }
-            continue
-
-        # Keep the lowest ADP seen per format (dedupe weekly rows).
-        for format_key, value in adp_values.items():
-            prev = existing["adp"].get(format_key)
-            if prev is None or value < prev:
-                existing["adp"][format_key] = value
-        if not existing.get("team") and team:
-            existing["team"] = team
-            existing["logo"] = meta["logo"]
-            existing["team_color"] = meta["team_color"]
-
-    return list(best.values())
-
-
-def _ranked_for_format(
-    players: list[dict[str, Any]],
-    *,
-    format_key: str,
-    position: str | None = None,
-    limit: int,
-) -> list[dict[str, Any]]:
-    filtered: list[dict[str, Any]] = []
-    for player in players:
-        if position and player["position"] != position:
-            continue
-        adp = (player.get("adp") or {}).get(format_key)
-        if adp is None:
-            continue
-        filtered.append(player)
-
-    filtered.sort(key=lambda row: (row["adp"][format_key], row["player"]))
-    out: list[dict[str, Any]] = []
-    for index, player in enumerate(filtered[:limit], start=1):
-        out.append(
-            {
-                "player_id": player["player_id"],
-                "sleeper_id": player["sleeper_id"],
-                "player": player["player"],
-                "team": player["team"],
-                "position": player["position"],
-                "logo": player.get("logo"),
-                "team_color": player.get("team_color") or "#2563eb",
-                "adp": round(float(player["adp"][format_key]), 1),
-                "adp_rank": index,
-            }
-        )
-    return out
-
-
-def _position_pool_ids(
-    players: list[dict[str, Any]],
-    *,
-    format_key: str,
-) -> set[str]:
-    """Player IDs in the per-position ADP caps for this scoring format."""
-    allowed: set[str] = set()
-    for position, limit in POSITION_LIMITS.items():
-        ranked = _ranked_for_format(
-            players,
-            format_key=format_key,
-            position=position,
-            limit=limit,
-        )
-        for row in ranked:
-            if row.get("player_id"):
-                allowed.add(row["player_id"])
-    return allowed
-
-
 def draft_season_from_sleeper_state() -> int:
     """Read current fantasy season from Sleeper state (fallback: calendar)."""
     response = httpx.get(
@@ -209,18 +83,6 @@ def draft_season_from_sleeper_state() -> int:
     state = response.json()
     season = state.get("league_season") or state.get("season")
     return int(season)
-
-
-def load_news_pool_ids(*, season: int | None = None) -> set[str]:
-    """Player IDs in the ADP depth caps (overall union of position pools)."""
-    if season is None:
-        season = draft_season_from_sleeper_state()
-    raw = fetch_sleeper_projections(season=season, order_by="adp_ppr")
-    players = normalize_adp_players(raw)
-    ids: set[str] = set()
-    for format_key in FORMATS:
-        ids |= _position_pool_ids(players, format_key=format_key)
-    return ids
 
 
 def normalize_adp_slim(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -301,3 +163,73 @@ def adp_board_for_format(
         out.append(row)
     out.sort(key=lambda row: (row["adp"], row["player"]))
     return out
+
+
+def _default_adp_dir() -> Path:
+    return Path(__file__).resolve().parents[2] / "docs" / "data" / "draft"
+
+
+def _load_published_boards(adp_dir: Path) -> dict[str, list[dict[str, Any]]] | None:
+    boards: dict[str, list[dict[str, Any]]] = {}
+    for format_key in FORMAT_KEYS:
+        path = adp_dir / f"adp-{format_key.replace('_', '-')}.json"
+        if not path.exists():
+            return None
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            return None
+        players = payload.get("players") if isinstance(payload, dict) else None
+        if not isinstance(players, list):
+            return None
+        boards[format_key] = players
+    return boards
+
+
+def _position_pool_ids_from_board(
+    players: list[dict[str, Any]],
+    sleeper_to_gsis: dict[str, str],
+) -> set[str]:
+    """Player IDs in the per-position ADP caps (board is already ADP-sorted)."""
+    allowed: set[str] = set()
+    taken = {pos: 0 for pos in POSITION_LIMITS}
+    for row in players:
+        position = row.get("position")
+        limit = POSITION_LIMITS.get(position) if position else None
+        if limit is None or taken[position] >= limit:
+            continue
+        taken[position] += 1
+        sid = str(row.get("sleeper_id") or "").strip()
+        if not sid:
+            continue
+        allowed.add(sleeper_to_gsis.get(sid) or f"sleeper:{sid}")
+    return allowed
+
+
+def load_news_pool_ids(
+    *,
+    season: int | None = None,
+    sleeper_to_gsis: dict[str, str] | None = None,
+    adp_dir: Path | None = None,
+) -> set[str]:
+    """Player IDs in the ADP depth caps (overall union of position pools)."""
+    if sleeper_to_gsis is None:
+        from src.injuries.match import sleeper_id_to_gsis
+
+        sleeper_to_gsis = sleeper_id_to_gsis()
+
+    boards = _load_published_boards(adp_dir or _default_adp_dir())
+    if boards is None:
+        if season is None:
+            season = draft_season_from_sleeper_state()
+        raw = fetch_sleeper_projections(season=season, order_by="adp_ppr")
+        slim = normalize_adp_slim(raw)
+        boards = {
+            format_key: adp_board_for_format(slim, format_key=format_key)
+            for format_key in FORMAT_KEYS
+        }
+
+    ids: set[str] = set()
+    for players in boards.values():
+        ids |= _position_pool_ids_from_board(players, sleeper_to_gsis)
+    return ids

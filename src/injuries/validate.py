@@ -10,7 +10,7 @@ from rapidfuzz import fuzz
 # Minimum fuzzy ratio when exact substring match fails.
 FUZZY_CLAIM_THRESHOLD = 86.0
 
-_EMOJI_RE = re.compile(
+EMOJI_RE = re.compile(
     "["
     "\U0001F300-\U0001F9FF"
     "\U00002600-\U000027BF"
@@ -79,7 +79,7 @@ def validate_diff_summary(
         return True, []
 
     failed: list[str] = []
-    if _EMOJI_RE.search(summary):
+    if EMOJI_RE.search(summary):
         failed.append("emoji")
 
     stripped = re.sub(r"\([^)]{0,120}\)", " ", summary)
@@ -100,7 +100,7 @@ def review_item(
     extraction: dict[str, Any] | None = None,
     failed_fields: list[str] | None = None,
 ) -> dict[str, Any]:
-    from src.injuries.store import utc_now_iso
+    from src.export.json_writer import utc_now_iso
 
     return {
         "timestamp": utc_now_iso(),

@@ -12,6 +12,19 @@ function formatTimestamp(isoString) {
   });
 }
 
+/** Page header: "Updated: Aug 17". */
+function formatUpdated(isoString) {
+  if (!isoString) return "Updated: —";
+  const date = new Date(isoString);
+  if (Number.isNaN(date.getTime())) return "Updated: —";
+  const day = date.toLocaleDateString("en-US", {
+    timeZone: "America/New_York",
+    month: "short",
+    day: "numeric",
+  });
+  return `Updated: ${day}`;
+}
+
 /** Resolve a path relative to docs/data/. */
 function dataPath(relativePath) {
   const base = window.location.pathname.includes("/tables/")
@@ -53,4 +66,4 @@ function revealPage() {
   document.body.classList.remove("is-page-loading");
 }
 
-export { dataPath, fetchJSON, showError, revealPage, formatTimestamp };
+export { dataPath, fetchJSON, showError, revealPage, formatTimestamp, formatUpdated };

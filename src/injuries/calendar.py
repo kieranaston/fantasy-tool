@@ -3,6 +3,25 @@
 from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
+from typing import Any
+
+
+def parse_iso_datetime(raw: Any) -> datetime | None:
+    """Parse an ISO-8601 timestamp to UTC, or None if missing/invalid."""
+    if not raw:
+        return None
+    text = str(raw).strip()
+    if not text:
+        return None
+    if text.endswith("Z"):
+        text = text[:-1] + "+00:00"
+    try:
+        dt = datetime.fromisoformat(text)
+    except ValueError:
+        return None
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc)
 
 
 def second_sunday_of_february(year: int) -> datetime:

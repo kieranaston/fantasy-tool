@@ -5,44 +5,36 @@ from __future__ import annotations
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
-from src.loaders.nfl_data import (
-    DEFAULT_TEAM_COLOR,
-    attach_team_branding,
-    player_media_index,
-    team_branding,
-)
+from src.injuries.calendar import parse_iso_datetime
+from src.injuries.detect import group_reports_by_player
+from src.loaders.nfl_data import player_media_index
 
 # Drop players whose newest post/status is older than this.
 NEWS_MAX_AGE = timedelta(days=14)
 
 
-def _parse_timestamp(raw: Any) -> datetime | None:
-    if not raw:
-        return None
-    text = str(raw).strip()
-    if not text:
-        return None
-    if text.endswith("Z"):
-        text = text[:-1] + "+00:00"
-    try:
-        dt = datetime.fromisoformat(text)
-    except ValueError:
-        return None
-    if dt.tzinfo is None:
-        dt = dt.replace(tzinfo=timezone.utc)
-    return dt.astimezone(timezone.utc)
-
-
 def _player_is_fresh(player: dict[str, Any], *, cutoff: datetime) -> bool:
     """Keep players whose most recent update is on/after cutoff."""
-    ts = _parse_timestamp(player.get("last_updated"))
+    ts = parse_iso_datetime(player.get("last_updated"))
     if ts is None:
         timeline = player.get("timeline") or []
         if timeline:
-            ts = _parse_timestamp(timeline[0].get("timestamp"))
+            ts = parse_iso_datetime(timeline[0].get("timestamp"))
     if ts is None:
         return False
     return ts >= cutoff
+
+
+def _timeline_item(report: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "id": report.get("id"),
+        "timestamp": report.get("timestamp"),
+        "designation": report.get("designation"),
+        "source_text": report.get("source_text"),
+        "url": report.get("url"),
+        "source_type": report.get("source_type"),
+        "player_name": report.get("player_name"),
+    }
 
 
 def build_summaries(
@@ -53,32 +45,21 @@ def build_summaries(
     allowed_player_ids: set[str] | None = None,
     season: int | None = None,
     now: datetime | None = None,
+    media: dict[str, dict[str, dict[str, Any]]] | None = None,
 ) -> dict[str, Any]:
     """Aggregate current status + report timeline per player."""
-    by_player: dict[str, list[dict[str, Any]]] = {}
-    for report in reports:
-        pid = report.get("player_id")
-        if not pid:
-            continue
-        if allowed_player_ids is not None and pid not in allowed_player_ids:
-            continue
-        by_player.setdefault(pid, []).append(
-            {
-                "id": report.get("id"),
-                "timestamp": report.get("timestamp"),
-                "designation": report.get("designation"),
-                "source_text": report.get("source_text"),
-                "url": report.get("url"),
-                "source_type": report.get("source_type"),
-                "player_name": report.get("player_name"),
-            }
-        )
+    grouped = group_reports_by_player(
+        reports,
+        allowed_player_ids=allowed_player_ids,
+        skip_review=False,
+        newest_first=True,
+    )
+    by_player = {
+        pid: [_timeline_item(report) for report in timeline]
+        for pid, timeline in grouped.items()
+    }
 
-    for timeline in by_player.values():
-        timeline.sort(key=lambda r: r.get("timestamp") or "", reverse=True)
-
-    branding = team_branding()
-    media = player_media_index(season=season)
+    media = media if media is not None else player_media_index(season=season)
     by_gsis = media["by_gsis_id"]
 
     def enrich(player_id: str, team: str | None) -> dict[str, Any]:
@@ -86,13 +67,7 @@ def build_summaries(
         resolved_team = (team or media_row.get("team") or "") or None
         if resolved_team:
             resolved_team = str(resolved_team).upper()
-        brand = attach_team_branding(resolved_team, branding)
-        return {
-            "team": resolved_team,
-            "logo": brand["logo"],
-            "headshot": media_row.get("headshot"),
-            "team_color": brand["team_color"] or DEFAULT_TEAM_COLOR,
-        }
+        return {"team": resolved_team}
 
     players: list[dict[str, Any]] = []
     for player_id, status in status_current.items():

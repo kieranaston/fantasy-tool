@@ -8,6 +8,8 @@ import nflreadpy as nfl
 import polars as pl
 from rapidfuzz import fuzz, process
 
+from src.loaders.nfl_data import player_media_index
+
 
 @dataclass(frozen=True)
 class PlayerRef:
@@ -25,38 +27,51 @@ class MatchResult:
     needs_review: bool
 
 
+@dataclass(frozen=True)
+class PlayerTables:
+    """Roster index, Sleeper→GSIS map, and media from one nflverse load."""
+
+    index: list[PlayerRef]
+    sleeper_to_gsis: dict[str, str]
+    by_name: dict[str, PlayerRef]
+    media: dict[str, dict[str, dict]]
+
+
 # Minimum rapidfuzz token_set_ratio to accept an automatic match.
 MATCH_THRESHOLD = 88.0
 
 
-def load_player_index(season: int | None = None) -> list[PlayerRef]:
-    """Build a name→GSIS index from current (or given) season rosters + IDs."""
-    if season is None:
-        season = int(nfl.get_current_season())
+def _sleeper_map_from_ids(ids: pl.DataFrame) -> dict[str, str]:
+    mapped = ids.filter(
+        pl.col("sleeper_id").is_not_null()
+        & pl.col("gsis_id").is_not_null()
+        & pl.col("gsis_id").cast(pl.Utf8).str.starts_with("00-")
+    )
+    return {
+        str(row["sleeper_id"]): str(row["gsis_id"])
+        for row in mapped.iter_rows(named=True)
+    }
 
-    try:
-        rosters = nfl.load_rosters(seasons=season)
-    except Exception:
-        rosters = pl.DataFrame()
+
+def load_player_tables(*, season: int | None = None) -> PlayerTables:
+    """Load rosters + ID map once for matching, news-pool GSIS, and media."""
+    media = player_media_index(season=season)
+    ids = nfl.load_ff_playerids()
+    sleeper_to_gsis = _sleeper_map_from_ids(ids)
 
     refs: dict[str, PlayerRef] = {}
-
-    if not rosters.is_empty():
-        cleaned = rosters.filter(
-            pl.col("gsis_id").is_not_null()
-            & (pl.col("gsis_id").cast(pl.Utf8).str.len_chars() > 0)
-            & pl.col("full_name").is_not_null()
+    for gid, row in (media.get("by_gsis_id") or {}).items():
+        pid = str(gid)
+        name = row.get("player")
+        if not pid.startswith("00-") or not name:
+            continue
+        refs[pid] = PlayerRef(
+            player_id=pid,
+            name=str(name),
+            team=row.get("team"),
+            position=row.get("position"),
         )
-        for row in cleaned.iter_rows(named=True):
-            pid = str(row["gsis_id"])
-            refs[pid] = PlayerRef(
-                player_id=pid,
-                name=str(row["full_name"]),
-                team=row.get("team"),
-                position=row.get("position"),
-            )
 
-    ids = nfl.load_ff_playerids()
     mapped = ids.filter(
         pl.col("gsis_id").is_not_null()
         & pl.col("name").is_not_null()
@@ -72,26 +87,33 @@ def load_player_index(season: int | None = None) -> list[PlayerRef]:
                 position=row.get("position"),
             )
 
-    return list(refs.values())
+    index = list(refs.values())
+    by_name = {ref.name: ref for ref in index}
+    return PlayerTables(
+        index=index,
+        sleeper_to_gsis=sleeper_to_gsis,
+        by_name=by_name,
+        media=media,
+    )
+
+
+def load_player_index(season: int | None = None) -> list[PlayerRef]:
+    """Build a name→GSIS index from current (or given) season rosters + IDs."""
+    return load_player_tables(season=season).index
 
 
 def sleeper_id_to_gsis() -> dict[str, str]:
     """Map Sleeper player id (str) → GSIS id."""
-    ids = nfl.load_ff_playerids()
-    mapped = ids.filter(
-        pl.col("sleeper_id").is_not_null()
-        & pl.col("gsis_id").is_not_null()
-        & pl.col("gsis_id").cast(pl.Utf8).str.starts_with("00-")
-    )
-    return {
-        str(row["sleeper_id"]): str(row["gsis_id"])
-        for row in mapped.iter_rows(named=True)
-    }
+    return _sleeper_map_from_ids(nfl.load_ff_playerids())
+
+
+def name_choices(index: list[PlayerRef]) -> dict[str, PlayerRef]:
+    return {ref.name: ref for ref in index}
 
 
 def match_player_name(
     player_name: str | None,
-    index: list[PlayerRef],
+    choices: dict[str, PlayerRef] | list[PlayerRef],
     *,
     threshold: float = MATCH_THRESHOLD,
 ) -> MatchResult:
@@ -104,10 +126,10 @@ def match_player_name(
             needs_review=True,
         )
 
-    choices = {ref.name: ref for ref in index}
+    lookup = choices if isinstance(choices, dict) else name_choices(choices)
     hit = process.extractOne(
         player_name.strip(),
-        choices.keys(),
+        lookup.keys(),
         scorer=fuzz.token_set_ratio,
     )
     if hit is None:
@@ -119,7 +141,7 @@ def match_player_name(
         )
 
     matched_name, score, _ = hit
-    ref = choices[matched_name]
+    ref = lookup[matched_name]
     query_last = player_name.strip().split()[-1].lower()
     matched_last = matched_name.split()[-1].lower()
     last_name_ok = query_last == matched_last

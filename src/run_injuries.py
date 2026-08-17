@@ -6,8 +6,9 @@ import time
 from pathlib import Path
 
 from src.config.env import load_dotenv
-from src.injuries.detect import detect_changes
-from src.injuries.match import load_player_index
+from src.export.json_writer import utc_now_iso
+from src.injuries.detect import detect_changes, group_reports_by_player
+from src.injuries.match import load_player_tables
 from src.injuries.serve import build_summaries
 from src.injuries.store import (
     SOURCE_BEAT_REPORTER,
@@ -15,7 +16,6 @@ from src.injuries.store import (
     append_review_items,
     load_json,
     load_poll_state,
-    utc_now_iso,
     write_json,
 )
 from src.loaders.nfl_data import get_current_season
@@ -68,6 +68,32 @@ def _extract_bluesky_chunks(posts: list[dict]) -> list[dict]:
     return extractions
 
 
+def _extract_from_posts(posts: list[dict]) -> list[dict]:
+    """Pattern-extract, then LLM-fallback for posts that still lack a player."""
+    extractions = extract_rotowire_posts(posts)
+    parsed_urls = {
+        e.get("post_url") for e in extractions if e.get("player_name")
+    }
+    needs_llm = [p for p in posts if p.get("url") not in parsed_urls]
+    print(f"  Bluesky: parsed {len(posts) - len(needs_llm)}/{len(posts)} via RotoWire pattern")
+
+    if needs_llm and gemini_available():
+        try:
+            print(f"  Bluesky: LLM fallback for {len(needs_llm)} unmatched post(s)")
+            llm_items = _extract_bluesky_chunks(needs_llm)
+            by_url = {e.get("post_url"): e for e in extractions}
+            for item in llm_items:
+                url = item.get("post_url")
+                if url:
+                    by_url[url] = item
+            extractions = list(by_url.values())
+        except Exception as exc:
+            print(f"  Bluesky: LLM fallback failed ({exc}); keeping pattern parses")
+    elif needs_llm and not gemini_available():
+        print(f"  Bluesky: {len(needs_llm)} unmatched left for review (no GEMINI_API_KEY)")
+    return extractions
+
+
 def ingest_bluesky(player_index, reports: list, poll_state: dict) -> tuple[list, list]:
     known = {r["url"] for r in reports if r.get("url")}
     try:
@@ -85,29 +111,7 @@ def ingest_bluesky(player_index, reports: list, poll_state: dict) -> tuple[list,
 
     print(f"  Bluesky: {len(posts)} new RotoWire posts (extracting players)")
 
-    extractions = extract_rotowire_posts(posts)
-    parsed = [e for e in extractions if e.get("player_name")]
-    needs_llm = [p for p in posts if not any(
-        (e.get("post_url") == p.get("url") and e.get("player_name"))
-        for e in extractions
-    )]
-    print(f"  Bluesky: parsed {len(parsed)}/{len(posts)} via RotoWire pattern")
-
-    if needs_llm and gemini_available():
-        try:
-            print(f"  Bluesky: LLM fallback for {len(needs_llm)} unmatched post(s)")
-            llm_items = _extract_bluesky_chunks(needs_llm)
-            # Replace null parses for those URLs
-            by_url = {e.get("post_url"): e for e in extractions}
-            for item in llm_items:
-                url = item.get("post_url")
-                if url:
-                    by_url[url] = item
-            extractions = list(by_url.values())
-        except Exception as exc:
-            print(f"  Bluesky: LLM fallback failed ({exc}); keeping pattern parses")
-    elif needs_llm and not gemini_available():
-        print(f"  Bluesky: {len(needs_llm)} unmatched left for review (no GEMINI_API_KEY)")
+    extractions = _extract_from_posts(posts)
 
     post_by_url = {p["url"]: p for p in posts if p.get("url")}
     valid_extractions = []
@@ -179,26 +183,7 @@ def reprocess_pending_bluesky(player_index, reports: list) -> tuple[list, list]:
     ]
     print(f"  Bluesky: resolving {len(posts)} pending shell post(s)")
 
-    extractions = extract_rotowire_posts(posts)
-    needs_llm = [
-        p
-        for p in posts
-        if not any(
-            (e.get("post_url") == p.get("url") and e.get("player_name"))
-            for e in extractions
-        )
-    ]
-    if needs_llm and gemini_available():
-        try:
-            llm_items = _extract_bluesky_chunks(needs_llm)
-            by_url = {e.get("post_url"): e for e in extractions}
-            for item in llm_items:
-                url = item.get("post_url")
-                if url:
-                    by_url[url] = item
-            extractions = list(by_url.values())
-        except Exception as exc:
-            print(f"  Bluesky: pending LLM fallback failed ({exc})")
+    extractions = _extract_from_posts(posts)
 
     new_rows = posts_to_raw_reports(posts, extractions, player_index)
     by_url = {r["url"]: r for r in new_rows if r.get("url")}
@@ -251,9 +236,17 @@ def process_changes(
     allowed_player_ids: set[str] | None = None,
 ) -> dict:
     """Summarize any matched player that is new or still missing a narrative."""
-    changed = detect_changes(reports, status_current)
-    if allowed_player_ids is not None:
-        changed = [c for c in changed if c.get("player_id") in allowed_player_ids]
+    by_player = group_reports_by_player(
+        reports,
+        allowed_player_ids=allowed_player_ids,
+        skip_review=True,
+    )
+    changed = detect_changes(
+        reports,
+        status_current,
+        allowed_player_ids=allowed_player_ids,
+        by_player=by_player,
+    )
     print(f"  Change detection: {len(changed)} player(s) need summary")
     if not changed:
         return status_current
@@ -272,12 +265,7 @@ def process_changes(
             "direct_quote": source_text[:280],
             "source_url": report.get("url") or "",
         }
-        timeline = [
-            r
-            for r in reports
-            if r.get("player_id") == pid and not r.get("needs_review")
-        ]
-        timeline.sort(key=lambda r: r.get("timestamp") or "")
+        timeline = by_player.get(pid) or [report]
         if not timeline:
             timeline = [report]
 
@@ -423,16 +411,16 @@ def main() -> None:
     if dirty:
         write_json(RAW_PATH, reports)
 
-    print("  Loading player index…")
-    player_index = load_player_index()
-    print(f"  Player index: {len(player_index)} names")
+    print("  Loading player tables…")
+    tables = load_player_tables()
+    print(f"  Player index: {len(tables.index)} names")
 
-    pool_ids = load_news_pool_ids()
+    pool_ids = load_news_pool_ids(sleeper_to_gsis=tables.sleeper_to_gsis)
     print(f"  News pool: {len(pool_ids)} players")
 
     run_started = utc_now_iso()
-    reports, bsky_new = ingest_bluesky(player_index, reports, poll_state)
-    reports, _bsky_reprocessed = reprocess_pending_bluesky(player_index, reports)
+    reports, bsky_new = ingest_bluesky(tables.by_name, reports, poll_state)
+    reports, _bsky_reprocessed = reprocess_pending_bluesky(tables.by_name, reports)
 
     # Mark plain fallbacks so Gemini can replace them on this/next run
     for pid, status in list(status_current.items()):
@@ -466,6 +454,7 @@ def main() -> None:
         last_updated=now,
         allowed_player_ids=pool_ids,
         season=get_current_season(),
+        media=tables.media,
     )
     write_json(SUMMARIES_PATH, summaries)
 

@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
     <title>Player News</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -10,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/site.css?v=31" />
+    <link rel="stylesheet" href="css/site.css?v=38" />
     <script>
       setTimeout(function () {
         document.body.classList.remove("is-page-loading");
@@ -19,29 +20,31 @@
   </head>
   <body class="is-page-loading">
     <nav class="site-nav" aria-label="Primary">
-      <a href="index.html" class="is-active" aria-current="page">Player News</a>
+      <a href="index.html" class="is-active" aria-current="page">News</a>
       <a href="tables/adp.html">ADP</a>
       <a href="tables/draft.html">Draft</a>
     </nav>
     <main class="site-main">
       <div class="container">
-        <p class="meta" data-injuries="summary">Loading…</p>
-        <div class="news-search-row">
-          <label for="news-player-search" class="visually-hidden">Search</label>
-          <input
-            id="news-player-search"
-            type="search"
-            spellcheck="false"
-            autocomplete="off"
-            placeholder="search"
-          />
+        <div class="page-head">
+          <p class="meta" data-injuries="summary">Loading…</p>
+          <div class="news-search-row">
+            <label for="news-player-search" class="visually-hidden">Search</label>
+            <input
+              id="news-player-search"
+              type="search"
+              spellcheck="false"
+              autocomplete="off"
+              placeholder="search"
+            />
+          </div>
         </div>
         <div id="injuries-container" class="injuries-list"></div>
       </div>
     </main>
 
     <script type="module">
-      import { mountInjuriesPage } from "./js/injuries.js?v=10";
+      import { mountInjuriesPage } from "./js/injuries.js?v=15";
       mountInjuriesPage().catch(function (err) {
         document.body.classList.remove("is-page-loading");
         var el = document.getElementById("injuries-container");

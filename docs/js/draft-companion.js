@@ -1,7 +1,8 @@
-import { fetchJSON, showError, revealPage } from "./config.js?v=2";
-import { escapeHtml, sleeperIdOf, starButtonHtml } from "./shared.js?v=1";
+import { fetchJSON, formatUpdated, showError, revealPage } from "./config.js?v=3";
+import { escapeHtml, sleeperIdOf, playerCellHtml } from "./shared.js?v=3";
 import {
   scoreCandidates,
+  annotateScore,
   nextOwnedPickNumbers,
   resolveLeagueSettings,
   resolveScoringFormat,
@@ -12,12 +13,8 @@ import {
   SKILL_POSITIONS,
   SCORING_FORMATS,
   FORMAT_LABELS,
-} from "./draft-scoring.js?v=86";
-import {
-  loadLikedIds,
-  toggleLikedId,
-  mountStarSync,
-} from "./draft-liked.js?v=5";
+} from "./draft-scoring.js?v=87";
+import { createFavourites } from "./draft-liked.js?v=9";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 1200;
@@ -26,36 +23,6 @@ const POLL_WAITING_MS = 2500;
 const POLL_IDLE_MS = 5000;
 const DRAFT_META_EVERY = 12;
 const SEARCH_LIMIT = 24;
-
-function playerMediaHtml(player, { name, compact = false } = {}) {
-  const display = escapeHtml(
-    name || player?.player || player?.name || player?.player_name || ""
-  );
-  const logo = player?.logo;
-  const team = player?.team ? String(player.team).toUpperCase() : "";
-  let teamHtml = "";
-  if (!compact) {
-    const teamBits = [];
-    if (logo) {
-      teamBits.push(
-        `<img class="team-logo" src="${escapeHtml(logo)}" alt="" width="14" height="14" loading="lazy" decoding="async" />`
-      );
-    }
-    if (team) teamBits.push(`<span>${escapeHtml(team)}</span>`);
-    teamHtml = teamBits.length
-      ? `<span class="player-media-team">${teamBits.join("")}</span>`
-      : "";
-  }
-  const mediaClass = compact
-    ? "player-media player-media--compact player-media--text"
-    : "player-media player-media--text";
-  return `<span class="${mediaClass}"><span class="player-media-text"><span class="player-media-name">${display}</span>${teamHtml}</span></span>`;
-}
-
-function playerCellHtml(player, { name, compact = false, liked = false } = {}) {
-  const id = sleeperIdOf(player);
-  return `<span class="draft-player-cell">${starButtonHtml(id, liked)}${playerMediaHtml(player, { name, compact })}</span>`;
-}
 
 function needBonusHtml(needBonus) {
   if (needBonus > 0) {
@@ -67,59 +34,43 @@ function needBonusHtml(needBonus) {
   return "—";
 }
 
+function scoreRowCells(r, { liked = false, teams = 12 } = {}) {
+  return `
+    <td>${playerCellHtml(r, { liked })}</td>
+    <td>${escapeHtml(r.position)}</td>
+    <td class="num">${adpHtml(r.adp, teams)}</td>
+    <td class="num col-wide">${needBonusHtml(r.need_bonus)}</td>
+    <td class="num">${escapeHtml(r.score)}</td>
+    <td class="num">${gapHtml(r.gap)}</td>`;
+}
+
+/** Score minus the next same-position player still on the board. */
+function withPosGaps(recs, scored) {
+  const source = scored?.length ? scored : recs;
+  const gapById = new Map();
+  const nextScoreAtPos = {};
+  for (let i = source.length - 1; i >= 0; i -= 1) {
+    const row = source[i];
+    const pos = String(row.position || "").toUpperCase();
+    const score = Number(row.score);
+    const next = nextScoreAtPos[pos];
+    const gap =
+      next != null && Number.isFinite(score) && Number.isFinite(next)
+        ? Math.round((score - next) * 10) / 10
+        : null;
+    gapById.set(sleeperIdOf(row), gap);
+    if (Number.isFinite(score)) nextScoreAtPos[pos] = score;
+  }
+  return recs.map((r) => ({ ...r, gap: gapById.get(sleeperIdOf(r)) ?? null }));
+}
+
 function gapHtml(gap) {
   if (gap == null || !Number.isFinite(Number(gap))) return "—";
-  const n = Number(gap);
-  const label = n > 0 ? `+${n}` : String(n);
-  const tight = Math.abs(n) < 2;
-  return `<span class="${tight ? "score-gap is-tight" : "score-gap"}" title="Score difference vs the next player on this list">${escapeHtml(label)}</span>`;
-}
-
-function jumpHtml(jump) {
-  const n = Number(jump);
-  if (!Number.isFinite(n) || n === 0) {
-    return `<span class="score-jump is-flat" title="Same order as ADP on this list">—</span>`;
-  }
-  if (n > 0) {
-    return `<span class="score-jump is-up" title="Ranked ${n} spot${n === 1 ? "" : "s"} above ADP order because other positions are penalized">${escapeHtml(`↑${n}`)}</span>`;
-  }
-  const down = Math.abs(n);
-  return `<span class="score-jump is-down" title="Ranked ${down} spot${down === 1 ? "" : "s"} below ADP order (this position is penalized)">${escapeHtml(`↓${down}`)}</span>`;
-}
-
-function withListContext(recs) {
-  const adpOrder = recs
-    .map((r, i) => ({ i, adp: Number(r.adp) }))
-    .sort((a, b) => {
-      const aa = Number.isFinite(a.adp) && a.adp > 0 ? a.adp : 9999;
-      const ba = Number.isFinite(b.adp) && b.adp > 0 ? b.adp : 9999;
-      return aa - ba || a.i - b.i;
-    });
-  const adpRankAt = [];
-  adpOrder.forEach((row, rank) => {
-    adpRankAt[row.i] = rank + 1;
-  });
-  return recs.map((r, i) => {
-    const score = Number(r.score);
-    const nextScore = Number(recs[i + 1]?.score);
-    const gap =
-      recs[i + 1] != null && Number.isFinite(score) && Number.isFinite(nextScore)
-        ? Math.round((score - nextScore) * 10) / 10
-        : null;
-    const adpRank = adpRankAt[i];
-    const jump = adpRank - (i + 1);
-    return { ...r, gap, jump };
-  });
-}
-
-function riskHtml(risk) {
-  if (risk > 0.05) return `${escapeHtml(Math.round(risk * 100))}%`;
-  return "—";
+  return Number(gap).toFixed(1);
 }
 
 /**
- * Show overall ADP (Sleeper pick number) as the primary value.
- * Round.pick is secondary so it isn't mistaken for overall ADP.
+ * Round.pick first (same as recent picks); overall ADP is secondary.
  */
 function adpHtml(adp, teams = 12) {
   const overall = Number(adp);
@@ -127,38 +78,20 @@ function adpHtml(adp, teams = 12) {
   const overallLabel = overall.toFixed(1);
   const roundPick = formatAdpRoundPick(overall, teams);
   if (!roundPick) return escapeHtml(overallLabel);
-  return `<span class="adp-overall" title="${escapeHtml(
-    String(teams)
-  )}-team round.pick ${escapeHtml(roundPick)}">${escapeHtml(
-    overallLabel
-  )}</span><span class="adp-round-pick">${escapeHtml(roundPick)}</span>`;
+  return `<span class="adp-overall">${escapeHtml(
+    roundPick
+  )}</span><span class="adp-round-pick">${escapeHtml(overallLabel)}</span>`;
 }
 
-function stampLabel(iso) {
-  if (!iso) return null;
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return null;
-  return date.toLocaleDateString("en-US", {
-    timeZone: "America/New_York",
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  });
-}
-
-function scoreRowCells(r, { liked = false, teams = 12 } = {}) {
-  return `
-    <td>${playerCellHtml(r, { liked })}</td>
-    <td>${escapeHtml(r.position)}</td>
-    <td>${r.bye_week == null ? "—" : escapeHtml(r.bye_week)}</td>
-    <td>${needBonusHtml(r.need_bonus)}</td>
-    <td>${adpHtml(r.adp, teams)}</td>
-    <td>${riskHtml(r.risk)}</td>
-    <td>${gapHtml(r.gap)}</td>
-    <td>${jumpHtml(r.jump)}</td>
-    <td><strong class="${
-      r.jump > 0 ? "score-value is-up" : r.jump < 0 ? "score-value is-down" : ""
-    }">${escapeHtml(r.score)}</strong></td>`;
+function pickNoHtml(pickNo, teams = 12) {
+  const n = Number(pickNo);
+  if (!Number.isFinite(n) || n <= 0) return "—";
+  const overall = String(Math.round(n));
+  const roundPick = formatAdpRoundPick(n, teams);
+  if (!roundPick) return escapeHtml(overall);
+  return `<span class="adp-overall">${escapeHtml(
+    roundPick
+  )}</span><span class="adp-round-pick">${escapeHtml(overall)}</span>`;
 }
 
 async function sleeperGet(path) {
@@ -259,7 +192,7 @@ function slotToRosterMaps(draft, rosters = []) {
     if (!rosterToSlot[rid]) rosterToSlot[rid] = slot;
     if (!slotToRoster[slot]) slotToRoster[slot] = rid;
   }
-  return { slotToRoster, rosterToSlot };
+  return { slotToRoster, rosterToSlot, userToSlot };
 }
 
 /** Sleeper draft_order is user_id → slot (occasionally inverted). */
@@ -291,11 +224,11 @@ function userToSlotMap(draft) {
  * Ownership of that overall pick (snake + trades) wins. Board column
  * (draft_slot) is last resort — traded picks stay in the original column.
  */
-function slotForCompletedPick(pick, draft, ownerSlotByPick, rosters = []) {
+function slotForCompletedPick(pick, ownerSlotByPick, maps) {
   const draftSlot = Number(pick?.draft_slot) || 0;
   const pickNo = Number(pick?.pick_no);
-  const { rosterToSlot } = slotToRosterMaps(draft, rosters);
-  const userToSlot = userToSlotMap(draft);
+  const rosterToSlot = maps?.rosterToSlot || {};
+  const userToSlot = maps?.userToSlot || {};
 
   const tradeSlot = Number(
     ownerSlotByPick?.[pickNo] ?? ownerSlotByPick?.[String(pickNo)]
@@ -337,9 +270,10 @@ function buildOwnerSlotByPick(draft, tradedPicks, teams, rounds, rosters = []) {
 }
 
 function buildSlotRosters(picks, draft, ownerSlotByPick, rosters = []) {
+  const maps = slotToRosterMaps(draft, rosters);
   const bySlot = {};
   for (const pick of picks) {
-    const slot = slotForCompletedPick(pick, draft, ownerSlotByPick, rosters);
+    const slot = slotForCompletedPick(pick, ownerSlotByPick, maps);
     if (!slot) continue;
     const meta = pick.metadata || {};
     bySlot[slot] = bySlot[slot] || [];
@@ -412,18 +346,13 @@ async function mountDraftCompanionPage() {
   let lastScoredFingerprint = "";
   let lastMyRosterFp = "";
   let hasScoredOnce = false;
-  let likedIds = loadLikedIds();
   let lastScoreResult = null;
   let lastScoreById = new Map();
   let searchTimer = null;
   let lastRosterForRender = [];
 
-  const starSync = mountStarSync({
+  const favs = createFavourites({
     host: document.getElementById("sync-bar"),
-    getIds: () => likedIds,
-    setIds: (ids) => {
-      likedIds = ids;
-    },
     onChange: () => {
       if (lastScoreResult) renderRecommendationsFromCache();
       renderSearchResults();
@@ -446,34 +375,35 @@ async function mountDraftCompanionPage() {
     if (statusEl) statusEl.textContent = text;
   }
 
-  function leagueDisplayName() {
-    const enteredId = resolveLeagueIdInput(leagueInput?.value || "");
-    if (enteredId && configuredLeague?.name) return configuredLeague.name;
-    if (league?.name) return league.name;
-    if (configuredLeague?.name) return configuredLeague.name;
-    return null;
-  }
-
-  /** Top meta: League name · format · ADP freshness */
+  /** Top meta: ADP freshness + your next pick. */
   function refreshHeader() {
-    const leagueName = leagueDisplayName() || "—";
-    const formatLabel =
-      scoringFormat?.format_label ||
-      FORMAT_LABELS[scoringFormat?.format] ||
-      scoringFormat?.label ||
-      "Half PPR";
-    const when = stampLabel(scoringFormat?.last_updated);
-    const adp = when ? `Sleeper ADP: ${when}` : "Sleeper ADP";
-    setStatus([`League: ${leagueName}`, formatLabel, adp].join(" · "));
+    const updated = formatUpdated(scoringFormat?.last_updated);
+    if (!draft) {
+      setStatus(updated);
+      return;
+    }
+    if (draft.status === "complete") {
+      setStatus(`${updated} · Complete`);
+      return;
+    }
+    const { teams, nextMine, until } = pickTiming();
+    const roundPick = formatAdpRoundPick(nextMine, teams);
+    const pickLabel = roundPick
+      ? `Pick ${roundPick}`
+      : `Pick ${nextMine}`;
+    const overall =
+      Number.isFinite(Number(nextMine)) && Number(nextMine) > 0
+        ? ` (${Math.round(Number(nextMine))})`
+        : "";
+    if (until <= 0) {
+      setStatus(`${updated} · On the clock · ${pickLabel}${overall}`);
+      return;
+    }
+    setStatus(`${updated} · ${pickLabel}${overall} · ${until} away`);
   }
 
   function isLiked(id) {
-    return likedIds.has(String(id || ""));
-  }
-
-  function toggleLiked(id) {
-    likedIds = toggleLikedId(likedIds, id);
-    starSync.persistLocalAndMaybeRemote();
+    return favs.has(id);
   }
 
   /** Prefer user/configured league over the draft's linked league. */
@@ -729,9 +659,8 @@ async function mountDraftCompanionPage() {
 
   function cacheScoreResult(result) {
     lastScoreResult = result;
-    lastScoreById = new Map(
-      (result?.recommendations || []).map((r) => [sleeperIdOf(r), r])
-    );
+    const rows = result?.scored || result?.recommendations || [];
+    lastScoreById = new Map(rows.map((r) => [sleeperIdOf(r), r]));
   }
 
   function renderRosterCounts(roster = lastRosterForRender) {
@@ -768,9 +697,10 @@ async function mountDraftCompanionPage() {
 
   function renderRecentPicks() {
     const recent = [...picks].slice(-10).reverse();
+    const teams = leagueTeamCount();
     boardEl.innerHTML = `
-      <table class="draft-table cell-border">
-        <thead><tr><th>Pick</th><th>Slot</th><th>Player</th><th>Pos</th></tr></thead>
+      <table class="draft-table">
+        <thead><tr><th>Pick</th><th>Player</th><th>Pos</th></tr></thead>
         <tbody>
           ${recent
             .map((p) => {
@@ -785,13 +715,12 @@ async function mountDraftCompanionPage() {
                 position: meta.position,
               };
               return `<tr class="${liked ? "draft-liked" : ""}">
-                <td>${escapeHtml(p.pick_no)}</td>
-                <td>${escapeHtml(p.draft_slot)}</td>
-                <td>${playerCellHtml(board, { name, compact: true, liked })}</td>
+                <td class="num">${pickNoHtml(p.pick_no, teams)}</td>
+                <td>${playerCellHtml(board, { name, liked })}</td>
                 <td>${escapeHtml(meta.position || "")}</td>
               </tr>`;
             })
-            .join("") || `<tr><td colspan="4">No picks yet</td></tr>`}
+            .join("") || `<tr><td colspan="3">No picks yet</td></tr>`}
         </tbody>
       </table>`;
   }
@@ -811,25 +740,22 @@ async function mountDraftCompanionPage() {
       return;
     }
     const teams = leagueTeamCount();
-    const rows = withListContext(recs);
+    const rows = withPosGaps(recs, result.scored || recs);
     recEl.innerHTML = `
-      <p class="meta">Score = −ADP + need (need is 0 or a penalty). Gap = vs next on this list. vs ADP = spots moved by need — empty QB/TE are not boosted. Risk ≈ ADP gone before your next pick (not in the score). ADP = overall pick (${teams}-team r.pk in gray)</p>
-      <table class="draft-table cell-border">
+      <table class="draft-table">
         <thead>
           <tr>
-            <th>#</th><th>Player</th><th>Pos</th><th>Bye</th>
-            <th>Need</th><th>ADP</th><th>Risk</th><th>Gap</th><th>vs ADP</th><th>Score</th>
+            <th>Player</th><th>Pos</th><th class="num">ADP</th>
+            <th class="num col-wide">Need</th><th class="num">Score</th>
+            <th class="num" title="Score minus the next player at this position">Δ</th>
           </tr>
         </thead>
         <tbody>
           ${rows
-            .map((r, i) => {
+            .map((r) => {
               const liked = isLiked(sleeperIdOf(r));
-              const jumpClass =
-                r.jump > 0 ? "is-need-up" : r.jump < 0 ? "is-need-down" : "";
               return `
-            <tr class="${[liked ? "draft-liked" : "", jumpClass].filter(Boolean).join(" ")}">
-              <td>${i + 1}</td>
+            <tr class="${liked ? "draft-liked" : ""}">
               ${scoreRowCells(r, { liked, teams })}
             </tr>`;
             })
@@ -867,7 +793,14 @@ async function mountDraftCompanionPage() {
 
     const rankedAvailable = available
       .map((p) => {
-        const scored = lastScoreById.get(sleeperIdOf(p));
+        const scored =
+          lastScoreById.get(sleeperIdOf(p)) ||
+          (lastScoreResult
+            ? annotateScore(p, lastScoreResult.need_count || {}, {
+                riskStart: lastScoreResult.risk_start,
+                riskEnd: lastScoreResult.risk_end,
+              })
+            : null);
         return {
           player: p,
           scored,
@@ -889,14 +822,12 @@ async function mountDraftCompanionPage() {
       return;
     }
 
-    const live = Boolean(draft && lastScoreById.size);
     const teams = leagueTeamCount();
     searchEl.innerHTML = `
-      <table class="draft-table cell-border">
+      <table class="draft-table">
         <thead>
           <tr>
-            <th>Player</th><th>Pos</th><th>Bye</th>
-            <th>Need</th><th>ADP</th><th>Risk</th><th>Score</th>
+            <th>Player</th><th>Pos</th><th class="num">ADP</th><th class="num">Score</th>
           </tr>
         </thead>
         <tbody>
@@ -906,10 +837,8 @@ async function mountDraftCompanionPage() {
               const liked = isLiked(id);
               const row = scored || {
                 ...player,
-                need_bonus: 0,
                 adp: player.adp,
-                risk: 0,
-                score: live ? "—" : "—",
+                score: "—",
               };
               const classes = [
                 liked ? "draft-liked" : "",
@@ -919,14 +848,11 @@ async function mountDraftCompanionPage() {
                 .join(" ");
               const scoreCell = isTaken
                 ? `<td><span class="draft-taken-label">Taken</span></td>`
-                : `<td><strong>${escapeHtml(row.score)}</strong></td>`;
+                : `<td class="num">${escapeHtml(row.score)}</td>`;
               return `<tr class="${classes}">
                 <td>${playerCellHtml(player, { liked })}</td>
                 <td>${escapeHtml(player.position)}</td>
-                <td>${player.bye_week == null ? "—" : escapeHtml(player.bye_week)}</td>
-                <td>${scored ? needBonusHtml(scored.need_bonus) : "—"}</td>
-                <td>${adpHtml(player.adp, teams)}</td>
-                <td>${scored ? riskHtml(scored.risk) : "—"}</td>
+                <td class="num">${adpHtml(player.adp, teams)}</td>
                 ${scoreCell}
               </tr>`;
             })
@@ -935,14 +861,27 @@ async function mountDraftCompanionPage() {
       </table>`;
   }
 
-  function renderScores() {
-    if (!draft) return;
+  function scoreContext() {
     const timing = pickTiming();
-    const settings = timing.settings;
     const bySlot = currentBySlot();
     const myRoster = enrichRoster(bySlot[mySlot] || []);
-    updateMeta(timing);
-    lastMyRosterFp = myRosterFingerprint(myRoster);
+    return {
+      timing,
+      bySlot,
+      myRoster,
+      fp: picksFingerprint(picks),
+      myFp: myRosterFingerprint(myRoster),
+    };
+  }
+
+  function renderScores(ctx) {
+    if (!draft) return;
+    const timing = ctx?.timing || pickTiming();
+    const settings = timing.settings;
+    const bySlot = ctx?.bySlot || currentBySlot();
+    const myRoster = ctx?.myRoster || enrichRoster(bySlot[mySlot] || []);
+    updateMeta();
+    lastMyRosterFp = ctx?.myFp || myRosterFingerprint(myRoster);
 
     const byPos = availableByPos();
     const result = scoreCandidates({
@@ -973,27 +912,24 @@ async function mountDraftCompanionPage() {
   }
 
   function queueScoreRender({ force = false } = {}) {
-    const timing = draft ? pickTiming() : null;
-    const bySlot = currentBySlot();
-    const myRoster = enrichRoster(bySlot[mySlot] || []);
-    const myFp = myRosterFingerprint(myRoster);
-    const onClock = timing ? timing.until <= 0 : false;
+    const ctx = draft ? scoreContext() : null;
+    const timing = ctx?.timing || null;
 
-    const fp = picksFingerprint(picks);
     if (
       !force &&
-      fp === lastScoredFingerprint &&
-      myFp === lastMyRosterFp &&
+      ctx &&
+      ctx.fp === lastScoredFingerprint &&
+      ctx.myFp === lastMyRosterFp &&
       hasScoredOnce
     ) {
-      if (timing) updateMeta(timing, { onClock });
+      if (timing) updateMeta();
       return;
     }
 
     const gen = ++scoreGen;
     requestAnimationFrame(() => {
       if (gen !== scoreGen) return;
-      renderScores();
+      renderScores(ctx);
     });
   }
 
@@ -1093,7 +1029,7 @@ async function mountDraftCompanionPage() {
     const btn = event.target.closest(".draft-star");
     if (!btn || !rootEl.contains(btn)) return;
     event.preventDefault();
-    toggleLiked(btn.getAttribute("data-player-id"));
+    favs.toggle(btn.getAttribute("data-player-id"));
   });
 
   searchInput?.addEventListener("input", () => {
@@ -1136,7 +1072,7 @@ async function mountDraftCompanionPage() {
   });
 
   try {
-    await starSync.hydrate();
+    await favs.hydrate();
 
     if (leagueInput) leagueInput.value = "";
     if (draftInput) draftInput.value = "";

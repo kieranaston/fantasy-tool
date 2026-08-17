@@ -4,9 +4,10 @@ from __future__ import annotations
 
 import json
 import uuid
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+from src.export.json_writer import write_json
 
 SOURCE_BEAT_REPORTER = "beat_reporter"
 
@@ -28,24 +29,10 @@ DEFAULT_POLL_STATE: dict[str, Any] = {
 }
 
 
-def utc_now_iso() -> str:
-    return (
-        datetime.now(timezone.utc)
-        .replace(microsecond=0)
-        .isoformat()
-        .replace("+00:00", "Z")
-    )
-
-
 def load_json(path: Path, default: Any) -> Any:
     if not path.exists():
         return default
     return json.loads(path.read_text(encoding="utf-8"))
-
-
-def write_json(path: Path, payload: Any) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
 
 def new_report_id() -> str:

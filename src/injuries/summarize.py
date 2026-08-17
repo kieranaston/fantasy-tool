@@ -6,8 +6,9 @@ import json
 import os
 import re
 import time
-from datetime import datetime
 from typing import Any
+
+from src.injuries.validate import EMOJI_RE
 
 EXTRACT_SYSTEM = (
     "Extract only what is explicitly stated. No inference. No medical opinion."
@@ -28,30 +29,29 @@ BLUESKY_BATCH_INSTRUCTION = (
 )
 
 NARRATIVE_SYSTEM = (
-    "You write concise fantasy-football player-news briefings for a reference site.\n"
+    "You write very short fantasy-football player-news blurbs for a reference site.\n"
     "Rules:\n"
-    "- Facts about the player must come from the provided source posts "
-    "(availability, injury, contract, trade, suspension, practice status, etc.).\n"
-    "- Use Google Search when you need real-world context that the posts mention "
-    "but do not date or define — e.g. when that team's training camp opens, "
-    "when Week 1 is, what a league milestone means this season. "
-    "Prefer official/reputable NFL sources. If search cannot confirm a date, "
-    "omit it rather than guessing.\n"
-    "- When multiple posts exist, connect them into one short narrative arc "
-    "(what was reported earlier → what is known now).\n"
-    "- 2–5 sentences max. Clear prose, not a bullet list.\n"
-    "- Dates must use ordinal day forms: July 24th (never bare July 24).\n"
-    "- When a later update follows an earlier one, state the gap using "
-    "days_after_previous_update when provided "
-    "(e.g. 'On July 24th, 66 days later, …').\n"
+    "- Lead with the player's current fantasy-relevant status from the newest "
+    "source post (availability, role, injury, contract, trade, practice).\n"
+    "- 1–2 short sentences only. Hard max: 2 sentences / ~280 characters.\n"
+    "- Older posts are background only — mention them in half a clause at most, "
+    "and only if they are needed to understand the latest update. "
+    "Do not narrate a full chronology, day gaps ('66 days later'), or "
+    "march-through-camp timelines.\n"
+    "- Facts about the player must come from the provided source posts.\n"
+    "- Use Google Search only for a date or league fact the posts imply but "
+    "do not define (e.g. when camp opens). Prefer official NFL sources; "
+    "omit unconfirmed dates.\n"
+    "- Dates: ordinal day forms (July 24th), never bare July 24. Prefer the "
+    "latest date; skip older dates unless essential.\n"
     "- Never copy emojis, hashtags, ALL-CAPS banners, or raw social formatting.\n"
     "- Paraphrase; short quoted phrases only when attribution matters.\n"
-    "- ALWAYS expand acronyms every time they appear, with availability impact:\n"
-    "  • OTAs / OTA = Organized Team Activities (voluntary spring practices).\n"
-    "  • PUP = Physically Unable to Perform; at camp start, no practice/games "
-    "for at least the first 4 regular-season weeks until activated.\n"
-    "  • NFI = Non-Football Injury; similar restrictions to PUP.\n"
-    "  • IR = Injured Reserve; typically out at least 4 games once placed.\n"
+    "- Expand acronyms on first use only, briefly:\n"
+    "  • OTAs = Organized Team Activities (voluntary).\n"
+    "  • PUP = Physically Unable to Perform (no practice; typically out ≥4 weeks "
+    "until activated).\n"
+    "  • NFI = Non-Football Injury (similar to PUP).\n"
+    "  • IR = Injured Reserve (typically out ≥4 games).\n"
     "  • DNP = Did Not Practice.\n"
     "- Do not invent medical opinions or unconfirmed dates.\n"
     "- Do not write placeholders like 'N ago', 'None', or 'null'."
@@ -109,16 +109,6 @@ BATCH_NARRATIVE_SCHEMA: dict[str, Any] = {
     },
     "required": ["results"],
 }
-
-_EMOJI_RE = re.compile(
-    "["
-    "\U0001F300-\U0001F9FF"
-    "\U00002600-\U000027BF"
-    "\U0000FE00-\U0000FE0F"
-    "\U0001F1E0-\U0001F1FF"
-    "]+",
-    flags=re.UNICODE,
-)
 
 
 def gemini_available() -> bool:
@@ -243,7 +233,7 @@ def normalize_summary(summary: str) -> str:
     text = (summary or "").strip()
     if not text:
         return text
-    text = _EMOJI_RE.sub("", text)
+    text = EMOJI_RE.sub("", text)
     text = re.sub(
         r"^(?:N|\d+)\s*ago:\s*(?:None|null|n/a)?\s*\.?\s*Now:\s*",
         "",
@@ -259,31 +249,17 @@ def normalize_summary(summary: str) -> str:
 def _timeline_payload(reports: list[dict[str, Any]]) -> list[dict[str, str]]:
     ordered = sorted(reports, key=lambda r: r.get("timestamp") or "")
     payload: list[dict[str, str]] = []
-    prev_dt: datetime | None = None
     for r in ordered:
         text = (r.get("source_text") or "").strip()
         if not text:
             continue
-        ts = r.get("timestamp") or ""
-        days_after_previous = ""
-        cur = None
-        if ts:
-            try:
-                cur = datetime.fromisoformat(ts.replace("Z", "+00:00"))
-            except ValueError:
-                cur = None
-        if cur is not None and prev_dt is not None:
-            days_after_previous = str((cur.date() - prev_dt.date()).days)
         payload.append(
             {
-                "date": ts,
-                "days_after_previous_update": days_after_previous,
+                "date": r.get("timestamp") or "",
                 "url": r.get("url") or "",
                 "text": text,
             }
         )
-        if cur is not None:
-            prev_dt = cur
     return payload
 
 
@@ -301,7 +277,8 @@ def build_player_narrative(
     user = (
         f"Player: {player_name or player_id}\n\n"
         f"Source posts (chronological):\n{json.dumps(timeline, indent=2)}\n\n"
-        "Write one concise player-news briefing as JSON field summary."
+        "Write one brief player-news blurb as JSON field summary. "
+        "Lead with the latest update; 1–2 short sentences max."
     )
     result = _generate_json(
         system=NARRATIVE_SYSTEM,
@@ -339,7 +316,8 @@ def build_narratives_batch(
         for item in items
     ]
     user = (
-        "For each player, write one concise player-news briefing.\n\n"
+        "For each player, write one brief player-news blurb "
+        "(lead with latest update; 1–2 short sentences max).\n\n"
         f"{json.dumps(payload, indent=2)}"
     )
     result = _generate_json(
