@@ -13,7 +13,7 @@ import {
   SKILL_POSITIONS,
   SCORING_FORMATS,
   FORMAT_LABELS,
-} from "./draft-scoring.js?v=91";
+} from "./draft-scoring.js?v=94";
 import { createFavourites } from "./draft-liked.js?v=9";
 
 /** Fast on your turn / on deck; slower while waiting. */
@@ -71,8 +71,12 @@ function gapHtml(gap) {
 }
 
 function riskHtml(r) {
-  const pct = Math.round(Number(r?.risk) * 100);
-  if (!Number.isFinite(pct) || pct <= 0) return "—";
+  if (r?.risk == null) return "—";
+  const raw = Number(r.risk);
+  if (!Number.isFinite(raw) || raw <= 0) {
+    return `<span class="risk-low" title="Chance taken before your next pick">0%</span>`;
+  }
+  const pct = raw < 0.005 ? 1 : Math.round(raw * 100);
   const cls = pct >= 70 ? "risk-high" : pct >= 40 ? "risk-mid" : "risk-low";
   return `<span class="${cls}" title="Chance taken before your next pick">${pct}%</span>`;
 }

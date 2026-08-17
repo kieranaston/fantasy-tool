@@ -38,6 +38,9 @@ const ADP_MISSING = 9999;
  */
 const SOFTMAX_TEMPERATURE = 4;
 
+/** Max players in the risk sim pool (ADP ∪ your top recommendations). */
+const RISK_POOL_CAP = 80;
+
 /** Scoring formats for daily Sleeper ADP boards under docs/data/draft/. */
 const SCORING_FORMATS = ["half_ppr", "full_ppr", "std"];
 
@@ -282,7 +285,7 @@ function wrRbOverstock(surplus, flexCredit) {
  * WR/RB surplus first fills shared flex; leftover surplus is the penalty.
  * QB/TE: 0 until you have the starter, then −SINGLETON_SURPLUS_PENALTY
  * (and worse for extra copies). Superflex seats add to QB capacity, so a
- * 2nd QB is unpenalized until those seats are filled.
+ * 2nd QB is not penalized until those seats are filled.
  */
 function needCounts(roster, settings) {
   const { slots, counts, openFlex } = teamNeed(roster, settings);
@@ -490,6 +493,36 @@ function simulateGoneProbabilities({
   return out;
 }
 
+/**
+ * Opponents draft from ADP value; your board ranks by score. Union both top-N
+ * sets so every recommended player gets a risk estimate (≤ RISK_POOL_CAP).
+ */
+function buildRiskSimPool(sortedAvailable, myNeed, limit = 40) {
+  const recCap = Math.max(1, Number(limit) || 40);
+  const topByAdp = sortedAvailable.slice(0, recCap);
+  const topByScore = sortedAvailable
+    .slice()
+    .sort((a, b) => {
+      const posA = normalizePos(a.position);
+      const posB = normalizePos(b.position);
+      const scoreA = -adpValue(a) + NEED_K * (myNeed.need_count[posA] || 0);
+      const scoreB = -adpValue(b) + NEED_K * (myNeed.need_count[posB] || 0);
+      return scoreB - scoreA || adpValue(a) - adpValue(b);
+    })
+    .slice(0, recCap);
+
+  const seen = new Set();
+  const pool = [];
+  for (const player of [...topByAdp, ...topByScore]) {
+    const id = playerId(player);
+    if (seen.has(id)) continue;
+    seen.add(id);
+    pool.push(player);
+    if (pool.length >= RISK_POOL_CAP) break;
+  }
+  return pool;
+}
+
 /** Merge ADP-sorted per-position lists (caller keeps each list sorted). */
 function flattenAvailable(availableByPos) {
   const lists = SKILL_POSITIONS.map((pos) => availableByPos[pos] || []);
@@ -516,17 +549,17 @@ function flattenAvailable(availableByPos) {
   return out;
 }
 
-function annotateScore(player, need_count, { risk = 0 } = {}) {
+function annotateScore(player, need_count, { risk = null } = {}) {
   const pos = normalizePos(player.position);
   const need = need_count[pos] || 0;
   const needBonus = NEED_K * need;
   const adp = adpValue(player);
-  const p = Number(risk);
+  const p = risk == null ? null : Number(risk);
   return {
     ...player,
     need_bonus: round1(needBonus),
     need_count: need,
-    risk: Number.isFinite(p) ? Math.round(p * 100) / 100 : 0,
+    risk: p == null || !Number.isFinite(p) ? null : Math.round(p * 100) / 100,
     score: round1(-adp + needBonus),
   };
 }
@@ -555,8 +588,8 @@ function scoreCandidates({
   const onClock = myPick === currentPickNo;
 
   const sortedAvailable = flattenAvailable(availableByPosIn);
-  const simCap = Math.max(1, Number(limit) || 40);
-  const pool = sortedAvailable.slice(0, simCap);
+  const myNeed = needCounts(myRoster, settings);
+  const pool = buildRiskSimPool(sortedAvailable, myNeed, limit);
   const simRosters = cloneRosters(opponentRosters, teams);
   simRosters[mySlot] = [...(myRoster || [])];
 
@@ -574,11 +607,10 @@ function scoreCandidates({
     });
   }
 
-  const myNeed = needCounts(myRoster, settings);
   const scored = [];
   for (const player of sortedAvailable) {
     const id = playerId(player);
-    const risk = goneProbById.get(id) || 0;
+    const risk = goneProbById.has(id) ? goneProbById.get(id) : null;
     scored.push(annotateScore(player, myNeed.need_count, { risk }));
   }
 
