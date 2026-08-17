@@ -1,7 +1,624 @@
 {
   "title": "Player News",
-  "last_updated": "2026-08-16T12:18:11Z",
+  "last_updated": "2026-08-17T12:21:01Z",
   "players": [
+    {
+      "player_id": "00-0036040",
+      "player_name": "Juwan Johnson",
+      "current_designation": "Remains top tight end",
+      "last_updated": "2026-08-16T19:40:23-07:00",
+      "diff_summary": "Juwan Johnson remains the top tight end on the depth chart.",
+      "timeline": [
+        {
+          "id": "7ccb6b62-a010-48b4-ac65-4c96f232150d",
+          "timestamp": "2026-08-16T19:40:23-07:00",
+          "designation": "Remains top tight end",
+          "source_text": "Juwan Johnson: Remains top tight end \n\n https://www.rotowire.com/football/player/juwan-johnson-14630",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtaofsynsz26",
+          "source_type": "beat_reporter",
+          "player_name": "Juwan Johnson"
+        }
+      ],
+      "team": "NO",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/no.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wuyyzdqkh5fve8t7kfuv",
+      "team_color": "#D3BC8D"
+    },
+    {
+      "player_id": "00-0037263",
+      "player_name": "Tyler Allgeier",
+      "current_designation": "Love's injury opens up opportunity",
+      "last_updated": "2026-08-16T19:04:14-07:00",
+      "diff_summary": "Tyler Allgeier found a home with the Cardinals on March 9th, 2026. He has been seen seeing action with the starters, and his opportunity may increase following Jeremiyah Love's injury.",
+      "timeline": [
+        {
+          "id": "febb2371-bb61-4a38-8480-c39742be0731",
+          "timestamp": "2026-08-16T19:04:14-07:00",
+          "designation": "Love's injury opens up opportunity",
+          "source_text": "Tyler Allgeier: Love's injury opens up opportunity",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtamf6gook2l",
+          "source_type": "beat_reporter",
+          "player_name": "Tyler Allgeier"
+        },
+        {
+          "id": "97f273fb-e15f-40ad-924b-832a03f26165",
+          "timestamp": "2026-08-13T20:41:01-07:00",
+          "designation": "Sees action with starters",
+          "source_text": "Tyler Allgeier: Sees action with starters",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszafi6fnq2a",
+          "source_type": "beat_reporter",
+          "player_name": "Tyler Allgeier"
+        },
+        {
+          "id": "2cff4645-e87d-40fd-90d1-a822d85f8764",
+          "timestamp": "2026-03-09T10:56:21-07:00",
+          "designation": "Finds home with Cardinals",
+          "source_text": "Tyler Allgeier: Finds home with Cardinals \n\n https://www.rotowire.com/football/player/tyler-allgeier-15976",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgngji5gve2d",
+          "source_type": "beat_reporter",
+          "player_name": "Tyler Allgeier"
+        }
+      ],
+      "team": "ATL",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/buwaomfsz4y6orgb0cyg",
+      "team_color": "#A71930"
+    },
+    {
+      "player_id": "00-0037664",
+      "player_name": "Alec Pierce",
+      "current_designation": "Won't return during training camp",
+      "last_updated": "2026-08-16T18:53:37-07:00",
+      "diff_summary": "Alec Pierce, who initially wanted to test free agency before re-signing with the Colts on March 9th, 2026, is recovering from an ankle procedure. He opened training camp on the Physically Unable to Perform (PUP) list on July 27th and was expected to miss 1-2 more weeks. After receiving a second PRP injection on August 10th, he is considered \"making great progress\" in his recovery but won't return during training camp and is looking \"iffy\" for Week 1.",
+      "timeline": [
+        {
+          "id": "ca51264e-8a76-48ef-b575-ccd987ade29d",
+          "timestamp": "2026-08-16T18:53:37-07:00",
+          "designation": "Won't return during training camp",
+          "source_text": "Alec Pierce: Won't return during training camp",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtals7bwqc2s",
+          "source_type": "beat_reporter",
+          "player_name": "Alec Pierce"
+        },
+        {
+          "id": "88bb3464-a3e0-4204-b4d1-746c448b2eca",
+          "timestamp": "2026-08-11T08:30:20-07:00",
+          "designation": "'Making great progress' in ankle recovery",
+          "source_text": "Alec Pierce: 'Making great progress' in ankle recovery",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msswn2wm7423",
+          "source_type": "beat_reporter",
+          "player_name": "Alec Pierce"
+        },
+        {
+          "id": "e57398b8-2a24-4c23-8118-f8064131322e",
+          "timestamp": "2026-08-11T07:33:19-07:00",
+          "designation": "Looking iffy to play Week 1",
+          "source_text": "Alec Pierce: Looking iffy to play Week 1",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mssth42u322g",
+          "source_type": "beat_reporter",
+          "player_name": "Alec Pierce"
+        },
+        {
+          "id": "a0254ddb-2463-4824-a036-c0b5e9f9777a",
+          "timestamp": "2026-08-11T06:25:54-07:00",
+          "designation": "Avoids second PRP injection for ankle",
+          "source_text": "Alec Pierce: Avoids second PRP injection for ankle",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msspokimmz2d",
+          "source_type": "beat_reporter",
+          "player_name": "Alec Pierce"
+        },
+        {
+          "id": "8d7b6253-d93c-4f40-a20c-015c4728b58e",
+          "timestamp": "2026-08-10T18:05:04-07:00",
+          "designation": "Received second PRP injection",
+          "source_text": "Alec Pierce: Received second PRP injection",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msrgbtyt7u2v",
+          "source_type": "beat_reporter",
+          "player_name": "Alec Pierce"
+        },
+        {
+          "id": "32289166-2c31-4620-b21a-17e9f463ff86",
+          "timestamp": "2026-07-28T08:14:54-07:00",
+          "designation": "Will miss 1-2 more weeks",
+          "source_text": "Alec Pierce: Will miss 1-2 more weeks",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrppalihpc26",
+          "source_type": "beat_reporter",
+          "player_name": "Alec Pierce"
+        },
+        {
+          "id": "79935417-bad8-44c4-91c4-78240ee2705e",
+          "timestamp": "2026-07-27T13:37:52-07:00",
+          "designation": "Opens camp on PUP list",
+          "source_text": "Alec Pierce: Opens camp on PUP list",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrnqt6oijf2z",
+          "source_type": "beat_reporter",
+          "player_name": "Alec Pierce"
+        },
+        {
+          "id": "4781c684-e61e-4894-9b1f-5cc7f47e276f",
+          "timestamp": "2026-06-10T12:21:36-07:00",
+          "designation": "Discusses ankle surgery",
+          "source_text": "Alec Pierce: Discusses ankle surgery",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnxgnjtyev2k",
+          "source_type": "beat_reporter",
+          "player_name": "Alec Pierce"
+        },
+        {
+          "id": "2ddd8f0c-1fab-401f-8b03-895c0f5709de",
+          "timestamp": "2026-06-09T18:15:39-07:00",
+          "designation": "May miss start of training camp",
+          "source_text": "Alec Pierce: May miss start of training camp \n\n https://www.rotowire.com/football/player/alec-pierce-16022",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnvjxoxfyv25",
+          "source_type": "beat_reporter",
+          "player_name": "Alec Pierce"
+        },
+        {
+          "id": "f9680e16-c28f-41c7-915b-4d41ea5a84e2",
+          "timestamp": "2026-04-20T09:46:07-07:00",
+          "designation": "Recovering from ankle procedure",
+          "source_text": "Alec Pierce: Recovering from ankle procedure \n\n https://www.rotowire.com/football/player/alec-pierce-16022",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mjww6kicwk2d",
+          "source_type": "beat_reporter",
+          "player_name": "Alec Pierce"
+        },
+        {
+          "id": "623f5e09-99e0-4cde-a670-4179ec3461e2",
+          "timestamp": "2026-03-09T09:07:12-07:00",
+          "designation": "Staying with Colts",
+          "source_text": "Alec Pierce: Staying with Colts \n\n https://www.rotowire.com/football/player/alec-pierce-16022",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnagbots72e",
+          "source_type": "beat_reporter",
+          "player_name": "Alec Pierce"
+        },
+        {
+          "id": "63a4666e-26f8-4aa0-b78c-f4c835077ec5",
+          "timestamp": "2026-03-04T12:25:09-08:00",
+          "designation": "Wants to test free agency",
+          "source_text": "Alec Pierce: Wants to test free agency \n\n https://www.rotowire.com/football/player/alec-pierce-16022",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgb4iwo2ii2w",
+          "source_type": "beat_reporter",
+          "player_name": "Alec Pierce"
+        }
+      ],
+      "team": "IND",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zeghrjc8rir3r3zi6det",
+      "team_color": "#002C5F"
+    },
+    {
+      "player_id": "00-0041027",
+      "player_name": "Jeremiyah Love",
+      "current_designation": "Dealing with high-ankle sprain",
+      "last_updated": "2026-08-16T17:10:30-07:00",
+      "diff_summary": "Jeremiyah Love, picked by the Cardinals on April 23rd, 2026, is dealing with a high-ankle sprain. He was seen mixing in behind Tyler Allgeier in practice on July 29th and was in line to play on August 11th, showing efficiency with 14 touches. However, an ankle injury was reported on August 13th, and he is expected to be out at least a week, though he is hopeful for Week 1 availability.",
+      "timeline": [
+        {
+          "id": "f489133c-4bc2-47bf-8b43-975d5b57d824",
+          "timestamp": "2026-08-16T17:10:30-07:00",
+          "designation": "Dealing with high-ankle sprain",
+          "source_text": "Jeremiyah Love: Dealing with high-ankle sprain",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtafzsou4g2c",
+          "source_type": "beat_reporter",
+          "player_name": "Jeremiyah Love"
+        },
+        {
+          "id": "de499b11-2581-4e4b-ade2-985aaf8bd1df",
+          "timestamp": "2026-08-16T13:31:35-07:00",
+          "designation": "Hopeful for Week 1",
+          "source_text": "Jeremiyah Love: Hopeful for Week 1",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt7zsdzq3p24",
+          "source_type": "beat_reporter",
+          "player_name": "Jeremiyah Love"
+        },
+        {
+          "id": "edfeaad0-1dda-4c4f-9830-c5c8a9d793ee",
+          "timestamp": "2026-08-15T08:34:39-07:00",
+          "designation": "Out at least a week",
+          "source_text": "Jeremiyah Love: Out at least a week",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt4yqhvsaj2c",
+          "source_type": "beat_reporter",
+          "player_name": "Jeremiyah Love"
+        },
+        {
+          "id": "9f0dcd0c-bca8-450b-81b1-c5b42a37236a",
+          "timestamp": "2026-08-13T20:12:44-07:00",
+          "designation": "Has ankle injury",
+          "source_text": "Jeremiyah Love: Has ankle injury",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz6svr3nz2z",
+          "source_type": "beat_reporter",
+          "player_name": "Jeremiyah Love"
+        },
+        {
+          "id": "b2310f9a-f546-4a5b-a5b4-ddcf01e9adf8",
+          "timestamp": "2026-08-13T20:03:49-07:00",
+          "designation": "Efficient with 14 touches",
+          "source_text": "Jeremiyah Love: Efficient with 14 touches",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz6cxtarb2z",
+          "source_type": "beat_reporter",
+          "player_name": "Jeremiyah Love"
+        },
+        {
+          "id": "7f48acfa-f5c4-4940-bf84-f7d60cb4d6ca",
+          "timestamp": "2026-08-11T10:53:23-07:00",
+          "designation": "In line to play Thursday",
+          "source_text": "Jeremiyah Love: In line to play Thursday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mst6muqaon25",
+          "source_type": "beat_reporter",
+          "player_name": "Jeremiyah Love"
+        },
+        {
+          "id": "ef54526e-bdf6-473a-98bd-6559f5f0e04c",
+          "timestamp": "2026-07-29T10:17:22-07:00",
+          "designation": "Mixing in behind Allgeier",
+          "source_text": "Jeremiyah Love: Mixing in behind Allgeier",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsgki4axv26",
+          "source_type": "beat_reporter",
+          "player_name": "Jeremiyah Love"
+        },
+        {
+          "id": "9a4d6956-0041-4d93-ab23-e02f26c2cb8c",
+          "timestamp": "2026-04-23T17:28:43-07:00",
+          "designation": "Picked by Cardinals",
+          "source_text": "Jeremiyah Love: Picked by Cardinals \n\n https://www.rotowire.com/football/player/jeremiyah-love-19235",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mk7bgitrix24",
+          "source_type": "beat_reporter",
+          "player_name": "Jeremiyah Love"
+        },
+        {
+          "id": "28d03a2b-00da-404c-8024-ac7c5ecaabd0",
+          "timestamp": "2026-02-28T10:51:11-08:00",
+          "designation": "Turns in impressive 40 time",
+          "source_text": "Jeremiyah Love: Turns in impressive 40 time \n\n https://www.rotowire.com/football/player/jeremiyah-love-19235",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mfwvfa76vc2p",
+          "source_type": "beat_reporter",
+          "player_name": "Jeremiyah Love"
+        }
+      ],
+      "team": "AZ",
+      "logo": null,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/b12gtjsylmql5v7iyyla",
+      "team_color": "#2563eb"
+    },
+    {
+      "player_id": "00-0040236",
+      "player_name": "Kyle Monangai",
+      "current_designation": "Believed to be \"fine\" after exiting practice",
+      "last_updated": "2026-08-16T15:32:55-07:00",
+      "diff_summary": "Kyle Monangai was sidelined on July 31st with a soft-tissue injury, but returned to practice on August 3rd. He exited practice on August 16th with an apparent injury, though he is believed to be \"fine.\"",
+      "timeline": [
+        {
+          "id": "1af8e2ec-bf32-4f71-9fc9-318e92be1eea",
+          "timestamp": "2026-08-16T15:32:55-07:00",
+          "designation": "Believed to be \"fine\" after exiting practice",
+          "source_text": "Kyle Monangai: Believed to be \"fine\" after exiting practice",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtaald7rap2o",
+          "source_type": "beat_reporter",
+          "player_name": "Kyle Monangai"
+        },
+        {
+          "id": "72625975-6f3f-40d8-ac54-46b04505cb60",
+          "timestamp": "2026-08-16T14:29:42-07:00",
+          "designation": "Exits practice with apparent injury",
+          "source_text": "Kyle Monangai: Exits practice with apparent injury",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mta52b2wy326",
+          "source_type": "beat_reporter",
+          "player_name": "Kyle Monangai"
+        },
+        {
+          "id": "943e9721-406c-4fcc-8134-f22ede0425fa",
+          "timestamp": "2026-08-03T07:50:17-07:00",
+          "designation": "Back at practice Monday",
+          "source_text": "Kyle Monangai: Back at practice Monday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6qo3ud3o25",
+          "source_type": "beat_reporter",
+          "player_name": "Kyle Monangai"
+        },
+        {
+          "id": "34ed6d06-24b4-4b17-9122-6ffb3f4ffb64",
+          "timestamp": "2026-08-03T05:54:56-07:00",
+          "designation": "Dealing with soft-tissue injury",
+          "source_text": "Kyle Monangai: Dealing with soft-tissue injury",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6k7ssfuk2m",
+          "source_type": "beat_reporter",
+          "player_name": "Kyle Monangai"
+        },
+        {
+          "id": "216ad5cc-e1fa-4ba4-9e70-d40e1f7c2eb9",
+          "timestamp": "2026-07-31T07:22:57-07:00",
+          "designation": "Sidelined Friday",
+          "source_text": "Kyle Monangai: Sidelined Friday \n\n https://www.rotowire.com/football/player/kyle-monangai-18520",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx5qhcliz2z",
+          "source_type": "beat_reporter",
+          "player_name": "Kyle Monangai"
+        }
+      ],
+      "team": "CHI",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cici2wf1walmoluhe95i",
+      "team_color": "#0B162A"
+    },
+    {
+      "player_id": "00-0033288",
+      "player_name": "George Kittle",
+      "current_designation": "Confident he'll avoid PUP for Week 1",
+      "last_updated": "2026-08-16T14:19:10-07:00",
+      "diff_summary": "George Kittle has been targeting a Week 1 return since March 29th, 2026, and feels he is ahead of schedule. He started training camp on the Physically Unable to Perform (PUP) list on July 25th but increased his activity level on August 10th. Kittle is confident he will avoid the PUP list for Week 1.",
+      "timeline": [
+        {
+          "id": "e718412f-eae0-48b4-a161-addc687eb24e",
+          "timestamp": "2026-08-16T14:19:10-07:00",
+          "designation": "Confident he'll avoid PUP for Week 1",
+          "source_text": "George Kittle: Confident he'll avoid PUP for Week 1 \n\n https://www.rotowire.com/football/player/george-kittle-11892",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mta4hgizjr26",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        },
+        {
+          "id": "cd6cb1f5-7c81-4e9f-bf75-9fdedd823915",
+          "timestamp": "2026-08-16T13:17:23-07:00",
+          "designation": "Confident he'll avoid PUP for Week 1",
+          "source_text": "George Kittle: Confident he'll avoid PUP for Week 1",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt7yyxsyxr2l",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        },
+        {
+          "id": "d47bb032-8b70-48b5-b2d3-b87a4d04f375",
+          "timestamp": "2026-08-10T13:20:42-07:00",
+          "designation": "Increases activity level Monday",
+          "source_text": "George Kittle: Increases activity level Monday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msqwfebrdw2m",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        },
+        {
+          "id": "40920f83-730a-41e9-847e-0feb1cc5404d",
+          "timestamp": "2026-07-25T11:25:21-07:00",
+          "designation": "Starting training camp on PUP",
+          "source_text": "George Kittle: Starting training camp on PUP",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mriiiefntg2p",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        },
+        {
+          "id": "c8c4a40c-4080-43f3-bed9-418b79d036f9",
+          "timestamp": "2026-06-23T13:31:49-07:00",
+          "designation": "Feels on track for Week 1",
+          "source_text": "George Kittle: Feels on track for Week 1 \n\n https://www.rotowire.com/football/player/george-kittle-11892",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3moyan2qmfz2k",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        },
+        {
+          "id": "14824f65-f628-4e2e-8187-697a077375f0",
+          "timestamp": "2026-06-04T12:13:20-07:00",
+          "designation": "Says he's ahead of schedule",
+          "source_text": "George Kittle: Says he's ahead of schedule \n\n https://www.rotowire.com/football/player/george-kittle-11892",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnidfac3xr2h",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        },
+        {
+          "id": "772020ef-3ac2-4347-9e7d-099ae6c6f484",
+          "timestamp": "2026-05-27T07:20:22-07:00",
+          "designation": "Still targeting Week 1",
+          "source_text": "George Kittle: Still targeting Week 1 \n\n https://www.rotowire.com/football/player/george-kittle-11892",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmtpbycwa72a",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        },
+        {
+          "id": "a0f41669-4ca1-4cc3-96f9-83701eb21dbb",
+          "timestamp": "2026-04-30T11:22:07-07:00",
+          "designation": "Aiming to play Week 1",
+          "source_text": "George Kittle: Aiming to play Week 1 \n\n https://www.rotowire.com/football/player/george-kittle-11892",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mkqa7fpx6j2y",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        },
+        {
+          "id": "a374e7be-e1cc-465a-909e-54af3e9b39ec",
+          "timestamp": "2026-03-29T12:00:18-07:00",
+          "designation": "GM hopes for Week 1 return",
+          "source_text": "George Kittle: GM hopes for Week 1 return \n\n https://www.rotowire.com/football/player/george-kittle-11892",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mi7tgaiy6r23",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        }
+      ],
+      "team": "SF",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ztz3xqjaqgok9m4nylgs",
+      "team_color": "#AA0000"
+    },
+    {
+      "player_id": "00-0038996",
+      "player_name": "Tucker Kraft",
+      "current_designation": "Expects to be on snap count early in season",
+      "last_updated": "2026-08-16T12:54:37-07:00",
+      "diff_summary": "Tucker Kraft was ahead of schedule in his recovery from an ACL tear, with optimism he could be ready for training camp. He was placed on the Physically Unable to Perform (PUP) list on July 27th but was activated just two days later, with Week 1 still in play. Kraft logged his first practice since the injury on July 31st and has since progressed to running routes in full pads and participating in 11-on-11 drills. He is trending toward active status for Week 1 but expects to be on a snap count early in the season.",
+      "timeline": [
+        {
+          "id": "c14d913a-2e61-4fbb-8c52-2394920ce68e",
+          "timestamp": "2026-08-16T12:54:37-07:00",
+          "designation": "Expects to be on snap count early in season",
+          "source_text": "Tucker Kraft: Expects to be on snap count early in season",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt7xqamm2j2d",
+          "source_type": "beat_reporter",
+          "player_name": "Tucker Kraft"
+        },
+        {
+          "id": "6bc6af18-4871-453e-a861-19ebb4d325f4",
+          "timestamp": "2026-08-16T07:44:01-07:00",
+          "designation": "Cleared for 11-on-11 drills",
+          "source_text": "Tucker Kraft: Cleared for 11-on-11 drills",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt7gettxww2l",
+          "source_type": "beat_reporter",
+          "player_name": "Tucker Kraft"
+        },
+        {
+          "id": "a7531839-47e4-40e6-a5a9-21ed1b8b6587",
+          "timestamp": "2026-08-13T15:44:36-07:00",
+          "designation": "Trending toward active status Week 1",
+          "source_text": "Tucker Kraft: Trending toward active status Week 1",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msyptgrf2w26",
+          "source_type": "beat_reporter",
+          "player_name": "Tucker Kraft"
+        },
+        {
+          "id": "b93c7b3f-5b07-4484-8a6f-7726468130d4",
+          "timestamp": "2026-08-10T09:22:06-07:00",
+          "designation": "Runs routes in full pads",
+          "source_text": "Tucker Kraft: Runs routes in full pads",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msqj2paf5z2v",
+          "source_type": "beat_reporter",
+          "player_name": "Tucker Kraft"
+        },
+        {
+          "id": "010bb3fe-ffd3-4743-87bc-6ea9fcc52a65",
+          "timestamp": "2026-07-31T15:53:35-07:00",
+          "designation": "Logs first practice since ACL tear",
+          "source_text": "Tucker Kraft: Logs first practice since ACL tear",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mry2bjwpxc27",
+          "source_type": "beat_reporter",
+          "player_name": "Tucker Kraft"
+        },
+        {
+          "id": "9c623465-3cd3-4c15-ae25-9c68519c82c2",
+          "timestamp": "2026-07-31T08:01:20-07:00",
+          "designation": "Brought off PUP list",
+          "source_text": "Tucker Kraft: Brought off PUP list",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx7v34ioq2i",
+          "source_type": "beat_reporter",
+          "player_name": "Tucker Kraft"
+        },
+        {
+          "id": "d5a20697-477b-4517-8be0-4faf634870b6",
+          "timestamp": "2026-07-29T07:28:58-07:00",
+          "designation": "Week 1 remains in play",
+          "source_text": "Tucker Kraft: Week 1 remains in play",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrs55eg7e22p",
+          "source_type": "beat_reporter",
+          "player_name": "Tucker Kraft"
+        },
+        {
+          "id": "a564d26e-f7e3-4fd0-bd60-811adf242f1a",
+          "timestamp": "2026-07-27T13:33:54-07:00",
+          "designation": "Lands on PUP list",
+          "source_text": "Tucker Kraft: Lands on PUP list",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrnqm36mx42i",
+          "source_type": "beat_reporter",
+          "player_name": "Tucker Kraft"
+        },
+        {
+          "id": "6bfcbe95-d6e6-439f-9979-e603a9ff4807",
+          "timestamp": "2026-07-20T13:05:04-07:00",
+          "designation": "May start camp on PUP list",
+          "source_text": "Tucker Kraft: May start camp on PUP list",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mr43q37jph2i",
+          "source_type": "beat_reporter",
+          "player_name": "Tucker Kraft"
+        },
+        {
+          "id": "f457b6af-2327-4902-b7d3-b7f8f558704c",
+          "timestamp": "2026-06-10T11:48:36-07:00",
+          "designation": "Expects to play Week 1",
+          "source_text": "Tucker Kraft: Expects to play Week 1",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnxesjju3w2k",
+          "source_type": "beat_reporter",
+          "player_name": "Tucker Kraft"
+        },
+        {
+          "id": "84be1e34-ef6a-41bc-986c-0721f40e79ac",
+          "timestamp": "2026-05-27T09:26:59-07:00",
+          "designation": "Could be ready for training camp",
+          "source_text": "Tucker Kraft: Could be ready for training camp \n\n https://www.rotowire.com/football/player/tucker-kraft-16649",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmtwefzkhk2l",
+          "source_type": "beat_reporter",
+          "player_name": "Tucker Kraft"
+        },
+        {
+          "id": "d1c80563-c4ea-4ada-b638-550575afe608",
+          "timestamp": "2026-05-06T12:26:57-07:00",
+          "designation": "Ahead of schedule in recovery",
+          "source_text": "Tucker Kraft: Ahead of schedule in recovery \n\n https://www.rotowire.com/football/player/tucker-kraft-16649",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ml7gmv6z5s2l",
+          "source_type": "beat_reporter",
+          "player_name": "Tucker Kraft"
+        }
+      ],
+      "team": "GB",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yr6nj1zqaqg6nbdnxu3q",
+      "team_color": "#203731"
+    },
+    {
+      "player_id": "00-0038997",
+      "player_name": "Josh Downs",
+      "current_designation": "Gets green light to return to practice",
+      "last_updated": "2026-08-16T11:00:47-07:00",
+      "diff_summary": "Josh Downs was nursing a groin injury as of August 8th and was expected to practice on August 11th, which he did. He exited practice on August 15th with a possible upper body injury but returned to practice on August 16th and received a green light to continue participating.",
+      "timeline": [
+        {
+          "id": "d6a6a057-0774-4394-92fe-c7ef31c8625d",
+          "timestamp": "2026-08-16T11:00:47-07:00",
+          "designation": "Gets green light to return to practice",
+          "source_text": "Josh Downs: Gets green light to return to practice",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt7repb5ib2w",
+          "source_type": "beat_reporter",
+          "player_name": "Josh Downs"
+        },
+        {
+          "id": "ae8c4f8d-7302-4b0b-a5ee-20b8898e19b7",
+          "timestamp": "2026-08-16T10:23:06-07:00",
+          "designation": "Returned to Saturday's practice",
+          "source_text": "Josh Downs: Returned to Saturday's practice \n\n https://www.rotowire.com/football/player/josh-downs-16689",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt7pbdcm3d22",
+          "source_type": "beat_reporter",
+          "player_name": "Josh Downs"
+        },
+        {
+          "id": "660117b7-6cba-4e41-80fc-c15030a57d33",
+          "timestamp": "2026-08-15T13:39:49-07:00",
+          "designation": "Exits practice with possible upper body injury",
+          "source_text": "Josh Downs: Exits practice with possible upper body injury",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt5js5vcd42d",
+          "source_type": "beat_reporter",
+          "player_name": "Josh Downs"
+        },
+        {
+          "id": "33843fd5-46f7-45fe-b5d8-a15d7d91b224",
+          "timestamp": "2026-08-11T07:35:20-07:00",
+          "designation": "Makes return to practice Tuesday",
+          "source_text": "Josh Downs: Makes return to practice Tuesday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msstkqad4x24",
+          "source_type": "beat_reporter",
+          "player_name": "Josh Downs"
+        },
+        {
+          "id": "a8e91c3c-d02a-40be-8f7c-3a647aff3bb9",
+          "timestamp": "2026-08-09T10:18:42-07:00",
+          "designation": "Could practice Tuesday",
+          "source_text": "Josh Downs: Could practice Tuesday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mso3qyimec23",
+          "source_type": "beat_reporter",
+          "player_name": "Josh Downs"
+        },
+        {
+          "id": "945b00c8-2c03-4fd4-9a1c-ad51ef132c86",
+          "timestamp": "2026-08-08T07:57:39-07:00",
+          "designation": "Nursing groin injury",
+          "source_text": "Josh Downs: Nursing groin injury",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msldfuntfi2u",
+          "source_type": "beat_reporter",
+          "player_name": "Josh Downs"
+        }
+      ],
+      "team": "IND",
+      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gqozitn9vxnp8acz6wwg",
+      "team_color": "#002C5F"
+    },
     {
       "player_id": "00-0037838",
       "player_name": "Isaiah Likely",
@@ -939,55 +1556,6 @@
       "team_color": "#0B162A"
     },
     {
-      "player_id": "00-0038997",
-      "player_name": "Josh Downs",
-      "current_designation": "Exits practice with possible upper body injury",
-      "last_updated": "2026-08-15T13:39:49-07:00",
-      "diff_summary": "Josh Downs was nursing a groin injury as of August 8th and could practice Tuesday. He returned to practice on August 11th but exited practice on August 15th with a possible upper body injury.",
-      "timeline": [
-        {
-          "id": "660117b7-6cba-4e41-80fc-c15030a57d33",
-          "timestamp": "2026-08-15T13:39:49-07:00",
-          "designation": "Exits practice with possible upper body injury",
-          "source_text": "Josh Downs: Exits practice with possible upper body injury",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt5js5vcd42d",
-          "source_type": "beat_reporter",
-          "player_name": "Josh Downs"
-        },
-        {
-          "id": "33843fd5-46f7-45fe-b5d8-a15d7d91b224",
-          "timestamp": "2026-08-11T07:35:20-07:00",
-          "designation": "Makes return to practice Tuesday",
-          "source_text": "Josh Downs: Makes return to practice Tuesday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msstkqad4x24",
-          "source_type": "beat_reporter",
-          "player_name": "Josh Downs"
-        },
-        {
-          "id": "a8e91c3c-d02a-40be-8f7c-3a647aff3bb9",
-          "timestamp": "2026-08-09T10:18:42-07:00",
-          "designation": "Could practice Tuesday",
-          "source_text": "Josh Downs: Could practice Tuesday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mso3qyimec23",
-          "source_type": "beat_reporter",
-          "player_name": "Josh Downs"
-        },
-        {
-          "id": "945b00c8-2c03-4fd4-9a1c-ad51ef132c86",
-          "timestamp": "2026-08-08T07:57:39-07:00",
-          "designation": "Nursing groin injury",
-          "source_text": "Josh Downs: Nursing groin injury",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msldfuntfi2u",
-          "source_type": "beat_reporter",
-          "player_name": "Josh Downs"
-        }
-      ],
-      "team": "IND",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gqozitn9vxnp8acz6wwg",
-      "team_color": "#002C5F"
-    },
-    {
       "player_id": "00-0039163",
       "player_name": "C.J. Stroud",
       "current_designation": "Scheduled to play against Vegas on Thursday",
@@ -1635,82 +2203,6 @@
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/g5yjordcmt76j0saytzb",
       "team_color": "#97233F"
-    },
-    {
-      "player_id": "00-0041027",
-      "player_name": "Jeremiyah Love",
-      "current_designation": "Out at least a week",
-      "last_updated": "2026-08-15T08:34:39-07:00",
-      "diff_summary": "Jeremiyah Love, drafted by the Cardinals, was mixing in behind Allgeier as of July 29th. He was in line to play on Thursday, August 11th, and was efficient with 14 touches in the preseason opener. However, Love sustained an ankle injury and is expected to be out for at least a week as of August 15th.",
-      "timeline": [
-        {
-          "id": "edfeaad0-1dda-4c4f-9830-c5c8a9d793ee",
-          "timestamp": "2026-08-15T08:34:39-07:00",
-          "designation": "Out at least a week",
-          "source_text": "Jeremiyah Love: Out at least a week",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt4yqhvsaj2c",
-          "source_type": "beat_reporter",
-          "player_name": "Jeremiyah Love"
-        },
-        {
-          "id": "9f0dcd0c-bca8-450b-81b1-c5b42a37236a",
-          "timestamp": "2026-08-13T20:12:44-07:00",
-          "designation": "Has ankle injury",
-          "source_text": "Jeremiyah Love: Has ankle injury",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz6svr3nz2z",
-          "source_type": "beat_reporter",
-          "player_name": "Jeremiyah Love"
-        },
-        {
-          "id": "b2310f9a-f546-4a5b-a5b4-ddcf01e9adf8",
-          "timestamp": "2026-08-13T20:03:49-07:00",
-          "designation": "Efficient with 14 touches",
-          "source_text": "Jeremiyah Love: Efficient with 14 touches",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz6cxtarb2z",
-          "source_type": "beat_reporter",
-          "player_name": "Jeremiyah Love"
-        },
-        {
-          "id": "7f48acfa-f5c4-4940-bf84-f7d60cb4d6ca",
-          "timestamp": "2026-08-11T10:53:23-07:00",
-          "designation": "In line to play Thursday",
-          "source_text": "Jeremiyah Love: In line to play Thursday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mst6muqaon25",
-          "source_type": "beat_reporter",
-          "player_name": "Jeremiyah Love"
-        },
-        {
-          "id": "ef54526e-bdf6-473a-98bd-6559f5f0e04c",
-          "timestamp": "2026-07-29T10:17:22-07:00",
-          "designation": "Mixing in behind Allgeier",
-          "source_text": "Jeremiyah Love: Mixing in behind Allgeier",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsgki4axv26",
-          "source_type": "beat_reporter",
-          "player_name": "Jeremiyah Love"
-        },
-        {
-          "id": "9a4d6956-0041-4d93-ab23-e02f26c2cb8c",
-          "timestamp": "2026-04-23T17:28:43-07:00",
-          "designation": "Picked by Cardinals",
-          "source_text": "Jeremiyah Love: Picked by Cardinals \n\n https://www.rotowire.com/football/player/jeremiyah-love-19235",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mk7bgitrix24",
-          "source_type": "beat_reporter",
-          "player_name": "Jeremiyah Love"
-        },
-        {
-          "id": "28d03a2b-00da-404c-8024-ac7c5ecaabd0",
-          "timestamp": "2026-02-28T10:51:11-08:00",
-          "designation": "Turns in impressive 40 time",
-          "source_text": "Jeremiyah Love: Turns in impressive 40 time \n\n https://www.rotowire.com/football/player/jeremiyah-love-19235",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mfwvfa76vc2p",
-          "source_type": "beat_reporter",
-          "player_name": "Jeremiyah Love"
-        }
-      ],
-      "team": "AZ",
-      "logo": null,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/b12gtjsylmql5v7iyyla",
-      "team_color": "#2563eb"
     },
     {
       "player_id": "00-0038128",
@@ -3127,37 +3619,6 @@
       "team_color": "#4495D2"
     },
     {
-      "player_id": "00-0037263",
-      "player_name": "Tyler Allgeier",
-      "current_designation": "Sees action with starters",
-      "last_updated": "2026-08-13T20:41:01-07:00",
-      "diff_summary": "Tyler Allgeier found a new home with the Cardinals on March 9th. He was seen taking snaps with the starters on August 13th.",
-      "timeline": [
-        {
-          "id": "97f273fb-e15f-40ad-924b-832a03f26165",
-          "timestamp": "2026-08-13T20:41:01-07:00",
-          "designation": "Sees action with starters",
-          "source_text": "Tyler Allgeier: Sees action with starters",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszafi6fnq2a",
-          "source_type": "beat_reporter",
-          "player_name": "Tyler Allgeier"
-        },
-        {
-          "id": "2cff4645-e87d-40fd-90d1-a822d85f8764",
-          "timestamp": "2026-03-09T10:56:21-07:00",
-          "designation": "Finds home with Cardinals",
-          "source_text": "Tyler Allgeier: Finds home with Cardinals \n\n https://www.rotowire.com/football/player/tyler-allgeier-15976",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgngji5gve2d",
-          "source_type": "beat_reporter",
-          "player_name": "Tyler Allgeier"
-        }
-      ],
-      "team": "ATL",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/atl.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/buwaomfsz4y6orgb0cyg",
-      "team_color": "#A71930"
-    },
-    {
       "player_id": "00-0041562",
       "player_name": "Fernando Mendoza",
       "current_designation": "Tosses TD in preseason opener",
@@ -3400,109 +3861,6 @@
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/cin.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qya3dtjb5kgofcuj2tuw",
       "team_color": "#FB4F14"
-    },
-    {
-      "player_id": "00-0038996",
-      "player_name": "Tucker Kraft",
-      "current_designation": "Trending toward active status Week 1",
-      "last_updated": "2026-08-13T15:44:36-07:00",
-      "diff_summary": "Tucker Kraft was ahead of schedule in his recovery from an ACL tear as of May 6th and expected to be ready for training camp. He initially expected to play Week 1, but was placed on the Physically Unable to Perform (PUP) list on July 27th. Two days later, on July 29th, Week 1 remained in play, and he was activated off the PUP list on July 31st, logging his first practice since the injury. By August 10th, he was running routes in full pads and is trending toward active status for Week 1 as of August 13th.",
-      "timeline": [
-        {
-          "id": "a7531839-47e4-40e6-a5a9-21ed1b8b6587",
-          "timestamp": "2026-08-13T15:44:36-07:00",
-          "designation": "Trending toward active status Week 1",
-          "source_text": "Tucker Kraft: Trending toward active status Week 1",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msyptgrf2w26",
-          "source_type": "beat_reporter",
-          "player_name": "Tucker Kraft"
-        },
-        {
-          "id": "b93c7b3f-5b07-4484-8a6f-7726468130d4",
-          "timestamp": "2026-08-10T09:22:06-07:00",
-          "designation": "Runs routes in full pads",
-          "source_text": "Tucker Kraft: Runs routes in full pads",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msqj2paf5z2v",
-          "source_type": "beat_reporter",
-          "player_name": "Tucker Kraft"
-        },
-        {
-          "id": "010bb3fe-ffd3-4743-87bc-6ea9fcc52a65",
-          "timestamp": "2026-07-31T15:53:35-07:00",
-          "designation": "Logs first practice since ACL tear",
-          "source_text": "Tucker Kraft: Logs first practice since ACL tear",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mry2bjwpxc27",
-          "source_type": "beat_reporter",
-          "player_name": "Tucker Kraft"
-        },
-        {
-          "id": "9c623465-3cd3-4c15-ae25-9c68519c82c2",
-          "timestamp": "2026-07-31T08:01:20-07:00",
-          "designation": "Brought off PUP list",
-          "source_text": "Tucker Kraft: Brought off PUP list",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx7v34ioq2i",
-          "source_type": "beat_reporter",
-          "player_name": "Tucker Kraft"
-        },
-        {
-          "id": "d5a20697-477b-4517-8be0-4faf634870b6",
-          "timestamp": "2026-07-29T07:28:58-07:00",
-          "designation": "Week 1 remains in play",
-          "source_text": "Tucker Kraft: Week 1 remains in play",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrs55eg7e22p",
-          "source_type": "beat_reporter",
-          "player_name": "Tucker Kraft"
-        },
-        {
-          "id": "a564d26e-f7e3-4fd0-bd60-811adf242f1a",
-          "timestamp": "2026-07-27T13:33:54-07:00",
-          "designation": "Lands on PUP list",
-          "source_text": "Tucker Kraft: Lands on PUP list",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrnqm36mx42i",
-          "source_type": "beat_reporter",
-          "player_name": "Tucker Kraft"
-        },
-        {
-          "id": "6bfcbe95-d6e6-439f-9979-e603a9ff4807",
-          "timestamp": "2026-07-20T13:05:04-07:00",
-          "designation": "May start camp on PUP list",
-          "source_text": "Tucker Kraft: May start camp on PUP list",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mr43q37jph2i",
-          "source_type": "beat_reporter",
-          "player_name": "Tucker Kraft"
-        },
-        {
-          "id": "f457b6af-2327-4902-b7d3-b7f8f558704c",
-          "timestamp": "2026-06-10T11:48:36-07:00",
-          "designation": "Expects to play Week 1",
-          "source_text": "Tucker Kraft: Expects to play Week 1",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnxesjju3w2k",
-          "source_type": "beat_reporter",
-          "player_name": "Tucker Kraft"
-        },
-        {
-          "id": "84be1e34-ef6a-41bc-986c-0721f40e79ac",
-          "timestamp": "2026-05-27T09:26:59-07:00",
-          "designation": "Could be ready for training camp",
-          "source_text": "Tucker Kraft: Could be ready for training camp \n\n https://www.rotowire.com/football/player/tucker-kraft-16649",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmtwefzkhk2l",
-          "source_type": "beat_reporter",
-          "player_name": "Tucker Kraft"
-        },
-        {
-          "id": "d1c80563-c4ea-4ada-b638-550575afe608",
-          "timestamp": "2026-05-06T12:26:57-07:00",
-          "designation": "Ahead of schedule in recovery",
-          "source_text": "Tucker Kraft: Ahead of schedule in recovery \n\n https://www.rotowire.com/football/player/tucker-kraft-16649",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ml7gmv6z5s2l",
-          "source_type": "beat_reporter",
-          "player_name": "Tucker Kraft"
-        }
-      ],
-      "team": "GB",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/gb.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yr6nj1zqaqg6nbdnxu3q",
-      "team_color": "#203731"
     },
     {
       "player_id": "00-0039075",
@@ -4304,118 +4662,6 @@
       "team_color": "#006778"
     },
     {
-      "player_id": "00-0035710",
-      "player_name": "Daniel Jones",
-      "current_designation": "Won't play this preseason",
-      "last_updated": "2026-08-11T09:34:41-07:00",
-      "diff_summary": "Daniel Jones was given the transition tag by the Colts on March 3rd and the team expressed a desire for a long-term deal. He finalized a two-year contract with Indianapolis on March 11th, which was made official the next day. The team is optimistic about his availability for Week 1, and Jones has been participating in Organized Team Activities (OTAs) and throwing. He progressed to seven-on-seven drills by June 1st, with 11-on-11 work expected in July. Jones declared himself fully healthy on July 27th and has been taking all first-team reps, though he will not play in the preseason.",
-      "timeline": [
-        {
-          "id": "a64dccf4-7283-4b1d-a561-d6ef60cce401",
-          "timestamp": "2026-08-11T09:34:41-07:00",
-          "designation": "Won't play this preseason",
-          "source_text": "Daniel Jones: Won't play this preseason",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mst2a4yijj2d",
-          "source_type": "beat_reporter",
-          "player_name": "Daniel Jones"
-        },
-        {
-          "id": "9875b714-2255-4b54-8bb4-1bd90a899446",
-          "timestamp": "2026-07-29T10:37:08-07:00",
-          "designation": "Takes all the first-team reps",
-          "source_text": "Daniel Jones: Takes all the first-team reps",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrshntwovx2p",
-          "source_type": "beat_reporter",
-          "player_name": "Daniel Jones"
-        },
-        {
-          "id": "dbee15f4-50c4-4561-bebe-5c3226d8e827",
-          "timestamp": "2026-07-27T10:10:29-07:00",
-          "designation": "Deems himself fully healthy",
-          "source_text": "Daniel Jones: Deems himself fully healthy",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrnfae6pgy2z",
-          "source_type": "beat_reporter",
-          "player_name": "Daniel Jones"
-        },
-        {
-          "id": "b2be9bdc-7755-4ba4-8890-cf0705821f63",
-          "timestamp": "2026-06-11T08:34:56-07:00",
-          "designation": "11-on-11 work expected next month",
-          "source_text": "Daniel Jones: 11-on-11 work expected next month \n\n https://www.rotowire.com/football/player/daniel-jones-13491",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnzkh566my2a",
-          "source_type": "beat_reporter",
-          "player_name": "Daniel Jones"
-        },
-        {
-          "id": "e473d4d3-e3e0-41d3-a1c1-777c84829dc7",
-          "timestamp": "2026-06-01T11:22:33-07:00",
-          "designation": "Progresses to 7-on-7 drills",
-          "source_text": "Daniel Jones: Progresses to 7-on-7 drills \n\n https://www.rotowire.com/football/player/daniel-jones-13491",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnap5nmzm32g",
-          "source_type": "beat_reporter",
-          "player_name": "Daniel Jones"
-        },
-        {
-          "id": "0445251e-4ad2-4eb9-b281-a71f95e21dc0",
-          "timestamp": "2026-05-27T11:46:47-07:00",
-          "designation": "Throwing at OTAs",
-          "source_text": "Daniel Jones: Throwing at OTAs \n\n https://www.rotowire.com/football/player/daniel-jones-13491",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmu66eom7q24",
-          "source_type": "beat_reporter",
-          "player_name": "Daniel Jones"
-        },
-        {
-          "id": "02fec8ae-90c5-405c-b98d-163ba6944340",
-          "timestamp": "2026-04-20T18:44:23-07:00",
-          "designation": "Team optimistic about Week 1",
-          "source_text": "Daniel Jones: Team optimistic about Week 1 \n\n https://www.rotowire.com/football/player/daniel-jones-13491",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mjxub22bxd2y",
-          "source_type": "beat_reporter",
-          "player_name": "Daniel Jones"
-        },
-        {
-          "id": "dd695b4d-1466-4834-9679-a6444dbf0c66",
-          "timestamp": "2026-03-12T13:04:18-07:00",
-          "designation": "Extension official",
-          "source_text": "Daniel Jones: Extension official \n\n https://www.rotowire.com/football/player/daniel-jones-13491",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgv72zuzpz2p",
-          "source_type": "beat_reporter",
-          "player_name": "Daniel Jones"
-        },
-        {
-          "id": "a67b3877-0f40-41a6-94d4-d701f226f1e3",
-          "timestamp": "2026-03-11T08:23:26-07:00",
-          "designation": "Finalizing two-year deal with Indy",
-          "source_text": "Daniel Jones: Finalizing two-year deal with Indy \n\n https://www.rotowire.com/football/player/daniel-jones-13491",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgs6vudb2q2s",
-          "source_type": "beat_reporter",
-          "player_name": "Daniel Jones"
-        },
-        {
-          "id": "bd4733e8-4495-48ba-875b-d56696c684fe",
-          "timestamp": "2026-03-09T09:21:49-07:00",
-          "designation": "Colts want long-term deal",
-          "source_text": "Daniel Jones: Colts want long-term deal \n\n https://www.rotowire.com/football/player/daniel-jones-13491",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnbagmcmi2w",
-          "source_type": "beat_reporter",
-          "player_name": "Daniel Jones"
-        },
-        {
-          "id": "df33e69e-fa91-4445-8551-984fb47ea8cb",
-          "timestamp": "2026-03-03T12:06:16-08:00",
-          "designation": "Receives transition tag",
-          "source_text": "Daniel Jones: Receives transition tag \n\n https://www.rotowire.com/football/player/daniel-jones-13491",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mg6kyazdqm25",
-          "source_type": "beat_reporter",
-          "player_name": "Daniel Jones"
-        }
-      ],
-      "team": "IND",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nhuiypfjzpkisxllinyv",
-      "team_color": "#002C5F"
-    },
-    {
       "player_id": "00-0035228",
       "player_name": "Kyler Murray",
       "current_designation": "Named as Week 1 Starter",
@@ -4508,118 +4754,6 @@
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ari.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/flezsremqighwuiyu77f",
       "team_color": "#97233F"
-    },
-    {
-      "player_id": "00-0037664",
-      "player_name": "Alec Pierce",
-      "current_designation": "'Making great progress' in ankle recovery",
-      "last_updated": "2026-08-11T08:30:20-07:00",
-      "diff_summary": "Alec Pierce initially wanted to test free agency but ultimately re-signed with the Colts on March 9th. He underwent ankle surgery and was recovering as of April 20th, with a possibility of missing the start of training camp. Pierce opened camp on the Physically Unable to Perform (PUP) list on July 27th and was expected to miss one to two more weeks. He received a second platelet-rich plasma (PRP) injection for his ankle on August 10th, but a subsequent report indicated he avoided a second injection. Pierce is considered questionable for Week 1, though he is reportedly making good progress in his recovery.",
-      "timeline": [
-        {
-          "id": "88bb3464-a3e0-4204-b4d1-746c448b2eca",
-          "timestamp": "2026-08-11T08:30:20-07:00",
-          "designation": "'Making great progress' in ankle recovery",
-          "source_text": "Alec Pierce: 'Making great progress' in ankle recovery",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msswn2wm7423",
-          "source_type": "beat_reporter",
-          "player_name": "Alec Pierce"
-        },
-        {
-          "id": "e57398b8-2a24-4c23-8118-f8064131322e",
-          "timestamp": "2026-08-11T07:33:19-07:00",
-          "designation": "Looking iffy to play Week 1",
-          "source_text": "Alec Pierce: Looking iffy to play Week 1",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mssth42u322g",
-          "source_type": "beat_reporter",
-          "player_name": "Alec Pierce"
-        },
-        {
-          "id": "a0254ddb-2463-4824-a036-c0b5e9f9777a",
-          "timestamp": "2026-08-11T06:25:54-07:00",
-          "designation": "Avoids second PRP injection for ankle",
-          "source_text": "Alec Pierce: Avoids second PRP injection for ankle",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msspokimmz2d",
-          "source_type": "beat_reporter",
-          "player_name": "Alec Pierce"
-        },
-        {
-          "id": "8d7b6253-d93c-4f40-a20c-015c4728b58e",
-          "timestamp": "2026-08-10T18:05:04-07:00",
-          "designation": "Received second PRP injection",
-          "source_text": "Alec Pierce: Received second PRP injection",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msrgbtyt7u2v",
-          "source_type": "beat_reporter",
-          "player_name": "Alec Pierce"
-        },
-        {
-          "id": "32289166-2c31-4620-b21a-17e9f463ff86",
-          "timestamp": "2026-07-28T08:14:54-07:00",
-          "designation": "Will miss 1-2 more weeks",
-          "source_text": "Alec Pierce: Will miss 1-2 more weeks",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrppalihpc26",
-          "source_type": "beat_reporter",
-          "player_name": "Alec Pierce"
-        },
-        {
-          "id": "79935417-bad8-44c4-91c4-78240ee2705e",
-          "timestamp": "2026-07-27T13:37:52-07:00",
-          "designation": "Opens camp on PUP list",
-          "source_text": "Alec Pierce: Opens camp on PUP list",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrnqt6oijf2z",
-          "source_type": "beat_reporter",
-          "player_name": "Alec Pierce"
-        },
-        {
-          "id": "4781c684-e61e-4894-9b1f-5cc7f47e276f",
-          "timestamp": "2026-06-10T12:21:36-07:00",
-          "designation": "Discusses ankle surgery",
-          "source_text": "Alec Pierce: Discusses ankle surgery",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnxgnjtyev2k",
-          "source_type": "beat_reporter",
-          "player_name": "Alec Pierce"
-        },
-        {
-          "id": "2ddd8f0c-1fab-401f-8b03-895c0f5709de",
-          "timestamp": "2026-06-09T18:15:39-07:00",
-          "designation": "May miss start of training camp",
-          "source_text": "Alec Pierce: May miss start of training camp \n\n https://www.rotowire.com/football/player/alec-pierce-16022",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnvjxoxfyv25",
-          "source_type": "beat_reporter",
-          "player_name": "Alec Pierce"
-        },
-        {
-          "id": "f9680e16-c28f-41c7-915b-4d41ea5a84e2",
-          "timestamp": "2026-04-20T09:46:07-07:00",
-          "designation": "Recovering from ankle procedure",
-          "source_text": "Alec Pierce: Recovering from ankle procedure \n\n https://www.rotowire.com/football/player/alec-pierce-16022",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mjww6kicwk2d",
-          "source_type": "beat_reporter",
-          "player_name": "Alec Pierce"
-        },
-        {
-          "id": "623f5e09-99e0-4cde-a670-4179ec3461e2",
-          "timestamp": "2026-03-09T09:07:12-07:00",
-          "designation": "Staying with Colts",
-          "source_text": "Alec Pierce: Staying with Colts \n\n https://www.rotowire.com/football/player/alec-pierce-16022",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgnagbots72e",
-          "source_type": "beat_reporter",
-          "player_name": "Alec Pierce"
-        },
-        {
-          "id": "63a4666e-26f8-4aa0-b78c-f4c835077ec5",
-          "timestamp": "2026-03-04T12:25:09-08:00",
-          "designation": "Wants to test free agency",
-          "source_text": "Alec Pierce: Wants to test free agency \n\n https://www.rotowire.com/football/player/alec-pierce-16022",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgb4iwo2ii2w",
-          "source_type": "beat_reporter",
-          "player_name": "Alec Pierce"
-        }
-      ],
-      "team": "IND",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/ind.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zeghrjc8rir3r3zi6det",
-      "team_color": "#002C5F"
     },
     {
       "player_id": "00-0041032",
@@ -4834,82 +4968,6 @@
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/den.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/i1qxzydetb2orrynzvzk",
       "team_color": "#002244"
-    },
-    {
-      "player_id": "00-0033288",
-      "player_name": "George Kittle",
-      "current_designation": "Increases activity level Monday",
-      "last_updated": "2026-08-10T13:20:42-07:00",
-      "diff_summary": "George Kittle's general manager hoped for a Week 1 return on March 29th, 2026, a target Kittle himself aimed for and felt on track for through May and June. On July 25th, 32 days later, Kittle was placed on the Physically Unable to Perform (PUP) list at the start of training camp. Sixteen days later, on August 10th, he increased his activity level.",
-      "timeline": [
-        {
-          "id": "d47bb032-8b70-48b5-b2d3-b87a4d04f375",
-          "timestamp": "2026-08-10T13:20:42-07:00",
-          "designation": "Increases activity level Monday",
-          "source_text": "George Kittle: Increases activity level Monday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msqwfebrdw2m",
-          "source_type": "beat_reporter",
-          "player_name": "George Kittle"
-        },
-        {
-          "id": "40920f83-730a-41e9-847e-0feb1cc5404d",
-          "timestamp": "2026-07-25T11:25:21-07:00",
-          "designation": "Starting training camp on PUP",
-          "source_text": "George Kittle: Starting training camp on PUP",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mriiiefntg2p",
-          "source_type": "beat_reporter",
-          "player_name": "George Kittle"
-        },
-        {
-          "id": "c8c4a40c-4080-43f3-bed9-418b79d036f9",
-          "timestamp": "2026-06-23T13:31:49-07:00",
-          "designation": "Feels on track for Week 1",
-          "source_text": "George Kittle: Feels on track for Week 1 \n\n https://www.rotowire.com/football/player/george-kittle-11892",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3moyan2qmfz2k",
-          "source_type": "beat_reporter",
-          "player_name": "George Kittle"
-        },
-        {
-          "id": "14824f65-f628-4e2e-8187-697a077375f0",
-          "timestamp": "2026-06-04T12:13:20-07:00",
-          "designation": "Says he's ahead of schedule",
-          "source_text": "George Kittle: Says he's ahead of schedule \n\n https://www.rotowire.com/football/player/george-kittle-11892",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnidfac3xr2h",
-          "source_type": "beat_reporter",
-          "player_name": "George Kittle"
-        },
-        {
-          "id": "772020ef-3ac2-4347-9e7d-099ae6c6f484",
-          "timestamp": "2026-05-27T07:20:22-07:00",
-          "designation": "Still targeting Week 1",
-          "source_text": "George Kittle: Still targeting Week 1 \n\n https://www.rotowire.com/football/player/george-kittle-11892",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmtpbycwa72a",
-          "source_type": "beat_reporter",
-          "player_name": "George Kittle"
-        },
-        {
-          "id": "a0f41669-4ca1-4cc3-96f9-83701eb21dbb",
-          "timestamp": "2026-04-30T11:22:07-07:00",
-          "designation": "Aiming to play Week 1",
-          "source_text": "George Kittle: Aiming to play Week 1 \n\n https://www.rotowire.com/football/player/george-kittle-11892",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mkqa7fpx6j2y",
-          "source_type": "beat_reporter",
-          "player_name": "George Kittle"
-        },
-        {
-          "id": "a374e7be-e1cc-465a-909e-54af3e9b39ec",
-          "timestamp": "2026-03-29T12:00:18-07:00",
-          "designation": "GM hopes for Week 1 return",
-          "source_text": "George Kittle: GM hopes for Week 1 return \n\n https://www.rotowire.com/football/player/george-kittle-11892",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mi7tgaiy6r23",
-          "source_type": "beat_reporter",
-          "player_name": "George Kittle"
-        }
-      ],
-      "team": "SF",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/sf.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ztz3xqjaqgok9m4nylgs",
-      "team_color": "#AA0000"
     },
     {
       "player_id": "00-0040666",
@@ -5521,46 +5579,6 @@
       "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/buf.png",
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zwkeaiecuyafkidllebz",
       "team_color": "#00338D"
-    },
-    {
-      "player_id": "00-0040236",
-      "player_name": "Kyle Monangai",
-      "current_designation": "Back at practice Monday",
-      "last_updated": "2026-08-03T07:50:17-07:00",
-      "diff_summary": "Kyle Monangai was sidelined Friday with a soft-tissue injury but returned to practice Monday, August 4th, 3 days later.",
-      "timeline": [
-        {
-          "id": "943e9721-406c-4fcc-8134-f22ede0425fa",
-          "timestamp": "2026-08-03T07:50:17-07:00",
-          "designation": "Back at practice Monday",
-          "source_text": "Kyle Monangai: Back at practice Monday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6qo3ud3o25",
-          "source_type": "beat_reporter",
-          "player_name": "Kyle Monangai"
-        },
-        {
-          "id": "34ed6d06-24b4-4b17-9122-6ffb3f4ffb64",
-          "timestamp": "2026-08-03T05:54:56-07:00",
-          "designation": "Dealing with soft-tissue injury",
-          "source_text": "Kyle Monangai: Dealing with soft-tissue injury",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms6k7ssfuk2m",
-          "source_type": "beat_reporter",
-          "player_name": "Kyle Monangai"
-        },
-        {
-          "id": "216ad5cc-e1fa-4ba4-9e70-d40e1f7c2eb9",
-          "timestamp": "2026-07-31T07:22:57-07:00",
-          "designation": "Sidelined Friday",
-          "source_text": "Kyle Monangai: Sidelined Friday \n\n https://www.rotowire.com/football/player/kyle-monangai-18520",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx5qhcliz2z",
-          "source_type": "beat_reporter",
-          "player_name": "Kyle Monangai"
-        }
-      ],
-      "team": "CHI",
-      "logo": "https://a.espncdn.com/i/teamlogos/nfl/500/chi.png",
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cici2wf1walmoluhe95i",
-      "team_color": "#0B162A"
     }
   ],
   "news_max_age_days": 14,
