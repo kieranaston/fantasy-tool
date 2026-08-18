@@ -2,7 +2,7 @@
   "season": 2026,
   "format": "std",
   "source": "sleeper_adp",
-  "last_updated": "2026-08-17T14:35:30Z",
+  "last_updated": "2026-08-18T14:40:41Z",
   "players": [
     {
       "sleeper_id": "9509",
@@ -1820,9 +1820,10 @@
     {
       "sleeper_id": "1479",
       "player": "Keenan Allen",
-      "team": "",
+      "team": "IND",
       "position": "WR",
-      "adp": 204.9
+      "adp": 204.9,
+      "bye_week": 13
     },
     {
       "sleeper_id": "11637",
