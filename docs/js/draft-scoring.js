@@ -1,39 +1,22 @@
 /**
- * Draft assistant — ADP first, with a flat positional need penalty.
+ * Draft assistant — ADP first, with a QB/TE backup multiplier.
  *
  * On the clock:
- *  1. Need is one number per position (same for every available player there).
- *     Filling a remaining seat → 0. Each copy beyond effective capacity C
- *     costs a flat ADP hit: −6 per extra RB/WR, −24 per extra QB/TE.
- *  2. Score = −ADP + need (higher is better).
- *  3. Risk uses the same score. Each opponent pick is a softmax; need updates
+ *  1. Score = −ADP × M (higher is better). RB/WR always M = 1 (pure ADP).
+ *     QB/TE: M = 1 until you have one, then M = 1.5 (treat ADP as 50% later).
+ *  2. Risk uses the same score. Each opponent pick is a softmax; M updates
  *     after each team's most likely pick.
  *
- * C is fixed (not from league roster settings): 1 QB, 2 RB, 2 WR, 1 TE,
- * 1 FLEX. No superflex. Unfilled starter holes on the other side reserve
- * flex — a 3rd RB with 0 WRs does not get a free flex seat. TE does not
- * fill flex. Scoring format is still detected so the ADP board matches
- * the league.
+ * League roster settings are not used. Scoring format is still detected so
+ * the ADP board matches the league.
  *
  * Live picks before you're on the clock come from Sleeper — not simulated here.
  */
 
 const SKILL_POSITIONS = ["QB", "RB", "WR", "TE"];
 
-/** ADP-pick penalty per extra copy beyond capacity. */
-const NEED_RB_WR = 6;
-const NEED_QB_TE = 24;
-
-/**
- * Fixed lineup the need model assumes. League roster_positions are not used.
- */
-const NEED_LINEUP = {
-  QB: 1,
-  RB: 2,
-  WR: 2,
-  TE: 1,
-  FLEX: 1,
-};
+/** Backup QB/TE are ranked as if their ADP were this times later. */
+const QB_TE_BACKUP_M = 1.5;
 
 const ADP_MISSING = 9999;
 
@@ -234,76 +217,28 @@ function draftTargets(settings = {}) {
   return { total: rosterSize(settings) };
 }
 
-/**
- * Starter holes (for display / flex accounting). Uses NEED_LINEUP, not
- * league slot settings. Flex is filled by extra WR/RB only.
- */
-function teamNeed(roster) {
-  const slots = NEED_LINEUP;
-  const counts = rosterPositionCounts(roster);
-  const need = {
-    QB: Math.max(0, slots.QB - (counts.QB || 0)),
-    RB: Math.max(0, slots.RB - (counts.RB || 0)),
-    WR: Math.max(0, slots.WR - (counts.WR || 0)),
-    TE: Math.max(0, slots.TE - (counts.TE || 0)),
-  };
-  const flexFilled =
-    Math.max(0, (counts.RB || 0) - slots.RB) +
-    Math.max(0, (counts.WR || 0) - slots.WR);
-  const openFlex = Math.max(0, slots.FLEX - flexFilled);
-  return { need, openFlex, counts, slots };
+function qbTeMultiplier(owned) {
+  return Number(owned || 0) >= 1 ? QB_TE_BACKUP_M : 1;
 }
 
 /**
- * Flex still available to one of RB/WR.
- *
- * The other position claims flex first: unfilled starter holes (don't park
- * a 3rd RB in flex with 0 WRs) and surplus already sitting in flex.
- */
-function flexShareFor(slots, counts, otherPos) {
-  const flex = Math.max(0, slots.FLEX || 0);
-  const otherSlots = Number(slots[otherPos] || 0);
-  const otherOwned = Number(counts[otherPos] || 0);
-  const holes = Math.max(0, otherSlots - otherOwned);
-  const surplus = Math.max(0, otherOwned - otherSlots);
-  return Math.max(0, flex - holes - surplus);
-}
-
-function positionCapacities(slots, counts) {
-  return {
-    QB: slots.QB,
-    RB: slots.RB + flexShareFor(slots, counts, "WR"),
-    WR: slots.WR + flexShareFor(slots, counts, "RB"),
-    TE: slots.TE,
-  };
-}
-
-/** 0 while owned < C; else −perCopy × surplus index of the next copy. */
-function surplusNeed(owned, capacity, perCopy) {
-  const n = Number(owned || 0);
-  const C = Number(capacity) || 0;
-  if (n < C) return 0;
-  return -perCopy * (n - C + 1);
-}
-
-/**
- * Flat need for ranking / opponent sim. Same value for every player at a
- * position. RB1/RB2 stay 0; the 3rd RB is −6 if WR starters are still empty.
+ * Per-position multiplier M for ranking / opponent sim. Same M for every
+ * available player at that position. RB/WR (and DEF/K) stay 1. QB/TE go to
+ * 1.5 after the first copy.
  */
 function needCounts(roster) {
-  const { slots, counts, openFlex } = teamNeed(roster);
-  const capacity = positionCapacities(slots, counts);
+  const counts = rosterPositionCounts(roster);
   const need_count = {
-    QB: surplusNeed(counts.QB, capacity.QB, NEED_QB_TE),
-    RB: surplusNeed(counts.RB, capacity.RB, NEED_RB_WR),
-    WR: surplusNeed(counts.WR, capacity.WR, NEED_RB_WR),
-    TE: surplusNeed(counts.TE, capacity.TE, NEED_QB_TE),
-    DEF: 0,
-    K: 0,
+    QB: qbTeMultiplier(counts.QB),
+    RB: 1,
+    WR: 1,
+    TE: qbTeMultiplier(counts.TE),
+    DEF: 1,
+    K: 1,
   };
   return {
     need_count,
-    openFlex,
+    openFlex: 0,
     counts,
   };
 }
@@ -387,7 +322,9 @@ function playerId(player) {
 
 function needAdpScore(player, need_count) {
   const pos = normalizePos(player.position);
-  return -adpValue(player) + (need_count[pos] || 0);
+  const m = Number(need_count[pos]);
+  const multiplier = Number.isFinite(m) && m > 0 ? m : 1;
+  return -adpValue(player) * multiplier;
 }
 
 function cloneRosters(rosters, teams) {
@@ -401,7 +338,7 @@ function cloneRosters(rosters, teams) {
 /**
  * P(player taken in [startPick, endPick)) under sequential softmax picks.
  *
- * Same score you rank with: s = −ADP + need. Each opponent converts
+ * Same score you rank with: s = −ADP × M. Each opponent converts
  * those scores to pick probabilities (softmax). A player's remaining "still
  * available" mass is reduced by that pick probability, so later teams draft
  * from what's left (without-replacement). Roster need then follows the most
@@ -540,15 +477,16 @@ function flattenAvailable(availableByPos) {
 
 function annotateScore(player, need_count, { risk = null } = {}) {
   const pos = normalizePos(player.position);
-  const need = need_count[pos] || 0;
+  const m = Number(need_count[pos]);
+  const multiplier = Number.isFinite(m) && m > 0 ? m : 1;
   const adp = adpValue(player);
   const p = risk == null ? null : Number(risk);
   return {
     ...player,
-    need_bonus: round1(need),
-    need_count: need,
+    need_bonus: round1(multiplier),
+    need_count: multiplier,
     risk: p == null || !Number.isFinite(p) ? null : Math.round(p * 100) / 100,
-    score: round1(-adp + need),
+    score: round1(-adp * multiplier),
   };
 }
 

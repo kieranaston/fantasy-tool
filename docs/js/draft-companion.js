@@ -13,7 +13,7 @@ import {
   SKILL_POSITIONS,
   SCORING_FORMATS,
   FORMAT_LABELS,
-} from "./draft-scoring.js?v=102";
+} from "./draft-scoring.js?v=103";
 import { createFavourites } from "./draft-liked.js?v=9";
 
 /** Fast on your turn / on deck; slower while waiting. */
@@ -25,13 +25,9 @@ const DRAFT_META_EVERY = 12;
 const SEARCH_LIMIT = 24;
 
 function needBonusHtml(needBonus) {
-  if (needBonus > 0) {
-    return `<span class="need-boost">+${escapeHtml(needBonus)}</span>`;
-  }
-  if (needBonus < 0) {
-    return `<span class="need-penalty">${escapeHtml(needBonus)}</span>`;
-  }
-  return "—";
+  const m = Number(needBonus);
+  if (!Number.isFinite(m) || m <= 1.001) return "—";
+  return `<span class="need-penalty">×${escapeHtml(m)}</span>`;
 }
 
 function scoreRowCells(r, { liked = false, teams = 12 } = {}) {
