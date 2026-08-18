@@ -1,33 +1,39 @@
 /**
- * Draft assistant — ADP first, with overstock penalties. Risk is display-only.
+ * Draft assistant — ADP first, with a flat positional need penalty.
  *
  * On the clock:
- *  1. Rank available: score = −ADP + NEED_K × need (need ≤ 0).
- *  2. Risk: P(taken before your next pick) from the same score. Each opponent
- *     pick is a softmax over remaining players; survival mass is depleted
- *     sequentially (need updates after each team's most likely pick).
+ *  1. Need is one number per position (same for every available player there).
+ *     Filling a remaining seat → 0. Each copy beyond effective capacity C
+ *     costs a flat ADP hit: −6 per extra RB/WR, −24 per extra QB/TE.
+ *  2. Score = −ADP + need (higher is better).
+ *  3. Risk uses the same score. Each opponent pick is a softmax; need updates
+ *     after each team's most likely pick.
+ *
+ * C is fixed (not from league roster settings): 1 QB, 2 RB, 2 WR, 1 TE,
+ * 1 FLEX. No superflex. Unfilled starter holes on the other side reserve
+ * flex — a 3rd RB with 0 WRs does not get a free flex seat. TE does not
+ * fill flex. Scoring format is still detected so the ADP board matches
+ * the league.
  *
  * Live picks before you're on the clock come from Sleeper — not simulated here.
- *
- * WR/RB: starter slots plus shared flex seats are "enough." Surplus beyond
- * that is overstock (a 4th RB while flex is already filled is penalized).
- * QB/TE: no boost while empty; after one, a hard surplus penalty (one of
- * each is a complete plan). Superflex seats count as extra QB capacity so a
- * 2nd QB is not penalized until those seats are filled. TE does not fill flex.
  */
 
 const SKILL_POSITIONS = ["QB", "RB", "WR", "TE"];
 
-/**
- * How many ADP picks one unit of overstock penalty is worth.
- */
-const NEED_K = 12;
+/** ADP-pick penalty per extra copy beyond capacity. */
+const NEED_RB_WR = 6;
+const NEED_QB_TE = 24;
 
 /**
- * Extra hit once a one-starter position (QB/TE) is filled. Owned < slots → 0
- * (compete on ADP). At/above slots → −this, plus −1 per extra copy.
+ * Fixed lineup the need model assumes. League roster_positions are not used.
  */
-const SINGLETON_SURPLUS_PENALTY = 2;
+const NEED_LINEUP = {
+  QB: 1,
+  RB: 2,
+  WR: 2,
+  TE: 1,
+  FLEX: 1,
+};
 
 const ADP_MISSING = 9999;
 
@@ -49,21 +55,6 @@ const FORMAT_LABELS = {
   full_ppr: "Full PPR",
   std: "Standard",
 };
-
-function starterSlotsFromSettings(settings = {}) {
-  return {
-    QB: Number(settings.slots_qb ?? 1),
-    RB: Number(settings.slots_rb ?? 2),
-    WR: Number(settings.slots_wr ?? 2),
-    TE: Number(settings.slots_te ?? 1),
-    FLEX: Number(settings.slots_flex ?? 1),
-    SUPER_FLEX: Number(
-      settings.slots_super_flex ?? settings.slots_superflex ?? 0
-    ),
-    DEF: Number(settings.slots_def ?? 0),
-    K: Number(settings.slots_k ?? 0),
-  };
-}
 
 /**
  * Map Sleeper draft.metadata.scoring_type → board key.
@@ -244,19 +235,17 @@ function draftTargets(settings = {}) {
 }
 
 /**
- * Starter holes (for display / flex accounting). Flex is filled by extra
- * WR/RB only — TE does not take a flex seat.
+ * Starter holes (for display / flex accounting). Uses NEED_LINEUP, not
+ * league slot settings. Flex is filled by extra WR/RB only.
  */
-function teamNeed(roster, settings) {
-  const slots = starterSlotsFromSettings(settings);
+function teamNeed(roster) {
+  const slots = NEED_LINEUP;
   const counts = rosterPositionCounts(roster);
   const need = {
     QB: Math.max(0, slots.QB - (counts.QB || 0)),
     RB: Math.max(0, slots.RB - (counts.RB || 0)),
     WR: Math.max(0, slots.WR - (counts.WR || 0)),
     TE: Math.max(0, slots.TE - (counts.TE || 0)),
-    DEF: Math.max(0, slots.DEF - (counts.DEF || 0)),
-    K: Math.max(0, slots.K - (counts.K || 0)),
   };
   const flexFilled =
     Math.max(0, (counts.RB || 0) - slots.RB) +
@@ -265,50 +254,52 @@ function teamNeed(roster, settings) {
   return { need, openFlex, counts, slots };
 }
 
-/** 0 until the starter is filled; then a hard surplus penalty. */
-function singletonNeed(slots, owned) {
-  const n = Number(owned || 0);
-  const s = Number(slots || 0);
-  if (n < s) return 0;
-  return s - n - SINGLETON_SURPLUS_PENALTY;
+/**
+ * Flex still available to one of RB/WR.
+ *
+ * The other position claims flex first: unfilled starter holes (don't park
+ * a 3rd RB in flex with 0 WRs) and surplus already sitting in flex.
+ */
+function flexShareFor(slots, counts, otherPos) {
+  const flex = Math.max(0, slots.FLEX || 0);
+  const otherSlots = Number(slots[otherPos] || 0);
+  const otherOwned = Number(counts[otherPos] || 0);
+  const holes = Math.max(0, otherSlots - otherOwned);
+  const surplus = Math.max(0, otherOwned - otherSlots);
+  return Math.max(0, flex - holes - surplus);
 }
 
-function wrRbOverstock(surplus, flexCredit) {
-  const extra = surplus - flexCredit;
-  return extra > 0 ? -extra : 0;
+function positionCapacities(slots, counts) {
+  return {
+    QB: slots.QB,
+    RB: slots.RB + flexShareFor(slots, counts, "WR"),
+    WR: slots.WR + flexShareFor(slots, counts, "RB"),
+    TE: slots.TE,
+  };
+}
+
+/** 0 while owned < C; else −perCopy × surplus index of the next copy. */
+function surplusNeed(owned, capacity, perCopy) {
+  const n = Number(owned || 0);
+  const C = Number(capacity) || 0;
+  if (n < C) return 0;
+  return -perCopy * (n - C + 1);
 }
 
 /**
- * Need for ranking / opponent sim: never positive.
- *
- * Unfilled → 0 (ADP decides). Overstock → negative.
- * WR/RB surplus first fills shared flex; leftover surplus is the penalty.
- * QB/TE: 0 until you have the starter, then −SINGLETON_SURPLUS_PENALTY
- * (and worse for extra copies). Superflex seats add to QB capacity, so a
- * 2nd QB is not penalized until those seats are filled.
+ * Flat need for ranking / opponent sim. Same value for every player at a
+ * position. RB1/RB2 stay 0; the 3rd RB is −6 if WR starters are still empty.
  */
-function needCounts(roster, settings) {
-  const { slots, counts, openFlex } = teamNeed(roster, settings);
-
-  const surplusRB = Math.max(0, (counts.RB || 0) - slots.RB);
-  const surplusWR = Math.max(0, (counts.WR || 0) - slots.WR);
-  const surplusTotal = surplusRB + surplusWR;
-  const flexSeats = Math.max(0, slots.FLEX);
-  const flexCredit = { RB: 0, WR: 0 };
-  if (surplusTotal > 0 && flexSeats > 0) {
-    const absorbed = Math.min(flexSeats, surplusTotal);
-    flexCredit.RB = (absorbed * surplusRB) / surplusTotal;
-    flexCredit.WR = (absorbed * surplusWR) / surplusTotal;
-  }
-
-  const qbCapacity = slots.QB + (slots.SUPER_FLEX || 0);
+function needCounts(roster) {
+  const { slots, counts, openFlex } = teamNeed(roster);
+  const capacity = positionCapacities(slots, counts);
   const need_count = {
-    QB: singletonNeed(qbCapacity, counts.QB),
-    TE: singletonNeed(slots.TE, counts.TE),
-    DEF: Math.min(0, slots.DEF - (counts.DEF || 0)),
-    K: Math.min(0, slots.K - (counts.K || 0)),
-    RB: wrRbOverstock(surplusRB, flexCredit.RB),
-    WR: wrRbOverstock(surplusWR, flexCredit.WR),
+    QB: surplusNeed(counts.QB, capacity.QB, NEED_QB_TE),
+    RB: surplusNeed(counts.RB, capacity.RB, NEED_RB_WR),
+    WR: surplusNeed(counts.WR, capacity.WR, NEED_RB_WR),
+    TE: surplusNeed(counts.TE, capacity.TE, NEED_QB_TE),
+    DEF: 0,
+    K: 0,
   };
   return {
     need_count,
@@ -396,7 +387,7 @@ function playerId(player) {
 
 function needAdpScore(player, need_count) {
   const pos = normalizePos(player.position);
-  return -adpValue(player) + NEED_K * (need_count[pos] || 0);
+  return -adpValue(player) + (need_count[pos] || 0);
 }
 
 function cloneRosters(rosters, teams) {
@@ -410,7 +401,7 @@ function cloneRosters(rosters, teams) {
 /**
  * P(player taken in [startPick, endPick)) under sequential softmax picks.
  *
- * Same score you rank with: s = −ADP + NEED_K × need. Each opponent converts
+ * Same score you rank with: s = −ADP + need. Each opponent converts
  * those scores to pick probabilities (softmax). A player's remaining "still
  * available" mass is reduced by that pick probability, so later teams draft
  * from what's left (without-replacement). Roster need then follows the most
@@ -439,7 +430,7 @@ function simulateGoneProbabilities({
     const slot = ownerSlotAtPick(pickNo, teams, ownerSlotByPick);
     if (slot === mySlot) continue;
 
-    const { need_count } = needCounts(localRosters[slot] || [], settings);
+    const { need_count } = needCounts(localRosters[slot] || []);
     const scores = new Array(n);
     let maxS = -Infinity;
     for (let i = 0; i < n; i += 1) {
@@ -503,10 +494,8 @@ function buildRiskSimPool(sortedAvailable, myNeed, limit = 40) {
   const topByScore = sortedAvailable
     .slice()
     .sort((a, b) => {
-      const posA = normalizePos(a.position);
-      const posB = normalizePos(b.position);
-      const scoreA = -adpValue(a) + NEED_K * (myNeed.need_count[posA] || 0);
-      const scoreB = -adpValue(b) + NEED_K * (myNeed.need_count[posB] || 0);
+      const scoreA = needAdpScore(a, myNeed.need_count);
+      const scoreB = needAdpScore(b, myNeed.need_count);
       return scoreB - scoreA || adpValue(a) - adpValue(b);
     })
     .slice(0, recCap);
@@ -552,15 +541,14 @@ function flattenAvailable(availableByPos) {
 function annotateScore(player, need_count, { risk = null } = {}) {
   const pos = normalizePos(player.position);
   const need = need_count[pos] || 0;
-  const needBonus = NEED_K * need;
   const adp = adpValue(player);
   const p = risk == null ? null : Number(risk);
   return {
     ...player,
-    need_bonus: round1(needBonus),
+    need_bonus: round1(need),
     need_count: need,
     risk: p == null || !Number.isFinite(p) ? null : Math.round(p * 100) / 100,
-    score: round1(-adp + needBonus),
+    score: round1(-adp + need),
   };
 }
 
@@ -588,7 +576,7 @@ function scoreCandidates({
   const onClock = myPick === currentPickNo;
 
   const sortedAvailable = flattenAvailable(availableByPosIn);
-  const myNeed = needCounts(myRoster, settings);
+  const myNeed = needCounts(myRoster);
   const pool = buildRiskSimPool(sortedAvailable, myNeed, limit);
   const simRosters = cloneRosters(opponentRosters, teams);
   simRosters[mySlot] = [...(myRoster || [])];

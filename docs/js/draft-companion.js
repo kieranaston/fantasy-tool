@@ -13,7 +13,7 @@ import {
   SKILL_POSITIONS,
   SCORING_FORMATS,
   FORMAT_LABELS,
-} from "./draft-scoring.js?v=94";
+} from "./draft-scoring.js?v=102";
 import { createFavourites } from "./draft-liked.js?v=9";
 
 /** Fast on your turn / on deck; slower while waiting. */
@@ -93,6 +93,24 @@ function adpHtml(adp, teams = 12) {
   return `<span class="adp-overall">${escapeHtml(
     roundPick
   )}</span><span class="adp-round-pick">${escapeHtml(overallLabel)}</span>`;
+}
+
+function formatRosterSpots(settings = {}) {
+  const parts = [];
+  const add = (n, label) => {
+    const count = Number(n) || 0;
+    if (count <= 0) return;
+    parts.push(count === 1 ? `1 ${label}` : `${count} ${label}`);
+  };
+  add(settings.slots_qb, "QB");
+  add(settings.slots_rb, "RB");
+  add(settings.slots_wr, "WR");
+  add(settings.slots_te, "TE");
+  add(settings.slots_flex, "FLEX");
+  add(settings.slots_super_flex, "SF");
+  add(settings.slots_def, "DEF");
+  add(settings.slots_k, "K");
+  return parts.join(" · ");
 }
 
 function pickNoHtml(pickNo, teams = 12) {
@@ -319,6 +337,7 @@ function picksFingerprint(pickList) {
 
 async function mountDraftCompanionPage() {
   const statusEl = document.querySelector("[data-draft-live='status']");
+  const leagueSummaryEl = document.getElementById("draft-league-summary");
   const recEl = document.getElementById("draft-recommendations");
   const boardEl = document.getElementById("draft-board");
   const needsEl = document.getElementById("draft-needs");
@@ -387,7 +406,33 @@ async function mountDraftCompanionPage() {
     if (statusEl) statusEl.textContent = text;
   }
 
-  /** Top meta: ADP freshness + your next pick. */
+  function pickTiming() {
+    const settings =
+      leagueSettings || resolveLeagueSettings(draft || {}, leagueForSettings());
+    const teams = Number(settings.teams || 12);
+    const rounds = Number(settings.rounds || draft?.settings?.rounds || 15);
+    const pickNo = currentPickNo(picks);
+    const mine = nextOwnedPickNumbers(
+      mySlot,
+      teams,
+      rounds,
+      pickNo,
+      ownerSlotByPick
+    );
+    const nextMine = mine[0] ?? pickNo;
+    const until = Math.max(0, nextMine - pickNo);
+    return { teams, rounds, pickNo, nextMine, until, mine, settings };
+  }
+
+  function pickStatusLabel(n, teams) {
+    const overall = Number(n);
+    if (!Number.isFinite(overall) || overall <= 0) return "—";
+    const roundPick = formatAdpRoundPick(overall, teams);
+    const suffix = ` (${Math.round(overall)})`;
+    return roundPick ? `${roundPick}${suffix}` : `${Math.round(overall)}`;
+  }
+
+  /** Top meta: ADP freshness, current pick, and your next pick. */
   function refreshHeader() {
     const updated = formatUpdated(scoringFormat?.last_updated);
     if (!draft) {
@@ -398,20 +443,19 @@ async function mountDraftCompanionPage() {
       setStatus(`${updated} · Complete`);
       return;
     }
-    const { teams, nextMine, until } = pickTiming();
-    const roundPick = formatAdpRoundPick(nextMine, teams);
-    const pickLabel = roundPick
-      ? `Pick ${roundPick}`
-      : `Pick ${nextMine}`;
-    const overall =
-      Number.isFinite(Number(nextMine)) && Number(nextMine) > 0
-        ? ` (${Math.round(Number(nextMine))})`
-        : "";
+    const { teams, pickNo, nextMine, until, mine } = pickTiming();
+    const currentLabel = pickStatusLabel(pickNo, teams);
     if (until <= 0) {
-      setStatus(`${updated} · On the clock · ${pickLabel}${overall}`);
+      const after = mine[1];
+      const nextBit = after
+        ? ` · Next ${pickStatusLabel(after, teams)}`
+        : "";
+      setStatus(`${updated} · On the clock · ${currentLabel}${nextBit}`);
       return;
     }
-    setStatus(`${updated} · ${pickLabel}${overall} · ${until} away`);
+    setStatus(
+      `${updated} · Pick ${currentLabel} · Next ${pickStatusLabel(nextMine, teams)} · ${until} away`
+    );
   }
 
   function isLiked(id) {
@@ -421,6 +465,26 @@ async function mountDraftCompanionPage() {
   /** Prefer user/configured league over the draft's linked league. */
   function leagueForSettings() {
     return configuredLeague || league;
+  }
+
+  function refreshLeagueSummary() {
+    if (!leagueSummaryEl) return;
+    if (!draft) {
+      leagueSummaryEl.hidden = true;
+      leagueSummaryEl.textContent = "";
+      return;
+    }
+    const srcLeague = leagueForSettings();
+    const name = String(srcLeague?.name || "").trim() || "League";
+    const format =
+      scoringFormat?.format_label || scoringFormat?.label || "Half PPR";
+    const settings =
+      leagueSettings || resolveLeagueSettings(draft || {}, srcLeague);
+    const spots = formatRosterSpots(settings);
+    leagueSummaryEl.textContent = spots
+      ? `${name} · ${format} · ${spots}`
+      : `${name} · ${format}`;
+    leagueSummaryEl.hidden = false;
   }
 
   function refreshLeagueSettings() {
@@ -434,6 +498,7 @@ async function mountDraftCompanionPage() {
     const key = scoringFormat.format;
     scoringFormat.format_label = FORMAT_LABELS[key] || scoringFormat.label;
     scoringFormat.label = scoringFormat.format_label;
+    refreshLeagueSummary();
   }
 
   function indexBoard(players) {
@@ -641,24 +706,6 @@ async function mountDraftCompanionPage() {
       seen.add(key);
       tradedPicks.push(t);
     }
-  }
-
-  function pickTiming() {
-    const settings =
-      leagueSettings || resolveLeagueSettings(draft || {}, leagueForSettings());
-    const teams = Number(settings.teams || 12);
-    const rounds = Number(settings.rounds || draft?.settings?.rounds || 15);
-    const pickNo = currentPickNo(picks);
-    const mine = nextOwnedPickNumbers(
-      mySlot,
-      teams,
-      rounds,
-      pickNo,
-      ownerSlotByPick
-    );
-    const nextMine = mine[0] ?? pickNo;
-    const until = Math.max(0, nextMine - pickNo);
-    return { teams, rounds, pickNo, nextMine, until, settings };
   }
 
   function currentBySlot() {

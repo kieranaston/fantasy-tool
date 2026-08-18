@@ -575,15 +575,38 @@ table.draft-table > thead > tr > th {
 }
 
 /* Recommendations and the live board sit side by side so the whole draft
-   fits on one screen. Recent picks needs enough width for pick/slot/player. */
+   fits on one screen. Recent picks needs enough width for pick/slot/player.
+   Panels use display:contents so both headers share a row and the tables
+   start on the same line. */
 .draft-columns {
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(14rem, 0.85fr);
-  gap: 0 1rem;
+  grid-template-rows: auto auto;
+  column-gap: 1rem;
   align-items: start;
 }
 
 .draft-columns > .draft-panel {
+  display: contents;
+}
+
+.draft-columns > .draft-panel:first-child > * {
+  grid-column: 1;
+}
+
+.draft-columns > .draft-panel:last-child > * {
+  grid-column: 2;
+}
+
+.draft-columns .panel-head {
+  grid-row: 1;
+  align-items: flex-end;
+  min-height: 1.55rem;
+}
+
+.draft-columns .draft-board-stack,
+.draft-columns #draft-board {
+  grid-row: 2;
   min-width: 0;
 }
 
@@ -594,6 +617,12 @@ table.draft-table > thead > tr > th {
 @media (max-width: 960px) {
   .draft-columns {
     grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+  }
+
+  .draft-columns > .draft-panel {
+    display: block;
+    min-width: 0;
   }
 }
 
@@ -643,6 +672,10 @@ table.draft-table > thead > tr > th {
   justify-content: space-between;
   gap: 0.35rem 1rem;
   margin: 0 0 0.55rem;
+}
+
+.page-head-meta {
+  min-width: 0;
 }
 
 .page-head .meta {
