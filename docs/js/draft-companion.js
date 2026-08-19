@@ -4,6 +4,10 @@ import {
   scoreCandidates,
   annotateScore,
   nextOwnedPickNumbers,
+  filledPickNumbers,
+  currentPickNo,
+  unfilledPickCount,
+  ownerSlotAtPick,
   resolveLeagueSettings,
   resolveScoringFormat,
   adpPathForFormat,
@@ -13,7 +17,7 @@ import {
   SKILL_POSITIONS,
   SCORING_FORMATS,
   FORMAT_LABELS,
-} from "./draft-scoring.js?v=105";
+} from "./draft-scoring.js?v=107";
 import { createFavourites } from "./draft-liked.js?v=9";
 
 /** Fast on your turn / on deck; slower while waiting. */
@@ -320,15 +324,28 @@ function myRosterFingerprint(roster = []) {
     .join("|");
 }
 
-function currentPickNo(picks) {
-  return (picks?.length || 0) + 1;
+function isKeeperPick(pick) {
+  return Boolean(pick?.is_keeper);
 }
 
-function picksFingerprint(pickList) {
-  const n = pickList?.length || 0;
-  if (!n) return "0";
-  const last = pickList[n - 1];
-  return `${n}:${last?.player_id || ""}:${last?.pick_no || ""}`;
+/** Live selections already made on the clock — not pre-draft keepers. */
+function liveRecentPicks(picks, clockPickNo, limit = 10) {
+  const clock = Number(clockPickNo) || 0;
+  return (picks || [])
+    .filter((p) => {
+      if (isKeeperPick(p)) return false;
+      const n = Number(p?.pick_no);
+      return Number.isFinite(n) && n >= 1 && n < clock;
+    })
+    .sort((a, b) => Number(b.pick_no) - Number(a.pick_no))
+    .slice(0, limit);
+}
+
+function picksFingerprint(pickList, teams = 12, rounds = 15) {
+  const clock = currentPickNo(pickList, teams, rounds);
+  const live = liveRecentPicks(pickList, clock, Infinity);
+  const last = live[0];
+  return `${clock}:${live.length}:${last?.player_id || ""}:${last?.pick_no || ""}`;
 }
 
 async function mountDraftCompanionPage() {
@@ -407,17 +424,45 @@ async function mountDraftCompanionPage() {
       leagueSettings || resolveLeagueSettings(draft || {}, leagueForSettings());
     const teams = Number(settings.teams || 12);
     const rounds = Number(settings.rounds || draft?.settings?.rounds || 15);
-    const pickNo = currentPickNo(picks);
+    const last = teams * rounds;
+    const filledPickNos = filledPickNumbers(picks, last);
+    const pickNo = currentPickNo(picks, teams, rounds);
+    const slot = Number(mySlot) || 1;
+    const clockSlot = Number(
+      ownerSlotAtPick(pickNo, teams, ownerSlotByPick)
+    );
+    const onClock = clockSlot === slot;
     const mine = nextOwnedPickNumbers(
-      mySlot,
+      slot,
       teams,
       rounds,
       pickNo,
-      ownerSlotByPick
+      ownerSlotByPick,
+      filledPickNos
     );
-    const nextMine = mine[0] ?? pickNo;
-    const until = Math.max(0, nextMine - pickNo);
-    return { teams, rounds, pickNo, nextMine, until, mine, settings };
+    const nextMine = onClock ? mine[1] ?? null : mine[0] ?? pickNo;
+    const until = onClock
+      ? 0
+      : unfilledPickCount(pickNo, mine[0] ?? pickNo, filledPickNos);
+    const thisOwned = mine[0] ?? null;
+    const afterOwned = mine[1] ?? null;
+    const between =
+      thisOwned && afterOwned
+        ? unfilledPickCount(thisOwned + 1, afterOwned, filledPickNos)
+        : null;
+    return {
+      teams,
+      rounds,
+      pickNo,
+      nextMine,
+      until,
+      between,
+      afterOwned,
+      mine,
+      settings,
+      filledPickNos,
+      onClock,
+    };
   }
 
   function pickStatusLabel(n, teams) {
@@ -426,6 +471,13 @@ async function mountDraftCompanionPage() {
     const roundPick = formatAdpRoundPick(overall, teams);
     const suffix = ` (${Math.round(overall)})`;
     return roundPick ? `${roundPick}${suffix}` : `${Math.round(overall)}`;
+  }
+
+  function betweenPicksLabel(n) {
+    if (n == null || !Number.isFinite(Number(n))) return "";
+    const count = Number(n);
+    if (count <= 0) return " · consecutive";
+    return count === 1 ? " · 1 pick between" : ` · ${count} picks between`;
   }
 
   /** Top meta: ADP freshness, current pick, and your next pick. */
@@ -439,18 +491,26 @@ async function mountDraftCompanionPage() {
       setStatus(`${updated} · Complete`);
       return;
     }
-    const { teams, pickNo, nextMine, until, mine } = pickTiming();
+    const { teams, pickNo, nextMine, until, between, afterOwned, mine, onClock } =
+      pickTiming();
     const currentLabel = pickStatusLabel(pickNo, teams);
-    if (until <= 0) {
+    const gap = betweenPicksLabel(between);
+    if (onClock) {
       const after = mine[1];
       const nextBit = after
-        ? ` · Next ${pickStatusLabel(after, teams)}`
+        ? ` · Next ${pickStatusLabel(after, teams)}${gap}`
         : "";
       setStatus(`${updated} · On the clock · ${currentLabel}${nextBit}`);
       return;
     }
+    const thenBit =
+      afterOwned && afterOwned !== nextMine
+        ? ` · Then ${pickStatusLabel(afterOwned, teams)}${gap}`
+        : gap && nextMine
+          ? gap
+          : "";
     setStatus(
-      `${updated} · Pick ${currentLabel} · Next ${pickStatusLabel(nextMine, teams)} · ${until} away`
+      `${updated} · Pick ${currentLabel} · Next ${pickStatusLabel(nextMine, teams)} · ${until} away${thenBit}`
     );
   }
 
@@ -615,9 +675,9 @@ async function mountDraftCompanionPage() {
     const status = draft?.status;
     if (status !== "drafting" && status !== "pre_draft") return POLL_IDLE_MS;
     if (!draft) return POLL_WAITING_MS;
-    const until = pickTiming().until;
-    if (until <= 0) return POLL_ON_CLOCK_MS;
-    if (until === 1) return POLL_ON_DECK_MS;
+    const timing = pickTiming();
+    if (timing.onClock) return POLL_ON_CLOCK_MS;
+    if (timing.until === 1) return POLL_ON_DECK_MS;
     return POLL_WAITING_MS;
   }
 
@@ -751,7 +811,8 @@ async function mountDraftCompanionPage() {
   }
 
   function renderRecentPicks() {
-    const recent = [...picks].slice(-10).reverse();
+    const clock = pickTiming().pickNo;
+    const recent = liveRecentPicks(picks, clock, 10);
     const teams = leagueTeamCount();
     boardEl.innerHTML = `
       <table class="draft-table">
@@ -948,6 +1009,7 @@ async function mountDraftCompanionPage() {
       rounds: timing.rounds,
       limit: 40,
       ownerSlotByPick,
+      filledPickNos: timing.filledPickNos,
     });
 
     hasScoredOnce = true;
@@ -1022,7 +1084,9 @@ async function mountDraftCompanionPage() {
         }
       }
       const next = nextPicks || [];
-      const fingerprint = picksFingerprint(next);
+      const teams = Number(leagueSettings?.teams || draft?.settings?.teams || 12);
+      const rounds = Number(draft?.settings?.rounds || leagueSettings?.rounds || 15);
+      const fingerprint = picksFingerprint(next, teams, rounds);
       const changed = fingerprint !== lastFingerprint;
       picks = next;
       if (changed) {
@@ -1070,7 +1134,11 @@ async function mountDraftCompanionPage() {
     rebuildPickOwners();
     await loadAdpBoard(scoringFormat);
     picks = (await sleeperGet(`/draft/${draftId}/picks`)) || [];
-    lastFingerprint = picksFingerprint(picks);
+    lastFingerprint = picksFingerprint(
+      picks,
+      Number(leagueSettings?.teams || draft?.settings?.teams || 12),
+      Number(draft?.settings?.rounds || leagueSettings?.rounds || 15)
+    );
     rebuildTaken();
     fillSeats();
     refreshHeader();

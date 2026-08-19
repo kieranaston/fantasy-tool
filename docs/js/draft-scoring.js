@@ -252,8 +252,46 @@ function pickNumbersForSlot(slot, teams, rounds) {
   return picks;
 }
 
-function nextPickNumbers(mySlot, teams, rounds, currentPickNo) {
-  return pickNumbersForSlot(mySlot, teams, rounds).filter((n) => n >= currentPickNo);
+function nextPickNumbers(mySlot, teams, rounds, currentPickNo, filledPickNos) {
+  return pickNumbersForSlot(mySlot, teams, rounds).filter(
+    (n) => n >= currentPickNo && !filledPickNos?.has(n)
+  );
+}
+
+/** Overall pick numbers already filled, including keepers. */
+function filledPickNumbers(picks, last) {
+  const taken = new Set();
+  const cap = Math.max(1, Number(last) || 0);
+  for (const pick of picks || []) {
+    const n = Number(pick?.pick_no);
+    if (Number.isFinite(n) && n >= 1 && n <= cap) taken.add(n);
+  }
+  return taken;
+}
+
+/**
+ * Live clock: first overall pick with no row in `/picks`.
+ * Keepers occupy their real round.pick, so they must not bump this by count.
+ */
+function currentPickNo(picks, teams = 12, rounds = 15) {
+  const last = Math.max(1, Number(teams) * Number(rounds) || 1);
+  const taken = filledPickNumbers(picks, last);
+  for (let n = 1; n <= last; n += 1) {
+    if (!taken.has(n)) return n;
+  }
+  return last + 1;
+}
+
+/** How many unfilled overall picks remain in [fromInclusive, toExclusive). */
+function unfilledPickCount(fromInclusive, toExclusive, filledPickNos) {
+  const start = Math.max(1, Number(fromInclusive) || 1);
+  const end = Number(toExclusive);
+  if (!Number.isFinite(end) || end <= start) return 0;
+  let n = 0;
+  for (let i = start; i < end; i += 1) {
+    if (!filledPickNos?.has(i)) n += 1;
+  }
+  return n;
 }
 
 function slotForOverallPick(pickNo, teams) {
@@ -276,16 +314,19 @@ function nextOwnedPickNumbers(
   teams,
   rounds,
   currentPickNo,
-  ownerSlotByPick
+  ownerSlotByPick,
+  filledPickNos = null
 ) {
+  const slot = Number(mySlot);
   if (!ownerSlotByPick) {
-    return nextPickNumbers(mySlot, teams, rounds, currentPickNo);
+    return nextPickNumbers(slot, teams, rounds, currentPickNo, filledPickNos);
   }
   const last = teams * rounds;
   const out = [];
   const start = Math.max(1, Number(currentPickNo) || 1);
   for (let n = start; n <= last; n += 1) {
-    if (ownerSlotAtPick(n, teams, ownerSlotByPick) === mySlot) out.push(n);
+    if (filledPickNos?.has(n)) continue;
+    if (Number(ownerSlotAtPick(n, teams, ownerSlotByPick)) === slot) out.push(n);
   }
   return out;
 }
@@ -353,6 +394,7 @@ function simulateGoneProbabilities({
   pool,
   rosters,
   ownerSlotByPick,
+  filledPickNos = null,
 }) {
   const n = pool.length;
   const out = new Map();
@@ -364,8 +406,9 @@ function simulateGoneProbabilities({
   const invT = 1 / Math.max(1e-9, SOFTMAX_TEMPERATURE);
 
   for (let pickNo = startPick; pickNo < endPick; pickNo += 1) {
+    if (filledPickNos?.has(pickNo)) continue;
     const slot = ownerSlotAtPick(pickNo, teams, ownerSlotByPick);
-    if (slot === mySlot) continue;
+    if (Number(slot) === Number(mySlot)) continue;
 
     const { need_count } = needCounts(localRosters[slot] || []);
     const scores = new Array(n);
@@ -501,17 +544,19 @@ function scoreCandidates({
   rounds,
   limit = 12,
   ownerSlotByPick = null,
+  filledPickNos = null,
 }) {
   const myPicks = nextOwnedPickNumbers(
     mySlot,
     teams,
     rounds,
     currentPickNo,
-    ownerSlotByPick
+    ownerSlotByPick,
+    filledPickNos
   );
   const myPick = myPicks[0] ?? currentPickNo;
   const myPickAfter = myPicks[1] ?? null;
-  const onClock = myPick === currentPickNo;
+  const onClock = Number(myPick) === Number(currentPickNo);
 
   const sortedAvailable = flattenAvailable(availableByPosIn);
   const myNeed = needCounts(myRoster);
@@ -530,6 +575,7 @@ function scoreCandidates({
       pool,
       rosters: simRosters,
       ownerSlotByPick,
+      filledPickNos,
     });
   }
 
@@ -570,6 +616,10 @@ export {
   needCounts,
   nextPickNumbers,
   nextOwnedPickNumbers,
+  filledPickNumbers,
+  currentPickNo,
+  unfilledPickCount,
+  ownerSlotAtPick,
   slotForOverallPick,
   scoreCandidates,
   annotateScore,
