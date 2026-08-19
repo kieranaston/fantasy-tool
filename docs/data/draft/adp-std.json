@@ -2,7 +2,7 @@
   "season": 2026,
   "format": "std",
   "source": "sleeper_adp",
-  "last_updated": "2026-08-18T14:40:41Z",
+  "last_updated": "2026-08-19T14:40:48Z",
   "players": [
     {
       "sleeper_id": "9509",
@@ -1517,9 +1517,10 @@
     {
       "sleeper_id": "7528",
       "player": "Najee Harris",
-      "team": "",
+      "team": "NYG",
       "position": "RB",
-      "adp": 169.8
+      "adp": 169.8,
+      "bye_week": 8
     },
     {
       "sleeper_id": "11627",
