@@ -36,6 +36,21 @@ function sourcesHtml(timeline) {
     </ol>`;
 }
 
+function summaryHtml(summary) {
+  const text = String(summary || "").trim();
+  if (!text) return "";
+  const lines = text
+    .split(/\n+/)
+    .map((line) => line.replace(/^[-*•]\s+/, "").trim())
+    .filter(Boolean);
+  if (lines.length >= 2) {
+    return `<ul>${lines
+      .map((line) => `<li>${escapeHtml(line)}</li>`)
+      .join("")}</ul>`;
+  }
+  return escapeHtml(lines[0] || text);
+}
+
 function playerCard(player) {
   const id = escapeHtml(player.player_id);
   const updateDay = formatUpdateDay(player.last_updated);
@@ -44,7 +59,7 @@ function playerCard(player) {
     : "";
   const sourceCount = (player.timeline || []).length;
   const blurb = player.diff_summary
-    ? escapeHtml(player.diff_summary)
+    ? summaryHtml(player.diff_summary)
     : "No generated summary yet.";
   const blurbClass = player.diff_summary ? "injury-blurb" : "injury-blurb muted";
   const designation = (player.current_designation || "").trim();
@@ -61,7 +76,7 @@ function playerCard(player) {
           </div>
           <span class="injury-card-meta">${statusChip}${updateTag}</span>
         </div>
-        <p class="${blurbClass}">${blurb}</p>
+        <div class="${blurbClass}">${blurb}</div>
       </div>
       <button type="button" class="injury-card-header" aria-expanded="false">
         <span class="sources-toggle-label">Sources (${sourceCount})</span>

@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/site.css?v=38" />
+    <link rel="stylesheet" href="../css/site.css?v=43" />
     <script>
       setTimeout(function () {
         document.body.classList.remove("is-page-loading");
@@ -46,6 +46,12 @@
           </div>
           <div class="toolbar-group toolbar-group--filters">
             <label class="adp-filter">
+              <span class="visually-hidden">Team</span>
+              <select id="adp-team" aria-label="Team">
+                <option value="">All teams</option>
+              </select>
+            </label>
+            <label class="adp-filter">
               <input type="search" id="adp-search" spellcheck="false" autocomplete="off" placeholder="search" />
             </label>
           </div>
@@ -56,7 +62,7 @@
     </main>
 
     <script type="module">
-      import { mountAdpBoardPage } from "../js/adp-board.js?v=25";
+      import { mountAdpBoardPage } from "../js/adp-board.js?v=27";
       mountAdpBoardPage();
     </script>
   </body>

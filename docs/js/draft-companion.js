@@ -13,7 +13,7 @@ import {
   SKILL_POSITIONS,
   SCORING_FORMATS,
   FORMAT_LABELS,
-} from "./draft-scoring.js?v=103";
+} from "./draft-scoring.js?v=105";
 import { createFavourites } from "./draft-liked.js?v=9";
 
 /** Fast on your turn / on deck; slower while waiting. */

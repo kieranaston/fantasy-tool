@@ -149,18 +149,6 @@ body.is-page-loading .site-main::before {
     width: 100%;
   }
 
-  .draft-setup {
-    align-items: stretch;
-  }
-
-  .draft-setup-fields {
-    flex-direction: column;
-  }
-
-  .draft-actions {
-    width: 100%;
-  }
-
   .draft-controls {
     gap: 0.55rem 0.75rem;
   }
@@ -182,6 +170,20 @@ body.is-page-loading .site-main::before {
   .page-head {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .injury-card-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.12rem;
+  }
+
+  .injury-card-meta {
+    justify-content: flex-start;
+  }
+
+  .injury-card-title .player-media-name {
+    white-space: normal;
   }
 
   .news-search-row input,
@@ -441,6 +443,15 @@ table.draft-table > thead > tr > th {
   line-height: 1.4;
 }
 
+.injury-blurb ul {
+  margin: 0;
+  padding-left: 1.15rem;
+}
+
+.injury-blurb li {
+  margin: 0.12rem 0;
+}
+
 .injury-blurb.muted,
 .timeline-empty {
   color: var(--muted);
@@ -542,6 +553,32 @@ table.draft-table > thead > tr > th {
   border-bottom-color: var(--accent);
 }
 
+@media (max-width: 520px) {
+  .draft-setup {
+    align-items: stretch;
+  }
+
+  .draft-setup-fields {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .draft-connect-row,
+  .draft-connect-row--seat {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  .draft-connect-row--seat select,
+  #draft-seat {
+    min-width: 0;
+  }
+
+  .draft-actions {
+    width: 100%;
+  }
+}
+
 .draft-panel {
   margin: 0.5rem 0;
 }
@@ -623,6 +660,10 @@ table.draft-table > thead > tr > th {
   .draft-columns > .draft-panel {
     display: block;
     min-width: 0;
+  }
+
+  .draft-columns .table-wrap {
+    overflow-x: auto;
   }
 }
 
@@ -875,7 +916,8 @@ table.draft-table > thead > tr > th {
   gap: 0.75rem 1rem;
 }
 
-.adp-filter input {
+.adp-filter input,
+.adp-filter select {
   font-family: inherit;
   font-size: 0.85rem;
   color: var(--text);
@@ -886,7 +928,13 @@ table.draft-table > thead > tr > th {
   min-width: 12rem;
 }
 
-.adp-filter input:focus {
+.adp-filter select {
+  min-width: 7.5rem;
+  cursor: pointer;
+}
+
+.adp-filter input:focus,
+.adp-filter select:focus {
   outline: none;
   border-bottom-color: var(--accent);
 }

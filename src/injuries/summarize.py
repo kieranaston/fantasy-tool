@@ -29,23 +29,19 @@ BLUESKY_BATCH_INSTRUCTION = (
 )
 
 NARRATIVE_SYSTEM = (
-    "You write very short fantasy-football player-news blurbs for a reference site.\n"
+    "You write short, source-faithful fantasy-football player-news notes "
+    "as bullet points.\n"
     "Rules:\n"
-    "- Lead with the player's current fantasy-relevant status from the newest "
-    "source post (availability, role, injury, contract, trade, practice).\n"
-    "- 1–2 short sentences only. Hard max: 2 sentences / ~280 characters.\n"
-    "- Older posts are background only — mention them in half a clause at most, "
-    "and only if they are needed to understand the latest update. "
-    "Do not narrate a full chronology, day gaps ('66 days later'), or "
-    "march-through-camp timelines.\n"
-    "- Facts about the player must come from the provided source posts.\n"
-    "- Use Google Search only for a date or league fact the posts imply but "
-    "do not define (e.g. when camp opens). Prefer official NFL sources; "
-    "omit unconfirmed dates.\n"
-    "- Dates: ordinal day forms (July 24th), never bare July 24. Prefer the "
-    "latest date; skip older dates unless essential.\n"
-    "- Never copy emojis, hashtags, ALL-CAPS banners, or raw social formatting.\n"
-    "- Paraphrase; short quoted phrases only when attribution matters.\n"
+    "- Output ONLY a bullet list. Each line starts with '- '.\n"
+    "- One bullet per distinct fact from the source posts. Newest first.\n"
+    "- Stay close to the posts: paraphrase tightly; do not stitch a narrative "
+    "or add interpretation, medical opinion, or 'expected to' guesses.\n"
+    "- Skip fluff, hashtags, emojis, ALL-CAPS banners, and social formatting.\n"
+    "- Keep each bullet to one short clause. 2–5 bullets typical; never more "
+    "than 6. Drop older posts that add nothing new.\n"
+    "- Include a date in a bullet only when the post states one "
+    "(use July 24th style, not July 24).\n"
+    "- Do not use Google Search. Do not invent facts.\n"
     "- Expand acronyms on first use only, briefly:\n"
     "  • OTAs = Organized Team Activities (voluntary).\n"
     "  • PUP = Physically Unable to Perform (no practice; typically out ≥4 weeks "
@@ -53,7 +49,6 @@ NARRATIVE_SYSTEM = (
     "  • NFI = Non-Football Injury (similar to PUP).\n"
     "  • IR = Injured Reserve (typically out ≥4 games).\n"
     "  • DNP = Did Not Practice.\n"
-    "- Do not invent medical opinions or unconfirmed dates.\n"
     "- Do not write placeholders like 'N ago', 'None', or 'null'."
 )
 
@@ -277,14 +272,14 @@ def build_player_narrative(
     user = (
         f"Player: {player_name or player_id}\n\n"
         f"Source posts (chronological):\n{json.dumps(timeline, indent=2)}\n\n"
-        "Write one brief player-news blurb as JSON field summary. "
-        "Lead with the latest update; 1–2 short sentences max."
+        "Write a bullet-list player-news note as JSON field summary. "
+        "Each line starts with '- '. Facts only from these posts."
     )
     result = _generate_json(
         system=NARRATIVE_SYSTEM,
         user=user,
         schema=NARRATIVE_SCHEMA,
-        use_search=True,
+        use_search=False,
     )
     assert isinstance(result, dict)
     return normalize_summary(str(result.get("summary") or "").strip())
@@ -316,15 +311,16 @@ def build_narratives_batch(
         for item in items
     ]
     user = (
-        "For each player, write one brief player-news blurb "
-        "(lead with latest update; 1–2 short sentences max).\n\n"
+        "For each player, write a bullet-list player-news note "
+        "(each line starts with '- '; facts only from that player's posts; "
+        "newest first; 2–5 bullets).\n\n"
         f"{json.dumps(payload, indent=2)}"
     )
     result = _generate_json(
         system=NARRATIVE_SYSTEM,
         user=user,
         schema=BATCH_NARRATIVE_SCHEMA,
-        use_search=True,
+        use_search=False,
     )
     assert isinstance(result, dict)
     out: dict[str, str] = {}

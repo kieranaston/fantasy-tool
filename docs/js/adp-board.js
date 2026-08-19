@@ -9,8 +9,14 @@ import { FORMAT_LABELS, SCORING_FORMATS, SKILL_POSITIONS, adpPathForFormat, form
 import { createFavourites } from "./draft-liked.js?v=9";
 
 const ADP_MISSING = 9999;
-/** Roughly 10 rounds in a 12-team draft. */
+/** Roughly 10 rounds in a 12-team draft (overall tab). */
 const ADP_BOARD_LIMIT = 120;
+const ADP_POS_LIMITS = { QB: 32, TE: 32 };
+
+function boardLimit(pos) {
+  if (pos === "overall") return ADP_BOARD_LIMIT;
+  return ADP_POS_LIMITS[pos] ?? ADP_BOARD_LIMIT;
+}
 
 const boardCache = new Map();
 
@@ -60,6 +66,7 @@ async function mountAdpBoardPage() {
   const boardEl = document.getElementById("adp-board");
   const summaryEl = document.getElementById("adp-summary");
   const searchInput = document.getElementById("adp-search");
+  const teamSelect = document.getElementById("adp-team");
   const tabs = [...document.querySelectorAll(".adp-tab")];
   const formatTabs = [...document.querySelectorAll(".adp-format-tab")];
   const root = document.querySelector(".container") || document.body;
@@ -84,21 +91,43 @@ async function mountAdpBoardPage() {
     return name.includes(query) || team.includes(query) || pos === query;
   }
 
+  function fillTeamOptions() {
+    if (!teamSelect) return;
+    const selected = teamSelect.value;
+    const teams = [
+      ...new Set(
+        playersSorted
+          .map((p) => String(p.team || "").trim())
+          .filter(Boolean)
+      ),
+    ].sort((a, b) => a.localeCompare(b));
+    teamSelect.innerHTML =
+      `<option value="">All teams</option>` +
+      teams
+        .map(
+          (team) =>
+            `<option value="${escapeHtml(team)}">${escapeHtml(team)}</option>`
+        )
+        .join("");
+    teamSelect.value = teams.includes(selected) ? selected : "";
+  }
+
   function visiblePlayers() {
     const query = String(searchInput?.value || "")
       .trim()
       .toLowerCase();
+    const team = String(teamSelect?.value || "").trim();
     let list = playersSorted.filter((p) => {
       if (adpNumber(p) == null) return false;
       if (!SKILL_POSITIONS.includes(p.position)) return false;
+      if (team && p.team !== team) return false;
       return matchesFilter(p, query);
     });
-    if (!query) {
-      list = list
-        .slice(0, ADP_BOARD_LIMIT)
-        .filter((p) => position === "overall" || p.position === position);
-    } else if (position !== "overall") {
+    if (position !== "overall") {
       list = list.filter((p) => p.position === position);
+    }
+    if (!query) {
+      list = list.slice(0, boardLimit(position));
     }
     return list;
   }
@@ -136,15 +165,13 @@ async function mountAdpBoardPage() {
               const adpCell =
                 overall == null
                   ? "—"
-                  : `<span class="adp-overall">${escapeHtml(
-                      overall
-                    )}</span>${
-                      roundPick
-                        ? `<span class="adp-round-pick">${escapeHtml(
-                            roundPick
-                          )}</span>`
-                        : ""
-                    }`;
+                  : roundPick
+                    ? `<span class="adp-overall">${escapeHtml(
+                        roundPick
+                      )}</span><span class="adp-round-pick">${escapeHtml(
+                        overall
+                      )}</span>`
+                    : `<span class="adp-overall">${escapeHtml(overall)}</span>`;
               return `<tr class="${liked ? "draft-liked" : ""}">
                 <td class="num col-wide">${i + 1}</td>
                 <td>${playerCellHtml(p, { liked })}</td>
@@ -187,6 +214,7 @@ async function mountAdpBoardPage() {
         )
       );
       boardMeta = board;
+      fillTeamOptions();
       render();
     } catch (err) {
       if (gen !== loadGen) return;
@@ -204,6 +232,7 @@ async function mountAdpBoardPage() {
     if (searchTimer) clearTimeout(searchTimer);
     searchTimer = setTimeout(() => render(), 120);
   });
+  teamSelect?.addEventListener("change", () => render());
 
   root.addEventListener("click", (event) => {
     const btn = event.target.closest(".draft-star");
@@ -221,6 +250,7 @@ async function mountAdpBoardPage() {
       (board.players || []).filter((p) => SKILL_POSITIONS.includes(p.position))
     );
     boardMeta = board;
+    fillTeamOptions();
     render();
     revealPage();
   } catch (err) {
