@@ -39,8 +39,9 @@ def detect_changes(
     """Return players that need a (re)summary.
 
     Triggers when there is no status yet, the newest matched report differs
-    from stored ``last_report_*``, or a status exists without
-    ``last_diff_summary`` (so quota failures are filled on the next run).
+    from stored ``last_report_*``, or a status is marked ``summary_fallback``
+    (quota/plain fill) so Gemini can replace it on a later run. An empty
+    ``last_diff_summary`` alone does **not** re-queue the whole pool.
     """
     grouped = by_player
     if grouped is None:

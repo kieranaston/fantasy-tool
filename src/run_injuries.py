@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import time
 from pathlib import Path
 
@@ -45,6 +46,16 @@ SUMMARIES_PATH = PUBLIC_DIR / "summaries.json"
 
 EXTRACT_CHUNK = 8
 NARRATIVE_CHUNK = 4
+# Hard caps so a backlog (or wiped summaries) cannot burn the whole free-tier
+# quota / hang Actions for hours. Leftovers wait for the next daily run.
+MAX_BLUESKY_LLM_POSTS = int(os.environ.get("MAX_BLUESKY_LLM_POSTS", "16"))
+MAX_NARRATIVE_PLAYERS = int(os.environ.get("MAX_NARRATIVE_PLAYERS", "12"))
+MAX_NARRATIVE_RETRIES = int(os.environ.get("MAX_NARRATIVE_RETRIES", "4"))
+SKIP_NARRATIVES = os.environ.get("SKIP_NARRATIVES", "").strip().lower() in {
+    "1",
+    "true",
+    "yes",
+}
 
 
 def _newly_appended(before: list, after: list) -> list:
@@ -78,6 +89,12 @@ def _extract_from_posts(posts: list[dict]) -> list[dict]:
     print(f"  Bluesky: parsed {len(posts) - len(needs_llm)}/{len(posts)} via RotoWire pattern")
 
     if needs_llm and gemini_available():
+        if len(needs_llm) > MAX_BLUESKY_LLM_POSTS:
+            print(
+                f"  Bluesky: capping LLM fallback to {MAX_BLUESKY_LLM_POSTS}/"
+                f"{len(needs_llm)} posts (rest next run)"
+            )
+            needs_llm = needs_llm[:MAX_BLUESKY_LLM_POSTS]
         try:
             print(f"  Bluesky: LLM fallback for {len(needs_llm)} unmatched post(s)")
             llm_items = _extract_bluesky_chunks(needs_llm)
@@ -251,6 +268,17 @@ def process_changes(
     if not changed:
         return status_current
 
+    if SKIP_NARRATIVES:
+        print("  SKIP_NARRATIVES set — leaving summaries unchanged this run")
+        return status_current
+
+    if len(changed) > MAX_NARRATIVE_PLAYERS:
+        print(
+            f"  Capping narratives to {MAX_NARRATIVE_PLAYERS}/{len(changed)} "
+            "players (rest next run)"
+        )
+        changed = changed[:MAX_NARRATIVE_PLAYERS]
+
     narrative_inputs = []
     review_batch = []
 
@@ -314,8 +342,11 @@ def process_changes(
                 )
         missing = [d for d in narrative_inputs if not summaries.get(d["player_id"])]
         if missing:
-            print(f"  Retrying {len(missing)} missing narrative(s) singly…")
-            for d in missing:
+            retry_cap = min(len(missing), MAX_NARRATIVE_RETRIES)
+            print(
+                f"  Retrying {retry_cap}/{len(missing)} missing narrative(s) singly…"
+            )
+            for d in missing[:retry_cap]:
                 time.sleep(8.0)
                 try:
                     summaries.update(
