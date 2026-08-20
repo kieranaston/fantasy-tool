@@ -68,6 +68,13 @@ def detect_changes(
             )
             if same_report and has_summary and not stored.get("summary_fallback"):
                 continue
+            # Empty summary alone is not enough to re-run Gemini unless this
+            # row was marked a quota/fallback fill. Prevents a wipe of
+            # last_diff_summary from regenerating the whole pool.
+            if same_report and not has_summary and not stored.get(
+                "summary_fallback"
+            ):
+                continue
             if not last_url and not last_id and has_summary:
                 if (report.get("timestamp") or "") <= (
                     stored.get("last_updated") or ""
