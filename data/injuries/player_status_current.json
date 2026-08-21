@@ -33,18 +33,18 @@
   },
   "00-0033873": {
     "player_name": "Patrick Mahomes",
-    "current_designation": "Won't play in preseason opener",
-    "last_updated": "2026-08-13T08:32:58-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msxxpmicxc2o",
-    "last_report_id": "a1b36a29-b7be-496a-b726-0b7b4a5630d6",
+    "current_designation": "Remaining out for second preseason tilt",
+    "last_updated": "2026-08-20T07:42:36-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtji5ys67i2d",
+    "last_report_id": "f08b8249-d081-428b-b088-6bd8e1eb4c24",
     "last_extraction": {
-      "status": "Won't play in preseason opener",
-      "designation": "Won't play in preseason opener",
-      "date": "2026-08-13T08:32:58-07:00",
-      "direct_quote": "Patrick Mahomes: Won't play in preseason opener",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msxxpmicxc2o"
+      "status": "Remaining out for second preseason tilt",
+      "designation": "Remaining out for second preseason tilt",
+      "date": "2026-08-20T07:42:36-07:00",
+      "direct_quote": "Patrick Mahomes: Remaining out for second preseason tilt",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtji5ys67i2d"
     },
-    "last_diff_summary": "Patrick Mahomes agreed to a contract restructure and had two years added to his deal with the Chiefs. He was rehabbing during voluntary workouts and participated in Organized Team Activities (OTAs), though limited to 7-on-7 work. Mahomes was cleared to practice in full on July 24th and has been taking part in 11-on-11 drills. He aims to play Week 1 and is not likely to play in the preseason opener, confirming he won't play in the preseason opener on August 13th.",
+    "last_diff_summary": "- Patrick Mahomes is not likely to play in the second preseason tilt.\n- Patrick Mahomes won't play in preseason opener.\n- Patrick Mahomes is not likely to play in preseason opener.\n- Patrick Mahomes aims to play Week 1.\n- Patrick Mahomes is taking part in 11-on-11s.\n- Patrick Mahomes cleared to practice in full.",
     "summary_fallback": false
   },
   "00-0039165": {
@@ -161,34 +161,34 @@
   },
   "00-0039163": {
     "player_name": "C.J. Stroud",
-    "current_designation": "Scheduled to play against Vegas on Thursday",
-    "last_updated": "2026-08-15T12:56:13-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt5he6jyz522",
-    "last_report_id": "bb0df990-fe29-4c05-87f9-8460d3b2382d",
+    "current_designation": "Leads TD drive in brief outing",
+    "last_updated": "2026-08-20T20:13:17-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtks4dk4xw2o",
+    "last_report_id": "4e65548a-641f-4bd7-9c00-b0db0cc6c35f",
     "last_extraction": {
-      "status": "Scheduled to play against Vegas on Thursday",
-      "designation": "Scheduled to play against Vegas on Thursday",
-      "date": "2026-08-15T12:56:13-07:00",
-      "direct_quote": "C.J. Stroud: Scheduled to play against Vegas on Thursday",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt5he6jyz522"
+      "status": "Leads TD drive in brief outing",
+      "designation": "Leads TD drive in brief outing",
+      "date": "2026-08-20T20:13:17-07:00",
+      "direct_quote": "C.J. Stroud: Leads TD drive in brief outing",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtks4dk4xw2o"
     },
-    "last_diff_summary": "C.J. Stroud's fifth-year option was picked up, and he is not expected to be traded. He was shedding weight in early May and was not expected to see action in the preseason opener on August 12th. Stroud is scheduled to play against Las Vegas on Thursday, August 15th.",
+    "last_diff_summary": "- C.J. Stroud leads TD drive in brief outing.\n- C.J. Stroud is on track to play Thursday.\n- C.J. Stroud had a change in plans for starters in Thursday's contest.\n- C.J. Stroud is scheduled to play against Vegas on Thursday.\n- C.J. Stroud did not practice in preseason opener.\n- C.J. Stroud is not expected to see action in preseason opener.",
     "summary_fallback": false
   },
   "00-0035228": {
     "player_name": "Kyler Murray",
-    "current_designation": "Named as Week 1 Starter",
-    "last_updated": "2026-08-11T09:19:19-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msszeo43ww2n",
-    "last_report_id": "0e6f4e19-d57c-46e5-b02b-ee61f12c0028",
+    "current_designation": "Not likely to play in Saturday's preseason contest",
+    "last_updated": "2026-08-20T09:56:52-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtjpo3xrvy2c",
+    "last_report_id": "bcfbc2dd-c3df-425d-b8a8-f24d13c1b67a",
     "last_extraction": {
-      "status": "Named as Week 1 Starter",
-      "designation": "Named as Week 1 Starter",
-      "date": "2026-08-11T09:19:19-07:00",
-      "direct_quote": "Kyler Murray: Named as Week 1 Starter",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msszeo43ww2n"
+      "status": "Not likely to play in Saturday's preseason contest",
+      "designation": "Not likely to play in Saturday's preseason contest",
+      "date": "2026-08-20T09:56:52-07:00",
+      "direct_quote": "Kyler Murray: Not likely to play in Saturday's preseason contest",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtjpo3xrvy2c"
     },
-    "last_diff_summary": "Kyler Murray is no longer with the Arizona Cardinals, having posted a goodbye message to the team on March 3rd. He signed a one-year deal with Minnesota on March 12th. Murray has been sharing reps with McCarthy at practice and is improving, and has been named the Week 1 starter.",
+    "last_diff_summary": "- Kyler Murray is not likely to play in Saturday's preseason contest.\n- Kyler Murray was named as Week 1 Starter.\n- Kyler Murray is improving at practice, still sharing reps.\n- Kyler Murray is to share reps with McCarthy.\n- Kyler Murray landed a one-year deal from Minnesota.\n- Kyler Murray is set to visit Minnesota.",
     "summary_fallback": false
   },
   "00-0041027": {
@@ -289,34 +289,34 @@
   },
   "00-0037664": {
     "player_name": "Alec Pierce",
-    "current_designation": "Expected back for Week 1 despite Allen signing",
-    "last_updated": "2026-08-18T07:08:38-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtefdgdach25",
-    "last_report_id": "8507f94b-6bea-481c-a6b6-d6a0f6ef91eb",
+    "current_designation": "Moving around well, per Steichen",
+    "last_updated": "2026-08-19T15:05:20-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mthqgqqq5m2l",
+    "last_report_id": "8daa90e6-717c-4578-b129-ad863f70e9b5",
     "last_extraction": {
-      "status": "Expected back for Week 1 despite Allen signing",
-      "designation": "Expected back for Week 1 despite Allen signing",
-      "date": "2026-08-18T07:08:38-07:00",
-      "direct_quote": "Alec Pierce: Expected back for Week 1 despite Allen signing",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtefdgdach25"
+      "status": "Moving around well, per Steichen",
+      "designation": "Moving around well, per Steichen",
+      "date": "2026-08-19T15:05:20-07:00",
+      "direct_quote": "Alec Pierce: Moving around well, per Steichen",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mthqgqqq5m2l"
     },
-    "last_diff_summary": "Alec Pierce is expected back for Week 1 despite a recent signing, though he won't return during training camp. He opened camp on the Physically Unable to Perform (PUP) list following ankle surgery and received a second PRP injection.",
+    "last_diff_summary": "- Alec Pierce is moving around well, per Steichen.\n- Alec Pierce is expected back for Week 1 despite Allen signing.\n- Alec Pierce won't return during training camp.\n- Alec Pierce is making great progress in ankle recovery.\n- Alec Pierce is looking iffy to play Week 1.\n- Alec Pierce avoided second PRP injection for ankle.",
     "summary_fallback": false
   },
   "00-0034827": {
     "player_name": "DJ Moore",
-    "current_designation": "Limited in return to practice Tuesday",
-    "last_updated": "2026-08-18T07:26:19-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtegd2argq26",
-    "last_report_id": "00788dd6-f529-45ea-91a6-576e86eddb36",
+    "current_designation": "Taking part in team drills Thursday",
+    "last_updated": "2026-08-20T11:13:58-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtjtxxqpu426",
+    "last_report_id": "70ab36e8-5153-4b4c-81d3-17ae17839d5d",
     "last_extraction": {
-      "status": "Limited in return to practice Tuesday",
-      "designation": "Limited in return to practice Tuesday",
-      "date": "2026-08-18T07:26:19-07:00",
-      "direct_quote": "DJ Moore: Limited in return to practice Tuesday",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtegd2argq26"
+      "status": "Taking part in team drills Thursday",
+      "designation": "Taking part in team drills Thursday",
+      "date": "2026-08-20T11:13:58-07:00",
+      "direct_quote": "DJ Moore: Taking part in team drills Thursday",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtjtxxqpu426"
     },
-    "last_diff_summary": "DJ Moore suited up for Tuesday's practice session but was limited as he returns from a possible ankle injury. He had previously limped off the field but stated he was not worried about the issue.",
+    "last_diff_summary": "- DJ Moore is taking part in team drills Thursday.\n- DJ Moore had limited participation in practice Tuesday.\n- DJ Moore suited up for Tuesday's session.\n- DJ Moore is not worried about his injury.\n- DJ Moore limped off with a possible ankle injury.\n- DJ Moore was traded to Buffalo.",
     "summary_fallback": false
   },
   "00-0034383": {
@@ -353,18 +353,18 @@
   },
   "00-0036252": {
     "player_name": "Michael Pittman",
-    "current_designation": "Unlikely to practice this week",
-    "last_updated": "2026-08-15T08:53:38-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt4zsgd2672x",
-    "last_report_id": "aec03b9d-1cef-40c9-bedd-766dad536ffd",
+    "current_designation": "Dealing with minor hamstring injury",
+    "last_updated": "2026-08-19T10:54:40-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mthcgjvvp225",
+    "last_report_id": "117d38d1-b233-49b1-85c9-e57421c0bbce",
     "last_extraction": {
-      "status": "Unlikely to practice this week",
-      "designation": "Unlikely to practice this week",
-      "date": "2026-08-15T08:53:38-07:00",
-      "direct_quote": "Michael Pittman: Unlikely to practice this week",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt4zsgd2672x"
+      "status": "Dealing with minor hamstring injury",
+      "designation": "Dealing with minor hamstring injury",
+      "date": "2026-08-19T10:54:40-07:00",
+      "direct_quote": "Michael Pittman: Dealing with minor hamstring injury",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mthcgjvvp225"
     },
-    "last_diff_summary": "Michael Pittman was traded to the Steelers on March 9th, 2026. He has not been spotted at practice since August 10th and missed practice on Tuesday, August 11th. Pittman is not slated to play in the preseason opener and is unlikely to practice this week.",
+    "last_diff_summary": "- Michael Pittman is expected back from a hamstring injury for Week 1.\n- Michael Pittman is dealing with a minor hamstring injury.\n- Michael Pittman is unlikely to practice this week.\n- Michael Pittman is not slated to play the preseason opener.\n- Michael Pittman missed practice Tuesday.\n- Michael Pittman was not spotted at practice.",
     "summary_fallback": false
   },
   "00-0038128": {
@@ -449,18 +449,18 @@
   },
   "00-0036973": {
     "player_name": "Travis Etienne",
-    "current_designation": "Co-RB1 with Kamara on depth chart",
-    "last_updated": "2026-08-11T13:53:38-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mstip6lyew23",
-    "last_report_id": "dfcfe030-7742-451a-a0bc-14ca0415c0e5",
+    "current_designation": "Could get larger role if Kamara misses time",
+    "last_updated": "2026-08-19T06:46:05-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtgujzpdmb2o",
+    "last_report_id": "5a5aca41-2d85-4e87-ae5b-dda9188fa31f",
     "last_extraction": {
-      "status": "Co-RB1 with Kamara on depth chart",
-      "designation": "Co-RB1 with Kamara on depth chart",
-      "date": "2026-08-11T13:53:38-07:00",
-      "direct_quote": "Travis Etienne: Co-RB1 with Kamara on depth chart",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mstip6lyew23"
+      "status": "Could get larger role if Kamara misses time",
+      "designation": "Could get larger role if Kamara misses time",
+      "date": "2026-08-19T06:46:05-07:00",
+      "direct_quote": "Travis Etienne: Could get larger role if Kamara misses time",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtgujzpdmb2o"
     },
-    "last_diff_summary": "Travis Etienne was named the new lead back for New Orleans on March 9th, 2026. He is set to combine with Alvin Kamara in the backfield, though there are questions about whether Etienne will cede third-down work to Kamara as of August 4th, 2026. The depth chart lists Etienne as a co-running back one with Kamara.",
+    "last_diff_summary": "- Travis Etienne could get a larger role if Kamara misses time.\n- Travis Etienne is a co-RB1 with Kamara on the depth chart.\n- Travis Etienne is ceding third-down work to Kamara?\n- Travis Etienne is set to combine with Kamara.\n- Travis Etienne is the new lead back for NOLA.",
     "summary_fallback": false
   },
   "00-0038117": {
@@ -529,18 +529,18 @@
   },
   "00-0033106": {
     "player_name": "Jared Goff",
-    "current_designation": "Sits out preseason opener",
-    "last_updated": "2026-08-13T19:40:49-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz4zszdvf2w",
-    "last_report_id": "1c7d8669-7ce4-4c0b-b47c-422c56f9cc0c",
+    "current_designation": "Won't play against Commanders on Saturday",
+    "last_updated": "2026-08-20T09:19:22-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtjnl2c4fn22",
+    "last_report_id": "ec14ecbb-ab5a-487c-9774-c46a06be3296",
     "last_extraction": {
-      "status": "Sits out preseason opener",
-      "designation": "Sits out preseason opener",
-      "date": "2026-08-13T19:40:49-07:00",
-      "direct_quote": "Jared Goff: Sits out preseason opener",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz4zszdvf2w"
+      "status": "Won't play against Commanders on Saturday",
+      "designation": "Won't play against Commanders on Saturday",
+      "date": "2026-08-20T09:19:22-07:00",
+      "direct_quote": "Jared Goff: Won't play against Commanders on Saturday",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtjnl2c4fn22"
     },
-    "last_diff_summary": "Jared Goff agreed to a contract restructure on March 11th. He will not play in the preseason opener on August 9th, and was also held out of practice on August 13th.",
+    "last_diff_summary": "- Jared Goff won't play against the Commanders on Saturday.\n- Jared Goff sat out the preseason opener.\n- Jared Goff won't play in the preseason opener.\n- Jared Goff agreed to a restructure.",
     "summary_fallback": false
   },
   "00-0037809": {
@@ -577,18 +577,18 @@
   },
   "00-0037256": {
     "player_name": "Rachaad White",
-    "current_designation": "Penciled in as No. 2 RB at camp",
-    "last_updated": "2026-08-10T16:54:00-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msrccr4sqe2h",
-    "last_report_id": "7ec1db31-d564-4e9c-a13b-0a1b8aefc562",
+    "current_designation": "Working off to side at practice Thursday",
+    "last_updated": "2026-08-20T06:16:17-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtjddnzlrp2c",
+    "last_report_id": "b14e19f0-2d3f-4abd-86ee-85806ea3b0c1",
     "last_extraction": {
-      "status": "Penciled in as No. 2 RB at camp",
-      "designation": "Penciled in as No. 2 RB at camp",
-      "date": "2026-08-10T16:54:00-07:00",
-      "direct_quote": "Rachaad White: Penciled in as No. 2 RB at camp",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msrccr4sqe2h"
+      "status": "Working off to side at practice Thursday",
+      "designation": "Working off to side at practice Thursday",
+      "date": "2026-08-20T06:16:17-07:00",
+      "direct_quote": "Rachaad White: Working off to side at practice Thursday",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtjddnzlrp2c"
     },
-    "last_diff_summary": "Rachaad White was linked to the Commanders on March 12th, 2026. He was named an offseason standout on June 18th, 98 days later. As of August 10th, 53 days later, White is penciled in as the No. 2 running back at camp.",
+    "last_diff_summary": "- Rachaad White is nursing a hamstring injury.\n- White is working off to the side at practice Thursday.\n- White won't play in Saturday's preseason game.\n- White is penciled in as the No. 2 RB at camp.\n- White was named an offseason standout.",
     "summary_fallback": false
   },
   "00-0036613": {
@@ -673,18 +673,18 @@
   },
   "00-0033288": {
     "player_name": "George Kittle",
-    "current_designation": "Confident he'll avoid PUP for Week 1",
-    "last_updated": "2026-08-16T14:19:10-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mta4hgizjr26",
-    "last_report_id": "e718412f-eae0-48b4-a161-addc687eb24e",
+    "current_designation": "Has chance to play Week 1",
+    "last_updated": "2026-08-20T18:38:09-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtkms7oxyz2u",
+    "last_report_id": "ff9a7be7-59e2-47b7-91ba-18e7c260b6f7",
     "last_extraction": {
-      "status": "Confident he'll avoid PUP for Week 1",
-      "designation": "Confident he'll avoid PUP for Week 1",
-      "date": "2026-08-16T14:19:10-07:00",
-      "direct_quote": "George Kittle: Confident he'll avoid PUP for Week 1 \n\n https://www.rotowire.com/football/player/george-kittle-11892",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mta4hgizjr26"
+      "status": "Has chance to play Week 1",
+      "designation": "Has chance to play Week 1",
+      "date": "2026-08-20T18:38:09-07:00",
+      "direct_quote": "George Kittle: Has chance to play Week 1",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtkms7oxyz2u"
     },
-    "last_diff_summary": "George Kittle has been targeting a Week 1 return since March 29th, 2026, and feels he is ahead of schedule. He started training camp on the Physically Unable to Perform (PUP) list on July 25th but increased his activity level on August 10th. Kittle is confident he will avoid the PUP list for Week 1.",
+    "last_diff_summary": "- George Kittle has a chance to play Week 1.\n- Kittle is confident he'll avoid the Physically Unable to Perform (PUP) list for Week 1.\n- Kittle increased his activity level Monday.\n- Kittle is starting training camp on PUP.\n- Kittle feels on track for Week 1.",
     "summary_fallback": false
   },
   "00-0038933": {
@@ -705,34 +705,34 @@
   },
   "00-0033280": {
     "player_name": "Christian McCaffrey",
-    "current_designation": "Coming along well, per Shanahan",
-    "last_updated": "2026-08-18T12:12:58-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtewdmsfem26",
-    "last_report_id": "153b4a92-153e-4d25-81f5-dea824630eb8",
+    "current_designation": "Not suited up for Thursday's game",
+    "last_updated": "2026-08-20T18:21:50-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtklv2aemq2z",
+    "last_report_id": "08934f6c-9f9f-4f0d-9135-21b35f2a730c",
     "last_extraction": {
-      "status": "Coming along well, per Shanahan",
-      "designation": "Coming along well, per Shanahan",
-      "date": "2026-08-18T12:12:58-07:00",
-      "direct_quote": "Christian McCaffrey: Coming along well, per Shanahan",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtewdmsfem26"
+      "status": "Not suited up for Thursday's game",
+      "designation": "Not suited up for Thursday's game",
+      "date": "2026-08-20T18:21:50-07:00",
+      "direct_quote": "Christian McCaffrey: Not suited up for Thursday's game",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtklv2aemq2z"
     },
-    "last_diff_summary": "Christian McCaffrey is coming along well, per coach Kyle Shanahan, despite missing practice time with tightness that is not considered serious. He was given a day off Monday, which was downplayed, but remained sidelined Tuesday and missed another practice Saturday. McCaffrey is slated to receive more rest in 2026 and recently won Best Comeback Athlete.",
+    "last_diff_summary": "- Christian McCaffrey is not suited up for Thursday's game.\n- McCaffrey is coming along well, per Shanahan.\n- McCaffrey's tightness is not considered a serious issue.\n- McCaffrey missed another practice Saturday.\n- McCaffrey is still sidelined Tuesday.\n- McCaffrey's Monday absence was downplayed.",
     "summary_fallback": false
   },
   "00-0039337": {
     "player_name": "Malik Nabers",
-    "current_designation": "Works in team drills for first time",
-    "last_updated": "2026-08-17T12:40:26-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtchft2sl42c",
-    "last_report_id": "af48347a-0d2d-43f5-9cca-31f56ca17431",
+    "current_designation": "Sitting out joint practices this week",
+    "last_updated": "2026-08-20T06:56:55-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtjfmdgs7r25",
+    "last_report_id": "a45d0596-406a-40b3-8e85-7df2cd24860f",
     "last_extraction": {
-      "status": "Works in team drills for first time",
-      "designation": "Works in team drills for first time",
-      "date": "2026-08-17T12:40:26-07:00",
-      "direct_quote": "Malik Nabers: Works in team drills for first time",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtchft2sl42c"
+      "status": "Sitting out joint practices this week",
+      "designation": "Sitting out joint practices this week",
+      "date": "2026-08-20T06:56:55-07:00",
+      "direct_quote": "Malik Nabers: Sitting out joint practices this week",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtjfmdgs7r25"
     },
-    "last_diff_summary": "Malik Nabers worked in team drills for the first time on Monday, after taking team reps in a light practice Thursday. He is trending toward Week 1 return but was not suited up for the exhibition opener.",
+    "last_diff_summary": "- Malik Nabers is sitting out joint practices this week.\n- Nabers needs to take contact before game action.\n- Nabers worked in team drills for the first time.\n- Nabers is not suited up for the exhibition opener.\n- Nabers took team reps in Thursday's light practice.\n- Nabers is likely to join team drills soon.",
     "summary_fallback": false
   },
   "00-0040715": {
