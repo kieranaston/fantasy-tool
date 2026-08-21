@@ -12,8 +12,8 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    # Caps in run_injuries keep Gemini work small; this is a hard stop if
-    # the API still stalls so the job cannot sit for hours.
+    # Caps in run_injuries keep Bluesky LLM matching small; this is a hard
+    # stop if the API stalls so the job cannot sit for hours.
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4

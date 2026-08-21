@@ -9,13 +9,18 @@ function formatUpdateDay(isoString) {
   return date.toLocaleString(undefined, { month: "short", day: "numeric" });
 }
 
-function sourcesHtml(timeline) {
-  if (!timeline || !timeline.length) {
-    return `<p class="timeline-empty">No sources yet.</p>`;
+function sourcesHtml(timeline, { skipNewest = false } = {}) {
+  const items = skipNewest && timeline?.length > 1 ? timeline.slice(1) : timeline;
+  if (!items || !items.length) {
+    return `<p class="timeline-empty">${
+      skipNewest && timeline?.length === 1
+        ? "No earlier sources."
+        : "No sources yet."
+    }</p>`;
   }
   return `
     <ol class="injury-timeline">
-      ${timeline
+      ${items
         .map((item) => {
           const when = item.timestamp
             ? formatTimestamp(item.timestamp)
@@ -36,19 +41,26 @@ function sourcesHtml(timeline) {
     </ol>`;
 }
 
-function summaryHtml(summary) {
-  const text = String(summary || "").trim();
-  if (!text) return "";
-  const lines = text
-    .split(/\n+/)
-    .map((line) => line.replace(/^[-*•]\s+/, "").trim())
-    .filter(Boolean);
-  if (lines.length >= 2) {
-    return `<ul>${lines
-      .map((line) => `<li>${escapeHtml(line)}</li>`)
-      .join("")}</ul>`;
-  }
-  return escapeHtml(lines[0] || text);
+function latestPostHtml(player) {
+  const timeline = player.timeline || [];
+  const newest = timeline[0];
+  const text = String(
+    (newest && newest.source_text) || player.diff_summary || ""
+  ).trim();
+  if (!text) return `<p class="injury-blurb muted">No recent post yet.</p>`;
+  const when = newest?.timestamp ? formatUpdateDay(newest.timestamp) : null;
+  const link = newest?.url
+    ? `<a href="${escapeHtml(newest.url)}" target="_blank" rel="noopener">source</a>`
+    : "";
+  const meta =
+    when || link
+      ? `<div class="injury-post-meta">${
+          when ? `<span>${escapeHtml(when)}</span>` : ""
+        }${link}</div>`
+      : "";
+  return `<div class="injury-blurb injury-latest-post">${meta}<p class="timeline-text">${escapeHtml(
+    text
+  )}</p></div>`;
 }
 
 function playerCard(player) {
@@ -57,11 +69,7 @@ function playerCard(player) {
   const updateTag = updateDay
     ? `<span class="update-tag">${escapeHtml(updateDay)}</span>`
     : "";
-  const sourceCount = (player.timeline || []).length;
-  const blurb = player.diff_summary
-    ? summaryHtml(player.diff_summary)
-    : "No generated summary yet.";
-  const blurbClass = player.diff_summary ? "injury-blurb" : "injury-blurb muted";
+  const sourceCount = Math.max(0, (player.timeline || []).length - 1);
   const designation = (player.current_designation || "").trim();
   const statusChip = designation
     ? `<span class="status-chip">${escapeHtml(designation)}</span>`
@@ -76,10 +84,10 @@ function playerCard(player) {
           </div>
           <span class="injury-card-meta">${statusChip}${updateTag}</span>
         </div>
-        <div class="${blurbClass}">${blurb}</div>
+        ${latestPostHtml(player)}
       </div>
       <button type="button" class="injury-card-header" aria-expanded="false">
-        <span class="sources-toggle-label">Sources (${sourceCount})</span>
+        <span class="sources-toggle-label">Earlier sources (${sourceCount})</span>
         <span class="expand-hint" aria-hidden="true">+</span>
       </button>
       <div class="injury-card-body" hidden data-lazy-sources="1"></div>
@@ -95,7 +103,7 @@ function bindExpand(container, playersById) {
     const expanded = header.getAttribute("aria-expanded") === "true";
     if (!expanded && body?.dataset.lazySources === "1") {
       const player = playersById.get(card.getAttribute("data-player-id"));
-      body.innerHTML = sourcesHtml(player?.timeline);
+      body.innerHTML = sourcesHtml(player?.timeline, { skipNewest: true });
       delete body.dataset.lazySources;
     }
     header.setAttribute("aria-expanded", expanded ? "false" : "true");

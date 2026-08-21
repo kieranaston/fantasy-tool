@@ -21,11 +21,10 @@ from src.injuries.store import (
 )
 from src.loaders.nfl_data import get_current_season
 from src.injuries.summarize import (
-    build_narratives_batch,
     extract_bluesky_batch,
     gemini_available,
 )
-from src.injuries.validate import review_item, validate_diff_summary, validate_extraction
+from src.injuries.validate import review_item, validate_extraction
 from src.loaders.bluesky import (
     extract_rotowire_posts,
     fetch_author_posts,
@@ -45,17 +44,8 @@ REVIEW_PATH = STATE_DIR / "review_queue.json"
 SUMMARIES_PATH = PUBLIC_DIR / "summaries.json"
 
 EXTRACT_CHUNK = 8
-NARRATIVE_CHUNK = 4
-# Hard caps so a backlog (or wiped summaries) cannot burn the whole free-tier
-# quota / hang Actions for hours. Leftovers wait for the next daily run.
+# Cap Bluesky LLM matching only (no narrative generation).
 MAX_BLUESKY_LLM_POSTS = int(os.environ.get("MAX_BLUESKY_LLM_POSTS", "16"))
-MAX_NARRATIVE_PLAYERS = int(os.environ.get("MAX_NARRATIVE_PLAYERS", "12"))
-MAX_NARRATIVE_RETRIES = int(os.environ.get("MAX_NARRATIVE_RETRIES", "4"))
-SKIP_NARRATIVES = os.environ.get("SKIP_NARRATIVES", "").strip().lower() in {
-    "1",
-    "true",
-    "yes",
-}
 
 
 def _newly_appended(before: list, after: list) -> list:
@@ -230,20 +220,16 @@ def reprocess_pending_bluesky(player_index, reports: list) -> tuple[list, list]:
     return reports, updated_for_changes
 
 
-def _fallback_summary(player_name: str | None, report: dict) -> str:
-    """Plain summary from RotoWire fields when Gemini quota is exhausted."""
-    name = (player_name or report.get("player_name") or "Player").strip()
+def _latest_post_blurb(report: dict) -> str:
+    """Use the newest post body as the card blurb (no Gemini narrative)."""
+    text = (report.get("source_text") or "").strip()
+    if text:
+        return text
     designation = (report.get("designation") or "").strip()
-    if not designation:
-        text = (report.get("source_text") or "").strip()
-        designation = text.split("\n")[0].strip()[:160]
-    if not designation:
-        return f"{name}: update reported."
-    if designation.lower().startswith(name.lower() + ":"):
-        return designation if designation.endswith(".") else f"{designation}."
-    if designation.endswith((".", "!", "?")):
+    name = (report.get("player_name") or "").strip()
+    if designation and name and not designation.lower().startswith(name.lower()):
         return f"{name}: {designation}"
-    return f"{name}: {designation}."
+    return designation or name or ""
 
 
 def process_changes(
@@ -252,7 +238,7 @@ def process_changes(
     *,
     allowed_player_ids: set[str] | None = None,
 ) -> dict:
-    """Summarize any matched player that is new or still missing a narrative."""
+    """Update player status from new matched reports; blurb = latest post text."""
     by_player = group_reports_by_player(
         reports,
         allowed_player_ids=allowed_player_ids,
@@ -264,24 +250,11 @@ def process_changes(
         allowed_player_ids=allowed_player_ids,
         by_player=by_player,
     )
-    print(f"  Change detection: {len(changed)} player(s) need summary")
+    print(f"  Change detection: {len(changed)} player(s) need status update")
     if not changed:
         return status_current
 
-    if SKIP_NARRATIVES:
-        print("  SKIP_NARRATIVES set — leaving summaries unchanged this run")
-        return status_current
-
-    if len(changed) > MAX_NARRATIVE_PLAYERS:
-        print(
-            f"  Capping narratives to {MAX_NARRATIVE_PLAYERS}/{len(changed)} "
-            "players (rest next run)"
-        )
-        changed = changed[:MAX_NARRATIVE_PLAYERS]
-
-    narrative_inputs = []
-    review_batch = []
-
+    updated = 0
     for item in changed:
         report = item["report"]
         pid = item["player_id"]
@@ -293,132 +266,25 @@ def process_changes(
             "direct_quote": source_text[:280],
             "source_url": report.get("url") or "",
         }
-        timeline = by_player.get(pid) or [report]
-        if not timeline:
-            timeline = [report]
-
-        narrative_inputs.append(
-            {
-                "player_id": pid,
-                "player_name": item.get("player_name") or report.get("player_name"),
-                "report": report,
-                "current": extraction,
-                "reports": timeline,
-                "source_texts": [r.get("source_text") or "" for r in timeline],
-            }
-        )
-
-    summaries: dict = {}
-    if gemini_available():
-        chunks = [
-            narrative_inputs[i : i + NARRATIVE_CHUNK]
-            for i in range(0, len(narrative_inputs), NARRATIVE_CHUNK)
-        ]
-        for index, chunk in enumerate(chunks):
-            if index:
-                time.sleep(8.0)
-            print(
-                f"  Narrative batch {index + 1}/{len(chunks)} "
-                f"({len(chunk)} player(s))"
-            )
-            try:
-                summaries.update(
-                    build_narratives_batch(
-                        [
-                            {
-                                "player_id": d["player_id"],
-                                "player_name": d.get("player_name"),
-                                "reports": d["reports"],
-                            }
-                            for d in chunk
-                        ]
-                    )
-                )
-            except Exception as exc:
-                print(f"  Narrative batch failed ({exc})")
-                append_review_items(
-                    REVIEW_PATH,
-                    [review_item(reason=f"narrative_batch_error: {exc}")],
-                )
-        missing = [d for d in narrative_inputs if not summaries.get(d["player_id"])]
-        if missing:
-            retry_cap = min(len(missing), MAX_NARRATIVE_RETRIES)
-            print(
-                f"  Retrying {retry_cap}/{len(missing)} missing narrative(s) singly…"
-            )
-            for d in missing[:retry_cap]:
-                time.sleep(8.0)
-                try:
-                    summaries.update(
-                        build_narratives_batch(
-                            [
-                                {
-                                    "player_id": d["player_id"],
-                                    "player_name": d.get("player_name"),
-                                    "reports": d["reports"],
-                                }
-                            ]
-                        )
-                    )
-                except Exception as exc:
-                    append_review_items(
-                        REVIEW_PATH,
-                        [review_item(reason=f"narrative_retry_error: {exc}")],
-                    )
-    else:
-        print("  Summarization without Gemini (plain RotoWire text)")
-
-    summarized = 0
-    still_pending = 0
-    for d in narrative_inputs:
-        pid = d["player_id"]
-        summary = summaries.get(pid)
-        used_fallback = not bool(summary)
-        if summary:
-            ok, failed = validate_diff_summary(summary, d["source_texts"])
-            if not ok:
-                review_batch.append(
-                    review_item(
-                        reason="narrative_validation_failed",
-                        source=d["report"],
-                        extraction={"summary": summary, **d["current"]},
-                        failed_fields=failed,
-                    )
-                )
-                summary = None
-                used_fallback = True
-        if not summary:
-            summary = _fallback_summary(d.get("player_name"), d["report"])
-            used_fallback = True
-        if not summary:
-            still_pending += 1
+        blurb = _latest_post_blurb(report)
+        if not blurb:
             continue
-
         status_current[pid] = {
-            "player_name": d.get("player_name") or d["report"].get("player_name"),
-            "current_designation": d["current"].get("designation")
-            or d["report"].get("designation"),
-            "last_updated": d["report"].get("timestamp") or utc_now_iso(),
-            "last_report_url": d["report"].get("url"),
-            "last_report_id": d["report"].get("id"),
-            "last_extraction": d["current"],
-            "last_diff_summary": summary,
-            "summary_fallback": used_fallback,
+            "player_name": item.get("player_name") or report.get("player_name"),
+            "current_designation": report.get("designation"),
+            "last_updated": report.get("timestamp") or utc_now_iso(),
+            "last_report_url": report.get("url"),
+            "last_report_id": report.get("id"),
+            "last_extraction": extraction,
+            "last_diff_summary": blurb,
+            "summary_fallback": False,
         }
-        summarized += 1
-
-    if review_batch:
-        append_review_items(REVIEW_PATH, review_batch)
+        updated += 1
 
     write_json(STATUS_PATH, status_current)
     write_json(RAW_PATH, reports)
-    print(
-        f"  Summarized {summarized} player(s); "
-        f"{still_pending} still pending (retry next run); "
-        f"{len(review_batch)} validation failures → review"
-    )
+    print(f"  Updated {updated} player status row(s) from latest posts")
     return status_current
-
 
 
 def main() -> None:
@@ -453,17 +319,6 @@ def main() -> None:
     reports, bsky_new = ingest_bluesky(tables.by_name, reports, poll_state)
     reports, _bsky_reprocessed = reprocess_pending_bluesky(tables.by_name, reports)
 
-    # Mark plain fallbacks so Gemini can replace them on this/next run
-    for pid, status in list(status_current.items()):
-        if pid not in pool_ids:
-            continue
-        if status.get("summary_fallback"):
-            continue
-        summary = (status.get("last_diff_summary") or "").strip()
-        name = (status.get("player_name") or "").strip()
-        if name and summary.lower().startswith(name.lower() + ":"):
-            status["summary_fallback"] = True
-
     # Keep status only for news-pool players (site news is pool-scoped)
     status_current = {
         pid: status
@@ -471,7 +326,7 @@ def main() -> None:
         if pid in pool_ids
     }
 
-    # Scan matched pool reports each run so quota failures are filled next day
+    # Refresh status when the newest matched report changes (blurb = post text)
     status_current = process_changes(
         reports,
         status_current,

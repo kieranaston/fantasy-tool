@@ -37,6 +37,22 @@ def _timeline_item(report: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def _latest_post_text(timeline: list[dict[str, Any]], status: dict[str, Any] | None = None) -> str | None:
+    """Card blurb is the newest source post, not an LLM writeup."""
+    if timeline:
+        text = (timeline[0].get("source_text") or "").strip()
+        if text:
+            return text
+        designation = (timeline[0].get("designation") or "").strip()
+        if designation:
+            return designation
+    if status:
+        text = (status.get("last_diff_summary") or "").strip()
+        if text:
+            return text
+    return None
+
+
 def build_summaries(
     *,
     status_current: dict[str, Any],
@@ -84,7 +100,7 @@ def build_summaries(
                 or (timeline[0].get("player_name") if timeline else None),
                 "current_designation": status.get("current_designation"),
                 "last_updated": status.get("last_updated"),
-                "diff_summary": status.get("last_diff_summary"),
+                "diff_summary": _latest_post_text(timeline, status),
                 "timeline": timeline,
                 **media_fields,
             }
@@ -102,7 +118,7 @@ def build_summaries(
                 "player_name": newest.get("player_name"),
                 "current_designation": newest.get("designation"),
                 "last_updated": newest.get("timestamp"),
-                "diff_summary": None,
+                "diff_summary": _latest_post_text(timeline),
                 "timeline": timeline,
                 **media_fields,
             }

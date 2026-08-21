@@ -452,6 +452,19 @@ table.draft-table > thead > tr > th {
   margin: 0.12rem 0;
 }
 
+.injury-latest-post {
+  margin: 0 0 0.2rem;
+}
+
+.injury-post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 0.2rem;
+}
+
 .injury-blurb.muted,
 .timeline-empty {
   color: var(--muted);
