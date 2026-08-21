@@ -456,13 +456,11 @@ table.draft-table > thead > tr > th {
   margin: 0 0 0.2rem;
 }
 
-.injury-post-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 0.75rem;
+.injury-post-link {
+  display: inline-block;
+  margin-top: 0.15rem;
   font-size: 0.75rem;
   color: var(--muted);
-  margin-bottom: 0.2rem;
 }
 
 .injury-blurb.muted,
