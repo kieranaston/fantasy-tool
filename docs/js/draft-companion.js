@@ -17,7 +17,7 @@ import {
   SKILL_POSITIONS,
   SCORING_FORMATS,
   FORMAT_LABELS,
-} from "./draft-scoring.js?v=107";
+} from "./draft-scoring.js?v=109";
 import { createFavourites } from "./draft-liked.js?v=9";
 
 /** Fast on your turn / on deck; slower while waiting. */
@@ -25,7 +25,10 @@ const POLL_ON_CLOCK_MS = 1200;
 const POLL_ON_DECK_MS = 1500;
 const POLL_WAITING_MS = 2500;
 const POLL_IDLE_MS = 5000;
+/** How often to refresh draft status (not trades — those are fixed at connect). */
 const DRAFT_META_EVERY = 12;
+/** Score / recommend this many players; UI shows the same window. */
+const SCORE_LIMIT = 24;
 const SEARCH_LIMIT = 24;
 
 function needBonusHtml(needBonus) {
@@ -850,7 +853,7 @@ async function mountDraftCompanionPage() {
     }
     const result = lastScoreResult;
     if (!result) return;
-    const recs = (result.recommendations || []).slice(0, 24);
+    const recs = (result.recommendations || []).slice(0, SCORE_LIMIT);
     if (!recs.length) {
       recEl.innerHTML = `<p class="meta">No skill players left on the board.</p>`;
       return;
@@ -983,7 +986,7 @@ async function mountDraftCompanionPage() {
       timing,
       bySlot,
       myRoster,
-      fp: picksFingerprint(picks),
+      fp: picksFingerprint(picks, timing.teams, timing.rounds),
       myFp: myRosterFingerprint(myRoster),
     };
   }
@@ -1007,13 +1010,17 @@ async function mountDraftCompanionPage() {
       mySlot,
       currentPickNo: timing.pickNo,
       rounds: timing.rounds,
-      limit: 40,
+      limit: SCORE_LIMIT,
       ownerSlotByPick,
       filledPickNos: timing.filledPickNos,
     });
 
     hasScoredOnce = true;
-    lastScoredFingerprint = picksFingerprint(picks);
+    lastScoredFingerprint = picksFingerprint(
+      picks,
+      timing.teams,
+      timing.rounds
+    );
     cacheScoreResult(result);
 
     renderRosterCounts(myRoster);
@@ -1064,24 +1071,9 @@ async function mountDraftCompanionPage() {
       const wantMeta = pollTick === 1 || pollTick % DRAFT_META_EVERY === 0;
       const nextPicks = await sleeperGet(`/draft/${draftId}/picks`);
       if (wantMeta) {
+        // Status only — pick owners / trades were loaded at connect and do not
+        // change mid-draft.
         draft = await sleeperGet(`/draft/${draftId}`);
-        if (!league) league = await fetchLeagueForDraft(draft);
-        try {
-          await loadLeagueRosters();
-          await loadTradedPicks();
-        } catch {
-          tradedPicks = tradedPicks || [];
-        }
-        rebuildPickOwners();
-        const prevFormat = scoringFormat?.format;
-        refreshLeagueSettings();
-        if (scoringFormat.format !== prevFormat) {
-          await loadAdpBoard(scoringFormat);
-          hasScoredOnce = false;
-          lastScoredFingerprint = "";
-          lastMyRosterFp = "";
-          queueScoreRender({ force: true });
-        }
       }
       const next = nextPicks || [];
       const teams = Number(leagueSettings?.teams || draft?.settings?.teams || 12);

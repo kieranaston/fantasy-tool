@@ -28,7 +28,13 @@ const ADP_MISSING = 9999;
 const SOFTMAX_TEMPERATURE = 4;
 
 /** Max players in the risk sim pool (ADP ∪ your top recommendations). */
-const RISK_POOL_CAP = 80;
+const RISK_POOL_CAP = 40;
+
+/**
+ * How many ADP-ordered players to keep before need-score / risk work.
+ * Need only reshuffles within this window (backup QB/TE ×1.5).
+ */
+const SCORE_SHORTLIST_PAD = 24;
 
 /** Scoring formats for daily Sleeper ADP boards under docs/data/draft/. */
 const SCORING_FORMATS = ["half_ppr", "full_ppr", "std"];
@@ -493,12 +499,14 @@ function buildRiskSimPool(sortedAvailable, myNeed, limit = 40) {
 }
 
 /** Merge ADP-sorted per-position lists (caller keeps each list sorted). */
-function flattenAvailable(availableByPos) {
+function flattenAvailable(availableByPos, maxOut = Infinity) {
   const lists = SKILL_POSITIONS.map((pos) => availableByPos[pos] || []);
   const heads = lists.map(() => 0);
   const total = lists.reduce((n, arr) => n + arr.length, 0);
+  const cap = Math.max(0, Number(maxOut));
+  const limit = Number.isFinite(cap) ? Math.min(total, cap) : total;
   const out = [];
-  while (out.length < total) {
+  while (out.length < limit) {
     let bestI = -1;
     let bestAdp = Infinity;
     for (let i = 0; i < lists.length; i += 1) {
@@ -558,9 +566,11 @@ function scoreCandidates({
   const myPickAfter = myPicks[1] ?? null;
   const onClock = Number(myPick) === Number(currentPickNo);
 
-  const sortedAvailable = flattenAvailable(availableByPosIn);
+  const recLimit = Math.max(1, Number(limit) || 12);
+  const shortlistSize = Math.max(RISK_POOL_CAP, recLimit) + SCORE_SHORTLIST_PAD;
+  const sortedAvailable = flattenAvailable(availableByPosIn, shortlistSize);
   const myNeed = needCounts(myRoster);
-  const pool = buildRiskSimPool(sortedAvailable, myNeed, limit);
+  const pool = buildRiskSimPool(sortedAvailable, myNeed, recLimit);
   const simRosters = cloneRosters(opponentRosters, teams);
   simRosters[mySlot] = [...(myRoster || [])];
 
@@ -588,10 +598,7 @@ function scoreCandidates({
 
   scored.sort((a, b) => b.score - a.score || adpValue(a) - adpValue(b));
 
-  const capped =
-    limit == null || !Number.isFinite(Number(limit))
-      ? scored
-      : scored.slice(0, Math.max(0, Number(limit)));
+  const capped = scored.slice(0, recLimit);
 
   return {
     targets: draftTargets(settings),
