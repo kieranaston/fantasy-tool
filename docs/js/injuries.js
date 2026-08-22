@@ -4,7 +4,9 @@ import { escapeHtml, playerMediaHtml } from "./shared.js?v=3";
 const BSKY_FEED_URL =
   "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed";
 const BSKY_ACTOR = "rotowirenfl.bsky.social";
-const BSKY_PAGE_LIMIT = 50;
+const BSKY_PAGE_LIMIT = 30;
+/** Max player cards shown (newest first, after freshness filter). */
+const DISPLAY_LIMIT = 40;
 /** RotoWire blurbs are almost always "Player Name: update …" */
 const ROTOWIRE_LINE =
   /^\s*([^:\n]{2,80}?)\s*:\s*(.+?)\s*$/m;
@@ -137,6 +139,14 @@ function bindExpand(container, playersById) {
     const hint = header.querySelector(".expand-hint");
     if (hint) hint.textContent = expanded ? "+" : "−";
   });
+}
+
+function isFreshPlayer(player, maxAgeDays) {
+  const days = Number(maxAgeDays);
+  if (!Number.isFinite(days) || days <= 0) return true;
+  const ts = Date.parse(player.last_updated || "");
+  if (Number.isNaN(ts)) return false;
+  return Date.now() - ts <= days * 24 * 60 * 60 * 1000;
 }
 
 function matchesNewsQuery(player, query) {
@@ -289,11 +299,18 @@ async function mountInjuriesPage() {
       String(b.last_updated || "").localeCompare(String(a.last_updated || ""))
     );
     let liveNote = "";
+    const maxAgeDays = 7;
 
     const playersById = new Map(
       players.map((p) => [String(p.player_id), p])
     );
     let searchTimer = null;
+
+    function visiblePlayers() {
+      return players
+        .filter((p) => isFreshPlayer(p, maxAgeDays))
+        .slice(0, DISPLAY_LIMIT);
+    }
 
     function render(filtered) {
       if (meta) {
@@ -312,7 +329,7 @@ async function mountInjuriesPage() {
       const query = String(searchInput?.value || "")
         .trim()
         .toLowerCase();
-      render(players.filter((p) => matchesNewsQuery(p, query)));
+      render(visiblePlayers().filter((p) => matchesNewsQuery(p, query)));
     }
 
     searchInput?.addEventListener("input", () => {
@@ -320,10 +337,8 @@ async function mountInjuriesPage() {
       searchTimer = setTimeout(applyFilter, 120);
     });
     bindExpand(container, playersById);
-    applyFilter();
-    revealPage();
 
-    // After first paint, pull live RotoWire posts and merge in.
+    // Merge live RotoWire posts before first paint to avoid a stale→live flash.
     try {
       const livePosts = await fetchLiveRotowirePosts();
       const merged = mergeLivePosts(players, livePosts);
@@ -334,10 +349,12 @@ async function mountInjuriesPage() {
         liveNote = ` · ${merged.added} new`;
         data.last_updated = new Date().toISOString();
       }
-      applyFilter();
     } catch {
       // Static summaries still work if Bluesky is unreachable.
     }
+
+    applyFilter();
+    revealPage();
   } catch (err) {
     if (container) showError(container, err.message || String(err));
     else if (meta) meta.textContent = err.message || String(err);

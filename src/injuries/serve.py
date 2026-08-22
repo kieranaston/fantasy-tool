@@ -10,7 +10,7 @@ from src.injuries.detect import group_reports_by_player
 from src.loaders.nfl_data import player_media_index
 
 # Drop players whose newest post/status is older than this.
-NEWS_MAX_AGE = timedelta(days=14)
+NEWS_MAX_AGE = timedelta(days=7)
 
 
 def _player_is_fresh(player: dict[str, Any], *, cutoff: datetime) -> bool:
