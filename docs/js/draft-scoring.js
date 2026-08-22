@@ -2,18 +2,20 @@
  * Draft assistant — ADP first, with a QB/TE backup multiplier.
  *
  * On the clock:
- *  1. Score = −ADP × M (higher is better). RB/WR always M = 1 (pure ADP).
+ *  1. Score = −ADP × M (higher is better). RB/WR/DEF/K always M = 1 (pure ADP).
  *     QB/TE: M = 1 until you have one, then M = 1.5 (treat ADP as 50% later).
  *  2. Risk uses the same score. Each opponent pick is a softmax; M updates
  *     after each team's most likely pick.
  *
- * League roster settings are not used. Scoring format is still detected so
- * the ADP board matches the league.
+ * DEF/K follow ADP with no round gating. Once your roster slots are filled they
+ * drop from recommendations only — opponents still draft them in risk sim until
+ * they fill their own slots. Leagues with slots_def/slots_k = 0 skip those
+ * positions entirely.
  *
  * Live picks before you're on the clock come from Sleeper — not simulated here.
  */
 
-const SKILL_POSITIONS = ["QB", "RB", "WR", "TE"];
+const SKILL_POSITIONS = ["QB", "RB", "WR", "TE", "DEF", "K"];
 
 /** Backup QB/TE are ranked as if their ADP were this times later. */
 const QB_TE_BACKUP_M = 1.5;
@@ -228,25 +230,40 @@ function qbTeMultiplier(owned) {
 }
 
 /**
- * Per-position multiplier M for ranking / opponent sim. Same M for every
- * available player at that position. RB/WR (and DEF/K) stay 1. QB/TE go to
- * 1.5 after the first copy.
+ * Per-position multiplier M for ranking / opponent sim. RB/WR/DEF/K stay 1.
+ * QB/TE go to 1.5 after the first copy. DEF/K drop to 0 once roster slots
+ * are filled (or when the league does not roster that position).
  */
-function needCounts(roster) {
+function needCounts(roster, settings = {}) {
   const counts = rosterPositionCounts(roster);
+  const slotsDef = Math.max(0, Number(settings.slots_def) || 0);
+  const slotsK = Math.max(0, Number(settings.slots_k) || 0);
   const need_count = {
     QB: qbTeMultiplier(counts.QB),
     RB: 1,
     WR: 1,
     TE: qbTeMultiplier(counts.TE),
-    DEF: 1,
-    K: 1,
+    DEF: slotsDef === 0 || counts.DEF >= slotsDef ? 0 : 1,
+    K: slotsK === 0 || counts.K >= slotsK ? 0 : 1,
   };
   return {
     need_count,
     openFlex: 0,
     counts,
   };
+}
+
+/** Drop DEF/K from your recommendation board once your roster slots are filled. */
+function filterFilledSlots(availableByPos, settings, myRoster) {
+  const filtered = {};
+  for (const pos of SKILL_POSITIONS) {
+    filtered[pos] = [...(availableByPos[pos] || [])];
+  }
+  const { need_count } = needCounts(myRoster, settings);
+  for (const pos of ["DEF", "K"]) {
+    if (!need_count[pos]) filtered[pos] = [];
+  }
+  return filtered;
 }
 
 function pickNumbersForSlot(slot, teams, rounds) {
@@ -370,6 +387,7 @@ function playerId(player) {
 function needAdpScore(player, need_count) {
   const pos = normalizePos(player.position);
   const m = Number(need_count[pos]);
+  if (Number.isFinite(m) && m <= 0) return -Infinity;
   const multiplier = Number.isFinite(m) && m > 0 ? m : 1;
   return -adpValue(player) * multiplier;
 }
@@ -416,7 +434,7 @@ function simulateGoneProbabilities({
     const slot = ownerSlotAtPick(pickNo, teams, ownerSlotByPick);
     if (Number(slot) === Number(mySlot)) continue;
 
-    const { need_count } = needCounts(localRosters[slot] || []);
+    const { need_count } = needCounts(localRosters[slot] || [], settings);
     const scores = new Array(n);
     let maxS = -Infinity;
     for (let i = 0; i < n; i += 1) {
@@ -568,9 +586,11 @@ function scoreCandidates({
 
   const recLimit = Math.max(1, Number(limit) || 12);
   const shortlistSize = Math.max(RISK_POOL_CAP, recLimit) + SCORE_SHORTLIST_PAD;
-  const sortedAvailable = flattenAvailable(availableByPosIn, shortlistSize);
-  const myNeed = needCounts(myRoster);
-  const pool = buildRiskSimPool(sortedAvailable, myNeed, recLimit);
+  const filteredAvailable = filterFilledSlots(availableByPosIn, settings, myRoster);
+  const sortedForRecs = flattenAvailable(filteredAvailable, shortlistSize);
+  const sortedForRisk = flattenAvailable(availableByPosIn, shortlistSize);
+  const myNeed = needCounts(myRoster, settings);
+  const pool = buildRiskSimPool(sortedForRisk, myNeed, recLimit);
   const simRosters = cloneRosters(opponentRosters, teams);
   simRosters[mySlot] = [...(myRoster || [])];
 
@@ -590,7 +610,9 @@ function scoreCandidates({
   }
 
   const scored = [];
-  for (const player of sortedAvailable) {
+  for (const player of sortedForRecs) {
+    const pos = normalizePos(player.position);
+    if (!(Number(myNeed.need_count[pos]) > 0)) continue;
     const id = playerId(player);
     const risk = goneProbById.has(id) ? goneProbById.get(id) : null;
     scored.push(annotateScore(player, myNeed.need_count, { risk }));
@@ -621,6 +643,7 @@ export {
   rosterPositionCounts,
   draftTargets,
   needCounts,
+  normalizePos,
   nextPickNumbers,
   nextOwnedPickNumbers,
   filledPickNumbers,

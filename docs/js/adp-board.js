@@ -5,13 +5,13 @@ import {
   revealPage,
 } from "./config.js?v=3";
 import { escapeHtml, sleeperIdOf, playerCellHtml } from "./shared.js?v=3";
-import { FORMAT_LABELS, SCORING_FORMATS, SKILL_POSITIONS, adpPathForFormat, formatAdpRoundPick } from "./draft-scoring.js?v=87";
+import { FORMAT_LABELS, SCORING_FORMATS, SKILL_POSITIONS, adpPathForFormat, formatAdpRoundPick } from "./draft-scoring.js?v=112";
 import { createFavourites } from "./draft-liked.js?v=9";
 
 const ADP_MISSING = 9999;
 /** Roughly 10 rounds in a 12-team draft (overall tab). */
 const ADP_BOARD_LIMIT = 120;
-const ADP_POS_LIMITS = { QB: 32, TE: 32 };
+const ADP_POS_LIMITS = { QB: 32, TE: 32, DEF: 32, K: 32 };
 
 function boardLimit(pos) {
   if (pos === "overall") return ADP_BOARD_LIMIT;

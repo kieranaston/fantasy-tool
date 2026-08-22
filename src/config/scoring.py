@@ -3,4 +3,4 @@
 # Scoring formats with published Sleeper ADP boards.
 FORMATS = ("half_ppr", "full_ppr", "std")
 
-SKILL_POSITIONS = ("QB", "RB", "WR", "TE")
+SKILL_POSITIONS = ("QB", "RB", "WR", "TE", "DEF", "K")

@@ -19,6 +19,7 @@ SLEEPER_ADP_URL = (
     "https://api.sleeper.com/projections/nfl/{season}"
     "?season_type=regular"
     "&position[]=QB&position[]=RB&position[]=WR&position[]=TE"
+    "&position[]=DEF&position[]=K"
     "&order_by={order_by}"
 )
 
@@ -36,6 +37,8 @@ POSITION_LIMITS = {
     "RB": 45,
     "WR": 45,
     "TE": 25,
+    "DEF": 32,
+    "K": 32,
 }
 
 # Sleeper uses ~999 as a sentinel for "no ADP".
@@ -94,6 +97,10 @@ def normalize_adp_slim(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
             continue
         player = item.get("player") or {}
         position = (player.get("position") or item.get("position") or "").upper()
+        if position == "DST":
+            position = "DEF"
+        if position == "PK":
+            position = "K"
         if position not in POSITIONS:
             continue
 

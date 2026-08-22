@@ -17,7 +17,8 @@ import {
   SKILL_POSITIONS,
   SCORING_FORMATS,
   FORMAT_LABELS,
-} from "./draft-scoring.js?v=109";
+  normalizePos,
+} from "./draft-scoring.js?v=112";
 import { createFavourites } from "./draft-liked.js?v=9";
 
 /** Fast on your turn / on deck; slower while waiting. */
@@ -561,11 +562,13 @@ async function mountDraftCompanionPage() {
   }
 
   function indexBoard(players) {
-    const byPos = { QB: [], RB: [], WR: [], TE: [] };
+    const byPos = { QB: [], RB: [], WR: [], TE: [], DEF: [], K: [] };
     const byId = new Map();
     for (const p of players) {
-      if (byPos[p.position]) byPos[p.position].push(p);
-      byId.set(String(p.sleeper_id), p);
+      const pos = normalizePos(p.position);
+      const row = pos === p.position ? p : { ...p, position: pos };
+      if (byPos[pos]) byPos[pos].push(row);
+      byId.set(String(p.sleeper_id), row);
     }
     for (const pos of SKILL_POSITIONS) {
       byPos[pos].sort(
@@ -785,13 +788,17 @@ async function mountDraftCompanionPage() {
     lastRosterForRender = roster;
     const byPos = {};
     for (const p of roster) {
-      const pos = String(p.position || "").toUpperCase();
-      const key = pos === "DEF" || pos === "DST" ? "DST" : pos;
-      (byPos[key] = byPos[key] || []).push(p);
+      const pos = normalizePos(p.position);
+      (byPos[pos] = byPos[pos] || []).push(p);
     }
+    const rosterPositions = ["QB", "RB", "WR", "TE", "DEF", "K"].filter((pos) => {
+      if (pos === "DEF") return Number(leagueSettings?.slots_def ?? 1) > 0;
+      if (pos === "K") return Number(leagueSettings?.slots_k ?? 1) > 0;
+      return true;
+    });
     needsEl.innerHTML = `
       <div class="draft-roster-grid">
-        ${["QB", "RB", "WR", "TE"]
+        ${rosterPositions
           .map((pos) => {
             const players = byPos[pos] || [];
             const body = players.length
@@ -855,7 +862,7 @@ async function mountDraftCompanionPage() {
     if (!result) return;
     const recs = (result.recommendations || []).slice(0, SCORE_LIMIT);
     if (!recs.length) {
-      recEl.innerHTML = `<p class="meta">No skill players left on the board.</p>`;
+      recEl.innerHTML = `<p class="meta">No draftable players left on the board.</p>`;
       return;
     }
     const teams = leagueTeamCount();
