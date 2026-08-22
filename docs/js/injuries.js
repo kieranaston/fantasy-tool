@@ -42,14 +42,24 @@ function atUriToWebUrl(uri, handle) {
   return `https://bsky.app/profile/${handle}/post/${rkey}`;
 }
 
-function sourcesHtml(timeline, { skipNewest = false } = {}) {
-  const items = skipNewest && timeline?.length > 1 ? timeline.slice(1) : timeline;
-  if (!items || !items.length) {
-    return `<p class="timeline-empty">${
-      skipNewest && timeline?.length === 1
-        ? "No earlier sources."
-        : "No sources yet."
-    }</p>`;
+function isFreshTimestamp(isoString, maxAgeDays) {
+  const days = Number(maxAgeDays);
+  if (!Number.isFinite(days) || days <= 0) return true;
+  const ts = Date.parse(isoString || "");
+  if (Number.isNaN(ts)) return false;
+  return Date.now() - ts <= days * 24 * 60 * 60 * 1000;
+}
+
+function freshTimeline(timeline, maxAgeDays) {
+  return (timeline || []).filter((item) =>
+    isFreshTimestamp(item.timestamp, maxAgeDays)
+  );
+}
+
+function sourcesHtml(timeline) {
+  const items = timeline || [];
+  if (!items.length) {
+    return `<p class="timeline-empty">No sources yet.</p>`;
   }
   return `
     <ol class="injury-timeline">
@@ -83,17 +93,12 @@ function latestPostHtml(player) {
   ).trim();
   const text = stripUrls(raw).replace(/\n{2,}/g, "\n").trim();
   if (!text) return `<p class="injury-blurb muted">No recent post yet.</p>`;
-  const link = newest?.url
-    ? `<a class="injury-post-link" href="${escapeHtml(
-        newest.url
-      )}" target="_blank" rel="noopener">source</a>`
-    : "";
   return `<div class="injury-blurb injury-latest-post"><p class="timeline-text">${escapeHtml(
     text
-  )}</p>${link}</div>`;
+  )}</p></div>`;
 }
 
-function playerCard(player) {
+function playerCard(player, maxAgeDays) {
   const rawId = String(player.player_id || "");
   const id = escapeHtml(rawId);
   const safeId = escapeHtml(rawId.replace(/[^a-zA-Z0-9_-]+/g, "-"));
@@ -101,7 +106,7 @@ function playerCard(player) {
   const updateTag = updateDay
     ? `<span class="update-tag">${escapeHtml(updateDay)}</span>`
     : "";
-  const sourceCount = Math.max(0, (player.timeline || []).length - 1);
+  const sourceCount = freshTimeline(player.timeline, maxAgeDays).length;
 
   return `
     <article class="injury-card" id="player-${safeId}" data-player-id="${id}">
@@ -115,14 +120,14 @@ function playerCard(player) {
         ${latestPostHtml(player)}
       </div>
       <button type="button" class="injury-card-header" aria-expanded="false">
-        <span class="sources-toggle-label">Earlier sources (${sourceCount})</span>
+        <span class="sources-toggle-label">Sources (${sourceCount})</span>
         <span class="expand-hint" aria-hidden="true">+</span>
       </button>
       <div class="injury-card-body" hidden data-lazy-sources="1"></div>
     </article>`;
 }
 
-function bindExpand(container, playersById) {
+function bindExpand(container, playersById, maxAgeDays) {
   container.addEventListener("click", (event) => {
     const header = event.target.closest(".injury-card-header");
     if (!header) return;
@@ -131,7 +136,9 @@ function bindExpand(container, playersById) {
     const expanded = header.getAttribute("aria-expanded") === "true";
     if (!expanded && body?.dataset.lazySources === "1") {
       const player = playersById.get(card.getAttribute("data-player-id"));
-      body.innerHTML = sourcesHtml(player?.timeline, { skipNewest: true });
+      body.innerHTML = sourcesHtml(
+        freshTimeline(player?.timeline, maxAgeDays)
+      );
       delete body.dataset.lazySources;
     }
     header.setAttribute("aria-expanded", expanded ? "false" : "true");
@@ -142,11 +149,7 @@ function bindExpand(container, playersById) {
 }
 
 function isFreshPlayer(player, maxAgeDays) {
-  const days = Number(maxAgeDays);
-  if (!Number.isFinite(days) || days <= 0) return true;
-  const ts = Date.parse(player.last_updated || "");
-  if (Number.isNaN(ts)) return false;
-  return Date.now() - ts <= days * 24 * 60 * 60 * 1000;
+  return isFreshTimestamp(player.last_updated, maxAgeDays);
 }
 
 function matchesNewsQuery(player, query) {
@@ -299,7 +302,7 @@ async function mountInjuriesPage() {
       String(b.last_updated || "").localeCompare(String(a.last_updated || ""))
     );
     let liveNote = "";
-    const maxAgeDays = 7;
+    const maxAgeDays = Number(data.news_max_age_days) || 7;
 
     const playersById = new Map(
       players.map((p) => [String(p.player_id), p])
@@ -322,7 +325,9 @@ async function mountInjuriesPage() {
           : `<p class="meta">No player news yet.</p>`;
         return;
       }
-      container.innerHTML = filtered.map(playerCard).join("");
+      container.innerHTML = filtered
+        .map((player) => playerCard(player, maxAgeDays))
+        .join("");
     }
 
     function applyFilter() {
@@ -336,7 +341,7 @@ async function mountInjuriesPage() {
       if (searchTimer) clearTimeout(searchTimer);
       searchTimer = setTimeout(applyFilter, 120);
     });
-    bindExpand(container, playersById);
+    bindExpand(container, playersById, maxAgeDays);
 
     // Merge live RotoWire posts before first paint to avoid a stale→live flash.
     try {
