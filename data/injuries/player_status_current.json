@@ -1,50 +1,50 @@
 {
   "00-0035659": {
     "player_name": "Terry McLaurin",
-    "current_designation": "Won't suit up Friday",
-    "last_updated": "2026-08-14T14:37:24-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt34k6sxd326",
-    "last_report_id": "2e1e4203-aa4e-4ac2-b9d3-ab87c6d62bfe",
+    "current_designation": "Playing Saturday vs. Detroit",
+    "last_updated": "2026-08-22T07:16:28-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtohn4h4t42z",
+    "last_report_id": "287c932e-1237-4e52-9ad5-0a61c65f2a57",
     "last_extraction": {
-      "status": "Won't suit up Friday",
-      "designation": "Won't suit up Friday",
-      "date": "2026-08-14T14:37:24-07:00",
-      "direct_quote": "Terry McLaurin: Won't suit up Friday",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt34k6sxd326"
+      "status": "Playing Saturday vs. Detroit",
+      "designation": "Playing Saturday vs. Detroit",
+      "date": "2026-08-22T07:16:28-07:00",
+      "direct_quote": "Terry McLaurin: Playing Saturday vs. Detroit \n\n https://www.rotowire.com/football/player/terry-mclaurin-13536",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtohn4h4t42z"
     },
-    "last_diff_summary": "Terry McLaurin: Won't suit up Friday",
+    "last_diff_summary": "Terry McLaurin: Playing Saturday vs. Detroit \n\n https://www.rotowire.com/football/player/terry-mclaurin-13536",
     "summary_fallback": false
   },
   "00-0031408": {
     "player_name": "Mike Evans",
-    "current_designation": "Injury issue downplayed by Shanahan",
-    "last_updated": "2026-08-18T12:04:20-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtevu63dl226",
-    "last_report_id": "941b664f-54d1-4c60-8de2-9fa66dc5cf2d",
+    "current_designation": "Back in team drills Saturday",
+    "last_updated": "2026-08-22T15:49:03-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtpebp2k262z",
+    "last_report_id": "1c5cb460-e1a4-4dbc-812e-16ede8cfc78f",
     "last_extraction": {
-      "status": "Injury issue downplayed by Shanahan",
-      "designation": "Injury issue downplayed by Shanahan",
-      "date": "2026-08-18T12:04:20-07:00",
-      "direct_quote": "Mike Evans: Injury issue downplayed by Shanahan",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtevu63dl226"
+      "status": "Back in team drills Saturday",
+      "designation": "Back in team drills Saturday",
+      "date": "2026-08-22T15:49:03-07:00",
+      "direct_quote": "Mike Evans: Back in team drills Saturday \n\n https://www.rotowire.com/football/player/mike-evans-9253",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtpebp2k262z"
     },
-    "last_diff_summary": "Mike Evans: Injury issue downplayed by Shanahan",
+    "last_diff_summary": "Mike Evans: Back in team drills Saturday \n\n https://www.rotowire.com/football/player/mike-evans-9253",
     "summary_fallback": false
   },
   "00-0033873": {
     "player_name": "Patrick Mahomes",
-    "current_designation": "Remaining out for second preseason tilt",
-    "last_updated": "2026-08-20T07:42:36-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtji5ys67i2d",
-    "last_report_id": "f08b8249-d081-428b-b088-6bd8e1eb4c24",
+    "current_designation": "Optimistic about Week 1 status",
+    "last_updated": "2026-08-22T18:37:05-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtpno5gzny23",
+    "last_report_id": "06d9ef87-ee7e-4834-ae2a-1e0e548b63f2",
     "last_extraction": {
-      "status": "Remaining out for second preseason tilt",
-      "designation": "Remaining out for second preseason tilt",
-      "date": "2026-08-20T07:42:36-07:00",
-      "direct_quote": "Patrick Mahomes: Remaining out for second preseason tilt",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtji5ys67i2d"
+      "status": "Optimistic about Week 1 status",
+      "designation": "Optimistic about Week 1 status",
+      "date": "2026-08-22T18:37:05-07:00",
+      "direct_quote": "Patrick Mahomes: Optimistic about Week 1 status \n\n https://www.rotowire.com/football/player/patrick-mahomes-11839",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtpno5gzny23"
     },
-    "last_diff_summary": "Patrick Mahomes: Remaining out for second preseason tilt",
+    "last_diff_summary": "Patrick Mahomes: Optimistic about Week 1 status \n\n https://www.rotowire.com/football/player/patrick-mahomes-11839",
     "summary_fallback": false
   },
   "00-0039165": {
@@ -369,18 +369,18 @@
   },
   "00-0038128": {
     "player_name": "Malik Willis",
-    "current_designation": "Sharp during successful opening drive",
-    "last_updated": "2026-08-14T19:41:45-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt3nkg5tvq2w",
-    "last_report_id": "90d9167d-1569-4f08-8e16-6954d50189d3",
+    "current_designation": "Idle for Saturday's preseason game",
+    "last_updated": "2026-08-22T12:32:16-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtozbsibr62z",
+    "last_report_id": "2b82891d-194b-4d96-98c2-e0c4913601c8",
     "last_extraction": {
-      "status": "Sharp during successful opening drive",
-      "designation": "Sharp during successful opening drive",
-      "date": "2026-08-14T19:41:45-07:00",
-      "direct_quote": "Malik Willis: Sharp during successful opening drive",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt3nkg5tvq2w"
+      "status": "Idle for Saturday's preseason game",
+      "designation": "Idle for Saturday's preseason game",
+      "date": "2026-08-22T12:32:16-07:00",
+      "direct_quote": "Malik Willis: Idle for Saturday's preseason game \n\n https://www.rotowire.com/football/player/malik-willis-15872",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtozbsibr62z"
     },
-    "last_diff_summary": "Malik Willis: Sharp during successful opening drive",
+    "last_diff_summary": "Malik Willis: Idle for Saturday's preseason game \n\n https://www.rotowire.com/football/player/malik-willis-15872",
     "summary_fallback": false
   },
   "00-0037838": {
@@ -417,18 +417,18 @@
   },
   "00-0039361": {
     "player_name": "Bucky Irving",
-    "current_designation": "To play in preseason Week 2",
-    "last_updated": "2026-08-17T12:01:03-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtcf7fbpzd2w",
-    "last_report_id": "0796d153-7ef8-4231-8645-04fdb9ba6b98",
+    "current_designation": "Logs three carries in preseason debut",
+    "last_updated": "2026-08-22T19:55:32-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtps2gntvc2l",
+    "last_report_id": "cf3b8b3c-89cc-46c8-b261-fc772a3abfa7",
     "last_extraction": {
-      "status": "To play in preseason Week 2",
-      "designation": "To play in preseason Week 2",
-      "date": "2026-08-17T12:01:03-07:00",
-      "direct_quote": "Bucky Irving: To play in preseason Week 2",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtcf7fbpzd2w"
+      "status": "Logs three carries in preseason debut",
+      "designation": "Logs three carries in preseason debut",
+      "date": "2026-08-22T19:55:32-07:00",
+      "direct_quote": "Bucky Irving: Logs three carries in preseason debut \n\n https://www.rotowire.com/football/player/bucky-irving-17784",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtps2gntvc2l"
     },
-    "last_diff_summary": "Bucky Irving: To play in preseason Week 2",
+    "last_diff_summary": "Bucky Irving: Logs three carries in preseason debut \n\n https://www.rotowire.com/football/player/bucky-irving-17784",
     "summary_fallback": false
   },
   "00-0037263": {
@@ -481,18 +481,18 @@
   },
   "00-0036158": {
     "player_name": "J.K. Dobbins",
-    "current_designation": "Suited up in full pads Tuesday",
-    "last_updated": "2026-08-18T09:02:10-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtelogkk3h26",
-    "last_report_id": "f05a379a-8cb0-43f0-80a8-e0fd8a9584fa",
+    "current_designation": "Doesn't play Friday",
+    "last_updated": "2026-08-22T11:56:51-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtoxchoz2w23",
+    "last_report_id": "ea857c03-37fb-44dd-8043-7348ca3ef639",
     "last_extraction": {
-      "status": "Suited up in full pads Tuesday",
-      "designation": "Suited up in full pads Tuesday",
-      "date": "2026-08-18T09:02:10-07:00",
-      "direct_quote": "J.K. Dobbins: Suited up in full pads Tuesday",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtelogkk3h26"
+      "status": "Doesn't play Friday",
+      "designation": "Doesn't play Friday",
+      "date": "2026-08-22T11:56:51-07:00",
+      "direct_quote": "J.K. Dobbins: Doesn't play Friday \n\n https://www.rotowire.com/football/player/jk-dobbins-14418",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtoxchoz2w23"
     },
-    "last_diff_summary": "J.K. Dobbins: Suited up in full pads Tuesday",
+    "last_diff_summary": "J.K. Dobbins: Doesn't play Friday \n\n https://www.rotowire.com/football/player/jk-dobbins-14418",
     "summary_fallback": false
   },
   "00-0036139": {
@@ -513,18 +513,18 @@
   },
   "00-0034857": {
     "player_name": "Josh Allen",
-    "current_designation": "Finds end zone in preseason opener",
-    "last_updated": "2026-08-15T16:44:06-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt5u3oukeq26",
-    "last_report_id": "e1b272f9-df79-4d64-b19a-f6dec4c15302",
+    "current_designation": "Will sit Saturday",
+    "last_updated": "2026-08-22T07:21:49-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtohwolrye2z",
+    "last_report_id": "2bec67d3-da59-4657-80e9-87d3c012e27b",
     "last_extraction": {
-      "status": "Finds end zone in preseason opener",
-      "designation": "Finds end zone in preseason opener",
-      "date": "2026-08-15T16:44:06-07:00",
-      "direct_quote": "Josh Allen: Finds end zone in preseason opener",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt5u3oukeq26"
+      "status": "Will sit Saturday",
+      "designation": "Will sit Saturday",
+      "date": "2026-08-22T07:21:49-07:00",
+      "direct_quote": "Josh Allen: Will sit Saturday \n\n https://www.rotowire.com/football/player/josh-allen-12483",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtohwolrye2z"
     },
-    "last_diff_summary": "Josh Allen: Finds end zone in preseason opener",
+    "last_diff_summary": "Josh Allen: Will sit Saturday \n\n https://www.rotowire.com/football/player/josh-allen-12483",
     "summary_fallback": false
   },
   "00-0033106": {
@@ -609,18 +609,18 @@
   },
   "00-0039040": {
     "player_name": "De'Von Achane",
-    "current_designation": "Gets in end zone in preseason opener",
-    "last_updated": "2026-08-14T19:34:23-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt3n5ax3rh25",
-    "last_report_id": "c436bd0a-1ab9-4dc1-b70d-3099dd6e1027",
+    "current_designation": "Not playing Saturday",
+    "last_updated": "2026-08-22T12:28:30-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtoz33libx27",
+    "last_report_id": "37860fd2-a09f-4337-8b56-8f87fa1a46e8",
     "last_extraction": {
-      "status": "Gets in end zone in preseason opener",
-      "designation": "Gets in end zone in preseason opener",
-      "date": "2026-08-14T19:34:23-07:00",
-      "direct_quote": "De'Von Achane: Gets in end zone in preseason opener",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt3n5ax3rh25"
+      "status": "Not playing Saturday",
+      "designation": "Not playing Saturday",
+      "date": "2026-08-22T12:28:30-07:00",
+      "direct_quote": "De'Von Achane: Not playing Saturday \n\n https://www.rotowire.com/football/player/devon-achane-16661",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtoz33libx27"
     },
-    "last_diff_summary": "De'Von Achane: Gets in end zone in preseason opener",
+    "last_diff_summary": "De'Von Achane: Not playing Saturday \n\n https://www.rotowire.com/football/player/devon-achane-16661",
     "summary_fallback": false
   },
   "00-0038543": {
@@ -897,18 +897,18 @@
   },
   "00-0040867": {
     "player_name": "Makai Lemon",
-    "current_designation": "Deemed limited at Thursday's practice",
-    "last_updated": "2026-08-20T08:05:03-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtjjg5jb5a26",
-    "last_report_id": "54ac4a65-b566-4de6-8245-706728f7f0a5",
+    "current_designation": "Not playing Saturday",
+    "last_updated": "2026-08-22T15:33:27-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtpdfrlosy26",
+    "last_report_id": "d8324497-e8de-4bf2-84d0-dae76082e46d",
     "last_extraction": {
-      "status": "Deemed limited at Thursday's practice",
-      "designation": "Deemed limited at Thursday's practice",
-      "date": "2026-08-20T08:05:03-07:00",
-      "direct_quote": "Makai Lemon: Deemed limited at Thursday's practice",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtjjg5jb5a26"
+      "status": "Not playing Saturday",
+      "designation": "Not playing Saturday",
+      "date": "2026-08-22T15:33:27-07:00",
+      "direct_quote": "Makai Lemon: Not playing Saturday \n\n https://www.rotowire.com/football/player/makai-lemon-19231",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtpdfrlosy26"
     },
-    "last_diff_summary": "Makai Lemon: Deemed limited at Thursday's practice",
+    "last_diff_summary": "Makai Lemon: Not playing Saturday \n\n https://www.rotowire.com/football/player/makai-lemon-19231",
     "summary_fallback": false
   },
   "00-0041512": {
@@ -977,18 +977,18 @@
   },
   "00-0038544": {
     "player_name": "Quentin Johnston",
-    "current_designation": "Not in uniform for Thursday's contest",
-    "last_updated": "2026-08-20T18:27:43-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtkm7kygni2y",
-    "last_report_id": "58db795c-0002-47d1-951d-494236fe51af",
+    "current_designation": "Idle for Saturday's practice",
+    "last_updated": "2026-08-22T09:19:41-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtoojgpdt322",
+    "last_report_id": "16517e72-5b16-4cfc-b59c-19e2d55a602d",
     "last_extraction": {
-      "status": "Not in uniform for Thursday's contest",
-      "designation": "Not in uniform for Thursday's contest",
-      "date": "2026-08-20T18:27:43-07:00",
-      "direct_quote": "Quentin Johnston: Not in uniform for Thursday's contest",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtkm7kygni2y"
+      "status": "Idle for Saturday's practice",
+      "designation": "Idle for Saturday's practice",
+      "date": "2026-08-22T09:19:41-07:00",
+      "direct_quote": "Quentin Johnston: Idle for Saturday's practice \n\n https://www.rotowire.com/football/player/quentin-johnston-16899",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtoojgpdt322"
     },
-    "last_diff_summary": "Quentin Johnston: Not in uniform for Thursday's contest",
+    "last_diff_summary": "Quentin Johnston: Idle for Saturday's practice \n\n https://www.rotowire.com/football/player/quentin-johnston-16899",
     "summary_fallback": false
   },
   "00-0038996": {
@@ -1169,18 +1169,18 @@
   },
   "00-0039919": {
     "player_name": "Rome Odunze",
-    "current_designation": "Says foot feels great",
-    "last_updated": "2026-07-30T08:56:22-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrusil7pr62i",
-    "last_report_id": "44e60527-ee64-467f-ad60-5d827854589d",
+    "current_designation": "Big gain on one catch Saturday",
+    "last_updated": "2026-08-22T19:42:42-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtprdhypyh2o",
+    "last_report_id": "d12310a5-a678-440f-924e-aa76ddfdaf41",
     "last_extraction": {
-      "status": "Says foot feels great",
-      "designation": "Says foot feels great",
-      "date": "2026-07-30T08:56:22-07:00",
-      "direct_quote": "Rome Odunze: Says foot feels great",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrusil7pr62i"
+      "status": "Big gain on one catch Saturday",
+      "designation": "Big gain on one catch Saturday",
+      "date": "2026-08-22T19:42:42-07:00",
+      "direct_quote": "Rome Odunze: Big gain on one catch Saturday \n\n https://www.rotowire.com/football/player/rome-odunze-17020",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtprdhypyh2o"
     },
-    "last_diff_summary": "Rome Odunze was bothered by his foot on June 4th, but 56 days later, on July 30th, he stated that his foot felt great.",
+    "last_diff_summary": "Rome Odunze: Big gain on one catch Saturday \n\n https://www.rotowire.com/football/player/rome-odunze-17020",
     "summary_fallback": false
   },
   "00-0038124": {
@@ -1217,18 +1217,18 @@
   },
   "00-0034855": {
     "player_name": "Baker Mayfield",
-    "current_designation": "Likely to play in second preseason game",
-    "last_updated": "2026-08-17T07:48:04-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtbx2zg54324",
-    "last_report_id": "3e9606c8-2431-4597-9625-5eaf3e1d5365",
+    "current_designation": "Pair of completions on opening series",
+    "last_updated": "2026-08-22T20:06:58-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtpsov2zan2g",
+    "last_report_id": "0165d347-e559-461c-afb5-4a6647480a96",
     "last_extraction": {
-      "status": "Likely to play in second preseason game",
-      "designation": "Likely to play in second preseason game",
-      "date": "2026-08-17T07:48:04-07:00",
-      "direct_quote": "Baker Mayfield: Likely to play in second preseason game",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtbx2zg54324"
+      "status": "Pair of completions on opening series",
+      "designation": "Pair of completions on opening series",
+      "date": "2026-08-22T20:06:58-07:00",
+      "direct_quote": "Baker Mayfield: Pair of completions on opening series \n\n https://www.rotowire.com/football/player/baker-mayfield-12619",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtpsov2zan2g"
     },
-    "last_diff_summary": "Baker Mayfield: Likely to play in second preseason game",
+    "last_diff_summary": "Baker Mayfield: Pair of completions on opening series \n\n https://www.rotowire.com/football/player/baker-mayfield-12619",
     "summary_fallback": false
   },
   "00-0037239": {
@@ -1249,18 +1249,18 @@
   },
   "00-0040242": {
     "player_name": "Jacory Croskey-Merritt",
-    "current_designation": "Won't play Friday",
-    "last_updated": "2026-08-14T14:56:51-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt35my46572d",
-    "last_report_id": "1a70b847-57af-4b8d-96fa-856fe4cdc5e7",
+    "current_designation": "Will sit Saturday",
+    "last_updated": "2026-08-22T07:25:22-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtoi4zb7dk27",
+    "last_report_id": "06d2b7be-9e9b-40fb-9713-62d5538f6d21",
     "last_extraction": {
-      "status": "Won't play Friday",
-      "designation": "Won't play Friday",
-      "date": "2026-08-14T14:56:51-07:00",
-      "direct_quote": "Jacory Croskey-Merritt: Won't play Friday",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt35my46572d"
+      "status": "Will sit Saturday",
+      "designation": "Will sit Saturday",
+      "date": "2026-08-22T07:25:22-07:00",
+      "direct_quote": "Jacory Croskey-Merritt: Will sit Saturday \n\n https://www.rotowire.com/football/player/jacory-croskey-merritt-18811",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtoi4zb7dk27"
     },
-    "last_diff_summary": "Jacory Croskey-Merritt: Won't play Friday",
+    "last_diff_summary": "Jacory Croskey-Merritt: Will sit Saturday \n\n https://www.rotowire.com/football/player/jacory-croskey-merritt-18811",
     "summary_fallback": false
   },
   "00-0040730": {
@@ -1313,18 +1313,18 @@
   },
   "00-0039910": {
     "player_name": "Jayden Daniels",
-    "current_designation": "Not in line to play in Friday's preseason opener",
-    "last_updated": "2026-08-14T13:47:43-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt2zre5hwh2c",
-    "last_report_id": "df6cd7da-57c4-4f40-94c8-9c332ac4d64e",
+    "current_designation": "Rusty in first game",
+    "last_updated": "2026-08-22T12:10:21-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtoy2mhwdw22",
+    "last_report_id": "0a8ba6e2-ec4d-4b70-85ec-bd253db4cdaa",
     "last_extraction": {
-      "status": "Not in line to play in Friday's preseason opener",
-      "designation": "Not in line to play in Friday's preseason opener",
-      "date": "2026-08-14T13:47:43-07:00",
-      "direct_quote": "Jayden Daniels: Not in line to play in Friday's preseason opener",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt2zre5hwh2c"
+      "status": "Rusty in first game",
+      "designation": "Rusty in first game",
+      "date": "2026-08-22T12:10:21-07:00",
+      "direct_quote": "Jayden Daniels: Rusty in first game \n\n https://www.rotowire.com/football/player/jayden-daniels-17692",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtoy2mhwdw22"
     },
-    "last_diff_summary": "Jayden Daniels: Not in line to play in Friday's preseason opener",
+    "last_diff_summary": "Jayden Daniels: Rusty in first game \n\n https://www.rotowire.com/football/player/jayden-daniels-17692",
     "summary_fallback": false
   },
   "00-0036223": {
@@ -1601,18 +1601,18 @@
   },
   "00-0040691": {
     "player_name": "Jaxson Dart",
-    "current_designation": "Plays two series in preseason opener",
-    "last_updated": "2026-08-15T19:43:57-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt665bvnlf2d",
-    "last_report_id": "dbc2e687-11fe-45b3-8ae0-3ec311ae117d",
+    "current_designation": "Rested for second preseason game",
+    "last_updated": "2026-08-22T16:09:07-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtpffkzxfi27",
+    "last_report_id": "3e283353-742e-493f-a2a8-c9ec7eea250a",
     "last_extraction": {
-      "status": "Plays two series in preseason opener",
-      "designation": "Plays two series in preseason opener",
-      "date": "2026-08-15T19:43:57-07:00",
-      "direct_quote": "Jaxson Dart: Plays two series in preseason opener",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt665bvnlf2d"
+      "status": "Rested for second preseason game",
+      "designation": "Rested for second preseason game",
+      "date": "2026-08-22T16:09:07-07:00",
+      "direct_quote": "Jaxson Dart: Rested for second preseason game \n\n https://www.rotowire.com/football/player/jaxson-dart-18574",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtpffkzxfi27"
     },
-    "last_diff_summary": "Jaxson Dart: Plays two series in preseason opener",
+    "last_diff_summary": "Jaxson Dart: Rested for second preseason game \n\n https://www.rotowire.com/football/player/jaxson-dart-18574",
     "summary_fallback": false
   },
   "00-0036900": {
@@ -1697,18 +1697,18 @@
   },
   "00-0039918": {
     "player_name": "Caleb Williams",
-    "current_designation": "Not in line to play Saturday",
-    "last_updated": "2026-08-13T10:02:02-07:00",
-    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msy4ovhtny2a",
-    "last_report_id": "5701463f-2e64-4fe5-a7f0-53d7f1bfbc95",
+    "current_designation": "Plays one series Saturday",
+    "last_updated": "2026-08-22T19:34:14-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtpque4lpk2l",
+    "last_report_id": "ec48a1f3-9723-47c2-bf5f-3443de88dcc8",
     "last_extraction": {
-      "status": "Not in line to play Saturday",
-      "designation": "Not in line to play Saturday",
-      "date": "2026-08-13T10:02:02-07:00",
-      "direct_quote": "Caleb Williams: Not in line to play Saturday",
-      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msy4ovhtny2a"
+      "status": "Plays one series Saturday",
+      "designation": "Plays one series Saturday",
+      "date": "2026-08-22T19:34:14-07:00",
+      "direct_quote": "Caleb Williams: Plays one series Saturday \n\n https://www.rotowire.com/football/player/caleb-williams-17695",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtpque4lpk2l"
     },
-    "last_diff_summary": "Caleb Williams: Not in line to play Saturday",
+    "last_diff_summary": "Caleb Williams: Plays one series Saturday \n\n https://www.rotowire.com/football/player/caleb-williams-17695",
     "summary_fallback": false
   },
   "00-0037834": {
@@ -1949,6 +1949,38 @@
       "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtks5gfjen26"
     },
     "last_diff_summary": "Woody Marks: Finds paydirt in preseason loss",
+    "summary_fallback": false
+  },
+  "00-0038562": {
+    "player_name": "Jake Moody",
+    "current_designation": "Will be released by Commanders",
+    "last_updated": "2026-08-17T10:04:36-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtc6p5goyd26",
+    "last_report_id": "3e1bdafd-2598-4bc6-98a4-676378103e52",
+    "last_extraction": {
+      "status": "Will be released by Commanders",
+      "designation": "Will be released by Commanders",
+      "date": "2026-08-17T10:04:36-07:00",
+      "direct_quote": "Jake Moody: Will be released by Commanders",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtc6p5goyd26"
+    },
+    "last_diff_summary": "Jake Moody: Will be released by Commanders",
+    "summary_fallback": false
+  },
+  "00-0040126": {
+    "player_name": "Colston Loveland",
+    "current_designation": "Makes first-down catch in preseason debut",
+    "last_updated": "2026-08-22T19:38:17-07:00",
+    "last_report_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtpr3lwrob26",
+    "last_report_id": "b7448db2-1992-4c0c-802d-e30b6d348712",
+    "last_extraction": {
+      "status": "Makes first-down catch in preseason debut",
+      "designation": "Makes first-down catch in preseason debut",
+      "date": "2026-08-22T19:38:17-07:00",
+      "direct_quote": "Colston Loveland: Makes first-down catch in preseason debut \n\n https://www.rotowire.com/football/player/colston-loveland-18460",
+      "source_url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtpr3lwrob26"
+    },
+    "last_diff_summary": "Colston Loveland: Makes first-down catch in preseason debut \n\n https://www.rotowire.com/football/player/colston-loveland-18460",
     "summary_fallback": false
   }
 }
