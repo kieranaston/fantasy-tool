@@ -2,7 +2,7 @@
   "season": 2026,
   "format": "std",
   "source": "sleeper_adp",
-  "last_updated": "2026-08-22T14:28:13Z",
+  "last_updated": "2026-08-23T14:29:59Z",
   "players": [
     {
       "sleeper_id": "9509",
@@ -2439,6 +2439,30 @@
       "position": "K",
       "adp": 330.0,
       "bye_week": 11
+    },
+    {
+      "sleeper_id": "13833",
+      "player": "Dominic Zvada",
+      "team": "NYG",
+      "position": "K",
+      "adp": 330.4,
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "8258",
+      "player": "Cade York",
+      "team": "NYJ",
+      "position": "K",
+      "adp": 350.0,
+      "bye_week": 13
+    },
+    {
+      "sleeper_id": "12185",
+      "player": "Spencer Shrader",
+      "team": "IND",
+      "position": "K",
+      "adp": 355.0,
+      "bye_week": 13
     },
     {
       "sleeper_id": "13353",
