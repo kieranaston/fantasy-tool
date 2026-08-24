@@ -2,14 +2,14 @@
   "season": 2026,
   "format": "half_ppr",
   "source": "sleeper_adp",
-  "last_updated": "2026-08-23T14:29:59Z",
+  "last_updated": "2026-08-24T14:50:12Z",
   "players": [
     {
       "sleeper_id": "9221",
       "player": "Jahmyr Gibbs",
       "team": "DET",
       "position": "RB",
-      "adp": 1.9,
+      "adp": 1.1,
       "bye_week": 6
     },
     {
@@ -17,7 +17,7 @@
       "player": "Bijan Robinson",
       "team": "ATL",
       "position": "RB",
-      "adp": 2.9,
+      "adp": 2.7,
       "bye_week": 11
     },
     {
@@ -25,7 +25,7 @@
       "player": "Ja'Marr Chase",
       "team": "CIN",
       "position": "WR",
-      "adp": 3.6,
+      "adp": 3.7,
       "bye_week": 6
     },
     {
@@ -33,7 +33,7 @@
       "player": "Puka Nacua",
       "team": "LAR",
       "position": "WR",
-      "adp": 4.1,
+      "adp": 4.7,
       "bye_week": 11
     },
     {
@@ -41,7 +41,7 @@
       "player": "Christian McCaffrey",
       "team": "SF",
       "position": "RB",
-      "adp": 5.8,
+      "adp": 5.2,
       "bye_week": 8
     },
     {
@@ -49,7 +49,7 @@
       "player": "Jonathan Taylor",
       "team": "IND",
       "position": "RB",
-      "adp": 6.4,
+      "adp": 5.3,
       "bye_week": 13
     },
     {
@@ -57,31 +57,31 @@
       "player": "Jaxon Smith-Njigba",
       "team": "SEA",
       "position": "WR",
-      "adp": 7.3,
+      "adp": 7.7,
       "bye_week": 11
-    },
-    {
-      "sleeper_id": "8138",
-      "player": "James Cook",
-      "team": "BUF",
-      "position": "RB",
-      "adp": 8.3,
-      "bye_week": 7
     },
     {
       "sleeper_id": "7547",
       "player": "Amon-Ra St. Brown",
       "team": "DET",
       "position": "WR",
-      "adp": 8.5,
+      "adp": 8.9,
       "bye_week": 6
+    },
+    {
+      "sleeper_id": "8138",
+      "player": "James Cook",
+      "team": "BUF",
+      "position": "RB",
+      "adp": 9.4,
+      "bye_week": 7
     },
     {
       "sleeper_id": "6786",
       "player": "CeeDee Lamb",
       "team": "DAL",
       "position": "WR",
-      "adp": 10.9,
+      "adp": 10.0,
       "bye_week": 14
     },
     {
@@ -89,31 +89,31 @@
       "player": "Saquon Barkley",
       "team": "PHI",
       "position": "RB",
-      "adp": 11.0,
+      "adp": 11.7,
       "bye_week": 10
-    },
-    {
-      "sleeper_id": "12527",
-      "player": "Ashton Jeanty",
-      "team": "LV",
-      "position": "RB",
-      "adp": 12.6,
-      "bye_week": 13
     },
     {
       "sleeper_id": "6794",
       "player": "Justin Jefferson",
       "team": "MIN",
       "position": "WR",
-      "adp": 13.2,
+      "adp": 11.8,
       "bye_week": 6
+    },
+    {
+      "sleeper_id": "12527",
+      "player": "Ashton Jeanty",
+      "team": "LV",
+      "position": "RB",
+      "adp": 13.4,
+      "bye_week": 13
     },
     {
       "sleeper_id": "9226",
       "player": "De'Von Achane",
       "team": "MIA",
       "position": "RB",
-      "adp": 14.1,
+      "adp": 14.9,
       "bye_week": 6
     },
     {
@@ -121,23 +121,15 @@
       "player": "Omarion Hampton",
       "team": "LAC",
       "position": "RB",
-      "adp": 15.2,
+      "adp": 15.9,
       "bye_week": 7
-    },
-    {
-      "sleeper_id": "9224",
-      "player": "Chase Brown",
-      "team": "CIN",
-      "position": "RB",
-      "adp": 16.6,
-      "bye_week": 6
     },
     {
       "sleeper_id": "3198",
       "player": "Derrick Henry",
       "team": "BAL",
       "position": "RB",
-      "adp": 17.0,
+      "adp": 16.5,
       "bye_week": 13
     },
     {
@@ -145,15 +137,23 @@
       "player": "Kenneth Walker",
       "team": "KC",
       "position": "RB",
-      "adp": 17.9,
+      "adp": 17.3,
       "bye_week": 5
+    },
+    {
+      "sleeper_id": "9224",
+      "player": "Chase Brown",
+      "team": "CIN",
+      "position": "RB",
+      "adp": 17.9,
+      "bye_week": 6
     },
     {
       "sleeper_id": "5859",
       "player": "A.J. Brown",
       "team": "NE",
       "position": "WR",
-      "adp": 19.3,
+      "adp": 19.1,
       "bye_week": 11
     },
     {
@@ -161,7 +161,7 @@
       "player": "Drake London",
       "team": "ATL",
       "position": "WR",
-      "adp": 20.0,
+      "adp": 20.7,
       "bye_week": 11
     },
     {
@@ -169,7 +169,7 @@
       "player": "Josh Allen",
       "team": "BUF",
       "position": "QB",
-      "adp": 21.7,
+      "adp": 21.9,
       "bye_week": 7
     },
     {
@@ -185,7 +185,7 @@
       "player": "Nico Collins",
       "team": "HOU",
       "position": "WR",
-      "adp": 23.6,
+      "adp": 23.4,
       "bye_week": 8
     },
     {
@@ -193,15 +193,15 @@
       "player": "Trey McBride",
       "team": "ARI",
       "position": "TE",
-      "adp": 24.5,
+      "adp": 23.7,
       "bye_week": 14
     },
     {
-      "sleeper_id": "13287",
-      "player": "Jeremiyah Love",
-      "team": "ARI",
-      "position": "RB",
-      "adp": 25.4,
+      "sleeper_id": "8137",
+      "player": "George Pickens",
+      "team": "DAL",
+      "position": "WR",
+      "adp": 25.8,
       "bye_week": 14
     },
     {
@@ -209,15 +209,15 @@
       "player": "Kyren Williams",
       "team": "LAR",
       "position": "RB",
-      "adp": 26.7,
+      "adp": 26.1,
       "bye_week": 11
     },
     {
-      "sleeper_id": "8137",
-      "player": "George Pickens",
-      "team": "DAL",
-      "position": "WR",
-      "adp": 26.8,
+      "sleeper_id": "13287",
+      "player": "Jeremiyah Love",
+      "team": "ARI",
+      "position": "RB",
+      "adp": 27.5,
       "bye_week": 14
     },
     {
@@ -225,7 +225,7 @@
       "player": "Josh Jacobs",
       "team": "GB",
       "position": "RB",
-      "adp": 28.8,
+      "adp": 28.0,
       "bye_week": 11
     },
     {
@@ -241,7 +241,7 @@
       "player": "Malik Nabers",
       "team": "NYG",
       "position": "WR",
-      "adp": 30.8,
+      "adp": 29.2,
       "bye_week": 8
     },
     {
@@ -249,7 +249,7 @@
       "player": "Chris Olave",
       "team": "NO",
       "position": "WR",
-      "adp": 31.3,
+      "adp": 31.0,
       "bye_week": 8
     },
     {
@@ -265,7 +265,7 @@
       "player": "Javonte Williams",
       "team": "DAL",
       "position": "RB",
-      "adp": 33.0,
+      "adp": 33.7,
       "bye_week": 14
     },
     {
@@ -273,31 +273,31 @@
       "player": "DeVonta Smith",
       "team": "PHI",
       "position": "WR",
-      "adp": 34.1,
+      "adp": 34.4,
       "bye_week": 10
-    },
-    {
-      "sleeper_id": "4881",
-      "player": "Lamar Jackson",
-      "team": "BAL",
-      "position": "QB",
-      "adp": 35.1,
-      "bye_week": 13
     },
     {
       "sleeper_id": "12526",
       "player": "Tetairoa McMillan",
       "team": "CAR",
       "position": "WR",
-      "adp": 35.9,
+      "adp": 35.2,
       "bye_week": 5
+    },
+    {
+      "sleeper_id": "4881",
+      "player": "Lamar Jackson",
+      "team": "BAL",
+      "position": "QB",
+      "adp": 35.6,
+      "bye_week": 13
     },
     {
       "sleeper_id": "12481",
       "player": "Cam Skattebo",
       "team": "NYG",
       "position": "RB",
-      "adp": 37.4,
+      "adp": 37.7,
       "bye_week": 8
     },
     {
@@ -305,7 +305,7 @@
       "player": "Tee Higgins",
       "team": "CIN",
       "position": "WR",
-      "adp": 38.4,
+      "adp": 38.5,
       "bye_week": 6
     },
     {
@@ -321,31 +321,39 @@
       "player": "Emeka Egbuka",
       "team": "TB",
       "position": "WR",
-      "adp": 40.5,
+      "adp": 40.8,
       "bye_week": 10
-    },
-    {
-      "sleeper_id": "7543",
-      "player": "Travis Etienne",
-      "team": "NO",
-      "position": "RB",
-      "adp": 41.8,
-      "bye_week": 8
     },
     {
       "sleeper_id": "9997",
       "player": "Zay Flowers",
       "team": "BAL",
       "position": "WR",
-      "adp": 42.1,
+      "adp": 41.1,
       "bye_week": 13
+    },
+    {
+      "sleeper_id": "7543",
+      "player": "Travis Etienne",
+      "team": "NO",
+      "position": "RB",
+      "adp": 41.7,
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "12517",
+      "player": "Colston Loveland",
+      "team": "CHI",
+      "position": "TE",
+      "adp": 43.6,
+      "bye_week": 10
     },
     {
       "sleeper_id": "8146",
       "player": "Garrett Wilson",
       "team": "NYJ",
       "position": "WR",
-      "adp": 43.1,
+      "adp": 44.8,
       "bye_week": 13
     },
     {
@@ -353,23 +361,7 @@
       "player": "Bucky Irving",
       "team": "TB",
       "position": "RB",
-      "adp": 44.3,
-      "bye_week": 10
-    },
-    {
-      "sleeper_id": "12517",
-      "player": "Colston Loveland",
-      "team": "CHI",
-      "position": "TE",
-      "adp": 44.6,
-      "bye_week": 10
-    },
-    {
-      "sleeper_id": "7526",
-      "player": "Jaylen Waddle",
-      "team": "DEN",
-      "position": "WR",
-      "adp": 46.2,
+      "adp": 45.0,
       "bye_week": 10
     },
     {
@@ -377,23 +369,39 @@
       "player": "David Montgomery",
       "team": "HOU",
       "position": "RB",
-      "adp": 47.5,
+      "adp": 46.1,
       "bye_week": 8
+    },
+    {
+      "sleeper_id": "7526",
+      "player": "Jaylen Waddle",
+      "team": "DEN",
+      "position": "WR",
+      "adp": 47.1,
+      "bye_week": 10
     },
     {
       "sleeper_id": "12512",
       "player": "Quinshon Judkins",
       "team": "CLE",
       "position": "RB",
-      "adp": 48.9,
+      "adp": 47.8,
       "bye_week": 11
+    },
+    {
+      "sleeper_id": "6790",
+      "player": "D'Andre Swift",
+      "team": "CHI",
+      "position": "RB",
+      "adp": 49.2,
+      "bye_week": 10
     },
     {
       "sleeper_id": "12529",
       "player": "TreVeyon Henderson",
       "team": "NE",
       "position": "RB",
-      "adp": 49.2,
+      "adp": 50.4,
       "bye_week": 11
     },
     {
@@ -401,23 +409,15 @@
       "player": "Tyler Warren",
       "team": "IND",
       "position": "TE",
-      "adp": 50.0,
+      "adp": 51.5,
       "bye_week": 13
-    },
-    {
-      "sleeper_id": "6790",
-      "player": "D'Andre Swift",
-      "team": "CHI",
-      "position": "RB",
-      "adp": 51.2,
-      "bye_week": 10
     },
     {
       "sleeper_id": "11564",
       "player": "Drake Maye",
       "team": "NE",
       "position": "QB",
-      "adp": 52.4,
+      "adp": 52.1,
       "bye_week": 11
     },
     {
@@ -425,7 +425,7 @@
       "player": "Joe Burrow",
       "team": "CIN",
       "position": "QB",
-      "adp": 53.8,
+      "adp": 53.3,
       "bye_week": 6
     },
     {
@@ -433,7 +433,7 @@
       "player": "Terry McLaurin",
       "team": "WAS",
       "position": "WR",
-      "adp": 53.9,
+      "adp": 53.3,
       "bye_week": 7
     },
     {
@@ -441,39 +441,39 @@
       "player": "DJ Moore",
       "team": "BUF",
       "position": "WR",
-      "adp": 55.3,
+      "adp": 55.7,
       "bye_week": 7
-    },
-    {
-      "sleeper_id": "12519",
-      "player": "Luther Burden",
-      "team": "CHI",
-      "position": "WR",
-      "adp": 56.6,
-      "bye_week": 10
-    },
-    {
-      "sleeper_id": "8148",
-      "player": "Jameson Williams",
-      "team": "DET",
-      "position": "WR",
-      "adp": 57.4,
-      "bye_week": 6
     },
     {
       "sleeper_id": "2133",
       "player": "Davante Adams",
       "team": "LAR",
       "position": "WR",
-      "adp": 58.6,
+      "adp": 56.5,
       "bye_week": 11
+    },
+    {
+      "sleeper_id": "8148",
+      "player": "Jameson Williams",
+      "team": "DET",
+      "position": "WR",
+      "adp": 57.3,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "12519",
+      "player": "Luther Burden",
+      "team": "CHI",
+      "position": "WR",
+      "adp": 58.8,
+      "bye_week": 10
     },
     {
       "sleeper_id": "12490",
       "player": "Bhayshul Tuten",
       "team": "JAX",
       "position": "RB",
-      "adp": 59.9,
+      "adp": 59.5,
       "bye_week": 7
     },
     {
@@ -481,7 +481,7 @@
       "player": "Jadarian Price",
       "team": "SEA",
       "position": "RB",
-      "adp": 60.7,
+      "adp": 59.5,
       "bye_week": 11
     },
     {
@@ -489,7 +489,7 @@
       "player": "Mike Evans",
       "team": "SF",
       "position": "WR",
-      "adp": 61.4,
+      "adp": 61.9,
       "bye_week": 8
     },
     {
@@ -497,7 +497,7 @@
       "player": "Jalen Hurts",
       "team": "PHI",
       "position": "QB",
-      "adp": 62.8,
+      "adp": 62.4,
       "bye_week": 10
     },
     {
@@ -505,7 +505,7 @@
       "player": "Rome Odunze",
       "team": "CHI",
       "position": "WR",
-      "adp": 62.9,
+      "adp": 63.3,
       "bye_week": 10
     },
     {
@@ -517,19 +517,11 @@
       "bye_week": 6
     },
     {
-      "sleeper_id": "13279",
-      "player": "Carnell Tate",
-      "team": "TEN",
-      "position": "WR",
-      "adp": 65.8,
-      "bye_week": 9
-    },
-    {
       "sleeper_id": "11566",
       "player": "Jayden Daniels",
       "team": "WAS",
       "position": "QB",
-      "adp": 66.5,
+      "adp": 65.5,
       "bye_week": 7
     },
     {
@@ -537,15 +529,23 @@
       "player": "Tucker Kraft",
       "team": "GB",
       "position": "TE",
-      "adp": 67.1,
+      "adp": 65.9,
       "bye_week": 11
+    },
+    {
+      "sleeper_id": "13279",
+      "player": "Carnell Tate",
+      "team": "TEN",
+      "position": "WR",
+      "adp": 67.5,
+      "bye_week": 9
     },
     {
       "sleeper_id": "8167",
       "player": "Christian Watson",
       "team": "GB",
       "position": "WR",
-      "adp": 68.6,
+      "adp": 68.3,
       "bye_week": 11
     },
     {
@@ -553,71 +553,63 @@
       "player": "Jaylen Warren",
       "team": "PIT",
       "position": "RB",
-      "adp": 69.1,
+      "adp": 69.8,
       "bye_week": 9
-    },
-    {
-      "sleeper_id": "11631",
-      "player": "Brian Thomas",
-      "team": "JAX",
-      "position": "WR",
-      "adp": 70.4,
-      "bye_week": 7
     },
     {
       "sleeper_id": "7553",
       "player": "Kyle Pitts",
       "team": "ATL",
       "position": "TE",
-      "adp": 71.2,
+      "adp": 70.6,
       "bye_week": 11
     },
     {
-      "sleeper_id": "12506",
-      "player": "Harold Fannin",
-      "team": "CLE",
-      "position": "TE",
-      "adp": 72.0,
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "11628",
-      "player": "Marvin Harrison",
-      "team": "ARI",
+      "sleeper_id": "11631",
+      "player": "Brian Thomas",
+      "team": "JAX",
       "position": "WR",
-      "adp": 73.7,
-      "bye_week": 14
+      "adp": 71.2,
+      "bye_week": 7
     },
     {
       "sleeper_id": "9487",
       "player": "Parker Washington",
       "team": "JAX",
       "position": "WR",
-      "adp": 74.7,
+      "adp": 71.9,
       "bye_week": 7
+    },
+    {
+      "sleeper_id": "11628",
+      "player": "Marvin Harrison",
+      "team": "ARI",
+      "position": "WR",
+      "adp": 73.2,
+      "bye_week": 14
+    },
+    {
+      "sleeper_id": "12506",
+      "player": "Harold Fannin",
+      "team": "CLE",
+      "position": "TE",
+      "adp": 74.2,
+      "bye_week": 11
     },
     {
       "sleeper_id": "11560",
       "player": "Caleb Williams",
       "team": "CHI",
       "position": "QB",
-      "adp": 75.7,
+      "adp": 75.2,
       "bye_week": 10
-    },
-    {
-      "sleeper_id": "7594",
-      "player": "Chuba Hubbard",
-      "team": "CAR",
-      "position": "RB",
-      "adp": 76.8,
-      "bye_week": 5
     },
     {
       "sleeper_id": "7611",
       "player": "Rhamondre Stevenson",
       "team": "NE",
       "position": "RB",
-      "adp": 77.0,
+      "adp": 76.5,
       "bye_week": 11
     },
     {
@@ -625,71 +617,47 @@
       "player": "DK Metcalf",
       "team": "PIT",
       "position": "WR",
-      "adp": 78.8,
+      "adp": 77.2,
       "bye_week": 9
+    },
+    {
+      "sleeper_id": "7594",
+      "player": "Chuba Hubbard",
+      "team": "CAR",
+      "position": "RB",
+      "adp": 77.8,
+      "bye_week": 5
     },
     {
       "sleeper_id": "5967",
       "player": "Tony Pollard",
       "team": "TEN",
       "position": "RB",
-      "adp": 79.6,
+      "adp": 79.2,
       "bye_week": 9
-    },
-    {
-      "sleeper_id": "12489",
-      "player": "RJ Harvey",
-      "team": "DEN",
-      "position": "RB",
-      "adp": 80.4,
-      "bye_week": 10
     },
     {
       "sleeper_id": "6797",
       "player": "Justin Herbert",
       "team": "LAC",
       "position": "QB",
-      "adp": 80.7,
+      "adp": 80.2,
       "bye_week": 7
     },
     {
-      "sleeper_id": "7021",
-      "player": "Rico Dowdle",
-      "team": "PIT",
+      "sleeper_id": "12489",
+      "player": "RJ Harvey",
+      "team": "DEN",
       "position": "RB",
-      "adp": 82.4,
-      "bye_week": 9
+      "adp": 81.3,
+      "bye_week": 10
     },
     {
       "sleeper_id": "5045",
       "player": "Courtland Sutton",
       "team": "DEN",
       "position": "WR",
-      "adp": 83.6,
-      "bye_week": 10
-    },
-    {
-      "sleeper_id": "13281",
-      "player": "Jordyn Tyson",
-      "team": "NO",
-      "position": "WR",
-      "adp": 84.5,
-      "bye_week": 8
-    },
-    {
-      "sleeper_id": "13294",
-      "player": "Makai Lemon",
-      "team": "PHI",
-      "position": "WR",
-      "adp": 85.6,
-      "bye_week": 10
-    },
-    {
-      "sleeper_id": "6806",
-      "player": "J.K. Dobbins",
-      "team": "DEN",
-      "position": "RB",
-      "adp": 86.8,
+      "adp": 82.0,
       "bye_week": 10
     },
     {
@@ -697,31 +665,31 @@
       "player": "Dak Prescott",
       "team": "DAL",
       "position": "QB",
-      "adp": 87.4,
+      "adp": 83.2,
       "bye_week": 14
     },
     {
-      "sleeper_id": "10232",
-      "player": "Michael Wilson",
-      "team": "ARI",
+      "sleeper_id": "7021",
+      "player": "Rico Dowdle",
+      "team": "PIT",
+      "position": "RB",
+      "adp": 83.2,
+      "bye_week": 9
+    },
+    {
+      "sleeper_id": "6806",
+      "player": "J.K. Dobbins",
+      "team": "DEN",
+      "position": "RB",
+      "adp": 85.9,
+      "bye_week": 10
+    },
+    {
+      "sleeper_id": "13294",
+      "player": "Makai Lemon",
+      "team": "PHI",
       "position": "WR",
-      "adp": 88.1,
-      "bye_week": 14
-    },
-    {
-      "sleeper_id": "11583",
-      "player": "Jonathon Brooks",
-      "team": "CAR",
-      "position": "RB",
-      "adp": 89.7,
-      "bye_week": 5
-    },
-    {
-      "sleeper_id": "12534",
-      "player": "Kyle Monangai",
-      "team": "CHI",
-      "position": "RB",
-      "adp": 89.8,
+      "adp": 86.9,
       "bye_week": 10
     },
     {
@@ -729,95 +697,111 @@
       "player": "George Kittle",
       "team": "SF",
       "position": "TE",
-      "adp": 91.9,
+      "adp": 87.7,
       "bye_week": 8
     },
     {
-      "sleeper_id": "11586",
-      "player": "Blake Corum",
-      "team": "LAR",
+      "sleeper_id": "11583",
+      "player": "Jonathon Brooks",
+      "team": "CAR",
       "position": "RB",
-      "adp": 92.6,
-      "bye_week": 11
+      "adp": 88.0,
+      "bye_week": 5
+    },
+    {
+      "sleeper_id": "13281",
+      "player": "Jordyn Tyson",
+      "team": "NO",
+      "position": "WR",
+      "adp": 89.1,
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "10232",
+      "player": "Michael Wilson",
+      "team": "ARI",
+      "position": "WR",
+      "adp": 89.1,
+      "bye_week": 14
+    },
+    {
+      "sleeper_id": "12534",
+      "player": "Kyle Monangai",
+      "team": "CHI",
+      "position": "RB",
+      "adp": 91.9,
+      "bye_week": 10
     },
     {
       "sleeper_id": "10236",
       "player": "Dalton Kincaid",
       "team": "BUF",
       "position": "TE",
-      "adp": 93.7,
+      "adp": 92.4,
       "bye_week": 7
     },
     {
-      "sleeper_id": "8142",
-      "player": "Alec Pierce",
-      "team": "IND",
-      "position": "WR",
-      "adp": 94.8,
-      "bye_week": 13
+      "sleeper_id": "11586",
+      "player": "Blake Corum",
+      "team": "LAR",
+      "position": "RB",
+      "adp": 93.7,
+      "bye_week": 11
     },
     {
       "sleeper_id": "4037",
       "player": "Chris Godwin",
       "team": "TB",
       "position": "WR",
-      "adp": 95.9,
+      "adp": 94.2,
       "bye_week": 10
     },
     {
-      "sleeper_id": "7523",
-      "player": "Trevor Lawrence",
-      "team": "JAX",
-      "position": "QB",
-      "adp": 96.2,
-      "bye_week": 7
+      "sleeper_id": "8142",
+      "player": "Alec Pierce",
+      "team": "IND",
+      "position": "WR",
+      "adp": 95.6,
+      "bye_week": 13
     },
     {
       "sleeper_id": "1466",
       "player": "Travis Kelce",
       "team": "KC",
       "position": "TE",
-      "adp": 97.5,
+      "adp": 96.0,
       "bye_week": 5
+    },
+    {
+      "sleeper_id": "7523",
+      "player": "Trevor Lawrence",
+      "team": "JAX",
+      "position": "QB",
+      "adp": 97.5,
+      "bye_week": 7
     },
     {
       "sleeper_id": "12533",
       "player": "Jacory Croskey-Merritt",
       "team": "WAS",
       "position": "RB",
-      "adp": 98.2,
+      "adp": 98.4,
       "bye_week": 7
-    },
-    {
-      "sleeper_id": "12508",
-      "player": "Jaxson Dart",
-      "team": "NYG",
-      "position": "QB",
-      "adp": 98.5,
-      "bye_week": 8
-    },
-    {
-      "sleeper_id": "9756",
-      "player": "Jordan Addison",
-      "team": "MIN",
-      "position": "WR",
-      "adp": 100.9,
-      "bye_week": 6
-    },
-    {
-      "sleeper_id": "6819",
-      "player": "Michael Pittman",
-      "team": "PIT",
-      "position": "WR",
-      "adp": 101.7,
-      "bye_week": 9
     },
     {
       "sleeper_id": "8408",
       "player": "Jordan Mason",
       "team": "MIN",
       "position": "RB",
-      "adp": 102.5,
+      "adp": 99.0,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "9756",
+      "player": "Jordan Addison",
+      "team": "MIN",
+      "position": "WR",
+      "adp": 100.3,
       "bye_week": 6
     },
     {
@@ -825,40 +809,48 @@
       "player": "Los Angeles Rams",
       "team": "LAR",
       "position": "DEF",
-      "adp": 103.7,
+      "adp": 101.5,
       "bye_week": 11
+    },
+    {
+      "sleeper_id": "12508",
+      "player": "Jaxson Dart",
+      "team": "NYG",
+      "position": "QB",
+      "adp": 101.8,
+      "bye_week": 8
     },
     {
       "sleeper_id": "10222",
       "player": "Jayden Reed",
       "team": "GB",
       "position": "WR",
-      "adp": 104.4,
+      "adp": 103.7,
       "bye_week": 11
+    },
+    {
+      "sleeper_id": "6819",
+      "player": "Michael Pittman",
+      "team": "PIT",
+      "position": "WR",
+      "adp": 104.8,
+      "bye_week": 9
     },
     {
       "sleeper_id": "9754",
       "player": "Quentin Johnston",
       "team": "LAC",
       "position": "WR",
-      "adp": 105.8,
+      "adp": 105.5,
       "bye_week": 7
     },
     {
-      "sleeper_id": "8110",
-      "player": "Jake Ferguson",
-      "team": "DAL",
-      "position": "TE",
-      "adp": 106.4,
-      "bye_week": 14
-    },
-    {
-      "sleeper_id": "4046",
-      "player": "Patrick Mahomes",
-      "team": "KC",
+      "sleeper_id": "421",
+      "player": "Matthew Stafford",
+      "team": "LAR",
       "position": "QB",
-      "adp": 107.2,
-      "bye_week": 5
+      "adp": 106.4,
+      "bye_week": 11
     },
     {
       "sleeper_id": "9500",
@@ -869,35 +861,59 @@
       "bye_week": 13
     },
     {
+      "sleeper_id": "8110",
+      "player": "Jake Ferguson",
+      "team": "DAL",
+      "position": "TE",
+      "adp": 107.6,
+      "bye_week": 14
+    },
+    {
+      "sleeper_id": "4046",
+      "player": "Patrick Mahomes",
+      "team": "KC",
+      "position": "QB",
+      "adp": 109.7,
+      "bye_week": 5
+    },
+    {
       "sleeper_id": "7567",
       "player": "Kenny Gainwell",
       "team": "TB",
       "position": "RB",
-      "adp": 109.6,
+      "adp": 110.2,
       "bye_week": 10
-    },
-    {
-      "sleeper_id": "421",
-      "player": "Matthew Stafford",
-      "team": "LAR",
-      "position": "QB",
-      "adp": 110.6,
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "4199",
-      "player": "Aaron Jones",
-      "team": "MIN",
-      "position": "RB",
-      "adp": 111.9,
-      "bye_week": 6
     },
     {
       "sleeper_id": "HOU",
       "player": "Houston Texans",
       "team": "HOU",
       "position": "DEF",
+      "adp": 111.1,
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "4199",
+      "player": "Aaron Jones",
+      "team": "MIN",
+      "position": "RB",
       "adp": 112.7,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "13298",
+      "player": "KC Concepcion",
+      "team": "CLE",
+      "position": "WR",
+      "adp": 113.1,
+      "bye_week": 11
+    },
+    {
+      "sleeper_id": "8131",
+      "player": "Isaiah Likely",
+      "team": "NYG",
+      "position": "TE",
+      "adp": 113.7,
       "bye_week": 8
     },
     {
@@ -905,71 +921,55 @@
       "player": "Wan'Dale Robinson",
       "team": "TEN",
       "position": "WR",
-      "adp": 113.8,
+      "adp": 115.8,
       "bye_week": 9
-    },
-    {
-      "sleeper_id": "8131",
-      "player": "Isaiah Likely",
-      "team": "NYG",
-      "position": "TE",
-      "adp": 114.7,
-      "bye_week": 8
-    },
-    {
-      "sleeper_id": "13298",
-      "player": "KC Concepcion",
-      "team": "CLE",
-      "position": "WR",
-      "adp": 115.1,
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "SEA",
-      "player": "Seattle Seahawks",
-      "team": "SEA",
-      "position": "DEF",
-      "adp": 116.1,
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "5947",
-      "player": "Jakobi Meyers",
-      "team": "JAX",
-      "position": "WR",
-      "adp": 116.4,
-      "bye_week": 7
     },
     {
       "sleeper_id": "2449",
       "player": "Stefon Diggs",
       "team": "WAS",
       "position": "WR",
-      "adp": 118.9,
+      "adp": 116.5,
       "bye_week": 7
     },
     {
-      "sleeper_id": "8136",
-      "player": "Rachaad White",
-      "team": "WAS",
-      "position": "RB",
-      "adp": 119.7,
-      "bye_week": 7
+      "sleeper_id": "SEA",
+      "player": "Seattle Seahawks",
+      "team": "SEA",
+      "position": "DEF",
+      "adp": 117.5,
+      "bye_week": 11
     },
     {
       "sleeper_id": "11563",
       "player": "Bo Nix",
       "team": "DEN",
       "position": "QB",
-      "adp": 120.5,
+      "adp": 118.2,
       "bye_week": 10
+    },
+    {
+      "sleeper_id": "8136",
+      "player": "Rachaad White",
+      "team": "WAS",
+      "position": "RB",
+      "adp": 119.3,
+      "bye_week": 7
+    },
+    {
+      "sleeper_id": "5947",
+      "player": "Jakobi Meyers",
+      "team": "JAX",
+      "position": "WR",
+      "adp": 119.5,
+      "bye_week": 7
     },
     {
       "sleeper_id": "8183",
       "player": "Brock Purdy",
       "team": "SF",
       "position": "QB",
-      "adp": 121.5,
+      "adp": 121.4,
       "bye_week": 8
     },
     {
@@ -977,7 +977,7 @@
       "player": "Mark Andrews",
       "team": "BAL",
       "position": "TE",
-      "adp": 122.2,
+      "adp": 122.6,
       "bye_week": 13
     },
     {
@@ -985,15 +985,23 @@
       "player": "Dallas Goedert",
       "team": "PHI",
       "position": "TE",
-      "adp": 123.5,
+      "adp": 123.9,
       "bye_week": 10
+    },
+    {
+      "sleeper_id": "12501",
+      "player": "Matthew Golden",
+      "team": "GB",
+      "position": "WR",
+      "adp": 124.4,
+      "bye_week": 11
     },
     {
       "sleeper_id": "DEN",
       "player": "Denver Broncos",
       "team": "DEN",
       "position": "DEF",
-      "adp": 124.2,
+      "adp": 125.8,
       "bye_week": 10
     },
     {
@@ -1001,23 +1009,23 @@
       "player": "Xavier Worthy",
       "team": "KC",
       "position": "WR",
-      "adp": 125.1,
+      "adp": 125.9,
       "bye_week": 5
     },
     {
-      "sleeper_id": "12501",
-      "player": "Matthew Golden",
-      "team": "GB",
+      "sleeper_id": "13417",
+      "player": "De'Zhaun Stribling",
+      "team": "SF",
       "position": "WR",
-      "adp": 125.6,
-      "bye_week": 11
+      "adp": 127.9,
+      "bye_week": 8
     },
     {
       "sleeper_id": "8121",
       "player": "Romeo Doubs",
       "team": "NE",
       "position": "WR",
-      "adp": 127.8,
+      "adp": 128.4,
       "bye_week": 11
     },
     {
@@ -1025,87 +1033,87 @@
       "player": "Philadelphia Eagles",
       "team": "PHI",
       "position": "DEF",
-      "adp": 128.0,
+      "adp": 129.1,
       "bye_week": 10
-    },
-    {
-      "sleeper_id": "9753",
-      "player": "Zach Charbonnet",
-      "team": "SEA",
-      "position": "RB",
-      "adp": 129.0,
-      "bye_week": 11
     },
     {
       "sleeper_id": "10219",
       "player": "Chris Rodriguez",
       "team": "JAX",
       "position": "RB",
-      "adp": 130.3,
+      "adp": 130.8,
       "bye_week": 7
-    },
-    {
-      "sleeper_id": "11655",
-      "player": "Tyrone Tracy",
-      "team": "NYG",
-      "position": "RB",
-      "adp": 131.0,
-      "bye_week": 8
     },
     {
       "sleeper_id": "5872",
       "player": "Deebo Samuel",
       "team": "SF",
       "position": "WR",
-      "adp": 132.8,
+      "adp": 131.0,
       "bye_week": 8
+    },
+    {
+      "sleeper_id": "9753",
+      "player": "Zach Charbonnet",
+      "team": "SEA",
+      "position": "RB",
+      "adp": 131.4,
+      "bye_week": 11
     },
     {
       "sleeper_id": "8132",
       "player": "Tyler Allgeier",
       "team": "ARI",
       "position": "RB",
-      "adp": 133.3,
+      "adp": 133.6,
       "bye_week": 14
+    },
+    {
+      "sleeper_id": "11655",
+      "player": "Tyrone Tracy",
+      "team": "NYG",
+      "position": "RB",
+      "adp": 134.0,
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "BAL",
+      "player": "Baltimore Ravens",
+      "team": "BAL",
+      "position": "DEF",
+      "adp": 135.7,
+      "bye_week": 13
     },
     {
       "sleeper_id": "11533",
       "player": "Brandon Aubrey",
       "team": "DAL",
       "position": "K",
-      "adp": 134.1,
+      "adp": 136.0,
       "bye_week": 14
-    },
-    {
-      "sleeper_id": "8259",
-      "player": "Cameron Dicker",
-      "team": "LAC",
-      "position": "K",
-      "adp": 134.4,
-      "bye_week": 7
-    },
-    {
-      "sleeper_id": "13417",
-      "player": "De'Zhaun Stribling",
-      "team": "SF",
-      "position": "WR",
-      "adp": 136.2,
-      "bye_week": 8
     },
     {
       "sleeper_id": "2747",
       "player": "Jason Myers",
       "team": "SEA",
       "position": "K",
-      "adp": 137.8,
+      "adp": 137.7,
       "bye_week": 11
+    },
+    {
+      "sleeper_id": "8259",
+      "player": "Cameron Dicker",
+      "team": "LAC",
+      "position": "K",
+      "adp": 137.9,
+      "bye_week": 7
     },
     {
       "sleeper_id": "3451",
       "player": "Ka'imi Fairbairn",
       "team": "HOU",
       "position": "K",
-      "adp": 138.6,
+      "adp": 139.3,
       "bye_week": 8
     },
     {
@@ -1113,23 +1121,15 @@
       "player": "Jared Goff",
       "team": "DET",
       "position": "QB",
-      "adp": 139.4,
+      "adp": 140.0,
       "bye_week": 6
-    },
-    {
-      "sleeper_id": "12493",
-      "player": "Oronde Gadsden",
-      "team": "LAC",
-      "position": "TE",
-      "adp": 140.6,
-      "bye_week": 7
     },
     {
       "sleeper_id": "11786",
       "player": "Cam Little",
       "team": "JAX",
       "position": "K",
-      "adp": 141.8,
+      "adp": 141.2,
       "bye_week": 7
     },
     {
@@ -1141,115 +1141,123 @@
       "bye_week": 10
     },
     {
-      "sleeper_id": "8134",
-      "player": "Khalil Shakir",
-      "team": "BUF",
-      "position": "WR",
-      "adp": 143.6,
-      "bye_week": 7
-    },
-    {
       "sleeper_id": "12474",
       "player": "Woody Marks",
       "team": "HOU",
       "position": "RB",
-      "adp": 144.0,
+      "adp": 143.7,
       "bye_week": 8
     },
     {
-      "sleeper_id": "BAL",
-      "player": "Baltimore Ravens",
-      "team": "BAL",
-      "position": "DEF",
+      "sleeper_id": "12493",
+      "player": "Oronde Gadsden",
+      "team": "LAC",
+      "position": "TE",
+      "adp": 143.8,
+      "bye_week": 7
+    },
+    {
+      "sleeper_id": "8134",
+      "player": "Khalil Shakir",
+      "team": "BUF",
+      "position": "WR",
       "adp": 145.3,
-      "bye_week": 13
+      "bye_week": 7
     },
     {
       "sleeper_id": "11646",
       "player": "Jalen Coker",
       "team": "CAR",
       "position": "WR",
-      "adp": 146.7,
+      "adp": 146.1,
       "bye_week": 5
-    },
-    {
-      "sleeper_id": "5849",
-      "player": "Kyler Murray",
-      "team": "MIN",
-      "position": "QB",
-      "adp": 147.4,
-      "bye_week": 6
     },
     {
       "sleeper_id": "3214",
       "player": "Hunter Henry",
       "team": "NE",
       "position": "TE",
-      "adp": 148.6,
+      "adp": 147.5,
       "bye_week": 11
     },
     {
-      "sleeper_id": "11539",
-      "player": "Jake Bates",
-      "team": "DET",
-      "position": "K",
-      "adp": 149.0,
+      "sleeper_id": "5849",
+      "player": "Kyler Murray",
+      "team": "MIN",
+      "position": "QB",
+      "adp": 148.7,
       "bye_week": 6
-    },
-    {
-      "sleeper_id": "8676",
-      "player": "Rashid Shaheed",
-      "team": "SEA",
-      "position": "WR",
-      "adp": 150.6,
-      "bye_week": 11
     },
     {
       "sleeper_id": "NE",
       "player": "New England Patriots",
       "team": "NE",
       "position": "DEF",
-      "adp": 151.9,
+      "adp": 149.7,
       "bye_week": 11
     },
     {
-      "sleeper_id": "4035",
-      "player": "Alvin Kamara",
-      "team": "NO",
-      "position": "RB",
-      "adp": 152.3,
-      "bye_week": 8
+      "sleeper_id": "8676",
+      "player": "Rashid Shaheed",
+      "team": "SEA",
+      "position": "WR",
+      "adp": 149.9,
+      "bye_week": 11
     },
     {
       "sleeper_id": "4892",
       "player": "Baker Mayfield",
       "team": "TB",
       "position": "QB",
-      "adp": 152.7,
+      "adp": 151.2,
       "bye_week": 10
+    },
+    {
+      "sleeper_id": "11539",
+      "player": "Jake Bates",
+      "team": "DET",
+      "position": "K",
+      "adp": 152.3,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "4035",
+      "player": "Alvin Kamara",
+      "team": "NO",
+      "position": "RB",
+      "adp": 153.6,
+      "bye_week": 8
     },
     {
       "sleeper_id": "MIN",
       "player": "Minnesota Vikings",
       "team": "MIN",
       "position": "DEF",
-      "adp": 154.0,
+      "adp": 154.8,
       "bye_week": 6
     },
     {
-      "sleeper_id": "12015",
-      "player": "Harrison Mevis",
-      "team": "LAR",
-      "position": "K",
-      "adp": 155.5,
-      "bye_week": 11
+      "sleeper_id": "9480",
+      "player": "Brenton Strange",
+      "team": "JAX",
+      "position": "TE",
+      "adp": 155.0,
+      "bye_week": 7
     },
     {
       "sleeper_id": "13346",
       "player": "Denzel Boston",
       "team": "CLE",
       "position": "WR",
-      "adp": 156.5,
+      "adp": 155.9,
+      "bye_week": 11
+    },
+    {
+      "sleeper_id": "12015",
+      "player": "Harrison Mevis",
+      "team": "LAR",
+      "position": "K",
+      "adp": 157.5,
       "bye_week": 11
     },
     {
@@ -1257,39 +1265,31 @@
       "player": "Jacksonville Jaguars",
       "team": "JAX",
       "position": "DEF",
-      "adp": 157.7,
+      "adp": 158.0,
       "bye_week": 7
     },
     {
-      "sleeper_id": "9480",
-      "player": "Brenton Strange",
-      "team": "JAX",
-      "position": "TE",
-      "adp": 158.7,
-      "bye_week": 7
-    },
-    {
-      "sleeper_id": "8154",
-      "player": "Brian Robinson",
-      "team": "ATL",
+      "sleeper_id": "13305",
+      "player": "Mike Washington",
+      "team": "LV",
       "position": "RB",
-      "adp": 159.5,
-      "bye_week": 11
+      "adp": 159.9,
+      "bye_week": 13
+    },
+    {
+      "sleeper_id": "7839",
+      "player": "Evan McPherson",
+      "team": "CIN",
+      "position": "K",
+      "adp": 160.0,
+      "bye_week": 6
     },
     {
       "sleeper_id": "13293",
       "player": "Ja'Kobi Lane",
       "team": "BAL",
       "position": "WR",
-      "adp": 160.3,
-      "bye_week": 13
-    },
-    {
-      "sleeper_id": "8180",
-      "player": "Jalen Nailor",
-      "team": "LV",
-      "position": "WR",
-      "adp": 161.3,
+      "adp": 161.2,
       "bye_week": 13
     },
     {
@@ -1297,63 +1297,47 @@
       "player": "Keaton Mitchell",
       "team": "LAC",
       "position": "RB",
-      "adp": 161.8,
+      "adp": 161.3,
       "bye_week": 7
-    },
-    {
-      "sleeper_id": "9225",
-      "player": "Tank Bigsby",
-      "team": "PHI",
-      "position": "RB",
-      "adp": 163.1,
-      "bye_week": 10
     },
     {
       "sleeper_id": "LAC",
       "player": "Los Angeles Chargers",
       "team": "LAC",
       "position": "DEF",
-      "adp": 164.7,
+      "adp": 163.2,
       "bye_week": 7
-    },
-    {
-      "sleeper_id": "PIT",
-      "player": "Pittsburgh Steelers",
-      "team": "PIT",
-      "position": "DEF",
-      "adp": 165.1,
-      "bye_week": 9
-    },
-    {
-      "sleeper_id": "5189",
-      "player": "Eddy Pineiro",
-      "team": "SF",
-      "position": "K",
-      "adp": 166.0,
-      "bye_week": 8
     },
     {
       "sleeper_id": "6804",
       "player": "Jordan Love",
       "team": "GB",
       "position": "QB",
-      "adp": 167.6,
+      "adp": 164.4,
       "bye_week": 11
     },
     {
-      "sleeper_id": "9508",
-      "player": "Tyjae Spears",
-      "team": "TEN",
-      "position": "RB",
-      "adp": 168.1,
-      "bye_week": 9
+      "sleeper_id": "8180",
+      "player": "Jalen Nailor",
+      "team": "LV",
+      "position": "WR",
+      "adp": 165.9,
+      "bye_week": 13
     },
     {
-      "sleeper_id": "8205",
-      "player": "Isiah Pacheco",
-      "team": "DET",
+      "sleeper_id": "9225",
+      "player": "Tank Bigsby",
+      "team": "PHI",
       "position": "RB",
-      "adp": 169.1,
+      "adp": 166.4,
+      "bye_week": 10
+    },
+    {
+      "sleeper_id": "11792",
+      "player": "Will Reichard",
+      "team": "MIN",
+      "position": "K",
+      "adp": 167.0,
       "bye_week": 6
     },
     {
@@ -1361,23 +1345,55 @@
       "player": "Sam Darnold",
       "team": "SEA",
       "position": "QB",
-      "adp": 170.3,
+      "adp": 167.9,
       "bye_week": 11
     },
     {
-      "sleeper_id": "12484",
-      "player": "Jayden Higgins",
-      "team": "HOU",
-      "position": "WR",
-      "adp": 170.4,
+      "sleeper_id": "8154",
+      "player": "Brian Robinson",
+      "team": "ATL",
+      "position": "RB",
+      "adp": 169.9,
+      "bye_week": 11
+    },
+    {
+      "sleeper_id": "PIT",
+      "player": "Pittsburgh Steelers",
+      "team": "PIT",
+      "position": "DEF",
+      "adp": 170.7,
+      "bye_week": 9
+    },
+    {
+      "sleeper_id": "5189",
+      "player": "Eddy Pineiro",
+      "team": "SF",
+      "position": "K",
+      "adp": 171.3,
       "bye_week": 8
+    },
+    {
+      "sleeper_id": "9508",
+      "player": "Tyjae Spears",
+      "team": "TEN",
+      "position": "RB",
+      "adp": 172.0,
+      "bye_week": 9
+    },
+    {
+      "sleeper_id": "8205",
+      "player": "Isiah Pacheco",
+      "team": "DET",
+      "position": "RB",
+      "adp": 173.8,
+      "bye_week": 6
     },
     {
       "sleeper_id": "13330",
       "player": "Kenyon Sadiq",
       "team": "NYJ",
       "position": "TE",
-      "adp": 172.9,
+      "adp": 174.0,
       "bye_week": 13
     },
     {
@@ -1385,143 +1401,119 @@
       "player": "Tyler Shough",
       "team": "NO",
       "position": "QB",
-      "adp": 173.0,
+      "adp": 175.6,
       "bye_week": 8
     },
     {
-      "sleeper_id": "DET",
-      "player": "Detroit Lions",
-      "team": "DET",
-      "position": "DEF",
-      "adp": 174.3,
-      "bye_week": 6
+      "sleeper_id": "12484",
+      "player": "Jayden Higgins",
+      "team": "HOU",
+      "position": "WR",
+      "adp": 176.9,
+      "bye_week": 8
     },
     {
       "sleeper_id": "12530",
       "player": "Travis Hunter",
       "team": "JAX",
       "position": "WR",
-      "adp": 175.0,
+      "adp": 177.4,
       "bye_week": 7
     },
     {
-      "sleeper_id": "12469",
-      "player": "Dylan Sampson",
-      "team": "CLE",
-      "position": "RB",
-      "adp": 176.5,
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "11603",
-      "player": "AJ Barner",
-      "team": "SEA",
-      "position": "TE",
-      "adp": 177.6,
-      "bye_week": 11
+      "sleeper_id": "DET",
+      "player": "Detroit Lions",
+      "team": "DET",
+      "position": "DEF",
+      "adp": 178.3,
+      "bye_week": 6
     },
     {
       "sleeper_id": "13276",
       "player": "Omar Cooper",
       "team": "NYJ",
       "position": "WR",
-      "adp": 178.6,
+      "adp": 179.5,
       "bye_week": 13
+    },
+    {
+      "sleeper_id": "12469",
+      "player": "Dylan Sampson",
+      "team": "CLE",
+      "position": "RB",
+      "adp": 179.9,
+      "bye_week": 11
     },
     {
       "sleeper_id": "13413",
       "player": "Cyrus Allen",
       "team": "KC",
       "position": "WR",
-      "adp": 179.4,
+      "adp": 181.0,
       "bye_week": 5
-    },
-    {
-      "sleeper_id": "7839",
-      "player": "Evan McPherson",
-      "team": "CIN",
-      "position": "K",
-      "adp": 179.5,
-      "bye_week": 6
     },
     {
       "sleeper_id": "11581",
       "player": "MarShawn Lloyd",
       "team": "GB",
       "position": "RB",
-      "adp": 181.4,
+      "adp": 182.0,
       "bye_week": 11
     },
     {
-      "sleeper_id": "11792",
-      "player": "Will Reichard",
-      "team": "MIN",
-      "position": "K",
-      "adp": 182.9,
-      "bye_week": 6
+      "sleeper_id": "13414",
+      "player": "Kaelon Black",
+      "team": "SF",
+      "position": "RB",
+      "adp": 183.9,
+      "bye_week": 8
     },
     {
       "sleeper_id": "11610",
       "player": "Malik Washington",
       "team": "MIA",
       "position": "WR",
-      "adp": 183.0,
+      "adp": 184.6,
       "bye_week": 6
-    },
-    {
-      "sleeper_id": "9502",
-      "player": "Tank Dell",
-      "team": "HOU",
-      "position": "WR",
-      "adp": 184.7,
-      "bye_week": 8
     },
     {
       "sleeper_id": "1945",
       "player": "Chris Boswell",
       "team": "PIT",
       "position": "K",
-      "adp": 185.0,
+      "adp": 185.8,
       "bye_week": 9
+    },
+    {
+      "sleeper_id": "9502",
+      "player": "Tank Dell",
+      "team": "HOU",
+      "position": "WR",
+      "adp": 186.0,
+      "bye_week": 8
     },
     {
       "sleeper_id": "5844",
       "player": "T.J. Hockenson",
       "team": "MIN",
       "position": "TE",
-      "adp": 186.9,
+      "adp": 187.0,
       "bye_week": 6
     },
     {
-      "sleeper_id": "13305",
-      "player": "Mike Washington",
-      "team": "LV",
-      "position": "RB",
-      "adp": 187.2,
-      "bye_week": 13
+      "sleeper_id": "4227",
+      "player": "Harrison Butker",
+      "team": "KC",
+      "position": "K",
+      "adp": 188.2,
+      "bye_week": 5
     },
     {
       "sleeper_id": "13269",
       "player": "Fernando Mendoza",
       "team": "LV",
       "position": "QB",
-      "adp": 188.8,
-      "bye_week": 13
-    },
-    {
-      "sleeper_id": "12711",
-      "player": "Tyler Loop",
-      "team": "BAL",
-      "position": "K",
-      "adp": 188.8,
-      "bye_week": 13
-    },
-    {
-      "sleeper_id": "10213",
-      "player": "Tre Tucker",
-      "team": "LV",
-      "position": "WR",
-      "adp": 190.3,
+      "adp": 189.2,
       "bye_week": 13
     },
     {
@@ -1529,23 +1521,55 @@
       "player": "Juwan Johnson",
       "team": "NO",
       "position": "TE",
-      "adp": 191.3,
+      "adp": 190.1,
       "bye_week": 8
+    },
+    {
+      "sleeper_id": "12711",
+      "player": "Tyler Loop",
+      "team": "BAL",
+      "position": "K",
+      "adp": 191.3,
+      "bye_week": 13
+    },
+    {
+      "sleeper_id": "11603",
+      "player": "AJ Barner",
+      "team": "SEA",
+      "position": "TE",
+      "adp": 191.7,
+      "bye_week": 11
+    },
+    {
+      "sleeper_id": "10213",
+      "player": "Tre Tucker",
+      "team": "LV",
+      "position": "WR",
+      "adp": 193.5,
+      "bye_week": 13
     },
     {
       "sleeper_id": "11576",
       "player": "Braelon Allen",
       "team": "NYJ",
       "position": "RB",
-      "adp": 192.8,
+      "adp": 194.4,
       "bye_week": 13
+    },
+    {
+      "sleeper_id": "8161",
+      "player": "Malik Willis",
+      "team": "MIA",
+      "position": "QB",
+      "adp": 195.2,
+      "bye_week": 6
     },
     {
       "sleeper_id": "8210",
       "player": "Chig Okonkwo",
       "team": "WAS",
       "position": "TE",
-      "adp": 193.8,
+      "adp": 196.8,
       "bye_week": 7
     },
     {
@@ -1553,23 +1577,15 @@
       "player": "Nicholas Singleton",
       "team": "TEN",
       "position": "RB",
-      "adp": 194.2,
+      "adp": 197.5,
       "bye_week": 9
-    },
-    {
-      "sleeper_id": "8161",
-      "player": "Malik Willis",
-      "team": "MIA",
-      "position": "QB",
-      "adp": 195.9,
-      "bye_week": 6
     },
     {
       "sleeper_id": "11618",
       "player": "Jalen McMillan",
       "team": "TB",
       "position": "WR",
-      "adp": 196.7,
+      "adp": 197.6,
       "bye_week": 10
     },
     {
@@ -1577,15 +1593,7 @@
       "player": "Emmett Johnson",
       "team": "KC",
       "position": "RB",
-      "adp": 197.2,
-      "bye_week": 5
-    },
-    {
-      "sleeper_id": "4227",
-      "player": "Harrison Butker",
-      "team": "KC",
-      "position": "K",
-      "adp": 197.5,
+      "adp": 199.8,
       "bye_week": 5
     },
     {
@@ -1593,31 +1601,7 @@
       "player": "Andy Borregales",
       "team": "NE",
       "position": "K",
-      "adp": 199.6,
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "5001",
-      "player": "Dalton Schultz",
-      "team": "HOU",
-      "position": "TE",
       "adp": 200.3,
-      "bye_week": 8
-    },
-    {
-      "sleeper_id": "13320",
-      "player": "Zachariah Branch",
-      "team": "ATL",
-      "position": "WR",
-      "adp": 201.2,
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "6783",
-      "player": "Jerry Jeudy",
-      "team": "CLE",
-      "position": "WR",
-      "adp": 202.4,
       "bye_week": 11
     },
     {
@@ -1625,7 +1609,7 @@
       "player": "Jauan Jennings",
       "team": "MIN",
       "position": "WR",
-      "adp": 203.7,
+      "adp": 201.0,
       "bye_week": 6
     },
     {
@@ -1633,47 +1617,31 @@
       "player": "Keenan Allen",
       "team": "IND",
       "position": "WR",
-      "adp": 204.9,
+      "adp": 202.4,
       "bye_week": 13
-    },
-    {
-      "sleeper_id": "13296",
-      "player": "Caleb Douglas",
-      "team": "MIA",
-      "position": "WR",
-      "adp": 205.4,
-      "bye_week": 6
-    },
-    {
-      "sleeper_id": "13414",
-      "player": "Kaelon Black",
-      "team": "SF",
-      "position": "RB",
-      "adp": 206.0,
-      "bye_week": 8
-    },
-    {
-      "sleeper_id": "6650",
-      "player": "Chase McLaughlin",
-      "team": "TB",
-      "position": "K",
-      "adp": 206.4,
-      "bye_week": 10
     },
     {
       "sleeper_id": "GB",
       "player": "Green Bay Packers",
       "team": "GB",
       "position": "DEF",
-      "adp": 208.3,
+      "adp": 203.3,
       "bye_week": 11
     },
     {
-      "sleeper_id": "9486",
-      "player": "Dontayvion Wicks",
-      "team": "PHI",
+      "sleeper_id": "13296",
+      "player": "Caleb Douglas",
+      "team": "MIA",
       "position": "WR",
-      "adp": 209.3,
+      "adp": 203.4,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "6650",
+      "player": "Chase McLaughlin",
+      "team": "TB",
+      "position": "K",
+      "adp": 205.7,
       "bye_week": 10
     },
     {
@@ -1681,7 +1649,7 @@
       "player": "Cooper Kupp",
       "team": "SEA",
       "position": "WR",
-      "adp": 210.0,
+      "adp": 206.2,
       "bye_week": 11
     },
     {
@@ -1689,142 +1657,150 @@
       "player": "C.J. Stroud",
       "team": "HOU",
       "position": "QB",
-      "adp": 211.6,
+      "adp": 207.3,
       "bye_week": 8
     },
     {
-      "sleeper_id": "12492",
-      "player": "Pat Bryant",
-      "team": "DEN",
+      "sleeper_id": "9486",
+      "player": "Dontayvion Wicks",
+      "team": "PHI",
       "position": "WR",
-      "adp": 212.0,
+      "adp": 208.7,
       "bye_week": 10
-    },
-    {
-      "sleeper_id": "11575",
-      "player": "Ray Davis",
-      "team": "BUF",
-      "position": "RB",
-      "adp": 213.7,
-      "bye_week": 7
     },
     {
       "sleeper_id": "12487",
       "player": "Terrance Ferguson",
       "team": "LAR",
       "position": "TE",
-      "adp": 214.6,
+      "adp": 209.1,
       "bye_week": 11
     },
     {
-      "sleeper_id": "5870",
-      "player": "Daniel Jones",
-      "team": "IND",
-      "position": "QB",
-      "adp": 215.0,
-      "bye_week": 13
+      "sleeper_id": "5001",
+      "player": "Dalton Schultz",
+      "team": "HOU",
+      "position": "TE",
+      "adp": 209.2,
+      "bye_week": 8
     },
     {
-      "sleeper_id": "12535",
-      "player": "Isaac TeSlaa",
-      "team": "DET",
-      "position": "WR",
-      "adp": 215.6,
-      "bye_week": 6
-    },
-    {
-      "sleeper_id": "12457",
-      "player": "Jaydon Blue",
-      "team": "DAL",
+      "sleeper_id": "11575",
+      "player": "Ray Davis",
+      "team": "BUF",
       "position": "RB",
-      "adp": 217.6,
-      "bye_week": 14
+      "adp": 211.4,
+      "bye_week": 7
+    },
+    {
+      "sleeper_id": "13320",
+      "player": "Zachariah Branch",
+      "team": "ATL",
+      "position": "WR",
+      "adp": 212.9,
+      "bye_week": 11
     },
     {
       "sleeper_id": "KC",
       "player": "Kansas City Chiefs",
       "team": "KC",
       "position": "DEF",
-      "adp": 218.0,
+      "adp": 213.9,
       "bye_week": 5
+    },
+    {
+      "sleeper_id": "5870",
+      "player": "Daniel Jones",
+      "team": "IND",
+      "position": "QB",
+      "adp": 214.6,
+      "bye_week": 13
+    },
+    {
+      "sleeper_id": "12492",
+      "player": "Pat Bryant",
+      "team": "DEN",
+      "position": "WR",
+      "adp": 215.3,
+      "bye_week": 10
+    },
+    {
+      "sleeper_id": "6783",
+      "player": "Jerry Jeudy",
+      "team": "CLE",
+      "position": "WR",
+      "adp": 215.9,
+      "bye_week": 11
+    },
+    {
+      "sleeper_id": "12457",
+      "player": "Jaydon Blue",
+      "team": "DAL",
+      "position": "RB",
+      "adp": 217.3,
+      "bye_week": 14
     },
     {
       "sleeper_id": "12522",
       "player": "Cam Ward",
       "team": "TEN",
       "position": "QB",
-      "adp": 219.2,
+      "adp": 218.1,
       "bye_week": 9
+    },
+    {
+      "sleeper_id": "12535",
+      "player": "Isaac TeSlaa",
+      "team": "DET",
+      "position": "WR",
+      "adp": 219.3,
+      "bye_week": 6
     },
     {
       "sleeper_id": "12509",
       "player": "Tre' Harris",
       "team": "LAC",
       "position": "WR",
-      "adp": 220.9,
+      "adp": 220.1,
       "bye_week": 7
-    },
-    {
-      "sleeper_id": "13405",
-      "player": "Kaytron Allen",
-      "team": "WAS",
-      "position": "RB",
-      "adp": 221.9,
-      "bye_week": 7
-    },
-    {
-      "sleeper_id": "4137",
-      "player": "James Conner",
-      "team": "ARI",
-      "position": "RB",
-      "adp": 222.6,
-      "bye_week": 14
-    },
-    {
-      "sleeper_id": "3321",
-      "player": "Tyreek Hill",
-      "team": "",
-      "position": "WR",
-      "adp": 223.1
     },
     {
       "sleeper_id": "11625",
       "player": "Adonai Mitchell",
       "team": "NYJ",
       "position": "WR",
-      "adp": 224.1,
+      "adp": 221.9,
       "bye_week": 13
     },
     {
-      "sleeper_id": "11647",
-      "player": "Kimani Vidal",
-      "team": "LAC",
+      "sleeper_id": "3321",
+      "player": "Tyreek Hill",
+      "team": "",
+      "position": "WR",
+      "adp": 222.0
+    },
+    {
+      "sleeper_id": "4137",
+      "player": "James Conner",
+      "team": "ARI",
       "position": "RB",
-      "adp": 224.1,
-      "bye_week": 7
+      "adp": 223.8,
+      "bye_week": 14
     },
     {
       "sleeper_id": "13301",
       "player": "Antonio Williams",
       "team": "WAS",
       "position": "WR",
-      "adp": 226.7,
+      "adp": 224.4,
       "bye_week": 7
-    },
-    {
-      "sleeper_id": "9504",
-      "player": "Kayshon Boutte",
-      "team": "NE",
-      "position": "WR",
-      "adp": 227.4,
-      "bye_week": 11
     },
     {
       "sleeper_id": "13545",
       "player": "Trey Smack",
       "team": "GB",
       "position": "K",
-      "adp": 228.2,
+      "adp": 225.2,
       "bye_week": 11
     },
     {
@@ -1832,7 +1808,7 @@
       "player": "Dallas Cowboys",
       "team": "DAL",
       "position": "DEF",
-      "adp": 229.4,
+      "adp": 226.2,
       "bye_week": 14
     },
     {
@@ -1840,7 +1816,7 @@
       "player": "San Francisco 49ers",
       "team": "SF",
       "position": "DEF",
-      "adp": 230.5,
+      "adp": 227.3,
       "bye_week": 8
     },
     {
@@ -1848,7 +1824,7 @@
       "player": "Chicago Bears",
       "team": "CHI",
       "position": "DEF",
-      "adp": 231.9,
+      "adp": 227.4,
       "bye_week": 10
     },
     {
@@ -1856,7 +1832,7 @@
       "player": "Cairo Santos",
       "team": "CHI",
       "position": "K",
-      "adp": 232.6,
+      "adp": 229.9,
       "bye_week": 10
     },
     {
@@ -1864,15 +1840,23 @@
       "player": "Malachi Fields",
       "team": "NYG",
       "position": "WR",
-      "adp": 233.1,
+      "adp": 230.5,
       "bye_week": 8
+    },
+    {
+      "sleeper_id": "4033",
+      "player": "David Njoku",
+      "team": "LAC",
+      "position": "TE",
+      "adp": 231.0,
+      "bye_week": 7
     },
     {
       "sleeper_id": "5995",
       "player": "Justice Hill",
       "team": "BAL",
       "position": "RB",
-      "adp": 233.5,
+      "adp": 232.7,
       "bye_week": 13
     },
     {
@@ -1880,23 +1864,23 @@
       "player": "Jordan James",
       "team": "SF",
       "position": "RB",
-      "adp": 235.4,
+      "adp": 233.2,
       "bye_week": 8
     },
     {
-      "sleeper_id": "13317",
-      "player": "Ted Hurst",
-      "team": "TB",
-      "position": "WR",
-      "adp": 236.4,
-      "bye_week": 10
+      "sleeper_id": "9228",
+      "player": "Bryce Young",
+      "team": "CAR",
+      "position": "QB",
+      "adp": 233.6,
+      "bye_week": 5
     },
     {
-      "sleeper_id": "4033",
-      "player": "David Njoku",
-      "team": "LAC",
-      "position": "TE",
-      "adp": 237.0,
+      "sleeper_id": "13405",
+      "player": "Kaytron Allen",
+      "team": "WAS",
+      "position": "RB",
+      "adp": 235.5,
       "bye_week": 7
     },
     {
@@ -1904,32 +1888,56 @@
       "player": "Pat Freiermuth",
       "team": "PIT",
       "position": "TE",
-      "adp": 238.7,
+      "adp": 236.6,
       "bye_week": 9
+    },
+    {
+      "sleeper_id": "96",
+      "player": "Aaron Rodgers",
+      "team": "PIT",
+      "position": "QB",
+      "adp": 237.1,
+      "bye_week": 9
+    },
+    {
+      "sleeper_id": "13317",
+      "player": "Ted Hurst",
+      "team": "TB",
+      "position": "WR",
+      "adp": 238.3,
+      "bye_week": 10
     },
     {
       "sleeper_id": "12502",
       "player": "Gunnar Helm",
       "team": "TEN",
       "position": "TE",
-      "adp": 239.8,
+      "adp": 239.5,
       "bye_week": 9
     },
     {
-      "sleeper_id": "9228",
-      "player": "Bryce Young",
-      "team": "CAR",
-      "position": "QB",
-      "adp": 240.1,
-      "bye_week": 5
+      "sleeper_id": "11647",
+      "player": "Kimani Vidal",
+      "team": "LAC",
+      "position": "RB",
+      "adp": 239.5,
+      "bye_week": 7
     },
     {
       "sleeper_id": "13347",
       "player": "Demond Claiborne",
       "team": "MIN",
       "position": "RB",
-      "adp": 241.8,
+      "adp": 241.2,
       "bye_week": 6
+    },
+    {
+      "sleeper_id": "11783",
+      "player": "Ryan Flournoy",
+      "team": "DAL",
+      "position": "WR",
+      "adp": 242.0,
+      "bye_week": 14
     },
     {
       "sleeper_id": "11637",
@@ -1940,51 +1948,19 @@
       "bye_week": 7
     },
     {
-      "sleeper_id": "96",
-      "player": "Aaron Rodgers",
-      "team": "PIT",
-      "position": "QB",
-      "adp": 243.0,
-      "bye_week": 9
-    },
-    {
-      "sleeper_id": "11783",
-      "player": "Ryan Flournoy",
-      "team": "DAL",
-      "position": "WR",
-      "adp": 244.7,
-      "bye_week": 14
+      "sleeper_id": "11643",
+      "player": "Jaylen Wright",
+      "team": "MIA",
+      "position": "RB",
+      "adp": 243.3,
+      "bye_week": 6
     },
     {
       "sleeper_id": "8172",
       "player": "Greg Dulcich",
       "team": "MIA",
       "position": "TE",
-      "adp": 245.7,
-      "bye_week": 6
-    },
-    {
-      "sleeper_id": "13311",
-      "player": "Chris Bell",
-      "team": "MIA",
-      "position": "WR",
-      "adp": 246.6,
-      "bye_week": 6
-    },
-    {
-      "sleeper_id": "8111",
-      "player": "Cade Otton",
-      "team": "TB",
-      "position": "TE",
-      "adp": 247.6,
-      "bye_week": 10
-    },
-    {
-      "sleeper_id": "11643",
-      "player": "Jaylen Wright",
-      "team": "MIA",
-      "position": "RB",
-      "adp": 248.1,
+      "adp": 244.8,
       "bye_week": 6
     },
     {
@@ -1992,16 +1968,48 @@
       "player": "Germie Bernard",
       "team": "PIT",
       "position": "WR",
-      "adp": 249.0,
+      "adp": 245.6,
       "bye_week": 9
+    },
+    {
+      "sleeper_id": "8111",
+      "player": "Cade Otton",
+      "team": "TB",
+      "position": "TE",
+      "adp": 245.7,
+      "bye_week": 10
+    },
+    {
+      "sleeper_id": "13311",
+      "player": "Chris Bell",
+      "team": "MIA",
+      "position": "WR",
+      "adp": 247.7,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "9504",
+      "player": "Kayshon Boutte",
+      "team": "NE",
+      "position": "WR",
+      "adp": 248.2,
+      "bye_week": 11
     },
     {
       "sleeper_id": "13349",
       "player": "Eli Stowers",
       "team": "PHI",
       "position": "TE",
-      "adp": 250.0,
+      "adp": 249.6,
       "bye_week": 10
+    },
+    {
+      "sleeper_id": "4981",
+      "player": "Calvin Ridley",
+      "team": "TEN",
+      "position": "WR",
+      "adp": 250.7,
+      "bye_week": 9
     },
     {
       "sleeper_id": "3257",
@@ -2012,12 +2020,19 @@
       "bye_week": 14
     },
     {
-      "sleeper_id": "4981",
-      "player": "Calvin Ridley",
-      "team": "TEN",
-      "position": "WR",
-      "adp": 251.9,
-      "bye_week": 9
+      "sleeper_id": "9506",
+      "player": "Sean Tucker",
+      "team": "TB",
+      "position": "RB",
+      "adp": 251.5,
+      "bye_week": 10
+    },
+    {
+      "sleeper_id": "233",
+      "player": "Matt Moore",
+      "team": "",
+      "position": "QB",
+      "adp": 252.0
     },
     {
       "sleeper_id": "8698",
@@ -2028,27 +2043,40 @@
       "bye_week": 8
     },
     {
-      "sleeper_id": "9506",
-      "player": "Sean Tucker",
-      "team": "TB",
-      "position": "RB",
-      "adp": 254.3,
-      "bye_week": 10
+      "sleeper_id": "4839",
+      "player": "Mitch Leidner",
+      "team": "",
+      "position": "QB",
+      "adp": 253.0
     },
     {
-      "sleeper_id": "7308",
-      "player": "Nick Bowers",
+      "sleeper_id": "8234",
+      "player": "Jaivon Heiligh",
+      "team": "",
+      "position": "WR",
+      "adp": 254.0
+    },
+    {
+      "sleeper_id": "4409",
+      "player": "Josiah Price",
       "team": "",
       "position": "TE",
       "adp": 255.0
     },
     {
-      "sleeper_id": "6699",
-      "player": "Gunner Olszewski",
-      "team": "NYG",
-      "position": "WR",
-      "adp": 256.5,
-      "bye_week": 8
+      "sleeper_id": "8233",
+      "player": "Mataeo Durant",
+      "team": "",
+      "position": "RB",
+      "adp": 256.0
+    },
+    {
+      "sleeper_id": "7529",
+      "player": "Gary Brightwell",
+      "team": "CIN",
+      "position": "RB",
+      "adp": 257.0,
+      "bye_week": 6
     },
     {
       "sleeper_id": "1373",
@@ -2059,11 +2087,11 @@
       "bye_week": 13
     },
     {
-      "sleeper_id": "6913",
-      "player": "Joe Reed",
+      "sleeper_id": "8232",
+      "player": "Jaquarii Roberson",
       "team": "",
       "position": "WR",
-      "adp": 257.0
+      "adp": 258.0
     },
     {
       "sleeper_id": "6768",
@@ -2074,11 +2102,12 @@
       "bye_week": 11
     },
     {
-      "sleeper_id": "13964",
-      "player": "Myles Montgomery",
-      "team": "",
+      "sleeper_id": "7204",
+      "player": "Reggie Gilliam",
+      "team": "NE",
       "position": "RB",
-      "adp": 258.5
+      "adp": 259.0,
+      "bye_week": 11
     },
     {
       "sleeper_id": "7090",
@@ -2089,19 +2118,12 @@
       "bye_week": 8
     },
     {
-      "sleeper_id": "208",
-      "player": "Josh McCown",
-      "team": "",
-      "position": "QB",
-      "adp": 259.5
-    },
-    {
-      "sleeper_id": "11558",
-      "player": "Sam Hartman",
-      "team": "WAS",
-      "position": "QB",
+      "sleeper_id": "5973",
+      "player": "Josh Oliver",
+      "team": "MIN",
+      "position": "TE",
       "adp": 260.0,
-      "bye_week": 7
+      "bye_week": 6
     },
     {
       "sleeper_id": "12497",
@@ -2112,12 +2134,11 @@
       "bye_week": 11
     },
     {
-      "sleeper_id": "1979",
-      "player": "Blake Bortles",
-      "team": "NO",
-      "position": "QB",
-      "adp": 260.7,
-      "bye_week": 8
+      "sleeper_id": "8229",
+      "player": "Isaiah Weston",
+      "team": "",
+      "position": "WR",
+      "adp": 261.0
     },
     {
       "sleeper_id": "6865",
@@ -2128,13 +2149,6 @@
       "bye_week": 11
     },
     {
-      "sleeper_id": "11995",
-      "player": "Zack Annexstad",
-      "team": "",
-      "position": "QB",
-      "adp": 262.0
-    },
-    {
       "sleeper_id": "11597",
       "player": "Theo Johnson",
       "team": "NYG",
@@ -2143,10 +2157,10 @@
       "bye_week": 8
     },
     {
-      "sleeper_id": "2197",
-      "player": "Brandin Cooks",
+      "sleeper_id": "9231",
+      "player": "Jaren Hall",
       "team": "",
-      "position": "WR",
+      "position": "QB",
       "adp": 263.0
     },
     {
@@ -2166,19 +2180,20 @@
       "bye_week": 10
     },
     {
-      "sleeper_id": "5142",
-      "player": "Kurt Benkert",
-      "team": "",
-      "position": "QB",
-      "adp": 264.5
+      "sleeper_id": "8227",
+      "player": "Teagan Quitoriano",
+      "team": "ARI",
+      "position": "TE",
+      "adp": 264.0,
+      "bye_week": 14
     },
     {
-      "sleeper_id": "14037",
-      "player": "Rashad Rochelle",
-      "team": "SEA",
+      "sleeper_id": "4351",
+      "player": "Tim Patrick",
+      "team": "NYJ",
       "position": "WR",
-      "adp": 265.2,
-      "bye_week": 11
+      "adp": 265.0,
+      "bye_week": 13
     },
     {
       "sleeper_id": "11435",
@@ -2189,19 +2204,18 @@
       "bye_week": 11
     },
     {
-      "sleeper_id": "6317",
-      "player": "Jacob Dolegala",
+      "sleeper_id": "6448",
+      "player": "Darrin Hall",
       "team": "",
-      "position": "QB",
+      "position": "RB",
       "adp": 266.0
     },
     {
-      "sleeper_id": "13273",
-      "player": "Josh Cuevas",
-      "team": "BAL",
-      "position": "TE",
-      "adp": 267.0,
-      "bye_week": 13
+      "sleeper_id": "8226",
+      "player": "Greg Bell",
+      "team": "",
+      "position": "RB",
+      "adp": 267.0
     },
     {
       "sleeper_id": "6803",
@@ -2212,720 +2226,716 @@
       "bye_week": 8
     },
     {
-      "sleeper_id": "11491",
-      "player": "Austin Aune",
+      "sleeper_id": "11911",
+      "player": "Jeshaun Jones",
+      "team": "MIN",
+      "position": "WR",
+      "adp": 268.0,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "1837",
+      "player": "Jimmy Garoppolo",
       "team": "",
       "position": "QB",
-      "adp": 268.0
+      "adp": 269.0
     },
     {
-      "sleeper_id": "4029",
-      "player": "Dalvin Cook",
-      "team": "",
-      "position": "RB",
-      "adp": 269.4
-    },
-    {
-      "sleeper_id": "6778",
-      "player": "Chris Streveler",
+      "sleeper_id": "8224",
+      "player": "Cole Kelley",
       "team": "",
       "position": "QB",
       "adp": 270.0
     },
     {
-      "sleeper_id": "1169",
-      "player": "Robert Griffin",
+      "sleeper_id": "13838",
+      "player": "Will Ferrin",
       "team": "",
-      "position": "QB",
-      "adp": 271.8
+      "position": "K",
+      "adp": 271.0
     },
     {
-      "sleeper_id": "13541",
-      "player": "Lewis Bond",
+      "sleeper_id": "6973",
+      "player": "J.J. Taylor",
+      "team": "",
+      "position": "RB",
+      "adp": 272.0
+    },
+    {
+      "sleeper_id": "4080",
+      "player": "Zay Jones",
       "team": "HOU",
       "position": "WR",
-      "adp": 272.0,
+      "adp": 273.0,
       "bye_week": 8
     },
     {
-      "sleeper_id": "11502",
-      "player": "Brian Cobbs",
+      "sleeper_id": "8222",
+      "player": "Josh Johnson",
       "team": "",
       "position": "WR",
-      "adp": 273.0
-    },
-    {
-      "sleeper_id": "7734",
-      "player": "Bruno Labelle",
-      "team": "",
-      "position": "TE",
       "adp": 274.0
     },
     {
-      "sleeper_id": "3343",
-      "player": "Nate Sudfeld",
-      "team": "",
-      "position": "QB",
-      "adp": 275.0
+      "sleeper_id": "13433",
+      "player": "Riley Nowakowski",
+      "team": "PIT",
+      "position": "TE",
+      "adp": 275.0,
+      "bye_week": 9
     },
     {
-      "sleeper_id": "3170",
-      "player": "Paxton Lynch",
+      "sleeper_id": "490",
+      "player": "Chase Daniel",
       "team": "",
       "position": "QB",
       "adp": 276.0
     },
     {
-      "sleeper_id": "3410",
-      "player": "Jake Coker",
-      "team": "",
+      "sleeper_id": "4972",
+      "player": "Mason Rudolph",
+      "team": "PIT",
       "position": "QB",
-      "adp": 277.0
+      "adp": 277.0,
+      "bye_week": 9
     },
     {
-      "sleeper_id": "8824",
-      "player": "Samson Nacua",
+      "sleeper_id": "8221",
+      "player": "Keaontay Ingram",
       "team": "",
-      "position": "WR",
-      "adp": 278.3
+      "position": "RB",
+      "adp": 278.0
     },
     {
-      "sleeper_id": "12538",
-      "player": "Brady Cook",
-      "team": "NYJ",
-      "position": "QB",
-      "adp": 278.5,
-      "bye_week": 13
-    },
-    {
-      "sleeper_id": "7978",
-      "player": "Tre Walker",
+      "sleeper_id": "1535",
+      "player": "Cordarrelle Patterson",
       "team": "",
-      "position": "WR",
+      "position": "RB",
+      "adp": 279.0
+    },
+    {
+      "sleeper_id": "6945",
+      "player": "Antonio Gibson",
+      "team": "",
+      "position": "RB",
       "adp": 280.0
     },
     {
-      "sleeper_id": "2257",
-      "player": "Carlos Hyde",
-      "team": "",
-      "position": "RB",
-      "adp": 281.0
-    },
-    {
-      "sleeper_id": "13698",
-      "player": "Max Tomczak",
-      "team": "BUF",
-      "position": "WR",
-      "adp": 282.0,
-      "bye_week": 7
-    },
-    {
-      "sleeper_id": "14008",
-      "player": "Rodney Hammond",
-      "team": "DEN",
-      "position": "RB",
-      "adp": 283.0,
+      "sleeper_id": "4314",
+      "player": "Johnny Mundt",
+      "team": "PHI",
+      "position": "TE",
+      "adp": 281.0,
       "bye_week": 10
     },
     {
-      "sleeper_id": "676",
-      "player": "LeSean McCoy",
-      "team": "",
-      "position": "RB",
-      "adp": 284.5
+      "sleeper_id": "11168",
+      "player": "Xavier Smith",
+      "team": "LAR",
+      "position": "WR",
+      "adp": 282.0,
+      "bye_week": 11
     },
     {
-      "sleeper_id": "11532",
-      "player": "Matthew Trickett",
+      "sleeper_id": "5409",
+      "player": "Tanner Hudson",
+      "team": "CIN",
+      "position": "TE",
+      "adp": 283.0,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "7518",
+      "player": "Taylor Russolino",
       "team": "",
       "position": "K",
-      "adp": 285.5
+      "adp": 284.0
+    },
+    {
+      "sleeper_id": "6001",
+      "player": "Drew Sample",
+      "team": "CIN",
+      "position": "TE",
+      "adp": 285.0,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "5823",
+      "player": "Tristan Vizcaino",
+      "team": "",
+      "position": "K",
+      "adp": 286.0
+    },
+    {
+      "sleeper_id": "8219",
+      "player": "Jelani Woods",
+      "team": "NYJ",
+      "position": "TE",
+      "adp": 287.0,
+      "bye_week": 13
+    },
+    {
+      "sleeper_id": "12817",
+      "player": "Jake Briningstool",
+      "team": "KC",
+      "position": "TE",
+      "adp": 288.0,
+      "bye_week": 5
+    },
+    {
+      "sleeper_id": "4995",
+      "player": "Ian Thomas",
+      "team": "LV",
+      "position": "TE",
+      "adp": 289.3,
+      "bye_week": 13
+    },
+    {
+      "sleeper_id": "3827",
+      "player": "Aldrick Rosas",
+      "team": "",
+      "position": "K",
+      "adp": 290.0
+    },
+    {
+      "sleeper_id": "5878",
+      "player": "N'Keal Harry",
+      "team": "",
+      "position": "TE",
+      "adp": 291.0
+    },
+    {
+      "sleeper_id": "5170",
+      "player": "Phillip Lindsay",
+      "team": "",
+      "position": "RB",
+      "adp": 292.0
+    },
+    {
+      "sleeper_id": "7095",
+      "player": "Austin MacGinnis",
+      "team": "",
+      "position": "K",
+      "adp": 293.0
+    },
+    {
+      "sleeper_id": "7075",
+      "player": "Charlie Woerner",
+      "team": "ATL",
+      "position": "TE",
+      "adp": 294.0,
+      "bye_week": 11
+    },
+    {
+      "sleeper_id": "8218",
+      "player": "Max Borghi",
+      "team": "",
+      "position": "RB",
+      "adp": 295.0
+    },
+    {
+      "sleeper_id": "11649",
+      "player": "Kendall Milton",
+      "team": "CIN",
+      "position": "RB",
+      "adp": 297.0,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "2949",
+      "player": "Synjyn Days",
+      "team": "",
+      "position": "RB",
+      "adp": 298.0
+    },
+    {
+      "sleeper_id": "7412",
+      "player": "Sandro Platzgummer",
+      "team": "",
+      "position": "RB",
+      "adp": 299.0
+    },
+    {
+      "sleeper_id": "13342",
+      "player": "John Michael Gyllenborg",
+      "team": "KC",
+      "position": "TE",
+      "adp": 300.0,
+      "bye_week": 5
+    },
+    {
+      "sleeper_id": "13943",
+      "player": "Squirrel White",
+      "team": "",
+      "position": "WR",
+      "adp": 301.0
+    },
+    {
+      "sleeper_id": "11266",
+      "player": "Thyrick Pitts",
+      "team": "",
+      "position": "WR",
+      "adp": 302.0
+    },
+    {
+      "sleeper_id": "8260",
+      "player": "Gabe Brkic",
+      "team": "",
+      "position": "K",
+      "adp": 303.0
+    },
+    {
+      "sleeper_id": "8179",
+      "player": "Snoop Conner",
+      "team": "",
+      "position": "RB",
+      "adp": 304.0
+    },
+    {
+      "sleeper_id": "6362",
+      "player": "Dredrick Snelson",
+      "team": "",
+      "position": "WR",
+      "adp": 305.0
+    },
+    {
+      "sleeper_id": "5885",
+      "player": "Ryan Finley",
+      "team": "",
+      "position": "QB",
+      "adp": 306.0
+    },
+    {
+      "sleeper_id": "3456",
+      "player": "Joel Stave",
+      "team": "",
+      "position": "QB",
+      "adp": 307.0
+    },
+    {
+      "sleeper_id": "14080",
+      "player": "Barika Kpeenu",
+      "team": "TB",
+      "position": "RB",
+      "adp": 308.0,
+      "bye_week": 10
+    },
+    {
+      "sleeper_id": "11415",
+      "player": "Tanner Taula",
+      "team": "",
+      "position": "TE",
+      "adp": 309.0
+    },
+    {
+      "sleeper_id": "13227",
+      "player": "Mitch Van Vooren",
+      "team": "",
+      "position": "WR",
+      "adp": 310.0
+    },
+    {
+      "sleeper_id": "7535",
+      "player": "Hunter Long",
+      "team": "JAX",
+      "position": "TE",
+      "adp": 311.0,
+      "bye_week": 7
+    },
+    {
+      "sleeper_id": "13179",
+      "player": "Ja'seem Reed",
+      "team": "CAR",
+      "position": "WR",
+      "adp": 312.0,
+      "bye_week": 5
+    },
+    {
+      "sleeper_id": "8217",
+      "player": "Leddie Brown",
+      "team": "",
+      "position": "RB",
+      "adp": 313.0
+    },
+    {
+      "sleeper_id": "10866",
+      "player": "Aidan O'Connell",
+      "team": "LV",
+      "position": "QB",
+      "adp": 314.3,
+      "bye_week": 13
+    },
+    {
+      "sleeper_id": "5247",
+      "player": "David Marvin",
+      "team": "",
+      "position": "K",
+      "adp": 315.0
+    },
+    {
+      "sleeper_id": "1144",
+      "player": "Cole Beasley",
+      "team": "",
+      "position": "WR",
+      "adp": 316.0
+    },
+    {
+      "sleeper_id": "7855",
+      "player": "Blake Haubeil",
+      "team": "",
+      "position": "K",
+      "adp": 317.0
+    },
+    {
+      "sleeper_id": "13805",
+      "player": "E.J. Williams",
+      "team": "LV",
+      "position": "WR",
+      "adp": 318.0,
+      "bye_week": 13
+    },
+    {
+      "sleeper_id": "5243",
+      "player": "Detrich Clark",
+      "team": "",
+      "position": "WR",
+      "adp": 319.0
+    },
+    {
+      "sleeper_id": "5196",
+      "player": "Ethan Wolf",
+      "team": "",
+      "position": "TE",
+      "adp": 320.0
+    },
+    {
+      "sleeper_id": "4108",
+      "player": "Carlos Henderson",
+      "team": "",
+      "position": "WR",
+      "adp": 321.0
+    },
+    {
+      "sleeper_id": "6246",
+      "player": "Jeremy Cox",
+      "team": "",
+      "position": "RB",
+      "adp": 322.0
+    },
+    {
+      "sleeper_id": "8568",
+      "player": "John Lovett",
+      "team": "",
+      "position": "RB",
+      "adp": 323.0
+    },
+    {
+      "sleeper_id": "13906",
+      "player": "Jaden Nixon",
+      "team": "GB",
+      "position": "RB",
+      "adp": 324.0,
+      "bye_week": 11
+    },
+    {
+      "sleeper_id": "11859",
+      "player": "John Rhys Plumlee",
+      "team": "",
+      "position": "QB",
+      "adp": 325.0
+    },
+    {
+      "sleeper_id": "8215",
+      "player": "Austin Allen",
+      "team": "",
+      "position": "TE",
+      "adp": 326.0
+    },
+    {
+      "sleeper_id": "4038",
+      "player": "John Ross",
+      "team": "",
+      "position": "WR",
+      "adp": 327.0
+    },
+    {
+      "sleeper_id": "6290",
+      "player": "Scotty Miller",
+      "team": "CHI",
+      "position": "WR",
+      "adp": 328.0,
+      "bye_week": 10
+    },
+    {
+      "sleeper_id": "8157",
+      "player": "Bailey Zappe",
+      "team": "NYJ",
+      "position": "QB",
+      "adp": 329.0,
+      "bye_week": 13
+    },
+    {
+      "sleeper_id": "7897",
+      "player": "Roland Rivers",
+      "team": "",
+      "position": "QB",
+      "adp": 329.5
+    },
+    {
+      "sleeper_id": "7606",
+      "player": "Kadarius Toney",
+      "team": "",
+      "position": "WR",
+      "adp": 331.0
+    },
+    {
+      "sleeper_id": "1338",
+      "player": "Matt Barkley",
+      "team": "",
+      "position": "QB",
+      "adp": 332.0
+    },
+    {
+      "sleeper_id": "12786",
+      "player": "Anthony Landphere",
+      "team": "",
+      "position": "TE",
+      "adp": 333.0
+    },
+    {
+      "sleeper_id": "5984",
+      "player": "Anthony Ratliff-Williams",
+      "team": "",
+      "position": "WR",
+      "adp": 334.0
+    },
+    {
+      "sleeper_id": "7944",
+      "player": "Michael Strachan",
+      "team": "",
+      "position": "WR",
+      "adp": 335.5
+    },
+    {
+      "sleeper_id": "12165",
+      "player": "Spencer Sanders",
+      "team": "",
+      "position": "QB",
+      "adp": 336.0
+    },
+    {
+      "sleeper_id": "12762",
+      "player": "Payton Thorne",
+      "team": "",
+      "position": "QB",
+      "adp": 337.0
+    },
+    {
+      "sleeper_id": "11640",
+      "player": "Jermaine Burton",
+      "team": "",
+      "position": "WR",
+      "adp": 338.0
+    },
+    {
+      "sleeper_id": "5323",
+      "player": "Equanimeous St. Brown",
+      "team": "",
+      "position": "WR",
+      "adp": 339.0
+    },
+    {
+      "sleeper_id": "12938",
+      "player": "Jackson Meeks",
+      "team": "DET",
+      "position": "WR",
+      "adp": 340.0,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "12658",
+      "player": "Jackson Hawes",
+      "team": "BUF",
+      "position": "TE",
+      "adp": 341.5,
+      "bye_week": 7
+    },
+    {
+      "sleeper_id": "13110",
+      "player": "Zach Horton",
+      "team": "DET",
+      "position": "TE",
+      "adp": 341.5,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "6938",
+      "player": "Cam Akers",
+      "team": "",
+      "position": "RB",
+      "adp": 343.5
+    },
+    {
+      "sleeper_id": "13437",
+      "player": "Noah Whittington",
+      "team": "HOU",
+      "position": "RB",
+      "adp": 344.7,
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "4798",
+      "player": "C.J. Germany",
+      "team": "",
+      "position": "WR",
+      "adp": 345.0
+    },
+    {
+      "sleeper_id": "7218",
+      "player": "Cam Sutton",
+      "team": "",
+      "position": "TE",
+      "adp": 346.0
     },
     {
       "sleeper_id": "3357",
       "player": "Brandon Allen",
       "team": "NYG",
       "position": "QB",
-      "adp": 286.2,
+      "adp": 347.5,
       "bye_week": 8
-    },
-    {
-      "sleeper_id": "6845",
-      "player": "Zack Moss",
-      "team": "",
-      "position": "RB",
-      "adp": 287.0
-    },
-    {
-      "sleeper_id": "2394",
-      "player": "Sean Mannion",
-      "team": "",
-      "position": "QB",
-      "adp": 288.0
-    },
-    {
-      "sleeper_id": "12180",
-      "player": "Alex McNulty",
-      "team": "",
-      "position": "K",
-      "adp": 289.0
-    },
-    {
-      "sleeper_id": "12239",
-      "player": "Peewee Jarrett",
-      "team": "",
-      "position": "QB",
-      "adp": 290.0
-    },
-    {
-      "sleeper_id": "5590",
-      "player": "Jordan Smallwood",
-      "team": "",
-      "position": "WR",
-      "adp": 291.0
-    },
-    {
-      "sleeper_id": "3664",
-      "player": "J.D. McKissic",
-      "team": "",
-      "position": "RB",
-      "adp": 292.6
-    },
-    {
-      "sleeper_id": "11146",
-      "player": "Christopher Dunn",
-      "team": "",
-      "position": "K",
-      "adp": 293.7
-    },
-    {
-      "sleeper_id": "11949",
-      "player": "Brayden Narveson",
-      "team": "",
-      "position": "K",
-      "adp": 294.0
-    },
-    {
-      "sleeper_id": "12372",
-      "player": "Vincent Blanchard",
-      "team": "",
-      "position": "K",
-      "adp": 295.0
-    },
-    {
-      "sleeper_id": "7541",
-      "player": "Cornell Powell",
-      "team": "PIT",
-      "position": "WR",
-      "adp": 296.0,
-      "bye_week": 9
-    },
-    {
-      "sleeper_id": "12217",
-      "player": "Shawn Bowman",
-      "team": "ARI",
-      "position": "TE",
-      "adp": 297.0,
-      "bye_week": 14
-    },
-    {
-      "sleeper_id": "5955",
-      "player": "Hunter Renfrow",
-      "team": "",
-      "position": "WR",
-      "adp": 299.0
-    },
-    {
-      "sleeper_id": "1029",
-      "player": "Nick Foles",
-      "team": "",
-      "position": "QB",
-      "adp": 300.4
-    },
-    {
-      "sleeper_id": "11557",
-      "player": "Joe Milton",
-      "team": "DAL",
-      "position": "QB",
-      "adp": 302.0,
-      "bye_week": 14
-    },
-    {
-      "sleeper_id": "7032",
-      "player": "Tyrie Cleveland",
-      "team": "",
-      "position": "WR",
-      "adp": 303.0
-    },
-    {
-      "sleeper_id": "5838",
-      "player": "Phillip Andersen",
-      "team": "",
-      "position": "K",
-      "adp": 304.6
-    },
-    {
-      "sleeper_id": "11077",
-      "player": "Jack Podlesny",
-      "team": "",
-      "position": "K",
-      "adp": 305.0
     },
     {
       "sleeper_id": "11598",
       "player": "Tanner McLachlan",
       "team": "SF",
       "position": "TE",
-      "adp": 306.0,
+      "adp": 349.0,
       "bye_week": 8
-    },
-    {
-      "sleeper_id": "11925",
-      "player": "Terique Owens",
-      "team": "",
-      "position": "WR",
-      "adp": 307.0
-    },
-    {
-      "sleeper_id": "3242",
-      "player": "Kenyan Drake",
-      "team": "",
-      "position": "RB",
-      "adp": 309.0
-    },
-    {
-      "sleeper_id": "12438",
-      "player": "Alex Hale",
-      "team": "",
-      "position": "K",
-      "adp": 310.0
-    },
-    {
-      "sleeper_id": "6185",
-      "player": "Easton Stick",
-      "team": "IND",
-      "position": "QB",
-      "adp": 311.0,
-      "bye_week": 13
-    },
-    {
-      "sleeper_id": "12496",
-      "player": "Tai Felton",
-      "team": "MIN",
-      "position": "WR",
-      "adp": 312.5,
-      "bye_week": 6
-    },
-    {
-      "sleeper_id": "2910",
-      "player": "Tyler Rutenbeck",
-      "team": "",
-      "position": "WR",
-      "adp": 313.0
-    },
-    {
-      "sleeper_id": "344",
-      "player": "Julian Edelman",
-      "team": "",
-      "position": "WR",
-      "adp": 314.5
-    },
-    {
-      "sleeper_id": "10224",
-      "player": "Brayden Willis",
-      "team": "SF",
-      "position": "TE",
-      "adp": 315.0,
-      "bye_week": 8
-    },
-    {
-      "sleeper_id": "12112",
-      "player": "Camden Lewis",
-      "team": "",
-      "position": "K",
-      "adp": 316.5
-    },
-    {
-      "sleeper_id": "24",
-      "player": "Matt Ryan",
-      "team": "",
-      "position": "QB",
-      "adp": 317.8
     },
     {
       "sleeper_id": "11371",
       "player": "Julian Hill",
       "team": "NE",
       "position": "TE",
-      "adp": 318.9,
+      "adp": 350.4,
       "bye_week": 11
     },
     {
-      "sleeper_id": "111",
-      "player": "Marcedes Lewis",
+      "sleeper_id": "13964",
+      "player": "Myles Montgomery",
       "team": "",
-      "position": "TE",
-      "adp": 319.0
+      "position": "RB",
+      "adp": 351.6
     },
     {
-      "sleeper_id": "4863",
-      "player": "Josh Rosen",
+      "sleeper_id": "5142",
+      "player": "Kurt Benkert",
       "team": "",
       "position": "QB",
-      "adp": 320.6
+      "adp": 352.8
     },
     {
-      "sleeper_id": "12385",
-      "player": "Jude McAtamney",
-      "team": "",
-      "position": "K",
-      "adp": 321.0
-    },
-    {
-      "sleeper_id": "7094",
-      "player": "Lirim Hajrullahu",
-      "team": "",
-      "position": "K",
-      "adp": 322.5
-    },
-    {
-      "sleeper_id": "13595",
-      "player": "Cash Jones",
-      "team": "ATL",
-      "position": "RB",
-      "adp": 323.0,
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "2819",
-      "player": "Mike Meyer",
-      "team": "",
-      "position": "K",
-      "adp": 323.5
-    },
-    {
-      "sleeper_id": "2200",
-      "player": "Timothy Flanders",
-      "team": "",
-      "position": "RB",
-      "adp": 325.7
-    },
-    {
-      "sleeper_id": "10870",
-      "player": "Deneric Prince",
-      "team": "",
-      "position": "RB",
-      "adp": 326.0
-    },
-    {
-      "sleeper_id": "13804",
-      "player": "Kansei Matsuzawa",
-      "team": "LV",
-      "position": "K",
-      "adp": 327.2,
-      "bye_week": 13
-    },
-    {
-      "sleeper_id": "178",
-      "player": "Matt Schaub",
-      "team": "",
-      "position": "QB",
-      "adp": 328.3
-    },
-    {
-      "sleeper_id": "59",
-      "player": "Mason Crosby",
-      "team": "",
-      "position": "K",
-      "adp": 329.0
-    },
-    {
-      "sleeper_id": "17",
-      "player": "Matt Prater",
-      "team": "",
-      "position": "K",
-      "adp": 330.0
-    },
-    {
-      "sleeper_id": "14069",
-      "player": "Connor Hulstein",
-      "team": "NYJ",
-      "position": "TE",
-      "adp": 331.0,
-      "bye_week": 13
-    },
-    {
-      "sleeper_id": "13975",
-      "player": "Le'Meke Brockington",
+      "sleeper_id": "8824",
+      "player": "Samson Nacua",
       "team": "",
       "position": "WR",
-      "adp": 332.5
+      "adp": 353.0
     },
     {
-      "sleeper_id": "1346",
-      "player": "Marquise Goodwin",
-      "team": "",
-      "position": "WR",
-      "adp": 332.5
+      "sleeper_id": "12477",
+      "player": "Kurtis Rourke",
+      "team": "SF",
+      "position": "QB",
+      "adp": 353.5,
+      "bye_week": 8
     },
     {
-      "sleeper_id": "1848",
-      "player": "James White",
-      "team": "",
-      "position": "RB",
-      "adp": 334.7
-    },
-    {
-      "sleeper_id": "10233",
-      "player": "Max Duggan",
+      "sleeper_id": "3170",
+      "player": "Paxton Lynch",
       "team": "",
       "position": "QB",
-      "adp": 335.5
-    },
-    {
-      "sleeper_id": "12156",
-      "player": "James Turner",
-      "team": "",
-      "position": "K",
-      "adp": 336.0
+      "adp": 355.5
     },
     {
       "sleeper_id": "7499",
       "player": "Paul Quessenberry",
       "team": "",
       "position": "TE",
-      "adp": 337.0
+      "adp": 356.0
     },
     {
-      "sleeper_id": "6847",
-      "player": "Devin Duvernay",
-      "team": "ARI",
-      "position": "WR",
-      "adp": 338.2,
-      "bye_week": 14
-    },
-    {
-      "sleeper_id": "13427",
-      "player": "Diego Pavia",
+      "sleeper_id": "4747",
+      "player": "Stevie Donatell",
       "team": "",
-      "position": "QB",
-      "adp": 339.2
+      "position": "TE",
+      "adp": 357.0
     },
     {
-      "sleeper_id": "120",
-      "player": "Adam Vinatieri",
+      "sleeper_id": "2146",
+      "player": "Richard Rodgers",
       "team": "",
-      "position": "K",
-      "adp": 340.0
+      "position": "TE",
+      "adp": 358.5
     },
     {
-      "sleeper_id": "13350",
-      "player": "Joe Fagnano",
-      "team": "BAL",
-      "position": "QB",
-      "adp": 341.9,
-      "bye_week": 13
-    },
-    {
-      "sleeper_id": "8411",
-      "player": "Devon Allen",
+      "sleeper_id": "4600",
+      "player": "Noel Thomas",
       "team": "",
       "position": "WR",
-      "adp": 342.0
+      "adp": 359.5
     },
     {
-      "sleeper_id": "5462",
-      "player": "Christopher Ezeala",
-      "team": "",
-      "position": "RB",
-      "adp": 343.3
-    },
-    {
-      "sleeper_id": "7933",
-      "player": "Alex Kessman",
-      "team": "CAR",
-      "position": "K",
-      "adp": 344.0,
-      "bye_week": 5
-    },
-    {
-      "sleeper_id": "13335",
-      "player": "Cole Payton",
-      "team": "PHI",
-      "position": "QB",
-      "adp": 344.0,
-      "bye_week": 10
-    },
-    {
-      "sleeper_id": "1099",
-      "player": "Randy Bullock",
-      "team": "",
-      "position": "K",
-      "adp": 345.6
-    },
-    {
-      "sleeper_id": "11573",
-      "player": "Frank Gore",
-      "team": "BUF",
-      "position": "RB",
-      "adp": 346.0,
-      "bye_week": 7
-    },
-    {
-      "sleeper_id": "13425",
-      "player": "Jalon Daniels",
-      "team": "TB",
-      "position": "QB",
-      "adp": 347.8,
-      "bye_week": 10
-    },
-    {
-      "sleeper_id": "2309",
-      "player": "Amari Cooper",
-      "team": "",
-      "position": "WR",
-      "adp": 348.0
-    },
-    {
-      "sleeper_id": "6450",
-      "player": "David Blough",
-      "team": "",
-      "position": "QB",
-      "adp": 349.0
-    },
-    {
-      "sleeper_id": "11056",
-      "player": "Jared Wayne",
+      "sleeper_id": "12705",
+      "player": "Graham Mertz",
       "team": "HOU",
-      "position": "WR",
-      "adp": 350.0,
+      "position": "QB",
+      "adp": 361.5,
       "bye_week": 8
     },
     {
-      "sleeper_id": "11789",
-      "player": "Joshua Karty",
-      "team": "",
-      "position": "K",
-      "adp": 350.3
+      "sleeper_id": "10224",
+      "player": "Brayden Willis",
+      "team": "SF",
+      "position": "TE",
+      "adp": 362.9,
+      "bye_week": 8
     },
     {
-      "sleeper_id": "7515",
-      "player": "Sergio Castillo",
-      "team": "",
-      "position": "K",
-      "adp": 352.0
-    },
-    {
-      "sleeper_id": "7458",
-      "player": "Isaiah Zuber",
-      "team": "",
-      "position": "WR",
-      "adp": 353.0
-    },
-    {
-      "sleeper_id": "13968",
-      "player": "Drew Stevens",
-      "team": "WAS",
-      "position": "K",
-      "adp": 354.7,
-      "bye_week": 7
-    },
-    {
-      "sleeper_id": "818",
-      "player": "Bilal Powell",
-      "team": "",
-      "position": "RB",
-      "adp": 355.7
-    },
-    {
-      "sleeper_id": "13295",
-      "player": "Behren Morton",
-      "team": "NE",
+      "sleeper_id": "11065",
+      "player": "Adrian Martinez",
+      "team": "SF",
       "position": "QB",
-      "adp": 356.0,
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "6373",
-      "player": "A.J. Richardson",
-      "team": "",
-      "position": "WR",
-      "adp": 357.3
-    },
-    {
-      "sleeper_id": "13348",
-      "player": "J'Mari Taylor",
-      "team": "JAX",
-      "position": "RB",
-      "adp": 358.4,
-      "bye_week": 7
-    },
-    {
-      "sleeper_id": "13726",
-      "player": "Camden Brown",
-      "team": "DAL",
-      "position": "WR",
-      "adp": 359.1,
-      "bye_week": 14
-    },
-    {
-      "sleeper_id": "6144",
-      "player": "Trayveon Williams",
-      "team": "DET",
-      "position": "RB",
-      "adp": 359.7,
-      "bye_week": 6
-    },
-    {
-      "sleeper_id": "7062",
-      "player": "Rodrigo Blankenship",
-      "team": "",
-      "position": "K",
-      "adp": 361.9
-    },
-    {
-      "sleeper_id": "3199",
-      "player": "Michael Thomas",
-      "team": "",
-      "position": "WR",
-      "adp": 362.0
-    },
-    {
-      "sleeper_id": "7720",
-      "player": "Kene Nwangwu",
-      "team": "NYJ",
-      "position": "RB",
       "adp": 363.0,
-      "bye_week": 13
+      "bye_week": 8
     },
     {
-      "sleeper_id": "10860",
-      "player": "Malik Cunningham",
-      "team": "DET",
-      "position": "WR",
-      "adp": 364.3,
-      "bye_week": 6
-    },
-    {
-      "sleeper_id": "1149",
-      "player": "Alshon Jeffery",
+      "sleeper_id": "23",
+      "player": "Jason Witten",
       "team": "",
-      "position": "WR",
+      "position": "TE",
+      "adp": 364.3
+    },
+    {
+      "sleeper_id": "6778",
+      "player": "Chris Streveler",
+      "team": "",
+      "position": "QB",
       "adp": 365.5
     },
     {
-      "sleeper_id": "11439",
-      "player": "Jaleel McLaughlin",
-      "team": "DEN",
-      "position": "RB",
-      "adp": 366.8,
-      "bye_week": 10
+      "sleeper_id": "12971",
+      "player": "Ke'Shawn Williams",
+      "team": "CIN",
+      "position": "WR",
+      "adp": 365.5,
+      "bye_week": 6
     },
     {
-      "sleeper_id": "7584",
-      "player": "Brennan Eagles",
+      "sleeper_id": "1049",
+      "player": "Ryan Tannehill",
       "team": "",
-      "position": "WR",
+      "position": "QB",
       "adp": 367.0
     },
     {
@@ -2937,424 +2947,424 @@
       "bye_week": 13
     },
     {
-      "sleeper_id": "13833",
-      "player": "Dominic Zvada",
-      "team": "NYG",
-      "position": "K",
-      "adp": 368.1,
-      "bye_week": 8
-    },
-    {
-      "sleeper_id": "1408",
-      "player": "Le'Veon Bell",
+      "sleeper_id": "7734",
+      "player": "Bruno Labelle",
       "team": "",
-      "position": "RB",
-      "adp": 368.9
+      "position": "TE",
+      "adp": 368.6
     },
     {
-      "sleeper_id": "7211",
-      "player": "Zimari Manning",
-      "team": "",
-      "position": "WR",
-      "adp": 370.3
-    },
-    {
-      "sleeper_id": "13437",
-      "player": "Noah Whittington",
-      "team": "HOU",
-      "position": "RB",
-      "adp": 371.0,
-      "bye_week": 8
-    },
-    {
-      "sleeper_id": "2315",
-      "player": "Todd Gurley",
-      "team": "",
-      "position": "RB",
-      "adp": 372.4
-    },
-    {
-      "sleeper_id": "5134",
-      "player": "Keith Kirkwood",
-      "team": "",
-      "position": "WR",
-      "adp": 373.3
-    },
-    {
-      "sleeper_id": "10218",
-      "player": "Xavier Hutchinson",
-      "team": "HOU",
-      "position": "WR",
-      "adp": 374.8,
-      "bye_week": 8
-    },
-    {
-      "sleeper_id": "232",
-      "player": "Frank Gore",
-      "team": "",
-      "position": "RB",
-      "adp": 375.2
-    },
-    {
-      "sleeper_id": "1737",
-      "player": "Case Keenum",
-      "team": "CHI",
-      "position": "QB",
-      "adp": 376.5,
-      "bye_week": 10
-    },
-    {
-      "sleeper_id": "8707",
-      "player": "Tayon Fleet-Davis",
-      "team": "",
-      "position": "RB",
-      "adp": 377.2
-    },
-    {
-      "sleeper_id": "1433",
-      "player": "Brandon McManus",
+      "sleeper_id": "1287",
+      "player": "Kai Forbath",
       "team": "",
       "position": "K",
-      "adp": 377.7
-    },
-    {
-      "sleeper_id": "10212",
-      "player": "Josh Whyle",
-      "team": "GB",
-      "position": "TE",
-      "adp": 379.4,
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "7063",
-      "player": "Shea Patterson",
-      "team": "",
-      "position": "QB",
-      "adp": 380.8
-    },
-    {
-      "sleeper_id": "13075",
-      "player": "Myles Price",
-      "team": "MIN",
-      "position": "WR",
-      "adp": 381.5,
-      "bye_week": 6
-    },
-    {
-      "sleeper_id": "11561",
-      "player": "Michael Pratt",
-      "team": "",
-      "position": "QB",
-      "adp": 382.3
-    },
-    {
-      "sleeper_id": "1048",
-      "player": "Lamar Miller",
-      "team": "",
-      "position": "RB",
-      "adp": 383.8
-    },
-    {
-      "sleeper_id": "4283",
-      "player": "Khalfani Muhammad",
-      "team": "",
-      "position": "RB",
-      "adp": 384.0
-    },
-    {
-      "sleeper_id": "11034",
-      "player": "Jalen Brooks",
-      "team": "ARI",
-      "position": "WR",
-      "adp": 385.2,
-      "bye_week": 14
-    },
-    {
-      "sleeper_id": "8177",
-      "player": "Grant Calcaterra",
-      "team": "PHI",
-      "position": "TE",
-      "adp": 386.3,
-      "bye_week": 10
-    },
-    {
-      "sleeper_id": "5752",
-      "player": "Sherman Badie",
-      "team": "",
-      "position": "RB",
-      "adp": 386.4
-    },
-    {
-      "sleeper_id": "181",
-      "player": "Drew Stanton",
-      "team": "",
-      "position": "QB",
-      "adp": 388.0
-    },
-    {
-      "sleeper_id": "5086",
-      "player": "Marquez Valdes-Scantling",
-      "team": "DAL",
-      "position": "WR",
-      "adp": 390.0,
-      "bye_week": 14
-    },
-    {
-      "sleeper_id": "1387",
-      "player": "Rex Burkhead",
-      "team": "",
-      "position": "RB",
-      "adp": 391.3
-    },
-    {
-      "sleeper_id": "5937",
-      "player": "Diontae Johnson",
-      "team": "",
-      "position": "WR",
-      "adp": 392.3
-    },
-    {
-      "sleeper_id": "10214",
-      "player": "Davis Allen",
-      "team": "LAR",
-      "position": "TE",
-      "adp": 393.0,
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "4666",
-      "player": "Younghoe Koo",
-      "team": "",
-      "position": "K",
-      "adp": 394.5
-    },
-    {
-      "sleeper_id": "10866",
-      "player": "Aidan O'Connell",
-      "team": "LV",
-      "position": "QB",
-      "adp": 395.5,
-      "bye_week": 13
-    },
-    {
-      "sleeper_id": "184",
-      "player": "Adrian Peterson",
-      "team": "",
-      "position": "RB",
-      "adp": 396.0
-    },
-    {
-      "sleeper_id": "12658",
-      "player": "Jackson Hawes",
-      "team": "BUF",
-      "position": "TE",
-      "adp": 397.0,
-      "bye_week": 7
-    },
-    {
-      "sleeper_id": "6011",
-      "player": "Gardner Minshew",
-      "team": "ARI",
-      "position": "QB",
-      "adp": 398.2,
-      "bye_week": 14
-    },
-    {
-      "sleeper_id": "3486",
-      "player": "Chris Brown",
-      "team": "",
-      "position": "WR",
-      "adp": 399.5
-    },
-    {
-      "sleeper_id": "1049",
-      "player": "Ryan Tannehill",
-      "team": "",
-      "position": "QB",
-      "adp": 400.0
-    },
-    {
-      "sleeper_id": "289",
-      "player": "Drew Brees",
-      "team": "",
-      "position": "QB",
-      "adp": 401.2
-    },
-    {
-      "sleeper_id": "8905",
-      "player": "Travis Koontz",
-      "team": "",
-      "position": "TE",
-      "adp": 402.4
-    },
-    {
-      "sleeper_id": "5122",
-      "player": "Boston Scott",
-      "team": "",
-      "position": "RB",
-      "adp": 403.0
-    },
-    {
-      "sleeper_id": "6932",
-      "player": "Charlie Taumoepeau",
-      "team": "",
-      "position": "TE",
-      "adp": 404.2
-    },
-    {
-      "sleeper_id": "333",
-      "player": "Ryan Fitzpatrick",
-      "team": "",
-      "position": "QB",
-      "adp": 404.6
-    },
-    {
-      "sleeper_id": "10862",
-      "player": "Dorian Thompson-Robinson",
-      "team": "",
-      "position": "QB",
-      "adp": 406.5
-    },
-    {
-      "sleeper_id": "4485",
-      "player": "William Stanback",
-      "team": "",
-      "position": "RB",
-      "adp": 407.6
-    },
-    {
-      "sleeper_id": "23",
-      "player": "Jason Witten",
-      "team": "",
-      "position": "TE",
-      "adp": 408.9
-    },
-    {
-      "sleeper_id": "10216",
-      "player": "Kenny McIntosh",
-      "team": "",
-      "position": "RB",
-      "adp": 409.3
-    },
-    {
-      "sleeper_id": "10223",
-      "player": "Eric Gray",
-      "team": "NYG",
-      "position": "RB",
-      "adp": 410.3,
-      "bye_week": 8
-    },
-    {
-      "sleeper_id": "10221",
-      "player": "Ronnie Bell",
-      "team": "NO",
-      "position": "WR",
-      "adp": 411.7,
-      "bye_week": 8
-    },
-    {
-      "sleeper_id": "8575",
-      "player": "Erik Krommenhoek",
-      "team": "",
-      "position": "TE",
-      "adp": 412.8
-    },
-    {
-      "sleeper_id": "1244",
-      "player": "Josh Gordon",
-      "team": "",
-      "position": "WR",
-      "adp": 413.4
-    },
-    {
-      "sleeper_id": "8665",
-      "player": "Armani Rogers",
-      "team": "",
-      "position": "TE",
-      "adp": 413.6
-    },
-    {
-      "sleeper_id": "1689",
-      "player": "Adam Thielen",
-      "team": "",
-      "position": "WR",
-      "adp": 415.8
-    },
-    {
-      "sleeper_id": "13315",
-      "player": "Dean Connors",
-      "team": "LAR",
-      "position": "RB",
-      "adp": 416.1,
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "830",
-      "player": "A.J. Green",
-      "team": "",
-      "position": "WR",
-      "adp": 417.9
-    },
-    {
-      "sleeper_id": "13150",
-      "player": "Darius Cooper",
-      "team": "PHI",
-      "position": "WR",
-      "adp": 418.9,
-      "bye_week": 10
-    },
-    {
-      "sleeper_id": "8840",
-      "player": "Cole Fotheringham",
-      "team": "",
-      "position": "TE",
-      "adp": 419.0
-    },
-    {
-      "sleeper_id": "10228",
-      "player": "Charlie Jones",
-      "team": "CIN",
-      "position": "WR",
-      "adp": 420.5,
-      "bye_week": 6
-    },
-    {
-      "sleeper_id": "5756",
-      "player": "Garrett Dickerson",
-      "team": "",
-      "position": "TE",
-      "adp": 421.8
-    },
-    {
-      "sleeper_id": "13418",
-      "player": "Robert Henry",
-      "team": "WAS",
-      "position": "RB",
-      "adp": 422.6,
-      "bye_week": 7
-    },
-    {
-      "sleeper_id": "10220",
-      "player": "Will Mallory",
-      "team": "IND",
-      "position": "TE",
-      "adp": 423.0,
-      "bye_week": 13
+      "adp": 369.0
     },
     {
       "sleeper_id": "110",
       "player": "Stephen Gostkowski",
       "team": "",
       "position": "K",
+      "adp": 370.5
+    },
+    {
+      "sleeper_id": "1979",
+      "player": "Blake Bortles",
+      "team": "NO",
+      "position": "QB",
+      "adp": 371.9,
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "10862",
+      "player": "Dorian Thompson-Robinson",
+      "team": "",
+      "position": "QB",
+      "adp": 372.0
+    },
+    {
+      "sleeper_id": "13595",
+      "player": "Cash Jones",
+      "team": "ATL",
+      "position": "RB",
+      "adp": 373.5,
+      "bye_week": 11
+    },
+    {
+      "sleeper_id": "7771",
+      "player": "Jake Funk",
+      "team": "",
+      "position": "RB",
+      "adp": 374.5
+    },
+    {
+      "sleeper_id": "676",
+      "player": "LeSean McCoy",
+      "team": "",
+      "position": "RB",
+      "adp": 375.1
+    },
+    {
+      "sleeper_id": "11532",
+      "player": "Matthew Trickett",
+      "team": "",
+      "position": "K",
+      "adp": 376.1
+    },
+    {
+      "sleeper_id": "208",
+      "player": "Josh McCown",
+      "team": "",
+      "position": "QB",
+      "adp": 377.4
+    },
+    {
+      "sleeper_id": "7933",
+      "player": "Alex Kessman",
+      "team": "CAR",
+      "position": "K",
+      "adp": 377.5,
+      "bye_week": 5
+    },
+    {
+      "sleeper_id": "7062",
+      "player": "Rodrigo Blankenship",
+      "team": "",
+      "position": "K",
+      "adp": 379.1
+    },
+    {
+      "sleeper_id": "11995",
+      "player": "Zack Annexstad",
+      "team": "",
+      "position": "QB",
+      "adp": 380.0
+    },
+    {
+      "sleeper_id": "13557",
+      "player": "Athan Kaliakmanis",
+      "team": "WAS",
+      "position": "QB",
+      "adp": 381.7,
+      "bye_week": 7
+    },
+    {
+      "sleeper_id": "2394",
+      "player": "Sean Mannion",
+      "team": "",
+      "position": "QB",
+      "adp": 382.5
+    },
+    {
+      "sleeper_id": "12496",
+      "player": "Tai Felton",
+      "team": "MIN",
+      "position": "WR",
+      "adp": 383.1,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "6317",
+      "player": "Jacob Dolegala",
+      "team": "",
+      "position": "QB",
+      "adp": 383.5
+    },
+    {
+      "sleeper_id": "616",
+      "player": "Jimmy Graham",
+      "team": "",
+      "position": "TE",
+      "adp": 385.0
+    },
+    {
+      "sleeper_id": "1451",
+      "player": "C.J. Anderson",
+      "team": "",
+      "position": "RB",
+      "adp": 386.0
+    },
+    {
+      "sleeper_id": "11491",
+      "player": "Austin Aune",
+      "team": "",
+      "position": "QB",
+      "adp": 387.0
+    },
+    {
+      "sleeper_id": "5754",
+      "player": "Jaeden Graham",
+      "team": "",
+      "position": "TE",
+      "adp": 388.5
+    },
+    {
+      "sleeper_id": "4144",
+      "player": "Jonnu Smith",
+      "team": "",
+      "position": "TE",
+      "adp": 389.0
+    },
+    {
+      "sleeper_id": "2315",
+      "player": "Todd Gurley",
+      "team": "",
+      "position": "RB",
+      "adp": 389.9
+    },
+    {
+      "sleeper_id": "5086",
+      "player": "Marquez Valdes-Scantling",
+      "team": "DAL",
+      "position": "WR",
+      "adp": 391.8,
+      "bye_week": 14
+    },
+    {
+      "sleeper_id": "289",
+      "player": "Drew Brees",
+      "team": "",
+      "position": "QB",
+      "adp": 392.2
+    },
+    {
+      "sleeper_id": "59",
+      "player": "Mason Crosby",
+      "team": "",
+      "position": "K",
+      "adp": 393.5
+    },
+    {
+      "sleeper_id": "7548",
+      "player": "Tyler Vaughns",
+      "team": "",
+      "position": "WR",
+      "adp": 394.0
+    },
+    {
+      "sleeper_id": "333",
+      "player": "Ryan Fitzpatrick",
+      "team": "",
+      "position": "QB",
+      "adp": 395.1
+    },
+    {
+      "sleeper_id": "11932",
+      "player": "Mike DiLiello",
+      "team": "",
+      "position": "QB",
+      "adp": 395.5
+    },
+    {
+      "sleeper_id": "8177",
+      "player": "Grant Calcaterra",
+      "team": "PHI",
+      "position": "TE",
+      "adp": 397.3,
+      "bye_week": 10
+    },
+    {
+      "sleeper_id": "2257",
+      "player": "Carlos Hyde",
+      "team": "",
+      "position": "RB",
+      "adp": 398.0
+    },
+    {
+      "sleeper_id": "606",
+      "player": "Joe Webb",
+      "team": "",
+      "position": "QB",
+      "adp": 399.0
+    },
+    {
+      "sleeper_id": "6699",
+      "player": "Gunner Olszewski",
+      "team": "NYG",
+      "position": "WR",
+      "adp": 400.1,
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "13764",
+      "player": "Chris Freeman",
+      "team": "",
+      "position": "K",
+      "adp": 401.5
+    },
+    {
+      "sleeper_id": "11567",
+      "player": "Jordan Travis",
+      "team": "",
+      "position": "QB",
+      "adp": 401.8
+    },
+    {
+      "sleeper_id": "89",
+      "player": "Chad Henne",
+      "team": "",
+      "position": "QB",
+      "adp": 403.0
+    },
+    {
+      "sleeper_id": "5937",
+      "player": "Diontae Johnson",
+      "team": "",
+      "position": "WR",
+      "adp": 404.2
+    },
+    {
+      "sleeper_id": "3343",
+      "player": "Nate Sudfeld",
+      "team": "",
+      "position": "QB",
+      "adp": 405.5
+    },
+    {
+      "sleeper_id": "4666",
+      "player": "Younghoe Koo",
+      "team": "",
+      "position": "K",
+      "adp": 406.7
+    },
+    {
+      "sleeper_id": "11574",
+      "player": "Dylan Laube",
+      "team": "LV",
+      "position": "RB",
+      "adp": 407.4,
+      "bye_week": 13
+    },
+    {
+      "sleeper_id": "1266",
+      "player": "Greg Zuerlein",
+      "team": "",
+      "position": "K",
+      "adp": 408.0
+    },
+    {
+      "sleeper_id": "3410",
+      "player": "Jake Coker",
+      "team": "",
+      "position": "QB",
+      "adp": 409.0
+    },
+    {
+      "sleeper_id": "11457",
+      "player": "Trey Wolff",
+      "team": "",
+      "position": "K",
+      "adp": 410.0
+    },
+    {
+      "sleeper_id": "13425",
+      "player": "Jalon Daniels",
+      "team": "TB",
+      "position": "QB",
+      "adp": 411.1,
+      "bye_week": 10
+    },
+    {
+      "sleeper_id": "6144",
+      "player": "Trayveon Williams",
+      "team": "DET",
+      "position": "RB",
+      "adp": 412.3,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "2200",
+      "player": "Timothy Flanders",
+      "team": "",
+      "position": "RB",
+      "adp": 413.1
+    },
+    {
+      "sleeper_id": "3909",
+      "player": "Sam Ficken",
+      "team": "",
+      "position": "K",
+      "adp": 415.5
+    },
+    {
+      "sleeper_id": "2346",
+      "player": "Devin Funchess",
+      "team": "",
+      "position": "TE",
+      "adp": 416.5
+    },
+    {
+      "sleeper_id": "12217",
+      "player": "Shawn Bowman",
+      "team": "ARI",
+      "position": "TE",
+      "adp": 417.2,
+      "bye_week": 14
+    },
+    {
+      "sleeper_id": "111",
+      "player": "Marcedes Lewis",
+      "team": "",
+      "position": "TE",
+      "adp": 418.0
+    },
+    {
+      "sleeper_id": "5590",
+      "player": "Jordan Smallwood",
+      "team": "",
+      "position": "WR",
+      "adp": 419.1
+    },
+    {
+      "sleeper_id": "10233",
+      "player": "Max Duggan",
+      "team": "",
+      "position": "QB",
+      "adp": 419.7
+    },
+    {
+      "sleeper_id": "7152",
+      "player": "Sam Sloman",
+      "team": "",
+      "position": "K",
+      "adp": 421.3
+    },
+    {
+      "sleeper_id": "6192",
+      "player": "Chris Blewitt",
+      "team": "",
+      "position": "K",
+      "adp": 422.5
+    },
+    {
+      "sleeper_id": "14069",
+      "player": "Connor Hulstein",
+      "team": "NYJ",
+      "position": "TE",
+      "adp": 423.7,
+      "bye_week": 13
+    },
+    {
+      "sleeper_id": "4401",
+      "player": "Damore'ea Stringfellow",
+      "team": "",
+      "position": "WR",
       "adp": 424.0
     },
     {
-      "sleeper_id": "827",
-      "player": "Tyrod Taylor",
-      "team": "GB",
-      "position": "QB",
-      "adp": 425.5,
-      "bye_week": 11
+      "sleeper_id": "515",
+      "player": "Rob Gronkowski",
+      "team": "",
+      "position": "TE",
+      "adp": 425.1
+    },
+    {
+      "sleeper_id": "13273",
+      "player": "Josh Cuevas",
+      "team": "BAL",
+      "position": "TE",
+      "adp": 425.4,
+      "bye_week": 13
     },
     {
       "sleeper_id": "7812",
@@ -3365,114 +3375,106 @@
       "bye_week": 14
     },
     {
-      "sleeper_id": "11189",
-      "player": "Zay Malone",
-      "team": "",
+      "sleeper_id": "13726",
+      "player": "Camden Brown",
+      "team": "DAL",
       "position": "WR",
-      "adp": 427.7
+      "adp": 427.8,
+      "bye_week": 14
     },
     {
-      "sleeper_id": "4131",
-      "player": "Kenny Golladay",
+      "sleeper_id": "1169",
+      "player": "Robert Griffin",
       "team": "",
-      "position": "WR",
+      "position": "QB",
       "adp": 428.3
     },
     {
-      "sleeper_id": "5185",
-      "player": "Allen Lazard",
+      "sleeper_id": "2819",
+      "player": "Mike Meyer",
       "team": "",
+      "position": "K",
+      "adp": 429.3
+    },
+    {
+      "sleeper_id": "3048",
+      "player": "Chris Manhertz",
+      "team": "NYG",
+      "position": "TE",
+      "adp": 430.0,
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "3200",
+      "player": "Sterling Shepard",
+      "team": "HOU",
       "position": "WR",
-      "adp": 429.6
+      "adp": 431.0,
+      "bye_week": 8
     },
     {
-      "sleeper_id": "1386",
-      "player": "Giovani Bernard",
-      "team": "",
-      "position": "RB",
-      "adp": 430.1
-    },
-    {
-      "sleeper_id": "367",
-      "player": "Jared Cook",
+      "sleeper_id": "8840",
+      "player": "Cole Fotheringham",
       "team": "",
       "position": "TE",
-      "adp": 431.4
+      "adp": 431.7
     },
     {
-      "sleeper_id": "3161",
-      "player": "Carson Wentz",
-      "team": "MIN",
+      "sleeper_id": "1029",
+      "player": "Nick Foles",
+      "team": "",
       "position": "QB",
-      "adp": 432.0,
-      "bye_week": 6
+      "adp": 433.1
     },
     {
       "sleeper_id": "559",
       "player": "Tim Tebow",
       "team": "",
       "position": "TE",
-      "adp": 433.3
-    },
-    {
-      "sleeper_id": "6664",
-      "player": "A.J. Ouellette",
-      "team": "",
-      "position": "RB",
       "adp": 434.5
     },
     {
-      "sleeper_id": "12171",
-      "player": "British Brooks",
-      "team": "HOU",
-      "position": "RB",
-      "adp": 435.6,
-      "bye_week": 8
-    },
-    {
-      "sleeper_id": "3164",
-      "player": "Ezekiel Elliott",
+      "sleeper_id": "1387",
+      "player": "Rex Burkhead",
       "team": "",
       "position": "RB",
-      "adp": 436.6
+      "adp": 435.0
     },
     {
-      "sleeper_id": "10444",
-      "player": "Cedric Tillman",
-      "team": "CLE",
-      "position": "WR",
-      "adp": 437.0,
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "1034",
-      "player": "Brandon Bolden",
+      "sleeper_id": "7094",
+      "player": "Lirim Hajrullahu",
       "team": "",
-      "position": "RB",
-      "adp": 438.6
+      "position": "K",
+      "adp": 436.3
     },
     {
-      "sleeper_id": "1170",
-      "player": "Alfred Morris",
+      "sleeper_id": "1433",
+      "player": "Brandon McManus",
       "team": "",
-      "position": "RB",
-      "adp": 439.0
+      "position": "K",
+      "adp": 437.4
     },
     {
-      "sleeper_id": "11506",
-      "player": "Jalen Moreno-Cropper",
-      "team": "NO",
-      "position": "WR",
-      "adp": 440.0,
-      "bye_week": 8
-    },
-    {
-      "sleeper_id": "7538",
-      "player": "Zach Wilson",
-      "team": "NO",
+      "sleeper_id": "13335",
+      "player": "Cole Payton",
+      "team": "PHI",
       "position": "QB",
-      "adp": 440.7,
-      "bye_week": 8
+      "adp": 437.8,
+      "bye_week": 10
+    },
+    {
+      "sleeper_id": "4152",
+      "player": "Marlon Mack",
+      "team": "",
+      "position": "RB",
+      "adp": 439.8
+    },
+    {
+      "sleeper_id": "6845",
+      "player": "Zack Moss",
+      "team": "",
+      "position": "RB",
+      "adp": 441.3
     },
     {
       "sleeper_id": "12245",
@@ -3482,11 +3484,33 @@
       "adp": 442.0
     },
     {
+      "sleeper_id": "6789",
+      "player": "Henry Ruggs",
+      "team": "",
+      "position": "WR",
+      "adp": 442.9
+    },
+    {
+      "sleeper_id": "2910",
+      "player": "Tyler Rutenbeck",
+      "team": "",
+      "position": "WR",
+      "adp": 443.0
+    },
+    {
       "sleeper_id": "10651",
       "player": "Mohamed Ibrahim",
       "team": "",
       "position": "RB",
       "adp": 443.3
+    },
+    {
+      "sleeper_id": "12185",
+      "player": "Spencer Shrader",
+      "team": "IND",
+      "position": "K",
+      "adp": 443.8,
+      "bye_week": 13
     },
     {
       "sleeper_id": "8008",
@@ -3496,33 +3520,35 @@
       "adp": 444.8
     },
     {
-      "sleeper_id": "6789",
-      "player": "Henry Ruggs",
-      "team": "",
+      "sleeper_id": "13541",
+      "player": "Lewis Bond",
+      "team": "HOU",
       "position": "WR",
-      "adp": 445.3
+      "adp": 445.5,
+      "bye_week": 8
     },
     {
-      "sleeper_id": "11261",
-      "player": "Andre Szmyt",
-      "team": "CLE",
-      "position": "K",
-      "adp": 446.9,
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "745",
-      "player": "Marshawn Lynch",
-      "team": "",
-      "position": "RB",
-      "adp": 447.5
-    },
-    {
-      "sleeper_id": "4183",
-      "player": "Nathan Peterman",
+      "sleeper_id": "11561",
+      "player": "Michael Pratt",
       "team": "",
       "position": "QB",
-      "adp": 448.0
+      "adp": 446.8
+    },
+    {
+      "sleeper_id": "11562",
+      "player": "Spencer Rattler",
+      "team": "NO",
+      "position": "QB",
+      "adp": 447.3,
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "6847",
+      "player": "Devin Duvernay",
+      "team": "ARI",
+      "position": "WR",
+      "adp": 448.1,
+      "bye_week": 14
     },
     {
       "sleeper_id": "11748",
@@ -3540,11 +3566,33 @@
       "adp": 449.5
     },
     {
-      "sleeper_id": "8238",
-      "player": "Emeka Emezie",
+      "sleeper_id": "184",
+      "player": "Adrian Peterson",
       "team": "",
-      "position": "WR",
-      "adp": 451.7
+      "position": "RB",
+      "adp": 449.6
+    },
+    {
+      "sleeper_id": "13833",
+      "player": "Dominic Zvada",
+      "team": "NYG",
+      "position": "K",
+      "adp": 449.9,
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "7308",
+      "player": "Nick Bowers",
+      "team": "",
+      "position": "TE",
+      "adp": 451.5
+    },
+    {
+      "sleeper_id": "12239",
+      "player": "Peewee Jarrett",
+      "team": "",
+      "position": "QB",
+      "adp": 452.0
     },
     {
       "sleeper_id": "8120",
@@ -3552,6 +3600,13 @@
       "team": "",
       "position": "RB",
       "adp": 452.7
+    },
+    {
+      "sleeper_id": "11949",
+      "player": "Brayden Narveson",
+      "team": "",
+      "position": "K",
+      "adp": 453.5
     },
     {
       "sleeper_id": "12928",
@@ -3562,26 +3617,34 @@
       "bye_week": 7
     },
     {
-      "sleeper_id": "536",
-      "player": "Antonio Brown",
+      "sleeper_id": "12372",
+      "player": "Vincent Blanchard",
       "team": "",
-      "position": "WR",
-      "adp": 454.1
+      "position": "K",
+      "adp": 454.5
     },
     {
-      "sleeper_id": "6323",
-      "player": "Andrew Beck",
-      "team": "NYJ",
-      "position": "RB",
-      "adp": 455.3,
+      "sleeper_id": "7922",
+      "player": "Riley Patterson",
+      "team": "MIA",
+      "position": "K",
+      "adp": 455.2,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "13849",
+      "player": "Cortez Braham",
+      "team": "BAL",
+      "position": "WR",
+      "adp": 455.5,
       "bye_week": 13
     },
     {
-      "sleeper_id": "7918",
-      "player": "A.J. Rose",
+      "sleeper_id": "3199",
+      "player": "Michael Thomas",
       "team": "",
-      "position": "RB",
-      "adp": 456.8
+      "position": "WR",
+      "adp": 457.6
     },
     {
       "sleeper_id": "11381",
@@ -3606,12 +3669,25 @@
       "adp": 458.3
     },
     {
-      "sleeper_id": "11651",
-      "player": "Isaac Guerendo",
-      "team": "SF",
-      "position": "RB",
-      "adp": 460.6,
-      "bye_week": 8
+      "sleeper_id": "13427",
+      "player": "Diego Pavia",
+      "team": "",
+      "position": "QB",
+      "adp": 458.9
+    },
+    {
+      "sleeper_id": "536",
+      "player": "Antonio Brown",
+      "team": "",
+      "position": "WR",
+      "adp": 459.9
+    },
+    {
+      "sleeper_id": "12112",
+      "player": "Camden Lewis",
+      "team": "",
+      "position": "K",
+      "adp": 460.5
     },
     {
       "sleeper_id": "1110",
@@ -3621,18 +3697,27 @@
       "adp": 461.4
     },
     {
-      "sleeper_id": "11024",
-      "player": "Grant DuBose",
-      "team": "",
-      "position": "WR",
-      "adp": 462.5
+      "sleeper_id": "6011",
+      "player": "Gardner Minshew",
+      "team": "ARI",
+      "position": "QB",
+      "adp": 461.7,
+      "bye_week": 14
     },
     {
-      "sleeper_id": "1071",
-      "player": "Mohamed Sanu",
+      "sleeper_id": "5838",
+      "player": "Phillip Andersen",
       "team": "",
-      "position": "WR",
-      "adp": 463.8
+      "position": "K",
+      "adp": 462.0
+    },
+    {
+      "sleeper_id": "827",
+      "player": "Tyrod Taylor",
+      "team": "GB",
+      "position": "QB",
+      "adp": 463.5,
+      "bye_week": 11
     },
     {
       "sleeper_id": "2938",
@@ -3642,26 +3727,33 @@
       "adp": 464.5
     },
     {
-      "sleeper_id": "1287",
-      "player": "Kai Forbath",
+      "sleeper_id": "120",
+      "player": "Adam Vinatieri",
+      "team": "",
+      "position": "K",
+      "adp": 464.9
+    },
+    {
+      "sleeper_id": "11077",
+      "player": "Jack Podlesny",
       "team": "",
       "position": "K",
       "adp": 465.0
     },
     {
-      "sleeper_id": "13491",
-      "player": "Kaden Wetjen",
-      "team": "PIT",
-      "position": "WR",
-      "adp": 466.3,
-      "bye_week": 9
+      "sleeper_id": "11146",
+      "player": "Christopher Dunn",
+      "team": "",
+      "position": "K",
+      "adp": 466.7
     },
     {
-      "sleeper_id": "12118",
-      "player": "Jacob Warren",
-      "team": "",
-      "position": "TE",
-      "adp": 467.5
+      "sleeper_id": "5095",
+      "player": "Daniel Carlson",
+      "team": "NO",
+      "position": "K",
+      "adp": 467.2,
+      "bye_week": 8
     },
     {
       "sleeper_id": "5129",
@@ -3669,6 +3761,14 @@
       "team": "",
       "position": "WR",
       "adp": 467.7
+    },
+    {
+      "sleeper_id": "13804",
+      "player": "Kansei Matsuzawa",
+      "team": "LV",
+      "position": "K",
+      "adp": 467.7,
+      "bye_week": 13
     },
     {
       "sleeper_id": "11964",
@@ -3679,19 +3779,26 @@
       "bye_week": 13
     },
     {
+      "sleeper_id": "4863",
+      "player": "Josh Rosen",
+      "team": "",
+      "position": "QB",
+      "adp": 469.5
+    },
+    {
+      "sleeper_id": "11573",
+      "player": "Frank Gore",
+      "team": "BUF",
+      "position": "RB",
+      "adp": 470.5,
+      "bye_week": 7
+    },
+    {
       "sleeper_id": "1067",
       "player": "Marvin Jones",
       "team": "",
       "position": "WR",
       "adp": 470.6
-    },
-    {
-      "sleeper_id": "13264",
-      "player": "Dohnte Meyers",
-      "team": "CIN",
-      "position": "WR",
-      "adp": 471.7,
-      "bye_week": 6
     },
     {
       "sleeper_id": "13308",
@@ -3702,25 +3809,39 @@
       "bye_week": 10
     },
     {
-      "sleeper_id": "515",
-      "player": "Rob Gronkowski",
+      "sleeper_id": "3486",
+      "player": "Chris Brown",
       "team": "",
-      "position": "TE",
-      "adp": 473.8
+      "position": "WR",
+      "adp": 472.3
     },
     {
-      "sleeper_id": "89",
-      "player": "Chad Henne",
+      "sleeper_id": "1264",
+      "player": "Justin Tucker",
       "team": "",
-      "position": "QB",
-      "adp": 474.0
+      "position": "K",
+      "adp": 473.3
     },
     {
-      "sleeper_id": "3969",
-      "player": "Leonard Fournette",
+      "sleeper_id": "4988",
+      "player": "Nick Chubb",
       "team": "",
       "position": "RB",
-      "adp": 475.2
+      "adp": 473.5
+    },
+    {
+      "sleeper_id": "1346",
+      "player": "Marquise Goodwin",
+      "team": "",
+      "position": "WR",
+      "adp": 475.0
+    },
+    {
+      "sleeper_id": "12438",
+      "player": "Alex Hale",
+      "team": "",
+      "position": "K",
+      "adp": 476.0
     },
     {
       "sleeper_id": "11046",
@@ -3730,11 +3851,18 @@
       "adp": 476.3
     },
     {
-      "sleeper_id": "5095",
-      "player": "Daniel Carlson",
+      "sleeper_id": "4029",
+      "player": "Dalvin Cook",
       "team": "",
-      "position": "K",
-      "adp": 476.5
+      "position": "RB",
+      "adp": 477.1
+    },
+    {
+      "sleeper_id": "1048",
+      "player": "Lamar Miller",
+      "team": "",
+      "position": "RB",
+      "adp": 478.5
     },
     {
       "sleeper_id": "7741",
@@ -3744,34 +3872,39 @@
       "adp": 478.7
     },
     {
-      "sleeper_id": "7351",
-      "player": "Kirk Merritt",
-      "team": "",
-      "position": "WR",
-      "adp": 479.2
-    },
-    {
-      "sleeper_id": "3976",
-      "player": "Mitchell Trubisky",
-      "team": "TEN",
-      "position": "QB",
-      "adp": 480.4,
-      "bye_week": 9
-    },
-    {
-      "sleeper_id": "11457",
-      "player": "Trey Wolff",
+      "sleeper_id": "12180",
+      "player": "Alex McNulty",
       "team": "",
       "position": "K",
-      "adp": 481.0
+      "adp": 479.5
     },
     {
-      "sleeper_id": "13299",
-      "player": "Nate Boerkircher",
-      "team": "JAX",
-      "position": "TE",
-      "adp": 482.0,
-      "bye_week": 7
+      "sleeper_id": "24",
+      "player": "Matt Ryan",
+      "team": "",
+      "position": "QB",
+      "adp": 479.7
+    },
+    {
+      "sleeper_id": "11024",
+      "player": "Grant DuBose",
+      "team": "",
+      "position": "WR",
+      "adp": 481.3
+    },
+    {
+      "sleeper_id": "6913",
+      "player": "Joe Reed",
+      "team": "",
+      "position": "WR",
+      "adp": 482.6
+    },
+    {
+      "sleeper_id": "3664",
+      "player": "J.D. McKissic",
+      "team": "",
+      "position": "RB",
+      "adp": 483.1
     },
     {
       "sleeper_id": "11645",
@@ -3781,12 +3914,12 @@
       "adp": 483.3
     },
     {
-      "sleeper_id": "8755",
-      "player": "Kaden Davis",
-      "team": "CHI",
-      "position": "WR",
-      "adp": 484.0,
-      "bye_week": 10
+      "sleeper_id": "6185",
+      "player": "Easton Stick",
+      "team": "IND",
+      "position": "QB",
+      "adp": 484.5,
+      "bye_week": 13
     },
     {
       "sleeper_id": "4768",
@@ -3796,6 +3929,14 @@
       "adp": 485.0
     },
     {
+      "sleeper_id": "13348",
+      "player": "J'Mari Taylor",
+      "team": "JAX",
+      "position": "RB",
+      "adp": 485.6,
+      "bye_week": 7
+    },
+    {
       "sleeper_id": "6142",
       "player": "Caleb Wilson",
       "team": "",
@@ -3803,34 +3944,43 @@
       "adp": 485.7
     },
     {
-      "sleeper_id": "12718",
-      "player": "Konata Mumpfield",
-      "team": "LAR",
+      "sleeper_id": "7538",
+      "player": "Zach Wilson",
+      "team": "NO",
+      "position": "QB",
+      "adp": 485.7,
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "14008",
+      "player": "Rodney Hammond",
+      "team": "DEN",
+      "position": "RB",
+      "adp": 487.4,
+      "bye_week": 10
+    },
+    {
+      "sleeper_id": "14037",
+      "player": "Rashad Rochelle",
+      "team": "SEA",
       "position": "WR",
-      "adp": 487.6,
+      "adp": 488.6,
       "bye_week": 11
     },
     {
-      "sleeper_id": "13404",
-      "player": "Garrett Nussmeier",
-      "team": "KC",
+      "sleeper_id": "12538",
+      "player": "Brady Cook",
+      "team": "NYJ",
       "position": "QB",
-      "adp": 488.3,
-      "bye_week": 5
+      "adp": 489.0,
+      "bye_week": 13
     },
     {
-      "sleeper_id": "13309",
-      "player": "Aaron Anderson",
+      "sleeper_id": "7063",
+      "player": "Shea Patterson",
       "team": "",
-      "position": "WR",
-      "adp": 489.4
-    },
-    {
-      "sleeper_id": "4988",
-      "player": "Nick Chubb",
-      "team": "",
-      "position": "RB",
-      "adp": 490.7
+      "position": "QB",
+      "adp": 490.0
     },
     {
       "sleeper_id": "12892",
@@ -3841,11 +3991,33 @@
       "bye_week": 13
     },
     {
+      "sleeper_id": "1244",
+      "player": "Josh Gordon",
+      "team": "",
+      "position": "WR",
+      "adp": 491.3
+    },
+    {
+      "sleeper_id": "13299",
+      "player": "Nate Boerkircher",
+      "team": "JAX",
+      "position": "TE",
+      "adp": 491.8,
+      "bye_week": 7
+    },
+    {
       "sleeper_id": "9223",
       "player": "Tiyon Evans",
       "team": "",
       "position": "RB",
       "adp": 492.3
+    },
+    {
+      "sleeper_id": "954",
+      "player": "Cam Newton",
+      "team": "",
+      "position": "QB",
+      "adp": 493.0
     },
     {
       "sleeper_id": "11130",
@@ -3855,33 +4027,41 @@
       "adp": 493.0
     },
     {
-      "sleeper_id": "12532",
-      "player": "Ja'Corey Brooks",
+      "sleeper_id": "11502",
+      "player": "Brian Cobbs",
       "team": "",
       "position": "WR",
-      "adp": 494.1
+      "adp": 494.8
     },
     {
-      "sleeper_id": "11942",
-      "player": "Colson Yankoff",
+      "sleeper_id": "13968",
+      "player": "Drew Stevens",
       "team": "WAS",
-      "position": "TE",
-      "adp": 494.7,
+      "position": "K",
+      "adp": 495.0,
       "bye_week": 7
     },
     {
-      "sleeper_id": "947",
-      "player": "Julio Jones",
-      "team": "",
-      "position": "WR",
-      "adp": 496.7
+      "sleeper_id": "11292",
+      "player": "Tommy DeVito",
+      "team": "NE",
+      "position": "QB",
+      "adp": 496.1,
+      "bye_week": 11
     },
     {
-      "sleeper_id": "10858",
-      "player": "Alex Quevedo",
+      "sleeper_id": "2452",
+      "player": "Jay Ajayi",
+      "team": "",
+      "position": "RB",
+      "adp": 497.5
+    },
+    {
+      "sleeper_id": "12385",
+      "player": "Jude McAtamney",
       "team": "",
       "position": "K",
-      "adp": 497.0
+      "adp": 497.5
     },
     {
       "sleeper_id": "11320",
@@ -3892,6 +4072,13 @@
       "bye_week": 5
     },
     {
+      "sleeper_id": "2197",
+      "player": "Brandin Cooks",
+      "team": "",
+      "position": "WR",
+      "adp": 499.0
+    },
+    {
       "sleeper_id": "12788",
       "player": "Will Sheppard",
       "team": "GB",
@@ -3900,10 +4087,10 @@
       "bye_week": 11
     },
     {
-      "sleeper_id": "1264",
-      "player": "Justin Tucker",
+      "sleeper_id": "947",
+      "player": "Julio Jones",
       "team": "",
-      "position": "K",
+      "position": "WR",
       "adp": 500.4
     },
     {
@@ -3915,12 +4102,18 @@
       "bye_week": 8
     },
     {
-      "sleeper_id": "12531",
-      "player": "Trevor Etienne",
-      "team": "CAR",
-      "position": "RB",
-      "adp": 502.9,
-      "bye_week": 5
+      "sleeper_id": "4151",
+      "player": "Jake Butt",
+      "team": "",
+      "position": "TE",
+      "adp": 501.7
+    },
+    {
+      "sleeper_id": "4183",
+      "player": "Nathan Peterman",
+      "team": "",
+      "position": "QB",
+      "adp": 502.8
     },
     {
       "sleeper_id": "10230",
@@ -3930,27 +4123,40 @@
       "adp": 503.0
     },
     {
-      "sleeper_id": "10871",
-      "player": "Luke Schoonmaker",
-      "team": "DAL",
-      "position": "TE",
-      "adp": 504.0,
-      "bye_week": 14
+      "sleeper_id": "6203",
+      "player": "Valentine Holmes",
+      "team": "",
+      "position": "RB",
+      "adp": 503.8
     },
     {
-      "sleeper_id": "NYJ",
-      "player": "New York Jets",
-      "team": "NYJ",
-      "position": "DEF",
-      "adp": 505.3,
-      "bye_week": 13
+      "sleeper_id": "11918",
+      "player": "Ahmarean Brown",
+      "team": "",
+      "position": "WR",
+      "adp": 504.0
     },
     {
-      "sleeper_id": "13222",
-      "player": "Montana Lemonious-Craig",
+      "sleeper_id": "10983",
+      "player": "Sean Clifford",
+      "team": "CIN",
+      "position": "QB",
+      "adp": 505.0,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "147",
+      "player": "DeSean Jackson",
       "team": "",
       "position": "WR",
       "adp": 506.0
+    },
+    {
+      "sleeper_id": "1077",
+      "player": "Travis Benjamin",
+      "team": "",
+      "position": "WR",
+      "adp": 507.0
     },
     {
       "sleeper_id": "2307",
@@ -3958,6 +4164,14 @@
       "team": "WAS",
       "position": "QB",
       "adp": 507.5,
+      "bye_week": 7
+    },
+    {
+      "sleeper_id": "BUF",
+      "player": "Buffalo Bills",
+      "team": "BUF",
+      "position": "DEF",
+      "adp": 508.3,
       "bye_week": 7
     },
     {
@@ -3969,49 +4183,48 @@
       "bye_week": 6
     },
     {
-      "sleeper_id": "11292",
-      "player": "Tommy DeVito",
-      "team": "NE",
+      "sleeper_id": "11558",
+      "player": "Sam Hartman",
+      "team": "WAS",
       "position": "QB",
-      "adp": 509.3,
-      "bye_week": 11
+      "adp": 509.1,
+      "bye_week": 7
     },
     {
-      "sleeper_id": "954",
-      "player": "Cam Newton",
-      "team": "",
-      "position": "QB",
-      "adp": 510.9
-    },
-    {
-      "sleeper_id": "11562",
-      "player": "Spencer Rattler",
-      "team": "NO",
-      "position": "QB",
-      "adp": 511.0,
-      "bye_week": 8
-    },
-    {
-      "sleeper_id": "10211",
-      "player": "Camerun Peoples",
+      "sleeper_id": "745",
+      "player": "Marshawn Lynch",
       "team": "",
       "position": "RB",
-      "adp": 512.3
+      "adp": 509.6
     },
     {
-      "sleeper_id": "1234",
-      "player": "Russell Wilson",
+      "sleeper_id": "178",
+      "player": "Matt Schaub",
       "team": "",
       "position": "QB",
-      "adp": 512.5
+      "adp": 511.8
     },
     {
-      "sleeper_id": "TEN",
-      "player": "Tennessee Titans",
-      "team": "TEN",
-      "position": "DEF",
-      "adp": 514.1,
-      "bye_week": 9
+      "sleeper_id": "13698",
+      "player": "Max Tomczak",
+      "team": "BUF",
+      "position": "WR",
+      "adp": 512.0,
+      "bye_week": 7
+    },
+    {
+      "sleeper_id": "10870",
+      "player": "Deneric Prince",
+      "team": "",
+      "position": "RB",
+      "adp": 513.0
+    },
+    {
+      "sleeper_id": "10869",
+      "player": "Matt Landers",
+      "team": "",
+      "position": "WR",
+      "adp": 514.0
     },
     {
       "sleeper_id": "6744",
@@ -4019,6 +4232,13 @@
       "team": "",
       "position": "WR",
       "adp": 515.2
+    },
+    {
+      "sleeper_id": "574",
+      "player": "Dez Bryant",
+      "team": "",
+      "position": "WR",
+      "adp": 515.5
     },
     {
       "sleeper_id": "11570",
@@ -4036,6 +4256,13 @@
       "adp": 517.3
     },
     {
+      "sleeper_id": "17",
+      "player": "Matt Prater",
+      "team": "",
+      "position": "K",
+      "adp": 517.5
+    },
+    {
       "sleeper_id": "7065",
       "player": "Eli Wolf",
       "team": "",
@@ -4043,12 +4270,19 @@
       "adp": 518.2
     },
     {
-      "sleeper_id": "11574",
-      "player": "Dylan Laube",
-      "team": "LV",
-      "position": "RB",
-      "adp": 519.5,
-      "bye_week": 13
+      "sleeper_id": "7978",
+      "player": "Tre Walker",
+      "team": "",
+      "position": "WR",
+      "adp": 518.7
+    },
+    {
+      "sleeper_id": "11506",
+      "player": "Jalen Moreno-Cropper",
+      "team": "NO",
+      "position": "WR",
+      "adp": 519.8,
+      "bye_week": 8
     },
     {
       "sleeper_id": "943",
@@ -4058,51 +4292,63 @@
       "adp": 520.0
     },
     {
-      "sleeper_id": "7496",
-      "player": "Nick Westbrook-Ikhine",
-      "team": "IND",
-      "position": "WR",
-      "adp": 521.7,
-      "bye_week": 13
-    },
-    {
-      "sleeper_id": "11608",
-      "player": "Isaiah Williams",
-      "team": "NYJ",
-      "position": "WR",
-      "adp": 521.9,
-      "bye_week": 13
-    },
-    {
-      "sleeper_id": "2505",
-      "player": "Darren Waller",
-      "team": "CAR",
-      "position": "TE",
-      "adp": 523.5,
-      "bye_week": 5
-    },
-    {
-      "sleeper_id": "BUF",
-      "player": "Buffalo Bills",
-      "team": "BUF",
-      "position": "DEF",
-      "adp": 524.8,
-      "bye_week": 7
-    },
-    {
-      "sleeper_id": "11058",
-      "player": "Blake Grupe",
-      "team": "IND",
-      "position": "K",
-      "adp": 525.0,
-      "bye_week": 13
-    },
-    {
-      "sleeper_id": "8438",
-      "player": "Corey Sutton",
+      "sleeper_id": "13975",
+      "player": "Le'Meke Brockington",
       "team": "",
       "position": "WR",
+      "adp": 520.8
+    },
+    {
+      "sleeper_id": "10217",
+      "player": "Clayton Tune",
+      "team": "",
+      "position": "QB",
+      "adp": 521.2
+    },
+    {
+      "sleeper_id": "13075",
+      "player": "Myles Price",
+      "team": "MIN",
+      "position": "WR",
+      "adp": 521.7,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "7401",
+      "player": "Khalil Tate",
+      "team": "",
+      "position": "WR",
+      "adp": 523.0
+    },
+    {
+      "sleeper_id": "3164",
+      "player": "Ezekiel Elliott",
+      "team": "",
+      "position": "RB",
+      "adp": 524.3
+    },
+    {
+      "sleeper_id": "10214",
+      "player": "Davis Allen",
+      "team": "LAR",
+      "position": "TE",
+      "adp": 525.9,
+      "bye_week": 11
+    },
+    {
+      "sleeper_id": "12156",
+      "player": "James Turner",
+      "team": "",
+      "position": "K",
       "adp": 526.0
+    },
+    {
+      "sleeper_id": "14055",
+      "player": "Louis Hansen",
+      "team": "HOU",
+      "position": "TE",
+      "adp": 527.0,
+      "bye_week": 8
     },
     {
       "sleeper_id": "11729",
@@ -4113,6 +4359,13 @@
       "bye_week": 6
     },
     {
+      "sleeper_id": "331",
+      "player": "Philip Rivers",
+      "team": "",
+      "position": "QB",
+      "adp": 527.4
+    },
+    {
       "sleeper_id": "11380",
       "player": "Johnny Lumpkin",
       "team": "",
@@ -4120,12 +4373,11 @@
       "adp": 528.3
     },
     {
-      "sleeper_id": "11577",
-      "player": "Will Shipley",
-      "team": "PHI",
+      "sleeper_id": "818",
+      "player": "Bilal Powell",
+      "team": "",
       "position": "RB",
-      "adp": 529.9,
-      "bye_week": 10
+      "adp": 529.8
     },
     {
       "sleeper_id": "8248",
@@ -4142,42 +4394,65 @@
       "adp": 530.9
     },
     {
-      "sleeper_id": "10983",
-      "player": "Sean Clifford",
-      "team": "CIN",
-      "position": "QB",
-      "adp": 532.0,
-      "bye_week": 6
+      "sleeper_id": "11942",
+      "player": "Colson Yankoff",
+      "team": "WAS",
+      "position": "TE",
+      "adp": 530.9,
+      "bye_week": 7
     },
     {
-      "sleeper_id": "1077",
-      "player": "Travis Benjamin",
+      "sleeper_id": "13350",
+      "player": "Joe Fagnano",
+      "team": "BAL",
+      "position": "QB",
+      "adp": 531.6,
+      "bye_week": 13
+    },
+    {
+      "sleeper_id": "8411",
+      "player": "Devon Allen",
       "team": "",
       "position": "WR",
-      "adp": 533.0
+      "adp": 532.0
     },
     {
-      "sleeper_id": "7528",
-      "player": "Najee Harris",
-      "team": "NYG",
+      "sleeper_id": "NYJ",
+      "player": "New York Jets",
+      "team": "NYJ",
+      "position": "DEF",
+      "adp": 533.5,
+      "bye_week": 13
+    },
+    {
+      "sleeper_id": "5462",
+      "player": "Christopher Ezeala",
+      "team": "",
       "position": "RB",
-      "adp": 534.8,
-      "bye_week": 8
+      "adp": 533.8
     },
     {
-      "sleeper_id": "10869",
-      "player": "Matt Landers",
+      "sleeper_id": "10212",
+      "player": "Josh Whyle",
+      "team": "GB",
+      "position": "TE",
+      "adp": 535.8,
+      "bye_week": 11
+    },
+    {
+      "sleeper_id": "1099",
+      "player": "Randy Bullock",
       "team": "",
-      "position": "WR",
-      "adp": 535.5
+      "position": "K",
+      "adp": 536.0
     },
     {
-      "sleeper_id": "11065",
-      "player": "Adrian Martinez",
-      "team": "SF",
-      "position": "QB",
-      "adp": 536.5,
-      "bye_week": 8
+      "sleeper_id": "12969",
+      "player": "Lan Larison",
+      "team": "NE",
+      "position": "RB",
+      "adp": 537.0,
+      "bye_week": 11
     },
     {
       "sleeper_id": "13434",
@@ -4188,27 +4463,33 @@
       "bye_week": 6
     },
     {
-      "sleeper_id": "2306",
-      "player": "Jameis Winston",
-      "team": "NYG",
+      "sleeper_id": "8915",
+      "player": "Drew Plitt",
+      "team": "",
       "position": "QB",
-      "adp": 538.5,
-      "bye_week": 8
+      "adp": 538.0
     },
     {
-      "sleeper_id": "7922",
-      "player": "Riley Patterson",
-      "team": "MIA",
-      "position": "K",
-      "adp": 539.5,
-      "bye_week": 6
+      "sleeper_id": "862",
+      "player": "Blaine Gabbert",
+      "team": "",
+      "position": "QB",
+      "adp": 539.0
     },
     {
-      "sleeper_id": "7401",
-      "player": "Khalil Tate",
+      "sleeper_id": "223",
+      "player": "Larry Fitzgerald",
       "team": "",
       "position": "WR",
-      "adp": 540.0
+      "adp": 539.9
+    },
+    {
+      "sleeper_id": "11034",
+      "player": "Jalen Brooks",
+      "team": "ARI",
+      "position": "WR",
+      "adp": 541.7,
+      "bye_week": 14
     },
     {
       "sleeper_id": "6002",
@@ -4218,12 +4499,18 @@
       "adp": 541.8
     },
     {
-      "sleeper_id": "LV",
-      "player": "Las Vegas Raiders",
-      "team": "LV",
-      "position": "DEF",
-      "adp": 542.9,
-      "bye_week": 13
+      "sleeper_id": "5955",
+      "player": "Hunter Renfrow",
+      "team": "",
+      "position": "WR",
+      "adp": 542.0
+    },
+    {
+      "sleeper_id": "11070",
+      "player": "Kazmeir Allen",
+      "team": "",
+      "position": "WR",
+      "adp": 543.5
     },
     {
       "sleeper_id": "13329",
@@ -4234,26 +4521,34 @@
       "bye_week": 13
     },
     {
-      "sleeper_id": "10217",
-      "player": "Clayton Tune",
-      "team": "",
-      "position": "QB",
-      "adp": 544.5
+      "sleeper_id": "TEN",
+      "player": "Tennessee Titans",
+      "team": "TEN",
+      "position": "DEF",
+      "adp": 544.6,
+      "bye_week": 9
     },
     {
-      "sleeper_id": "CLE",
-      "player": "Cleveland Browns",
-      "team": "CLE",
+      "sleeper_id": "CIN",
+      "player": "Cincinnati Bengals",
+      "team": "CIN",
       "position": "DEF",
       "adp": 545.6,
-      "bye_week": 11
+      "bye_week": 6
     },
     {
-      "sleeper_id": "12312",
-      "player": "Noah Rauschenberg",
+      "sleeper_id": "4098",
+      "player": "Kareem Hunt",
       "team": "",
-      "position": "K",
-      "adp": 546.8
+      "position": "RB",
+      "adp": 545.7
+    },
+    {
+      "sleeper_id": "11961",
+      "player": "Emory Jones",
+      "team": "",
+      "position": "QB",
+      "adp": 547.0
     },
     {
       "sleeper_id": "8139",
@@ -4264,12 +4559,18 @@
       "bye_week": 8
     },
     {
-      "sleeper_id": "12500",
-      "player": "Quinn Ewers",
-      "team": "MIA",
+      "sleeper_id": "2309",
+      "player": "Amari Cooper",
+      "team": "",
+      "position": "WR",
+      "adp": 548.0
+    },
+    {
+      "sleeper_id": "6450",
+      "player": "David Blough",
+      "team": "",
       "position": "QB",
-      "adp": 548.3,
-      "bye_week": 6
+      "adp": 549.0
     },
     {
       "sleeper_id": "8223",
@@ -4280,6 +4581,14 @@
       "bye_week": 11
     },
     {
+      "sleeper_id": "11056",
+      "player": "Jared Wayne",
+      "team": "HOU",
+      "position": "WR",
+      "adp": 550.0,
+      "bye_week": 8
+    },
+    {
       "sleeper_id": "4068",
       "player": "Mike Williams",
       "team": "",
@@ -4287,19 +4596,18 @@
       "adp": 550.4
     },
     {
-      "sleeper_id": "7042",
-      "player": "Tyler Bass",
-      "team": "BUF",
+      "sleeper_id": "11789",
+      "player": "Joshua Karty",
+      "team": "",
       "position": "K",
-      "adp": 551.5,
-      "bye_week": 7
+      "adp": 551.3
     },
     {
-      "sleeper_id": "2374",
-      "player": "Tyler Lockett",
+      "sleeper_id": "1848",
+      "player": "James White",
       "team": "",
-      "position": "WR",
-      "adp": 552.3
+      "position": "RB",
+      "adp": 551.4
     },
     {
       "sleeper_id": "13435",
@@ -4310,6 +4618,20 @@
       "bye_week": 11
     },
     {
+      "sleeper_id": "7515",
+      "player": "Sergio Castillo",
+      "team": "",
+      "position": "K",
+      "adp": 553.5
+    },
+    {
+      "sleeper_id": "7458",
+      "player": "Isaiah Zuber",
+      "team": "",
+      "position": "WR",
+      "adp": 554.5
+    },
+    {
       "sleeper_id": "11197",
       "player": "Joel Honigford",
       "team": "",
@@ -4317,19 +4639,27 @@
       "adp": 554.8
     },
     {
+      "sleeper_id": "10220",
+      "player": "Will Mallory",
+      "team": "IND",
+      "position": "TE",
+      "adp": 555.4,
+      "bye_week": 13
+    },
+    {
       "sleeper_id": "167",
       "player": "Tom Brady",
       "team": "",
       "position": "QB",
-      "adp": 555.0
+      "adp": 556.5
     },
     {
-      "sleeper_id": "13307",
-      "player": "Marlin Klein",
-      "team": "HOU",
-      "position": "TE",
-      "adp": 556.7,
-      "bye_week": 8
+      "sleeper_id": "11261",
+      "player": "Andre Szmyt",
+      "team": "CLE",
+      "position": "K",
+      "adp": 557.1,
+      "bye_week": 11
     },
     {
       "sleeper_id": "11410",
@@ -4339,51 +4669,50 @@
       "adp": 557.2
     },
     {
-      "sleeper_id": "12699",
-      "player": "LaJohntay Wester",
-      "team": "BAL",
-      "position": "WR",
-      "adp": 557.5,
-      "bye_week": 13
+      "sleeper_id": "138",
+      "player": "Ben Roethlisberger",
+      "team": "PIT",
+      "position": "QB",
+      "adp": 557.7,
+      "bye_week": 9
     },
     {
-      "sleeper_id": "10235",
-      "player": "Roschon Johnson",
-      "team": "CHI",
+      "sleeper_id": "232",
+      "player": "Frank Gore",
+      "team": "",
       "position": "RB",
-      "adp": 559.9,
+      "adp": 560.0
+    },
+    {
+      "sleeper_id": "13295",
+      "player": "Behren Morton",
+      "team": "NE",
+      "position": "QB",
+      "adp": 561.0,
+      "bye_week": 11
+    },
+    {
+      "sleeper_id": "6996",
+      "player": "JaMycal Hasty",
+      "team": "NE",
+      "position": "RB",
+      "adp": 562.0,
+      "bye_week": 11
+    },
+    {
+      "sleeper_id": "5938",
+      "player": "Lil'Jordan Humphrey",
+      "team": "DEN",
+      "position": "WR",
+      "adp": 563.4,
       "bye_week": 10
     },
     {
-      "sleeper_id": "10225",
-      "player": "Jonathan Mingo",
-      "team": "DAL",
-      "position": "WR",
-      "adp": 560.8,
-      "bye_week": 14
-    },
-    {
-      "sleeper_id": "NO",
-      "player": "New Orleans Saints",
-      "team": "NO",
-      "position": "DEF",
-      "adp": 561.0,
-      "bye_week": 8
-    },
-    {
-      "sleeper_id": "13324",
-      "player": "Matt Hibner",
-      "team": "BAL",
-      "position": "TE",
-      "adp": 562.3,
-      "bye_week": 13
-    },
-    {
-      "sleeper_id": "4098",
-      "player": "Kareem Hunt",
+      "sleeper_id": "10858",
+      "player": "Alex Quevedo",
       "team": "",
-      "position": "RB",
-      "adp": 563.7
+      "position": "K",
+      "adp": 564.0
     },
     {
       "sleeper_id": "5052",
@@ -4401,25 +4730,50 @@
       "bye_week": 6
     },
     {
-      "sleeper_id": "5974",
-      "player": "Trace McSorley",
-      "team": "",
-      "position": "QB",
-      "adp": 566.3
+      "sleeper_id": "6528",
+      "player": "Joey Slye",
+      "team": "TEN",
+      "position": "K",
+      "adp": 565.4,
+      "bye_week": 9
     },
     {
-      "sleeper_id": "11214",
-      "player": "Tanner Morgan",
+      "sleeper_id": "6373",
+      "player": "A.J. Richardson",
       "team": "",
-      "position": "QB",
-      "adp": 566.5
+      "position": "WR",
+      "adp": 566.6
     },
     {
-      "sleeper_id": "331",
-      "player": "Philip Rivers",
+      "sleeper_id": "LV",
+      "player": "Las Vegas Raiders",
+      "team": "LV",
+      "position": "DEF",
+      "adp": 567.9,
+      "bye_week": 13
+    },
+    {
+      "sleeper_id": "3969",
+      "player": "Leonard Fournette",
       "team": "",
-      "position": "QB",
-      "adp": 568.6
+      "position": "RB",
+      "adp": 568.8
+    },
+    {
+      "sleeper_id": "13491",
+      "player": "Kaden Wetjen",
+      "team": "PIT",
+      "position": "WR",
+      "adp": 569.1,
+      "bye_week": 9
+    },
+    {
+      "sleeper_id": "7720",
+      "player": "Kene Nwangwu",
+      "team": "NYJ",
+      "position": "RB",
+      "adp": 570.0,
+      "bye_week": 13
     },
     {
       "sleeper_id": "4464",
@@ -4438,6 +4792,21 @@
       "bye_week": 8
     },
     {
+      "sleeper_id": "344",
+      "player": "Julian Edelman",
+      "team": "",
+      "position": "WR",
+      "adp": 571.8
+    },
+    {
+      "sleeper_id": "NO",
+      "player": "New Orleans Saints",
+      "team": "NO",
+      "position": "DEF",
+      "adp": 572.3,
+      "bye_week": 8
+    },
+    {
       "sleeper_id": "12542",
       "player": "Efton Chism",
       "team": "NE",
@@ -4446,35 +4815,42 @@
       "bye_week": 11
     },
     {
-      "sleeper_id": "11653",
-      "player": "Charlie Smyth",
-      "team": "NO",
-      "position": "K",
-      "adp": 573.0,
+      "sleeper_id": "1149",
+      "player": "Alshon Jeffery",
+      "team": "",
+      "position": "WR",
+      "adp": 573.3
+    },
+    {
+      "sleeper_id": "1386",
+      "player": "Giovani Bernard",
+      "team": "",
+      "position": "RB",
+      "adp": 574.4
+    },
+    {
+      "sleeper_id": "10218",
+      "player": "Xavier Hutchinson",
+      "team": "HOU",
+      "position": "WR",
+      "adp": 575.3,
       "bye_week": 8
     },
     {
-      "sleeper_id": "12185",
-      "player": "Spencer Shrader",
-      "team": "IND",
-      "position": "K",
-      "adp": 574.7,
-      "bye_week": 13
-    },
-    {
-      "sleeper_id": "CIN",
-      "player": "Cincinnati Bengals",
-      "team": "CIN",
+      "sleeper_id": "TB",
+      "player": "Tampa Bay Buccaneers",
+      "team": "TB",
       "position": "DEF",
-      "adp": 575.8,
-      "bye_week": 6
+      "adp": 575.7,
+      "bye_week": 10
     },
     {
-      "sleeper_id": "6886",
-      "player": "Chase Claypool",
-      "team": "",
+      "sleeper_id": "2078",
+      "player": "Odell Beckham",
+      "team": "NYG",
       "position": "WR",
-      "adp": 577.2
+      "adp": 577.2,
+      "bye_week": 8
     },
     {
       "sleeper_id": "8439",
@@ -4482,6 +4858,20 @@
       "team": "",
       "position": "WR",
       "adp": 578.0
+    },
+    {
+      "sleeper_id": "12312",
+      "player": "Noah Rauschenberg",
+      "team": "",
+      "position": "K",
+      "adp": 578.4
+    },
+    {
+      "sleeper_id": "5756",
+      "player": "Garrett Dickerson",
+      "team": "",
+      "position": "TE",
+      "adp": 579.1
     },
     {
       "sleeper_id": "4040",
@@ -4498,12 +4888,26 @@
       "adp": 580.1
     },
     {
-      "sleeper_id": "2078",
-      "player": "Odell Beckham",
-      "team": "NYG",
+      "sleeper_id": "7042",
+      "player": "Tyler Bass",
+      "team": "BUF",
+      "position": "K",
+      "adp": 580.4,
+      "bye_week": 7
+    },
+    {
+      "sleeper_id": "1408",
+      "player": "Le'Veon Bell",
+      "team": "",
+      "position": "RB",
+      "adp": 581.7
+    },
+    {
+      "sleeper_id": "7211",
+      "player": "Zimari Manning",
+      "team": "",
       "position": "WR",
-      "adp": 581.2,
-      "bye_week": 8
+      "adp": 581.7
     },
     {
       "sleeper_id": "5119",
@@ -4514,11 +4918,11 @@
       "bye_week": 13
     },
     {
-      "sleeper_id": "138",
-      "player": "Ben Roethlisberger",
-      "team": "PIT",
+      "sleeper_id": "3976",
+      "player": "Mitchell Trubisky",
+      "team": "TEN",
       "position": "QB",
-      "adp": 583.3,
+      "adp": 583.8,
       "bye_week": 9
     },
     {
@@ -4529,6 +4933,14 @@
       "adp": 584.0
     },
     {
+      "sleeper_id": "4195",
+      "player": "Jake Elliott",
+      "team": "PHI",
+      "position": "K",
+      "adp": 584.3,
+      "bye_week": 10
+    },
+    {
       "sleeper_id": "5970",
       "player": "Greg Dortch",
       "team": "DET",
@@ -4537,11 +4949,36 @@
       "bye_week": 6
     },
     {
-      "sleeper_id": "223",
-      "player": "Larry Fitzgerald",
-      "team": "",
-      "position": "WR",
-      "adp": 586.0
+      "sleeper_id": "10223",
+      "player": "Eric Gray",
+      "team": "NYG",
+      "position": "RB",
+      "adp": 585.0,
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "10215",
+      "player": "Jake Haener",
+      "team": "NYG",
+      "position": "QB",
+      "adp": 586.3,
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "MIA",
+      "player": "Miami Dolphins",
+      "team": "MIA",
+      "position": "DEF",
+      "adp": 587.1,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "7528",
+      "player": "Najee Harris",
+      "team": "NYG",
+      "position": "RB",
+      "adp": 587.2,
+      "bye_week": 8
     },
     {
       "sleeper_id": "7558",
@@ -4551,19 +4988,19 @@
       "adp": 587.3
     },
     {
-      "sleeper_id": "10857",
-      "player": "Stetson Bennett",
-      "team": "LAR",
-      "position": "QB",
-      "adp": 588.7,
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "574",
-      "player": "Dez Bryant",
+      "sleeper_id": "5134",
+      "player": "Keith Kirkwood",
       "team": "",
       "position": "WR",
-      "adp": 589.2
+      "adp": 589.8
+    },
+    {
+      "sleeper_id": "10955",
+      "player": "Chad Ryland",
+      "team": "ARI",
+      "position": "K",
+      "adp": 590.4,
+      "bye_week": 14
     },
     {
       "sleeper_id": "11126",
@@ -4573,11 +5010,26 @@
       "adp": 590.5
     },
     {
+      "sleeper_id": "CLE",
+      "player": "Cleveland Browns",
+      "team": "CLE",
+      "position": "DEF",
+      "adp": 591.5,
+      "bye_week": 11
+    },
+    {
       "sleeper_id": "6595",
       "player": "Devlin Hodges",
       "team": "",
       "position": "QB",
       "adp": 591.5
+    },
+    {
+      "sleeper_id": "1234",
+      "player": "Russell Wilson",
+      "team": "",
+      "position": "QB",
+      "adp": 592.3
     },
     {
       "sleeper_id": "7359",
@@ -4587,28 +5039,27 @@
       "adp": 592.9
     },
     {
-      "sleeper_id": "4195",
-      "player": "Jake Elliott",
-      "team": "PHI",
-      "position": "K",
-      "adp": 593.4,
-      "bye_week": 10
+      "sleeper_id": "6932",
+      "player": "Charlie Taumoepeau",
+      "team": "",
+      "position": "TE",
+      "adp": 593.4
     },
     {
-      "sleeper_id": "6453",
-      "player": "D.J. Montgomery",
+      "sleeper_id": "11058",
+      "player": "Blake Grupe",
       "team": "IND",
-      "position": "WR",
+      "position": "K",
       "adp": 593.9,
       "bye_week": 13
     },
     {
-      "sleeper_id": "TB",
-      "player": "Tampa Bay Buccaneers",
-      "team": "TB",
-      "position": "DEF",
-      "adp": 595.8,
-      "bye_week": 10
+      "sleeper_id": "6323",
+      "player": "Andrew Beck",
+      "team": "NYJ",
+      "position": "RB",
+      "adp": 595.3,
+      "bye_week": 13
     },
     {
       "sleeper_id": "13199",
@@ -4619,12 +5070,27 @@
       "bye_week": 11
     },
     {
+      "sleeper_id": "1737",
+      "player": "Case Keenum",
+      "team": "CHI",
+      "position": "QB",
+      "adp": 596.3,
+      "bye_week": 10
+    },
+    {
       "sleeper_id": "7694",
       "player": "Tommy Tremble",
       "team": "CAR",
       "position": "TE",
       "adp": 597.0,
       "bye_week": 5
+    },
+    {
+      "sleeper_id": "1034",
+      "player": "Brandon Bolden",
+      "team": "",
+      "position": "RB",
+      "adp": 597.7
     },
     {
       "sleeper_id": "2359",
@@ -4635,19 +5101,27 @@
       "bye_week": 7
     },
     {
-      "sleeper_id": "10215",
-      "player": "Jake Haener",
-      "team": "NYG",
-      "position": "QB",
-      "adp": 599.8,
-      "bye_week": 8
+      "sleeper_id": "8204",
+      "player": "Bo Melton",
+      "team": "GB",
+      "position": "WR",
+      "adp": 598.8,
+      "bye_week": 11
     },
     {
-      "sleeper_id": "4151",
-      "player": "Jake Butt",
+      "sleeper_id": "13222",
+      "player": "Montana Lemonious-Craig",
       "team": "",
-      "position": "TE",
-      "adp": 600.9
+      "position": "WR",
+      "adp": 599.8
+    },
+    {
+      "sleeper_id": "12171",
+      "player": "British Brooks",
+      "team": "HOU",
+      "position": "RB",
+      "adp": 599.9,
+      "bye_week": 8
     },
     {
       "sleeper_id": "13770",
@@ -4658,34 +5132,49 @@
       "bye_week": 11
     },
     {
-      "sleeper_id": "7891",
-      "player": "Brock Wright",
+      "sleeper_id": "10860",
+      "player": "Malik Cunningham",
       "team": "DET",
-      "position": "TE",
-      "adp": 602.4,
+      "position": "WR",
+      "adp": 601.5,
       "bye_week": 6
     },
     {
-      "sleeper_id": "11070",
-      "player": "Kazmeir Allen",
+      "sleeper_id": "7335",
+      "player": "Bryce Perkins",
       "team": "",
-      "position": "WR",
+      "position": "QB",
       "adp": 602.5
     },
     {
-      "sleeper_id": "10937",
-      "player": "Jake Moody",
+      "sleeper_id": "8438",
+      "player": "Corey Sutton",
       "team": "",
-      "position": "K",
-      "adp": 604.3
+      "position": "WR",
+      "adp": 603.8
     },
     {
-      "sleeper_id": "8135",
-      "player": "Treylon Burks",
-      "team": "WAS",
+      "sleeper_id": "899",
+      "player": "Dan Bailey",
+      "team": "",
+      "position": "K",
+      "adp": 604.7
+    },
+    {
+      "sleeper_id": "11439",
+      "player": "Jaleel McLaughlin",
+      "team": "DEN",
+      "position": "RB",
+      "adp": 605.0,
+      "bye_week": 10
+    },
+    {
+      "sleeper_id": "13150",
+      "player": "Darius Cooper",
+      "team": "PHI",
       "position": "WR",
-      "adp": 605.9,
-      "bye_week": 7
+      "adp": 605.8,
+      "bye_week": 10
     },
     {
       "sleeper_id": "11256",
@@ -4696,11 +5185,26 @@
       "bye_week": 10
     },
     {
+      "sleeper_id": "8042",
+      "player": "Chris Naggar",
+      "team": "",
+      "position": "K",
+      "adp": 607.5
+    },
+    {
       "sleeper_id": "13663",
       "player": "Wesley Grimes",
       "team": "SF",
       "position": "WR",
       "adp": 607.8,
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "11653",
+      "player": "Charlie Smyth",
+      "team": "NO",
+      "position": "K",
+      "adp": 608.1,
       "bye_week": 8
     },
     {
@@ -4720,20 +5224,35 @@
       "bye_week": 9
     },
     {
-      "sleeper_id": "8204",
-      "player": "Bo Melton",
-      "team": "GB",
+      "sleeper_id": "8135",
+      "player": "Treylon Burks",
+      "team": "WAS",
       "position": "WR",
-      "adp": 610.0,
+      "adp": 609.8,
+      "bye_week": 7
+    },
+    {
+      "sleeper_id": "12718",
+      "player": "Konata Mumpfield",
+      "team": "LAR",
+      "position": "WR",
+      "adp": 610.8,
       "bye_week": 11
     },
     {
-      "sleeper_id": "10955",
-      "player": "Chad Ryland",
-      "team": "ARI",
-      "position": "K",
-      "adp": 611.5,
-      "bye_week": 14
+      "sleeper_id": "13309",
+      "player": "Aaron Anderson",
+      "team": "",
+      "position": "WR",
+      "adp": 611.4
+    },
+    {
+      "sleeper_id": "7541",
+      "player": "Cornell Powell",
+      "team": "PIT",
+      "position": "WR",
+      "adp": 611.4,
+      "bye_week": 9
     },
     {
       "sleeper_id": "7599",
@@ -4752,11 +5271,27 @@
       "bye_week": 13
     },
     {
-      "sleeper_id": "7335",
-      "player": "Bryce Perkins",
+      "sleeper_id": "10221",
+      "player": "Ronnie Bell",
+      "team": "NO",
+      "position": "WR",
+      "adp": 613.3,
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "11557",
+      "player": "Joe Milton",
+      "team": "DAL",
+      "position": "QB",
+      "adp": 614.4,
+      "bye_week": 14
+    },
+    {
+      "sleeper_id": "181",
+      "player": "Drew Stanton",
       "team": "",
       "position": "QB",
-      "adp": 614.5
+      "adp": 615.0
     },
     {
       "sleeper_id": "10234",
@@ -4765,6 +5300,14 @@
       "position": "WR",
       "adp": 615.3,
       "bye_week": 7
+    },
+    {
+      "sleeper_id": "6083",
+      "player": "Matt Gay",
+      "team": "LV",
+      "position": "K",
+      "adp": 616.6,
+      "bye_week": 13
     },
     {
       "sleeper_id": "13302",
@@ -4783,6 +5326,22 @@
       "bye_week": 6
     },
     {
+      "sleeper_id": "11577",
+      "player": "Will Shipley",
+      "team": "PHI",
+      "position": "RB",
+      "adp": 617.2,
+      "bye_week": 10
+    },
+    {
+      "sleeper_id": "7496",
+      "player": "Nick Westbrook-Ikhine",
+      "team": "IND",
+      "position": "WR",
+      "adp": 617.8,
+      "bye_week": 13
+    },
+    {
       "sleeper_id": "11267",
       "player": "Aron Cruickshank",
       "team": "",
@@ -4790,12 +5349,12 @@
       "adp": 618.6
     },
     {
-      "sleeper_id": "13322",
-      "player": "Sam Roush",
-      "team": "CHI",
-      "position": "TE",
-      "adp": 619.9,
-      "bye_week": 10
+      "sleeper_id": "13418",
+      "player": "Robert Henry",
+      "team": "WAS",
+      "position": "RB",
+      "adp": 619.4,
+      "bye_week": 7
     },
     {
       "sleeper_id": "11650",
@@ -4814,20 +5373,33 @@
       "bye_week": 14
     },
     {
-      "sleeper_id": "6083",
-      "player": "Matt Gay",
-      "team": "LV",
+      "sleeper_id": "10937",
+      "player": "Jake Moody",
+      "team": "",
       "position": "K",
-      "adp": 622.0,
-      "bye_week": 13
+      "adp": 620.8
     },
     {
-      "sleeper_id": "CAR",
-      "player": "Carolina Panthers",
-      "team": "CAR",
-      "position": "DEF",
-      "adp": 623.3,
-      "bye_week": 5
+      "sleeper_id": "13602",
+      "player": "Jack Strand",
+      "team": "ATL",
+      "position": "QB",
+      "adp": 621.0,
+      "bye_week": 11
+    },
+    {
+      "sleeper_id": "8665",
+      "player": "Armani Rogers",
+      "team": "",
+      "position": "TE",
+      "adp": 622.7
+    },
+    {
+      "sleeper_id": "5974",
+      "player": "Trace McSorley",
+      "team": "",
+      "position": "QB",
+      "adp": 623.0
     },
     {
       "sleeper_id": "7670",
@@ -4838,12 +5410,11 @@
       "bye_week": 7
     },
     {
-      "sleeper_id": "13424",
-      "player": "Seth McGowan",
-      "team": "IND",
+      "sleeper_id": "4485",
+      "player": "William Stanback",
+      "team": "",
       "position": "RB",
-      "adp": 625.7,
-      "bye_week": 13
+      "adp": 625.6
     },
     {
       "sleeper_id": "11374",
@@ -4853,11 +5424,34 @@
       "adp": 626.5
     },
     {
+      "sleeper_id": "7918",
+      "player": "A.J. Rose",
+      "team": "",
+      "position": "RB",
+      "adp": 626.8
+    },
+    {
       "sleeper_id": "8198",
       "player": "Charleston Rambo",
       "team": "",
       "position": "WR",
       "adp": 627.3
+    },
+    {
+      "sleeper_id": "8147",
+      "player": "John Metchie",
+      "team": "CAR",
+      "position": "WR",
+      "adp": 627.9,
+      "bye_week": 5
+    },
+    {
+      "sleeper_id": "13315",
+      "player": "Dean Connors",
+      "team": "LAR",
+      "position": "RB",
+      "adp": 628.0,
+      "bye_week": 11
     },
     {
       "sleeper_id": "650",
@@ -4868,14 +5462,6 @@
       "bye_week": 11
     },
     {
-      "sleeper_id": "11821",
-      "player": "Tahj Washington",
-      "team": "MIA",
-      "position": "WR",
-      "adp": 629.3,
-      "bye_week": 6
-    },
-    {
       "sleeper_id": "4147",
       "player": "Samaje Perine",
       "team": "CIN",
@@ -4884,11 +5470,26 @@
       "bye_week": 6
     },
     {
-      "sleeper_id": "11163",
-      "player": "Tim DeMorat",
+      "sleeper_id": "1170",
+      "player": "Alfred Morris",
       "team": "",
-      "position": "QB",
-      "adp": 631.0
+      "position": "RB",
+      "adp": 629.9
+    },
+    {
+      "sleeper_id": "13322",
+      "player": "Sam Roush",
+      "team": "CHI",
+      "position": "TE",
+      "adp": 630.0,
+      "bye_week": 10
+    },
+    {
+      "sleeper_id": "5122",
+      "player": "Boston Scott",
+      "team": "",
+      "position": "RB",
+      "adp": 631.5
     },
     {
       "sleeper_id": "4663",
@@ -4898,20 +5499,43 @@
       "adp": 632.2
     },
     {
-      "sleeper_id": "14067",
-      "player": "Jeff Weimer",
-      "team": "KC",
-      "position": "WR",
-      "adp": 633.0,
-      "bye_week": 5
+      "sleeper_id": "8707",
+      "player": "Tayon Fleet-Davis",
+      "team": "",
+      "position": "RB",
+      "adp": 632.3
     },
     {
-      "sleeper_id": "6528",
-      "player": "Joey Slye",
-      "team": "TEN",
-      "position": "K",
-      "adp": 634.4,
-      "bye_week": 9
+      "sleeper_id": "3161",
+      "player": "Carson Wentz",
+      "team": "MIN",
+      "position": "QB",
+      "adp": 633.3,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "10857",
+      "player": "Stetson Bennett",
+      "team": "LAR",
+      "position": "QB",
+      "adp": 634.8,
+      "bye_week": 11
+    },
+    {
+      "sleeper_id": "11638",
+      "player": "Ricky Pearsall",
+      "team": "SF",
+      "position": "WR",
+      "adp": 635.3,
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "10235",
+      "player": "Roschon Johnson",
+      "team": "CHI",
+      "position": "RB",
+      "adp": 635.6,
+      "bye_week": 10
     },
     {
       "sleeper_id": "10867",
@@ -4922,14 +5546,6 @@
       "bye_week": 11
     },
     {
-      "sleeper_id": "5938",
-      "player": "Lil'Jordan Humphrey",
-      "team": "DEN",
-      "position": "WR",
-      "adp": 636.3,
-      "bye_week": 10
-    },
-    {
       "sleeper_id": "8143",
       "player": "Jerome Ford",
       "team": "WAS",
@@ -4938,25 +5554,27 @@
       "bye_week": 7
     },
     {
-      "sleeper_id": "7859",
-      "player": "Nick Eubanks",
+      "sleeper_id": "2505",
+      "player": "Darren Waller",
+      "team": "CAR",
+      "position": "TE",
+      "adp": 637.8,
+      "bye_week": 5
+    },
+    {
+      "sleeper_id": "14067",
+      "player": "Jeff Weimer",
+      "team": "KC",
+      "position": "WR",
+      "adp": 638.0,
+      "bye_week": 5
+    },
+    {
+      "sleeper_id": "367",
+      "player": "Jared Cook",
       "team": "",
       "position": "TE",
-      "adp": 637.3
-    },
-    {
-      "sleeper_id": "11053",
-      "player": "Antoine Green",
-      "team": "",
-      "position": "WR",
-      "adp": 638.5
-    },
-    {
-      "sleeper_id": "11169",
-      "player": "Dresser Winn",
-      "team": "",
-      "position": "QB",
-      "adp": 638.5
+      "adp": 639.1
     },
     {
       "sleeper_id": "7610",
@@ -4967,11 +5585,19 @@
       "bye_week": 7
     },
     {
-      "sleeper_id": "2560",
-      "player": "Zach Zenner",
+      "sleeper_id": "491",
+      "player": "Danny Amendola",
       "team": "",
-      "position": "RB",
+      "position": "WR",
       "adp": 640.5
+    },
+    {
+      "sleeper_id": "12500",
+      "player": "Quinn Ewers",
+      "team": "MIA",
+      "position": "QB",
+      "adp": 641.0,
+      "bye_week": 6
     },
     {
       "sleeper_id": "13306",
@@ -4982,10 +5608,10 @@
       "bye_week": 11
     },
     {
-      "sleeper_id": "8775",
-      "player": "Andrew Mevis",
+      "sleeper_id": "1071",
+      "player": "Mohamed Sanu",
       "team": "",
-      "position": "K",
+      "position": "WR",
       "adp": 641.7
     },
     {
@@ -5003,6 +5629,20 @@
       "position": "WR",
       "adp": 643.8,
       "bye_week": 6
+    },
+    {
+      "sleeper_id": "7859",
+      "player": "Nick Eubanks",
+      "team": "",
+      "position": "TE",
+      "adp": 643.8
+    },
+    {
+      "sleeper_id": "8905",
+      "player": "Travis Koontz",
+      "team": "",
+      "position": "TE",
+      "adp": 644.2
     },
     {
       "sleeper_id": "2320",
@@ -5035,11 +5675,27 @@
       "adp": 645.5
     },
     {
+      "sleeper_id": "12531",
+      "player": "Trevor Etienne",
+      "team": "CAR",
+      "position": "RB",
+      "adp": 645.8,
+      "bye_week": 5
+    },
+    {
       "sleeper_id": "1339",
       "player": "Zach Ertz",
       "team": "",
       "position": "TE",
       "adp": 646.0
+    },
+    {
+      "sleeper_id": "8755",
+      "player": "Kaden Davis",
+      "team": "CHI",
+      "position": "WR",
+      "adp": 646.1,
+      "bye_week": 10
     },
     {
       "sleeper_id": "7121",
@@ -5049,12 +5705,11 @@
       "adp": 646.5
     },
     {
-      "sleeper_id": "11186",
-      "player": "Carlos Washington",
-      "team": "MIA",
+      "sleeper_id": "10211",
+      "player": "Camerun Peoples",
+      "team": "",
       "position": "RB",
-      "adp": 647.2,
-      "bye_week": 6
+      "adp": 647.4
     },
     {
       "sleeper_id": "11623",
@@ -5071,6 +5726,13 @@
       "position": "WR",
       "adp": 647.5,
       "bye_week": 7
+    },
+    {
+      "sleeper_id": "2560",
+      "player": "Zach Zenner",
+      "team": "",
+      "position": "RB",
+      "adp": 647.5
     },
     {
       "sleeper_id": "8230",
@@ -5097,12 +5759,19 @@
       "bye_week": 13
     },
     {
-      "sleeper_id": "WAS",
-      "player": "Washington Commanders",
-      "team": "WAS",
-      "position": "DEF",
-      "adp": 650.3,
-      "bye_week": 7
+      "sleeper_id": "8238",
+      "player": "Emeka Emezie",
+      "team": "",
+      "position": "WR",
+      "adp": 649.7
+    },
+    {
+      "sleeper_id": "10225",
+      "player": "Jonathan Mingo",
+      "team": "DAL",
+      "position": "WR",
+      "adp": 650.0,
+      "bye_week": 14
     },
     {
       "sleeper_id": "8254",
@@ -5120,6 +5789,13 @@
       "adp": 651.0
     },
     {
+      "sleeper_id": "8575",
+      "player": "Erik Krommenhoek",
+      "team": "",
+      "position": "TE",
+      "adp": 651.1
+    },
+    {
       "sleeper_id": "3271",
       "player": "Tyler Higbee",
       "team": "LAR",
@@ -5128,20 +5804,19 @@
       "bye_week": 11
     },
     {
-      "sleeper_id": "8147",
-      "player": "John Metchie",
-      "team": "CAR",
-      "position": "WR",
-      "adp": 652.8,
+      "sleeper_id": "13404",
+      "player": "Garrett Nussmeier",
+      "team": "KC",
+      "position": "QB",
+      "adp": 652.4,
       "bye_week": 5
     },
     {
-      "sleeper_id": "NYG",
-      "player": "New York Giants",
-      "team": "NYG",
-      "position": "DEF",
-      "adp": 653.2,
-      "bye_week": 8
+      "sleeper_id": "1689",
+      "player": "Adam Thielen",
+      "team": "",
+      "position": "WR",
+      "adp": 653.5
     },
     {
       "sleeper_id": "8255",
@@ -5160,6 +5835,13 @@
       "bye_week": 6
     },
     {
+      "sleeper_id": "830",
+      "player": "A.J. Green",
+      "team": "",
+      "position": "WR",
+      "adp": 654.0
+    },
+    {
       "sleeper_id": "10863",
       "player": "A.T. Perry",
       "team": "",
@@ -5167,18 +5849,17 @@
       "adp": 654.0
     },
     {
-      "sleeper_id": "5857",
-      "player": "Noah Fant",
-      "team": "NO",
-      "position": "TE",
-      "adp": 654.5,
-      "bye_week": 8
-    },
-    {
       "sleeper_id": "973",
       "player": "Anthony Sherman",
       "team": "",
       "position": "RB",
+      "adp": 655.0
+    },
+    {
+      "sleeper_id": "11163",
+      "player": "Tim DeMorat",
+      "team": "",
+      "position": "QB",
       "adp": 655.0
     },
     {
@@ -5205,6 +5886,13 @@
       "adp": 656.0
     },
     {
+      "sleeper_id": "4381",
+      "player": "Taysom Hill",
+      "team": "",
+      "position": "TE",
+      "adp": 656.3
+    },
+    {
       "sleeper_id": "8921",
       "player": "Maurice Alexander",
       "team": "CHI",
@@ -5227,13 +5915,6 @@
       "position": "QB",
       "adp": 656.9,
       "bye_week": 9
-    },
-    {
-      "sleeper_id": "3909",
-      "player": "Sam Ficken",
-      "team": "",
-      "position": "K",
-      "adp": 657.0
     },
     {
       "sleeper_id": "829",
@@ -5260,6 +5941,14 @@
       "bye_week": 13
     },
     {
+      "sleeper_id": "11821",
+      "player": "Tahj Washington",
+      "team": "MIA",
+      "position": "WR",
+      "adp": 657.4,
+      "bye_week": 6
+    },
+    {
       "sleeper_id": "8220",
       "player": "Sincere McCormick",
       "team": "SF",
@@ -5274,13 +5963,6 @@
       "position": "WR",
       "adp": 657.8,
       "bye_week": 9
-    },
-    {
-      "sleeper_id": "6192",
-      "player": "Chris Blewitt",
-      "team": "",
-      "position": "K",
-      "adp": 658.0
     },
     {
       "sleeper_id": "886",
@@ -5298,11 +5980,12 @@
       "bye_week": 8
     },
     {
-      "sleeper_id": "11567",
-      "player": "Jordan Travis",
-      "team": "",
-      "position": "QB",
-      "adp": 658.5
+      "sleeper_id": "CAR",
+      "player": "Carolina Panthers",
+      "team": "CAR",
+      "position": "DEF",
+      "adp": 658.6,
+      "bye_week": 5
     },
     {
       "sleeper_id": "7607",
@@ -5311,6 +5994,14 @@
       "position": "RB",
       "adp": 659.5,
       "bye_week": 9
+    },
+    {
+      "sleeper_id": "11608",
+      "player": "Isaiah Williams",
+      "team": "NYJ",
+      "position": "WR",
+      "adp": 659.6,
+      "bye_week": 13
     },
     {
       "sleeper_id": "4993",
@@ -5327,6 +6018,14 @@
       "position": "QB",
       "adp": 659.7,
       "bye_week": 9
+    },
+    {
+      "sleeper_id": "10228",
+      "player": "Charlie Jones",
+      "team": "CIN",
+      "position": "WR",
+      "adp": 659.8,
+      "bye_week": 6
     },
     {
       "sleeper_id": "12961",
@@ -5361,16 +6060,8 @@
       "bye_week": 7
     },
     {
-      "sleeper_id": "3286",
-      "player": "Demarcus Robinson",
-      "team": "SF",
-      "position": "WR",
-      "adp": 661.0,
-      "bye_week": 8
-    },
-    {
-      "sleeper_id": "8915",
-      "player": "Drew Plitt",
+      "sleeper_id": "11169",
+      "player": "Dresser Winn",
       "team": "",
       "position": "QB",
       "adp": 661.0
@@ -5383,11 +6074,11 @@
       "adp": 661.5
     },
     {
-      "sleeper_id": "4152",
-      "player": "Marlon Mack",
+      "sleeper_id": "11053",
+      "player": "Antoine Green",
       "team": "",
-      "position": "RB",
-      "adp": 661.5
+      "position": "WR",
+      "adp": 662.0
     },
     {
       "sleeper_id": "7455",
@@ -5395,13 +6086,6 @@
       "team": "",
       "position": "WR",
       "adp": 662.0
-    },
-    {
-      "sleeper_id": "4381",
-      "player": "Taysom Hill",
-      "team": "",
-      "position": "TE",
-      "adp": 662.6
     },
     {
       "sleeper_id": "13380",
@@ -5435,12 +6119,12 @@
       "bye_week": 5
     },
     {
-      "sleeper_id": "MIA",
-      "player": "Miami Dolphins",
-      "team": "MIA",
-      "position": "DEF",
-      "adp": 663.8,
-      "bye_week": 6
+      "sleeper_id": "13307",
+      "player": "Marlin Klein",
+      "team": "HOU",
+      "position": "TE",
+      "adp": 663.1,
+      "bye_week": 8
     },
     {
       "sleeper_id": "13079",
@@ -5466,6 +6150,14 @@
       "bye_week": 8
     },
     {
+      "sleeper_id": "2306",
+      "player": "Jameis Winston",
+      "team": "NYG",
+      "position": "QB",
+      "adp": 664.4,
+      "bye_week": 8
+    },
+    {
       "sleeper_id": "9510",
       "player": "Lew Nichols",
       "team": "PIT",
@@ -5487,6 +6179,21 @@
       "position": "RB",
       "adp": 665.1,
       "bye_week": 14
+    },
+    {
+      "sleeper_id": "12118",
+      "player": "Jacob Warren",
+      "team": "",
+      "position": "TE",
+      "adp": 665.3
+    },
+    {
+      "sleeper_id": "6453",
+      "player": "D.J. Montgomery",
+      "team": "IND",
+      "position": "WR",
+      "adp": 665.4,
+      "bye_week": 13
     },
     {
       "sleeper_id": "8129",
@@ -5536,14 +6243,6 @@
       "adp": 666.1
     },
     {
-      "sleeper_id": "13602",
-      "player": "Jack Strand",
-      "team": "ATL",
-      "position": "QB",
-      "adp": 667.3,
-      "bye_week": 11
-    },
-    {
       "sleeper_id": "12498",
       "player": "Mason Taylor",
       "team": "NYJ",
@@ -5558,6 +6257,13 @@
       "position": "TE",
       "adp": 667.7,
       "bye_week": 11
+    },
+    {
+      "sleeper_id": "10216",
+      "player": "Kenny McIntosh",
+      "team": "",
+      "position": "RB",
+      "adp": 667.8
     },
     {
       "sleeper_id": "533",
@@ -5591,12 +6297,28 @@
       "bye_week": 8
     },
     {
+      "sleeper_id": "10871",
+      "player": "Luke Schoonmaker",
+      "team": "DAL",
+      "position": "TE",
+      "adp": 668.8,
+      "bye_week": 14
+    },
+    {
       "sleeper_id": "ARI",
       "player": "Arizona Cardinals",
       "team": "ARI",
       "position": "DEF",
       "adp": 669.0,
       "bye_week": 14
+    },
+    {
+      "sleeper_id": "11629",
+      "player": "Devontez Walker",
+      "team": "BAL",
+      "position": "WR",
+      "adp": 669.2,
+      "bye_week": 13
     },
     {
       "sleeper_id": "12455",
@@ -5607,20 +6329,19 @@
       "bye_week": 5
     },
     {
-      "sleeper_id": "13416",
-      "player": "Roman Hemby",
-      "team": "LV",
-      "position": "RB",
-      "adp": 669.5,
-      "bye_week": 13
-    },
-    {
       "sleeper_id": "13333",
       "player": "Deion Burks",
       "team": "IND",
       "position": "WR",
       "adp": 670.0,
       "bye_week": 13
+    },
+    {
+      "sleeper_id": "11189",
+      "player": "Zay Malone",
+      "team": "",
+      "position": "WR",
+      "adp": 670.2
     },
     {
       "sleeper_id": "2929",
@@ -5630,11 +6351,12 @@
       "adp": 670.5
     },
     {
-      "sleeper_id": "899",
-      "player": "Dan Bailey",
-      "team": "",
+      "sleeper_id": "3678",
+      "player": "Wil Lutz",
+      "team": "DEN",
       "position": "K",
-      "adp": 670.8
+      "adp": 671.2,
+      "bye_week": 10
     },
     {
       "sleeper_id": "11596",
@@ -5659,12 +6381,11 @@
       "adp": 671.5
     },
     {
-      "sleeper_id": "11629",
-      "player": "Devontez Walker",
-      "team": "BAL",
-      "position": "WR",
-      "adp": 671.8,
-      "bye_week": 13
+      "sleeper_id": "4283",
+      "player": "Khalfani Muhammad",
+      "team": "",
+      "position": "RB",
+      "adp": 671.7
     },
     {
       "sleeper_id": "8194",
@@ -5691,6 +6412,13 @@
       "bye_week": 14
     },
     {
+      "sleeper_id": "7032",
+      "player": "Tyrie Cleveland",
+      "team": "",
+      "position": "WR",
+      "adp": 673.0
+    },
+    {
       "sleeper_id": "13275",
       "player": "Ty Simpson",
       "team": "LAR",
@@ -5699,20 +6427,20 @@
       "bye_week": 11
     },
     {
-      "sleeper_id": "3678",
-      "player": "Wil Lutz",
-      "team": "DEN",
-      "position": "K",
-      "adp": 673.7,
-      "bye_week": 10
-    },
-    {
       "sleeper_id": "9492",
       "player": "Trey Palmer",
       "team": "NO",
       "position": "WR",
       "adp": 674.2,
       "bye_week": 8
+    },
+    {
+      "sleeper_id": "WAS",
+      "player": "Washington Commanders",
+      "team": "WAS",
+      "position": "DEF",
+      "adp": 674.2,
+      "bye_week": 7
     },
     {
       "sleeper_id": "11237",
@@ -5770,6 +6498,13 @@
       "bye_week": 10
     },
     {
+      "sleeper_id": "4131",
+      "player": "Kenny Golladay",
+      "team": "",
+      "position": "WR",
+      "adp": 675.8
+    },
+    {
       "sleeper_id": "9999",
       "player": "Will Levis",
       "team": "TEN",
@@ -5784,6 +6519,13 @@
       "position": "QB",
       "adp": 676.3,
       "bye_week": 8
+    },
+    {
+      "sleeper_id": "5185",
+      "player": "Allen Lazard",
+      "team": "",
+      "position": "WR",
+      "adp": 676.5
     },
     {
       "sleeper_id": "9230",
@@ -5832,11 +6574,27 @@
       "adp": 677.2
     },
     {
+      "sleeper_id": "11651",
+      "player": "Isaac Guerendo",
+      "team": "SF",
+      "position": "RB",
+      "adp": 677.5,
+      "bye_week": 8
+    },
+    {
       "sleeper_id": "12775",
       "player": "Max Brosmer",
       "team": "MIN",
       "position": "QB",
       "adp": 677.5,
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "11186",
+      "player": "Carlos Washington",
+      "team": "MIA",
+      "position": "RB",
+      "adp": 677.8,
       "bye_week": 6
     },
     {
@@ -5887,11 +6645,12 @@
       "bye_week": 11
     },
     {
-      "sleeper_id": "4401",
-      "player": "Damore'ea Stringfellow",
-      "team": "",
+      "sleeper_id": "3286",
+      "player": "Demarcus Robinson",
+      "team": "SF",
       "position": "WR",
-      "adp": 679.0
+      "adp": 679.0,
+      "bye_week": 8
     },
     {
       "sleeper_id": "956",
@@ -5899,6 +6658,13 @@
       "team": "",
       "position": "RB",
       "adp": 679.3
+    },
+    {
+      "sleeper_id": "3242",
+      "player": "Kenyan Drake",
+      "team": "",
+      "position": "RB",
+      "adp": 680.0
     },
     {
       "sleeper_id": "12966",
@@ -5945,6 +6711,13 @@
       "team": "",
       "position": "RB",
       "adp": 681.1
+    },
+    {
+      "sleeper_id": "8775",
+      "player": "Andrew Mevis",
+      "team": "",
+      "position": "K",
+      "adp": 681.2
     },
     {
       "sleeper_id": "9483",
@@ -6000,6 +6773,13 @@
       "bye_week": 11
     },
     {
+      "sleeper_id": "11925",
+      "player": "Terique Owens",
+      "team": "",
+      "position": "WR",
+      "adp": 682.8
+    },
+    {
       "sleeper_id": "6826",
       "player": "Cole Kmet",
       "team": "CHI",
@@ -6047,6 +6827,13 @@
       "bye_week": 5
     },
     {
+      "sleeper_id": "1502",
+      "player": "Chris Thompson",
+      "team": "",
+      "position": "RB",
+      "adp": 683.6
+    },
+    {
       "sleeper_id": "13400",
       "player": "Justin Joly",
       "team": "DEN",
@@ -6063,11 +6850,11 @@
       "bye_week": 11
     },
     {
-      "sleeper_id": "8042",
-      "player": "Chris Naggar",
+      "sleeper_id": "11214",
+      "player": "Tanner Morgan",
       "team": "",
-      "position": "K",
-      "adp": 684.0
+      "position": "QB",
+      "adp": 683.8
     },
     {
       "sleeper_id": "9503",
@@ -6099,6 +6886,14 @@
       "position": "RB",
       "adp": 685.5,
       "bye_week": 14
+    },
+    {
+      "sleeper_id": "13324",
+      "player": "Matt Hibner",
+      "team": "BAL",
+      "position": "TE",
+      "adp": 685.5,
+      "bye_week": 13
     },
     {
       "sleeper_id": "8890",
@@ -6164,6 +6959,14 @@
       "bye_week": 5
     },
     {
+      "sleeper_id": "13264",
+      "player": "Dohnte Meyers",
+      "team": "CIN",
+      "position": "WR",
+      "adp": 686.4,
+      "bye_week": 6
+    },
+    {
       "sleeper_id": "11626",
       "player": "Xavier Legette",
       "team": "CAR",
@@ -6178,13 +6981,6 @@
       "position": "RB",
       "adp": 686.8,
       "bye_week": 6
-    },
-    {
-      "sleeper_id": "1502",
-      "player": "Chris Thompson",
-      "team": "",
-      "position": "RB",
-      "adp": 687.2
     },
     {
       "sleeper_id": "9481",
@@ -6207,6 +7003,13 @@
       "team": "",
       "position": "WR",
       "adp": 687.6
+    },
+    {
+      "sleeper_id": "6886",
+      "player": "Chase Claypool",
+      "team": "",
+      "position": "WR",
+      "adp": 687.7
     },
     {
       "sleeper_id": "11630",
@@ -6232,11 +7035,12 @@
       "adp": 688.5
     },
     {
-      "sleeper_id": "7152",
-      "player": "Sam Sloman",
-      "team": "",
-      "position": "K",
-      "adp": 688.5
+      "sleeper_id": "12699",
+      "player": "LaJohntay Wester",
+      "team": "BAL",
+      "position": "WR",
+      "adp": 688.9,
+      "bye_week": 13
     },
     {
       "sleeper_id": "7452",
@@ -6260,6 +7064,20 @@
       "position": "WR",
       "adp": 689.1,
       "bye_week": 5
+    },
+    {
+      "sleeper_id": "12532",
+      "player": "Ja'Corey Brooks",
+      "team": "",
+      "position": "WR",
+      "adp": 689.5
+    },
+    {
+      "sleeper_id": "7351",
+      "player": "Kirk Merritt",
+      "team": "",
+      "position": "WR",
+      "adp": 689.6
     },
     {
       "sleeper_id": "5121",
@@ -6357,6 +7175,14 @@
       "bye_week": 9
     },
     {
+      "sleeper_id": "5857",
+      "player": "Noah Fant",
+      "team": "NO",
+      "position": "TE",
+      "adp": 691.5,
+      "bye_week": 8
+    },
+    {
       "sleeper_id": "13415",
       "player": "Haynes King",
       "team": "CAR",
@@ -6377,14 +7203,6 @@
       "team": "",
       "position": "RB",
       "adp": 692.4
-    },
-    {
-      "sleeper_id": "13557",
-      "player": "Athan Kaliakmanis",
-      "team": "WAS",
-      "position": "QB",
-      "adp": 692.5,
-      "bye_week": 7
     },
     {
       "sleeper_id": "7234",
@@ -6408,6 +7226,14 @@
       "position": "RB",
       "adp": 692.6,
       "bye_week": 9
+    },
+    {
+      "sleeper_id": "13424",
+      "player": "Seth McGowan",
+      "team": "IND",
+      "position": "RB",
+      "adp": 692.6,
+      "bye_week": 13
     },
     {
       "sleeper_id": "13272",
@@ -6434,14 +7260,6 @@
       "bye_week": 6
     },
     {
-      "sleeper_id": "11638",
-      "player": "Ricky Pearsall",
-      "team": "SF",
-      "position": "WR",
-      "adp": 693.0,
-      "bye_week": 8
-    },
-    {
       "sleeper_id": "8917",
       "player": "KaVontae Turpin",
       "team": "DAL",
@@ -6463,6 +7281,20 @@
       "team": "",
       "position": "RB",
       "adp": 693.8
+    },
+    {
+      "sleeper_id": "6664",
+      "player": "A.J. Ouellette",
+      "team": "",
+      "position": "RB",
+      "adp": 693.9
+    },
+    {
+      "sleeper_id": "7584",
+      "player": "Brennan Eagles",
+      "team": "",
+      "position": "WR",
+      "adp": 694.0
     },
     {
       "sleeper_id": "12471",
@@ -6526,6 +7358,22 @@
       "position": "RB",
       "adp": 695.4,
       "bye_week": 13
+    },
+    {
+      "sleeper_id": "NYG",
+      "player": "New York Giants",
+      "team": "NYG",
+      "position": "DEF",
+      "adp": 695.4,
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "10444",
+      "player": "Cedric Tillman",
+      "team": "CLE",
+      "position": "WR",
+      "adp": 695.5,
+      "bye_week": 11
     },
     {
       "sleeper_id": "9489",
@@ -6612,6 +7460,14 @@
       "adp": 697.2
     },
     {
+      "sleeper_id": "7891",
+      "player": "Brock Wright",
+      "team": "DET",
+      "position": "TE",
+      "adp": 697.6,
+      "bye_week": 6
+    },
+    {
       "sleeper_id": "6271",
       "player": "Olamide Zaccheaus",
       "team": "ATL",
@@ -6649,6 +7505,13 @@
       "position": "WR",
       "adp": 698.3,
       "bye_week": 8
+    },
+    {
+      "sleeper_id": "5752",
+      "player": "Sherman Badie",
+      "team": "",
+      "position": "RB",
+      "adp": 698.3
     },
     {
       "sleeper_id": "14034",
@@ -6712,6 +7575,13 @@
       "adp": 699.0
     },
     {
+      "sleeper_id": "2374",
+      "player": "Tyler Lockett",
+      "team": "",
+      "position": "WR",
+      "adp": 699.0
+    },
+    {
       "sleeper_id": "12499",
       "player": "Elic Ayomanor",
       "team": "TEN",
@@ -6762,6 +7632,14 @@
       "position": "RB",
       "adp": 700.0,
       "bye_week": 11
+    },
+    {
+      "sleeper_id": "13416",
+      "player": "Roman Hemby",
+      "team": "LV",
+      "position": "RB",
+      "adp": 700.0,
+      "bye_week": 13
     },
     {
       "sleeper_id": "9494",
