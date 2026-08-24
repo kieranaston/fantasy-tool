@@ -1,7 +1,844 @@
 {
   "title": "Player News",
-  "last_updated": "2026-08-23T12:17:24Z",
+  "last_updated": "2026-08-24T12:24:51Z",
   "players": [
+    {
+      "player_id": "00-0040676",
+      "player_name": "Cam Ward",
+      "current_designation": "Underwhelming preseason continues",
+      "last_updated": "2026-08-23T21:06:43-07:00",
+      "diff_summary": "Cam Ward: Underwhelming preseason continues \n\n https://www.rotowire.com/football/player/cam-ward-16997",
+      "timeline": [
+        {
+          "id": "454cfdbb-d0b3-4825-864b-94cc52cd20c7",
+          "timestamp": "2026-08-23T21:06:43-07:00",
+          "designation": "Underwhelming preseason continues",
+          "source_text": "Cam Ward: Underwhelming preseason continues \n\n https://www.rotowire.com/football/player/cam-ward-16997",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtsgin5pde26",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Ward"
+        },
+        {
+          "id": "17742918-2161-4b62-b88b-a739135a90a7",
+          "timestamp": "2026-08-13T21:30:42-07:00",
+          "designation": "Uneven performance in preseason opener",
+          "source_text": "Cam Ward: Uneven performance in preseason opener",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszd6czcy72d",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Ward"
+        },
+        {
+          "id": "0f76a688-1ecd-4b89-b309-a006fb92893d",
+          "timestamp": "2026-08-11T12:42:11-07:00",
+          "designation": "Likely playing Thursday night",
+          "source_text": "Cam Ward: Likely playing Thursday night",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mstepfshli2v",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Ward"
+        },
+        {
+          "id": "5e73ff59-e17e-4ec6-97f4-dd4dd130abee",
+          "timestamp": "2026-05-21T09:07:05-07:00",
+          "designation": "Deemed 100 percent healthy",
+          "source_text": "Cam Ward: Deemed 100 percent healthy \n\n https://www.rotowire.com/football/player/cam-ward-16997",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmeshbv7vs24",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Ward"
+        },
+        {
+          "id": "963b7893-021a-472f-bf6a-c6acf87ffd81",
+          "timestamp": "2026-04-16T07:38:32-07:00",
+          "designation": "May throw passes at minicamp",
+          "source_text": "Cam Ward: May throw passes at minicamp \n\n https://www.rotowire.com/football/player/cam-ward-16997",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mjmn6q3d6j23",
+          "source_type": "beat_reporter",
+          "player_name": "Cam Ward"
+        }
+      ],
+      "team": "TEN"
+    },
+    {
+      "player_id": "00-0035261",
+      "player_name": "Tony Pollard",
+      "current_designation": "Quick 45 scrimmage yards Sunday",
+      "last_updated": "2026-08-23T20:27:23-07:00",
+      "diff_summary": "Tony Pollard: Quick 45 scrimmage yards Sunday \n\n https://www.rotowire.com/football/player/tony-pollard-13590",
+      "timeline": [
+        {
+          "id": "4551b9a3-6521-4ea1-816d-86ad87c20ff1",
+          "timestamp": "2026-08-23T20:27:23-07:00",
+          "designation": "Quick 45 scrimmage yards Sunday",
+          "source_text": "Tony Pollard: Quick 45 scrimmage yards Sunday \n\n https://www.rotowire.com/football/player/tony-pollard-13590",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtseccdjfp2g",
+          "source_type": "beat_reporter",
+          "player_name": "Tony Pollard"
+        },
+        {
+          "id": "ede40970-7eef-43fe-9686-ec1378152efc",
+          "timestamp": "2026-08-19T08:24:33-07:00",
+          "designation": "Returns to practice Wednesday",
+          "source_text": "Tony Pollard: Returns to practice Wednesday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mth223jqo22x",
+          "source_type": "beat_reporter",
+          "player_name": "Tony Pollard"
+        },
+        {
+          "id": "2791d865-c744-44f8-857f-48fdc70e6e54",
+          "timestamp": "2026-08-17T12:02:15-07:00",
+          "designation": "Not spotted at Monday's practice",
+          "source_text": "Tony Pollard: Not spotted at Monday's practice",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtcfbjzhml2w",
+          "source_type": "beat_reporter",
+          "player_name": "Tony Pollard"
+        },
+        {
+          "id": "d28a270c-7be1-4df6-b0c4-f35e7dfda8bb",
+          "timestamp": "2026-08-17T11:54:18-07:00",
+          "designation": "Not spotted at Monday's practice",
+          "source_text": "Tony Pollard: Not spotted at Monday's practice \n\n https://www.rotowire.com/football/player/tony-pollard-13590",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtcetdd3tt2c",
+          "source_type": "beat_reporter",
+          "player_name": "Tony Pollard"
+        },
+        {
+          "id": "186bd483-6c4f-40d0-ad3d-5baa515a90fb",
+          "timestamp": "2026-08-13T21:08:35-07:00",
+          "designation": "Scores TD in preseason opener",
+          "source_text": "Tony Pollard: Scores TD in preseason opener",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszbwrgvlt2z",
+          "source_type": "beat_reporter",
+          "player_name": "Tony Pollard"
+        }
+      ],
+      "team": "TEN"
+    },
+    {
+      "player_id": "00-0041438",
+      "player_name": "Carnell Tate",
+      "current_designation": "Goes without a catch again",
+      "last_updated": "2026-08-23T20:20:48-07:00",
+      "diff_summary": "Carnell Tate: Goes without a catch again \n\n https://www.rotowire.com/football/player/carnell-tate-19268",
+      "timeline": [
+        {
+          "id": "74f9b064-d81e-421a-9ad6-4cc7ec81ea58",
+          "timestamp": "2026-08-23T20:20:48-07:00",
+          "designation": "Goes without a catch again",
+          "source_text": "Carnell Tate: Goes without a catch again \n\n https://www.rotowire.com/football/player/carnell-tate-19268",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtsdwk5rfh2g",
+          "source_type": "beat_reporter",
+          "player_name": "Carnell Tate"
+        },
+        {
+          "id": "9db297f4-a3d9-440b-b1c4-7af71593778d",
+          "timestamp": "2026-08-23T17:00:21-07:00",
+          "designation": "Suiting up against Seahawks",
+          "source_text": "Carnell Tate: Suiting up against Seahawks \n\n https://www.rotowire.com/football/player/carnell-tate-19268",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtryq4aiza2z",
+          "source_type": "beat_reporter",
+          "player_name": "Carnell Tate"
+        },
+        {
+          "id": "ceadc57b-997b-4f6b-b994-11dfa32212b7",
+          "timestamp": "2026-08-19T10:38:39-07:00",
+          "designation": "Held out of practice due to general stiffness",
+          "source_text": "Carnell Tate: Held out of practice due to general stiffness",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mthbjux3gy2z",
+          "source_type": "beat_reporter",
+          "player_name": "Carnell Tate"
+        },
+        {
+          "id": "4d18a824-c588-4615-a8c9-cd7fee65c753",
+          "timestamp": "2026-08-19T08:35:25-07:00",
+          "designation": "Not practicing Wednesday",
+          "source_text": "Carnell Tate: Not practicing Wednesday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mth2njy66s22",
+          "source_type": "beat_reporter",
+          "player_name": "Carnell Tate"
+        },
+        {
+          "id": "a0d0c6b1-173d-4994-b79c-df519cd5bc1e",
+          "timestamp": "2026-08-17T10:38:52-07:00",
+          "designation": "Will be evaluated after hard hit",
+          "source_text": "Carnell Tate: Will be evaluated after hard hit",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtcamgbutp2s",
+          "source_type": "beat_reporter",
+          "player_name": "Carnell Tate"
+        },
+        {
+          "id": "8f689c3b-e2ad-4a47-ab32-4a6692e92fc3",
+          "timestamp": "2026-08-13T21:14:00-07:00",
+          "designation": "Blanked on three targets",
+          "source_text": "Carnell Tate: Blanked on three targets",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszcahhfxo2o",
+          "source_type": "beat_reporter",
+          "player_name": "Carnell Tate"
+        },
+        {
+          "id": "00e9f4b3-a0df-45c4-a40e-681b33ff65b5",
+          "timestamp": "2026-08-09T11:18:14-07:00",
+          "designation": "Strong practice Sunday",
+          "source_text": "Carnell Tate: Strong practice Sunday \n\n https://www.rotowire.com/football/player/carnell-tate-19268",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mso73hnb7n2q",
+          "source_type": "beat_reporter",
+          "player_name": "Carnell Tate"
+        },
+        {
+          "id": "80ffa658-70e5-464f-980d-1dd68c0fa771",
+          "timestamp": "2026-06-29T07:38:58-07:00",
+          "designation": "Looked polished at OTAs",
+          "source_text": "Carnell Tate: Looked polished at OTAs",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mpgppmkwz42v",
+          "source_type": "beat_reporter",
+          "player_name": "Carnell Tate"
+        },
+        {
+          "id": "d1ba2643-7ff5-479b-8dc7-33d465b03d07",
+          "timestamp": "2026-04-23T17:35:17-07:00",
+          "designation": "Added by Tennessee",
+          "source_text": "Carnell Tate: Added by Tennessee \n\n https://www.rotowire.com/football/player/carnell-tate-19268",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mk7bsakyqq2r",
+          "source_type": "beat_reporter",
+          "player_name": "Carnell Tate"
+        }
+      ],
+      "team": "TEN"
+    },
+    {
+      "player_id": "00-0040122",
+      "player_name": "Ashton Jeanty",
+      "current_designation": "Believed to have sprained ankle",
+      "last_updated": "2026-08-23T20:09:55-07:00",
+      "diff_summary": "Ashton Jeanty: Believed to have sprained ankle \n\n https://www.rotowire.com/football/player/ashton-jeanty-18487",
+      "timeline": [
+        {
+          "id": "1a41cab7-5fc3-44af-8729-16eb50be69c3",
+          "timestamp": "2026-08-23T20:09:55-07:00",
+          "designation": "Believed to have sprained ankle",
+          "source_text": "Ashton Jeanty: Believed to have sprained ankle \n\n https://www.rotowire.com/football/player/ashton-jeanty-18487",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtsdd2nyew2z",
+          "source_type": "beat_reporter",
+          "player_name": "Ashton Jeanty"
+        },
+        {
+          "id": "89e2ab43-e6d4-4640-9c7e-0c45ae0e0685",
+          "timestamp": "2026-08-23T14:40:53-07:00",
+          "designation": "Leaves practice with apparent leg injury Sunday",
+          "source_text": "Ashton Jeanty: Leaves practice with apparent leg injury Sunday \n\n https://www.rotowire.com/football/player/ashton-jeanty-18487",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtrqwppw6p2z",
+          "source_type": "beat_reporter",
+          "player_name": "Ashton Jeanty"
+        },
+        {
+          "id": "b440af9f-b4c7-44df-b67e-459fb8dbd91f",
+          "timestamp": "2026-08-13T20:12:03-07:00",
+          "designation": "Solid in preseason cameo",
+          "source_text": "Ashton Jeanty: Solid in preseason cameo",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msz6rohfpe2x",
+          "source_type": "beat_reporter",
+          "player_name": "Ashton Jeanty"
+        },
+        {
+          "id": "f222b5fd-0adf-4875-91e9-4a357cb9c5c1",
+          "timestamp": "2026-08-11T13:16:59-07:00",
+          "designation": "Starters in line to play Thursday",
+          "source_text": "Ashton Jeanty: Starters in line to play Thursday \n\n https://www.rotowire.com/football/player/ashton-jeanty-18487",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mstgnn2yyn2v",
+          "source_type": "beat_reporter",
+          "player_name": "Ashton Jeanty"
+        }
+      ],
+      "team": "LV"
+    },
+    {
+      "player_id": "00-0033280",
+      "player_name": "Christian McCaffrey",
+      "current_designation": "Downplays absence during preseason",
+      "last_updated": "2026-08-23T13:47:17-07:00",
+      "diff_summary": "Christian McCaffrey: Downplays absence during preseason \n\n https://www.rotowire.com/football/player/christian-mccaffrey-11690",
+      "timeline": [
+        {
+          "id": "1d877dc6-356d-4ad8-83fb-4506b9d6567e",
+          "timestamp": "2026-08-23T13:47:17-07:00",
+          "designation": "Downplays absence during preseason",
+          "source_text": "Christian McCaffrey: Downplays absence during preseason \n\n https://www.rotowire.com/football/player/christian-mccaffrey-11690",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtrnwuvnfk2z",
+          "source_type": "beat_reporter",
+          "player_name": "Christian McCaffrey"
+        },
+        {
+          "id": "8459981d-8eb3-4276-9bef-7436d688cfc0",
+          "timestamp": "2026-08-23T12:03:18-07:00",
+          "designation": "Remains limited Sunday",
+          "source_text": "Christian McCaffrey: Remains limited Sunday \n\n https://www.rotowire.com/football/player/christian-mccaffrey-11690",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtri4wuo7l26",
+          "source_type": "beat_reporter",
+          "player_name": "Christian McCaffrey"
+        },
+        {
+          "id": "49d35239-d2a4-4070-bba5-071c5b436aa6",
+          "timestamp": "2026-08-23T11:38:07-07:00",
+          "designation": "Stays out of team drills",
+          "source_text": "Christian McCaffrey: Stays out of team drills \n\n https://www.rotowire.com/football/player/christian-mccaffrey-11690",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtrgpvqydp2i",
+          "source_type": "beat_reporter",
+          "player_name": "Christian McCaffrey"
+        },
+        {
+          "id": "83372d4e-132f-40a0-b7b8-9d80be25328c",
+          "timestamp": "2026-08-23T10:33:44-07:00",
+          "designation": "Back at practice Sunday",
+          "source_text": "Christian McCaffrey: Back at practice Sunday \n\n https://www.rotowire.com/football/player/christian-mccaffrey-11690",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtrd4rxg6r2z",
+          "source_type": "beat_reporter",
+          "player_name": "Christian McCaffrey"
+        },
+        {
+          "id": "08934f6c-9f9f-4f0d-9135-21b35f2a730c",
+          "timestamp": "2026-08-20T18:21:50-07:00",
+          "designation": "Not suited up for Thursday's game",
+          "source_text": "Christian McCaffrey: Not suited up for Thursday's game",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtklv2aemq2z",
+          "source_type": "beat_reporter",
+          "player_name": "Christian McCaffrey"
+        },
+        {
+          "id": "153b4a92-153e-4d25-81f5-dea824630eb8",
+          "timestamp": "2026-08-18T12:12:58-07:00",
+          "designation": "Coming along well, per Shanahan",
+          "source_text": "Christian McCaffrey: Coming along well, per Shanahan",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtewdmsfem26",
+          "source_type": "beat_reporter",
+          "player_name": "Christian McCaffrey"
+        },
+        {
+          "id": "83628ed0-e498-4d2a-9161-168c01f7a6ff",
+          "timestamp": "2026-08-17T16:58:08-07:00",
+          "designation": "Tightness not considered serious issue",
+          "source_text": "Christian McCaffrey: Tightness not considered serious issue",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtcvsm5ju42s",
+          "source_type": "beat_reporter",
+          "player_name": "Christian McCaffrey"
+        },
+        {
+          "id": "dde7da0e-7fff-478f-aceb-3b96965da451",
+          "timestamp": "2026-08-15T15:55:54-07:00",
+          "designation": "Misses another practice Saturday",
+          "source_text": "Christian McCaffrey: Misses another practice Saturday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt5rfiobiy2w",
+          "source_type": "beat_reporter",
+          "player_name": "Christian McCaffrey"
+        },
+        {
+          "id": "e9eab33a-9c71-4e46-8c85-0840c21c699b",
+          "timestamp": "2026-08-11T10:34:09-07:00",
+          "designation": "Still sidelined Tuesday",
+          "source_text": "Christian McCaffrey: Still sidelined Tuesday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mst5khphez2d",
+          "source_type": "beat_reporter",
+          "player_name": "Christian McCaffrey"
+        },
+        {
+          "id": "b65f7ecf-f964-454d-9f0d-e3c7387d3943",
+          "timestamp": "2026-08-10T12:16:11-07:00",
+          "designation": "Monday absence downplayed",
+          "source_text": "Christian McCaffrey: Monday absence downplayed",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msqsryhcol24",
+          "source_type": "beat_reporter",
+          "player_name": "Christian McCaffrey"
+        },
+        {
+          "id": "441cb925-ae40-41bc-bfd5-68ad89944ddc",
+          "timestamp": "2026-08-10T10:52:01-07:00",
+          "designation": "Gets day off Monday",
+          "source_text": "Christian McCaffrey: Gets day off Monday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msqo3ihibz2d",
+          "source_type": "beat_reporter",
+          "player_name": "Christian McCaffrey"
+        },
+        {
+          "id": "166e7803-3551-468f-ab7e-feb6f6a9fce3",
+          "timestamp": "2026-07-16T10:18:28-07:00",
+          "designation": "Wins Best Comeback Athlete",
+          "source_text": "Christian McCaffrey: Wins Best Comeback Athlete",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqrqkiekwj2v",
+          "source_type": "beat_reporter",
+          "player_name": "Christian McCaffrey"
+        },
+        {
+          "id": "12da4101-e749-41c0-a120-520315841d92",
+          "timestamp": "2026-03-30T13:18:22-07:00",
+          "designation": "To receive more rest in 2026",
+          "source_text": "Christian McCaffrey: To receive more rest in 2026 \n\n https://www.rotowire.com/football/player/christian-mccaffrey-11690",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3miciaqrews2r",
+          "source_type": "beat_reporter",
+          "player_name": "Christian McCaffrey"
+        }
+      ],
+      "team": "SF"
+    },
+    {
+      "player_id": "00-0039337",
+      "player_name": "Malik Nabers",
+      "current_designation": "May ditch red jersey this week",
+      "last_updated": "2026-08-23T13:32:42-07:00",
+      "diff_summary": "Malik Nabers: May ditch red jersey this week \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
+      "timeline": [
+        {
+          "id": "b10e74fb-cf0d-4621-aac6-b2d559e25681",
+          "timestamp": "2026-08-23T13:32:42-07:00",
+          "designation": "May ditch red jersey this week",
+          "source_text": "Malik Nabers: May ditch red jersey this week \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtrn4s3aeo26",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "a45d0596-406a-40b3-8e85-7df2cd24860f",
+          "timestamp": "2026-08-20T06:56:55-07:00",
+          "designation": "Sitting out joint practices this week",
+          "source_text": "Malik Nabers: Sitting out joint practices this week",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtjfmdgs7r25",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "94d145a5-a3f7-4fb8-8a7e-e90f45d187b8",
+          "timestamp": "2026-08-19T07:13:22-07:00",
+          "designation": "Needs to take contact before game action",
+          "source_text": "Malik Nabers: Needs to take contact before game action",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtgw2shw2k2o",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "af48347a-0d2d-43f5-9cca-31f56ca17431",
+          "timestamp": "2026-08-17T12:40:26-07:00",
+          "designation": "Works in team drills for first time",
+          "source_text": "Malik Nabers: Works in team drills for first time",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtchft2sl42c",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "a8d8c7f1-1e15-4960-996b-c5501a460ddc",
+          "timestamp": "2026-08-15T09:28:48-07:00",
+          "designation": "Not suited up for exhibition opener",
+          "source_text": "Malik Nabers: Not suited up for exhibition opener",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt53rcqh232a",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "645afdfd-73b7-4c56-b3d9-6f76feccedee",
+          "timestamp": "2026-08-13T13:21:24-07:00",
+          "designation": "Takes team reps in Thursday's light practice",
+          "source_text": "Malik Nabers: Takes team reps in Thursday's light practice",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msyhtekysx2s",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "cdc1e4f2-f52f-4d65-8fc5-a072fd15eea5",
+          "timestamp": "2026-08-12T13:16:19-07:00",
+          "designation": "Likely to join team drills soon",
+          "source_text": "Malik Nabers: Likely to join team drills soon",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvx3ehsam2a",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "62a8b5cb-e56d-4d6c-9942-636407e13f70",
+          "timestamp": "2026-08-12T12:57:07-07:00",
+          "designation": "Still contained to individual drills",
+          "source_text": "Malik Nabers: Still contained to individual drills",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvvz23dat2c",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "b23cc270-0c22-4782-9450-8574fe47112b",
+          "timestamp": "2026-08-09T06:26:12-07:00",
+          "designation": "Trending toward Week 1 return",
+          "source_text": "Malik Nabers: Trending toward Week 1 return",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msnorbdmk424",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "c7a61c43-b689-481b-8c05-b54b2fcba4b8",
+          "timestamp": "2026-08-06T15:59:58-07:00",
+          "designation": "Rejoins team drills",
+          "source_text": "Malik Nabers: Rejoins team drills",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msh5ghryp42w",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "fb1bf984-f50b-4f18-ba19-d1480961a3da",
+          "timestamp": "2026-07-30T12:33:55-07:00",
+          "designation": "Feeling 'great' at practice",
+          "source_text": "Malik Nabers: Feeling 'great' at practice",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrv6nkymg42v",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "f6e55b7b-8c29-43f2-a235-31750d3182be",
+          "timestamp": "2026-07-29T14:10:56-07:00",
+          "designation": "Looks good at practice",
+          "source_text": "Malik Nabers: Looks good at practice",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrstm5nr7x2v",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "35bcb839-59cd-4bb5-a7f1-2e4a8bfaa323",
+          "timestamp": "2026-07-29T10:03:16-07:00",
+          "designation": "Taking part in individual drills",
+          "source_text": "Malik Nabers: Taking part in individual drills",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsfrc2oyc2o",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "a2447779-ce60-4e2f-860a-9f5774616648",
+          "timestamp": "2026-07-24T06:54:43-07:00",
+          "designation": "To be brought along slowly",
+          "source_text": "Malik Nabers: To be brought along slowly \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrfivj3hb426",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "83dc25f2-d986-4f42-8897-dd1b8c6d4b7c",
+          "timestamp": "2026-07-13T15:03:03-07:00",
+          "designation": "Making progress, per coach",
+          "source_text": "Malik Nabers: Making progress, per coach \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqkp2lzsku2s",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "1801cbb8-3491-4548-8444-dab848368917",
+          "timestamp": "2026-06-10T09:43:41-07:00",
+          "designation": "At 80 percent mark in rehab process",
+          "source_text": "Malik Nabers: At 80 percent mark in rehab process",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnx5t5ishx2x",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "f5da914d-b238-4bf4-ac48-f21627c31b9c",
+          "timestamp": "2026-05-21T11:55:48-07:00",
+          "designation": "Aiming for camp return?",
+          "source_text": "Malik Nabers: Aiming for camp return? \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmf3uxy6wm24",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "42344c96-c810-442c-9f24-2b283adde80d",
+          "timestamp": "2026-05-13T12:36:46-07:00",
+          "designation": "Recovering from second procedure",
+          "source_text": "Malik Nabers: Recovering from second procedure \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mlr2gv5m262g",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "3244e6d8-fc5a-43a3-b6b9-f51c143aab08",
+          "timestamp": "2026-04-07T09:43:50-07:00",
+          "designation": "Present for voluntary workouts",
+          "source_text": "Malik Nabers: Present for voluntary workouts \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3miw7yiwxl22h",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        },
+        {
+          "id": "5e3e4a73-a5d5-4e53-a7b5-abcc4e384bdc",
+          "timestamp": "2026-03-30T16:56:04-07:00",
+          "designation": "GM hopeful for Week 1 availability",
+          "source_text": "Malik Nabers: GM hopeful for Week 1 availability \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3micufzxo3t22",
+          "source_type": "beat_reporter",
+          "player_name": "Malik Nabers"
+        }
+      ],
+      "team": "NYG"
+    },
+    {
+      "player_id": "00-0033288",
+      "player_name": "George Kittle",
+      "current_designation": "Activated from PUP list",
+      "last_updated": "2026-08-23T10:07:35-07:00",
+      "diff_summary": "George Kittle: Activated from PUP list \n\n https://www.rotowire.com/football/player/george-kittle-11892",
+      "timeline": [
+        {
+          "id": "1557c24c-e3e9-4738-9eba-b6160245927e",
+          "timestamp": "2026-08-23T10:07:35-07:00",
+          "designation": "Activated from PUP list",
+          "source_text": "George Kittle: Activated from PUP list \n\n https://www.rotowire.com/football/player/george-kittle-11892",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtrbnziq522l",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        },
+        {
+          "id": "ff9a7be7-59e2-47b7-91ba-18e7c260b6f7",
+          "timestamp": "2026-08-20T18:38:09-07:00",
+          "designation": "Has chance to play Week 1",
+          "source_text": "George Kittle: Has chance to play Week 1",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtkms7oxyz2u",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        },
+        {
+          "id": "e718412f-eae0-48b4-a161-addc687eb24e",
+          "timestamp": "2026-08-16T14:19:10-07:00",
+          "designation": "Confident he'll avoid PUP for Week 1",
+          "source_text": "George Kittle: Confident he'll avoid PUP for Week 1 \n\n https://www.rotowire.com/football/player/george-kittle-11892",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mta4hgizjr26",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        },
+        {
+          "id": "cd6cb1f5-7c81-4e9f-bf75-9fdedd823915",
+          "timestamp": "2026-08-16T13:17:23-07:00",
+          "designation": "Confident he'll avoid PUP for Week 1",
+          "source_text": "George Kittle: Confident he'll avoid PUP for Week 1",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt7yyxsyxr2l",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        },
+        {
+          "id": "d47bb032-8b70-48b5-b2d3-b87a4d04f375",
+          "timestamp": "2026-08-10T13:20:42-07:00",
+          "designation": "Increases activity level Monday",
+          "source_text": "George Kittle: Increases activity level Monday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msqwfebrdw2m",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        },
+        {
+          "id": "40920f83-730a-41e9-847e-0feb1cc5404d",
+          "timestamp": "2026-07-25T11:25:21-07:00",
+          "designation": "Starting training camp on PUP",
+          "source_text": "George Kittle: Starting training camp on PUP",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mriiiefntg2p",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        },
+        {
+          "id": "c8c4a40c-4080-43f3-bed9-418b79d036f9",
+          "timestamp": "2026-06-23T13:31:49-07:00",
+          "designation": "Feels on track for Week 1",
+          "source_text": "George Kittle: Feels on track for Week 1 \n\n https://www.rotowire.com/football/player/george-kittle-11892",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3moyan2qmfz2k",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        },
+        {
+          "id": "14824f65-f628-4e2e-8187-697a077375f0",
+          "timestamp": "2026-06-04T12:13:20-07:00",
+          "designation": "Says he's ahead of schedule",
+          "source_text": "George Kittle: Says he's ahead of schedule \n\n https://www.rotowire.com/football/player/george-kittle-11892",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnidfac3xr2h",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        },
+        {
+          "id": "772020ef-3ac2-4347-9e7d-099ae6c6f484",
+          "timestamp": "2026-05-27T07:20:22-07:00",
+          "designation": "Still targeting Week 1",
+          "source_text": "George Kittle: Still targeting Week 1 \n\n https://www.rotowire.com/football/player/george-kittle-11892",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmtpbycwa72a",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        },
+        {
+          "id": "a0f41669-4ca1-4cc3-96f9-83701eb21dbb",
+          "timestamp": "2026-04-30T11:22:07-07:00",
+          "designation": "Aiming to play Week 1",
+          "source_text": "George Kittle: Aiming to play Week 1 \n\n https://www.rotowire.com/football/player/george-kittle-11892",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mkqa7fpx6j2y",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        },
+        {
+          "id": "a374e7be-e1cc-465a-909e-54af3e9b39ec",
+          "timestamp": "2026-03-29T12:00:18-07:00",
+          "designation": "GM hopes for Week 1 return",
+          "source_text": "George Kittle: GM hopes for Week 1 return \n\n https://www.rotowire.com/football/player/george-kittle-11892",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mi7tgaiy6r23",
+          "source_type": "beat_reporter",
+          "player_name": "George Kittle"
+        }
+      ],
+      "team": "SF"
+    },
+    {
+      "player_id": "00-0041512",
+      "player_name": "Jadarian Price",
+      "current_designation": "Won't play Sunday",
+      "last_updated": "2026-08-23T09:12:13-07:00",
+      "diff_summary": "Jadarian Price: Won't play Sunday \n\n https://www.rotowire.com/football/player/jadarian-price-19299",
+      "timeline": [
+        {
+          "id": "d0fa961d-4521-475b-9bca-1c229dcc6a7f",
+          "timestamp": "2026-08-23T09:12:13-07:00",
+          "designation": "Won't play Sunday",
+          "source_text": "Jadarian Price: Won't play Sunday \n\n https://www.rotowire.com/football/player/jadarian-price-19299",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtr6kz3k372y",
+          "source_type": "beat_reporter",
+          "player_name": "Jadarian Price"
+        },
+        {
+          "id": "7a77f0f8-98dd-4be6-ba4a-40fba291a117",
+          "timestamp": "2026-08-17T14:58:02-07:00",
+          "designation": "Full practice Monday",
+          "source_text": "Jadarian Price: Full practice Monday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtcp3ttpvy2o",
+          "source_type": "beat_reporter",
+          "player_name": "Jadarian Price"
+        },
+        {
+          "id": "22576a6b-7a0d-4500-8593-b21e2d08e57f",
+          "timestamp": "2026-08-17T13:49:12-07:00",
+          "designation": "Primed to participate Monday",
+          "source_text": "Jadarian Price: Primed to participate Monday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtclargtvi2x",
+          "source_type": "beat_reporter",
+          "player_name": "Jadarian Price"
+        },
+        {
+          "id": "5b9d874d-d8ec-40bb-af0e-1c890dc9c68e",
+          "timestamp": "2026-08-14T13:29:35-07:00",
+          "designation": "Won't play Saturday",
+          "source_text": "Jadarian Price: Won't play Saturday",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt2yqwjfka2o",
+          "source_type": "beat_reporter",
+          "player_name": "Jadarian Price"
+        },
+        {
+          "id": "c0359779-a763-4047-818e-6fa1a4bd6df1",
+          "timestamp": "2026-08-12T15:36:58-07:00",
+          "designation": "Takes part in Wednesday's walkthrough",
+          "source_text": "Jadarian Price: Takes part in Wednesday's walkthrough",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msw6wukkhy2z",
+          "source_type": "beat_reporter",
+          "player_name": "Jadarian Price"
+        },
+        {
+          "id": "4b3db5b4-6116-4a6e-80cf-a82921d959e6",
+          "timestamp": "2026-08-11T16:31:22-07:00",
+          "designation": "Returns to limited practice",
+          "source_text": "Jadarian Price: Returns to limited practice",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mstrjaf4kc2q",
+          "source_type": "beat_reporter",
+          "player_name": "Jadarian Price"
+        },
+        {
+          "id": "3c60af67-b755-4096-be93-5695698db612",
+          "timestamp": "2026-08-08T19:19:04-07:00",
+          "designation": "Expected back soon",
+          "source_text": "Jadarian Price: Expected back soon",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msmjidigwp24",
+          "source_type": "beat_reporter",
+          "player_name": "Jadarian Price"
+        },
+        {
+          "id": "0d89e2cd-4bdb-494d-b0aa-23298bc0666f",
+          "timestamp": "2026-08-08T14:29:32-07:00",
+          "designation": "Dealing with lower-body soreness",
+          "source_text": "Jadarian Price: Dealing with lower-body soreness",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mslzcm5gqs2g",
+          "source_type": "beat_reporter",
+          "player_name": "Jadarian Price"
+        },
+        {
+          "id": "57d7b892-4350-439e-9ef1-9aeab60103ff",
+          "timestamp": "2026-07-31T06:58:47-07:00",
+          "designation": "First up for first-team reps",
+          "source_text": "Jadarian Price: First up for first-team reps",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx4fahir22i",
+          "source_type": "beat_reporter",
+          "player_name": "Jadarian Price"
+        },
+        {
+          "id": "8ded7c3a-bc9d-4d36-a7a7-4d24dfcd1ac5",
+          "timestamp": "2026-07-27T10:21:18-07:00",
+          "designation": "Splitting first-team reps",
+          "source_text": "Jadarian Price: Splitting first-team reps",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrnftp4puw2z",
+          "source_type": "beat_reporter",
+          "player_name": "Jadarian Price"
+        },
+        {
+          "id": "8c2dd924-4e36-46f6-9037-3c9b2189df32",
+          "timestamp": "2026-06-10T10:13:16-07:00",
+          "designation": "Getting first-team reps already",
+          "source_text": "Jadarian Price: Getting first-team reps already \n\n https://www.rotowire.com/football/player/jadarian-price-19299",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnx7i2hy5k2l",
+          "source_type": "beat_reporter",
+          "player_name": "Jadarian Price"
+        },
+        {
+          "id": "a33b2ff8-74fc-41eb-890b-348b904fc146",
+          "timestamp": "2026-04-23T20:10:53-07:00",
+          "designation": "Selected by Seattle",
+          "source_text": "Jadarian Price: Selected by Seattle \n\n https://www.rotowire.com/football/player/jadarian-price-19299",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mk7kihyw2e2g",
+          "source_type": "beat_reporter",
+          "player_name": "Jadarian Price"
+        }
+      ],
+      "team": "SEA"
+    },
+    {
+      "player_id": "00-0038606",
+      "player_name": "Parker Washington",
+      "current_designation": "Present for Sunday's walkthrough",
+      "last_updated": "2026-08-23T06:21:01-07:00",
+      "diff_summary": "Parker Washington: Present for Sunday's walkthrough",
+      "timeline": [
+        {
+          "id": "9c5d64f4-0d0f-426a-933f-0f4178803889",
+          "timestamp": "2026-08-23T06:21:01-07:00",
+          "designation": "Present for Sunday's walkthrough",
+          "source_text": "Parker Washington: Present for Sunday's walkthrough",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtquyutuex2z",
+          "source_type": "beat_reporter",
+          "player_name": "Parker Washington"
+        },
+        {
+          "id": "eeec2d35-3654-444e-84a8-b002fe7def06",
+          "timestamp": "2026-08-21T06:47:43-07:00",
+          "designation": "Should resume practicing next week",
+          "source_text": "Parker Washington: Should resume practicing next week \n\n https://www.rotowire.com/football/player/parker-washington-16690",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtlvkscwyk2z",
+          "source_type": "beat_reporter",
+          "player_name": "Parker Washington"
+        },
+        {
+          "id": "30afc2f6-947d-422c-bbf0-2c91cca4844c",
+          "timestamp": "2026-08-18T05:40:20-07:00",
+          "designation": "Day to day with undisclosed injury",
+          "source_text": "Parker Washington: Day to day with undisclosed injury",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mteafjsagt24",
+          "source_type": "beat_reporter",
+          "player_name": "Parker Washington"
+        },
+        {
+          "id": "18f616f2-e9fd-421e-a5d1-89db09fe94da",
+          "timestamp": "2026-08-03T15:42:52-07:00",
+          "designation": "Strong start in training camp",
+          "source_text": "Parker Washington: Strong start in training camp",
+          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms7l35qys42o",
+          "source_type": "beat_reporter",
+          "player_name": "Parker Washington"
+        }
+      ],
+      "team": "JAX"
+    },
     {
       "player_id": "00-0034855",
       "player_name": "Baker Mayfield",
@@ -2348,43 +3185,6 @@
       "team": "LA"
     },
     {
-      "player_id": "00-0038606",
-      "player_name": "Parker Washington",
-      "current_designation": "Should resume practicing next week",
-      "last_updated": "2026-08-21T06:47:43-07:00",
-      "diff_summary": "Parker Washington: Should resume practicing next week \n\n https://www.rotowire.com/football/player/parker-washington-16690",
-      "timeline": [
-        {
-          "id": "eeec2d35-3654-444e-84a8-b002fe7def06",
-          "timestamp": "2026-08-21T06:47:43-07:00",
-          "designation": "Should resume practicing next week",
-          "source_text": "Parker Washington: Should resume practicing next week \n\n https://www.rotowire.com/football/player/parker-washington-16690",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtlvkscwyk2z",
-          "source_type": "beat_reporter",
-          "player_name": "Parker Washington"
-        },
-        {
-          "id": "30afc2f6-947d-422c-bbf0-2c91cca4844c",
-          "timestamp": "2026-08-18T05:40:20-07:00",
-          "designation": "Day to day with undisclosed injury",
-          "source_text": "Parker Washington: Day to day with undisclosed injury",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mteafjsagt24",
-          "source_type": "beat_reporter",
-          "player_name": "Parker Washington"
-        },
-        {
-          "id": "18f616f2-e9fd-421e-a5d1-89db09fe94da",
-          "timestamp": "2026-08-03T15:42:52-07:00",
-          "designation": "Strong start in training camp",
-          "source_text": "Parker Washington: Strong start in training camp",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3ms7l35qys42o",
-          "source_type": "beat_reporter",
-          "player_name": "Parker Washington"
-        }
-      ],
-      "team": "JAX"
-    },
-    {
       "player_id": "00-0039915",
       "player_name": "Ladd McConkey",
       "current_designation": "Plays opening series Thursday",
@@ -2705,197 +3505,6 @@
         }
       ],
       "team": "LV"
-    },
-    {
-      "player_id": "00-0033288",
-      "player_name": "George Kittle",
-      "current_designation": "Has chance to play Week 1",
-      "last_updated": "2026-08-20T18:38:09-07:00",
-      "diff_summary": "George Kittle: Has chance to play Week 1",
-      "timeline": [
-        {
-          "id": "ff9a7be7-59e2-47b7-91ba-18e7c260b6f7",
-          "timestamp": "2026-08-20T18:38:09-07:00",
-          "designation": "Has chance to play Week 1",
-          "source_text": "George Kittle: Has chance to play Week 1",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtkms7oxyz2u",
-          "source_type": "beat_reporter",
-          "player_name": "George Kittle"
-        },
-        {
-          "id": "e718412f-eae0-48b4-a161-addc687eb24e",
-          "timestamp": "2026-08-16T14:19:10-07:00",
-          "designation": "Confident he'll avoid PUP for Week 1",
-          "source_text": "George Kittle: Confident he'll avoid PUP for Week 1 \n\n https://www.rotowire.com/football/player/george-kittle-11892",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mta4hgizjr26",
-          "source_type": "beat_reporter",
-          "player_name": "George Kittle"
-        },
-        {
-          "id": "cd6cb1f5-7c81-4e9f-bf75-9fdedd823915",
-          "timestamp": "2026-08-16T13:17:23-07:00",
-          "designation": "Confident he'll avoid PUP for Week 1",
-          "source_text": "George Kittle: Confident he'll avoid PUP for Week 1",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt7yyxsyxr2l",
-          "source_type": "beat_reporter",
-          "player_name": "George Kittle"
-        },
-        {
-          "id": "d47bb032-8b70-48b5-b2d3-b87a4d04f375",
-          "timestamp": "2026-08-10T13:20:42-07:00",
-          "designation": "Increases activity level Monday",
-          "source_text": "George Kittle: Increases activity level Monday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msqwfebrdw2m",
-          "source_type": "beat_reporter",
-          "player_name": "George Kittle"
-        },
-        {
-          "id": "40920f83-730a-41e9-847e-0feb1cc5404d",
-          "timestamp": "2026-07-25T11:25:21-07:00",
-          "designation": "Starting training camp on PUP",
-          "source_text": "George Kittle: Starting training camp on PUP",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mriiiefntg2p",
-          "source_type": "beat_reporter",
-          "player_name": "George Kittle"
-        },
-        {
-          "id": "c8c4a40c-4080-43f3-bed9-418b79d036f9",
-          "timestamp": "2026-06-23T13:31:49-07:00",
-          "designation": "Feels on track for Week 1",
-          "source_text": "George Kittle: Feels on track for Week 1 \n\n https://www.rotowire.com/football/player/george-kittle-11892",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3moyan2qmfz2k",
-          "source_type": "beat_reporter",
-          "player_name": "George Kittle"
-        },
-        {
-          "id": "14824f65-f628-4e2e-8187-697a077375f0",
-          "timestamp": "2026-06-04T12:13:20-07:00",
-          "designation": "Says he's ahead of schedule",
-          "source_text": "George Kittle: Says he's ahead of schedule \n\n https://www.rotowire.com/football/player/george-kittle-11892",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnidfac3xr2h",
-          "source_type": "beat_reporter",
-          "player_name": "George Kittle"
-        },
-        {
-          "id": "772020ef-3ac2-4347-9e7d-099ae6c6f484",
-          "timestamp": "2026-05-27T07:20:22-07:00",
-          "designation": "Still targeting Week 1",
-          "source_text": "George Kittle: Still targeting Week 1 \n\n https://www.rotowire.com/football/player/george-kittle-11892",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmtpbycwa72a",
-          "source_type": "beat_reporter",
-          "player_name": "George Kittle"
-        },
-        {
-          "id": "a0f41669-4ca1-4cc3-96f9-83701eb21dbb",
-          "timestamp": "2026-04-30T11:22:07-07:00",
-          "designation": "Aiming to play Week 1",
-          "source_text": "George Kittle: Aiming to play Week 1 \n\n https://www.rotowire.com/football/player/george-kittle-11892",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mkqa7fpx6j2y",
-          "source_type": "beat_reporter",
-          "player_name": "George Kittle"
-        },
-        {
-          "id": "a374e7be-e1cc-465a-909e-54af3e9b39ec",
-          "timestamp": "2026-03-29T12:00:18-07:00",
-          "designation": "GM hopes for Week 1 return",
-          "source_text": "George Kittle: GM hopes for Week 1 return \n\n https://www.rotowire.com/football/player/george-kittle-11892",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mi7tgaiy6r23",
-          "source_type": "beat_reporter",
-          "player_name": "George Kittle"
-        }
-      ],
-      "team": "SF"
-    },
-    {
-      "player_id": "00-0033280",
-      "player_name": "Christian McCaffrey",
-      "current_designation": "Not suited up for Thursday's game",
-      "last_updated": "2026-08-20T18:21:50-07:00",
-      "diff_summary": "Christian McCaffrey: Not suited up for Thursday's game",
-      "timeline": [
-        {
-          "id": "08934f6c-9f9f-4f0d-9135-21b35f2a730c",
-          "timestamp": "2026-08-20T18:21:50-07:00",
-          "designation": "Not suited up for Thursday's game",
-          "source_text": "Christian McCaffrey: Not suited up for Thursday's game",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtklv2aemq2z",
-          "source_type": "beat_reporter",
-          "player_name": "Christian McCaffrey"
-        },
-        {
-          "id": "153b4a92-153e-4d25-81f5-dea824630eb8",
-          "timestamp": "2026-08-18T12:12:58-07:00",
-          "designation": "Coming along well, per Shanahan",
-          "source_text": "Christian McCaffrey: Coming along well, per Shanahan",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtewdmsfem26",
-          "source_type": "beat_reporter",
-          "player_name": "Christian McCaffrey"
-        },
-        {
-          "id": "83628ed0-e498-4d2a-9161-168c01f7a6ff",
-          "timestamp": "2026-08-17T16:58:08-07:00",
-          "designation": "Tightness not considered serious issue",
-          "source_text": "Christian McCaffrey: Tightness not considered serious issue",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtcvsm5ju42s",
-          "source_type": "beat_reporter",
-          "player_name": "Christian McCaffrey"
-        },
-        {
-          "id": "dde7da0e-7fff-478f-aceb-3b96965da451",
-          "timestamp": "2026-08-15T15:55:54-07:00",
-          "designation": "Misses another practice Saturday",
-          "source_text": "Christian McCaffrey: Misses another practice Saturday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt5rfiobiy2w",
-          "source_type": "beat_reporter",
-          "player_name": "Christian McCaffrey"
-        },
-        {
-          "id": "e9eab33a-9c71-4e46-8c85-0840c21c699b",
-          "timestamp": "2026-08-11T10:34:09-07:00",
-          "designation": "Still sidelined Tuesday",
-          "source_text": "Christian McCaffrey: Still sidelined Tuesday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mst5khphez2d",
-          "source_type": "beat_reporter",
-          "player_name": "Christian McCaffrey"
-        },
-        {
-          "id": "b65f7ecf-f964-454d-9f0d-e3c7387d3943",
-          "timestamp": "2026-08-10T12:16:11-07:00",
-          "designation": "Monday absence downplayed",
-          "source_text": "Christian McCaffrey: Monday absence downplayed",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msqsryhcol24",
-          "source_type": "beat_reporter",
-          "player_name": "Christian McCaffrey"
-        },
-        {
-          "id": "441cb925-ae40-41bc-bfd5-68ad89944ddc",
-          "timestamp": "2026-08-10T10:52:01-07:00",
-          "designation": "Gets day off Monday",
-          "source_text": "Christian McCaffrey: Gets day off Monday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msqo3ihibz2d",
-          "source_type": "beat_reporter",
-          "player_name": "Christian McCaffrey"
-        },
-        {
-          "id": "166e7803-3551-468f-ab7e-feb6f6a9fce3",
-          "timestamp": "2026-07-16T10:18:28-07:00",
-          "designation": "Wins Best Comeback Athlete",
-          "source_text": "Christian McCaffrey: Wins Best Comeback Athlete",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqrqkiekwj2v",
-          "source_type": "beat_reporter",
-          "player_name": "Christian McCaffrey"
-        },
-        {
-          "id": "12da4101-e749-41c0-a120-520315841d92",
-          "timestamp": "2026-03-30T13:18:22-07:00",
-          "designation": "To receive more rest in 2026",
-          "source_text": "Christian McCaffrey: To receive more rest in 2026 \n\n https://www.rotowire.com/football/player/christian-mccaffrey-11690",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3miciaqrews2r",
-          "source_type": "beat_reporter",
-          "player_name": "Christian McCaffrey"
-        }
-      ],
-      "team": "SF"
     },
     {
       "player_id": "00-0039075",
@@ -3379,187 +3988,6 @@
         }
       ],
       "team": "IND"
-    },
-    {
-      "player_id": "00-0039337",
-      "player_name": "Malik Nabers",
-      "current_designation": "Sitting out joint practices this week",
-      "last_updated": "2026-08-20T06:56:55-07:00",
-      "diff_summary": "Malik Nabers: Sitting out joint practices this week",
-      "timeline": [
-        {
-          "id": "a45d0596-406a-40b3-8e85-7df2cd24860f",
-          "timestamp": "2026-08-20T06:56:55-07:00",
-          "designation": "Sitting out joint practices this week",
-          "source_text": "Malik Nabers: Sitting out joint practices this week",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtjfmdgs7r25",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "94d145a5-a3f7-4fb8-8a7e-e90f45d187b8",
-          "timestamp": "2026-08-19T07:13:22-07:00",
-          "designation": "Needs to take contact before game action",
-          "source_text": "Malik Nabers: Needs to take contact before game action",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtgw2shw2k2o",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "af48347a-0d2d-43f5-9cca-31f56ca17431",
-          "timestamp": "2026-08-17T12:40:26-07:00",
-          "designation": "Works in team drills for first time",
-          "source_text": "Malik Nabers: Works in team drills for first time",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtchft2sl42c",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "a8d8c7f1-1e15-4960-996b-c5501a460ddc",
-          "timestamp": "2026-08-15T09:28:48-07:00",
-          "designation": "Not suited up for exhibition opener",
-          "source_text": "Malik Nabers: Not suited up for exhibition opener",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt53rcqh232a",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "645afdfd-73b7-4c56-b3d9-6f76feccedee",
-          "timestamp": "2026-08-13T13:21:24-07:00",
-          "designation": "Takes team reps in Thursday's light practice",
-          "source_text": "Malik Nabers: Takes team reps in Thursday's light practice",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msyhtekysx2s",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "cdc1e4f2-f52f-4d65-8fc5-a072fd15eea5",
-          "timestamp": "2026-08-12T13:16:19-07:00",
-          "designation": "Likely to join team drills soon",
-          "source_text": "Malik Nabers: Likely to join team drills soon",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvx3ehsam2a",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "62a8b5cb-e56d-4d6c-9942-636407e13f70",
-          "timestamp": "2026-08-12T12:57:07-07:00",
-          "designation": "Still contained to individual drills",
-          "source_text": "Malik Nabers: Still contained to individual drills",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msvvz23dat2c",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "b23cc270-0c22-4782-9450-8574fe47112b",
-          "timestamp": "2026-08-09T06:26:12-07:00",
-          "designation": "Trending toward Week 1 return",
-          "source_text": "Malik Nabers: Trending toward Week 1 return",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msnorbdmk424",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "c7a61c43-b689-481b-8c05-b54b2fcba4b8",
-          "timestamp": "2026-08-06T15:59:58-07:00",
-          "designation": "Rejoins team drills",
-          "source_text": "Malik Nabers: Rejoins team drills",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msh5ghryp42w",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "fb1bf984-f50b-4f18-ba19-d1480961a3da",
-          "timestamp": "2026-07-30T12:33:55-07:00",
-          "designation": "Feeling 'great' at practice",
-          "source_text": "Malik Nabers: Feeling 'great' at practice",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrv6nkymg42v",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "f6e55b7b-8c29-43f2-a235-31750d3182be",
-          "timestamp": "2026-07-29T14:10:56-07:00",
-          "designation": "Looks good at practice",
-          "source_text": "Malik Nabers: Looks good at practice",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrstm5nr7x2v",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "35bcb839-59cd-4bb5-a7f1-2e4a8bfaa323",
-          "timestamp": "2026-07-29T10:03:16-07:00",
-          "designation": "Taking part in individual drills",
-          "source_text": "Malik Nabers: Taking part in individual drills",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrsfrc2oyc2o",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "a2447779-ce60-4e2f-860a-9f5774616648",
-          "timestamp": "2026-07-24T06:54:43-07:00",
-          "designation": "To be brought along slowly",
-          "source_text": "Malik Nabers: To be brought along slowly \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrfivj3hb426",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "83dc25f2-d986-4f42-8897-dd1b8c6d4b7c",
-          "timestamp": "2026-07-13T15:03:03-07:00",
-          "designation": "Making progress, per coach",
-          "source_text": "Malik Nabers: Making progress, per coach \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mqkp2lzsku2s",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "1801cbb8-3491-4548-8444-dab848368917",
-          "timestamp": "2026-06-10T09:43:41-07:00",
-          "designation": "At 80 percent mark in rehab process",
-          "source_text": "Malik Nabers: At 80 percent mark in rehab process",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnx5t5ishx2x",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "f5da914d-b238-4bf4-ac48-f21627c31b9c",
-          "timestamp": "2026-05-21T11:55:48-07:00",
-          "designation": "Aiming for camp return?",
-          "source_text": "Malik Nabers: Aiming for camp return? \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mmf3uxy6wm24",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "42344c96-c810-442c-9f24-2b283adde80d",
-          "timestamp": "2026-05-13T12:36:46-07:00",
-          "designation": "Recovering from second procedure",
-          "source_text": "Malik Nabers: Recovering from second procedure \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mlr2gv5m262g",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "3244e6d8-fc5a-43a3-b6b9-f51c143aab08",
-          "timestamp": "2026-04-07T09:43:50-07:00",
-          "designation": "Present for voluntary workouts",
-          "source_text": "Malik Nabers: Present for voluntary workouts \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3miw7yiwxl22h",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        },
-        {
-          "id": "5e3e4a73-a5d5-4e53-a7b5-abcc4e384bdc",
-          "timestamp": "2026-03-30T16:56:04-07:00",
-          "designation": "GM hopeful for Week 1 availability",
-          "source_text": "Malik Nabers: GM hopeful for Week 1 availability \n\n https://www.rotowire.com/football/player/malik-nabers-17704",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3micufzxo3t22",
-          "source_type": "beat_reporter",
-          "player_name": "Malik Nabers"
-        }
-      ],
-      "team": "NYG"
     },
     {
       "player_id": "00-0036442",
@@ -4143,125 +4571,6 @@
         }
       ],
       "team": "PIT"
-    },
-    {
-      "player_id": "00-0041438",
-      "player_name": "Carnell Tate",
-      "current_designation": "Held out of practice due to general stiffness",
-      "last_updated": "2026-08-19T10:38:39-07:00",
-      "diff_summary": "Carnell Tate: Held out of practice due to general stiffness",
-      "timeline": [
-        {
-          "id": "ceadc57b-997b-4f6b-b994-11dfa32212b7",
-          "timestamp": "2026-08-19T10:38:39-07:00",
-          "designation": "Held out of practice due to general stiffness",
-          "source_text": "Carnell Tate: Held out of practice due to general stiffness",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mthbjux3gy2z",
-          "source_type": "beat_reporter",
-          "player_name": "Carnell Tate"
-        },
-        {
-          "id": "4d18a824-c588-4615-a8c9-cd7fee65c753",
-          "timestamp": "2026-08-19T08:35:25-07:00",
-          "designation": "Not practicing Wednesday",
-          "source_text": "Carnell Tate: Not practicing Wednesday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mth2njy66s22",
-          "source_type": "beat_reporter",
-          "player_name": "Carnell Tate"
-        },
-        {
-          "id": "a0d0c6b1-173d-4994-b79c-df519cd5bc1e",
-          "timestamp": "2026-08-17T10:38:52-07:00",
-          "designation": "Will be evaluated after hard hit",
-          "source_text": "Carnell Tate: Will be evaluated after hard hit",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtcamgbutp2s",
-          "source_type": "beat_reporter",
-          "player_name": "Carnell Tate"
-        },
-        {
-          "id": "8f689c3b-e2ad-4a47-ab32-4a6692e92fc3",
-          "timestamp": "2026-08-13T21:14:00-07:00",
-          "designation": "Blanked on three targets",
-          "source_text": "Carnell Tate: Blanked on three targets",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszcahhfxo2o",
-          "source_type": "beat_reporter",
-          "player_name": "Carnell Tate"
-        },
-        {
-          "id": "00e9f4b3-a0df-45c4-a40e-681b33ff65b5",
-          "timestamp": "2026-08-09T11:18:14-07:00",
-          "designation": "Strong practice Sunday",
-          "source_text": "Carnell Tate: Strong practice Sunday \n\n https://www.rotowire.com/football/player/carnell-tate-19268",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mso73hnb7n2q",
-          "source_type": "beat_reporter",
-          "player_name": "Carnell Tate"
-        },
-        {
-          "id": "80ffa658-70e5-464f-980d-1dd68c0fa771",
-          "timestamp": "2026-06-29T07:38:58-07:00",
-          "designation": "Looked polished at OTAs",
-          "source_text": "Carnell Tate: Looked polished at OTAs",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mpgppmkwz42v",
-          "source_type": "beat_reporter",
-          "player_name": "Carnell Tate"
-        },
-        {
-          "id": "d1ba2643-7ff5-479b-8dc7-33d465b03d07",
-          "timestamp": "2026-04-23T17:35:17-07:00",
-          "designation": "Added by Tennessee",
-          "source_text": "Carnell Tate: Added by Tennessee \n\n https://www.rotowire.com/football/player/carnell-tate-19268",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mk7bsakyqq2r",
-          "source_type": "beat_reporter",
-          "player_name": "Carnell Tate"
-        }
-      ],
-      "team": "TEN"
-    },
-    {
-      "player_id": "00-0035261",
-      "player_name": "Tony Pollard",
-      "current_designation": "Returns to practice Wednesday",
-      "last_updated": "2026-08-19T08:24:33-07:00",
-      "diff_summary": "Tony Pollard: Returns to practice Wednesday",
-      "timeline": [
-        {
-          "id": "ede40970-7eef-43fe-9686-ec1378152efc",
-          "timestamp": "2026-08-19T08:24:33-07:00",
-          "designation": "Returns to practice Wednesday",
-          "source_text": "Tony Pollard: Returns to practice Wednesday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mth223jqo22x",
-          "source_type": "beat_reporter",
-          "player_name": "Tony Pollard"
-        },
-        {
-          "id": "2791d865-c744-44f8-857f-48fdc70e6e54",
-          "timestamp": "2026-08-17T12:02:15-07:00",
-          "designation": "Not spotted at Monday's practice",
-          "source_text": "Tony Pollard: Not spotted at Monday's practice",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtcfbjzhml2w",
-          "source_type": "beat_reporter",
-          "player_name": "Tony Pollard"
-        },
-        {
-          "id": "d28a270c-7be1-4df6-b0c4-f35e7dfda8bb",
-          "timestamp": "2026-08-17T11:54:18-07:00",
-          "designation": "Not spotted at Monday's practice",
-          "source_text": "Tony Pollard: Not spotted at Monday's practice \n\n https://www.rotowire.com/football/player/tony-pollard-13590",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtcetdd3tt2c",
-          "source_type": "beat_reporter",
-          "player_name": "Tony Pollard"
-        },
-        {
-          "id": "186bd483-6c4f-40d0-ad3d-5baa515a90fb",
-          "timestamp": "2026-08-13T21:08:35-07:00",
-          "designation": "Scores TD in preseason opener",
-          "source_text": "Tony Pollard: Scores TD in preseason opener",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszbwrgvlt2z",
-          "source_type": "beat_reporter",
-          "player_name": "Tony Pollard"
-        }
-      ],
-      "team": "TEN"
     },
     {
       "player_id": "00-0036973",
@@ -4901,115 +5210,6 @@
       "team": "NO"
     },
     {
-      "player_id": "00-0041512",
-      "player_name": "Jadarian Price",
-      "current_designation": "Full practice Monday",
-      "last_updated": "2026-08-17T14:58:02-07:00",
-      "diff_summary": "Jadarian Price: Full practice Monday",
-      "timeline": [
-        {
-          "id": "7a77f0f8-98dd-4be6-ba4a-40fba291a117",
-          "timestamp": "2026-08-17T14:58:02-07:00",
-          "designation": "Full practice Monday",
-          "source_text": "Jadarian Price: Full practice Monday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtcp3ttpvy2o",
-          "source_type": "beat_reporter",
-          "player_name": "Jadarian Price"
-        },
-        {
-          "id": "22576a6b-7a0d-4500-8593-b21e2d08e57f",
-          "timestamp": "2026-08-17T13:49:12-07:00",
-          "designation": "Primed to participate Monday",
-          "source_text": "Jadarian Price: Primed to participate Monday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtclargtvi2x",
-          "source_type": "beat_reporter",
-          "player_name": "Jadarian Price"
-        },
-        {
-          "id": "5b9d874d-d8ec-40bb-af0e-1c890dc9c68e",
-          "timestamp": "2026-08-14T13:29:35-07:00",
-          "designation": "Won't play Saturday",
-          "source_text": "Jadarian Price: Won't play Saturday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt2yqwjfka2o",
-          "source_type": "beat_reporter",
-          "player_name": "Jadarian Price"
-        },
-        {
-          "id": "c0359779-a763-4047-818e-6fa1a4bd6df1",
-          "timestamp": "2026-08-12T15:36:58-07:00",
-          "designation": "Takes part in Wednesday's walkthrough",
-          "source_text": "Jadarian Price: Takes part in Wednesday's walkthrough",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msw6wukkhy2z",
-          "source_type": "beat_reporter",
-          "player_name": "Jadarian Price"
-        },
-        {
-          "id": "4b3db5b4-6116-4a6e-80cf-a82921d959e6",
-          "timestamp": "2026-08-11T16:31:22-07:00",
-          "designation": "Returns to limited practice",
-          "source_text": "Jadarian Price: Returns to limited practice",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mstrjaf4kc2q",
-          "source_type": "beat_reporter",
-          "player_name": "Jadarian Price"
-        },
-        {
-          "id": "3c60af67-b755-4096-be93-5695698db612",
-          "timestamp": "2026-08-08T19:19:04-07:00",
-          "designation": "Expected back soon",
-          "source_text": "Jadarian Price: Expected back soon",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msmjidigwp24",
-          "source_type": "beat_reporter",
-          "player_name": "Jadarian Price"
-        },
-        {
-          "id": "0d89e2cd-4bdb-494d-b0aa-23298bc0666f",
-          "timestamp": "2026-08-08T14:29:32-07:00",
-          "designation": "Dealing with lower-body soreness",
-          "source_text": "Jadarian Price: Dealing with lower-body soreness",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mslzcm5gqs2g",
-          "source_type": "beat_reporter",
-          "player_name": "Jadarian Price"
-        },
-        {
-          "id": "57d7b892-4350-439e-9ef1-9aeab60103ff",
-          "timestamp": "2026-07-31T06:58:47-07:00",
-          "designation": "First up for first-team reps",
-          "source_text": "Jadarian Price: First up for first-team reps",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrx4fahir22i",
-          "source_type": "beat_reporter",
-          "player_name": "Jadarian Price"
-        },
-        {
-          "id": "8ded7c3a-bc9d-4d36-a7a7-4d24dfcd1ac5",
-          "timestamp": "2026-07-27T10:21:18-07:00",
-          "designation": "Splitting first-team reps",
-          "source_text": "Jadarian Price: Splitting first-team reps",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mrnftp4puw2z",
-          "source_type": "beat_reporter",
-          "player_name": "Jadarian Price"
-        },
-        {
-          "id": "8c2dd924-4e36-46f6-9037-3c9b2189df32",
-          "timestamp": "2026-06-10T10:13:16-07:00",
-          "designation": "Getting first-team reps already",
-          "source_text": "Jadarian Price: Getting first-team reps already \n\n https://www.rotowire.com/football/player/jadarian-price-19299",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mnx7i2hy5k2l",
-          "source_type": "beat_reporter",
-          "player_name": "Jadarian Price"
-        },
-        {
-          "id": "a33b2ff8-74fc-41eb-890b-348b904fc146",
-          "timestamp": "2026-04-23T20:10:53-07:00",
-          "designation": "Selected by Seattle",
-          "source_text": "Jadarian Price: Selected by Seattle \n\n https://www.rotowire.com/football/player/jadarian-price-19299",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mk7kihyw2e2g",
-          "source_type": "beat_reporter",
-          "player_name": "Jadarian Price"
-        }
-      ],
-      "team": "SEA"
-    },
-    {
       "player_id": "00-0040734",
       "player_name": "TreVeyon Henderson",
       "current_designation": "Likely looking at '50-50' split",
@@ -5238,128 +5438,8 @@
         }
       ],
       "team": "TB"
-    },
-    {
-      "player_id": "00-0036040",
-      "player_name": "Juwan Johnson",
-      "current_designation": "Remains top tight end",
-      "last_updated": "2026-08-16T19:40:23-07:00",
-      "diff_summary": "Juwan Johnson: Remains top tight end \n\n https://www.rotowire.com/football/player/juwan-johnson-14630",
-      "timeline": [
-        {
-          "id": "7ccb6b62-a010-48b4-ac65-4c96f232150d",
-          "timestamp": "2026-08-16T19:40:23-07:00",
-          "designation": "Remains top tight end",
-          "source_text": "Juwan Johnson: Remains top tight end \n\n https://www.rotowire.com/football/player/juwan-johnson-14630",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtaofsynsz26",
-          "source_type": "beat_reporter",
-          "player_name": "Juwan Johnson"
-        }
-      ],
-      "team": "NO"
-    },
-    {
-      "player_id": "00-0037263",
-      "player_name": "Tyler Allgeier",
-      "current_designation": "Love's injury opens up opportunity",
-      "last_updated": "2026-08-16T19:04:14-07:00",
-      "diff_summary": "Tyler Allgeier: Love's injury opens up opportunity",
-      "timeline": [
-        {
-          "id": "febb2371-bb61-4a38-8480-c39742be0731",
-          "timestamp": "2026-08-16T19:04:14-07:00",
-          "designation": "Love's injury opens up opportunity",
-          "source_text": "Tyler Allgeier: Love's injury opens up opportunity",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mtamf6gook2l",
-          "source_type": "beat_reporter",
-          "player_name": "Tyler Allgeier"
-        },
-        {
-          "id": "97f273fb-e15f-40ad-924b-832a03f26165",
-          "timestamp": "2026-08-13T20:41:01-07:00",
-          "designation": "Sees action with starters",
-          "source_text": "Tyler Allgeier: Sees action with starters",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mszafi6fnq2a",
-          "source_type": "beat_reporter",
-          "player_name": "Tyler Allgeier"
-        },
-        {
-          "id": "2cff4645-e87d-40fd-90d1-a822d85f8764",
-          "timestamp": "2026-03-09T10:56:21-07:00",
-          "designation": "Finds home with Cardinals",
-          "source_text": "Tyler Allgeier: Finds home with Cardinals \n\n https://www.rotowire.com/football/player/tyler-allgeier-15976",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mgngji5gve2d",
-          "source_type": "beat_reporter",
-          "player_name": "Tyler Allgeier"
-        }
-      ],
-      "team": "ATL"
-    },
-    {
-      "player_id": "00-0038997",
-      "player_name": "Josh Downs",
-      "current_designation": "Gets green light to return to practice",
-      "last_updated": "2026-08-16T11:00:47-07:00",
-      "diff_summary": "Josh Downs: Gets green light to return to practice",
-      "timeline": [
-        {
-          "id": "d6a6a057-0774-4394-92fe-c7ef31c8625d",
-          "timestamp": "2026-08-16T11:00:47-07:00",
-          "designation": "Gets green light to return to practice",
-          "source_text": "Josh Downs: Gets green light to return to practice",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt7repb5ib2w",
-          "source_type": "beat_reporter",
-          "player_name": "Josh Downs"
-        },
-        {
-          "id": "ae8c4f8d-7302-4b0b-a5ee-20b8898e19b7",
-          "timestamp": "2026-08-16T10:23:06-07:00",
-          "designation": "Returned to Saturday's practice",
-          "source_text": "Josh Downs: Returned to Saturday's practice \n\n https://www.rotowire.com/football/player/josh-downs-16689",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt7pbdcm3d22",
-          "source_type": "beat_reporter",
-          "player_name": "Josh Downs"
-        },
-        {
-          "id": "660117b7-6cba-4e41-80fc-c15030a57d33",
-          "timestamp": "2026-08-15T13:39:49-07:00",
-          "designation": "Exits practice with possible upper body injury",
-          "source_text": "Josh Downs: Exits practice with possible upper body injury",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mt5js5vcd42d",
-          "source_type": "beat_reporter",
-          "player_name": "Josh Downs"
-        },
-        {
-          "id": "33843fd5-46f7-45fe-b5d8-a15d7d91b224",
-          "timestamp": "2026-08-11T07:35:20-07:00",
-          "designation": "Makes return to practice Tuesday",
-          "source_text": "Josh Downs: Makes return to practice Tuesday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msstkqad4x24",
-          "source_type": "beat_reporter",
-          "player_name": "Josh Downs"
-        },
-        {
-          "id": "a8e91c3c-d02a-40be-8f7c-3a647aff3bb9",
-          "timestamp": "2026-08-09T10:18:42-07:00",
-          "designation": "Could practice Tuesday",
-          "source_text": "Josh Downs: Could practice Tuesday",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3mso3qyimec23",
-          "source_type": "beat_reporter",
-          "player_name": "Josh Downs"
-        },
-        {
-          "id": "945b00c8-2c03-4fd4-9a1c-ad51ef132c86",
-          "timestamp": "2026-08-08T07:57:39-07:00",
-          "designation": "Nursing groin injury",
-          "source_text": "Josh Downs: Nursing groin injury",
-          "url": "https://bsky.app/profile/rotowirenfl.bsky.social/post/3msldfuntfi2u",
-          "source_type": "beat_reporter",
-          "player_name": "Josh Downs"
-        }
-      ],
-      "team": "IND"
     }
   ],
   "news_max_age_days": 7,
-  "dropped_stale": 50
+  "dropped_stale": 51
 }
