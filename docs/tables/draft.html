@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/site.css?v=45" />
+    <link rel="stylesheet" href="../css/site.css?v=46" />
     <script>
       setTimeout(function () {
         document.body.classList.remove("is-page-loading");
@@ -75,6 +75,22 @@
             <div class="panel-head">
               <h2 class="draft-section-title">Players</h2>
               <div class="draft-search-row">
+                <label class="draft-filter draft-filter--favs">
+                  <input type="checkbox" id="draft-favs-only" />
+                  <span>Favourites</span>
+                </label>
+                <label class="draft-filter">
+                  <span class="visually-hidden">Position</span>
+                  <select id="draft-pos-filter" aria-label="Position">
+                    <option value="">All positions</option>
+                    <option value="QB">QB</option>
+                    <option value="RB">RB</option>
+                    <option value="WR">WR</option>
+                    <option value="TE">TE</option>
+                    <option value="DEF">DEF</option>
+                    <option value="K">K</option>
+                  </select>
+                </label>
                 <label for="draft-player-search" class="visually-hidden">Search players</label>
                 <input
                   id="draft-player-search"
@@ -103,7 +119,7 @@
     </main>
 
     <script type="module">
-      import { mountDraftCompanionPage } from "../js/draft-companion.js?v=130";
+      import { mountDraftCompanionPage } from "../js/draft-companion.js?v=131";
       mountDraftCompanionPage();
     </script>
   </body>

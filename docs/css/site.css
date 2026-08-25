@@ -187,7 +187,7 @@ body.is-page-loading .site-main::before {
   }
 
   .news-search-row input,
-  .draft-search-row input {
+  .draft-search-row input[type="search"] {
     max-width: none;
   }
 }
@@ -618,8 +618,13 @@ table.draft-table > thead > tr > th {
 
 .panel-head .draft-search-row {
   margin: 0;
-  flex: 1 1 10rem;
-  max-width: 18rem;
+  flex: 1 1 14rem;
+  max-width: 28rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.55rem 0.75rem;
 }
 
 /* Recommendations and the live board sit side by side so the whole draft
@@ -772,9 +777,9 @@ table.draft-table > thead > tr > th {
   margin-bottom: 0.4rem;
 }
 
-.draft-search-row input {
+.draft-search-row input[type="search"] {
   width: 100%;
-  max-width: 18rem;
+  max-width: 10rem;
   font-family: inherit;
   font-size: 0.8rem;
   color: var(--text);
@@ -782,9 +787,49 @@ table.draft-table > thead > tr > th {
   border: none;
   border-bottom: 1px solid var(--input-line);
   padding: 0.15rem 0;
+  flex: 1 1 6rem;
 }
 
-.draft-search-row input:focus {
+.draft-search-row input[type="search"]:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
+.draft-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.draft-filter--favs input {
+  width: auto;
+  max-width: none;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.draft-filter--favs:has(input:checked) {
+  color: var(--accent);
+}
+
+.draft-filter select {
+  font-family: inherit;
+  font-size: 0.8rem;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--input-line);
+  padding: 0.15rem 0;
+  min-width: 7rem;
+  cursor: pointer;
+}
+
+.draft-filter select:focus {
   outline: none;
   border-bottom-color: var(--accent);
 }

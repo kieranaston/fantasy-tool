@@ -360,6 +360,8 @@ async function mountDraftCompanionPage() {
   const needsEl = document.getElementById("draft-needs");
   const searchInput = document.getElementById("draft-player-search");
   const searchEl = document.getElementById("draft-search-results");
+  const favsOnlyInput = document.getElementById("draft-favs-only");
+  const posFilterSelect = document.getElementById("draft-pos-filter");
   const connectBtn = document.getElementById("draft-connect");
   const pauseBtn = document.getElementById("draft-pause");
   const draftInput = document.getElementById("draft-id-input");
@@ -520,6 +522,56 @@ async function mountDraftCompanionPage() {
 
   function isLiked(id) {
     return favs.has(id);
+  }
+
+  function boardFilters() {
+    const pos = String(posFilterSelect?.value || "").toUpperCase();
+    return {
+      favsOnly: Boolean(favsOnlyInput?.checked),
+      position: SKILL_POSITIONS.includes(pos) ? pos : "",
+    };
+  }
+
+  function matchesBoardFilters(player, { favsOnly, position } = boardFilters()) {
+    if (favsOnly && !isLiked(sleeperIdOf(player))) return false;
+    if (position && normalizePos(player.position) !== position) return false;
+    return true;
+  }
+
+  function filteredRecommendationRows(result) {
+    const filters = boardFilters();
+    const { favsOnly, position } = filters;
+    const needCount = result.need_count || {};
+
+    let list;
+    if (favsOnly || position) {
+      const scoredById = new Map(
+        (result.scored || result.recommendations || []).map((r) => [
+          sleeperIdOf(r),
+          r,
+        ])
+      );
+      list = [];
+      for (const p of boardPlayers) {
+        const id = sleeperIdOf(p);
+        if (!id || takenIndex.has(id)) continue;
+        if (!matchesBoardFilters(p, filters)) continue;
+        list.push(
+          scoredById.get(id) ||
+            lastScoreById.get(id) ||
+            annotateScore(p, needCount)
+        );
+      }
+      list.sort(
+        (a, b) =>
+          Number(b.score) - Number(a.score) ||
+          Number(a.adp) - Number(b.adp) ||
+          String(a.player || "").localeCompare(String(b.player || ""))
+      );
+    } else {
+      list = (result.recommendations || []).slice();
+    }
+    return list.slice(0, SCORE_LIMIT);
   }
 
   /** Prefer user/configured league over the draft's linked league. */
@@ -860,13 +912,22 @@ async function mountDraftCompanionPage() {
     }
     const result = lastScoreResult;
     if (!result) return;
-    const recs = (result.recommendations || []).slice(0, SCORE_LIMIT);
+    const filters = boardFilters();
+    const recs = filteredRecommendationRows(result);
     if (!recs.length) {
-      recEl.innerHTML = `<p class="meta">No draftable players left on the board.</p>`;
+      const emptyMsg =
+        filters.favsOnly || filters.position
+          ? "No players match the current filters."
+          : "No draftable players left on the board.";
+      recEl.innerHTML = `<p class="meta">${emptyMsg}</p>`;
       return;
     }
     const teams = leagueTeamCount();
-    const rows = withPosGaps(recs, result.scored || recs);
+    const gapSource =
+      filters.favsOnly || filters.position
+        ? recs
+        : result.scored || recs;
+    const rows = withPosGaps(recs, gapSource);
     recEl.innerHTML = `
       <table class="draft-table">
         <thead>
@@ -909,10 +970,12 @@ async function mountDraftCompanionPage() {
       return;
     }
 
+    const filters = boardFilters();
     const available = [];
     const taken = [];
     for (const p of boardPlayers) {
       if (!matchesSearch(p, query)) continue;
+      if (!matchesBoardFilters(p, filters)) continue;
       const id = sleeperIdOf(p);
       if (takenIndex.has(id)) taken.push(p);
       else available.push(p);
@@ -1156,6 +1219,13 @@ async function mountDraftCompanionPage() {
     if (searchTimer) clearTimeout(searchTimer);
     searchTimer = setTimeout(() => renderSearchResults(), 120);
   });
+
+  function onBoardFilterChange() {
+    if (lastScoreResult) renderRecommendationsFromCache();
+    renderSearchResults();
+  }
+  favsOnlyInput?.addEventListener("change", onBoardFilterChange);
+  posFilterSelect?.addEventListener("change", onBoardFilterChange);
 
   connectBtn?.addEventListener("click", () => {
     connectLive().catch((err) => {
