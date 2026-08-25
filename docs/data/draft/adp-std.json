@@ -2,7 +2,7 @@
   "season": 2026,
   "format": "std",
   "source": "sleeper_adp",
-  "last_updated": "2026-08-24T14:50:12Z",
+  "last_updated": "2026-08-25T14:52:44Z",
   "players": [
     {
       "sleeper_id": "9509",
@@ -1605,10 +1605,10 @@
     {
       "sleeper_id": "9504",
       "player": "Kayshon Boutte",
-      "team": "NE",
+      "team": "HOU",
       "position": "WR",
       "adp": 164.2,
-      "bye_week": 11
+      "bye_week": 8
     },
     {
       "sleeper_id": "11618",
