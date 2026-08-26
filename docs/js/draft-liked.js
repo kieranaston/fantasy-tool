@@ -3,7 +3,7 @@
  * Last write wins. A star tapped during a cloud fetch is kept.
  */
 
-import { escapeHtml } from "./shared.js?v=3";
+import { escapeHtml } from "./shared.js?v=6";
 import {
   SUPABASE_URL,
   SUPABASE_ANON_KEY,

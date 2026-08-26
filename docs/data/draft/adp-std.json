@@ -10,6 +10,7 @@
       "team": "ATL",
       "position": "RB",
       "adp": 1.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rjaf9auhx3lrktzgwpfb",
       "bye_week": 11
     },
     {
@@ -18,6 +19,7 @@
       "team": "DET",
       "position": "RB",
       "adp": 2.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hjxk3judytgsxkqiilre",
       "bye_week": 6
     },
     {
@@ -26,6 +28,7 @@
       "team": "IND",
       "position": "RB",
       "adp": 3.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uwmnrhwtwug0wrgkomjk",
       "bye_week": 13
     },
     {
@@ -34,6 +37,7 @@
       "team": "SF",
       "position": "RB",
       "adp": 4.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/resjdwihunsqckohcorj",
       "bye_week": 8
     },
     {
@@ -42,6 +46,7 @@
       "team": "BUF",
       "position": "RB",
       "adp": 5.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/anjbznqb9i21wzcgrtbs",
       "bye_week": 7
     },
     {
@@ -50,6 +55,7 @@
       "team": "CIN",
       "position": "WR",
       "adp": 6.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qya3dtjb5kgofcuj2tuw",
       "bye_week": 6
     },
     {
@@ -58,6 +64,7 @@
       "team": "BAL",
       "position": "RB",
       "adp": 7.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jxtikemnvpkw9r0ex2wv",
       "bye_week": 13
     },
     {
@@ -66,6 +73,7 @@
       "team": "MIA",
       "position": "RB",
       "adp": 8.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xk1xwio0bryfxo1ylweu",
       "bye_week": 6
     },
     {
@@ -74,6 +82,7 @@
       "team": "LAR",
       "position": "WR",
       "adp": 8.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zvi4hdm6fywcekfe7ceb",
       "bye_week": 11
     },
     {
@@ -82,6 +91,7 @@
       "team": "SEA",
       "position": "WR",
       "adp": 9.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jpvhsregfvw46mlyckzj",
       "bye_week": 11
     },
     {
@@ -90,6 +100,7 @@
       "team": "LV",
       "position": "RB",
       "adp": 11.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/syspis1mntov9kgspb7r",
       "bye_week": 13
     },
     {
@@ -98,6 +109,7 @@
       "team": "LAC",
       "position": "RB",
       "adp": 12.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ck7xcbwuka7wu2zwhssk",
       "bye_week": 7
     },
     {
@@ -106,6 +118,7 @@
       "team": "LAR",
       "position": "RB",
       "adp": 12.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/smsyrjrwy0lf0hu9hkvg",
       "bye_week": 11
     },
     {
@@ -114,6 +127,7 @@
       "team": "PHI",
       "position": "RB",
       "adp": 13.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ern1nbhivkmwkg82c7v1",
       "bye_week": 10
     },
     {
@@ -122,6 +136,7 @@
       "team": "DAL",
       "position": "WR",
       "adp": 14.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ijxzvtumjhqu3zva1bwc",
       "bye_week": 14
     },
     {
@@ -130,6 +145,7 @@
       "team": "BUF",
       "position": "QB",
       "adp": 15.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/servs1fpsynfxep4rz2z",
       "bye_week": 7
     },
     {
@@ -138,6 +154,7 @@
       "team": "ARI",
       "position": "RB",
       "adp": 15.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/b12gtjsylmql5v7iyyla",
       "bye_week": 14
     },
     {
@@ -146,6 +163,7 @@
       "team": "DET",
       "position": "WR",
       "adp": 16.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fd8nwhm6pvxfyzphzl6i",
       "bye_week": 6
     },
     {
@@ -154,6 +172,7 @@
       "team": "CIN",
       "position": "RB",
       "adp": 17.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pv3sq3uzosixxexbznq5",
       "bye_week": 6
     },
     {
@@ -162,6 +181,7 @@
       "team": "MIN",
       "position": "WR",
       "adp": 18.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/f0ccavu3ppzcs51e1cuv",
       "bye_week": 6
     },
     {
@@ -170,6 +190,7 @@
       "team": "ATL",
       "position": "WR",
       "adp": 19.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/np91pvk7mczra1iyjkmo",
       "bye_week": 11
     },
     {
@@ -178,6 +199,7 @@
       "team": "GB",
       "position": "RB",
       "adp": 20.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/drtobqw2mk7yw3edjgwo",
       "bye_week": 11
     },
     {
@@ -186,6 +208,7 @@
       "team": "ARI",
       "position": "TE",
       "adp": 21.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vd7av3vdfs6q7ncjogac",
       "bye_week": 14
     },
     {
@@ -194,6 +217,7 @@
       "team": "KC",
       "position": "RB",
       "adp": 22.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mnzsnemdzbey5hbahdhk",
       "bye_week": 5
     },
     {
@@ -202,6 +226,7 @@
       "team": "BAL",
       "position": "QB",
       "adp": 23.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cruqs6qpbykh7a2whd7p",
       "bye_week": 13
     },
     {
@@ -210,6 +235,7 @@
       "team": "HOU",
       "position": "WR",
       "adp": 26.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/osmqyvmib3pssxi6cyic",
       "bye_week": 8
     },
     {
@@ -218,6 +244,7 @@
       "team": "NYJ",
       "position": "RB",
       "adp": 27.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/m3dviruymtm2wl2zcpmr",
       "bye_week": 13
     },
     {
@@ -226,6 +253,7 @@
       "team": "DAL",
       "position": "WR",
       "adp": 28.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cbpyykoguf7rsxezqzvk",
       "bye_week": 14
     },
     {
@@ -234,6 +262,7 @@
       "team": "LV",
       "position": "TE",
       "adp": 30.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uzp2ffi0lomamxofsrhy",
       "bye_week": 13
     },
     {
@@ -242,6 +271,7 @@
       "team": "NYG",
       "position": "WR",
       "adp": 30.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/w3edoyyuomqlovvp9ixc",
       "bye_week": 8
     },
     {
@@ -250,6 +280,7 @@
       "team": "NO",
       "position": "WR",
       "adp": 31.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vrrmyvpvujynckag9jop",
       "bye_week": 8
     },
     {
@@ -258,6 +289,7 @@
       "team": "DAL",
       "position": "RB",
       "adp": 32.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hwzske22c4wrlf27qrih",
       "bye_week": 14
     },
     {
@@ -266,6 +298,7 @@
       "team": "TB",
       "position": "RB",
       "adp": 32.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hmgpumoxwhvrrkcjuuuw",
       "bye_week": 10
     },
     {
@@ -274,6 +307,7 @@
       "team": "NE",
       "position": "WR",
       "adp": 33.2,
+      "headshot": "https://static.www.nfl.com/image/private/f_auto,q_auto/league/a014sgzctarbvhwb35lw",
       "bye_week": 11
     },
     {
@@ -282,6 +316,7 @@
       "team": "KC",
       "position": "WR",
       "adp": 34.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/iy0uidp9wokc6a7u8lwq",
       "bye_week": 5
     },
     {
@@ -290,6 +325,7 @@
       "team": "NO",
       "position": "RB",
       "adp": 34.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gc0iljgj34piecyfueyd",
       "bye_week": 8
     },
     {
@@ -298,6 +334,7 @@
       "team": "CIN",
       "position": "WR",
       "adp": 35.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/flr9f8oqigbyroeaubxb",
       "bye_week": 6
     },
     {
@@ -306,6 +343,7 @@
       "team": "CAR",
       "position": "WR",
       "adp": 37.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hokqp6gl5xujtlqwecg8",
       "bye_week": 5
     },
     {
@@ -314,6 +352,7 @@
       "team": "NYJ",
       "position": "WR",
       "adp": 38.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/kbijsheobhwej7lh8mvf",
       "bye_week": 13
     },
     {
@@ -322,6 +361,7 @@
       "team": "NE",
       "position": "RB",
       "adp": 39.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cfcux3dnfmbmz3qzrnco",
       "bye_week": 11
     },
     {
@@ -330,6 +370,7 @@
       "team": "CHI",
       "position": "WR",
       "adp": 39.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/iyuwdz7pbowdkwzq2tg5",
       "bye_week": 10
     },
     {
@@ -338,6 +379,7 @@
       "team": "NYG",
       "position": "RB",
       "adp": 41.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vnftthkbvw7ucsqtqjpq",
       "bye_week": 8
     },
     {
@@ -346,6 +388,7 @@
       "team": "DEN",
       "position": "WR",
       "adp": 42.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dsxd2zcqm42wsv4ewtfc",
       "bye_week": 10
     },
     {
@@ -354,6 +397,7 @@
       "team": "JAX",
       "position": "RB",
       "adp": 43.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uf6bidyfjeemrlgsibiz",
       "bye_week": 7
     },
     {
@@ -362,6 +406,7 @@
       "team": "CLE",
       "position": "RB",
       "adp": 44.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ojtce2im0wp2ltyel0vc",
       "bye_week": 11
     },
     {
@@ -370,6 +415,7 @@
       "team": "LAR",
       "position": "WR",
       "adp": 45.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qtonvcqpixixqhc6lhnc",
       "bye_week": 11
     },
     {
@@ -378,6 +424,7 @@
       "team": "CHI",
       "position": "TE",
       "adp": 46.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tyjb6vfug7gaunvcune3",
       "bye_week": 10
     },
     {
@@ -386,6 +433,7 @@
       "team": "LAC",
       "position": "WR",
       "adp": 46.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qsvdiebsa34jtkcrjpju",
       "bye_week": 7
     },
     {
@@ -394,6 +442,7 @@
       "team": "CHI",
       "position": "RB",
       "adp": 47.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/owpmwzoilitcodc6cmxo",
       "bye_week": 10
     },
     {
@@ -402,6 +451,7 @@
       "team": "HOU",
       "position": "RB",
       "adp": 48.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xeb6fq4zimgkksq7uari",
       "bye_week": 8
     },
     {
@@ -410,6 +460,7 @@
       "team": "NE",
       "position": "QB",
       "adp": 49.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/oyap81gtzcvnfmripis1",
       "bye_week": 11
     },
     {
@@ -418,6 +469,7 @@
       "team": "BAL",
       "position": "WR",
       "adp": 50.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sqqh8gmxdpo55qwpsszj",
       "bye_week": 13
     },
     {
@@ -426,6 +478,7 @@
       "team": "PIT",
       "position": "RB",
       "adp": 51.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/f3txbqdarbabqtq4sx98",
       "bye_week": 9
     },
     {
@@ -434,6 +487,7 @@
       "team": "DET",
       "position": "WR",
       "adp": 52.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gpjarmglg1jhwq5wr1uu",
       "bye_week": 6
     },
     {
@@ -442,6 +496,7 @@
       "team": "PHI",
       "position": "WR",
       "adp": 53.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vj2fz8veorg1k5qthnjm",
       "bye_week": 10
     },
     {
@@ -450,6 +505,7 @@
       "team": "CIN",
       "position": "QB",
       "adp": 54.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gnnvcgui1cijybukk2w7",
       "bye_week": 6
     },
     {
@@ -458,6 +514,7 @@
       "team": "TB",
       "position": "WR",
       "adp": 54.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qolqqtwamffi0pi4np7h",
       "bye_week": 10
     },
     {
@@ -466,6 +523,7 @@
       "team": "WAS",
       "position": "WR",
       "adp": 55.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wokz1etv1wj1vhbmvxgs",
       "bye_week": 7
     },
     {
@@ -474,6 +532,7 @@
       "team": "DEN",
       "position": "RB",
       "adp": 56.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/i1qxzydetb2orrynzvzk",
       "bye_week": 10
     },
     {
@@ -482,6 +541,7 @@
       "team": "IND",
       "position": "TE",
       "adp": 56.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jt2almbzdk0kbha39otb",
       "bye_week": 13
     },
     {
@@ -490,6 +550,7 @@
       "team": "NE",
       "position": "RB",
       "adp": 57.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ed09migntlyy8ntgvcu1",
       "bye_week": 11
     },
     {
@@ -498,6 +559,7 @@
       "team": "BUF",
       "position": "WR",
       "adp": 58.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qphturmeiifnqrnf5pax",
       "bye_week": 7
     },
     {
@@ -506,6 +568,7 @@
       "team": "SF",
       "position": "WR",
       "adp": 59.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yaxorbdsvk1ucfuiyrkj",
       "bye_week": 8
     },
     {
@@ -514,6 +577,7 @@
       "team": "TEN",
       "position": "WR",
       "adp": 60.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ghpmpzcnigxrdbyvcxke",
       "bye_week": 9
     },
     {
@@ -522,6 +586,7 @@
       "team": "CHI",
       "position": "RB",
       "adp": 61.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cici2wf1walmoluhe95i",
       "bye_week": 10
     },
     {
@@ -530,6 +595,7 @@
       "team": "NO",
       "position": "WR",
       "adp": 62.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/al6fifxstyc6omsenzhd",
       "bye_week": 8
     },
     {
@@ -538,6 +604,7 @@
       "team": "CLE",
       "position": "TE",
       "adp": 62.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fxublmpnxx9uggsddwik",
       "bye_week": 11
     },
     {
@@ -546,6 +613,7 @@
       "team": "TEN",
       "position": "RB",
       "adp": 63.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dvpdczetkdhrqpm8izmd",
       "bye_week": 9
     },
     {
@@ -554,6 +622,7 @@
       "team": "GB",
       "position": "WR",
       "adp": 64.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/syljognztlbghfeqyqn1",
       "bye_week": 11
     },
     {
@@ -562,6 +631,7 @@
       "team": "PIT",
       "position": "RB",
       "adp": 65.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cvnrzndsiaojvvxz8vo5",
       "bye_week": 9
     },
     {
@@ -570,6 +640,7 @@
       "team": "WAS",
       "position": "QB",
       "adp": 65.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vrdweg39v1ay4zoc0lgp",
       "bye_week": 7
     },
     {
@@ -578,6 +649,7 @@
       "team": "CAR",
       "position": "RB",
       "adp": 66.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pjgml85ghq7oa48dctn7",
       "bye_week": 5
     },
     {
@@ -586,6 +658,7 @@
       "team": "CHI",
       "position": "WR",
       "adp": 67.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yqjdhpsno75du0n72u4w",
       "bye_week": 10
     },
     {
@@ -594,6 +667,7 @@
       "team": "LAR",
       "position": "RB",
       "adp": 68.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gytdgnrjj3jk8rlfxz85",
       "bye_week": 11
     },
     {
@@ -602,6 +676,7 @@
       "team": "DEN",
       "position": "RB",
       "adp": 68.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cevotvl3ho5h1mioruyg",
       "bye_week": 10
     },
     {
@@ -610,6 +685,7 @@
       "team": "PHI",
       "position": "QB",
       "adp": 69.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/c47i9v6gmokkun9cat9s",
       "bye_week": 10
     },
     {
@@ -618,6 +694,7 @@
       "team": "GB",
       "position": "TE",
       "adp": 70.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yr6nj1zqaqg6nbdnxu3q",
       "bye_week": 11
     },
     {
@@ -626,6 +703,7 @@
       "team": "DEN",
       "position": "WR",
       "adp": 71.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/r2sr6cbma4c7wc3isejj",
       "bye_week": 10
     },
     {
@@ -634,6 +712,7 @@
       "team": "ATL",
       "position": "TE",
       "adp": 72.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tbec213me3pszzszecqo",
       "bye_week": 11
     },
     {
@@ -642,6 +721,7 @@
       "team": "PIT",
       "position": "WR",
       "adp": 73.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tknefloqsleltfmslj2y",
       "bye_week": 9
     },
     {
@@ -650,6 +730,7 @@
       "team": "JAX",
       "position": "WR",
       "adp": 74.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sqgxayp6nrrpvwonksdm",
       "bye_week": 7
     },
     {
@@ -658,6 +739,7 @@
       "team": "ARI",
       "position": "WR",
       "adp": 75.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yc8awtck004bz2a5oeb8",
       "bye_week": 14
     },
     {
@@ -666,6 +748,7 @@
       "team": "JAX",
       "position": "WR",
       "adp": 77.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qui5ajbevlk7pfjpcufz",
       "bye_week": 7
     },
     {
@@ -674,6 +757,7 @@
       "team": "JAX",
       "position": "WR",
       "adp": 78.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/plnekkriys4cm11rnxwl",
       "bye_week": 7
     },
     {
@@ -682,6 +766,7 @@
       "team": "DET",
       "position": "TE",
       "adp": 79.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qfcy3taaoage00rrl0cc",
       "bye_week": 6
     },
     {
@@ -690,6 +775,7 @@
       "team": "SEA",
       "position": "RB",
       "adp": 80.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/toy90i08oumgbdlvctja",
       "bye_week": 11
     },
     {
@@ -698,6 +784,7 @@
       "team": "ATL",
       "position": "RB",
       "adp": 80.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/n1xhex1ytisxcbcggqu7",
       "bye_week": 11
     },
     {
@@ -706,6 +793,7 @@
       "team": "BUF",
       "position": "TE",
       "adp": 81.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zwkeaiecuyafkidllebz",
       "bye_week": 7
     },
     {
@@ -714,6 +802,7 @@
       "team": "ARI",
       "position": "WR",
       "adp": 82.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hwpoo1icpnh8emjvqaii",
       "bye_week": 14
     },
     {
@@ -722,6 +811,7 @@
       "team": "LAC",
       "position": "TE",
       "adp": 83.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/r8b4oghjwhw8x9nv1wbs",
       "bye_week": 7
     },
     {
@@ -730,6 +820,7 @@
       "team": "NYG",
       "position": "QB",
       "adp": 83.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/n6uymxssgiicjmxkzxoc",
       "bye_week": 8
     },
     {
@@ -738,6 +829,7 @@
       "team": "MIN",
       "position": "RB",
       "adp": 84.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bktkfvgfwujkdbzkcfim",
       "bye_week": 6
     },
     {
@@ -746,6 +838,7 @@
       "team": "TB",
       "position": "RB",
       "adp": 86.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/f74x1ywy7oo5kq81vblh",
       "bye_week": 10
     },
     {
@@ -754,6 +847,7 @@
       "team": "LAC",
       "position": "QB",
       "adp": 86.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/s1oelyaroiaalgilbeqk",
       "bye_week": 7
     },
     {
@@ -762,6 +856,7 @@
       "team": "TB",
       "position": "WR",
       "adp": 88.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ilkheljdx4hbjpisulke",
       "bye_week": 10
     },
     {
@@ -770,6 +865,7 @@
       "team": "ARI",
       "position": "RB",
       "adp": 89.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/buwaomfsz4y6orgb0cyg",
       "bye_week": 14
     },
     {
@@ -778,6 +874,7 @@
       "team": "CHI",
       "position": "QB",
       "adp": 91.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/h4qs11kutwiw7whekmyt",
       "bye_week": 10
     },
     {
@@ -786,6 +883,7 @@
       "team": "NE",
       "position": "TE",
       "adp": 91.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/l0fsrutz9fwbohx10lcf",
       "bye_week": 11
     },
     {
@@ -794,6 +892,7 @@
       "team": "ARI",
       "position": "RB",
       "adp": 92.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/g5yjordcmt76j0saytzb",
       "bye_week": 14
     },
     {
@@ -802,6 +901,7 @@
       "team": "IND",
       "position": "WR",
       "adp": 93.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zeghrjc8rir3r3zi6det",
       "bye_week": 13
     },
     {
@@ -810,6 +910,7 @@
       "team": "PHI",
       "position": "TE",
       "adp": 93.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/a6ljhwvkehvyiufdx3d1",
       "bye_week": 10
     },
     {
@@ -818,6 +919,7 @@
       "team": "JAX",
       "position": "QB",
       "adp": 94.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/d75srntioly7fq0z8vip",
       "bye_week": 7
     },
     {
@@ -826,6 +928,7 @@
       "team": "WAS",
       "position": "RB",
       "adp": 94.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tklzj7zzve1t4z2hhr1g",
       "bye_week": 7
     },
     {
@@ -834,6 +937,7 @@
       "team": "BAL",
       "position": "TE",
       "adp": 95.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wzx3p0hzm3qyqsrfqznb",
       "bye_week": 13
     },
     {
@@ -842,6 +946,7 @@
       "team": "DAL",
       "position": "TE",
       "adp": 96.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ebdz1yf8ky2mscdvyv1v",
       "bye_week": 14
     },
     {
@@ -850,6 +955,7 @@
       "team": "HOU",
       "position": "TE",
       "adp": 97.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xbl9mhuamzv5udb4hyzj",
       "bye_week": 8
     },
     {
@@ -858,6 +964,7 @@
       "team": "DAL",
       "position": "QB",
       "adp": 97.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/blixemm3s9sa4gmqk5yn",
       "bye_week": 14
     },
     {
@@ -866,6 +973,7 @@
       "team": "MIN",
       "position": "WR",
       "adp": 98.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/s2ey8g5memyqvxc52uzy",
       "bye_week": 6
     },
     {
@@ -874,6 +982,7 @@
       "team": "SF",
       "position": "TE",
       "adp": 99.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ztz3xqjaqgok9m4nylgs",
       "bye_week": 8
     },
     {
@@ -882,6 +991,7 @@
       "team": "MIN",
       "position": "RB",
       "adp": 100.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ixykwytfrfz1cdxlhj5w",
       "bye_week": 6
     },
     {
@@ -890,6 +1000,7 @@
       "team": "SEA",
       "position": "RB",
       "adp": 100.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jqbzg5e8pdltbnb7hc8p",
       "bye_week": 11
     },
     {
@@ -898,6 +1009,7 @@
       "team": "KC",
       "position": "QB",
       "adp": 102.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/iireqbn32cpg9fn4sfy7",
       "bye_week": 5
     },
     {
@@ -906,6 +1018,7 @@
       "team": "NO",
       "position": "TE",
       "adp": 102.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wuyyzdqkh5fve8t7kfuv",
       "bye_week": 8
     },
     {
@@ -914,6 +1027,7 @@
       "team": "JAX",
       "position": "TE",
       "adp": 103.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yabpcvadjlrkxzducv7k",
       "bye_week": 7
     },
     {
@@ -922,6 +1036,7 @@
       "team": "HOU",
       "position": "RB",
       "adp": 104.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pwvxisrnjitkkghkfcn3",
       "bye_week": 8
     },
     {
@@ -930,6 +1045,7 @@
       "team": "TEN",
       "position": "WR",
       "adp": 105.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yzcvyhmilvxedfjfjglc",
       "bye_week": 9
     },
     {
@@ -938,6 +1054,7 @@
       "team": "KC",
       "position": "TE",
       "adp": 106.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ebc5j60djpinc9elvlc5",
       "bye_week": 5
     },
     {
@@ -946,6 +1063,7 @@
       "team": "SF",
       "position": "QB",
       "adp": 106.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xykdxnvxpf9pobxvkjfj",
       "bye_week": 8
     },
     {
@@ -954,6 +1072,7 @@
       "team": "PIT",
       "position": "WR",
       "adp": 107.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/z78xpye9hing1e7wke8b",
       "bye_week": 9
     },
     {
@@ -962,6 +1081,7 @@
       "team": "NYJ",
       "position": "TE",
       "adp": 108.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mnswulwto4yqkgmugoiq",
       "bye_week": 13
     },
     {
@@ -970,6 +1090,7 @@
       "team": "DAL",
       "position": "K",
       "adp": 109.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ynyyootbeabm5sx4ejgt",
       "bye_week": 14
     },
     {
@@ -978,6 +1099,7 @@
       "team": "NYG",
       "position": "RB",
       "adp": 109.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/b9nje50lohbprf06xoom",
       "bye_week": 8
     },
     {
@@ -994,6 +1116,7 @@
       "team": "LAC",
       "position": "WR",
       "adp": 110.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bpzdpin1xp1kjxmbkq6d",
       "bye_week": 7
     },
     {
@@ -1002,6 +1125,7 @@
       "team": "IND",
       "position": "WR",
       "adp": 111.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gqozitn9vxnp8acz6wwg",
       "bye_week": 13
     },
     {
@@ -1010,6 +1134,7 @@
       "team": "KC",
       "position": "RB",
       "adp": 112.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/avdz4njz1slqn7ktqcuq",
       "bye_week": 5
     },
     {
@@ -1018,6 +1143,7 @@
       "team": "NYG",
       "position": "TE",
       "adp": 113.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ssrjtyvnyfflobmi0mb8",
       "bye_week": 8
     },
     {
@@ -1026,6 +1152,7 @@
       "team": "ARI",
       "position": "RB",
       "adp": 114.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/x2bxb0fd54ffwwdu5scz",
       "bye_week": 14
     },
     {
@@ -1042,6 +1169,7 @@
       "team": "WAS",
       "position": "WR",
       "adp": 115.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cemcexmscsarpvwhafln",
       "bye_week": 7
     },
     {
@@ -1050,6 +1178,7 @@
       "team": "NE",
       "position": "WR",
       "adp": 116.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ov2llp1bfetznmngqybi",
       "bye_week": 11
     },
     {
@@ -1058,6 +1187,7 @@
       "team": "DEN",
       "position": "RB",
       "adp": 117.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qbauucaxakkhtxihuvmr",
       "bye_week": 10
     },
     {
@@ -1066,6 +1196,7 @@
       "team": "LAR",
       "position": "QB",
       "adp": 117.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/svxl2pk2cuqf26zrhii4",
       "bye_week": 11
     },
     {
@@ -1082,6 +1213,7 @@
       "team": "GB",
       "position": "WR",
       "adp": 118.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/blh2tfg9qjthqo2g6ot4",
       "bye_week": 11
     },
     {
@@ -1090,6 +1222,7 @@
       "team": "NO",
       "position": "RB",
       "adp": 119.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uay6uo9lonegelngihki",
       "bye_week": 8
     },
     {
@@ -1098,6 +1231,7 @@
       "team": "BUF",
       "position": "WR",
       "adp": 120.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/otadttbhvkmavhsonnqm",
       "bye_week": 7
     },
     {
@@ -1106,6 +1240,7 @@
       "team": "DEN",
       "position": "QB",
       "adp": 121.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/igirshmrr6lqtxcpxsea",
       "bye_week": 10
     },
     {
@@ -1114,6 +1249,7 @@
       "team": "KC",
       "position": "WR",
       "adp": 121.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ue6fp8xwnyo7ftvabbb8",
       "bye_week": 5
     },
     {
@@ -1122,6 +1258,7 @@
       "team": "TEN",
       "position": "RB",
       "adp": 122.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fc7vhbtw80einad9hsfu",
       "bye_week": 9
     },
     {
@@ -1130,6 +1267,7 @@
       "team": "MIN",
       "position": "WR",
       "adp": 123.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cdx9mq3iglzog9mkqvdr",
       "bye_week": 6
     },
     {
@@ -1138,6 +1276,7 @@
       "team": "WAS",
       "position": "RB",
       "adp": 124.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sxugbms8ketvgmilnlu3",
       "bye_week": 7
     },
     {
@@ -1154,6 +1293,7 @@
       "team": "SEA",
       "position": "TE",
       "adp": 125.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ul77k5rqbqzd5zzqsaea",
       "bye_week": 11
     },
     {
@@ -1162,6 +1302,7 @@
       "team": "HOU",
       "position": "WR",
       "adp": 126.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wrdw1u4onrmfuuluuipk",
       "bye_week": 8
     },
     {
@@ -1170,6 +1311,7 @@
       "team": "GB",
       "position": "QB",
       "adp": 126.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uneiwen9drvci9ahuebp",
       "bye_week": 11
     },
     {
@@ -1178,6 +1320,7 @@
       "team": "MIN",
       "position": "TE",
       "adp": 127.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rs8o65x0u0n9xzde0fd6",
       "bye_week": 6
     },
     {
@@ -1194,6 +1337,7 @@
       "team": "CLE",
       "position": "RB",
       "adp": 128.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/den1hzzomdxfcsgk88o5",
       "bye_week": 11
     },
     {
@@ -1202,6 +1346,7 @@
       "team": "LAC",
       "position": "K",
       "adp": 129.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vd4nd1hoax82j7fi2bx0",
       "bye_week": 7
     },
     {
@@ -1210,6 +1355,7 @@
       "team": "CLE",
       "position": "WR",
       "adp": 129.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ztdyzyngqr1pexyghlt3",
       "bye_week": 11
     },
     {
@@ -1218,6 +1364,7 @@
       "team": "LAC",
       "position": "TE",
       "adp": 130.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gdwtgcfz3mxj6codxdpn",
       "bye_week": 7
     },
     {
@@ -1226,6 +1373,7 @@
       "team": "CAR",
       "position": "WR",
       "adp": 131.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tbo339znpzrfki8hri95",
       "bye_week": 5
     },
     {
@@ -1234,6 +1382,7 @@
       "team": "SEA",
       "position": "K",
       "adp": 131.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rnw5znsm0hrekqvztiog",
       "bye_week": 11
     },
     {
@@ -1242,6 +1391,7 @@
       "team": "DET",
       "position": "QB",
       "adp": 132.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yggfwr4ak4po9byj0qor",
       "bye_week": 6
     },
     {
@@ -1250,6 +1400,7 @@
       "team": "NYJ",
       "position": "RB",
       "adp": 134.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pdaa8u0x2qepyklabdr3",
       "bye_week": 13
     },
     {
@@ -1258,6 +1409,7 @@
       "team": "LAR",
       "position": "TE",
       "adp": 135.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/b1qzivnz0zqa8cjgah8r",
       "bye_week": 11
     },
     {
@@ -1266,6 +1418,7 @@
       "team": "WAS",
       "position": "TE",
       "adp": 136.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/omm5z5iq6dlmidqz1sgz",
       "bye_week": 7
     },
     {
@@ -1274,6 +1427,7 @@
       "team": "NYJ",
       "position": "TE",
       "adp": 137.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bk7wjtjt7dpc5qsuil4z",
       "bye_week": 13
     },
     {
@@ -1282,6 +1436,7 @@
       "team": "SF",
       "position": "WR",
       "adp": 138.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ntgyhqg6hq7fanhhsqiw",
       "bye_week": 8
     },
     {
@@ -1306,6 +1461,7 @@
       "team": "PHI",
       "position": "TE",
       "adp": 139.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/c9rjqit3q5tm9hzkm5ay",
       "bye_week": 10
     },
     {
@@ -1314,6 +1470,7 @@
       "team": "MIA",
       "position": "QB",
       "adp": 139.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hsnetccy7bquili3gcqq",
       "bye_week": 6
     },
     {
@@ -1322,6 +1479,7 @@
       "team": "LAC",
       "position": "RB",
       "adp": 140.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/huwihtava8gkxzb4cxb8",
       "bye_week": 7
     },
     {
@@ -1330,6 +1488,7 @@
       "team": "LAR",
       "position": "TE",
       "adp": 141.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/usa23ax8dratptvikr9a",
       "bye_week": 11
     },
     {
@@ -1338,6 +1497,7 @@
       "team": "JAX",
       "position": "RB",
       "adp": 142.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/z5nbh1nza9je683o17h1",
       "bye_week": 7
     },
     {
@@ -1346,6 +1506,7 @@
       "team": "TB",
       "position": "QB",
       "adp": 143.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/i2uufyghiphx4oihgucm",
       "bye_week": 10
     },
     {
@@ -1354,6 +1515,7 @@
       "team": "CAR",
       "position": "RB",
       "adp": 143.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jah18lvdpgwurx7dgys4",
       "bye_week": 5
     },
     {
@@ -1362,6 +1524,7 @@
       "team": "NYG",
       "position": "TE",
       "adp": 144.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/naoiheinxogchairenzf",
       "bye_week": 8
     },
     {
@@ -1377,7 +1540,8 @@
       "player": "Tyreek Hill",
       "team": "",
       "position": "WR",
-      "adp": 145.9
+      "adp": 145.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gg73gnfivrn80oyqwazl"
     },
     {
       "sleeper_id": "9225",
@@ -1385,6 +1549,7 @@
       "team": "PHI",
       "position": "RB",
       "adp": 146.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nin8aexyipca7g7u7f4a",
       "bye_week": 10
     },
     {
@@ -1393,6 +1558,7 @@
       "team": "TB",
       "position": "TE",
       "adp": 147.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dlgxvfpnufpnxkvu1ynb",
       "bye_week": 10
     },
     {
@@ -1401,6 +1567,7 @@
       "team": "NO",
       "position": "QB",
       "adp": 147.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wsrkib8qgwtb2t2ugaru",
       "bye_week": 8
     },
     {
@@ -1409,6 +1576,7 @@
       "team": "LAC",
       "position": "RB",
       "adp": 148.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/klpn2btfhgfv5a8dp3jj",
       "bye_week": 7
     },
     {
@@ -1417,6 +1585,7 @@
       "team": "BAL",
       "position": "K",
       "adp": 150.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vp3vows5aq3sgnadgtjf",
       "bye_week": 13
     },
     {
@@ -1425,6 +1594,7 @@
       "team": "NYJ",
       "position": "WR",
       "adp": 150.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lmua2lbg0m77ibvydvaq",
       "bye_week": 13
     },
     {
@@ -1433,6 +1603,7 @@
       "team": "PIT",
       "position": "K",
       "adp": 151.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rxbnhvnfjmheuryvdmuf",
       "bye_week": 9
     },
     {
@@ -1441,6 +1612,7 @@
       "team": "DET",
       "position": "RB",
       "adp": 151.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tqshteijt4xhgk2ei9sx",
       "bye_week": 6
     },
     {
@@ -1449,6 +1621,7 @@
       "team": "TEN",
       "position": "TE",
       "adp": 152.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lcyqbbnrzgtbnirz8knj",
       "bye_week": 9
     },
     {
@@ -1457,6 +1630,7 @@
       "team": "CLE",
       "position": "WR",
       "adp": 153.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ybkny6eh5eegq3bqmony",
       "bye_week": 11
     },
     {
@@ -1465,6 +1639,7 @@
       "team": "JAX",
       "position": "K",
       "adp": 153.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pfdod5cds77uznkotipk",
       "bye_week": 7
     },
     {
@@ -1473,6 +1648,7 @@
       "team": "LAR",
       "position": "K",
       "adp": 154.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/llxz144jnuzivgcvbxrl",
       "bye_week": 11
     },
     {
@@ -1489,6 +1665,7 @@
       "team": "MIN",
       "position": "QB",
       "adp": 154.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/flezsremqighwuiyu77f",
       "bye_week": 6
     },
     {
@@ -1497,6 +1674,7 @@
       "team": "TB",
       "position": "RB",
       "adp": 154.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zyzp7e2gos47ebzur9gi",
       "bye_week": 10
     },
     {
@@ -1505,6 +1683,7 @@
       "team": "KC",
       "position": "K",
       "adp": 155.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ove4pmnrtqtuyta6rrlc",
       "bye_week": 5
     },
     {
@@ -1513,6 +1692,7 @@
       "team": "WAS",
       "position": "WR",
       "adp": 155.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/noywrsgaqoqlv64c12yw",
       "bye_week": 7
     },
     {
@@ -1521,6 +1701,7 @@
       "team": "HOU",
       "position": "K",
       "adp": 156.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nbrs7doetqydf2rzhjjl",
       "bye_week": 8
     },
     {
@@ -1529,6 +1710,7 @@
       "team": "WAS",
       "position": "RB",
       "adp": 156.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vbhwkqty94alwjyz8cin",
       "bye_week": 7
     },
     {
@@ -1537,6 +1719,7 @@
       "team": "NE",
       "position": "K",
       "adp": 157.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jgxnjxhysqwqk4fgf1ke",
       "bye_week": 11
     },
     {
@@ -1545,6 +1728,7 @@
       "team": "JAX",
       "position": "WR",
       "adp": 157.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/apfzii6u8pwj9ntvyfkk",
       "bye_week": 7
     },
     {
@@ -1561,6 +1745,7 @@
       "team": "GB",
       "position": "WR",
       "adp": 158.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gkbhlytvkltv5whjo3ru",
       "bye_week": 11
     },
     {
@@ -1569,6 +1754,7 @@
       "team": "CLE",
       "position": "WR",
       "adp": 159.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/szca1v9butuqkjs7ekpm",
       "bye_week": 11
     },
     {
@@ -1577,6 +1763,7 @@
       "team": "SEA",
       "position": "RB",
       "adp": 160.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xni9gnwmhdex7h1ey3jq",
       "bye_week": 11
     },
     {
@@ -1585,6 +1772,7 @@
       "team": "SEA",
       "position": "WR",
       "adp": 161.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ynsy489xqmiwt5q9whty",
       "bye_week": 11
     },
     {
@@ -1593,6 +1781,7 @@
       "team": "NYJ",
       "position": "WR",
       "adp": 162.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hwwacoa3pqapd7pgahfx",
       "bye_week": 13
     },
     {
@@ -1600,7 +1789,8 @@
       "player": "Joe Mixon",
       "team": "",
       "position": "RB",
-      "adp": 163.9
+      "adp": 163.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gwyhozfhjgedwdmmjjcf"
     },
     {
       "sleeper_id": "9504",
@@ -1608,6 +1798,7 @@
       "team": "HOU",
       "position": "WR",
       "adp": 164.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mg4icjqhwhnc5uobmau5",
       "bye_week": 8
     },
     {
@@ -1616,6 +1807,7 @@
       "team": "TB",
       "position": "WR",
       "adp": 165.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/x2jipyhqclsgx4cmsqct",
       "bye_week": 10
     },
     {
@@ -1624,6 +1816,7 @@
       "team": "HOU",
       "position": "QB",
       "adp": 166.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tt4zrtxlhifaljhj0rn7",
       "bye_week": 8
     },
     {
@@ -1632,6 +1825,7 @@
       "team": "TEN",
       "position": "RB",
       "adp": 166.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ztwqbc0s69cbz5ow0r0q",
       "bye_week": 9
     },
     {
@@ -1640,6 +1834,7 @@
       "team": "BUF",
       "position": "RB",
       "adp": 167.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pm9llppbueodtjjj9u8l",
       "bye_week": 7
     },
     {
@@ -1648,6 +1843,7 @@
       "team": "BAL",
       "position": "WR",
       "adp": 168.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gjezd2a8imfrxyv16wuj",
       "bye_week": 13
     },
     {
@@ -1656,6 +1852,7 @@
       "team": "SEA",
       "position": "QB",
       "adp": 168.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/s5t8m6bhedjwwtfw3ild",
       "bye_week": 11
     },
     {
@@ -1664,6 +1861,7 @@
       "team": "NO",
       "position": "RB",
       "adp": 168.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/e0pzghslevb27ssozx4s",
       "bye_week": 8
     },
     {
@@ -1672,6 +1870,7 @@
       "team": "NYG",
       "position": "RB",
       "adp": 169.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/grfxgbvqnzz40r7rdtvk",
       "bye_week": 8
     },
     {
@@ -1688,6 +1887,7 @@
       "team": "DEN",
       "position": "WR",
       "adp": 170.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/belpdlyoda8cmzbvjkqh",
       "bye_week": 10
     },
     {
@@ -1696,6 +1896,7 @@
       "team": "DEN",
       "position": "WR",
       "adp": 171.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ljo1rgbaewlzsf7tvavm",
       "bye_week": 10
     },
     {
@@ -1704,6 +1905,7 @@
       "team": "PIT",
       "position": "RB",
       "adp": 172.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sblojderaku4qta1lj2b",
       "bye_week": 9
     },
     {
@@ -1712,6 +1914,7 @@
       "team": "MIA",
       "position": "RB",
       "adp": 173.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/i3wlfgqsynl7qaa4tsqw",
       "bye_week": 6
     },
     {
@@ -1720,6 +1923,7 @@
       "team": "MIN",
       "position": "K",
       "adp": 174.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/r1g0mqxqc23tmqmgdbwm",
       "bye_week": 6
     },
     {
@@ -1728,6 +1932,7 @@
       "team": "TEN",
       "position": "WR",
       "adp": 174.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/njdduv9jx7c8vlrll8ex",
       "bye_week": 9
     },
     {
@@ -1736,6 +1941,7 @@
       "team": "MIN",
       "position": "RB",
       "adp": 175.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vmozbbdzgcaqq1yrixeb",
       "bye_week": 6
     },
     {
@@ -1744,6 +1950,7 @@
       "team": "DET",
       "position": "K",
       "adp": 175.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/heh3zqyv3tqapnpnzgoj",
       "bye_week": 6
     },
     {
@@ -1752,6 +1959,7 @@
       "team": "SF",
       "position": "WR",
       "adp": 176.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/avzzxycxyculxxqce5k7",
       "bye_week": 8
     },
     {
@@ -1760,6 +1968,7 @@
       "team": "DEN",
       "position": "K",
       "adp": 177.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lcfurzhyjudmrwjxkgfs",
       "bye_week": 10
     },
     {
@@ -1768,6 +1977,7 @@
       "team": "SF",
       "position": "TE",
       "adp": 177.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uztcdowl4wig2uhy1qxh",
       "bye_week": 8
     },
     {
@@ -1784,6 +1994,7 @@
       "team": "SF",
       "position": "K",
       "adp": 178.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/l4rrfcuczjau7q02h2iz",
       "bye_week": 8
     },
     {
@@ -1792,6 +2003,7 @@
       "team": "LAC",
       "position": "WR",
       "adp": 178.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vfjekjvrfpbmskmuwoz9",
       "bye_week": 7
     },
     {
@@ -1800,6 +2012,7 @@
       "team": "NO",
       "position": "RB",
       "adp": 179.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jz3mpvifmldus3ipdvu1",
       "bye_week": 8
     },
     {
@@ -1808,6 +2021,7 @@
       "team": "TEN",
       "position": "WR",
       "adp": 180.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/l96rlegwqz7qfakbdtlp",
       "bye_week": 9
     },
     {
@@ -1816,6 +2030,7 @@
       "team": "KC",
       "position": "RB",
       "adp": 182.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/u3t4csj7hhcgymvb8ldf",
       "bye_week": 5
     },
     {
@@ -1832,6 +2047,7 @@
       "team": "DET",
       "position": "WR",
       "adp": 183.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wa4sruqazyqobmepi6vi",
       "bye_week": 6
     },
     {
@@ -1840,6 +2056,7 @@
       "team": "TEN",
       "position": "WR",
       "adp": 184.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/aekfvt5nyl69emvxr2yj",
       "bye_week": 9
     },
     {
@@ -1848,6 +2065,7 @@
       "team": "ATL",
       "position": "WR",
       "adp": 185.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qwbo8lgyd85dlwnbznsc",
       "bye_week": 11
     },
     {
@@ -1856,6 +2074,7 @@
       "team": "HOU",
       "position": "WR",
       "adp": 186.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ykyiamjbjkjklnnttisw",
       "bye_week": 8
     },
     {
@@ -1864,6 +2083,7 @@
       "team": "LV",
       "position": "WR",
       "adp": 187.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fsx05ats4azj8mus03d4",
       "bye_week": 13
     },
     {
@@ -1880,6 +2100,7 @@
       "team": "DAL",
       "position": "RB",
       "adp": 188.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jhbmit7yp8dlhepncsvp",
       "bye_week": 14
     },
     {
@@ -1896,6 +2117,7 @@
       "team": "NO",
       "position": "RB",
       "adp": 189.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lcoend1mysjfhl8f4rrt",
       "bye_week": 8
     },
     {
@@ -1904,6 +2126,7 @@
       "team": "HOU",
       "position": "WR",
       "adp": 190.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dajbyvtsggwqinlijxnf",
       "bye_week": 8
     },
     {
@@ -1912,6 +2135,7 @@
       "team": "CHI",
       "position": "K",
       "adp": 190.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/w5mfvjfuflbitwuji1yx",
       "bye_week": 10
     },
     {
@@ -1920,6 +2144,7 @@
       "team": "TEN",
       "position": "QB",
       "adp": 191.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/viadutkbvligsopnd2qn",
       "bye_week": 9
     },
     {
@@ -1928,6 +2153,7 @@
       "team": "LAR",
       "position": "RB",
       "adp": 191.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/k4mncnazqbnewpg5uwdm",
       "bye_week": 11
     },
     {
@@ -1936,6 +2162,7 @@
       "team": "DEN",
       "position": "WR",
       "adp": 192.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zbdjtph5xplbf4yocz0l",
       "bye_week": 10
     },
     {
@@ -1952,6 +2179,7 @@
       "team": "PIT",
       "position": "WR",
       "adp": 193.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rsbtypbsvxux94vokb5q",
       "bye_week": 9
     },
     {
@@ -1960,6 +2188,7 @@
       "team": "NYG",
       "position": "WR",
       "adp": 194.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/eaejonwaflt9drrs9ika",
       "bye_week": 8
     },
     {
@@ -1968,6 +2197,7 @@
       "team": "NE",
       "position": "WR",
       "adp": 195.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bu31c2ino065kazsn541",
       "bye_week": 11
     },
     {
@@ -1976,6 +2206,7 @@
       "team": "TB",
       "position": "WR",
       "adp": 196.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mmf6qmo6a2evw4feupcm",
       "bye_week": 10
     },
     {
@@ -1984,6 +2215,7 @@
       "team": "IND",
       "position": "QB",
       "adp": 197.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nhuiypfjzpkisxllinyv",
       "bye_week": 13
     },
     {
@@ -1992,6 +2224,7 @@
       "team": "LV",
       "position": "WR",
       "adp": 197.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sdsx2pttiiwbfpyuuwiz",
       "bye_week": 13
     },
     {
@@ -2000,6 +2233,7 @@
       "team": "CAR",
       "position": "QB",
       "adp": 197.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qy1lfhlzhiacsyzzm1j7",
       "bye_week": 5
     },
     {
@@ -2008,6 +2242,7 @@
       "team": "DAL",
       "position": "WR",
       "adp": 198.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tqwq3cgpqu7j9hzoyicx",
       "bye_week": 14
     },
     {
@@ -2016,6 +2251,7 @@
       "team": "TB",
       "position": "K",
       "adp": 199.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vwefhtevyn2qxauchan5",
       "bye_week": 10
     },
     {
@@ -2024,6 +2260,7 @@
       "team": "SEA",
       "position": "WR",
       "adp": 199.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vpgs86vlcp3gejw6tget",
       "bye_week": 11
     },
     {
@@ -2048,6 +2285,7 @@
       "team": "BAL",
       "position": "WR",
       "adp": 200.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rbtitvma6hjyotcajqtv",
       "bye_week": 13
     },
     {
@@ -2056,6 +2294,7 @@
       "team": "MIA",
       "position": "WR",
       "adp": 202.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zgbku18zemqyryvyahd4",
       "bye_week": 6
     },
     {
@@ -2064,6 +2303,7 @@
       "team": "BAL",
       "position": "WR",
       "adp": 203.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gtktmsfcxc1eijwpwzyq",
       "bye_week": 13
     },
     {
@@ -2072,6 +2312,7 @@
       "team": "ARI",
       "position": "QB",
       "adp": 203.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rdxowm5dvpbb8p3aazbc",
       "bye_week": 14
     },
     {
@@ -2088,6 +2329,7 @@
       "team": "IND",
       "position": "WR",
       "adp": 204.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ri267r6lzfwarh89hsn6",
       "bye_week": 13
     },
     {
@@ -2096,6 +2338,7 @@
       "team": "BUF",
       "position": "WR",
       "adp": 205.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/f3cx4kmpdmqftr79ueiv",
       "bye_week": 7
     },
     {
@@ -2104,6 +2347,7 @@
       "team": "SEA",
       "position": "WR",
       "adp": 206.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lpaxi9rsedlg9sdr5quw",
       "bye_week": 11
     },
     {
@@ -2112,6 +2356,7 @@
       "team": "CIN",
       "position": "K",
       "adp": 207.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cpvujaqwscupzvbbx7oe",
       "bye_week": 6
     },
     {
@@ -2120,6 +2365,7 @@
       "team": "LV",
       "position": "WR",
       "adp": 207.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/feplgtl0x1svqen9szwv",
       "bye_week": 13
     },
     {
@@ -2136,6 +2382,7 @@
       "team": "NO",
       "position": "WR",
       "adp": 208.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sxlrltvxbb2utwgjgdbt",
       "bye_week": 8
     },
     {
@@ -2144,6 +2391,7 @@
       "team": "SF",
       "position": "WR",
       "adp": 209.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bugikrmfz5k4jvyaogza",
       "bye_week": 8
     },
     {
@@ -2152,6 +2400,7 @@
       "team": "NYG",
       "position": "WR",
       "adp": 210.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tpls1aptxx9x8xaqvjtj",
       "bye_week": 8
     },
     {
@@ -2168,6 +2417,7 @@
       "team": "DAL",
       "position": "TE",
       "adp": 212.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/raym87favdz33uhkgvv2",
       "bye_week": 14
     },
     {
@@ -2176,6 +2426,7 @@
       "team": "SF",
       "position": "WR",
       "adp": 213.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/eu1nxtlztiwr5ko48iwz",
       "bye_week": 8
     },
     {
@@ -2208,6 +2459,7 @@
       "team": "MIN",
       "position": "QB",
       "adp": 227.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/omybnfokapjw6jwb5dd3",
       "bye_week": 6
     },
     {
@@ -2216,6 +2468,7 @@
       "team": "CLE",
       "position": "QB",
       "adp": 227.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/joe08hz6to2madpko8zl",
       "bye_week": 11
     },
     {
@@ -2232,6 +2485,7 @@
       "team": "ATL",
       "position": "QB",
       "adp": 230.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/azvyjzp2sa8cnljbp3i7",
       "bye_week": 11
     },
     {
@@ -2240,6 +2494,7 @@
       "team": "PHI",
       "position": "K",
       "adp": 231.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/v35j7b3tofdn0kfskdhj",
       "bye_week": 10
     },
     {
@@ -2264,6 +2519,7 @@
       "team": "ATL",
       "position": "QB",
       "adp": 238.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ktqj3s5vofexl2dwrrp4",
       "bye_week": 11
     },
     {
@@ -2272,15 +2528,8 @@
       "team": "LV",
       "position": "K",
       "adp": 239.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qeca8ofwxhytcioy29wc",
       "bye_week": 13
-    },
-    {
-      "sleeper_id": "NO",
-      "player": "New Orleans Saints",
-      "team": "NO",
-      "position": "DEF",
-      "adp": 240.2,
-      "bye_week": 8
     },
     {
       "sleeper_id": "7922",
@@ -2288,6 +2537,7 @@
       "team": "MIA",
       "position": "K",
       "adp": 241.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gzvyb1u3dueikfy3otlq",
       "bye_week": 6
     },
     {
@@ -2299,60 +2549,13 @@
       "bye_week": 8
     },
     {
-      "sleeper_id": "13275",
-      "player": "Ty Simpson",
-      "team": "LAR",
-      "position": "QB",
-      "adp": 243.2,
-      "bye_week": 11
-    },
-    {
       "sleeper_id": "650",
       "player": "Nick Folk",
       "team": "ATL",
       "position": "K",
       "adp": 249.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qcfiv2cc7ky37yq9iklp",
       "bye_week": 11
-    },
-    {
-      "sleeper_id": "CLE",
-      "player": "Cleveland Browns",
-      "team": "CLE",
-      "position": "DEF",
-      "adp": 260.0,
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "TEN",
-      "player": "Tennessee Titans",
-      "team": "TEN",
-      "position": "DEF",
-      "adp": 266.0,
-      "bye_week": 9
-    },
-    {
-      "sleeper_id": "ARI",
-      "player": "Arizona Cardinals",
-      "team": "ARI",
-      "position": "DEF",
-      "adp": 269.0,
-      "bye_week": 14
-    },
-    {
-      "sleeper_id": "LV",
-      "player": "Las Vegas Raiders",
-      "team": "LV",
-      "position": "DEF",
-      "adp": 275.0,
-      "bye_week": 13
-    },
-    {
-      "sleeper_id": "NYJ",
-      "player": "New York Jets",
-      "team": "NYJ",
-      "position": "DEF",
-      "adp": 278.0,
-      "bye_week": 13
     },
     {
       "sleeper_id": "7042",
@@ -2360,125 +2563,16 @@
       "team": "BUF",
       "position": "K",
       "adp": 288.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zqfia1sgrigi3son5fkw",
       "bye_week": 7
-    },
-    {
-      "sleeper_id": "MIA",
-      "player": "Miami Dolphins",
-      "team": "MIA",
-      "position": "DEF",
-      "adp": 299.0,
-      "bye_week": 6
     },
     {
       "sleeper_id": "10937",
       "player": "Jake Moody",
       "team": "",
       "position": "K",
-      "adp": 309.0
-    },
-    {
-      "sleeper_id": "4666",
-      "player": "Younghoe Koo",
-      "team": "",
-      "position": "K",
-      "adp": 314.0
-    },
-    {
-      "sleeper_id": "11261",
-      "player": "Andre Szmyt",
-      "team": "CLE",
-      "position": "K",
-      "adp": 319.0,
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "7933",
-      "player": "Alex Kessman",
-      "team": "CAR",
-      "position": "K",
-      "adp": 322.0,
-      "bye_week": 5
-    },
-    {
-      "sleeper_id": "10955",
-      "player": "Chad Ryland",
-      "team": "ARI",
-      "position": "K",
-      "adp": 324.0,
-      "bye_week": 14
-    },
-    {
-      "sleeper_id": "6528",
-      "player": "Joey Slye",
-      "team": "TEN",
-      "position": "K",
-      "adp": 325.0,
-      "bye_week": 9
-    },
-    {
-      "sleeper_id": "13066",
-      "player": "Ben Sauls",
-      "team": "NYG",
-      "position": "K",
-      "adp": 326.2,
-      "bye_week": 8
-    },
-    {
-      "sleeper_id": "12961",
-      "player": "Ryan Fitzgerald",
-      "team": "CAR",
-      "position": "K",
-      "adp": 327.0,
-      "bye_week": 5
-    },
-    {
-      "sleeper_id": "13545",
-      "player": "Trey Smack",
-      "team": "GB",
-      "position": "K",
-      "adp": 330.0,
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "13833",
-      "player": "Dominic Zvada",
-      "team": "NYG",
-      "position": "K",
-      "adp": 330.4,
-      "bye_week": 8
-    },
-    {
-      "sleeper_id": "8258",
-      "player": "Cade York",
-      "team": "NYJ",
-      "position": "K",
-      "adp": 350.0,
-      "bye_week": 13
-    },
-    {
-      "sleeper_id": "12185",
-      "player": "Spencer Shrader",
-      "team": "IND",
-      "position": "K",
-      "adp": 355.0,
-      "bye_week": 13
-    },
-    {
-      "sleeper_id": "13353",
-      "player": "Chris Brazzell",
-      "team": "CAR",
-      "position": "WR",
-      "adp": 400.0,
-      "bye_week": 5
-    },
-    {
-      "sleeper_id": "11638",
-      "player": "Ricky Pearsall",
-      "team": "SF",
-      "position": "WR",
-      "adp": 400.0,
-      "bye_week": 8
+      "adp": 309.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wkqqi3zfucoti8g5ncob"
     }
   ]
 }

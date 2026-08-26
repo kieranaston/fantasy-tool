@@ -31,6 +31,18 @@ FORMATS = {
 
 POSITIONS = SKILL_POSITIONS
 
+# Published draft/ADP board depth: top overall OR enough per position so
+# late DEF/K still appear for search and position tabs.
+ADP_BOARD_OVERALL = 280
+ADP_BOARD_POS_LIMITS = {
+    "QB": 32,
+    "RB": 72,
+    "WR": 72,
+    "TE": 28,
+    "DEF": 24,
+    "K": 24,
+}
+
 # News-pool depth by position ADP rank.
 POSITION_LIMITS = {
     "QB": 25,
@@ -148,28 +160,60 @@ def adp_board_for_format(
     *,
     format_key: str,
     byes: dict[str, int] | None = None,
+    headshots: dict[str, dict[str, Any]] | None = None,
 ) -> list[dict[str, Any]]:
-    """Slim public ADP rows for one scoring format."""
+    """Slim public ADP rows for one scoring format.
+
+    Logos are omitted — the client builds them from team abbrev. Headshots are
+    optional enrichment. Depth is capped so Pages stays small while still
+    covering a full draft + late DEF/K.
+    """
     bye_map = byes or {}
-    out: list[dict[str, Any]] = []
+    ranked: list[dict[str, Any]] = []
     for player in players:
         adp = (player.get("adp") or {}).get(format_key)
         if adp is None:
             continue
         team = player.get("team") or ""
+        sleeper_id = player["sleeper_id"]
+        media = (headshots or {}).get(str(sleeper_id)) or {}
         row: dict[str, Any] = {
-            "sleeper_id": player["sleeper_id"],
+            "sleeper_id": sleeper_id,
             "player": player["player"],
             "team": team,
             "position": player["position"],
             "adp": round(float(adp), 1),
         }
+        # Prefer pipeline headshot; fall back to anything already on the player.
+        headshot = media.get("headshot") or player.get("headshot")
+        if headshot:
+            row["headshot"] = headshot
         bye = bye_map.get(str(team).upper()) if team else None
         if bye is not None:
             row["bye_week"] = int(bye)
-        out.append(row)
-    out.sort(key=lambda row: (row["adp"], row["player"]))
-    return out
+        ranked.append(row)
+
+    ranked.sort(key=lambda row: (row["adp"], row["player"]))
+
+    kept: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    pos_counts = {pos: 0 for pos in ADP_BOARD_POS_LIMITS}
+    for index, row in enumerate(ranked):
+        sid = str(row["sleeper_id"])
+        if sid in seen:
+            continue
+        pos = row.get("position")
+        pos_limit = ADP_BOARD_POS_LIMITS.get(pos)
+        keep = index < ADP_BOARD_OVERALL or (
+            pos_limit is not None and pos_counts.get(pos, 0) < pos_limit
+        )
+        if not keep:
+            continue
+        seen.add(sid)
+        if pos in pos_counts:
+            pos_counts[pos] += 1
+        kept.append(row)
+    return kept
 
 
 def _default_adp_dir() -> Path:

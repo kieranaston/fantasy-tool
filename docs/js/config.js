@@ -33,12 +33,24 @@ function dataPath(relativePath) {
   return `${base}/${relativePath}`;
 }
 
-/** Fetch and parse a JSON file from docs/data/. */
-async function fetchJSON(relativePath, { cache = "no-store", timeoutMs = 12000 } = {}) {
+/**
+ * Fetch and parse a JSON file from docs/data/.
+ * Default cache lets the browser reuse ETag/Last-Modified (GitHub Pages).
+ * Pass cache: "no-store" only for live/volatile fetches.
+ */
+async function fetchJSON(
+  relativePath,
+  { cache = "default", timeoutMs = 12000, version = null } = {}
+) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), timeoutMs);
   try {
-    const response = await fetch(dataPath(relativePath), {
+    let url = dataPath(relativePath);
+    if (version != null && version !== "") {
+      const sep = url.includes("?") ? "&" : "?";
+      url = `${url}${sep}v=${encodeURIComponent(String(version))}`;
+    }
+    const response = await fetch(url, {
       cache,
       signal: ctrl.signal,
     });

@@ -1,5 +1,5 @@
-import { fetchJSON, formatUpdated, showError, revealPage } from "./config.js?v=3";
-import { escapeHtml, sleeperIdOf, playerCellHtml } from "./shared.js?v=3";
+import { fetchJSON, formatUpdated, showError, revealPage } from "./config.js?v=4";
+import { escapeHtml, sleeperIdOf, playerCellHtml } from "./shared.js?v=6";
 import {
   scoreCandidates,
   annotateScore,
@@ -19,7 +19,7 @@ import {
   FORMAT_LABELS,
   normalizePos,
 } from "./draft-scoring.js?v=112";
-import { createFavourites } from "./draft-liked.js?v=9";
+import { createFavourites } from "./draft-liked.js?v=10";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 1200;

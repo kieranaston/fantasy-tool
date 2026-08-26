@@ -1,5 +1,5 @@
-import { fetchJSON, formatTimestamp, formatUpdated, showError, revealPage } from "./config.js?v=3";
-import { escapeHtml, playerMediaHtml } from "./shared.js?v=3";
+import { fetchJSON, formatTimestamp, formatUpdated, showError, revealPage } from "./config.js?v=4";
+import { escapeHtml, playerMediaHtml } from "./shared.js?v=6";
 
 const BSKY_FEED_URL =
   "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed";
@@ -10,6 +10,37 @@ const DISPLAY_LIMIT = 40;
 /** RotoWire blurbs are almost always "Player Name: update …" */
 const ROTOWIRE_LINE =
   /^\s*([^:\n]{2,80}?)\s*:\s*(.+?)\s*$/m;
+
+/** Name → team/headshot from nflverse roster index (same source as matching). */
+let playerLookupByName = Object.create(null);
+
+async function loadPlayerLookup(version) {
+  playerLookupByName = Object.create(null);
+  try {
+    const data = await fetchJSON("player-lookup.json", { version });
+    playerLookupByName = data.players || {};
+  } catch {
+    /* Lookup is optional enrichment for live Bluesky cards */
+  }
+}
+
+function lookupMediaByName(name) {
+  const key = normName(name);
+  if (!key) return null;
+  if (playerLookupByName[key]) return playerLookupByName[key];
+  const stripped = key.replace(/\b(jr|sr|ii|iii|iv|v)\b/g, "").replace(/\s+/g, " ").trim();
+  if (stripped && playerLookupByName[stripped]) return playerLookupByName[stripped];
+  return null;
+}
+
+function hydratePlayerMedia(player) {
+  const out = { ...player };
+  const hit = lookupMediaByName(player.player_name);
+  if (!hit) return out;
+  if (!out.team && hit.team) out.team = hit.team;
+  if (!out.headshot && hit.headshot) out.headshot = hit.headshot;
+  return out;
+}
 
 /** Format like "Jul 27". */
 function formatUpdateDay(isoString) {
@@ -99,25 +130,26 @@ function latestPostHtml(player) {
 }
 
 function playerCard(player, maxAgeDays) {
-  const rawId = String(player.player_id || "");
+  const hydrated = hydratePlayerMedia(player);
+  const rawId = String(hydrated.player_id || "");
   const id = escapeHtml(rawId);
   const safeId = escapeHtml(rawId.replace(/[^a-zA-Z0-9_-]+/g, "-"));
-  const updateDay = formatUpdateDay(player.last_updated);
+  const updateDay = formatUpdateDay(hydrated.last_updated);
   const updateTag = updateDay
     ? `<span class="update-tag">${escapeHtml(updateDay)}</span>`
     : "";
-  const sourceCount = freshTimeline(player.timeline, maxAgeDays).length;
+  const sourceCount = freshTimeline(hydrated.timeline, maxAgeDays).length;
 
   return `
     <article class="injury-card" id="player-${safeId}" data-player-id="${id}">
       <div class="injury-card-main">
         <div class="injury-card-title">
           <div class="injury-card-identity">
-            ${playerMediaHtml(player)}
+            ${playerMediaHtml(hydrated)}
           </div>
           <span class="injury-card-meta">${updateTag}</span>
         </div>
-        ${latestPostHtml(player)}
+        ${latestPostHtml(hydrated)}
       </div>
       <button type="button" class="injury-card-header" aria-expanded="false">
         <span class="sources-toggle-label">Sources (${sourceCount})</span>
@@ -265,7 +297,7 @@ function mergeLivePosts(players, livePosts) {
       : null;
     if (!player) {
       if (!post.player_name) continue;
-      player = {
+      player = hydratePlayerMedia({
         player_id: `live:${normName(post.player_name).replace(/\s+/g, "-")}`,
         player_name: post.player_name,
         current_designation: null,
@@ -273,7 +305,7 @@ function mergeLivePosts(players, livePosts) {
         diff_summary: post.source_text,
         timeline: [],
         team: null,
-      };
+      });
       list.push(player);
     }
 
@@ -283,10 +315,10 @@ function mergeLivePosts(players, livePosts) {
     added += 1;
   }
 
-  list.sort((a, b) =>
-    String(b.last_updated || "").localeCompare(String(a.last_updated || ""))
-  );
-  return { players: list, added };
+  return {
+    players: list.map((p) => hydratePlayerMedia(p)),
+    added,
+  };
 }
 
 async function mountInjuriesPage() {
@@ -298,7 +330,8 @@ async function mountInjuriesPage() {
 
   try {
     const data = await fetchJSON("injuries/summaries.json");
-    let players = [...(data.players || [])].sort((a, b) =>
+    await loadPlayerLookup(data.last_updated);
+    let players = [...(data.players || [])].map(hydratePlayerMedia).sort((a, b) =>
       String(b.last_updated || "").localeCompare(String(a.last_updated || ""))
     );
     let liveNote = "";
@@ -348,6 +381,9 @@ async function mountInjuriesPage() {
       const livePosts = await fetchLiveRotowirePosts();
       const merged = mergeLivePosts(players, livePosts);
       players = merged.players;
+      players.sort((a, b) =>
+        String(b.last_updated || "").localeCompare(String(a.last_updated || ""))
+      );
       playersById.clear();
       for (const p of players) playersById.set(String(p.player_id), p);
       if (merged.added > 0) {

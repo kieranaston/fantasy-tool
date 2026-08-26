@@ -11,6 +11,8 @@ from src.loaders.nfl_data import player_media_index
 
 # Drop players whose newest post/status is older than this.
 NEWS_MAX_AGE = timedelta(days=7)
+# Cap published source history — UI only expands on demand.
+TIMELINE_LIMIT = 4
 
 
 def _player_is_fresh(player: dict[str, Any], *, cutoff: datetime) -> bool:
@@ -26,15 +28,21 @@ def _player_is_fresh(player: dict[str, Any], *, cutoff: datetime) -> bool:
 
 
 def _timeline_item(report: dict[str, Any]) -> dict[str, Any]:
-    return {
-        "id": report.get("id"),
-        "timestamp": report.get("timestamp"),
-        "designation": report.get("designation"),
-        "source_text": report.get("source_text"),
-        "url": report.get("url"),
-        "source_type": report.get("source_type"),
-        "player_name": report.get("player_name"),
-    }
+    """Slim source row — only fields the Sources expand UI needs."""
+    item: dict[str, Any] = {}
+    ts = report.get("timestamp")
+    if ts:
+        item["timestamp"] = ts
+    text = (report.get("source_text") or "").strip()
+    if text:
+        item["source_text"] = text
+    url = report.get("url")
+    if url:
+        item["url"] = url
+    designation = (report.get("designation") or "").strip()
+    if designation:
+        item["designation"] = designation
+    return item
 
 
 def _latest_post_text(timeline: list[dict[str, Any]], status: dict[str, Any] | None = None) -> str | None:
@@ -70,10 +78,14 @@ def build_summaries(
         skip_review=False,
         newest_first=True,
     )
-    by_player = {
-        pid: [_timeline_item(report) for report in timeline]
-        for pid, timeline in grouped.items()
-    }
+    by_player: dict[str, list[dict[str, Any]]] = {}
+    name_by_player: dict[str, str | None] = {}
+    for pid, timeline in grouped.items():
+        if timeline:
+            name_by_player[pid] = timeline[0].get("player_name")
+        by_player[pid] = [
+            _timeline_item(report) for report in timeline[:TIMELINE_LIMIT]
+        ]
 
     media = media if media is not None else player_media_index(season=season)
     by_gsis = media["by_gsis_id"]
@@ -83,7 +95,11 @@ def build_summaries(
         resolved_team = (team or media_row.get("team") or "") or None
         if resolved_team:
             resolved_team = str(resolved_team).upper()
-        return {"team": resolved_team}
+        out: dict[str, Any] = {"team": resolved_team}
+        # Logos are derived client-side from team abbrev; only ship headshots.
+        if media_row.get("headshot"):
+            out["headshot"] = media_row["headshot"]
+        return out
 
     players: list[dict[str, Any]] = []
     for player_id, status in status_current.items():
@@ -97,7 +113,7 @@ def build_summaries(
             {
                 "player_id": player_id,
                 "player_name": status.get("player_name")
-                or (timeline[0].get("player_name") if timeline else None),
+                or name_by_player.get(player_id),
                 "current_designation": status.get("current_designation"),
                 "last_updated": status.get("last_updated"),
                 "diff_summary": _latest_post_text(timeline, status),
@@ -115,7 +131,7 @@ def build_summaries(
         players.append(
             {
                 "player_id": player_id,
-                "player_name": newest.get("player_name"),
+                "player_name": name_by_player.get(player_id),
                 "current_designation": newest.get("designation"),
                 "last_updated": newest.get("timestamp"),
                 "diff_summary": _latest_post_text(timeline),

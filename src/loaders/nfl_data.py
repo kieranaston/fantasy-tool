@@ -20,10 +20,52 @@ TEAM_ABBR_ALIASES: dict[str, tuple[str, ...]] = {
     "JAC": ("JAX",),
 }
 
+DEFAULT_TEAM_COLOR = "#2563eb"
+
 
 def get_current_season() -> int:
     """Return the NFL season year nflverse considers current."""
     return int(nfl.get_current_season())
+
+
+def load_teams() -> pl.DataFrame:
+    """Load team metadata including colors and logo URLs."""
+    return nfl.load_teams()
+
+
+def team_branding() -> dict[str, dict[str, str | None]]:
+    """Map team abbrev (nflverse + Sleeper aliases) → logo / primary color."""
+    teams = load_teams()
+    out: dict[str, dict[str, str | None]] = {}
+    for row in teams.select(
+        "team_abbr",
+        "team_logo_espn",
+        "team_color",
+    ).iter_rows(named=True):
+        key = str(row["team_abbr"] or "").upper()
+        if not key:
+            continue
+        meta = {
+            "logo": row.get("team_logo_espn"),
+            "team_color": row.get("team_color") or DEFAULT_TEAM_COLOR,
+        }
+        out[key] = meta
+        for alias in TEAM_ABBR_ALIASES.get(key, ()):
+            out.setdefault(alias, meta)
+    return out
+
+
+def attach_team_branding(
+    team: str | None,
+    branding: dict[str, dict[str, str | None]] | None = None,
+) -> dict[str, str | None]:
+    branding = branding if branding is not None else team_branding()
+    key = str(team or "").upper()
+    meta = branding.get(key) or {}
+    return {
+        "logo": meta.get("logo"),
+        "team_color": meta.get("team_color") or DEFAULT_TEAM_COLOR,
+    }
 
 
 def _roster_seasons(preferred: int | None) -> list[int]:
@@ -42,7 +84,7 @@ def player_media_index(
     *,
     season: int | None = None,
 ) -> dict[str, dict[str, dict[str, Any]]]:
-    """Name / team / position lookups keyed by sleeper_id and gsis_id.
+    """Headshot / team lookups keyed by sleeper_id and gsis_id.
 
     Tries preferred season first, then nearby seasons, keeping the first hit.
     """
@@ -63,14 +105,19 @@ def player_media_index(
                 "team",
                 "sleeper_id",
                 "gsis_id",
+                "headshot_url",
                 "position",
             )
             if c in rosters.columns
         ]
         for row in rosters.select(cols).iter_rows(named=True):
             team = str(row.get("team") or "").upper() or None
+            headshot = row.get("headshot_url") or None
+            if isinstance(headshot, str):
+                headshot = headshot.strip() or None
             payload = {
                 "team": team,
+                "headshot": headshot,
                 "player": row.get("full_name"),
                 "position": row.get("position"),
             }
@@ -80,16 +127,20 @@ def player_media_index(
                 existing = by_sleeper.get(sid)
                 if existing is None:
                     by_sleeper[sid] = payload
-                elif team and not existing.get("team"):
-                    existing["team"] = team
+                elif not existing.get("headshot") and headshot:
+                    existing["headshot"] = headshot
+                    if team and not existing.get("team"):
+                        existing["team"] = team
             gsis_id = row.get("gsis_id")
             if gsis_id is not None and str(gsis_id).strip():
                 gid = str(gsis_id).strip()
                 existing = by_gsis.get(gid)
                 if existing is None:
                     by_gsis[gid] = payload
-                elif team and not existing.get("team"):
-                    existing["team"] = team
+                elif not existing.get("headshot") and headshot:
+                    existing["headshot"] = headshot
+                    if team and not existing.get("team"):
+                        existing["team"] = team
 
     return {"by_sleeper_id": by_sleeper, "by_gsis_id": by_gsis}
 

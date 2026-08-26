@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from src.export.json_writer import utc_now_iso, write_json
-from src.loaders.nfl_data import load_team_bye_weeks
+from src.loaders.nfl_data import load_team_bye_weeks, player_media_index
 from src.loaders.sleeper_adp import (
     FORMATS,
     adp_board_for_format,
@@ -34,8 +34,20 @@ def main() -> None:
         print(f"  bye weeks unavailable ({err}); continuing without")
         byes = {}
 
+    headshots: dict = {}
+    try:
+        headshots = player_media_index(season=season)["by_sleeper_id"]
+        print(f"  media: {len(headshots)} headshots")
+    except Exception as err:  # noqa: BLE001 — media is optional enrichment
+        print(f"  player media unavailable ({err}); continuing without")
+
     for format_key in FORMATS:
-        board = adp_board_for_format(players, format_key=format_key, byes=byes)
+        board = adp_board_for_format(
+            players,
+            format_key=format_key,
+            byes=byes,
+            headshots=headshots or None,
+        )
         path = DRAFT_DIR / f"adp-{format_key.replace('_', '-')}.json"
         write_json(
             path,

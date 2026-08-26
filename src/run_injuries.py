@@ -8,6 +8,7 @@ from pathlib import Path
 
 from src.config.env import load_dotenv
 from src.export.json_writer import utc_now_iso
+from src.export.player_lookup import build_player_lookup
 from src.injuries.detect import detect_changes, group_reports_by_player
 from src.injuries.match import load_player_tables
 from src.injuries.serve import build_summaries
@@ -36,12 +37,14 @@ ROOT = Path(__file__).resolve().parents[1]
 # Pipeline state stays off Pages; only summaries.json is published under docs/.
 STATE_DIR = ROOT / "data" / "injuries"
 PUBLIC_DIR = ROOT / "docs" / "data" / "injuries"
+DATA_DIR = ROOT / "docs" / "data"
 
 RAW_PATH = STATE_DIR / "raw_reports.json"
 STATUS_PATH = STATE_DIR / "player_status_current.json"
 POLL_PATH = STATE_DIR / "poll_state.json"
 REVIEW_PATH = STATE_DIR / "review_queue.json"
 SUMMARIES_PATH = PUBLIC_DIR / "summaries.json"
+PLAYER_LOOKUP_PATH = DATA_DIR / "player-lookup.json"
 
 EXTRACT_CHUNK = 8
 # Cap Bluesky LLM matching only (no narrative generation).
@@ -343,6 +346,7 @@ def main() -> None:
         media=tables.media,
     )
     write_json(SUMMARIES_PATH, summaries)
+    write_json(PLAYER_LOOKUP_PATH, build_player_lookup(season=get_current_season()))
 
     watermark_times = [r.get("timestamp") for r in bsky_new if r.get("timestamp")]
     if watermark_times:

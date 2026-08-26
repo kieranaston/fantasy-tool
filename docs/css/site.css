@@ -343,12 +343,34 @@ table.draft-table > thead > tr > th {
   max-width: 100%;
 }
 
+.player-headshot,
+.team-logo {
+  flex-shrink: 0;
+  object-fit: cover;
+  background: color-mix(in srgb, var(--border) 55%, transparent);
+}
+
+.player-headshot {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+}
+
+.player-headshot--empty {
+  display: inline-block;
+}
+
+.team-logo {
+  width: 0.95rem;
+  height: 0.95rem;
+  object-fit: contain;
+  background: transparent;
+}
+
 .player-media-text {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.35rem;
+  flex-direction: column;
+  gap: 0.05rem;
   min-width: 0;
 }
 
@@ -382,8 +404,18 @@ table.draft-table > thead > tr > th {
   min-width: 0;
 }
 
+.injury-card-identity .player-headshot {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
 .draft-roster-players .player-media {
   gap: 0.35rem;
+}
+
+.draft-roster-players .player-headshot {
+  width: 1.35rem;
+  height: 1.35rem;
 }
 
 .draft-roster-players .player-media-name {

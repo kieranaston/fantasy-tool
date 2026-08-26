@@ -3,10 +3,10 @@ import {
   formatUpdated,
   showError,
   revealPage,
-} from "./config.js?v=3";
-import { escapeHtml, sleeperIdOf, playerCellHtml } from "./shared.js?v=3";
+} from "./config.js?v=4";
+import { escapeHtml, sleeperIdOf, playerCellHtml } from "./shared.js?v=6";
 import { FORMAT_LABELS, SCORING_FORMATS, SKILL_POSITIONS, adpPathForFormat, formatAdpRoundPick } from "./draft-scoring.js?v=112";
-import { createFavourites } from "./draft-liked.js?v=9";
+import { createFavourites } from "./draft-liked.js?v=10";
 
 const ADP_MISSING = 9999;
 /** Roughly 10 rounds in a 12-team draft (overall tab). */
@@ -33,6 +33,7 @@ function slimPlayers(players) {
     position: String(p.position || "").toUpperCase(),
     adp: p.adp,
     bye_week: p.bye_week ?? null,
+    headshot: p.headshot || null,
   }));
 }
 
