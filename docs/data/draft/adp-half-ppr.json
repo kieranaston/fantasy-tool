@@ -2,14 +2,14 @@
   "season": 2026,
   "format": "half_ppr",
   "source": "sleeper_adp",
-  "last_updated": "2026-08-25T14:52:44Z",
+  "last_updated": "2026-08-26T22:22:51Z",
   "players": [
     {
       "sleeper_id": "9221",
       "player": "Jahmyr Gibbs",
       "team": "DET",
       "position": "RB",
-      "adp": 1.6,
+      "adp": 1.3,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hjxk3judytgsxkqiilre",
       "bye_week": 6
     },
@@ -18,7 +18,7 @@
       "player": "Bijan Robinson",
       "team": "ATL",
       "position": "RB",
-      "adp": 2.2,
+      "adp": 2.8,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rjaf9auhx3lrktzgwpfb",
       "bye_week": 11
     },
@@ -27,7 +27,7 @@
       "player": "Ja'Marr Chase",
       "team": "CIN",
       "position": "WR",
-      "adp": 3.9,
+      "adp": 3.3,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qya3dtjb5kgofcuj2tuw",
       "bye_week": 6
     },
@@ -36,7 +36,7 @@
       "player": "Puka Nacua",
       "team": "LAR",
       "position": "WR",
-      "adp": 4.5,
+      "adp": 4.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zvi4hdm6fywcekfe7ceb",
       "bye_week": 11
     },
@@ -54,34 +54,34 @@
       "player": "Jonathan Taylor",
       "team": "IND",
       "position": "RB",
-      "adp": 6.5,
+      "adp": 6.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uwmnrhwtwug0wrgkomjk",
       "bye_week": 13
-    },
-    {
-      "sleeper_id": "9488",
-      "player": "Jaxon Smith-Njigba",
-      "team": "SEA",
-      "position": "WR",
-      "adp": 6.9,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jpvhsregfvw46mlyckzj",
-      "bye_week": 11
     },
     {
       "sleeper_id": "7547",
       "player": "Amon-Ra St. Brown",
       "team": "DET",
       "position": "WR",
-      "adp": 8.3,
+      "adp": 7.9,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fd8nwhm6pvxfyzphzl6i",
       "bye_week": 6
+    },
+    {
+      "sleeper_id": "9488",
+      "player": "Jaxon Smith-Njigba",
+      "team": "SEA",
+      "position": "WR",
+      "adp": 7.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jpvhsregfvw46mlyckzj",
+      "bye_week": 11
     },
     {
       "sleeper_id": "8138",
       "player": "James Cook",
       "team": "BUF",
       "position": "RB",
-      "adp": 9.7,
+      "adp": 9.4,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/anjbznqb9i21wzcgrtbs",
       "bye_week": 7
     },
@@ -90,7 +90,7 @@
       "player": "CeeDee Lamb",
       "team": "DAL",
       "position": "WR",
-      "adp": 10.9,
+      "adp": 10.3,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ijxzvtumjhqu3zva1bwc",
       "bye_week": 14
     },
@@ -99,7 +99,7 @@
       "player": "Saquon Barkley",
       "team": "PHI",
       "position": "RB",
-      "adp": 11.5,
+      "adp": 11.8,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ern1nbhivkmwkg82c7v1",
       "bye_week": 10
     },
@@ -108,7 +108,7 @@
       "player": "Justin Jefferson",
       "team": "MIN",
       "position": "WR",
-      "adp": 12.9,
+      "adp": 12.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/f0ccavu3ppzcs51e1cuv",
       "bye_week": 6
     },
@@ -117,7 +117,7 @@
       "player": "Ashton Jeanty",
       "team": "LV",
       "position": "RB",
-      "adp": 13.6,
+      "adp": 13.0,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/syspis1mntov9kgspb7r",
       "bye_week": 13
     },
@@ -126,34 +126,34 @@
       "player": "De'Von Achane",
       "team": "MIA",
       "position": "RB",
-      "adp": 13.7,
+      "adp": 14.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xk1xwio0bryfxo1ylweu",
       "bye_week": 6
-    },
-    {
-      "sleeper_id": "12507",
-      "player": "Omarion Hampton",
-      "team": "LAC",
-      "position": "RB",
-      "adp": 15.2,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ck7xcbwuka7wu2zwhssk",
-      "bye_week": 7
     },
     {
       "sleeper_id": "3198",
       "player": "Derrick Henry",
       "team": "BAL",
       "position": "RB",
-      "adp": 16.4,
+      "adp": 15.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jxtikemnvpkw9r0ex2wv",
       "bye_week": 13
+    },
+    {
+      "sleeper_id": "12507",
+      "player": "Omarion Hampton",
+      "team": "LAC",
+      "position": "RB",
+      "adp": 15.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ck7xcbwuka7wu2zwhssk",
+      "bye_week": 7
     },
     {
       "sleeper_id": "9224",
       "player": "Chase Brown",
       "team": "CIN",
       "position": "RB",
-      "adp": 17.9,
+      "adp": 17.4,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pv3sq3uzosixxexbznq5",
       "bye_week": 6
     },
@@ -162,7 +162,7 @@
       "player": "Kenneth Walker",
       "team": "KC",
       "position": "RB",
-      "adp": 18.5,
+      "adp": 18.0,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mnzsnemdzbey5hbahdhk",
       "bye_week": 5
     },
@@ -171,7 +171,7 @@
       "player": "A.J. Brown",
       "team": "NE",
       "position": "WR",
-      "adp": 19.7,
+      "adp": 19.0,
       "headshot": "https://static.www.nfl.com/image/private/f_auto,q_auto/league/a014sgzctarbvhwb35lw",
       "bye_week": 11
     },
@@ -180,7 +180,7 @@
       "player": "Drake London",
       "team": "ATL",
       "position": "WR",
-      "adp": 20.2,
+      "adp": 20.3,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/np91pvk7mczra1iyjkmo",
       "bye_week": 11
     },
@@ -189,7 +189,7 @@
       "player": "Josh Allen",
       "team": "BUF",
       "position": "QB",
-      "adp": 20.8,
+      "adp": 21.3,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/servs1fpsynfxep4rz2z",
       "bye_week": 7
     },
@@ -198,7 +198,7 @@
       "player": "Brock Bowers",
       "team": "LV",
       "position": "TE",
-      "adp": 22.9,
+      "adp": 22.8,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uzp2ffi0lomamxofsrhy",
       "bye_week": 13
     },
@@ -207,7 +207,7 @@
       "player": "Nico Collins",
       "team": "HOU",
       "position": "WR",
-      "adp": 23.3,
+      "adp": 23.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/osmqyvmib3pssxi6cyic",
       "bye_week": 8
     },
@@ -216,7 +216,7 @@
       "player": "Trey McBride",
       "team": "ARI",
       "position": "TE",
-      "adp": 24.2,
+      "adp": 23.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vd7av3vdfs6q7ncjogac",
       "bye_week": 14
     },
@@ -225,7 +225,7 @@
       "player": "George Pickens",
       "team": "DAL",
       "position": "WR",
-      "adp": 25.3,
+      "adp": 25.8,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cbpyykoguf7rsxezqzvk",
       "bye_week": 14
     },
@@ -234,17 +234,8 @@
       "player": "Kyren Williams",
       "team": "LAR",
       "position": "RB",
-      "adp": 26.5,
+      "adp": 26.8,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/smsyrjrwy0lf0hu9hkvg",
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "5850",
-      "player": "Josh Jacobs",
-      "team": "GB",
-      "position": "RB",
-      "adp": 27.1,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/drtobqw2mk7yw3edjgwo",
       "bye_week": 11
     },
     {
@@ -252,9 +243,18 @@
       "player": "Jeremiyah Love",
       "team": "ARI",
       "position": "RB",
-      "adp": 27.4,
+      "adp": 27.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/b12gtjsylmql5v7iyyla",
       "bye_week": 14
+    },
+    {
+      "sleeper_id": "5850",
+      "player": "Josh Jacobs",
+      "team": "GB",
+      "position": "RB",
+      "adp": 28.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/drtobqw2mk7yw3edjgwo",
+      "bye_week": 11
     },
     {
       "sleeper_id": "10229",
@@ -270,7 +270,7 @@
       "player": "Malik Nabers",
       "team": "NYG",
       "position": "WR",
-      "adp": 30.4,
+      "adp": 30.0,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/w3edoyyuomqlovvp9ixc",
       "bye_week": 8
     },
@@ -279,7 +279,7 @@
       "player": "Chris Olave",
       "team": "NO",
       "position": "WR",
-      "adp": 31.4,
+      "adp": 31.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vrrmyvpvujynckag9jop",
       "bye_week": 8
     },
@@ -288,7 +288,7 @@
       "player": "Breece Hall",
       "team": "NYJ",
       "position": "RB",
-      "adp": 32.8,
+      "adp": 31.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/m3dviruymtm2wl2zcpmr",
       "bye_week": 13
     },
@@ -297,7 +297,7 @@
       "player": "Javonte Williams",
       "team": "DAL",
       "position": "RB",
-      "adp": 33.8,
+      "adp": 33.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hwzske22c4wrlf27qrih",
       "bye_week": 14
     },
@@ -315,7 +315,7 @@
       "player": "Lamar Jackson",
       "team": "BAL",
       "position": "QB",
-      "adp": 34.4,
+      "adp": 35.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cruqs6qpbykh7a2whd7p",
       "bye_week": 13
     },
@@ -333,7 +333,7 @@
       "player": "Cam Skattebo",
       "team": "NYG",
       "position": "RB",
-      "adp": 37.2,
+      "adp": 37.0,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vnftthkbvw7ucsqtqjpq",
       "bye_week": 8
     },
@@ -342,52 +342,52 @@
       "player": "Tee Higgins",
       "team": "CIN",
       "position": "WR",
-      "adp": 38.0,
+      "adp": 38.8,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/flr9f8oqigbyroeaubxb",
       "bye_week": 6
-    },
-    {
-      "sleeper_id": "11635",
-      "player": "Ladd McConkey",
-      "team": "LAC",
-      "position": "WR",
-      "adp": 39.3,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qsvdiebsa34jtkcrjpju",
-      "bye_week": 7
     },
     {
       "sleeper_id": "12514",
       "player": "Emeka Egbuka",
       "team": "TB",
       "position": "WR",
-      "adp": 40.0,
+      "adp": 39.4,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qolqqtwamffi0pi4np7h",
       "bye_week": 10
     },
     {
-      "sleeper_id": "9997",
-      "player": "Zay Flowers",
-      "team": "BAL",
+      "sleeper_id": "11635",
+      "player": "Ladd McConkey",
+      "team": "LAC",
       "position": "WR",
-      "adp": 41.2,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sqqh8gmxdpo55qwpsszj",
-      "bye_week": 13
+      "adp": 39.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qsvdiebsa34jtkcrjpju",
+      "bye_week": 7
     },
     {
       "sleeper_id": "7543",
       "player": "Travis Etienne",
       "team": "NO",
       "position": "RB",
-      "adp": 41.7,
+      "adp": 41.0,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gc0iljgj34piecyfueyd",
       "bye_week": 8
+    },
+    {
+      "sleeper_id": "9997",
+      "player": "Zay Flowers",
+      "team": "BAL",
+      "position": "WR",
+      "adp": 42.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sqqh8gmxdpo55qwpsszj",
+      "bye_week": 13
     },
     {
       "sleeper_id": "12517",
       "player": "Colston Loveland",
       "team": "CHI",
       "position": "TE",
-      "adp": 43.1,
+      "adp": 43.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tyjb6vfug7gaunvcune3",
       "bye_week": 10
     },
@@ -396,7 +396,7 @@
       "player": "Garrett Wilson",
       "team": "NYJ",
       "position": "WR",
-      "adp": 44.4,
+      "adp": 44.5,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/kbijsheobhwej7lh8mvf",
       "bye_week": 13
     },
@@ -405,7 +405,7 @@
       "player": "Bucky Irving",
       "team": "TB",
       "position": "RB",
-      "adp": 45.4,
+      "adp": 45.3,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hmgpumoxwhvrrkcjuuuw",
       "bye_week": 10
     },
@@ -414,7 +414,7 @@
       "player": "David Montgomery",
       "team": "HOU",
       "position": "RB",
-      "adp": 46.9,
+      "adp": 46.4,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xeb6fq4zimgkksq7uari",
       "bye_week": 8
     },
@@ -423,7 +423,7 @@
       "player": "Jaylen Waddle",
       "team": "DEN",
       "position": "WR",
-      "adp": 47.0,
+      "adp": 47.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dsxd2zcqm42wsv4ewtfc",
       "bye_week": 10
     },
@@ -432,7 +432,7 @@
       "player": "Quinshon Judkins",
       "team": "CLE",
       "position": "RB",
-      "adp": 48.0,
+      "adp": 47.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ojtce2im0wp2ltyel0vc",
       "bye_week": 11
     },
@@ -441,7 +441,7 @@
       "player": "D'Andre Swift",
       "team": "CHI",
       "position": "RB",
-      "adp": 48.7,
+      "adp": 49.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/owpmwzoilitcodc6cmxo",
       "bye_week": 10
     },
@@ -450,7 +450,7 @@
       "player": "TreVeyon Henderson",
       "team": "NE",
       "position": "RB",
-      "adp": 50.5,
+      "adp": 50.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cfcux3dnfmbmz3qzrnco",
       "bye_week": 11
     },
@@ -459,7 +459,7 @@
       "player": "Tyler Warren",
       "team": "IND",
       "position": "TE",
-      "adp": 51.0,
+      "adp": 51.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jt2almbzdk0kbha39otb",
       "bye_week": 13
     },
@@ -468,7 +468,7 @@
       "player": "Drake Maye",
       "team": "NE",
       "position": "QB",
-      "adp": 52.3,
+      "adp": 52.5,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/oyap81gtzcvnfmripis1",
       "bye_week": 11
     },
@@ -477,7 +477,7 @@
       "player": "Terry McLaurin",
       "team": "WAS",
       "position": "WR",
-      "adp": 53.3,
+      "adp": 53.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wokz1etv1wj1vhbmvxgs",
       "bye_week": 7
     },
@@ -486,34 +486,34 @@
       "player": "Joe Burrow",
       "team": "CIN",
       "position": "QB",
-      "adp": 54.5,
+      "adp": 54.3,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gnnvcgui1cijybukk2w7",
       "bye_week": 6
-    },
-    {
-      "sleeper_id": "4983",
-      "player": "DJ Moore",
-      "team": "BUF",
-      "position": "WR",
-      "adp": 55.3,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qphturmeiifnqrnf5pax",
-      "bye_week": 7
     },
     {
       "sleeper_id": "2133",
       "player": "Davante Adams",
       "team": "LAR",
       "position": "WR",
-      "adp": 55.3,
+      "adp": 55.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qtonvcqpixixqhc6lhnc",
       "bye_week": 11
+    },
+    {
+      "sleeper_id": "4983",
+      "player": "DJ Moore",
+      "team": "BUF",
+      "position": "WR",
+      "adp": 55.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qphturmeiifnqrnf5pax",
+      "bye_week": 7
     },
     {
       "sleeper_id": "8148",
       "player": "Jameson Williams",
       "team": "DET",
       "position": "WR",
-      "adp": 57.7,
+      "adp": 57.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gpjarmglg1jhwq5wr1uu",
       "bye_week": 6
     },
@@ -522,7 +522,7 @@
       "player": "Luther Burden",
       "team": "CHI",
       "position": "WR",
-      "adp": 58.3,
+      "adp": 58.7,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/iyuwdz7pbowdkwzq2tg5",
       "bye_week": 10
     },
@@ -531,7 +531,7 @@
       "player": "Jadarian Price",
       "team": "SEA",
       "position": "RB",
-      "adp": 59.4,
+      "adp": 59.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/toy90i08oumgbdlvctja",
       "bye_week": 11
     },
@@ -540,7 +540,7 @@
       "player": "Bhayshul Tuten",
       "team": "JAX",
       "position": "RB",
-      "adp": 60.6,
+      "adp": 60.7,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uf6bidyfjeemrlgsibiz",
       "bye_week": 7
     },
@@ -554,21 +554,21 @@
       "bye_week": 8
     },
     {
-      "sleeper_id": "11620",
-      "player": "Rome Odunze",
-      "team": "CHI",
-      "position": "WR",
-      "adp": 62.4,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yqjdhpsno75du0n72u4w",
-      "bye_week": 10
-    },
-    {
       "sleeper_id": "6904",
       "player": "Jalen Hurts",
       "team": "PHI",
       "position": "QB",
-      "adp": 62.8,
+      "adp": 62.3,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/c47i9v6gmokkun9cat9s",
+      "bye_week": 10
+    },
+    {
+      "sleeper_id": "11620",
+      "player": "Rome Odunze",
+      "team": "CHI",
+      "position": "WR",
+      "adp": 63.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yqjdhpsno75du0n72u4w",
       "bye_week": 10
     },
     {
@@ -576,7 +576,7 @@
       "player": "Sam LaPorta",
       "team": "DET",
       "position": "TE",
-      "adp": 64.0,
+      "adp": 63.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qfcy3taaoage00rrl0cc",
       "bye_week": 6
     },
@@ -585,7 +585,7 @@
       "player": "Jayden Daniels",
       "team": "WAS",
       "position": "QB",
-      "adp": 65.4,
+      "adp": 65.7,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vrdweg39v1ay4zoc0lgp",
       "bye_week": 7
     },
@@ -603,7 +603,7 @@
       "player": "Carnell Tate",
       "team": "TEN",
       "position": "WR",
-      "adp": 67.7,
+      "adp": 67.0,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ghpmpzcnigxrdbyvcxke",
       "bye_week": 9
     },
@@ -621,7 +621,7 @@
       "player": "Jaylen Warren",
       "team": "PIT",
       "position": "RB",
-      "adp": 69.2,
+      "adp": 69.9,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/f3txbqdarbabqtq4sx98",
       "bye_week": 9
     },
@@ -630,26 +630,26 @@
       "player": "Kyle Pitts",
       "team": "ATL",
       "position": "TE",
-      "adp": 69.5,
+      "adp": 70.9,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tbec213me3pszzszecqo",
       "bye_week": 11
-    },
-    {
-      "sleeper_id": "11631",
-      "player": "Brian Thomas",
-      "team": "JAX",
-      "position": "WR",
-      "adp": 71.3,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/plnekkriys4cm11rnxwl",
-      "bye_week": 7
     },
     {
       "sleeper_id": "9487",
       "player": "Parker Washington",
       "team": "JAX",
       "position": "WR",
-      "adp": 72.3,
+      "adp": 71.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sqgxayp6nrrpvwonksdm",
+      "bye_week": 7
+    },
+    {
+      "sleeper_id": "11631",
+      "player": "Brian Thomas",
+      "team": "JAX",
+      "position": "WR",
+      "adp": 71.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/plnekkriys4cm11rnxwl",
       "bye_week": 7
     },
     {
@@ -657,7 +657,7 @@
       "player": "Marvin Harrison",
       "team": "ARI",
       "position": "WR",
-      "adp": 73.6,
+      "adp": 73.5,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hwpoo1icpnh8emjvqaii",
       "bye_week": 14
     },
@@ -666,7 +666,7 @@
       "player": "Harold Fannin",
       "team": "CLE",
       "position": "TE",
-      "adp": 74.8,
+      "adp": 74.0,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fxublmpnxx9uggsddwik",
       "bye_week": 11
     },
@@ -675,7 +675,7 @@
       "player": "Caleb Williams",
       "team": "CHI",
       "position": "QB",
-      "adp": 75.4,
+      "adp": 75.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/h4qs11kutwiw7whekmyt",
       "bye_week": 10
     },
@@ -684,7 +684,7 @@
       "player": "Rhamondre Stevenson",
       "team": "NE",
       "position": "RB",
-      "adp": 76.2,
+      "adp": 76.4,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ed09migntlyy8ntgvcu1",
       "bye_week": 11
     },
@@ -693,7 +693,7 @@
       "player": "Chuba Hubbard",
       "team": "CAR",
       "position": "RB",
-      "adp": 76.7,
+      "adp": 77.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pjgml85ghq7oa48dctn7",
       "bye_week": 5
     },
@@ -702,17 +702,8 @@
       "player": "DK Metcalf",
       "team": "PIT",
       "position": "WR",
-      "adp": 78.7,
+      "adp": 78.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tknefloqsleltfmslj2y",
-      "bye_week": 9
-    },
-    {
-      "sleeper_id": "5967",
-      "player": "Tony Pollard",
-      "team": "TEN",
-      "position": "RB",
-      "adp": 79.5,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dvpdczetkdhrqpm8izmd",
       "bye_week": 9
     },
     {
@@ -720,16 +711,25 @@
       "player": "Justin Herbert",
       "team": "LAC",
       "position": "QB",
-      "adp": 80.6,
+      "adp": 79.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/s1oelyaroiaalgilbeqk",
       "bye_week": 7
+    },
+    {
+      "sleeper_id": "5967",
+      "player": "Tony Pollard",
+      "team": "TEN",
+      "position": "RB",
+      "adp": 79.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dvpdczetkdhrqpm8izmd",
+      "bye_week": 9
     },
     {
       "sleeper_id": "12489",
       "player": "RJ Harvey",
       "team": "DEN",
       "position": "RB",
-      "adp": 81.5,
+      "adp": 81.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/i1qxzydetb2orrynzvzk",
       "bye_week": 10
     },
@@ -738,7 +738,7 @@
       "player": "Courtland Sutton",
       "team": "DEN",
       "position": "WR",
-      "adp": 82.6,
+      "adp": 82.0,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/r2sr6cbma4c7wc3isejj",
       "bye_week": 10
     },
@@ -747,7 +747,7 @@
       "player": "Rico Dowdle",
       "team": "PIT",
       "position": "RB",
-      "adp": 83.0,
+      "adp": 83.5,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cvnrzndsiaojvvxz8vo5",
       "bye_week": 9
     },
@@ -756,7 +756,7 @@
       "player": "Dak Prescott",
       "team": "DAL",
       "position": "QB",
-      "adp": 84.0,
+      "adp": 84.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/blixemm3s9sa4gmqk5yn",
       "bye_week": 14
     },
@@ -765,7 +765,7 @@
       "player": "J.K. Dobbins",
       "team": "DEN",
       "position": "RB",
-      "adp": 85.0,
+      "adp": 85.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cevotvl3ho5h1mioruyg",
       "bye_week": 10
     },
@@ -774,7 +774,7 @@
       "player": "Makai Lemon",
       "team": "PHI",
       "position": "WR",
-      "adp": 86.8,
+      "adp": 86.7,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ys2i2o7c0bl36xvlrojz",
       "bye_week": 10
     },
@@ -783,7 +783,7 @@
       "player": "George Kittle",
       "team": "SF",
       "position": "TE",
-      "adp": 87.6,
+      "adp": 87.8,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ztz3xqjaqgok9m4nylgs",
       "bye_week": 8
     },
@@ -792,7 +792,7 @@
       "player": "Jonathon Brooks",
       "team": "CAR",
       "position": "RB",
-      "adp": 88.5,
+      "adp": 88.0,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jah18lvdpgwurx7dgys4",
       "bye_week": 5
     },
@@ -801,7 +801,7 @@
       "player": "Michael Wilson",
       "team": "ARI",
       "position": "WR",
-      "adp": 89.0,
+      "adp": 89.8,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yc8awtck004bz2a5oeb8",
       "bye_week": 14
     },
@@ -810,7 +810,7 @@
       "player": "Kyle Monangai",
       "team": "CHI",
       "position": "RB",
-      "adp": 90.2,
+      "adp": 90.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cici2wf1walmoluhe95i",
       "bye_week": 10
     },
@@ -819,7 +819,7 @@
       "player": "Jordyn Tyson",
       "team": "NO",
       "position": "WR",
-      "adp": 90.3,
+      "adp": 91.5,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/al6fifxstyc6omsenzhd",
       "bye_week": 8
     },
@@ -828,7 +828,7 @@
       "player": "Dalton Kincaid",
       "team": "BUF",
       "position": "TE",
-      "adp": 92.5,
+      "adp": 92.7,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zwkeaiecuyafkidllebz",
       "bye_week": 7
     },
@@ -837,7 +837,7 @@
       "player": "Blake Corum",
       "team": "LAR",
       "position": "RB",
-      "adp": 93.8,
+      "adp": 93.0,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gytdgnrjj3jk8rlfxz85",
       "bye_week": 11
     },
@@ -855,7 +855,7 @@
       "player": "Travis Kelce",
       "team": "KC",
       "position": "TE",
-      "adp": 95.3,
+      "adp": 95.0,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ebc5j60djpinc9elvlc5",
       "bye_week": 5
     },
@@ -864,26 +864,26 @@
       "player": "Alec Pierce",
       "team": "IND",
       "position": "WR",
-      "adp": 96.9,
+      "adp": 95.8,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zeghrjc8rir3r3zi6det",
       "bye_week": 13
-    },
-    {
-      "sleeper_id": "12533",
-      "player": "Jacory Croskey-Merritt",
-      "team": "WAS",
-      "position": "RB",
-      "adp": 97.4,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tklzj7zzve1t4z2hhr1g",
-      "bye_week": 7
     },
     {
       "sleeper_id": "7523",
       "player": "Trevor Lawrence",
       "team": "JAX",
       "position": "QB",
-      "adp": 97.6,
+      "adp": 97.4,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/d75srntioly7fq0z8vip",
+      "bye_week": 7
+    },
+    {
+      "sleeper_id": "12533",
+      "player": "Jacory Croskey-Merritt",
+      "team": "WAS",
+      "position": "RB",
+      "adp": 98.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tklzj7zzve1t4z2hhr1g",
       "bye_week": 7
     },
     {
@@ -891,7 +891,7 @@
       "player": "Jordan Mason",
       "team": "MIN",
       "position": "RB",
-      "adp": 99.3,
+      "adp": 99.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ixykwytfrfz1cdxlhj5w",
       "bye_week": 6
     },
@@ -900,25 +900,16 @@
       "player": "Jordan Addison",
       "team": "MIN",
       "position": "WR",
-      "adp": 100.1,
+      "adp": 100.4,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/s2ey8g5memyqvxc52uzy",
       "bye_week": 6
-    },
-    {
-      "sleeper_id": "12508",
-      "player": "Jaxson Dart",
-      "team": "NYG",
-      "position": "QB",
-      "adp": 101.3,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/n6uymxssgiicjmxkzxoc",
-      "bye_week": 8
     },
     {
       "sleeper_id": "LAR",
       "player": "Los Angeles Rams",
       "team": "LAR",
       "position": "DEF",
-      "adp": 102.7,
+      "adp": 101.4,
       "bye_week": 11
     },
     {
@@ -926,16 +917,25 @@
       "player": "Jayden Reed",
       "team": "GB",
       "position": "WR",
-      "adp": 103.9,
+      "adp": 102.7,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/blh2tfg9qjthqo2g6ot4",
       "bye_week": 11
+    },
+    {
+      "sleeper_id": "12508",
+      "player": "Jaxson Dart",
+      "team": "NYG",
+      "position": "QB",
+      "adp": 103.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/n6uymxssgiicjmxkzxoc",
+      "bye_week": 8
     },
     {
       "sleeper_id": "6819",
       "player": "Michael Pittman",
       "team": "PIT",
       "position": "WR",
-      "adp": 104.8,
+      "adp": 103.9,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/z78xpye9hing1e7wke8b",
       "bye_week": 9
     },
@@ -944,7 +944,7 @@
       "player": "Quentin Johnston",
       "team": "LAC",
       "position": "WR",
-      "adp": 104.9,
+      "adp": 105.9,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bpzdpin1xp1kjxmbkq6d",
       "bye_week": 7
     },
@@ -953,52 +953,43 @@
       "player": "Matthew Stafford",
       "team": "LAR",
       "position": "QB",
-      "adp": 106.1,
+      "adp": 106.5,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/svxl2pk2cuqf26zrhii4",
       "bye_week": 11
-    },
-    {
-      "sleeper_id": "8110",
-      "player": "Jake Ferguson",
-      "team": "DAL",
-      "position": "TE",
-      "adp": 107.8,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ebdz1yf8ky2mscdvyv1v",
-      "bye_week": 14
     },
     {
       "sleeper_id": "9500",
       "player": "Josh Downs",
       "team": "IND",
       "position": "WR",
-      "adp": 108.0,
+      "adp": 107.5,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gqozitn9vxnp8acz6wwg",
       "bye_week": 13
+    },
+    {
+      "sleeper_id": "8110",
+      "player": "Jake Ferguson",
+      "team": "DAL",
+      "position": "TE",
+      "adp": 108.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ebdz1yf8ky2mscdvyv1v",
+      "bye_week": 14
     },
     {
       "sleeper_id": "7567",
       "player": "Kenny Gainwell",
       "team": "TB",
       "position": "RB",
-      "adp": 109.7,
+      "adp": 109.8,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/f74x1ywy7oo5kq81vblh",
       "bye_week": 10
-    },
-    {
-      "sleeper_id": "4046",
-      "player": "Patrick Mahomes",
-      "team": "KC",
-      "position": "QB",
-      "adp": 110.1,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/iireqbn32cpg9fn4sfy7",
-      "bye_week": 5
     },
     {
       "sleeper_id": "HOU",
       "player": "Houston Texans",
       "team": "HOU",
       "position": "DEF",
-      "adp": 111.1,
+      "adp": 110.9,
       "bye_week": 8
     },
     {
@@ -1006,16 +997,25 @@
       "player": "Aaron Jones",
       "team": "MIN",
       "position": "RB",
-      "adp": 111.4,
+      "adp": 111.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/bktkfvgfwujkdbzkcfim",
       "bye_week": 6
+    },
+    {
+      "sleeper_id": "4046",
+      "player": "Patrick Mahomes",
+      "team": "KC",
+      "position": "QB",
+      "adp": 111.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/iireqbn32cpg9fn4sfy7",
+      "bye_week": 5
     },
     {
       "sleeper_id": "8131",
       "player": "Isaiah Likely",
       "team": "NYG",
       "position": "TE",
-      "adp": 113.5,
+      "adp": 113.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ssrjtyvnyfflobmi0mb8",
       "bye_week": 8
     },
@@ -1024,34 +1024,34 @@
       "player": "KC Concepcion",
       "team": "CLE",
       "position": "WR",
-      "adp": 114.6,
+      "adp": 114.4,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ztdyzyngqr1pexyghlt3",
       "bye_week": 11
-    },
-    {
-      "sleeper_id": "8126",
-      "player": "Wan'Dale Robinson",
-      "team": "TEN",
-      "position": "WR",
-      "adp": 115.0,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yzcvyhmilvxedfjfjglc",
-      "bye_week": 9
     },
     {
       "sleeper_id": "2449",
       "player": "Stefon Diggs",
       "team": "WAS",
       "position": "WR",
-      "adp": 116.7,
+      "adp": 115.9,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cemcexmscsarpvwhafln",
       "bye_week": 7
+    },
+    {
+      "sleeper_id": "8126",
+      "player": "Wan'Dale Robinson",
+      "team": "TEN",
+      "position": "WR",
+      "adp": 116.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yzcvyhmilvxedfjfjglc",
+      "bye_week": 9
     },
     {
       "sleeper_id": "SEA",
       "player": "Seattle Seahawks",
       "team": "SEA",
       "position": "DEF",
-      "adp": 117.0,
+      "adp": 117.4,
       "bye_week": 11
     },
     {
@@ -1059,7 +1059,7 @@
       "player": "Bo Nix",
       "team": "DEN",
       "position": "QB",
-      "adp": 118.8,
+      "adp": 118.5,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/igirshmrr6lqtxcpxsea",
       "bye_week": 10
     },
@@ -1068,7 +1068,7 @@
       "player": "Jakobi Meyers",
       "team": "JAX",
       "position": "WR",
-      "adp": 118.9,
+      "adp": 119.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qui5ajbevlk7pfjpcufz",
       "bye_week": 7
     },
@@ -1077,7 +1077,7 @@
       "player": "Rachaad White",
       "team": "WAS",
       "position": "RB",
-      "adp": 120.3,
+      "adp": 119.9,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sxugbms8ketvgmilnlu3",
       "bye_week": 7
     },
@@ -1086,7 +1086,7 @@
       "player": "Brock Purdy",
       "team": "SF",
       "position": "QB",
-      "adp": 121.1,
+      "adp": 121.5,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xykdxnvxpf9pobxvkjfj",
       "bye_week": 8
     },
@@ -1095,7 +1095,7 @@
       "player": "Mark Andrews",
       "team": "BAL",
       "position": "TE",
-      "adp": 122.4,
+      "adp": 122.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wzx3p0hzm3qyqsrfqznb",
       "bye_week": 13
     },
@@ -1109,20 +1109,20 @@
       "bye_week": 11
     },
     {
-      "sleeper_id": "5022",
-      "player": "Dallas Goedert",
-      "team": "PHI",
-      "position": "TE",
-      "adp": 124.5,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/a6ljhwvkehvyiufdx3d1",
-      "bye_week": 10
-    },
-    {
       "sleeper_id": "DEN",
       "player": "Denver Broncos",
       "team": "DEN",
       "position": "DEF",
-      "adp": 125.0,
+      "adp": 124.2,
+      "bye_week": 10
+    },
+    {
+      "sleeper_id": "5022",
+      "player": "Dallas Goedert",
+      "team": "PHI",
+      "position": "TE",
+      "adp": 125.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/a6ljhwvkehvyiufdx3d1",
       "bye_week": 10
     },
     {
@@ -1130,9 +1130,18 @@
       "player": "De'Zhaun Stribling",
       "team": "SF",
       "position": "WR",
-      "adp": 125.4,
+      "adp": 126.9,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/eu1nxtlztiwr5ko48iwz",
       "bye_week": 8
+    },
+    {
+      "sleeper_id": "8121",
+      "player": "Romeo Doubs",
+      "team": "NE",
+      "position": "WR",
+      "adp": 127.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ov2llp1bfetznmngqybi",
+      "bye_week": 11
     },
     {
       "sleeper_id": "11624",
@@ -1142,15 +1151,6 @@
       "adp": 127.9,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ue6fp8xwnyo7ftvabbb8",
       "bye_week": 5
-    },
-    {
-      "sleeper_id": "8121",
-      "player": "Romeo Doubs",
-      "team": "NE",
-      "position": "WR",
-      "adp": 128.2,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ov2llp1bfetznmngqybi",
-      "bye_week": 11
     },
     {
       "sleeper_id": "10219",
@@ -1166,7 +1166,7 @@
       "player": "Philadelphia Eagles",
       "team": "PHI",
       "position": "DEF",
-      "adp": 130.5,
+      "adp": 130.1,
       "bye_week": 10
     },
     {
@@ -1174,7 +1174,7 @@
       "player": "Deebo Samuel",
       "team": "SF",
       "position": "WR",
-      "adp": 131.1,
+      "adp": 131.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ntgyhqg6hq7fanhhsqiw",
       "bye_week": 8
     },
@@ -1183,7 +1183,7 @@
       "player": "Tyler Allgeier",
       "team": "ARI",
       "position": "RB",
-      "adp": 132.8,
+      "adp": 132.7,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/buwaomfsz4y6orgb0cyg",
       "bye_week": 14
     },
@@ -1192,7 +1192,7 @@
       "player": "Zach Charbonnet",
       "team": "SEA",
       "position": "RB",
-      "adp": 132.9,
+      "adp": 133.7,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jqbzg5e8pdltbnb7hc8p",
       "bye_week": 11
     },
@@ -1201,7 +1201,7 @@
       "player": "Tyrone Tracy",
       "team": "NYG",
       "position": "RB",
-      "adp": 134.7,
+      "adp": 134.5,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/b9nje50lohbprf06xoom",
       "bye_week": 8
     },
@@ -1210,7 +1210,7 @@
       "player": "Baltimore Ravens",
       "team": "BAL",
       "position": "DEF",
-      "adp": 135.1,
+      "adp": 135.3,
       "bye_week": 13
     },
     {
@@ -1218,7 +1218,7 @@
       "player": "Brandon Aubrey",
       "team": "DAL",
       "position": "K",
-      "adp": 136.2,
+      "adp": 135.3,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ynyyootbeabm5sx4ejgt",
       "bye_week": 14
     },
@@ -1227,7 +1227,7 @@
       "player": "Cameron Dicker",
       "team": "LAC",
       "position": "K",
-      "adp": 137.3,
+      "adp": 137.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vd4nd1hoax82j7fi2bx0",
       "bye_week": 7
     },
@@ -1236,7 +1236,7 @@
       "player": "Jason Myers",
       "team": "SEA",
       "position": "K",
-      "adp": 138.0,
+      "adp": 138.9,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rnw5znsm0hrekqvztiog",
       "bye_week": 11
     },
@@ -1245,7 +1245,7 @@
       "player": "Ka'imi Fairbairn",
       "team": "HOU",
       "position": "K",
-      "adp": 139.6,
+      "adp": 139.0,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nbrs7doetqydf2rzhjjl",
       "bye_week": 8
     },
@@ -1254,7 +1254,7 @@
       "player": "Jared Goff",
       "team": "DET",
       "position": "QB",
-      "adp": 140.0,
+      "adp": 140.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yggfwr4ak4po9byj0qor",
       "bye_week": 6
     },
@@ -1263,7 +1263,7 @@
       "player": "Cam Little",
       "team": "JAX",
       "position": "K",
-      "adp": 141.8,
+      "adp": 141.4,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pfdod5cds77uznkotipk",
       "bye_week": 7
     },
@@ -1272,7 +1272,7 @@
       "player": "Woody Marks",
       "team": "HOU",
       "position": "RB",
-      "adp": 142.2,
+      "adp": 142.0,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pwvxisrnjitkkghkfcn3",
       "bye_week": 8
     },
@@ -1281,25 +1281,16 @@
       "player": "Jonah Coleman",
       "team": "DEN",
       "position": "RB",
-      "adp": 143.9,
+      "adp": 143.7,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qbauucaxakkhtxihuvmr",
       "bye_week": 10
-    },
-    {
-      "sleeper_id": "12493",
-      "player": "Oronde Gadsden",
-      "team": "LAC",
-      "position": "TE",
-      "adp": 144.7,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/r8b4oghjwhw8x9nv1wbs",
-      "bye_week": 7
     },
     {
       "sleeper_id": "8134",
       "player": "Khalil Shakir",
       "team": "BUF",
       "position": "WR",
-      "adp": 145.8,
+      "adp": 143.9,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/otadttbhvkmavhsonnqm",
       "bye_week": 7
     },
@@ -1308,16 +1299,25 @@
       "player": "Jalen Coker",
       "team": "CAR",
       "position": "WR",
-      "adp": 146.1,
+      "adp": 145.5,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tbo339znpzrfki8hri95",
       "bye_week": 5
+    },
+    {
+      "sleeper_id": "12493",
+      "player": "Oronde Gadsden",
+      "team": "LAC",
+      "position": "TE",
+      "adp": 146.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/r8b4oghjwhw8x9nv1wbs",
+      "bye_week": 7
     },
     {
       "sleeper_id": "5849",
       "player": "Kyler Murray",
       "team": "MIN",
       "position": "QB",
-      "adp": 146.6,
+      "adp": 147.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/flezsremqighwuiyu77f",
       "bye_week": 6
     },
@@ -1326,17 +1326,8 @@
       "player": "Hunter Henry",
       "team": "NE",
       "position": "TE",
-      "adp": 148.6,
+      "adp": 148.9,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/l0fsrutz9fwbohx10lcf",
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "8676",
-      "player": "Rashid Shaheed",
-      "team": "SEA",
-      "position": "WR",
-      "adp": 149.6,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ynsy489xqmiwt5q9whty",
       "bye_week": 11
     },
     {
@@ -1344,25 +1335,42 @@
       "player": "New England Patriots",
       "team": "NE",
       "position": "DEF",
-      "adp": 150.9,
+      "adp": 149.5,
       "bye_week": 11
     },
     {
-      "sleeper_id": "4892",
-      "player": "Baker Mayfield",
-      "team": "TB",
-      "position": "QB",
-      "adp": 151.9,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/i2uufyghiphx4oihgucm",
-      "bye_week": 10
+      "sleeper_id": "8676",
+      "player": "Rashid Shaheed",
+      "team": "SEA",
+      "position": "WR",
+      "adp": 150.9,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ynsy489xqmiwt5q9whty",
+      "bye_week": 11
     },
     {
       "sleeper_id": "11539",
       "player": "Jake Bates",
       "team": "DET",
       "position": "K",
-      "adp": 152.1,
+      "adp": 151.3,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/heh3zqyv3tqapnpnzgoj",
+      "bye_week": 6
+    },
+    {
+      "sleeper_id": "4892",
+      "player": "Baker Mayfield",
+      "team": "TB",
+      "position": "QB",
+      "adp": 151.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/i2uufyghiphx4oihgucm",
+      "bye_week": 10
+    },
+    {
+      "sleeper_id": "MIN",
+      "player": "Minnesota Vikings",
+      "team": "MIN",
+      "position": "DEF",
+      "adp": 153.6,
       "bye_week": 6
     },
     {
@@ -1370,24 +1378,16 @@
       "player": "Alvin Kamara",
       "team": "NO",
       "position": "RB",
-      "adp": 153.8,
+      "adp": 154.9,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uay6uo9lonegelngihki",
       "bye_week": 8
-    },
-    {
-      "sleeper_id": "MIN",
-      "player": "Minnesota Vikings",
-      "team": "MIN",
-      "position": "DEF",
-      "adp": 154.0,
-      "bye_week": 6
     },
     {
       "sleeper_id": "9480",
       "player": "Brenton Strange",
       "team": "JAX",
       "position": "TE",
-      "adp": 155.4,
+      "adp": 155.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yabpcvadjlrkxzducv7k",
       "bye_week": 7
     },
@@ -1396,17 +1396,8 @@
       "player": "Harrison Mevis",
       "team": "LAR",
       "position": "K",
-      "adp": 156.5,
+      "adp": 156.7,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/llxz144jnuzivgcvbxrl",
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "13346",
-      "player": "Denzel Boston",
-      "team": "CLE",
-      "position": "WR",
-      "adp": 157.6,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ybkny6eh5eegq3bqmony",
       "bye_week": 11
     },
     {
@@ -1414,8 +1405,17 @@
       "player": "Jacksonville Jaguars",
       "team": "JAX",
       "position": "DEF",
-      "adp": 158.4,
+      "adp": 157.9,
       "bye_week": 7
+    },
+    {
+      "sleeper_id": "13346",
+      "player": "Denzel Boston",
+      "team": "CLE",
+      "position": "WR",
+      "adp": 158.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ybkny6eh5eegq3bqmony",
+      "bye_week": 11
     },
     {
       "sleeper_id": "13305",
@@ -1430,7 +1430,7 @@
       "player": "Evan McPherson",
       "team": "CIN",
       "position": "K",
-      "adp": 160.5,
+      "adp": 159.7,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cpvujaqwscupzvbbx7oe",
       "bye_week": 6
     },
@@ -1439,7 +1439,7 @@
       "player": "Ja'Kobi Lane",
       "team": "BAL",
       "position": "WR",
-      "adp": 160.7,
+      "adp": 161.0,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gjezd2a8imfrxyv16wuj",
       "bye_week": 13
     },
@@ -1448,7 +1448,7 @@
       "player": "Keaton Mitchell",
       "team": "LAC",
       "position": "RB",
-      "adp": 162.8,
+      "adp": 162.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/klpn2btfhgfv5a8dp3jj",
       "bye_week": 7
     },
@@ -1457,7 +1457,7 @@
       "player": "Los Angeles Chargers",
       "team": "LAC",
       "position": "DEF",
-      "adp": 163.6,
+      "adp": 163.9,
       "bye_week": 7
     },
     {
@@ -1465,7 +1465,7 @@
       "player": "Will Reichard",
       "team": "MIN",
       "position": "K",
-      "adp": 164.4,
+      "adp": 164.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/r1g0mqxqc23tmqmgdbwm",
       "bye_week": 6
     },
@@ -1474,7 +1474,7 @@
       "player": "Jalen Nailor",
       "team": "LV",
       "position": "WR",
-      "adp": 165.2,
+      "adp": 165.9,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/sdsx2pttiiwbfpyuuwiz",
       "bye_week": 13
     },
@@ -1483,7 +1483,7 @@
       "player": "Tank Bigsby",
       "team": "PHI",
       "position": "RB",
-      "adp": 166.6,
+      "adp": 166.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nin8aexyipca7g7u7f4a",
       "bye_week": 10
     },
@@ -1492,17 +1492,8 @@
       "player": "Jordan Love",
       "team": "GB",
       "position": "QB",
-      "adp": 167.5,
+      "adp": 167.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/uneiwen9drvci9ahuebp",
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "4943",
-      "player": "Sam Darnold",
-      "team": "SEA",
-      "position": "QB",
-      "adp": 167.6,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/s5t8m6bhedjwwtfw3ild",
       "bye_week": 11
     },
     {
@@ -1510,16 +1501,16 @@
       "player": "Pittsburgh Steelers",
       "team": "PIT",
       "position": "DEF",
-      "adp": 169.6,
+      "adp": 168.0,
       "bye_week": 9
     },
     {
-      "sleeper_id": "8154",
-      "player": "Brian Robinson",
-      "team": "ATL",
-      "position": "RB",
-      "adp": 170.5,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/n1xhex1ytisxcbcggqu7",
+      "sleeper_id": "4943",
+      "player": "Sam Darnold",
+      "team": "SEA",
+      "position": "QB",
+      "adp": 169.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/s5t8m6bhedjwwtfw3ild",
       "bye_week": 11
     },
     {
@@ -1527,7 +1518,7 @@
       "player": "Tyjae Spears",
       "team": "TEN",
       "position": "RB",
-      "adp": 171.9,
+      "adp": 170.0,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fc7vhbtw80einad9hsfu",
       "bye_week": 9
     },
@@ -1536,16 +1527,25 @@
       "player": "Isiah Pacheco",
       "team": "DET",
       "position": "RB",
-      "adp": 172.9,
+      "adp": 171.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tqshteijt4xhgk2ei9sx",
       "bye_week": 6
+    },
+    {
+      "sleeper_id": "8154",
+      "player": "Brian Robinson",
+      "team": "ATL",
+      "position": "RB",
+      "adp": 172.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/n1xhex1ytisxcbcggqu7",
+      "bye_week": 11
     },
     {
       "sleeper_id": "5189",
       "player": "Eddy Pineiro",
       "team": "SF",
       "position": "K",
-      "adp": 173.7,
+      "adp": 173.9,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/l4rrfcuczjau7q02h2iz",
       "bye_week": 8
     },
@@ -1554,25 +1554,16 @@
       "player": "Kenyon Sadiq",
       "team": "NYJ",
       "position": "TE",
-      "adp": 174.8,
+      "adp": 174.5,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mnswulwto4yqkgmugoiq",
       "bye_week": 13
-    },
-    {
-      "sleeper_id": "12545",
-      "player": "Tyler Shough",
-      "team": "NO",
-      "position": "QB",
-      "adp": 175.0,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wsrkib8qgwtb2t2ugaru",
-      "bye_week": 8
     },
     {
       "sleeper_id": "DET",
       "player": "Detroit Lions",
       "team": "DET",
       "position": "DEF",
-      "adp": 176.2,
+      "adp": 175.2,
       "bye_week": 6
     },
     {
@@ -1580,7 +1571,7 @@
       "player": "Travis Hunter",
       "team": "JAX",
       "position": "WR",
-      "adp": 177.5,
+      "adp": 175.4,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/apfzii6u8pwj9ntvyfkk",
       "bye_week": 7
     },
@@ -1589,16 +1580,25 @@
       "player": "Omar Cooper",
       "team": "NYJ",
       "position": "WR",
-      "adp": 178.4,
+      "adp": 177.0,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lmua2lbg0m77ibvydvaq",
       "bye_week": 13
+    },
+    {
+      "sleeper_id": "13414",
+      "player": "Kaelon Black",
+      "team": "SF",
+      "position": "RB",
+      "adp": 178.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nwgkzr1ysr32jc79zfnt",
+      "bye_week": 8
     },
     {
       "sleeper_id": "13413",
       "player": "Cyrus Allen",
       "team": "KC",
       "position": "WR",
-      "adp": 179.8,
+      "adp": 179.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qput6hanukjbatuao8ca",
       "bye_week": 5
     },
@@ -1607,25 +1607,16 @@
       "player": "MarShawn Lloyd",
       "team": "GB",
       "position": "RB",
-      "adp": 180.4,
+      "adp": 180.7,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ufhthbjqbgb6mggscdc9",
       "bye_week": 11
-    },
-    {
-      "sleeper_id": "13414",
-      "player": "Kaelon Black",
-      "team": "SF",
-      "position": "RB",
-      "adp": 181.7,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nwgkzr1ysr32jc79zfnt",
-      "bye_week": 8
     },
     {
       "sleeper_id": "11610",
       "player": "Malik Washington",
       "team": "MIA",
       "position": "WR",
-      "adp": 182.0,
+      "adp": 181.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/kwcgtsbpd0rpwsgq2npe",
       "bye_week": 6
     },
@@ -1634,7 +1625,7 @@
       "player": "Harrison Butker",
       "team": "KC",
       "position": "K",
-      "adp": 183.8,
+      "adp": 182.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ove4pmnrtqtuyta6rrlc",
       "bye_week": 5
     },
@@ -1643,61 +1634,70 @@
       "player": "Tank Dell",
       "team": "HOU",
       "position": "WR",
-      "adp": 184.3,
+      "adp": 183.4,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ykyiamjbjkjklnnttisw",
       "bye_week": 8
-    },
-    {
-      "sleeper_id": "1945",
-      "player": "Chris Boswell",
-      "team": "PIT",
-      "position": "K",
-      "adp": 185.3,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rxbnhvnfjmheuryvdmuf",
-      "bye_week": 9
     },
     {
       "sleeper_id": "5844",
       "player": "T.J. Hockenson",
       "team": "MIN",
       "position": "TE",
-      "adp": 186.7,
+      "adp": 183.7,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rs8o65x0u0n9xzde0fd6",
       "bye_week": 6
+    },
+    {
+      "sleeper_id": "1945",
+      "player": "Chris Boswell",
+      "team": "PIT",
+      "position": "K",
+      "adp": 185.4,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rxbnhvnfjmheuryvdmuf",
+      "bye_week": 9
     },
     {
       "sleeper_id": "7002",
       "player": "Juwan Johnson",
       "team": "NO",
       "position": "TE",
-      "adp": 187.2,
+      "adp": 186.7,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wuyyzdqkh5fve8t7kfuv",
       "bye_week": 8
-    },
-    {
-      "sleeper_id": "12711",
-      "player": "Tyler Loop",
-      "team": "BAL",
-      "position": "K",
-      "adp": 188.1,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vp3vows5aq3sgnadgtjf",
-      "bye_week": 13
     },
     {
       "sleeper_id": "13269",
       "player": "Fernando Mendoza",
       "team": "LV",
       "position": "QB",
-      "adp": 188.4,
+      "adp": 187.0,
       "bye_week": 13
+    },
+    {
+      "sleeper_id": "12545",
+      "player": "Tyler Shough",
+      "team": "NO",
+      "position": "QB",
+      "adp": 188.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wsrkib8qgwtb2t2ugaru",
+      "bye_week": 8
     },
     {
       "sleeper_id": "10213",
       "player": "Tre Tucker",
       "team": "LV",
       "position": "WR",
-      "adp": 190.2,
+      "adp": 189.9,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/fsx05ats4azj8mus03d4",
+      "bye_week": 13
+    },
+    {
+      "sleeper_id": "12711",
+      "player": "Tyler Loop",
+      "team": "BAL",
+      "position": "K",
+      "adp": 190.7,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vp3vows5aq3sgnadgtjf",
       "bye_week": 13
     },
     {
@@ -1705,17 +1705,8 @@
       "player": "Dylan Sampson",
       "team": "CLE",
       "position": "RB",
-      "adp": 191.3,
+      "adp": 191.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/den1hzzomdxfcsgk88o5",
-      "bye_week": 11
-    },
-    {
-      "sleeper_id": "11603",
-      "player": "AJ Barner",
-      "team": "SEA",
-      "position": "TE",
-      "adp": 192.2,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ul77k5rqbqzd5zzqsaea",
       "bye_week": 11
     },
     {
@@ -1723,25 +1714,25 @@
       "player": "Braelon Allen",
       "team": "NYJ",
       "position": "RB",
-      "adp": 193.3,
+      "adp": 191.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pdaa8u0x2qepyklabdr3",
       "bye_week": 13
     },
     {
-      "sleeper_id": "12484",
-      "player": "Jayden Higgins",
-      "team": "HOU",
-      "position": "WR",
-      "adp": 194.3,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wrdw1u4onrmfuuluuipk",
-      "bye_week": 8
+      "sleeper_id": "11603",
+      "player": "AJ Barner",
+      "team": "SEA",
+      "position": "TE",
+      "adp": 193.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ul77k5rqbqzd5zzqsaea",
+      "bye_week": 11
     },
     {
       "sleeper_id": "8161",
       "player": "Malik Willis",
       "team": "MIA",
       "position": "QB",
-      "adp": 195.0,
+      "adp": 194.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hsnetccy7bquili3gcqq",
       "bye_week": 6
     },
@@ -1750,16 +1741,25 @@
       "player": "Chig Okonkwo",
       "team": "WAS",
       "position": "TE",
-      "adp": 196.0,
+      "adp": 195.8,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/omm5z5iq6dlmidqz1sgz",
       "bye_week": 7
+    },
+    {
+      "sleeper_id": "12484",
+      "player": "Jayden Higgins",
+      "team": "HOU",
+      "position": "WR",
+      "adp": 196.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wrdw1u4onrmfuuluuipk",
+      "bye_week": 8
     },
     {
       "sleeper_id": "13288",
       "player": "Nicholas Singleton",
       "team": "TEN",
       "position": "RB",
-      "adp": 197.3,
+      "adp": 197.0,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ztwqbc0s69cbz5ow0r0q",
       "bye_week": 9
     },
@@ -1768,34 +1768,34 @@
       "player": "Jalen McMillan",
       "team": "TB",
       "position": "WR",
-      "adp": 198.9,
+      "adp": 198.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/x2jipyhqclsgx4cmsqct",
       "bye_week": 10
-    },
-    {
-      "sleeper_id": "13337",
-      "player": "Emmett Johnson",
-      "team": "KC",
-      "position": "RB",
-      "adp": 199.0,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/avdz4njz1slqn7ktqcuq",
-      "bye_week": 5
     },
     {
       "sleeper_id": "7049",
       "player": "Jauan Jennings",
       "team": "MIN",
       "position": "WR",
-      "adp": 200.9,
+      "adp": 199.4,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/cdx9mq3iglzog9mkqvdr",
       "bye_week": 6
+    },
+    {
+      "sleeper_id": "13337",
+      "player": "Emmett Johnson",
+      "team": "KC",
+      "position": "RB",
+      "adp": 199.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/avdz4njz1slqn7ktqcuq",
+      "bye_week": 5
     },
     {
       "sleeper_id": "12713",
       "player": "Andy Borregales",
       "team": "NE",
       "position": "K",
-      "adp": 201.0,
+      "adp": 201.5,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jgxnjxhysqwqk4fgf1ke",
       "bye_week": 11
     },
@@ -1804,7 +1804,7 @@
       "player": "Keenan Allen",
       "team": "IND",
       "position": "WR",
-      "adp": 202.5,
+      "adp": 202.3,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ri267r6lzfwarh89hsn6",
       "bye_week": 13
     },
@@ -1813,7 +1813,7 @@
       "player": "Caleb Douglas",
       "team": "MIA",
       "position": "WR",
-      "adp": 202.7,
+      "adp": 203.5,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/stwypvmutplwvi1zzbmu",
       "bye_week": 6
     },
@@ -1822,7 +1822,7 @@
       "player": "Green Bay Packers",
       "team": "GB",
       "position": "DEF",
-      "adp": 204.5,
+      "adp": 204.9,
       "bye_week": 11
     },
     {
@@ -1830,7 +1830,7 @@
       "player": "Cooper Kupp",
       "team": "SEA",
       "position": "WR",
-      "adp": 205.3,
+      "adp": 205.5,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lpaxi9rsedlg9sdr5quw",
       "bye_week": 11
     },
@@ -1839,34 +1839,43 @@
       "player": "Dontayvion Wicks",
       "team": "PHI",
       "position": "WR",
-      "adp": 206.0,
+      "adp": 206.5,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/er7pbyq82nsbw1w3wyor",
       "bye_week": 10
-    },
-    {
-      "sleeper_id": "9758",
-      "player": "C.J. Stroud",
-      "team": "HOU",
-      "position": "QB",
-      "adp": 207.5,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tt4zrtxlhifaljhj0rn7",
-      "bye_week": 8
     },
     {
       "sleeper_id": "12487",
       "player": "Terrance Ferguson",
       "team": "LAR",
       "position": "TE",
-      "adp": 208.4,
+      "adp": 207.4,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/usa23ax8dratptvikr9a",
       "bye_week": 11
+    },
+    {
+      "sleeper_id": "9758",
+      "player": "C.J. Stroud",
+      "team": "HOU",
+      "position": "QB",
+      "adp": 207.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tt4zrtxlhifaljhj0rn7",
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "12492",
+      "player": "Pat Bryant",
+      "team": "DEN",
+      "position": "WR",
+      "adp": 209.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ljo1rgbaewlzsf7tvavm",
+      "bye_week": 10
     },
     {
       "sleeper_id": "5001",
       "player": "Dalton Schultz",
       "team": "HOU",
       "position": "TE",
-      "adp": 209.1,
+      "adp": 210.5,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/xbl9mhuamzv5udb4hyzj",
       "bye_week": 8
     },
@@ -1875,33 +1884,16 @@
       "player": "Ray Davis",
       "team": "BUF",
       "position": "RB",
-      "adp": 209.2,
+      "adp": 211.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pm9llppbueodtjjj9u8l",
       "bye_week": 7
-    },
-    {
-      "sleeper_id": "12492",
-      "player": "Pat Bryant",
-      "team": "DEN",
-      "position": "WR",
-      "adp": 211.8,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ljo1rgbaewlzsf7tvavm",
-      "bye_week": 10
-    },
-    {
-      "sleeper_id": "KC",
-      "player": "Kansas City Chiefs",
-      "team": "KC",
-      "position": "DEF",
-      "adp": 212.2,
-      "bye_week": 5
     },
     {
       "sleeper_id": "5870",
       "player": "Daniel Jones",
       "team": "IND",
       "position": "QB",
-      "adp": 213.5,
+      "adp": 212.7,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nhuiypfjzpkisxllinyv",
       "bye_week": 13
     },
@@ -1910,9 +1902,18 @@
       "player": "Jaydon Blue",
       "team": "DAL",
       "position": "RB",
-      "adp": 214.4,
+      "adp": 213.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jhbmit7yp8dlhepncsvp",
       "bye_week": 14
+    },
+    {
+      "sleeper_id": "6783",
+      "player": "Jerry Jeudy",
+      "team": "CLE",
+      "position": "WR",
+      "adp": 214.2,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/szca1v9butuqkjs7ekpm",
+      "bye_week": 11
     },
     {
       "sleeper_id": "13320",
@@ -1928,25 +1929,16 @@
       "player": "Cam Ward",
       "team": "TEN",
       "position": "QB",
-      "adp": 216.1,
+      "adp": 215.9,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/viadutkbvligsopnd2qn",
       "bye_week": 9
-    },
-    {
-      "sleeper_id": "6783",
-      "player": "Jerry Jeudy",
-      "team": "CLE",
-      "position": "WR",
-      "adp": 216.9,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/szca1v9butuqkjs7ekpm",
-      "bye_week": 11
     },
     {
       "sleeper_id": "12535",
       "player": "Isaac TeSlaa",
       "team": "DET",
       "position": "WR",
-      "adp": 218.9,
+      "adp": 217.4,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wa4sruqazyqobmepi6vi",
       "bye_week": 6
     },
@@ -1955,25 +1947,16 @@
       "player": "Tre' Harris",
       "team": "LAC",
       "position": "WR",
-      "adp": 219.1,
+      "adp": 218.8,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vfjekjvrfpbmskmuwoz9",
       "bye_week": 7
-    },
-    {
-      "sleeper_id": "11625",
-      "player": "Adonai Mitchell",
-      "team": "NYJ",
-      "position": "WR",
-      "adp": 220.8,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hwwacoa3pqapd7pgahfx",
-      "bye_week": 13
     },
     {
       "sleeper_id": "3321",
       "player": "Tyreek Hill",
       "team": "",
       "position": "WR",
-      "adp": 221.8,
+      "adp": 219.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gg73gnfivrn80oyqwazl"
     },
     {
@@ -1981,16 +1964,8 @@
       "player": "James Conner",
       "team": "ARI",
       "position": "RB",
-      "adp": 222.6,
+      "adp": 220.0,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/g5yjordcmt76j0saytzb",
-      "bye_week": 14
-    },
-    {
-      "sleeper_id": "DAL",
-      "player": "Dallas Cowboys",
-      "team": "DAL",
-      "position": "DEF",
-      "adp": 223.6,
       "bye_week": 14
     },
     {
@@ -1998,15 +1973,23 @@
       "player": "Trey Smack",
       "team": "GB",
       "position": "K",
-      "adp": 223.9,
+      "adp": 221.4,
       "bye_week": 11
+    },
+    {
+      "sleeper_id": "DAL",
+      "player": "Dallas Cowboys",
+      "team": "DAL",
+      "position": "DEF",
+      "adp": 222.7,
+      "bye_week": 14
     },
     {
       "sleeper_id": "SF",
       "player": "San Francisco 49ers",
       "team": "SF",
       "position": "DEF",
-      "adp": 225.1,
+      "adp": 223.1,
       "bye_week": 8
     },
     {
@@ -2014,7 +1997,7 @@
       "player": "Chicago Bears",
       "team": "CHI",
       "position": "DEF",
-      "adp": 226.6,
+      "adp": 223.4,
       "bye_week": 10
     },
     {
@@ -2022,7 +2005,7 @@
       "player": "Chase McLaughlin",
       "team": "TB",
       "position": "K",
-      "adp": 227.4,
+      "adp": 225.7,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vwefhtevyn2qxauchan5",
       "bye_week": 10
     },
@@ -2031,35 +2014,61 @@
       "player": "Malachi Fields",
       "team": "NYG",
       "position": "WR",
-      "adp": 228.0,
+      "adp": 226.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tpls1aptxx9x8xaqvjtj",
       "bye_week": 8
+    },
+    {
+      "sleeper_id": "KC",
+      "player": "Kansas City Chiefs",
+      "team": "KC",
+      "position": "DEF",
+      "adp": 227.6,
+      "bye_week": 5
     },
     {
       "sleeper_id": "5995",
       "player": "Justice Hill",
       "team": "BAL",
       "position": "RB",
-      "adp": 229.0,
+      "adp": 228.4,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/h6p9crhra8ehxju3ubza",
       "bye_week": 13
-    },
-    {
-      "sleeper_id": "4033",
-      "player": "David Njoku",
-      "team": "LAC",
-      "position": "TE",
-      "adp": 230.1,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gdwtgcfz3mxj6codxdpn",
-      "bye_week": 7
     },
     {
       "sleeper_id": "12467",
       "player": "Jordan James",
       "team": "SF",
       "position": "RB",
-      "adp": 230.6,
+      "adp": 229.9,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vhkfigionbm4xwjcbfzg",
+      "bye_week": 8
+    },
+    {
+      "sleeper_id": "4033",
+      "player": "David Njoku",
+      "team": "LAC",
+      "position": "TE",
+      "adp": 230.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gdwtgcfz3mxj6codxdpn",
+      "bye_week": 7
+    },
+    {
+      "sleeper_id": "11625",
+      "player": "Adonai Mitchell",
+      "team": "NYJ",
+      "position": "WR",
+      "adp": 231.6,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/hwwacoa3pqapd7pgahfx",
+      "bye_week": 13
+    },
+    {
+      "sleeper_id": "9504",
+      "player": "Kayshon Boutte",
+      "team": "HOU",
+      "position": "WR",
+      "adp": 231.8,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mg4icjqhwhnc5uobmau5",
       "bye_week": 8
     },
     {
@@ -2067,7 +2076,7 @@
       "player": "Bryce Young",
       "team": "CAR",
       "position": "QB",
-      "adp": 232.8,
+      "adp": 233.3,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qy1lfhlzhiacsyzzm1j7",
       "bye_week": 5
     },
@@ -2076,7 +2085,7 @@
       "player": "Pat Freiermuth",
       "team": "PIT",
       "position": "TE",
-      "adp": 233.2,
+      "adp": 234.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vmwioi77upc9hqwaskfa",
       "bye_week": 9
     },
@@ -2085,7 +2094,7 @@
       "player": "Kaytron Allen",
       "team": "WAS",
       "position": "RB",
-      "adp": 234.7,
+      "adp": 235.3,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vbhwkqty94alwjyz8cin",
       "bye_week": 7
     },
@@ -2094,63 +2103,54 @@
       "player": "Aaron Rodgers",
       "team": "PIT",
       "position": "QB",
-      "adp": 235.8,
+      "adp": 236.8,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dypvakakxhccxs67tb0y",
       "bye_week": 9
+    },
+    {
+      "sleeper_id": "13311",
+      "player": "Chris Bell",
+      "team": "MIA",
+      "position": "WR",
+      "adp": 237.1,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zgbku18zemqyryvyahd4",
+      "bye_week": 6
     },
     {
       "sleeper_id": "13317",
       "player": "Ted Hurst",
       "team": "TB",
       "position": "WR",
-      "adp": 236.7,
+      "adp": 238.4,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mmf6qmo6a2evw4feupcm",
       "bye_week": 10
-    },
-    {
-      "sleeper_id": "12502",
-      "player": "Gunnar Helm",
-      "team": "TEN",
-      "position": "TE",
-      "adp": 237.2,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lcyqbbnrzgtbnirz8knj",
-      "bye_week": 9
-    },
-    {
-      "sleeper_id": "9504",
-      "player": "Kayshon Boutte",
-      "team": "HOU",
-      "position": "WR",
-      "adp": 237.9,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/mg4icjqhwhnc5uobmau5",
-      "bye_week": 8
     },
     {
       "sleeper_id": "11647",
       "player": "Kimani Vidal",
       "team": "LAC",
       "position": "RB",
-      "adp": 239.7,
+      "adp": 239.6,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/huwihtava8gkxzb4cxb8",
       "bye_week": 7
+    },
+    {
+      "sleeper_id": "12502",
+      "player": "Gunnar Helm",
+      "team": "TEN",
+      "position": "TE",
+      "adp": 240.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/lcyqbbnrzgtbnirz8knj",
+      "bye_week": 9
     },
     {
       "sleeper_id": "11783",
       "player": "Ryan Flournoy",
       "team": "DAL",
       "position": "WR",
-      "adp": 240.9,
+      "adp": 241.9,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/tqwq3cgpqu7j9hzoyicx",
       "bye_week": 14
-    },
-    {
-      "sleeper_id": "13347",
-      "player": "Demond Claiborne",
-      "team": "MIN",
-      "position": "RB",
-      "adp": 241.2,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vmozbbdzgcaqq1yrixeb",
-      "bye_week": 6
     },
     {
       "sleeper_id": "11637",
@@ -2162,12 +2162,12 @@
       "bye_week": 7
     },
     {
-      "sleeper_id": "13311",
-      "player": "Chris Bell",
-      "team": "MIA",
-      "position": "WR",
-      "adp": 242.3,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zgbku18zemqyryvyahd4",
+      "sleeper_id": "13347",
+      "player": "Demond Claiborne",
+      "team": "MIN",
+      "position": "RB",
+      "adp": 242.5,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/vmozbbdzgcaqq1yrixeb",
       "bye_week": 6
     },
     {
@@ -2175,7 +2175,7 @@
       "player": "Jaylen Wright",
       "team": "MIA",
       "position": "RB",
-      "adp": 243.6,
+      "adp": 243.8,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/i3wlfgqsynl7qaa4tsqw",
       "bye_week": 6
     },
@@ -2184,7 +2184,7 @@
       "player": "Greg Dulcich",
       "team": "MIA",
       "position": "TE",
-      "adp": 244.5,
+      "adp": 244.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/kirfnwuge3eam1s0ycne",
       "bye_week": 6
     },
@@ -2193,7 +2193,7 @@
       "player": "Germie Bernard",
       "team": "PIT",
       "position": "WR",
-      "adp": 244.7,
+      "adp": 245.4,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/rsbtypbsvxux94vokb5q",
       "bye_week": 9
     },
@@ -2202,26 +2202,26 @@
       "player": "Antonio Williams",
       "team": "WAS",
       "position": "WR",
-      "adp": 246.6,
+      "adp": 246.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/noywrsgaqoqlv64c12yw",
       "bye_week": 7
-    },
-    {
-      "sleeper_id": "8111",
-      "player": "Cade Otton",
-      "team": "TB",
-      "position": "TE",
-      "adp": 247.4,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dlgxvfpnufpnxkvu1ynb",
-      "bye_week": 10
     },
     {
       "sleeper_id": "13349",
       "player": "Eli Stowers",
       "team": "PHI",
       "position": "TE",
-      "adp": 248.8,
+      "adp": 247.1,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/c9rjqit3q5tm9hzkm5ay",
+      "bye_week": 10
+    },
+    {
+      "sleeper_id": "8111",
+      "player": "Cade Otton",
+      "team": "TB",
+      "position": "TE",
+      "adp": 247.3,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/dlgxvfpnufpnxkvu1ynb",
       "bye_week": 10
     },
     {
@@ -2229,16 +2229,18 @@
       "player": "Sean Tucker",
       "team": "TB",
       "position": "RB",
-      "adp": 249.5,
+      "adp": 249.2,
       "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/zyzp7e2gos47ebzur9gi",
       "bye_week": 10
     },
     {
-      "sleeper_id": "11960",
-      "player": "Steven Stilianos",
-      "team": "",
-      "position": "TE",
-      "adp": 250.0
+      "sleeper_id": "11648",
+      "player": "Kedon Slovis",
+      "team": "ARI",
+      "position": "QB",
+      "adp": 250.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/nyfoex8q88tq9fatpleo",
+      "bye_week": 14
     },
     {
       "sleeper_id": "4981",
@@ -2250,11 +2252,12 @@
       "bye_week": 9
     },
     {
-      "sleeper_id": "4839",
-      "player": "Mitch Leidner",
+      "sleeper_id": "11947",
+      "player": "Austin Jones",
       "team": "",
-      "position": "QB",
-      "adp": 251.0
+      "position": "RB",
+      "adp": 251.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/afyyzy9wfsmwmq6lrmdy"
     },
     {
       "sleeper_id": "3257",
@@ -2266,21 +2269,20 @@
       "bye_week": 14
     },
     {
-      "sleeper_id": "3155",
-      "player": "Laquon Treadwell",
-      "team": "IND",
-      "position": "WR",
-      "adp": 252.0,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/b6hu3zlkauy5tcrseyv2",
-      "bye_week": 13
+      "sleeper_id": "7201",
+      "player": "Nick Vogel",
+      "team": "",
+      "position": "K",
+      "adp": 252.0
     },
     {
-      "sleeper_id": "2460",
-      "player": "C.J. Uzomah",
-      "team": "",
-      "position": "TE",
+      "sleeper_id": "11963",
+      "player": "Chris Collier",
+      "team": "LV",
+      "position": "RB",
       "adp": 253.0,
-      "headshot": "https://static.www.nfl.com/image/private/f_auto,q_auto/league/hnkflpl5pzbfbdvtcv1c"
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/oduxbaidoa1x5mzhhiz0",
+      "bye_week": 13
     },
     {
       "sleeper_id": "8698",
@@ -2292,26 +2294,25 @@
       "bye_week": 8
     },
     {
-      "sleeper_id": "11262",
-      "player": "Damien Caffrey",
+      "sleeper_id": "11115",
+      "player": "Terrell Bynum",
       "team": "",
-      "position": "TE",
+      "position": "WR",
       "adp": 254.0
     },
     {
-      "sleeper_id": "3336",
-      "player": "Moritz Bohringer",
+      "sleeper_id": "4184",
+      "player": "Bucky Hodges",
       "team": "",
       "position": "TE",
       "adp": 255.0
     },
     {
-      "sleeper_id": "5209",
-      "player": "Mike Boone",
+      "sleeper_id": "7157",
+      "player": "Josh Love",
       "team": "",
-      "position": "RB",
-      "adp": 256.0,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yeoyrlaf9hlvowj6fdio"
+      "position": "QB",
+      "adp": 256.0
     },
     {
       "sleeper_id": "1373",
@@ -2323,19 +2324,19 @@
       "bye_week": 13
     },
     {
-      "sleeper_id": "11068",
-      "player": "Mitch Tinsley",
-      "team": "CIN",
+      "sleeper_id": "11520",
+      "player": "Lucky Jackson",
+      "team": "DET",
       "position": "WR",
       "adp": 257.0,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/t4h8qtzndtvf6is6naew",
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/eeexppygvu73wnjbneuz",
       "bye_week": 6
     },
     {
-      "sleeper_id": "11080",
-      "player": "Malik Knowles",
+      "sleeper_id": "1793",
+      "player": "Trey Burton",
       "team": "",
-      "position": "WR",
+      "position": "TE",
       "adp": 258.0
     },
     {
@@ -2348,10 +2349,10 @@
       "bye_week": 11
     },
     {
-      "sleeper_id": "6919",
-      "player": "Thaddeus Moss",
+      "sleeper_id": "11089",
+      "player": "Jordan Byrd",
       "team": "",
-      "position": "TE",
+      "position": "WR",
       "adp": 259.0
     },
     {
@@ -2364,11 +2365,12 @@
       "bye_week": 8
     },
     {
-      "sleeper_id": "11601",
-      "player": "Trey Knox",
+      "sleeper_id": "11133",
+      "player": "Jaray Jenkins",
       "team": "",
-      "position": "TE",
-      "adp": 260.0
+      "position": "WR",
+      "adp": 260.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/t19n4wsw2pmqindq91rt"
     },
     {
       "sleeper_id": "12497",
@@ -2380,11 +2382,12 @@
       "bye_week": 11
     },
     {
-      "sleeper_id": "11140",
-      "player": "Leonard Taylor",
+      "sleeper_id": "11099",
+      "player": "Kearis Jackson",
       "team": "",
-      "position": "TE",
-      "adp": 261.0
+      "position": "WR",
+      "adp": 261.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jgrj4b7pqoigggkcms80"
     },
     {
       "sleeper_id": "6865",
@@ -2396,13 +2399,13 @@
       "bye_week": 11
     },
     {
-      "sleeper_id": "5973",
-      "player": "Josh Oliver",
-      "team": "MIN",
+      "sleeper_id": "10227",
+      "player": "Payne Durham",
+      "team": "TB",
       "position": "TE",
       "adp": 262.0,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/pfvhbfguzu6wv9ikluop",
-      "bye_week": 6
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ijjyd8bvvkjttepqv82u",
+      "bye_week": 10
     },
     {
       "sleeper_id": "11597",
@@ -2414,10 +2417,10 @@
       "bye_week": 8
     },
     {
-      "sleeper_id": "12403",
-      "player": "Valentino Ambrosio",
+      "sleeper_id": "6554",
+      "player": "Shawn Poindexter",
       "team": "",
-      "position": "K",
+      "position": "WR",
       "adp": 263.0
     },
     {
@@ -2439,15 +2442,15 @@
       "bye_week": 10
     },
     {
-      "sleeper_id": "1793",
-      "player": "Trey Burton",
+      "sleeper_id": "11224",
+      "player": "Griffin Hebert",
       "team": "",
       "position": "TE",
       "adp": 264.0
     },
     {
-      "sleeper_id": "8229",
-      "player": "Isaiah Weston",
+      "sleeper_id": "12189",
+      "player": "Xavier White",
       "team": "",
       "position": "WR",
       "adp": 265.0
@@ -2462,78 +2465,78 @@
       "bye_week": 11
     },
     {
-      "sleeper_id": "6723",
-      "player": "Vincent Testaverde",
+      "sleeper_id": "12224",
+      "player": "David White",
       "team": "",
-      "position": "QB",
-      "adp": 266.0
+      "position": "WR",
+      "adp": 266.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/ebw2syx3otzaup1pzckf"
     },
     {
-      "sleeper_id": "6803",
-      "player": "Brandon Aiyuk",
-      "team": "SF",
-      "position": "WR",
-      "adp": 267.4,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/avzzxycxyculxxqce5k7",
+      "sleeper_id": "5985",
+      "player": "Foster Moreau",
+      "team": "HOU",
+      "position": "TE",
+      "adp": 267.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/esc21tsccagvyy1ctaoc",
       "bye_week": 8
     },
     {
-      "sleeper_id": "13838",
-      "player": "Will Ferrin",
+      "sleeper_id": "12403",
+      "player": "Valentino Ambrosio",
       "team": "",
       "position": "K",
-      "adp": 292.0
+      "adp": 286.4
     },
     {
-      "sleeper_id": "7518",
-      "player": "Taylor Russolino",
+      "sleeper_id": "4958",
+      "player": "Brett Maher",
       "team": "",
       "position": "K",
-      "adp": 317.0
-    },
-    {
-      "sleeper_id": "5823",
-      "player": "Tristan Vizcaino",
-      "team": "",
-      "position": "K",
-      "adp": 320.0
-    },
-    {
-      "sleeper_id": "3827",
-      "player": "Aldrick Rosas",
-      "team": "",
-      "position": "K",
-      "adp": 325.0
-    },
-    {
-      "sleeper_id": "8258",
-      "player": "Cade York",
-      "team": "NYJ",
-      "position": "K",
-      "adp": 328.5,
-      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/irts9o3l9mzopvyg7c25",
-      "bye_week": 13
-    },
-    {
-      "sleeper_id": "7095",
-      "player": "Austin MacGinnis",
-      "team": "",
-      "position": "K",
-      "adp": 335.0
+      "adp": 290.0
     },
     {
       "sleeper_id": "5247",
       "player": "David Marvin",
       "team": "",
       "position": "K",
-      "adp": 363.0
+      "adp": 321.0
+    },
+    {
+      "sleeper_id": "12404",
+      "player": "Colton Theaker",
+      "team": "",
+      "position": "K",
+      "adp": 324.5
+    },
+    {
+      "sleeper_id": "8260",
+      "player": "Gabe Brkic",
+      "team": "",
+      "position": "K",
+      "adp": 356.5
+    },
+    {
+      "sleeper_id": "7855",
+      "player": "Blake Haubeil",
+      "team": "",
+      "position": "K",
+      "adp": 358.0
+    },
+    {
+      "sleeper_id": "12548",
+      "player": "Lenny Krieg",
+      "team": "",
+      "position": "K",
+      "adp": 382.0,
+      "headshot": "https://static.www.nfl.com/image/upload/f_auto,q_auto/league/gxhpy5ntqhgmcwwzn9do"
     },
     {
       "sleeper_id": "NYJ",
       "player": "New York Jets",
       "team": "NYJ",
       "position": "DEF",
-      "adp": 523.9,
+      "adp": 539.7,
       "bye_week": 13
     },
     {
@@ -2541,15 +2544,23 @@
       "player": "Buffalo Bills",
       "team": "BUF",
       "position": "DEF",
-      "adp": 536.0,
+      "adp": 559.6,
       "bye_week": 7
+    },
+    {
+      "sleeper_id": "MIA",
+      "player": "Miami Dolphins",
+      "team": "MIA",
+      "position": "DEF",
+      "adp": 580.9,
+      "bye_week": 6
     },
     {
       "sleeper_id": "CIN",
       "player": "Cincinnati Bengals",
       "team": "CIN",
       "position": "DEF",
-      "adp": 563.1,
+      "adp": 587.3,
       "bye_week": 6
     },
     {
@@ -2557,23 +2568,15 @@
       "player": "Las Vegas Raiders",
       "team": "LV",
       "position": "DEF",
-      "adp": 568.9,
+      "adp": 590.0,
       "bye_week": 13
-    },
-    {
-      "sleeper_id": "MIA",
-      "player": "Miami Dolphins",
-      "team": "MIA",
-      "position": "DEF",
-      "adp": 579.3,
-      "bye_week": 6
     },
     {
       "sleeper_id": "TEN",
       "player": "Tennessee Titans",
       "team": "TEN",
       "position": "DEF",
-      "adp": 580.7,
+      "adp": 591.6,
       "bye_week": 9
     },
     {
@@ -2581,7 +2584,7 @@
       "player": "New Orleans Saints",
       "team": "NO",
       "position": "DEF",
-      "adp": 617.3,
+      "adp": 647.7,
       "bye_week": 8
     }
   ]
