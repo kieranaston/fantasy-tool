@@ -2,7 +2,7 @@
   "season": 2026,
   "format": "std",
   "source": "sleeper_adp",
-  "last_updated": "2026-08-25T14:52:44Z",
+  "last_updated": "2026-08-26T14:51:33Z",
   "players": [
     {
       "sleeper_id": "9509",
@@ -2451,10 +2451,9 @@
     {
       "sleeper_id": "8258",
       "player": "Cade York",
-      "team": "NYJ",
+      "team": "",
       "position": "K",
-      "adp": 350.0,
-      "bye_week": 13
+      "adp": 350.0
     },
     {
       "sleeper_id": "12185",
