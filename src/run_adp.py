@@ -9,6 +9,8 @@ from src.loaders.nfl_data import load_team_bye_weeks, player_media_index
 from src.loaders.sleeper_adp import (
     FORMATS,
     adp_board_for_format,
+    adp_merged_board,
+    build_headshot_sidecar,
     draft_season_from_sleeper_state,
     fetch_sleeper_projections,
     normalize_adp_slim,
@@ -41,12 +43,37 @@ def main() -> None:
     except Exception as err:  # noqa: BLE001 — media is optional enrichment
         print(f"  player media unavailable ({err}); continuing without")
 
+    merged = adp_merged_board(players, byes=byes)
+    write_json(
+        DRAFT_DIR / "adp-board.json",
+        {
+            "season": season,
+            "source": "sleeper_adp",
+            "last_updated": now,
+            "players": merged,
+        },
+        {"season", "source", "last_updated", "players"},
+    )
+    print(f"  wrote docs/data/draft/adp-board.json ({len(merged)} players)")
+
+    board_ids = {str(p["sleeper_id"]) for p in merged}
+    board_headshots = {
+        sid: row for sid, row in headshots.items() if str(sid) in board_ids
+    }
+    write_json(
+        DRAFT_DIR / "headshots.json",
+        build_headshot_sidecar(board_headshots, last_updated=now),
+        {"last_updated", "by_sleeper_id"},
+    )
+    print(f"  wrote docs/data/draft/headshots.json ({len(board_headshots)} ids)")
+
+    # Legacy per-format files for tooling that still reads them.
     for format_key in FORMATS:
         board = adp_board_for_format(
             players,
             format_key=format_key,
             byes=byes,
-            headshots=headshots or None,
+            headshots=None,
         )
         path = DRAFT_DIR / f"adp-{format_key.replace('_', '-')}.json"
         write_json(

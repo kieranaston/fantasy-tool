@@ -38,13 +38,19 @@ def _skill_position(position: str | None) -> str | None:
     return pos if pos in _SKILL_POSITIONS else None
 
 
-def build_player_lookup(*, season: int | None = None) -> dict[str, Any]:
+def build_player_lookup(
+    *,
+    season: int | None = None,
+    allowed_player_ids: set[str] | None = None,
+) -> dict[str, Any]:
     """Name-keyed team/headshot rows from nflverse rosters (same index as matching)."""
     tables = load_player_tables(season=season)
     by_gsis = tables.media.get("by_gsis_id") or {}
     players: dict[str, dict[str, str]] = {}
 
     for ref in tables.index:
+        if allowed_player_ids is not None and ref.player_id not in allowed_player_ids:
+            continue
         media_row = by_gsis.get(ref.player_id) or {}
         pos = _skill_position(ref.position or media_row.get("position"))
         if not pos:

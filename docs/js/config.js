@@ -1,3 +1,5 @@
+import { escapeHtml } from "./shared.js?v=7";
+
 /** Format timestamp in US Eastern time (EST/EDT). */
 function formatTimestamp(isoString) {
   const date = new Date(isoString);
@@ -70,7 +72,16 @@ async function fetchJSON(
 
 /** Render an error message into a container element. */
 function showError(container, message) {
-  container.innerHTML = `<div class="error">${message}</div>`;
+  container.innerHTML = `<div class="error">${escapeHtml(message)}</div>`;
+}
+
+/** Top-level mount wrapper: reveal page and show escaped errors on failure. */
+function mountPage(mountFn, containerId) {
+  return mountFn().catch((err) => {
+    document.body.classList.remove("is-page-loading");
+    const el = document.getElementById(containerId);
+    if (el) showError(el, err?.message || String(err));
+  });
 }
 
 /** Show main content after async page data has rendered. */
@@ -78,4 +89,12 @@ function revealPage() {
   document.body.classList.remove("is-page-loading");
 }
 
-export { dataPath, fetchJSON, showError, revealPage, formatTimestamp, formatUpdated };
+export {
+  dataPath,
+  fetchJSON,
+  showError,
+  mountPage,
+  revealPage,
+  formatTimestamp,
+  formatUpdated,
+};

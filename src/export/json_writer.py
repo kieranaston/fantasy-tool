@@ -21,6 +21,8 @@ def write_json(
     path: Path,
     payload: Any,
     required_keys: set[str] | None = None,
+    *,
+    compact: bool = True,
 ) -> None:
     """Write JSON to disk. If ``required_keys`` is set, payload must be a dict."""
     if required_keys:
@@ -35,4 +37,8 @@ def write_json(
             )
 
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    if compact:
+        text = json.dumps(payload, separators=(",", ":"))
+    else:
+        text = json.dumps(payload, indent=2) + "\n"
+    path.write_text(text, encoding="utf-8")

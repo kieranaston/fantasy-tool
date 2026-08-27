@@ -216,11 +216,98 @@ def adp_board_for_format(
     return kept
 
 
+def adp_merged_board(
+    players: list[dict[str, Any]],
+    *,
+    byes: dict[str, int] | None = None,
+) -> list[dict[str, Any]]:
+    """One row per player with all format ADPs (no headshots — use sidecar)."""
+    half = adp_board_for_format(
+        players,
+        format_key="half_ppr",
+        byes=byes,
+        headshots=None,
+    )
+    by_id = {str(p["sleeper_id"]): p for p in players}
+    merged: list[dict[str, Any]] = []
+    for row in half:
+        sid = str(row["sleeper_id"])
+        src = by_id.get(sid) or {}
+        adp_values = src.get("adp") or {}
+        adp_out: dict[str, float] = {}
+        for format_key in FORMAT_KEYS:
+            raw = adp_values.get(format_key)
+            if raw is None:
+                continue
+            adp_out[format_key] = round(float(raw), 1)
+        if not adp_out:
+            continue
+        out: dict[str, Any] = {
+            "sleeper_id": sid,
+            "player": row["player"],
+            "team": row.get("team") or "",
+            "position": row["position"],
+            "adp": adp_out,
+        }
+        if row.get("bye_week") is not None:
+            out["bye_week"] = row["bye_week"]
+        merged.append(out)
+    return merged
+
+
+def build_headshot_sidecar(
+    headshots: dict[str, dict[str, Any]] | None,
+    *,
+    last_updated: str,
+) -> dict[str, Any]:
+    """Sleeper id → headshot URL sidecar for ADP/draft pages."""
+    by_id: dict[str, str] = {}
+    for sid, row in (headshots or {}).items():
+        url = (row or {}).get("headshot")
+        if url:
+            by_id[str(sid)] = str(url)
+    return {"last_updated": last_updated, "by_sleeper_id": by_id}
+
+
 def _default_adp_dir() -> Path:
     return Path(__file__).resolve().parents[2] / "docs" / "data" / "draft"
 
 
 def _load_published_boards(adp_dir: Path) -> dict[str, list[dict[str, Any]]] | None:
+    merged_path = adp_dir / "adp-board.json"
+    if merged_path.exists():
+        try:
+            payload = json.loads(merged_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            return None
+        rows = payload.get("players") if isinstance(payload, dict) else None
+        if not isinstance(rows, list):
+            return None
+        boards: dict[str, list[dict[str, Any]]] = {key: [] for key in FORMAT_KEYS}
+        for row in rows:
+            if not isinstance(row, dict):
+                continue
+            adp_map = row.get("adp") or {}
+            if not isinstance(adp_map, dict):
+                continue
+            base = {
+                "sleeper_id": row.get("sleeper_id"),
+                "player": row.get("player"),
+                "team": row.get("team"),
+                "position": row.get("position"),
+                "bye_week": row.get("bye_week"),
+            }
+            for format_key in FORMAT_KEYS:
+                adp = adp_map.get(format_key)
+                if adp is None:
+                    continue
+                boards[format_key].append({**base, "adp": adp})
+        for format_key in FORMAT_KEYS:
+            boards[format_key].sort(
+                key=lambda r: (float(r["adp"]), str(r.get("player") or ""))
+            )
+        return boards
+
     boards: dict[str, list[dict[str, Any]]] = {}
     for format_key in FORMAT_KEYS:
         path = adp_dir / f"adp-{format_key.replace('_', '-')}.json"

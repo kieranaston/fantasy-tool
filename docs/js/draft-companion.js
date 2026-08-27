@@ -1,5 +1,5 @@
-import { fetchJSON, formatUpdated, showError, revealPage } from "./config.js?v=4";
-import { escapeHtml, sleeperIdOf, playerCellHtml } from "./shared.js?v=6";
+import { fetchJSON, formatUpdated, showError, revealPage } from "./config.js?v=6";
+import { escapeHtml, sleeperIdOf, playerCellHtml } from "./shared.js?v=7";
 import {
   scoreCandidates,
   annotateScore,
@@ -11,6 +11,7 @@ import {
   resolveLeagueSettings,
   resolveScoringFormat,
   adpPathForFormat,
+  playerAdpForFormat,
   formatFromReceptionPoints,
   formatAdpRoundPick,
   slotForOverallPick,
@@ -18,8 +19,14 @@ import {
   SCORING_FORMATS,
   FORMAT_LABELS,
   normalizePos,
-} from "./draft-scoring.js?v=112";
-import { createFavourites } from "./draft-liked.js?v=10";
+} from "./draft-scoring.js?v=115";
+import { createFavourites } from "./draft-liked.js?v=11";
+import { loadHeadshots, attachHeadshots } from "./media.js?v=1";
+import {
+  ensureTableBody,
+  showTableMessage,
+  syncTableRows,
+} from "./table-diff.js?v=1";
 
 /** Fast on your turn / on deck; slower while waiting. */
 const POLL_ON_CLOCK_MS = 1200;
@@ -31,6 +38,52 @@ const DRAFT_META_EVERY = 12;
 /** Score / recommend this many players; UI shows the same window. */
 const SCORE_LIMIT = 24;
 const SEARCH_LIMIT = 24;
+
+const RECS_TABLE_HEAD = `<thead>
+          <tr>
+            <th>Player</th><th>Pos</th><th class="num">ADP</th>
+            <th class="num col-wide">Need</th><th class="num">Score</th>
+            <th class="num" title="Score minus the next player at this position">Δ</th>
+            <th class="num" title="Chance taken before your next pick">Risk</th>
+          </tr>
+        </thead>`;
+const PICKS_TABLE_HEAD = `<thead><tr><th>Pick</th><th>Player</th><th>Pos</th></tr></thead>`;
+const SEARCH_TABLE_HEAD = `<thead>
+          <tr>
+            <th>Player</th><th>Pos</th><th class="num">ADP</th><th class="num">Score</th>
+          </tr>
+        </thead>`;
+
+let riskWorker = null;
+let riskJobSeq = 0;
+
+function getRiskWorker() {
+  if (!riskWorker) {
+    riskWorker = new Worker(new URL("./draft-risk-worker.js", import.meta.url), {
+      type: "module",
+    });
+  }
+  return riskWorker;
+}
+
+function applyRiskToResult(result, goneProbById = {}) {
+  const attach = (row) => {
+    const id = sleeperIdOf(row);
+    const raw = goneProbById[id];
+    if (raw == null) return row;
+    const p = Number(raw);
+    return {
+      ...row,
+      risk: Number.isFinite(p) ? Math.round(p * 100) / 100 : null,
+    };
+  };
+  return {
+    ...result,
+    scored: (result.scored || []).map(attach),
+    recommendations: (result.recommendations || []).map(attach),
+  };
+}
+
 
 function needBonusHtml(needBonus) {
   const m = Number(needBonus);
@@ -664,16 +717,22 @@ async function mountDraftCompanionPage() {
     const scoring = leagueForSettings()?.scoring_settings || {};
     const formatKey = adpFormatKey(formatInfo, scoring);
     let data;
-    if (adpBoardCache.has(formatKey)) {
-      data = adpBoardCache.get(formatKey);
+    if (adpBoardCache.has("merged")) {
+      data = adpBoardCache.get("merged");
     } else {
-      data = await fetchJSON(adpPathForFormat(formatKey));
-      adpBoardCache.set(formatKey, data);
+      data = await fetchJSON(adpPathForFormat(formatKey), {
+        version: null,
+      });
+      adpBoardCache.set("merged", data);
+      await loadHeadshots(data.last_updated);
     }
-    const players = (data.players || []).map((p) => ({
-      ...p,
-      sleeper_id: sleeperIdOf(p),
-    }));
+    const players = attachHeadshots(
+      (data.players || []).map((p) => ({
+        ...p,
+        sleeper_id: sleeperIdOf(p),
+        adp: playerAdpForFormat(p, formatKey),
+      }))
+    );
     applyBoardPlayers(players, formatInfo, {
       source: data.source || "sleeper_adp",
       format: formatKey,
@@ -736,6 +795,7 @@ async function mountDraftCompanionPage() {
     const timing = pickTiming();
     if (timing.onClock) return POLL_ON_CLOCK_MS;
     if (timing.until === 1) return POLL_ON_DECK_MS;
+    if (Number(timing.until) > 5) return POLL_IDLE_MS;
     return POLL_WAITING_MS;
   }
 
@@ -872,42 +932,92 @@ async function mountDraftCompanionPage() {
       </div>`;
   }
 
+  function pickRowData(p) {
+    const meta = p.metadata || {};
+    const name = `${meta.first_name || ""} ${meta.last_name || ""}`.trim();
+    const id = String(p.player_id || "");
+    const board = boardById.get(id) || {
+      sleeper_id: id,
+      player: name,
+      team: meta.team || meta.team_abbr,
+      position: meta.position,
+    };
+    return { pick: p, meta, name, id, board };
+  }
+
+  function updatePickRow(tr, row, teams) {
+    const liked = isLiked(row.id);
+    tr.className = liked ? "draft-liked" : "";
+    tr.children[0].innerHTML = pickNoHtml(row.pick.pick_no, teams);
+    if (!tr.dataset.playerBound) {
+      tr.children[1].innerHTML = playerCellHtml(row.board, {
+        name: row.name,
+        liked,
+      });
+      tr.dataset.playerBound = "1";
+    } else {
+      tr.classList.toggle("draft-liked", liked);
+      const star = tr.querySelector(".draft-star");
+      if (star) {
+        star.classList.toggle("is-liked", liked);
+        star.setAttribute("aria-pressed", liked ? "true" : "false");
+      }
+    }
+    tr.children[2].textContent = row.meta.position || "";
+  }
+
   function renderRecentPicks() {
     const clock = pickTiming().pickNo;
     const recent = liveRecentPicks(picks, clock, 10);
     const teams = leagueTeamCount();
-    boardEl.innerHTML = `
-      <table class="draft-table">
-        <thead><tr><th>Pick</th><th>Player</th><th>Pos</th></tr></thead>
-        <tbody>
-          ${recent
-            .map((p) => {
-              const meta = p.metadata || {};
-              const name = `${meta.first_name || ""} ${meta.last_name || ""}`.trim();
-              const id = String(p.player_id || "");
-              const liked = isLiked(id);
-              const board = boardById.get(id) || {
-                sleeper_id: id,
-                player: name,
-                team: meta.team || meta.team_abbr,
-                position: meta.position,
-              };
-              return `<tr class="${liked ? "draft-liked" : ""}">
-                <td class="num">${pickNoHtml(p.pick_no, teams)}</td>
-                <td>${playerCellHtml(board, { name, liked })}</td>
-                <td>${escapeHtml(meta.position || "")}</td>
-              </tr>`;
-            })
-            .join("") || `<tr><td colspan="3">No picks yet</td></tr>`}
-        </tbody>
-      </table>`;
+    if (!recent.length) {
+      showTableMessage(boardEl, `<p class="meta">No picks yet</p>`);
+      return;
+    }
+    const tbody = ensureTableBody(boardEl, {
+      tableClass: "draft-table",
+      theadHtml: PICKS_TABLE_HEAD,
+    });
+    const rows = recent.map((p) => pickRowData(p));
+    syncTableRows(tbody, rows, {
+      key: (row) => String(row.pick.pick_no),
+      createRow: (row) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td class="num"></td><td></td><td></td>`;
+        updatePickRow(tr, row, teams);
+        return tr;
+      },
+      updateRow: (tr, row) => updatePickRow(tr, row, teams),
+    });
+  }
+
+  function updateRecRow(tr, r, teams) {
+    const liked = isLiked(sleeperIdOf(r));
+    tr.className = liked ? "draft-liked" : "";
+    if (!tr.dataset.playerBound) {
+      tr.innerHTML = scoreRowCells(r, { liked, teams });
+      tr.dataset.playerBound = "1";
+      return;
+    }
+    tr.classList.toggle("draft-liked", liked);
+    const star = tr.querySelector(".draft-star");
+    if (star) {
+      star.classList.toggle("is-liked", liked);
+      star.setAttribute("aria-pressed", liked ? "true" : "false");
+    }
+    tr.children[1].textContent = r.position || "";
+    tr.children[2].innerHTML = adpHtml(r.adp, teams);
+    tr.children[3].innerHTML = needBonusHtml(r.need_bonus);
+    tr.children[4].textContent = String(r.score ?? "—");
+    tr.children[5].innerHTML = gapHtml(r.gap);
+    tr.children[6].innerHTML = riskHtml(r);
   }
 
   function renderRecommendationsFromCache() {
     if (!recEl) return;
     if (!draft) return;
     if (draft.status === "complete") {
-      recEl.innerHTML = `<p class="meta">Draft complete.</p>`;
+      showTableMessage(recEl, `<p class="meta">Draft complete.</p>`);
       return;
     }
     const result = lastScoreResult;
@@ -919,37 +1029,26 @@ async function mountDraftCompanionPage() {
         filters.favsOnly || filters.position
           ? "No players match the current filters."
           : "No draftable players left on the board.";
-      recEl.innerHTML = `<p class="meta">${emptyMsg}</p>`;
+      showTableMessage(recEl, `<p class="meta">${emptyMsg}</p>`);
       return;
     }
     const teams = leagueTeamCount();
     const gapSource =
-      filters.favsOnly || filters.position
-        ? recs
-        : result.scored || recs;
+      filters.favsOnly || filters.position ? recs : result.scored || recs;
     const rows = withPosGaps(recs, gapSource);
-    recEl.innerHTML = `
-      <table class="draft-table">
-        <thead>
-          <tr>
-            <th>Player</th><th>Pos</th><th class="num">ADP</th>
-            <th class="num col-wide">Need</th><th class="num">Score</th>
-            <th class="num" title="Score minus the next player at this position">Δ</th>
-            <th class="num" title="Chance taken before your next pick">Risk</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rows
-            .map((r) => {
-              const liked = isLiked(sleeperIdOf(r));
-              return `
-            <tr class="${liked ? "draft-liked" : ""}">
-              ${scoreRowCells(r, { liked, teams })}
-            </tr>`;
-            })
-            .join("")}
-        </tbody>
-      </table>`;
+    const tbody = ensureTableBody(recEl, {
+      tableClass: "draft-table",
+      theadHtml: RECS_TABLE_HEAD,
+    });
+    syncTableRows(tbody, rows, {
+      key: (r) => sleeperIdOf(r),
+      createRow: (r) => {
+        const tr = document.createElement("tr");
+        updateRecRow(tr, r, teams);
+        return tr;
+      },
+      updateRow: (tr, r) => updateRecRow(tr, r, teams),
+    });
   }
 
   function matchesSearch(player, query) {
@@ -958,6 +1057,33 @@ async function mountDraftCompanionPage() {
     const team = String(player.team || "").toLowerCase();
     const pos = String(player.position || "").toLowerCase();
     return name.includes(query) || team.includes(query) || pos === query;
+  }
+
+  function updateSearchRow(tr, entry, teams) {
+    const { player, scored, taken: isTaken } = entry;
+    const id = sleeperIdOf(player);
+    const liked = isLiked(id);
+    tr.className = [liked ? "draft-liked" : "", isTaken ? "draft-taken" : ""]
+      .filter(Boolean)
+      .join(" ");
+    if (!tr.dataset.playerBound) {
+      tr.innerHTML = `<td></td><td></td><td class="num"></td><td class="num"></td>`;
+      tr.dataset.playerBound = "1";
+      tr.children[0].innerHTML = playerCellHtml(player, { liked });
+    } else {
+      tr.classList.toggle("draft-liked", liked);
+      const star = tr.querySelector(".draft-star");
+      if (star) {
+        star.classList.toggle("is-liked", liked);
+        star.setAttribute("aria-pressed", liked ? "true" : "false");
+      }
+    }
+    tr.children[1].textContent = player.position || "";
+    tr.children[2].innerHTML = adpHtml(player.adp, teams);
+    tr.children[3].innerHTML = isTaken
+      ? `<span class="draft-taken-label">Taken</span>`
+      : escapeHtml(String((scored || {}).score ?? "—"));
+    if (!isTaken) tr.children[3].className = "num";
   }
 
   function renderSearchResults() {
@@ -992,6 +1118,7 @@ async function mountDraftCompanionPage() {
           player: p,
           scored,
           sortScore: scored?.score ?? -Number(p.adp || 9999),
+          taken: false,
         };
       })
       .sort((a, b) => b.sortScore - a.sortScore)
@@ -1005,47 +1132,27 @@ async function mountDraftCompanionPage() {
 
     const rows = [...rankedAvailable, ...rankedTaken];
     if (!rows.length) {
-      searchEl.innerHTML = `<p class="meta">No players match “${escapeHtml(searchInput.value.trim())}”.</p>`;
+      showTableMessage(
+        searchEl,
+        `<p class="meta">No players match “${escapeHtml(searchInput.value.trim())}”.</p>`
+      );
       return;
     }
 
     const teams = leagueTeamCount();
-    searchEl.innerHTML = `
-      <table class="draft-table">
-        <thead>
-          <tr>
-            <th>Player</th><th>Pos</th><th class="num">ADP</th><th class="num">Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rows
-            .map(({ player, scored, taken: isTaken }) => {
-              const id = sleeperIdOf(player);
-              const liked = isLiked(id);
-              const row = scored || {
-                ...player,
-                adp: player.adp,
-                score: "—",
-              };
-              const classes = [
-                liked ? "draft-liked" : "",
-                isTaken ? "draft-taken" : "",
-              ]
-                .filter(Boolean)
-                .join(" ");
-              const scoreCell = isTaken
-                ? `<td><span class="draft-taken-label">Taken</span></td>`
-                : `<td class="num">${escapeHtml(row.score)}</td>`;
-              return `<tr class="${classes}">
-                <td>${playerCellHtml(player, { liked })}</td>
-                <td>${escapeHtml(player.position)}</td>
-                <td class="num">${adpHtml(player.adp, teams)}</td>
-                ${scoreCell}
-              </tr>`;
-            })
-            .join("")}
-        </tbody>
-      </table>`;
+    const tbody = ensureTableBody(searchEl, {
+      tableClass: "draft-table",
+      theadHtml: SEARCH_TABLE_HEAD,
+    });
+    syncTableRows(tbody, rows, {
+      key: (entry) => `${sleeperIdOf(entry.player)}:${entry.taken ? "t" : "a"}`,
+      createRow: (entry) => {
+        const tr = document.createElement("tr");
+        updateSearchRow(tr, entry, teams);
+        return tr;
+      },
+      updateRow: (tr, entry) => updateSearchRow(tr, entry, teams),
+    });
   }
 
   function scoreContext() {
@@ -1071,7 +1178,7 @@ async function mountDraftCompanionPage() {
     lastMyRosterFp = ctx?.myFp || myRosterFingerprint(myRoster);
 
     const byPos = availableByPos();
-    const result = scoreCandidates({
+    const scoreArgs = {
       availableByPos: byPos,
       myRoster,
       opponentRosters: bySlot,
@@ -1083,7 +1190,11 @@ async function mountDraftCompanionPage() {
       limit: SCORE_LIMIT,
       ownerSlotByPick,
       filledPickNos: timing.filledPickNos,
-    });
+    };
+
+    // Paint rankings immediately; risk sim is the slow part and only matters
+    // on the clock for comparing pass-vs-take.
+    const result = scoreCandidates({ ...scoreArgs, includeRisk: false });
 
     hasScoredOnce = true;
     lastScoredFingerprint = picksFingerprint(
@@ -1096,6 +1207,27 @@ async function mountDraftCompanionPage() {
     renderRosterCounts(myRoster);
     renderRecommendationsFromCache();
     renderSearchResults();
+
+    if (!timing.onClock) return;
+
+    const gen = scoreGen;
+    const jobId = ++riskJobSeq;
+    const worker = getRiskWorker();
+    const onMessage = (event) => {
+      if (event.data?.jobId !== jobId || gen !== scoreGen) return;
+      worker.removeEventListener("message", onMessage);
+      if (!event.data?.ok) return;
+      const base = scoreCandidates({ ...scoreArgs, includeRisk: false });
+      const withRisk = applyRiskToResult(base, event.data.goneProbById || {});
+      if (gen !== scoreGen) return;
+      cacheScoreResult(withRisk);
+      renderRecommendationsFromCache();
+      renderSearchResults();
+    };
+    worker.addEventListener("message", onMessage);
+    requestAnimationFrame(() => {
+      worker.postMessage({ jobId, args: scoreArgs });
+    });
   }
 
   function renderAll() {
@@ -1179,14 +1311,22 @@ async function mountDraftCompanionPage() {
       throw new Error("Enter a Sleeper draft id or draft URL");
     }
     draftId = await resolveDraftId(draftInput.value);
-    draft = await sleeperGet(`/draft/${draftId}`);
+    const [draftData, picksData] = await Promise.all([
+      sleeperGet(`/draft/${draftId}`),
+      sleeperGet(`/draft/${draftId}/picks`),
+    ]);
+    draft = draftData;
     league = await fetchLeagueForDraft(draft);
-    try {
-      await loadLeagueRosters();
-      await loadTradedPicks();
-    } catch {
-      tradedPicks = [];
-    }
+    await Promise.all([
+      loadLeagueRosters().catch(() => {
+        leagueRosters = [];
+      }),
+      loadTradedPicks().catch(() => {
+        tradedPicks = [];
+      }),
+      loadAdpBoard(scoringFormat),
+    ]);
+    picks = picksData || [];
 
     if (!resolveLeagueIdInput(leagueInput?.value || "") && league) {
       configuredLeague = league;
@@ -1194,8 +1334,6 @@ async function mountDraftCompanionPage() {
 
     refreshLeagueSettings();
     rebuildPickOwners();
-    await loadAdpBoard(scoringFormat);
-    picks = (await sleeperGet(`/draft/${draftId}/picks`)) || [];
     lastFingerprint = picksFingerprint(
       picks,
       Number(leagueSettings?.teams || draft?.settings?.teams || 12),

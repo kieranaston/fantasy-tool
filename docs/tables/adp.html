@@ -5,13 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark" />
     <title>ADP Board</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../css/site.css?v=48" />
+    <link rel="preconnect" href="https://static.www.nfl.com" crossorigin />
+    <link rel="preconnect" href="https://a.espncdn.com" crossorigin />
+    <link rel="stylesheet" href="../css/site.css?v=49" />
     <script>
       setTimeout(function () {
         document.body.classList.remove("is-page-loading");
@@ -63,9 +59,11 @@
       </div>
     </main>
 
+    <script type="module" src="../js/site-boot.js?v=1"></script>
     <script type="module">
-      import { mountAdpBoardPage } from "../js/adp-board.js?v=29";
-      mountAdpBoardPage();
+      import { mountPage } from "../js/config.js?v=6";
+      import { mountAdpBoardPage } from "../js/adp-board.js?v=30";
+      mountPage(mountAdpBoardPage, "adp-board");
     </script>
   </body>
 </html>

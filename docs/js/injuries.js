@@ -1,5 +1,5 @@
-import { fetchJSON, formatTimestamp, formatUpdated, showError, revealPage } from "./config.js?v=4";
-import { escapeHtml, playerMediaHtml } from "./shared.js?v=6";
+import { fetchJSON, formatTimestamp, formatUpdated, showError, revealPage } from "./config.js?v=6";
+import { escapeHtml, playerMediaHtml } from "./shared.js?v=7";
 
 const BSKY_FEED_URL =
   "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed";
@@ -11,7 +11,7 @@ const DISPLAY_LIMIT = 40;
 const ROTOWIRE_LINE =
   /^\s*([^:\n]{2,80}?)\s*:\s*(.+?)\s*$/m;
 
-/** Name → team/headshot from nflverse roster index (same source as matching). */
+/** Name → team/headshot from nflverse roster index (news pool only). */
 let playerLookupByName = Object.create(null);
 
 async function loadPlayerLookup(version) {
@@ -115,13 +115,11 @@ function sourcesHtml(timeline) {
     </ol>`;
 }
 
-/** Card body: only the newest post text (no designation chip / meta line). */
+/** Card body: only the newest post text. */
 function latestPostHtml(player) {
   const timeline = player.timeline || [];
   const newest = timeline[0];
-  const raw = String(
-    (newest && newest.source_text) || player.diff_summary || ""
-  ).trim();
+  const raw = String((newest && newest.source_text) || "").trim();
   const text = stripUrls(raw).replace(/\n{2,}/g, "\n").trim();
   if (!text) return `<p class="injury-blurb muted">No recent post yet.</p>`;
   return `<div class="injury-blurb injury-latest-post"><p class="timeline-text">${escapeHtml(
@@ -187,12 +185,7 @@ function isFreshPlayer(player, maxAgeDays) {
 function matchesNewsQuery(player, query) {
   if (!query) return true;
   const newest = (player.timeline || [])[0];
-  const haystack = [
-    player.player_name,
-    player.team,
-    player.diff_summary,
-    newest?.source_text,
-  ]
+  const haystack = [player.player_name, player.team, newest?.source_text]
     .map((v) => String(v || "").toLowerCase())
     .join(" ");
   return haystack.includes(query);
@@ -258,11 +251,6 @@ function findPlayerByName(players, name) {
   return null;
 }
 
-/**
- * Merge live Bluesky posts into the static summaries list.
- * Newer posts for a known player become the card blurb; unknown names get a
- * temporary card until the next pipeline run.
- */
 function mergeLivePosts(players, livePosts) {
   const list = players.map((p) => ({
     ...p,
@@ -276,7 +264,6 @@ function mergeLivePosts(players, livePosts) {
   }
 
   let added = 0;
-  // Feed is newest-first; walk oldest→newest so unshift leaves newest first.
   const chronological = [...livePosts].reverse();
   for (const post of chronological) {
     if (!post.url || knownUrls.has(post.url)) continue;
@@ -300,9 +287,7 @@ function mergeLivePosts(players, livePosts) {
       player = hydratePlayerMedia({
         player_id: `live:${normName(post.player_name).replace(/\s+/g, "-")}`,
         player_name: post.player_name,
-        current_designation: null,
         last_updated: post.timestamp,
-        diff_summary: post.source_text,
         timeline: [],
         team: null,
       });
@@ -311,7 +296,6 @@ function mergeLivePosts(players, livePosts) {
 
     player.timeline.unshift(item);
     player.last_updated = post.timestamp || player.last_updated;
-    player.diff_summary = post.source_text;
     added += 1;
   }
 
@@ -325,12 +309,15 @@ async function mountInjuriesPage() {
   const container = document.getElementById("injuries-container");
   const meta = document.querySelector("[data-injuries='summary']");
   const searchInput = document.getElementById("news-player-search");
-  // Never leave the page stuck on the hidden loading shell.
   const failsafe = setTimeout(() => revealPage(), 4000);
 
   try {
-    const data = await fetchJSON("injuries/summaries.json");
-    await loadPlayerLookup(data.last_updated);
+    const [data, lookupData] = await Promise.all([
+      fetchJSON("injuries/summaries.json"),
+      fetchJSON("player-lookup.json").catch(() => ({ players: {} })),
+    ]);
+    playerLookupByName = lookupData.players || {};
+
     let players = [...(data.players || [])].map(hydratePlayerMedia).sort((a, b) =>
       String(b.last_updated || "").localeCompare(String(a.last_updated || ""))
     );
@@ -376,26 +363,23 @@ async function mountInjuriesPage() {
     });
     bindExpand(container, playersById, maxAgeDays);
 
-    // Merge live RotoWire posts before first paint to avoid a stale→live flash.
-    try {
-      const livePosts = await fetchLiveRotowirePosts();
-      const merged = mergeLivePosts(players, livePosts);
-      players = merged.players;
-      players.sort((a, b) =>
-        String(b.last_updated || "").localeCompare(String(a.last_updated || ""))
-      );
-      playersById.clear();
-      for (const p of players) playersById.set(String(p.player_id), p);
-      if (merged.added > 0) {
-        liveNote = ` · ${merged.added} new`;
-        data.last_updated = new Date().toISOString();
-      }
-    } catch {
-      // Static summaries still work if Bluesky is unreachable.
-    }
-
     applyFilter();
     revealPage();
+
+    fetchLiveRotowirePosts()
+      .then((livePosts) => {
+        const merged = mergeLivePosts(players, livePosts);
+        if (!merged.added) return;
+        players = merged.players;
+        players.sort((a, b) =>
+          String(b.last_updated || "").localeCompare(String(a.last_updated || ""))
+        );
+        playersById.clear();
+        for (const p of players) playersById.set(String(p.player_id), p);
+        liveNote = ` · ${merged.added} new`;
+        applyFilter();
+      })
+      .catch(() => {});
   } catch (err) {
     if (container) showError(container, err.message || String(err));
     else if (meta) meta.textContent = err.message || String(err);

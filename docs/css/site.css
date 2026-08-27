@@ -16,7 +16,7 @@
 
 body {
   margin: 0;
-  font-family: 'Source Code Pro', 'Fira Mono', 'Cascadia Code', monospace;
+  font-family: 'Fira Mono', 'Cascadia Code', 'SF Mono', ui-monospace, monospace;
   background: var(--bg);
   color: var(--text);
   line-height: 1.4;

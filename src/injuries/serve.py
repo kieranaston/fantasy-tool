@@ -13,6 +13,8 @@ from src.loaders.nfl_data import player_media_index
 NEWS_MAX_AGE = timedelta(days=7)
 # Cap published source history — UI only expands on demand.
 TIMELINE_LIMIT = 4
+# Card blurb only needs the start of the newest post; full text stays in pipeline.
+TIMELINE_TEXT_MAX = 280
 
 
 def _player_is_fresh(player: dict[str, Any], *, cutoff: datetime) -> bool:
@@ -35,7 +37,7 @@ def _timeline_item(report: dict[str, Any]) -> dict[str, Any]:
         item["timestamp"] = ts
     text = (report.get("source_text") or "").strip()
     if text:
-        item["source_text"] = text
+        item["source_text"] = text[:TIMELINE_TEXT_MAX]
     url = report.get("url")
     if url:
         item["url"] = url
@@ -45,7 +47,10 @@ def _timeline_item(report: dict[str, Any]) -> dict[str, Any]:
     return item
 
 
-def _latest_post_text(timeline: list[dict[str, Any]], status: dict[str, Any] | None = None) -> str | None:
+def _latest_post_text(
+    timeline: list[dict[str, Any]],
+    status: dict[str, Any] | None = None,
+) -> str | None:
     """Card blurb is the newest source post, not an LLM writeup."""
     if timeline:
         text = (timeline[0].get("source_text") or "").strip()
@@ -90,16 +95,12 @@ def build_summaries(
     media = media if media is not None else player_media_index(season=season)
     by_gsis = media["by_gsis_id"]
 
-    def enrich(player_id: str, team: str | None) -> dict[str, Any]:
+    def team_field(player_id: str, team: str | None) -> dict[str, Any]:
         media_row = by_gsis.get(str(player_id)) or {}
         resolved_team = (team or media_row.get("team") or "") or None
         if resolved_team:
             resolved_team = str(resolved_team).upper()
-        out: dict[str, Any] = {"team": resolved_team}
-        # Logos are derived client-side from team abbrev; only ship headshots.
-        if media_row.get("headshot"):
-            out["headshot"] = media_row["headshot"]
-        return out
+        return {"team": resolved_team}
 
     players: list[dict[str, Any]] = []
     for player_id, status in status_current.items():
@@ -108,17 +109,14 @@ def build_summaries(
         timeline = by_player.get(player_id, [])
         if not timeline and not status.get("last_diff_summary"):
             continue
-        media_fields = enrich(player_id, status.get("team"))
         players.append(
             {
                 "player_id": player_id,
                 "player_name": status.get("player_name")
                 or name_by_player.get(player_id),
-                "current_designation": status.get("current_designation"),
                 "last_updated": status.get("last_updated"),
-                "diff_summary": _latest_post_text(timeline, status),
                 "timeline": timeline,
-                **media_fields,
+                **team_field(player_id, status.get("team")),
             }
         )
 
@@ -127,16 +125,13 @@ def build_summaries(
         if player_id in status_current:
             continue
         newest = timeline[0] if timeline else {}
-        media_fields = enrich(player_id, None)
         players.append(
             {
                 "player_id": player_id,
                 "player_name": name_by_player.get(player_id),
-                "current_designation": newest.get("designation"),
                 "last_updated": newest.get("timestamp"),
-                "diff_summary": _latest_post_text(timeline),
                 "timeline": timeline,
-                **media_fields,
+                **team_field(player_id, None),
             }
         )
 

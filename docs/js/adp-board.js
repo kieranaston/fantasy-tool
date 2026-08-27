@@ -3,62 +3,64 @@ import {
   formatUpdated,
   showError,
   revealPage,
-} from "./config.js?v=4";
-import { escapeHtml, sleeperIdOf, playerCellHtml } from "./shared.js?v=6";
-import { FORMAT_LABELS, SCORING_FORMATS, SKILL_POSITIONS, adpPathForFormat, formatAdpRoundPick } from "./draft-scoring.js?v=112";
-import { createFavourites } from "./draft-liked.js?v=10";
+} from "./config.js?v=6";
+import { escapeHtml, sleeperIdOf, playerCellHtml } from "./shared.js?v=7";
+import {
+  FORMAT_LABELS,
+  SCORING_FORMATS,
+  SKILL_POSITIONS,
+  adpPathForFormat,
+  playerAdpForFormat,
+  formatAdpRoundPick,
+} from "./draft-scoring.js?v=115";
+import { createFavourites } from "./draft-liked.js?v=11";
+import { loadHeadshots, attachHeadshots } from "./media.js?v=1";
+import {
+  ensureTableBody,
+  showTableMessage,
+  syncTableRows,
+} from "./table-diff.js?v=1";
 
 const ADP_MISSING = 9999;
-/** Roughly 10 rounds in a 12-team draft (overall tab). */
 const ADP_BOARD_LIMIT = 120;
 const ADP_POS_LIMITS = { QB: 32, TE: 32, DEF: 32, K: 32 };
+
+const REC_TABLE_HEAD = `<thead>
+          <tr>
+            <th class="num col-wide">#</th>
+            <th>Player</th>
+            <th>Pos</th>
+            <th class="num">ADP</th>
+            <th class="num col-wide">Bye</th>
+          </tr>
+        </thead>`;
 
 function boardLimit(pos) {
   if (pos === "overall") return ADP_BOARD_LIMIT;
   return ADP_POS_LIMITS[pos] ?? ADP_BOARD_LIMIT;
 }
 
-const boardCache = new Map();
+let mergedPlayers = [];
+let boardMeta = { label: "", source: "", format: "half_ppr", last_updated: null };
 
-function adpNumber(player) {
-  const n = Number(player?.adp);
+function adpNumber(player, formatKey) {
+  const n = playerAdpForFormat(player, formatKey);
   return Number.isFinite(n) && n > 0 ? n : null;
 }
 
-function slimPlayers(players) {
-  return (players || []).map((p) => ({
-    sleeper_id: sleeperIdOf(p),
-    player: p.player || p.name || "",
-    team: p.team || "",
-    position: String(p.position || "").toUpperCase(),
-    adp: p.adp,
-    bye_week: p.bye_week ?? null,
-    headshot: p.headshot || null,
-  }));
-}
-
-async function loadBoardPlayers(formatKey = "half_ppr") {
-  const key = SCORING_FORMATS.includes(formatKey) ? formatKey : "half_ppr";
-  if (boardCache.has(key)) return boardCache.get(key);
-  const data = await fetchJSON(adpPathForFormat(key));
-  const players = slimPlayers(data.players || []).filter(
-    (p) => adpNumber(p) != null
-  );
-  const board = {
-    players,
-    label: FORMAT_LABELS[key] || data.format || "Half PPR",
-    source: data.source || "sleeper_adp",
-    format: key,
-    last_updated: data.last_updated || null,
-  };
-  boardCache.set(key, board);
-  return board;
+function playersForFormat(formatKey) {
+  return mergedPlayers
+    .map((p) => ({
+      ...p,
+      adp: adpNumber(p, formatKey),
+    }))
+    .filter((p) => p.adp != null && SKILL_POSITIONS.includes(p.position));
 }
 
 function sortByAdp(players) {
   return [...players].sort((a, b) => {
-    const aa = adpNumber(a) ?? ADP_MISSING;
-    const bb = adpNumber(b) ?? ADP_MISSING;
+    const aa = Number(a.adp) ?? ADP_MISSING;
+    const bb = Number(b.adp) ?? ADP_MISSING;
     return aa - bb || String(a.player || "").localeCompare(String(b.player || ""));
   });
 }
@@ -73,11 +75,9 @@ async function mountAdpBoardPage() {
   const root = document.querySelector(".container") || document.body;
 
   let playersSorted = [];
-  let boardMeta = { label: "", source: "", format: "half_ppr" };
   let position = "overall";
   let formatKey = "half_ppr";
   let searchTimer = null;
-  let loadGen = 0;
 
   const favs = createFavourites({
     host: document.getElementById("sync-bar"),
@@ -119,7 +119,7 @@ async function mountAdpBoardPage() {
       .toLowerCase();
     const team = String(teamSelect?.value || "").trim();
     let list = playersSorted.filter((p) => {
-      if (adpNumber(p) == null) return false;
+      if (p.adp == null) return false;
       if (!SKILL_POSITIONS.includes(p.position)) return false;
       if (team && p.team !== team) return false;
       return matchesFilter(p, query);
@@ -138,52 +138,54 @@ async function mountAdpBoardPage() {
     summaryEl.textContent = formatUpdated(boardMeta.last_updated);
   }
 
+  function adpCellHtml(adp) {
+    const overall = adp == null ? null : Number(adp).toFixed(1);
+    const roundPick = adp == null ? null : formatAdpRoundPick(adp, 12);
+    if (overall == null) return "—";
+    if (roundPick) {
+      return `<span class="adp-overall">${escapeHtml(roundPick)}</span><span class="adp-round-pick">${escapeHtml(overall)}</span>`;
+    }
+    return `<span class="adp-overall">${escapeHtml(overall)}</span>`;
+  }
+
+  function createAdpRow(p, index) {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td class="num col-wide">${index + 1}</td>
+      <td></td>
+      <td></td>
+      <td class="num"></td>
+      <td class="num col-wide"></td>`;
+    updateAdpRow(tr, p, index);
+    return tr;
+  }
+
+  function updateAdpRow(tr, p, index) {
+    const liked = favs.has(p.sleeper_id);
+    tr.className = liked ? "draft-liked" : "";
+    tr.children[0].textContent = String(index + 1);
+    tr.children[1].innerHTML = playerCellHtml(p, { liked });
+    tr.children[2].textContent = p.position || "";
+    tr.children[3].innerHTML = adpCellHtml(p.adp);
+    tr.children[4].textContent = p.bye_week == null ? "—" : String(p.bye_week);
+  }
+
   function render() {
     const rows = visiblePlayers();
     updateSummary();
     if (!rows.length) {
-      boardEl.innerHTML = `<p class="meta">No players match.</p>`;
+      showTableMessage(boardEl, `<p class="meta">No players match.</p>`);
       return;
     }
-    boardEl.innerHTML = `
-      <table class="draft-table adp-table">
-        <thead>
-          <tr>
-            <th class="num col-wide">#</th>
-            <th>Player</th>
-            <th>Pos</th>
-            <th class="num">ADP</th>
-            <th class="num col-wide">Bye</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rows
-            .map((p, i) => {
-              const liked = favs.has(p.sleeper_id);
-              const adp = adpNumber(p);
-              const overall = adp == null ? null : Number(adp).toFixed(1);
-              const roundPick = adp == null ? null : formatAdpRoundPick(adp, 12);
-              const adpCell =
-                overall == null
-                  ? "—"
-                  : roundPick
-                    ? `<span class="adp-overall">${escapeHtml(
-                        roundPick
-                      )}</span><span class="adp-round-pick">${escapeHtml(
-                        overall
-                      )}</span>`
-                    : `<span class="adp-overall">${escapeHtml(overall)}</span>`;
-              return `<tr class="${liked ? "draft-liked" : ""}">
-                <td class="num col-wide">${i + 1}</td>
-                <td>${playerCellHtml(p, { liked })}</td>
-                <td>${escapeHtml(p.position)}</td>
-                <td class="num">${adpCell}</td>
-                <td class="num col-wide">${p.bye_week == null ? "—" : escapeHtml(p.bye_week)}</td>
-              </tr>`;
-            })
-            .join("")}
-        </tbody>
-      </table>`;
+    const tbody = ensureTableBody(boardEl, {
+      tableClass: "draft-table adp-table",
+      theadHtml: REC_TABLE_HEAD,
+    });
+    syncTableRows(tbody, rows, {
+      key: (p) => sleeperIdOf(p),
+      createRow: (p, i) => createAdpRow(p, i),
+      updateRow: (tr, p, i) => updateAdpRow(tr, p, i),
+    });
   }
 
   function setPosition(next) {
@@ -196,7 +198,7 @@ async function mountAdpBoardPage() {
     render();
   }
 
-  async function setFormat(next) {
+  function setFormat(next) {
     if (!SCORING_FORMATS.includes(next) || next === formatKey) return;
     formatKey = next;
     for (const tab of formatTabs) {
@@ -204,23 +206,14 @@ async function mountAdpBoardPage() {
       tab.classList.toggle("is-active", active);
       tab.setAttribute("aria-selected", active ? "true" : "false");
     }
-    const gen = ++loadGen;
-    if (summaryEl) summaryEl.textContent = "Loading…";
-    try {
-      const board = await loadBoardPlayers(formatKey);
-      if (gen !== loadGen) return;
-      playersSorted = sortByAdp(
-        (board.players || []).filter((p) =>
-          SKILL_POSITIONS.includes(p.position)
-        )
-      );
-      boardMeta = board;
-      fillTeamOptions();
-      render();
-    } catch (err) {
-      if (gen !== loadGen) return;
-      showError(boardEl, err.message);
-    }
+    boardMeta = {
+      ...boardMeta,
+      format: formatKey,
+      label: FORMAT_LABELS[formatKey] || formatKey,
+    };
+    playersSorted = sortByAdp(playersForFormat(formatKey));
+    fillTeamOptions();
+    render();
   }
 
   tabs.forEach((tab) => {
@@ -240,17 +233,24 @@ async function mountAdpBoardPage() {
     if (!btn || !root.contains(btn)) return;
     event.preventDefault();
     event.stopPropagation();
-    const id = btn.getAttribute("data-player-id");
-    favs.toggle(id);
+    favs.toggle(btn.getAttribute("data-player-id"));
   });
 
   try {
     await favs.hydrate();
-    const board = await loadBoardPlayers(formatKey);
-    playersSorted = sortByAdp(
-      (board.players || []).filter((p) => SKILL_POSITIONS.includes(p.position))
-    );
-    boardMeta = board;
+    const [data] = await Promise.all([
+      fetchJSON(adpPathForFormat(formatKey), { version: null }),
+    ]);
+    await loadHeadshots(data.last_updated);
+    mergedPlayers = attachHeadshots(data.players || []);
+    boardMeta = {
+      players: mergedPlayers,
+      label: FORMAT_LABELS[formatKey] || "Half PPR",
+      source: data.source || "sleeper_adp",
+      format: formatKey,
+      last_updated: data.last_updated || null,
+    };
+    playersSorted = sortByAdp(playersForFormat(formatKey));
     fillTeamOptions();
     render();
     revealPage();

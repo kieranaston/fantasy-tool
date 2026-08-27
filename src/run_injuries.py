@@ -20,7 +20,6 @@ from src.injuries.store import (
     load_poll_state,
     write_json,
 )
-from src.loaders.nfl_data import get_current_season
 from src.injuries.summarize import (
     extract_bluesky_batch,
     gemini_available,
@@ -31,6 +30,7 @@ from src.loaders.bluesky import (
     fetch_author_posts,
     posts_to_raw_reports,
 )
+from src.loaders.nfl_data import get_current_season
 from src.loaders.sleeper_adp import load_news_pool_ids
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -134,10 +134,11 @@ def ingest_bluesky(player_index, reports: list, poll_state: dict) -> tuple[list,
             {"status": "", "designation": "", "direct_quote": item.get("direct_quote")},
             source_text,
         )
-        if not ok and item.get("player_name"):
-            # Pattern extracts use full post text as quote; still accept.
-            ok = True
-            failed = []
+        if not ok and item.get("extract_method") == "pattern":
+            quote = str(item.get("direct_quote") or "")
+            if quote and source_text.startswith(quote):
+                ok = True
+                failed = []
         if not ok:
             review_batch.append(
                 review_item(
@@ -346,7 +347,13 @@ def main() -> None:
         media=tables.media,
     )
     write_json(SUMMARIES_PATH, summaries)
-    write_json(PLAYER_LOOKUP_PATH, build_player_lookup(season=get_current_season()))
+    write_json(
+        PLAYER_LOOKUP_PATH,
+        build_player_lookup(
+            season=get_current_season(),
+            allowed_player_ids=pool_ids,
+        ),
+    )
 
     watermark_times = [r.get("timestamp") for r in bsky_new if r.get("timestamp")]
     if watermark_times:

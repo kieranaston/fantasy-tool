@@ -40,6 +40,18 @@ GEMINI_API_KEY=...             # Bluesky triage + grounded summaries
 GEMINI_MODEL=gemini-2.5-flash-lite   # optional override
 ```
 
+See `.env.example` for all supported variables.
+
+### Tests
+
+```bash
+pip install -e ".[dev]"
+ruff check src tests
+pytest
+```
+
+CI runs the same checks on push via **Test** workflow.
+
 ## GitHub Pages
 
 1. Push this repo to GitHub

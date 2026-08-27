@@ -128,6 +128,7 @@ def extract_rotowire_posts(posts: list[dict[str, Any]]) -> list[dict[str, Any]]:
                     "direct_quote": text[:280],
                     "post_url": url,
                     "needs_review": True,
+                    "extract_method": "pattern",
                 }
             )
             continue
@@ -144,6 +145,7 @@ def extract_rotowire_posts(posts: list[dict[str, Any]]) -> list[dict[str, Any]]:
                 "direct_quote": text[:280],
                 "post_url": url,
                 "needs_review": False,
+                "extract_method": "pattern",
             }
         )
     return items

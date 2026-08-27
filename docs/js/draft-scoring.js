@@ -1,11 +1,12 @@
 /**
  * Draft assistant — ADP first, with a QB/TE backup multiplier.
  *
- * On the clock:
+ * Ranking:
  *  1. Score = −ADP × M (higher is better). RB/WR/DEF/K always M = 1 (pure ADP).
  *     QB/TE: M = 1 until you have one, then M = 1.5 (treat ADP as 50% later).
- *  2. Risk uses the same score. Each opponent pick is a softmax; M updates
- *     after each team's most likely pick.
+ *  2. Risk (display-only, on the clock only) uses the same score. Softmax over
+ *     opponent picks until your following pick (pass → still there?). The UI can
+ *     paint rankings first with includeRisk=false, then fill risk afterward.
  *
  * DEF/K follow ADP with no round gating. Once your roster slots are filled they
  * drop from recommendations only — opponents still draft them in risk sim until
@@ -131,10 +132,23 @@ function resolveScoringFormat(draft = {}, league = null) {
   };
 }
 
-/** Relative path under docs/data/ for the format ADP board. */
-function adpPathForFormat(format = "half_ppr") {
-  const key = SCORING_FORMATS.includes(format) ? format : "half_ppr";
-  return `draft/adp-${key.replaceAll("_", "-")}.json`;
+/** Relative path under docs/data/ for the merged multi-format ADP board. */
+const ADP_BOARD_PATH = "draft/adp-board.json";
+
+function adpPathForFormat(_format = "half_ppr") {
+  return ADP_BOARD_PATH;
+}
+
+/** Resolve ADP for one scoring format from a merged or legacy player row. */
+function playerAdpForFormat(player, format = "half_ppr") {
+  const raw = player?.adp;
+  if (raw == null || raw === "") return null;
+  if (typeof raw === "object") {
+    const key = SCORING_FORMATS.includes(format) ? format : "half_ppr";
+    const value = raw[key];
+    return value == null ? null : Number(value);
+  }
+  return Number(raw);
 }
 
 /**
@@ -571,6 +585,7 @@ function scoreCandidates({
   limit = 12,
   ownerSlotByPick = null,
   filledPickNos = null,
+  includeRisk = true,
 }) {
   const myPicks = nextOwnedPickNumbers(
     mySlot,
@@ -588,26 +603,28 @@ function scoreCandidates({
   const shortlistSize = Math.max(RISK_POOL_CAP, recLimit) + SCORE_SHORTLIST_PAD;
   const filteredAvailable = filterFilledSlots(availableByPosIn, settings, myRoster);
   const sortedForRecs = flattenAvailable(filteredAvailable, shortlistSize);
-  const sortedForRisk = flattenAvailable(availableByPosIn, shortlistSize);
   const myNeed = needCounts(myRoster, settings);
-  const pool = buildRiskSimPool(sortedForRisk, myNeed, recLimit);
-  const simRosters = cloneRosters(opponentRosters, teams);
-  simRosters[mySlot] = [...(myRoster || [])];
 
-  let goneProbById = new Map();
-  if (onClock && myPickAfter && myPickAfter > myPick + 1) {
-    goneProbById = simulateGoneProbabilities({
-      startPick: myPick + 1,
-      endPick: myPickAfter,
-      teams,
-      mySlot,
-      settings,
-      pool,
-      rosters: simRosters,
-      ownerSlotByPick,
-      filledPickNos,
-    });
-  }
+  // Risk only on the clock: P(gone before your following pick) if you pass now.
+  const goneProbById =
+    includeRisk &&
+    onClock &&
+    myPickAfter &&
+    myPickAfter > myPick + 1
+      ? computeRiskProbabilities({
+          availableByPos: availableByPosIn,
+          myRoster,
+          opponentRosters,
+          settings,
+          teams,
+          mySlot,
+          currentPickNo,
+          rounds,
+          limit: recLimit,
+          ownerSlotByPick,
+          filledPickNos,
+        })
+      : new Map();
 
   const scored = [];
   for (const player of sortedForRecs) {
@@ -635,10 +652,60 @@ function round1(n) {
   return Math.round(Number(n) * 10) / 10;
 }
 
+/** Risk sim only — safe to run in a Web Worker. Returns Map(playerId → P(gone)). */
+function computeRiskProbabilities({
+  availableByPos: availableByPosIn,
+  myRoster,
+  opponentRosters,
+  settings,
+  teams,
+  mySlot,
+  currentPickNo,
+  rounds,
+  limit = 12,
+  ownerSlotByPick = null,
+  filledPickNos = null,
+}) {
+  const myPicks = nextOwnedPickNumbers(
+    mySlot,
+    teams,
+    rounds,
+    currentPickNo,
+    ownerSlotByPick,
+    filledPickNos
+  );
+  const myPick = myPicks[0] ?? currentPickNo;
+  const myPickAfter = myPicks[1] ?? null;
+  const onClock = Number(myPick) === Number(currentPickNo);
+  if (!onClock || !myPickAfter || myPickAfter <= myPick + 1) {
+    return new Map();
+  }
+
+  const recLimit = Math.max(1, Number(limit) || 12);
+  const shortlistSize = Math.max(RISK_POOL_CAP, recLimit) + SCORE_SHORTLIST_PAD;
+  const sortedForRisk = flattenAvailable(availableByPosIn, shortlistSize);
+  const myNeed = needCounts(myRoster, settings);
+  const pool = buildRiskSimPool(sortedForRisk, myNeed, recLimit);
+  const simRosters = cloneRosters(opponentRosters, teams);
+  simRosters[mySlot] = [...(myRoster || [])];
+  return simulateGoneProbabilities({
+    startPick: myPick + 1,
+    endPick: myPickAfter,
+    teams,
+    mySlot,
+    settings,
+    pool,
+    rosters: simRosters,
+    ownerSlotByPick,
+    filledPickNos,
+  });
+}
+
 export {
   resolveLeagueSettings,
   resolveScoringFormat,
   adpPathForFormat,
+  playerAdpForFormat,
   formatFromReceptionPoints,
   rosterPositionCounts,
   draftTargets,
@@ -652,6 +719,7 @@ export {
   ownerSlotAtPick,
   slotForOverallPick,
   scoreCandidates,
+  computeRiskProbabilities,
   annotateScore,
   formatAdpRoundPick,
   SKILL_POSITIONS,

@@ -44,6 +44,16 @@ function ts(iso) {
 
 let client = null;
 
+function hasStoredSession() {
+  try {
+    return Object.keys(localStorage).some(
+      (k) => k.startsWith("sb-") && k.includes("auth-token")
+    );
+  } catch {
+    return false;
+  }
+}
+
 async function getClient() {
   if (!isSyncConfigured()) return null;
   if (!client) {
@@ -90,6 +100,38 @@ export function createFavourites(options = {}) {
     const { data, error } = await sb.auth.getSession();
     if (error) throw error;
     return data.session?.user || null;
+  }
+
+  let authListenerBound = false;
+  async function ensureAuthListener() {
+    const sb = await getClient();
+    if (!sb || authListenerBound) return sb;
+    authListenerBound = true;
+    sb.auth.onAuthStateChange((event, session) => {
+      queueMicrotask(async () => {
+        if (event === "INITIAL_SESSION") return;
+        const next = session?.user?.email || null;
+        if (event === "SIGNED_OUT" || !next) {
+          email = null;
+          setStatus("");
+          renderBar();
+          return;
+        }
+        if (event === "SIGNED_IN") {
+          email = next;
+          renderBar();
+          try {
+            await applyRemote();
+          } catch (err) {
+            setStatus(err.message || "Sync failed");
+          }
+          renderBar();
+          return;
+        }
+        if (next) email = next;
+      });
+    });
+    return sb;
   }
 
   async function fetchRemote() {
@@ -216,6 +258,7 @@ export function createFavourites(options = {}) {
       const value = new FormData(event.target).get("email");
       try {
         setStatus("Sending magic link…");
+        await ensureAuthListener();
         const sb = await getClient();
         const redirectTo = window.location.href.split("#")[0];
         const { error } = await sb.auth.signInWithOtp({
@@ -248,7 +291,13 @@ export function createFavourites(options = {}) {
       onChange?.();
       return;
     }
+    renderBar();
+    if (!hasStoredSession()) {
+      onChange?.();
+      return;
+    }
     try {
+      await ensureAuthListener();
       const user = await currentUser();
       email = user?.email || null;
       if (email) await applyRemote();
@@ -257,36 +306,6 @@ export function createFavourites(options = {}) {
     }
     renderBar();
     onChange?.();
-  }
-
-  if (isSyncConfigured()) {
-    getClient().then((sb) => {
-      if (!sb) return;
-      sb.auth.onAuthStateChange((event, session) => {
-        queueMicrotask(async () => {
-          if (event === "INITIAL_SESSION") return;
-          const next = session?.user?.email || null;
-          if (event === "SIGNED_OUT" || !next) {
-            email = null;
-            setStatus("");
-            renderBar();
-            return;
-          }
-          if (event === "SIGNED_IN") {
-            email = next;
-            renderBar();
-            try {
-              await applyRemote();
-            } catch (err) {
-              setStatus(err.message || "Sync failed");
-            }
-            renderBar();
-            return;
-          }
-          if (next) email = next;
-        });
-      });
-    });
   }
 
   window.addEventListener("visibilitychange", () => {
