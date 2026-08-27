@@ -35,12 +35,12 @@ function dataPath(relativePath) {
 
 /**
  * Fetch and parse a JSON file from docs/data/.
- * Default cache lets the browser reuse ETag/Last-Modified (GitHub Pages).
- * Pass cache: "no-store" only for live/volatile fetches.
+ * Default no-cache revalidates against GitHub Pages ETags on each load.
+ * Pass cache: "no-store" for live/volatile fetches (e.g. Bluesky).
  */
 async function fetchJSON(
   relativePath,
-  { cache = "default", timeoutMs = 12000, version = null } = {}
+  { cache = "no-cache", timeoutMs = 12000, version = null } = {}
 ) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), timeoutMs);

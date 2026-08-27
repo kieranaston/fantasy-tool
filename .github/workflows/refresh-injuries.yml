@@ -47,7 +47,8 @@ jobs:
           git add data/injuries/raw_reports.json \
             data/injuries/player_status_current.json \
             data/injuries/poll_state.json \
-            docs/data/injuries/summaries.json
+            docs/data/injuries/summaries.json \
+            docs/data/player-lookup.json
           if git diff --staged --quiet; then
             echo "No injury data changes to commit."
           else
