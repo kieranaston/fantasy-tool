@@ -1,14 +1,12 @@
-"""Fuzzy-match extracted player names to GSIS player_ids."""
+"""Fuzzy-match extracted player names to Sleeper player ids."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 
-import nflreadpy as nfl
-import polars as pl
 from rapidfuzz import fuzz, process
 
-from src.loaders.nfl_data import player_media_index
+from src.loaders.sleeper_players import display_name, fetch_sleeper_players
 
 
 @dataclass(frozen=True)
@@ -29,82 +27,56 @@ class MatchResult:
 
 @dataclass(frozen=True)
 class PlayerTables:
-    """Roster index, Sleeper→GSIS map, and media from one nflverse load."""
+    """Sleeper player index for Bluesky name matching and news pool."""
 
     index: list[PlayerRef]
-    sleeper_to_gsis: dict[str, str]
     by_name: dict[str, PlayerRef]
-    media: dict[str, dict[str, dict]]
+    by_id: dict[str, PlayerRef]
 
 
 # Minimum rapidfuzz token_set_ratio to accept an automatic match.
 MATCH_THRESHOLD = 88.0
 
 
-def _sleeper_map_from_ids(ids: pl.DataFrame) -> dict[str, str]:
-    mapped = ids.filter(
-        pl.col("sleeper_id").is_not_null()
-        & pl.col("gsis_id").is_not_null()
-        & pl.col("gsis_id").cast(pl.Utf8).str.starts_with("00-")
-    )
-    return {
-        str(row["sleeper_id"]): str(row["gsis_id"])
-        for row in mapped.iter_rows(named=True)
-    }
+def _normalize_position(raw: str | None) -> str | None:
+    pos = str(raw or "").upper()
+    if pos == "DST":
+        return "DEF"
+    if pos == "PK":
+        return "K"
+    return pos or None
 
 
-def load_player_tables(*, season: int | None = None) -> PlayerTables:
-    """Load rosters + ID map once for matching, news-pool GSIS, and media."""
-    media = player_media_index(season=season)
-    ids = nfl.load_ff_playerids()
-    sleeper_to_gsis = _sleeper_map_from_ids(ids)
+def load_player_tables() -> PlayerTables:
+    """Build a name index from Sleeper's NFL players dump."""
+    players = fetch_sleeper_players()
+    refs: list[PlayerRef] = []
+    by_name: dict[str, PlayerRef] = {}
+    by_id: dict[str, PlayerRef] = {}
 
-    refs: dict[str, PlayerRef] = {}
-    for gid, row in (media.get("by_gsis_id") or {}).items():
-        pid = str(gid)
-        name = row.get("player")
-        if not pid.startswith("00-") or not name:
+    for sleeper_id, row in players.items():
+        if not isinstance(row, dict):
             continue
-        refs[pid] = PlayerRef(
-            player_id=pid,
-            name=str(name),
-            team=row.get("team"),
-            position=row.get("position"),
+        name = display_name(row)
+        if not name:
+            continue
+        sid = str(sleeper_id).strip()
+        team = str(row.get("team") or "").strip().upper() or None
+        ref = PlayerRef(
+            player_id=sid,
+            name=name,
+            team=team,
+            position=_normalize_position(row.get("position")),
         )
+        refs.append(ref)
+        by_name[name] = ref
+        by_id[sid] = ref
 
-    mapped = ids.filter(
-        pl.col("gsis_id").is_not_null()
-        & pl.col("name").is_not_null()
-        & pl.col("gsis_id").cast(pl.Utf8).str.starts_with("00-")
-    )
-    for row in mapped.iter_rows(named=True):
-        pid = str(row["gsis_id"])
-        if pid not in refs:
-            refs[pid] = PlayerRef(
-                player_id=pid,
-                name=str(row["name"]),
-                team=row.get("team"),
-                position=row.get("position"),
-            )
-
-    index = list(refs.values())
-    by_name = {ref.name: ref for ref in index}
-    return PlayerTables(
-        index=index,
-        sleeper_to_gsis=sleeper_to_gsis,
-        by_name=by_name,
-        media=media,
-    )
+    return PlayerTables(index=refs, by_name=by_name, by_id=by_id)
 
 
-def load_player_index(season: int | None = None) -> list[PlayerRef]:
-    """Build a name→GSIS index from current (or given) season rosters + IDs."""
-    return load_player_tables(season=season).index
-
-
-def sleeper_id_to_gsis() -> dict[str, str]:
-    """Map Sleeper player id (str) → GSIS id."""
-    return _sleeper_map_from_ids(nfl.load_ff_playerids())
+def load_player_index() -> list[PlayerRef]:
+    return load_player_tables().index
 
 
 def name_choices(index: list[PlayerRef]) -> dict[str, PlayerRef]:
@@ -117,7 +89,7 @@ def match_player_name(
     *,
     threshold: float = MATCH_THRESHOLD,
 ) -> MatchResult:
-    """Fuzzy-match a free-text name to a GSIS id. Low confidence → review."""
+    """Fuzzy-match a free-text name to a Sleeper id. Low confidence → review."""
     if not player_name or not player_name.strip():
         return MatchResult(
             player_id=None,

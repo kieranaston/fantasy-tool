@@ -8,7 +8,6 @@ from pathlib import Path
 
 from src.config.env import load_dotenv
 from src.export.json_writer import utc_now_iso
-from src.export.player_lookup import build_player_lookup
 from src.injuries.detect import detect_changes, group_reports_by_player
 from src.injuries.match import load_player_tables
 from src.injuries.serve import build_summaries
@@ -30,21 +29,18 @@ from src.loaders.bluesky import (
     fetch_author_posts,
     posts_to_raw_reports,
 )
-from src.loaders.nfl_data import get_current_season
 from src.loaders.sleeper_adp import load_news_pool_ids
 
 ROOT = Path(__file__).resolve().parents[1]
 # Pipeline state stays off Pages; only summaries.json is published under docs/.
 STATE_DIR = ROOT / "data" / "injuries"
 PUBLIC_DIR = ROOT / "docs" / "data" / "injuries"
-DATA_DIR = ROOT / "docs" / "data"
 
 RAW_PATH = STATE_DIR / "raw_reports.json"
 STATUS_PATH = STATE_DIR / "player_status_current.json"
 POLL_PATH = STATE_DIR / "poll_state.json"
 REVIEW_PATH = STATE_DIR / "review_queue.json"
 SUMMARIES_PATH = PUBLIC_DIR / "summaries.json"
-PLAYER_LOOKUP_PATH = DATA_DIR / "player-lookup.json"
 
 EXTRACT_CHUNK = 8
 # Cap Bluesky LLM matching only (no narrative generation).
@@ -316,7 +312,7 @@ def main() -> None:
     tables = load_player_tables()
     print(f"  Player index: {len(tables.index)} names")
 
-    pool_ids = load_news_pool_ids(sleeper_to_gsis=tables.sleeper_to_gsis)
+    pool_ids = load_news_pool_ids()
     print(f"  News pool: {len(pool_ids)} players")
 
     run_started = utc_now_iso()
@@ -343,17 +339,13 @@ def main() -> None:
         reports=reports,
         last_updated=now,
         allowed_player_ids=pool_ids,
-        season=get_current_season(),
-        media=tables.media,
+        teams_by_id={
+            ref.player_id: ref.team
+            for ref in tables.index
+            if ref.team
+        },
     )
     write_json(SUMMARIES_PATH, summaries)
-    write_json(
-        PLAYER_LOOKUP_PATH,
-        build_player_lookup(
-            season=get_current_season(),
-            allowed_player_ids=pool_ids,
-        ),
-    )
 
     watermark_times = [r.get("timestamp") for r in bsky_new if r.get("timestamp")]
     if watermark_times:

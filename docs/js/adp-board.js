@@ -3,8 +3,8 @@ import {
   formatUpdated,
   showError,
   revealPage,
-} from "./config.js?v=6";
-import { escapeHtml, sleeperIdOf, playerCellHtml } from "./shared.js?v=7";
+} from "./config.js";
+import { escapeHtml, sleeperIdOf, bindPlayerCell, matchesPlayerQuery } from "./shared.js";
 import {
   FORMAT_LABELS,
   SCORING_FORMATS,
@@ -12,14 +12,13 @@ import {
   adpPathForFormat,
   playerAdpForFormat,
   formatAdpRoundPick,
-} from "./draft-scoring.js?v=115";
-import { createFavourites } from "./draft-liked.js?v=11";
-import { loadHeadshots, attachHeadshots } from "./media.js?v=1";
+} from "./draft-scoring.js";
+import { createFavourites } from "./draft-liked.js";
 import {
   ensureTableBody,
   showTableMessage,
   syncTableRows,
-} from "./table-diff.js?v=1";
+} from "./table-diff.js";
 
 const ADP_MISSING = 9999;
 const ADP_BOARD_LIMIT = 120;
@@ -86,10 +85,7 @@ async function mountAdpBoardPage() {
 
   function matchesFilter(player, query) {
     if (!query) return true;
-    const name = String(player.player || "").toLowerCase();
-    const team = String(player.team || "").toLowerCase();
-    const pos = String(player.position || "").toLowerCase();
-    return name.includes(query) || team.includes(query) || pos === query;
+    return matchesPlayerQuery(player, query);
   }
 
   function fillTeamOptions() {
@@ -164,7 +160,7 @@ async function mountAdpBoardPage() {
     const liked = favs.has(p.sleeper_id);
     tr.className = liked ? "draft-liked" : "";
     tr.children[0].textContent = String(index + 1);
-    tr.children[1].innerHTML = playerCellHtml(p, { liked });
+    bindPlayerCell(tr.children[1], p, { liked });
     tr.children[2].textContent = p.position || "";
     tr.children[3].innerHTML = adpCellHtml(p.adp);
     tr.children[4].textContent = p.bye_week == null ? "—" : String(p.bye_week);
@@ -193,7 +189,7 @@ async function mountAdpBoardPage() {
     for (const tab of tabs) {
       const active = tab.dataset.pos === position;
       tab.classList.toggle("is-active", active);
-      tab.setAttribute("aria-selected", active ? "true" : "false");
+      tab.setAttribute("aria-pressed", active ? "true" : "false");
     }
     render();
   }
@@ -204,7 +200,7 @@ async function mountAdpBoardPage() {
     for (const tab of formatTabs) {
       const active = tab.dataset.format === formatKey;
       tab.classList.toggle("is-active", active);
-      tab.setAttribute("aria-selected", active ? "true" : "false");
+      tab.setAttribute("aria-pressed", active ? "true" : "false");
     }
     boardMeta = {
       ...boardMeta,
@@ -239,10 +235,9 @@ async function mountAdpBoardPage() {
   try {
     await favs.hydrate();
     const [data] = await Promise.all([
-      fetchJSON(adpPathForFormat(formatKey), { version: null }),
+      fetchJSON(adpPathForFormat(formatKey)),
     ]);
-    await loadHeadshots(data.last_updated);
-    mergedPlayers = attachHeadshots(data.players || []);
+    mergedPlayers = data.players || [];
     boardMeta = {
       players: mergedPlayers,
       label: FORMAT_LABELS[formatKey] || "Half PPR",

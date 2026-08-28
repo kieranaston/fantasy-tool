@@ -29,6 +29,12 @@ FORMATS = {
     "std": "adp_std",
 }
 
+PTS_FORMATS = {
+    "half_ppr": "pts_half_ppr",
+    "full_ppr": "pts_ppr",
+    "std": "pts_std",
+}
+
 POSITIONS = SKILL_POSITIONS
 
 # Published draft/ADP board depth: top overall OR enough per position so
@@ -129,6 +135,19 @@ def normalize_adp_slim(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
             if value >= ADP_SENTINEL:
                 continue
             adp_values[format_key] = value
+
+        pts_values: dict[str, float] = {}
+        for format_key, field in PTS_FORMATS.items():
+            raw = stats.get(field)
+            if raw is None:
+                continue
+            try:
+                value = float(raw)
+            except (TypeError, ValueError):
+                continue
+            if value > 0:
+                pts_values[format_key] = round(value, 1)
+
         if not adp_values:
             continue
 
@@ -136,19 +155,26 @@ def normalize_adp_slim(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
         team = str(team).upper() if team else ""
         existing = best.get(sleeper_id)
         if existing is None:
-            best[sleeper_id] = {
+            row: dict[str, Any] = {
                 "sleeper_id": sleeper_id,
                 "player": _display_name(player, sleeper_id),
                 "team": team,
                 "position": position,
                 "adp": adp_values,
             }
+            if pts_values:
+                row["pts"] = pts_values
+            best[sleeper_id] = row
             continue
 
         for format_key, value in adp_values.items():
             prev = existing["adp"].get(format_key)
             if prev is None or value < prev:
                 existing["adp"][format_key] = value
+        for format_key, value in pts_values.items():
+            prev = (existing.get("pts") or {}).get(format_key)
+            if prev is None or value > prev:
+                existing.setdefault("pts", {})[format_key] = value
         if not existing.get("team") and team:
             existing["team"] = team
 
@@ -159,38 +185,24 @@ def adp_board_for_format(
     players: list[dict[str, Any]],
     *,
     format_key: str,
-    byes: dict[str, int] | None = None,
-    headshots: dict[str, dict[str, Any]] | None = None,
 ) -> list[dict[str, Any]]:
-    """Slim public ADP rows for one scoring format.
-
-    Logos are omitted — the client builds them from team abbrev. Headshots are
-    optional enrichment. Depth is capped so Pages stays small while still
-    covering a full draft + late DEF/K.
-    """
-    bye_map = byes or {}
+    """Slim public ADP rows for one scoring format."""
     ranked: list[dict[str, Any]] = []
     for player in players:
         adp = (player.get("adp") or {}).get(format_key)
         if adp is None:
             continue
-        team = player.get("team") or ""
-        sleeper_id = player["sleeper_id"]
-        media = (headshots or {}).get(str(sleeper_id)) or {}
         row: dict[str, Any] = {
-            "sleeper_id": sleeper_id,
+            "sleeper_id": player["sleeper_id"],
             "player": player["player"],
-            "team": team,
+            "team": player.get("team") or "",
             "position": player["position"],
             "adp": round(float(adp), 1),
         }
-        # Prefer pipeline headshot; fall back to anything already on the player.
-        headshot = media.get("headshot") or player.get("headshot")
-        if headshot:
-            row["headshot"] = headshot
-        bye = bye_map.get(str(team).upper()) if team else None
-        if bye is not None:
-            row["bye_week"] = int(bye)
+        pts_map = player.get("pts") or {}
+        pts = pts_map.get(format_key)
+        if pts is not None:
+            row["pts"] = round(float(pts), 1)
         ranked.append(row)
 
     ranked.sort(key=lambda row: (row["adp"], row["player"]))
@@ -218,16 +230,9 @@ def adp_board_for_format(
 
 def adp_merged_board(
     players: list[dict[str, Any]],
-    *,
-    byes: dict[str, int] | None = None,
 ) -> list[dict[str, Any]]:
-    """One row per player with all format ADPs (no headshots — use sidecar)."""
-    half = adp_board_for_format(
-        players,
-        format_key="half_ppr",
-        byes=byes,
-        headshots=None,
-    )
+    """One row per player with all format ADPs."""
+    half = adp_board_for_format(players, format_key="half_ppr")
     by_id = {str(p["sleeper_id"]): p for p in players}
     merged: list[dict[str, Any]] = []
     for row in half:
@@ -249,24 +254,18 @@ def adp_merged_board(
             "position": row["position"],
             "adp": adp_out,
         }
-        if row.get("bye_week") is not None:
-            out["bye_week"] = row["bye_week"]
+        pts_map = src.get("pts") or {}
+        if pts_map:
+            pts_out: dict[str, float] = {}
+            for format_key in FORMAT_KEYS:
+                raw = pts_map.get(format_key)
+                if raw is None:
+                    continue
+                pts_out[format_key] = round(float(raw), 1)
+            if pts_out:
+                out["pts"] = pts_out
         merged.append(out)
     return merged
-
-
-def build_headshot_sidecar(
-    headshots: dict[str, dict[str, Any]] | None,
-    *,
-    last_updated: str,
-) -> dict[str, Any]:
-    """Sleeper id → headshot URL sidecar for ADP/draft pages."""
-    by_id: dict[str, str] = {}
-    for sid, row in (headshots or {}).items():
-        url = (row or {}).get("headshot")
-        if url:
-            by_id[str(sid)] = str(url)
-    return {"last_updated": last_updated, "by_sleeper_id": by_id}
 
 
 def _default_adp_dir() -> Path:
@@ -308,27 +307,13 @@ def _load_published_boards(adp_dir: Path) -> dict[str, list[dict[str, Any]]] | N
             )
         return boards
 
-    boards: dict[str, list[dict[str, Any]]] = {}
-    for format_key in FORMAT_KEYS:
-        path = adp_dir / f"adp-{format_key.replace('_', '-')}.json"
-        if not path.exists():
-            return None
-        try:
-            payload = json.loads(path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
-            return None
-        players = payload.get("players") if isinstance(payload, dict) else None
-        if not isinstance(players, list):
-            return None
-        boards[format_key] = players
-    return boards
+    return None
 
 
 def _position_pool_ids_from_board(
     players: list[dict[str, Any]],
-    sleeper_to_gsis: dict[str, str],
 ) -> set[str]:
-    """Player IDs in the per-position ADP caps (board is already ADP-sorted)."""
+    """Sleeper player IDs in the per-position ADP caps (board is ADP-sorted)."""
     allowed: set[str] = set()
     taken = {pos: 0 for pos in POSITION_LIMITS}
     for row in players:
@@ -338,24 +323,17 @@ def _position_pool_ids_from_board(
             continue
         taken[position] += 1
         sid = str(row.get("sleeper_id") or "").strip()
-        if not sid:
-            continue
-        allowed.add(sleeper_to_gsis.get(sid) or f"sleeper:{sid}")
+        if sid:
+            allowed.add(sid)
     return allowed
 
 
 def load_news_pool_ids(
     *,
     season: int | None = None,
-    sleeper_to_gsis: dict[str, str] | None = None,
     adp_dir: Path | None = None,
 ) -> set[str]:
-    """Player IDs in the ADP depth caps (overall union of position pools)."""
-    if sleeper_to_gsis is None:
-        from src.injuries.match import sleeper_id_to_gsis
-
-        sleeper_to_gsis = sleeper_id_to_gsis()
-
+    """Sleeper player IDs in the ADP depth caps (overall union of position pools)."""
     boards = _load_published_boards(adp_dir or _default_adp_dir())
     if boards is None:
         if season is None:
@@ -369,5 +347,5 @@ def load_news_pool_ids(
 
     ids: set[str] = set()
     for players in boards.values():
-        ids |= _position_pool_ids_from_board(players, sleeper_to_gsis)
+        ids |= _position_pool_ids_from_board(players)
     return ids

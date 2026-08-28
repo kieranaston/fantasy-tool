@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark" />
     <title>ADP Board</title>
-    <link rel="preconnect" href="https://static.www.nfl.com" crossorigin />
-    <link rel="preconnect" href="https://a.espncdn.com" crossorigin />
-    <link rel="stylesheet" href="../css/site.css?v=49" />
+    <link rel="stylesheet" href="../css/site.css?v=53" />
     <script>
       setTimeout(function () {
         document.body.classList.remove("is-page-loading");
@@ -28,19 +26,19 @@
         </div>
 
         <div class="adp-toolbar">
-          <div class="toolbar-group" role="tablist" aria-label="Scoring format">
-            <button type="button" class="adp-format-tab is-active" data-format="half_ppr" role="tab" aria-selected="true">Half PPR</button>
-            <button type="button" class="adp-format-tab" data-format="full_ppr" role="tab" aria-selected="false">Full PPR</button>
-            <button type="button" class="adp-format-tab" data-format="std" role="tab" aria-selected="false">Standard</button>
+          <div class="toolbar-group" role="group" aria-label="Scoring format">
+            <button type="button" class="adp-format-tab is-active" data-format="half_ppr" aria-pressed="true">Half PPR</button>
+            <button type="button" class="adp-format-tab" data-format="full_ppr" aria-pressed="false">Full PPR</button>
+            <button type="button" class="adp-format-tab" data-format="std" aria-pressed="false">Standard</button>
           </div>
-          <div class="toolbar-group" role="tablist" aria-label="Position">
-            <button type="button" class="adp-tab is-active" data-pos="overall" role="tab" aria-selected="true">Overall</button>
-            <button type="button" class="adp-tab" data-pos="QB" role="tab" aria-selected="false">QB</button>
-            <button type="button" class="adp-tab" data-pos="RB" role="tab" aria-selected="false">RB</button>
-            <button type="button" class="adp-tab" data-pos="WR" role="tab" aria-selected="false">WR</button>
-            <button type="button" class="adp-tab" data-pos="TE" role="tab" aria-selected="false">TE</button>
-            <button type="button" class="adp-tab" data-pos="DEF" role="tab" aria-selected="false">DEF</button>
-            <button type="button" class="adp-tab" data-pos="K" role="tab" aria-selected="false">K</button>
+          <div class="toolbar-group" role="group" aria-label="Position">
+            <button type="button" class="adp-tab is-active" data-pos="overall" aria-pressed="true">Overall</button>
+            <button type="button" class="adp-tab" data-pos="QB" aria-pressed="false">QB</button>
+            <button type="button" class="adp-tab" data-pos="RB" aria-pressed="false">RB</button>
+            <button type="button" class="adp-tab" data-pos="WR" aria-pressed="false">WR</button>
+            <button type="button" class="adp-tab" data-pos="TE" aria-pressed="false">TE</button>
+            <button type="button" class="adp-tab" data-pos="DEF" aria-pressed="false">DEF</button>
+            <button type="button" class="adp-tab" data-pos="K" aria-pressed="false">K</button>
           </div>
           <div class="toolbar-group toolbar-group--filters">
             <label class="adp-filter">
@@ -59,10 +57,10 @@
       </div>
     </main>
 
-    <script type="module" src="../js/site-boot.js?v=1"></script>
+    <script type="module" src="../js/site-boot.js?v=15"></script>
     <script type="module">
-      import { mountPage } from "../js/config.js?v=6";
-      import { mountAdpBoardPage } from "../js/adp-board.js?v=30";
+      import { mountPage } from "../js/config.js?v=15";
+      import { mountAdpBoardPage } from "../js/adp-board.js?v=15";
       mountPage(mountAdpBoardPage, "adp-board");
     </script>
   </body>

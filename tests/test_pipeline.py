@@ -7,7 +7,7 @@ import pytest
 
 from src.export.json_writer import utc_now_iso, write_json
 from src.injuries.validate import claim_supported, validate_diff_summary, validate_extraction
-from src.loaders.sleeper_adp import adp_merged_board, build_headshot_sidecar
+from src.loaders.sleeper_adp import adp_merged_board
 
 ROOT = Path(__file__).resolve().parents[1]
 DRAFT_DIR = ROOT / "docs" / "data" / "draft"
@@ -61,21 +61,11 @@ def test_adp_merged_board_shape() -> None:
             "adp": {"half_ppr": 12.5, "full_ppr": 13.0, "std": 14.0},
         }
     ]
-    board = adp_merged_board(players, byes={"KC": 10})
+    board = adp_merged_board(players)
     assert len(board) == 1
     row = board[0]
     assert row["sleeper_id"] == "1234"
     assert row["adp"]["half_ppr"] == 12.5
-    assert row["bye_week"] == 10
-
-
-def test_build_headshot_sidecar() -> None:
-    sidecar = build_headshot_sidecar(
-        {"99": {"headshot": "https://example.com/a.jpg"}, "100": {"headshot": ""}},
-        last_updated="2026-01-01T00:00:00Z",
-    )
-    assert sidecar["last_updated"] == "2026-01-01T00:00:00Z"
-    assert sidecar["by_sleeper_id"] == {"99": "https://example.com/a.jpg"}
 
 
 def test_published_adp_board_json_shape() -> None:

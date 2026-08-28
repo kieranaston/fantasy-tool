@@ -7,7 +7,6 @@ from typing import Any
 
 from src.injuries.calendar import parse_iso_datetime
 from src.injuries.detect import group_reports_by_player
-from src.loaders.nfl_data import player_media_index
 
 # Drop players whose newest post/status is older than this.
 NEWS_MAX_AGE = timedelta(days=7)
@@ -47,34 +46,14 @@ def _timeline_item(report: dict[str, Any]) -> dict[str, Any]:
     return item
 
 
-def _latest_post_text(
-    timeline: list[dict[str, Any]],
-    status: dict[str, Any] | None = None,
-) -> str | None:
-    """Card blurb is the newest source post, not an LLM writeup."""
-    if timeline:
-        text = (timeline[0].get("source_text") or "").strip()
-        if text:
-            return text
-        designation = (timeline[0].get("designation") or "").strip()
-        if designation:
-            return designation
-    if status:
-        text = (status.get("last_diff_summary") or "").strip()
-        if text:
-            return text
-    return None
-
-
 def build_summaries(
     *,
     status_current: dict[str, Any],
     reports: list[dict[str, Any]],
     last_updated: str,
     allowed_player_ids: set[str] | None = None,
-    season: int | None = None,
+    teams_by_id: dict[str, str] | None = None,
     now: datetime | None = None,
-    media: dict[str, dict[str, dict[str, Any]]] | None = None,
 ) -> dict[str, Any]:
     """Aggregate current status + report timeline per player."""
     grouped = group_reports_by_player(
@@ -92,12 +71,10 @@ def build_summaries(
             _timeline_item(report) for report in timeline[:TIMELINE_LIMIT]
         ]
 
-    media = media if media is not None else player_media_index(season=season)
-    by_gsis = media["by_gsis_id"]
+    team_index = teams_by_id or {}
 
     def team_field(player_id: str, team: str | None) -> dict[str, Any]:
-        media_row = by_gsis.get(str(player_id)) or {}
-        resolved_team = (team or media_row.get("team") or "") or None
+        resolved_team = (team or team_index.get(str(player_id)) or "") or None
         if resolved_team:
             resolved_team = str(resolved_team).upper()
         return {"team": resolved_team}

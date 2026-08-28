@@ -1,5 +1,5 @@
-import { fetchJSON, formatTimestamp, formatUpdated, showError, revealPage } from "./config.js?v=6";
-import { escapeHtml, playerMediaHtml } from "./shared.js?v=7";
+import { fetchJSON, formatTimestamp, formatUpdated, showError, revealPage } from "./config.js";
+import { escapeHtml, playerLabelHtml } from "./shared.js";
 
 const BSKY_FEED_URL =
   "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed";
@@ -10,37 +10,6 @@ const DISPLAY_LIMIT = 40;
 /** RotoWire blurbs are almost always "Player Name: update …" */
 const ROTOWIRE_LINE =
   /^\s*([^:\n]{2,80}?)\s*:\s*(.+?)\s*$/m;
-
-/** Name → team/headshot from nflverse roster index (news pool only). */
-let playerLookupByName = Object.create(null);
-
-async function loadPlayerLookup(version) {
-  playerLookupByName = Object.create(null);
-  try {
-    const data = await fetchJSON("player-lookup.json", { version });
-    playerLookupByName = data.players || {};
-  } catch {
-    /* Lookup is optional enrichment for live Bluesky cards */
-  }
-}
-
-function lookupMediaByName(name) {
-  const key = normName(name);
-  if (!key) return null;
-  if (playerLookupByName[key]) return playerLookupByName[key];
-  const stripped = key.replace(/\b(jr|sr|ii|iii|iv|v)\b/g, "").replace(/\s+/g, " ").trim();
-  if (stripped && playerLookupByName[stripped]) return playerLookupByName[stripped];
-  return null;
-}
-
-function hydratePlayerMedia(player) {
-  const out = { ...player };
-  const hit = lookupMediaByName(player.player_name);
-  if (!hit) return out;
-  if (!out.team && hit.team) out.team = hit.team;
-  if (!out.headshot && hit.headshot) out.headshot = hit.headshot;
-  return out;
-}
 
 /** Format like "Jul 27". */
 function formatUpdateDay(isoString) {
@@ -128,26 +97,25 @@ function latestPostHtml(player) {
 }
 
 function playerCard(player, maxAgeDays) {
-  const hydrated = hydratePlayerMedia(player);
-  const rawId = String(hydrated.player_id || "");
+  const rawId = String(player.player_id || "");
   const id = escapeHtml(rawId);
   const safeId = escapeHtml(rawId.replace(/[^a-zA-Z0-9_-]+/g, "-"));
-  const updateDay = formatUpdateDay(hydrated.last_updated);
+  const updateDay = formatUpdateDay(player.last_updated);
   const updateTag = updateDay
     ? `<span class="update-tag">${escapeHtml(updateDay)}</span>`
     : "";
-  const sourceCount = freshTimeline(hydrated.timeline, maxAgeDays).length;
+  const sourceCount = freshTimeline(player.timeline, maxAgeDays).length;
 
   return `
     <article class="injury-card" id="player-${safeId}" data-player-id="${id}">
       <div class="injury-card-main">
         <div class="injury-card-title">
           <div class="injury-card-identity">
-            ${playerMediaHtml(hydrated)}
+            ${playerLabelHtml(player, { name: player.player_name })}
           </div>
           <span class="injury-card-meta">${updateTag}</span>
         </div>
-        ${latestPostHtml(hydrated)}
+        ${latestPostHtml(player)}
       </div>
       <button type="button" class="injury-card-header" aria-expanded="false">
         <span class="sources-toggle-label">Sources (${sourceCount})</span>
@@ -284,13 +252,13 @@ function mergeLivePosts(players, livePosts) {
       : null;
     if (!player) {
       if (!post.player_name) continue;
-      player = hydratePlayerMedia({
+      player = {
         player_id: `live:${normName(post.player_name).replace(/\s+/g, "-")}`,
         player_name: post.player_name,
         last_updated: post.timestamp,
         timeline: [],
         team: null,
-      });
+      };
       list.push(player);
     }
 
@@ -300,7 +268,7 @@ function mergeLivePosts(players, livePosts) {
   }
 
   return {
-    players: list.map((p) => hydratePlayerMedia(p)),
+    players: list,
     added,
   };
 }
@@ -312,13 +280,9 @@ async function mountInjuriesPage() {
   const failsafe = setTimeout(() => revealPage(), 4000);
 
   try {
-    const [data, lookupData] = await Promise.all([
-      fetchJSON("injuries/summaries.json"),
-      fetchJSON("player-lookup.json").catch(() => ({ players: {} })),
-    ]);
-    playerLookupByName = lookupData.players || {};
+    const data = await fetchJSON("injuries/summaries.json");
 
-    let players = [...(data.players || [])].map(hydratePlayerMedia).sort((a, b) =>
+    let players = [...(data.players || [])].sort((a, b) =>
       String(b.last_updated || "").localeCompare(String(a.last_updated || ""))
     );
     let liveNote = "";

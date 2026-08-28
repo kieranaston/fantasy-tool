@@ -22,15 +22,6 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Cache nflreadpy data
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/nflreadpy
-          key: nflreadpy-injuries-${{ runner.os }}-${{ hashFiles('pyproject.toml') }}
-          restore-keys: |
-            nflreadpy-injuries-${{ runner.os }}-
-            nflreadpy-${{ runner.os }}-
-
       - name: Install dependencies
         run: pip install .
 
@@ -47,8 +38,7 @@ jobs:
           git add data/injuries/raw_reports.json \
             data/injuries/player_status_current.json \
             data/injuries/poll_state.json \
-            docs/data/injuries/summaries.json \
-            docs/data/player-lookup.json
+            docs/data/injuries/summaries.json
           if git diff --staged --quiet; then
             echo "No injury data changes to commit."
           else
