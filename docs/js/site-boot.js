@@ -1,8 +1,17 @@
 /** Shared boot: service worker + nav prefetch on hover. */
 
+const isLocal =
+  location.hostname === "localhost" || location.hostname === "127.0.0.1";
+
 if ("serviceWorker" in navigator) {
-  const swPath = window.location.pathname.includes("/tables/") ? "../sw.js" : "./sw.js";
-  navigator.serviceWorker.register(swPath).catch(() => {});
+  if (isLocal) {
+    navigator.serviceWorker.getRegistrations().then((regs) =>
+      Promise.all(regs.map((r) => r.unregister()))
+    );
+  } else {
+    const swPath = window.location.pathname.includes("/tables/") ? "../sw.js" : "./sw.js";
+    navigator.serviceWorker.register(swPath).catch(() => {});
+  }
 }
 
 function prefetchHref(href) {

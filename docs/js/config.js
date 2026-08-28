@@ -1,4 +1,4 @@
-import { escapeHtml } from "./shared.js?v=7";
+import { escapeHtml } from "./shared.js";
 
 /** Format timestamp in US Eastern time (EST/EDT). */
 function formatTimestamp(isoString) {
@@ -35,24 +35,12 @@ function dataPath(relativePath) {
   return `${base}/${relativePath}`;
 }
 
-/**
- * Fetch and parse a JSON file from docs/data/.
- * Default no-cache revalidates against GitHub Pages ETags on each load.
- * Pass cache: "no-store" for live/volatile fetches (e.g. Bluesky).
- */
-async function fetchJSON(
-  relativePath,
-  { cache = "no-cache", timeoutMs = 12000, version = null } = {}
-) {
+/** Fetch and parse a JSON file from docs/data/. */
+async function fetchJSON(relativePath, { cache = "no-cache", timeoutMs = 12000 } = {}) {
   const ctrl = new AbortController();
   const timer = setTimeout(() => ctrl.abort(), timeoutMs);
   try {
-    let url = dataPath(relativePath);
-    if (version != null && version !== "") {
-      const sep = url.includes("?") ? "&" : "?";
-      url = `${url}${sep}v=${encodeURIComponent(String(version))}`;
-    }
-    const response = await fetch(url, {
+    const response = await fetch(dataPath(relativePath), {
       cache,
       signal: ctrl.signal,
     });

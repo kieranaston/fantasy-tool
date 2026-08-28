@@ -1,43 +1,51 @@
 /**
- * Draft assistant — ADP first, with a QB/TE backup multiplier.
+ * Draft assistant — VORP rankings, ADP risk.
  *
- * Ranking:
- *  1. Score = −ADP × M (higher is better). RB/WR/DEF/K always M = 1 (pure ADP).
- *     QB/TE: M = 1 until you have one, then M = 1.5 (treat ADP as 50% later).
- *  2. Risk (display-only, on the clock only) uses the same score. Softmax over
- *     opponent picks until your following pick (pass → still there?). The UI can
- *     paint rankings first with includeRisk=false, then fill risk afterward.
+ * Your rankings (scoreCandidates):
+ *  1. Baseline: empty starter slots leaguewide → replacement pts per position.
+ *  2. VORP = pts − baseline[pos].
+ *  3. Blend VORP ↔ ADP from remaining above-replacement surplus (see SURPLUS_FULL).
+ *     Surplus, threshold, and VORP weight are per position (not global).
+ *     Normalize VORP and ADP within each position, then blend on a 0–1 scale.
+ *  4. score = blend / M. M is the positional need multiplier (×1 or ×1.5).
+ *     Same M for every player at that position (backup QB/TE → 1.5).
  *
- * DEF/K follow ADP with no round gating. Once your roster slots are filled they
- * drop from recommendations only — opponents still draft them in risk sim until
- * they fill their own slots. Leagues with slots_def/slots_k = 0 skip those
- * positions entirely.
+ * Risk (display-only, on the clock): same filtered board and sim pool as rankings.
+ * Pool = top 60 ADP ∪ top 60 need-ADP ∪ top 10 VORP per position (deduped).
  *
- * Live picks before you're on the clock come from Sleeper — not simulated here.
+ * Live picks come from Sleeper — not simulated for rankings.
  */
 
 const SKILL_POSITIONS = ["QB", "RB", "WR", "TE", "DEF", "K"];
+const NEED_POSITIONS = ["QB", "RB", "WR", "TE", "DEF", "K"];
+const FLEX_POSITIONS = ["RB", "WR", "TE"];
 
-/** Backup QB/TE are ranked as if their ADP were this times later. */
+/** Backup QB/TE multiplier for rankings and ADP risk sim. */
 const QB_TE_BACKUP_M = 1.5;
+
+/**
+ * Remaining above-replacement VORP at which a position's blend is still 100% VORP.
+ * Anchored to 12-team / 7 skill-starter league; split across starter demand
+ * (FLEX shared equally among RB/WR/TE).
+ */
+const SURPLUS_FULL = 400;
+
+/** Below this VORP range, fall back to ADP×M ranking (no blend). */
+const VORP_SPAN_EPS = 0.5;
+
+/** DEF/K stay off the board until this draft round (inclusive). */
+const DEF_K_MIN_ROUND = 13;
+
+/** Top N from each ranking leg (ADP, need-ADP) before union. */
+const SIM_POOL_RANK_DEPTH = 60;
+
+/** Always include top N available by VORP at each position (catches mid-ADP TEs, etc.). */
+const SIM_POOL_VORP_PER_POS = 10;
 
 const ADP_MISSING = 9999;
 
-/**
- * Softmax temperature in score units (1 unit ≈ 1 ADP pick). Smaller → closer
- * to greedy; larger → more ADP noise. 4 means a 3-pick ADP gap is about 2:1
- * and a 10-pick gap is about 12:1, so close players swap but reaches are rare.
- */
+/** Softmax temperature for opponent pick sim (ADP-scale scores). */
 const SOFTMAX_TEMPERATURE = 4;
-
-/** Max players in the risk sim pool (ADP ∪ your top recommendations). */
-const RISK_POOL_CAP = 40;
-
-/**
- * How many ADP-ordered players to keep before need-score / risk work.
- * Need only reshuffles within this window (backup QB/TE ×1.5).
- */
-const SCORE_SHORTLIST_PAD = 24;
 
 /** Scoring formats for daily Sleeper ADP boards under docs/data/draft/. */
 const SCORING_FORMATS = ["half_ppr", "full_ppr", "std"];
@@ -48,10 +56,6 @@ const FORMAT_LABELS = {
   std: "Standard",
 };
 
-/**
- * Map Sleeper draft.metadata.scoring_type → board key.
- * Common values: ppr, half_ppr, std / standard.
- */
 function formatFromScoringType(raw) {
   const key = String(raw || "")
     .toLowerCase()
@@ -88,9 +92,6 @@ function formatFromScoringType(raw) {
   return null;
 }
 
-/**
- * Map league.scoring_settings.rec (pts per reception) → board key.
- */
 function formatFromReceptionPoints(rec) {
   if (rec == null || !Number.isFinite(Number(rec))) return null;
   const r = Number(rec);
@@ -99,10 +100,6 @@ function formatFromReceptionPoints(rec) {
   return "std";
 }
 
-/**
- * Prefer league reception points when present; else draft scoring_type.
- * Defaults to half_ppr.
- */
 function resolveScoringFormat(draft = {}, league = null) {
   const fromRec = formatFromReceptionPoints(league?.scoring_settings?.rec);
   if (fromRec) {
@@ -132,14 +129,12 @@ function resolveScoringFormat(draft = {}, league = null) {
   };
 }
 
-/** Relative path under docs/data/ for the merged multi-format ADP board. */
 const ADP_BOARD_PATH = "draft/adp-board.json";
 
 function adpPathForFormat(_format = "half_ppr") {
   return ADP_BOARD_PATH;
 }
 
-/** Resolve ADP for one scoring format from a merged or legacy player row. */
 function playerAdpForFormat(player, format = "half_ppr") {
   const raw = player?.adp;
   if (raw == null || raw === "") return null;
@@ -151,9 +146,18 @@ function playerAdpForFormat(player, format = "half_ppr") {
   return Number(raw);
 }
 
-/**
- * Prefer league.roster_positions when available; else draft.settings slots_*.
- */
+function playerPtsForFormat(player, format = "half_ppr") {
+  const raw = player?.pts;
+  if (raw == null || raw === "") return null;
+  if (typeof raw === "object") {
+    const key = SCORING_FORMATS.includes(format) ? format : "half_ppr";
+    const value = raw[key];
+    return value == null ? null : Number(value);
+  }
+  const n = Number(raw);
+  return Number.isFinite(n) ? n : null;
+}
+
 function resolveLeagueSettings(draft = {}, league = null) {
   const ds = draft.settings || {};
   const teams = Number(
@@ -230,7 +234,6 @@ function rosterPositionCounts(players = []) {
   return counts;
 }
 
-/** You get one pick per round, so the roster is as big as the draft is long. */
 function rosterSize(settings = {}) {
   return Math.max(1, Number(settings.rounds) || 16);
 }
@@ -239,14 +242,25 @@ function draftTargets(settings = {}) {
   return { total: rosterSize(settings) };
 }
 
+function starterSlotsFromSettings(settings = {}) {
+  return {
+    QB: Number(settings.slots_qb ?? 1),
+    RB: Number(settings.slots_rb ?? 2),
+    WR: Number(settings.slots_wr ?? 2),
+    TE: Number(settings.slots_te ?? 1),
+    FLEX: Number(settings.slots_flex ?? 1),
+    DEF: Number(settings.slots_def ?? 0),
+    K: Number(settings.slots_k ?? 0),
+  };
+}
+
 function qbTeMultiplier(owned) {
   return Number(owned || 0) >= 1 ? QB_TE_BACKUP_M : 1;
 }
 
 /**
- * Per-position multiplier M for ranking / opponent sim. RB/WR/DEF/K stay 1.
- * QB/TE go to 1.5 after the first copy. DEF/K drop to 0 once roster slots
- * are filled (or when the league does not roster that position).
+ * Per-position multiplier M for ADP risk sim. RB/WR/DEF/K stay 1.
+ * QB/TE go to 1.5 after the first copy.
  */
 function needCounts(roster, settings = {}) {
   const counts = rosterPositionCounts(roster);
@@ -267,7 +281,26 @@ function needCounts(roster, settings = {}) {
   };
 }
 
-/** Drop DEF/K from your recommendation board once your roster slots are filled. */
+/** Empty mandatory starters + open flex — used for VORP baselines. */
+function teamNeed(roster, settings) {
+  const slots = starterSlotsFromSettings(settings);
+  const counts = rosterPositionCounts(roster);
+  const need = {
+    QB: Math.max(0, slots.QB - (counts.QB || 0)),
+    RB: Math.max(0, slots.RB - (counts.RB || 0)),
+    WR: Math.max(0, slots.WR - (counts.WR || 0)),
+    TE: Math.max(0, slots.TE - (counts.TE || 0)),
+    DEF: Math.max(0, slots.DEF - (counts.DEF || 0)),
+    K: Math.max(0, slots.K - (counts.K || 0)),
+  };
+  const flexFilled =
+    Math.max(0, (counts.RB || 0) - slots.RB) +
+    Math.max(0, (counts.WR || 0) - slots.WR) +
+    Math.max(0, (counts.TE || 0) - slots.TE);
+  const openFlex = Math.max(0, slots.FLEX - flexFilled);
+  return { need, openFlex, counts, slots };
+}
+
 function filterFilledSlots(availableByPos, settings, myRoster) {
   const filtered = {};
   for (const pos of SKILL_POSITIONS) {
@@ -276,6 +309,27 @@ function filterFilledSlots(availableByPos, settings, myRoster) {
   const { need_count } = needCounts(myRoster, settings);
   for (const pos of ["DEF", "K"]) {
     if (!need_count[pos]) filtered[pos] = [];
+  }
+  return filtered;
+}
+
+function pickRound(pickNo, teams) {
+  const t = Math.max(1, Number(teams) || 12);
+  const n = Math.max(1, Number(pickNo) || 1);
+  return Math.ceil(n / t);
+}
+
+/** Rankings + risk: hide filled DEF/K slots and all DEF/K before round 13. */
+function filterDraftBoard(
+  availableByPos,
+  settings,
+  myRoster,
+  currentPickNo,
+  teams
+) {
+  const filtered = filterFilledSlots(availableByPos, settings, myRoster);
+  if (pickRound(currentPickNo, teams) < DEF_K_MIN_ROUND) {
+    return { ...filtered, DEF: [], K: [] };
   }
   return filtered;
 }
@@ -295,7 +349,6 @@ function nextPickNumbers(mySlot, teams, rounds, currentPickNo, filledPickNos) {
   );
 }
 
-/** Overall pick numbers already filled, including keepers. */
 function filledPickNumbers(picks, last) {
   const taken = new Set();
   const cap = Math.max(1, Number(last) || 0);
@@ -306,10 +359,6 @@ function filledPickNumbers(picks, last) {
   return taken;
 }
 
-/**
- * Live clock: first overall pick with no row in `/picks`.
- * Keepers occupy their real round.pick, so they must not bump this by count.
- */
 function currentPickNo(picks, teams = 12, rounds = 15) {
   const last = Math.max(1, Number(teams) * Number(rounds) || 1);
   const taken = filledPickNumbers(picks, last);
@@ -319,7 +368,6 @@ function currentPickNo(picks, teams = 12, rounds = 15) {
   return last + 1;
 }
 
-/** How many unfilled overall picks remain in [fromInclusive, toExclusive). */
 function unfilledPickCount(fromInclusive, toExclusive, filledPickNos) {
   const start = Math.max(1, Number(fromInclusive) || 1);
   const end = Number(toExclusive);
@@ -337,7 +385,6 @@ function slotForOverallPick(pickNo, teams) {
   return round % 2 === 1 ? posInRound : teams - posInRound + 1;
 }
 
-/** Draft slot that owns this overall pick (traded picks override snake). */
 function ownerSlotAtPick(pickNo, teams, ownerSlotByPick) {
   const mapped = Number(
     ownerSlotByPick?.[pickNo] ?? ownerSlotByPick?.[String(pickNo)]
@@ -369,14 +416,63 @@ function nextOwnedPickNumbers(
 }
 
 function adpValue(player) {
-  // Number(null) === 0 — treat missing ADP as undrafted, not 1.01.
   const raw = player?.adp;
   if (raw == null || raw === "") return ADP_MISSING;
   const adp = Number(raw);
   return Number.isFinite(adp) && adp > 0 ? adp : ADP_MISSING;
 }
 
-/** Format overall ADP as round.pick for a fixed team count (default 12). */
+function hasKnownAdp(player) {
+  return adpValue(player) < ADP_MISSING;
+}
+
+function numericExtent(values) {
+  let lo = Infinity;
+  let hi = -Infinity;
+  for (const raw of values) {
+    const n = Number(raw);
+    if (!Number.isFinite(n)) continue;
+    if (n < lo) lo = n;
+    if (n > hi) hi = n;
+  }
+  if (!Number.isFinite(lo) || !Number.isFinite(hi)) {
+    return { lo: 0, hi: 0, span: 0 };
+  }
+  return { lo, hi, span: hi - lo };
+}
+
+function unitNormalize(value, extent) {
+  if (!(extent.span > 0)) return 0.5;
+  return (Number(value) - extent.lo) / extent.span;
+}
+
+function adpUnitNormalize(player, extent, { emptySample = false } = {}) {
+  if (emptySample || !hasKnownAdp(player)) return 0;
+  if (!(extent.span > 0)) return 0.5;
+  return (extent.hi - adpValue(player)) / extent.span;
+}
+
+/** Per-position VORP/ADP ranges for pool-local normalization. */
+function positionExtents(pending) {
+  const byPos = {};
+  for (const row of pending) {
+    const pos = row.pos;
+    if (!byPos[pos]) byPos[pos] = { vorps: [], adps: [] };
+    byPos[pos].vorps.push(row.vorp);
+    if (hasKnownAdp(row.player)) byPos[pos].adps.push(adpValue(row.player));
+  }
+  const out = {};
+  for (const [pos, { vorps, adps }] of Object.entries(byPos)) {
+    const emptyAdp = adps.length === 0;
+    out[pos] = {
+      vorp: numericExtent(vorps),
+      adp: emptyAdp ? { lo: 0, hi: 0, span: 0 } : numericExtent(adps),
+      emptyAdp,
+    };
+  }
+  return out;
+}
+
 function formatAdpRoundPick(adp, teams = 12) {
   const overall = Number(adp);
   if (!Number.isFinite(overall) || overall <= 0) return null;
@@ -391,6 +487,41 @@ function formatAdpRoundPick(adp, teams = 12) {
   return `${round}.${String(pick).padStart(2, "0")}`;
 }
 
+/** Per-position surplus thresholds (share of SURPLUS_FULL by starter demand). */
+function surplusFullThresholdByPos(settings = {}, teams = 12) {
+  const slots = starterSlotsFromSettings(settings);
+  const t = Math.max(1, Number(teams) || 12);
+  const flexEach = Math.max(0, Number(slots.FLEX) || 0) / FLEX_POSITIONS.length;
+  const demand = {
+    QB: Math.max(0, Number(slots.QB) || 0),
+    RB: Math.max(0, Number(slots.RB) || 0) + flexEach,
+    WR: Math.max(0, Number(slots.WR) || 0) + flexEach,
+    TE: Math.max(0, Number(slots.TE) || 0) + flexEach,
+    DEF: Math.max(0, Number(slots.DEF) || 0),
+    K: Math.max(0, Number(slots.K) || 0),
+  };
+  const perSlot = SURPLUS_FULL / 7;
+  const teamScale = t / 12;
+  const out = {};
+  for (const pos of NEED_POSITIONS) {
+    out[pos] = perSlot * demand[pos] * teamScale;
+  }
+  return out;
+}
+
+function vorpWeightFromSurplus(surplus, threshold = SURPLUS_FULL) {
+  const s = Math.max(0, Number(surplus) || 0);
+  const t = Math.max(0, Number(threshold) || 0);
+  if (t <= 0) return 0;
+  return Math.min(1, s / t);
+}
+
+function playerAtRank(pool, rank) {
+  if (!pool?.length) return 0;
+  const idx = Math.min(pool.length, Math.max(1, Math.round(rank))) - 1;
+  return Number(pool[idx].pts) || 0;
+}
+
 function playerId(player) {
   return String(player?.sleeper_id || player?.player_id || "").replace(
     /^sleeper:/,
@@ -398,9 +529,87 @@ function playerId(player) {
   );
 }
 
+function sortAvailableByPts(availableByPos) {
+  const out = {};
+  for (const pos of NEED_POSITIONS) {
+    out[pos] = [...(availableByPos[pos] || [])].sort(
+      (a, b) =>
+        (Number(b.pts) || 0) - (Number(a.pts) || 0) ||
+        adpValue(a) - adpValue(b)
+    );
+  }
+  return out;
+}
+
+/** Pre-draft starter demand per position (teams × slots + flex share). */
+function leagueStarterDemand(settings = {}, teams = 12) {
+  const slots = starterSlotsFromSettings(settings);
+  const t = Math.max(1, Number(teams) || 12);
+  const totalNeed = {
+    QB: t * Math.max(0, slots.QB),
+    RB: t * Math.max(0, slots.RB),
+    WR: t * Math.max(0, slots.WR),
+    TE: t * Math.max(0, slots.TE),
+    DEF: t * Math.max(0, slots.DEF),
+    K: t * Math.max(0, slots.K),
+  };
+  const openFlexSlots = t * Math.max(0, slots.FLEX);
+  const flexShare =
+    openFlexSlots > 0 ? openFlexSlots / FLEX_POSITIONS.length : 0;
+  return { totalNeed, openFlexSlots, flexShare };
+}
+
+function draftedPositionCounts(rosters, teams) {
+  const counts = { QB: 0, RB: 0, WR: 0, TE: 0, DEF: 0, K: 0 };
+  const t = Math.max(1, Number(teams) || 12);
+  for (let slot = 1; slot <= t; slot += 1) {
+    for (const player of rosters?.[slot] || []) {
+      const pos = normalizePos(player.position);
+      if (pos in counts) counts[pos] += 1;
+    }
+  }
+  return counts;
+}
+
+/**
+ * Replacement level per position: pre-draft rank minus players already drafted
+ * there, then the undrafted player at that remaining-slot index (by pts).
+ */
+function computeBaselines({ availableByPos, rosters, settings, teams }) {
+  const { totalNeed, openFlexSlots, flexShare } = leagueStarterDemand(
+    settings,
+    teams
+  );
+  const drafted = draftedPositionCounts(rosters, teams);
+  const baselineRank = {};
+  const baselineValue = {};
+  const remainingSlots = {};
+  for (const pos of NEED_POSITIONS) {
+    const initial =
+      (totalNeed[pos] || 0) +
+      (FLEX_POSITIONS.includes(pos) ? flexShare : 0);
+    const remaining = Math.max(0, initial - (drafted[pos] || 0));
+    remainingSlots[pos] = remaining;
+    const rank = Math.max(1, remaining);
+    baselineRank[pos] = rank;
+    baselineValue[pos] = playerAtRank(availableByPos[pos] || [], rank);
+  }
+
+  return {
+    totalNeed,
+    openFlexSlots,
+    flexShare,
+    drafted,
+    remainingSlots,
+    baselineRank,
+    baselineValue,
+  };
+}
+
 function needAdpScore(player, need_count) {
   const pos = normalizePos(player.position);
   const m = Number(need_count[pos]);
+  // M≤0 (filled DEF/K): −ADP×0 would rank above every −ADP×M candidate.
   if (Number.isFinite(m) && m <= 0) return -Infinity;
   const multiplier = Number.isFinite(m) && m > 0 ? m : 1;
   return -adpValue(player) * multiplier;
@@ -414,15 +623,6 @@ function cloneRosters(rosters, teams) {
   return out;
 }
 
-/**
- * P(player taken in [startPick, endPick)) under sequential softmax picks.
- *
- * Same score you rank with: s = −ADP × M. Each opponent converts
- * those scores to pick probabilities (softmax). A player's remaining "still
- * available" mass is reduced by that pick probability, so later teams draft
- * from what's left (without-replacement). Roster need then follows the most
- * likely pick so a team that picks twice does not treat both the same.
- */
 function simulateGoneProbabilities({
   startPick,
   endPick,
@@ -502,35 +702,59 @@ function simulateGoneProbabilities({
   return out;
 }
 
-/**
- * Opponents draft from ADP value; your board ranks by score. Union both top-N
- * sets so every recommended player gets a risk estimate (≤ RISK_POOL_CAP).
- */
-function buildRiskSimPool(sortedAvailable, myNeed, limit = 40) {
-  const recCap = Math.max(1, Number(limit) || 40);
-  const topByAdp = sortedAvailable.slice(0, recCap);
-  const topByScore = sortedAvailable
+function topVorpByPosition(availableByPos, baselines, perPos = SIM_POOL_VORP_PER_POS) {
+  const depth = Math.max(1, Number(perPos) || SIM_POOL_VORP_PER_POS);
+  const out = [];
+  for (const pos of NEED_POSITIONS) {
+    const baseline = baselines.baselineValue[pos] || 0;
+    const ranked = [...(availableByPos[pos] || [])]
+      .map((player) => ({
+        player,
+        vorp: (Number(player.pts) || 0) - baseline,
+      }))
+      .sort(
+        (a, b) =>
+          b.vorp - a.vorp ||
+          adpValue(a.player) - adpValue(b.player)
+      )
+      .slice(0, depth)
+      .map((row) => row.player);
+    out.push(...ranked);
+  }
+  return out;
+}
+
+/** Union top by ADP, top by need-ADP, and top VORP per position (deduped). */
+function buildSimPool(
+  sortedAvailable,
+  myNeed,
+  availableByPos,
+  baselines,
+  rankDepth = SIM_POOL_RANK_DEPTH
+) {
+  const cap = Math.max(1, Number(rankDepth) || SIM_POOL_RANK_DEPTH);
+  const topByAdp = sortedAvailable.slice(0, cap);
+  const topByNeed = sortedAvailable
     .slice()
     .sort((a, b) => {
       const scoreA = needAdpScore(a, myNeed.need_count);
       const scoreB = needAdpScore(b, myNeed.need_count);
       return scoreB - scoreA || adpValue(a) - adpValue(b);
     })
-    .slice(0, recCap);
+    .slice(0, cap);
+  const topByVorp = topVorpByPosition(availableByPos, baselines);
 
   const seen = new Set();
   const pool = [];
-  for (const player of [...topByAdp, ...topByScore]) {
+  for (const player of [...topByAdp, ...topByNeed, ...topByVorp]) {
     const id = playerId(player);
     if (seen.has(id)) continue;
     seen.add(id);
     pool.push(player);
-    if (pool.length >= RISK_POOL_CAP) break;
   }
   return pool;
 }
 
-/** Merge ADP-sorted per-position lists (caller keeps each list sorted). */
 function flattenAvailable(availableByPos, maxOut = Infinity) {
   const lists = SKILL_POSITIONS.map((pos) => availableByPos[pos] || []);
   const heads = lists.map(() => 0);
@@ -558,18 +782,49 @@ function flattenAvailable(availableByPos, maxOut = Infinity) {
   return out;
 }
 
+function groupByPos(players) {
+  const out = { QB: [], RB: [], WR: [], TE: [], DEF: [], K: [] };
+  for (const p of players) {
+    const pos = normalizePos(p.position);
+    if (!out[pos]) out[pos] = [];
+    out[pos].push(p);
+  }
+  for (const pos of Object.keys(out)) {
+    out[pos].sort(
+      (a, b) =>
+        (Number(b.pts) || 0) - (Number(a.pts) || 0) ||
+        adpValue(a) - adpValue(b)
+    );
+  }
+  return out;
+}
+
+/** Fallback for players outside the scored pool (filter / search). */
 function annotateScore(player, need_count, { risk = null } = {}) {
   const pos = normalizePos(player.position);
   const m = Number(need_count[pos]);
-  const multiplier = Number.isFinite(m) && m > 0 ? m : 1;
-  const adp = adpValue(player);
   const p = risk == null ? null : Number(risk);
+  const riskOut =
+    p == null || !Number.isFinite(p) ? null : Math.round(p * 100) / 100;
+  // M≤0 (filled DEF/K): −ADP×0 would outrank every −ADP×M candidate.
+  if (Number.isFinite(m) && m <= 0) {
+    return {
+      ...player,
+      need_bonus: 0,
+      need_count: 0,
+      vorp: null,
+      risk: riskOut,
+      score: -Infinity,
+    };
+  }
+  const multiplier = Number.isFinite(m) && m > 0 ? m : 1;
   return {
     ...player,
     need_bonus: round1(multiplier),
     need_count: multiplier,
-    risk: p == null || !Number.isFinite(p) ? null : Math.round(p * 100) / 100,
-    score: round1(-adp * multiplier),
+    vorp: null,
+    risk: riskOut,
+    score: round1(-adpValue(player) * multiplier),
   };
 }
 
@@ -585,64 +840,137 @@ function scoreCandidates({
   limit = 12,
   ownerSlotByPick = null,
   filledPickNos = null,
-  includeRisk = true,
 }) {
-  const myPicks = nextOwnedPickNumbers(
-    mySlot,
-    teams,
-    rounds,
-    currentPickNo,
-    ownerSlotByPick,
-    filledPickNos
-  );
-  const myPick = myPicks[0] ?? currentPickNo;
-  const myPickAfter = myPicks[1] ?? null;
-  const onClock = Number(myPick) === Number(currentPickNo);
-
   const recLimit = Math.max(1, Number(limit) || 12);
-  const shortlistSize = Math.max(RISK_POOL_CAP, recLimit) + SCORE_SHORTLIST_PAD;
-  const filteredAvailable = filterFilledSlots(availableByPosIn, settings, myRoster);
-  const sortedForRecs = flattenAvailable(filteredAvailable, shortlistSize);
+  const filteredAvailable = filterDraftBoard(
+    availableByPosIn,
+    settings,
+    myRoster,
+    currentPickNo,
+    teams
+  );
+  const ptsSorted = sortAvailableByPts(filteredAvailable);
+
+  const baselines = computeBaselines({
+    availableByPos: ptsSorted,
+    rosters: opponentRosters,
+    settings,
+    teams,
+  });
+
+  const availableAtPick = flattenAvailable(filteredAvailable);
   const myNeed = needCounts(myRoster, settings);
+  const simPool = buildSimPool(
+    availableAtPick,
+    myNeed,
+    filteredAvailable,
+    baselines,
+    SIM_POOL_RANK_DEPTH
+  );
+  const scoreFocus = new Set(simPool.map((p) => playerId(p)));
 
-  // Risk only on the clock: P(gone before your following pick) if you pass now.
-  const goneProbById =
-    includeRisk &&
-    onClock &&
-    myPickAfter &&
-    myPickAfter > myPick + 1
-      ? computeRiskProbabilities({
-          availableByPos: availableByPosIn,
-          myRoster,
-          opponentRosters,
-          settings,
-          teams,
-          mySlot,
-          currentPickNo,
-          rounds,
-          limit: recLimit,
-          ownerSlotByPick,
-          filledPickNos,
-        })
-      : new Map();
+  const pending = [];
+  const surplusByPos = {};
+  for (const pos of NEED_POSITIONS) surplusByPos[pos] = 0;
 
-  const scored = [];
-  for (const player of sortedForRecs) {
-    const pos = normalizePos(player.position);
-    if (!(Number(myNeed.need_count[pos]) > 0)) continue;
-    const id = playerId(player);
-    const risk = goneProbById.has(id) ? goneProbById.get(id) : null;
-    scored.push(annotateScore(player, myNeed.need_count, { risk }));
+  for (const pos of NEED_POSITIONS) {
+    const multiplier = myNeed.need_count[pos];
+    if (!(Number(multiplier) > 0)) continue;
+
+    const baseline = baselines.baselineValue[pos] || 0;
+
+    for (const player of groupByPos(availableAtPick)[pos] || []) {
+      const pts = Number(player.pts) || 0;
+      const vorp = pts - baseline;
+      if (vorp > 0) surplusByPos[pos] += vorp;
+      if (!scoreFocus.has(playerId(player))) continue;
+      pending.push({ player, pos, vorp, multiplier });
+    }
   }
 
-  scored.sort((a, b) => b.score - a.score || adpValue(a) - adpValue(b));
+  const thresholdByPos = surplusFullThresholdByPos(settings, teams);
+  const vorpWeightByPos = {};
+  let surplusTotal = 0;
+  let weightMass = 0;
+  let weightSum = 0;
+  for (const pos of NEED_POSITIONS) {
+    const w = vorpWeightFromSurplus(surplusByPos[pos], thresholdByPos[pos]);
+    vorpWeightByPos[pos] = w;
+    const s = surplusByPos[pos] || 0;
+    surplusTotal += s;
+    if (Number(myNeed.need_count[pos]) > 0) {
+      weightMass += s;
+      weightSum += w * s;
+    }
+  }
+  const vorpWeightAvg = weightMass > 0 ? weightSum / weightMass : 0;
+  const posExtents = positionExtents(pending);
+
+  const scored = [];
+  for (const row of pending) {
+    const m =
+      Number.isFinite(Number(row.multiplier)) && Number(row.multiplier) > 0
+        ? Number(row.multiplier)
+        : 1;
+    const ext = posExtents[row.pos] || {
+      vorp: { lo: 0, hi: 0, span: 0 },
+      adp: { lo: 0, hi: 0, span: 0 },
+      emptyAdp: true,
+    };
+    const flatVorp = !(ext.vorp.span > VORP_SPAN_EPS);
+    const adpN = adpUnitNormalize(row.player, ext.adp, {
+      emptySample: ext.emptyAdp,
+    });
+    const vorpWeight = vorpWeightByPos[row.pos] ?? 0;
+    const adpWeight = 1 - vorpWeight;
+    let blend;
+    if (flatVorp) {
+      blend = adpN;
+    } else {
+      const vorpN = unitNormalize(row.vorp, ext.vorp);
+      blend = vorpWeight * vorpN + adpWeight * adpN;
+    }
+    const score = blend / m;
+
+    scored.push({
+      ...row.player,
+      vorp: round1(row.vorp),
+      need_bonus: round1(m),
+      need_count: m,
+      risk: null,
+      adp_score: round2(adpN),
+      vorp_weight: round2(vorpWeight),
+      score: round2(score),
+    });
+  }
+
+  scored.sort(
+    (a, b) =>
+      b.score - a.score ||
+      adpValue(a) - adpValue(b) ||
+      (Number(b.pts) || 0) - (Number(a.pts) || 0)
+  );
 
   const capped = scored.slice(0, recLimit);
+
+  const surplusRounded = {};
+  const thresholdRounded = {};
+  const weightRounded = {};
+  for (const pos of NEED_POSITIONS) {
+    surplusRounded[pos] = round1(surplusByPos[pos] || 0);
+    thresholdRounded[pos] = round1(thresholdByPos[pos] || 0);
+    weightRounded[pos] = round2(vorpWeightByPos[pos] || 0);
+  }
 
   return {
     targets: draftTargets(settings),
     need_count: myNeed.need_count,
     openFlex: myNeed.openFlex,
+    vorp_surplus: round1(surplusTotal),
+    vorp_surplus_by_pos: surplusRounded,
+    vorp_surplus_full: thresholdRounded,
+    vorp_weight: round2(vorpWeightAvg),
+    vorp_weight_by_pos: weightRounded,
     recommendations: capped,
     scored,
   };
@@ -652,7 +980,10 @@ function round1(n) {
   return Math.round(Number(n) * 10) / 10;
 }
 
-/** Risk sim only — safe to run in a Web Worker. Returns Map(playerId → P(gone)). */
+function round2(n) {
+  return Math.round(Number(n) * 100) / 100;
+}
+
 function computeRiskProbabilities({
   availableByPos: availableByPosIn,
   myRoster,
@@ -681,11 +1012,29 @@ function computeRiskProbabilities({
     return new Map();
   }
 
-  const recLimit = Math.max(1, Number(limit) || 12);
-  const shortlistSize = Math.max(RISK_POOL_CAP, recLimit) + SCORE_SHORTLIST_PAD;
-  const sortedForRisk = flattenAvailable(availableByPosIn, shortlistSize);
+  const filteredAvailable = filterDraftBoard(
+    availableByPosIn,
+    settings,
+    myRoster,
+    currentPickNo,
+    teams
+  );
+  const ptsSorted = sortAvailableByPts(filteredAvailable);
+  const baselines = computeBaselines({
+    availableByPos: ptsSorted,
+    rosters: opponentRosters,
+    settings,
+    teams,
+  });
+  const sortedForRisk = flattenAvailable(filteredAvailable);
   const myNeed = needCounts(myRoster, settings);
-  const pool = buildRiskSimPool(sortedForRisk, myNeed, recLimit);
+  const pool = buildSimPool(
+    sortedForRisk,
+    myNeed,
+    filteredAvailable,
+    baselines,
+    SIM_POOL_RANK_DEPTH
+  );
   const simRosters = cloneRosters(opponentRosters, teams);
   simRosters[mySlot] = [...(myRoster || [])];
   return simulateGoneProbabilities({
@@ -706,7 +1055,9 @@ export {
   resolveScoringFormat,
   adpPathForFormat,
   playerAdpForFormat,
+  playerPtsForFormat,
   formatFromReceptionPoints,
+  formatFromScoringType,
   rosterPositionCounts,
   draftTargets,
   needCounts,

@@ -15,7 +15,6 @@ function sleeperIdOf(player) {
     .trim();
 }
 
-/** ESPN scoreboard slug when it differs from the Sleeper/nflverse abbrev. */
 const TEAM_CANONICAL = {
   AZ: "ARI",
   LA: "LAR",
@@ -26,17 +25,6 @@ const TEAM_CANONICAL = {
   SD: "LAC",
 };
 
-const TEAM_LOGO_SLUG = {
-  WAS: "wsh",
-  WSH: "wsh",
-  LA: "lar",
-  LAR: "lar",
-  JAC: "jax",
-  JAX: "jax",
-  AZ: "ari",
-  ARI: "ari",
-};
-
 function normalizeTeamAbbrev(team) {
   const raw = String(team || "")
     .trim()
@@ -45,15 +33,18 @@ function normalizeTeamAbbrev(team) {
   return TEAM_CANONICAL[raw] || raw;
 }
 
-/** Build a team logo URL from abbrev (no per-player logo field needed). */
-function teamLogoUrl(team) {
-  const canon = normalizeTeamAbbrev(team);
-  if (!canon) return null;
-  const slug = TEAM_LOGO_SLUG[canon] || canon.toLowerCase();
-  if (slug === "car") {
-    return "https://a.espncdn.com/i/teamlogos/nfl/500-dark/car.png";
-  }
-  return `https://a.espncdn.com/i/teamlogos/nfl/500/${slug}.png`;
+function playerDisplayName(player, name) {
+  return escapeHtml(
+    name || player?.player || player?.name || player?.player_name || "Unknown"
+  );
+}
+
+function playerLabelHtml(player, { name } = {}) {
+  const team = normalizeTeamAbbrev(player?.team);
+  const teamLine = team
+    ? `<span class="player-label-team">${escapeHtml(team)}</span>`
+    : "";
+  return `<span class="player-label"><span class="player-label-name">${playerDisplayName(player, name)}</span>${teamLine}</span>`;
 }
 
 function starButtonHtml(playerId, liked) {
@@ -62,53 +53,49 @@ function starButtonHtml(playerId, liked) {
   return `<button type="button" class="draft-star${on ? " is-liked" : ""}" data-player-id="${id}" aria-label="${on ? "Remove from favourites" : "Add to favourites"}" aria-pressed="${on ? "true" : "false"}">★</button>`;
 }
 
-function playerMediaHtml(player, { name, compact = false } = {}) {
-  const display = escapeHtml(
-    name ||
-      player?.player ||
-      player?.name ||
-      player?.player_name ||
-      "Unknown"
-  );
-  const headshot = player?.headshot;
-  const headshotHtml = headshot
-    ? `<img class="player-headshot" src="${escapeHtml(headshot)}" alt="" width="28" height="28" loading="lazy" decoding="async" />`
-    : `<span class="player-headshot player-headshot--empty" aria-hidden="true"></span>`;
-
-  const logo = player?.logo || teamLogoUrl(player?.team);
-  const team = normalizeTeamAbbrev(player?.team);
-  let teamHtml = "";
-  if (!compact) {
-    const teamBits = [];
-    if (logo) {
-      teamBits.push(
-        `<img class="team-logo" src="${escapeHtml(logo)}" alt="" width="14" height="14" loading="lazy" decoding="async" />`
-      );
-    }
-    if (team) teamBits.push(`<span>${escapeHtml(team)}</span>`);
-    teamHtml = teamBits.length
-      ? `<span class="player-media-team">${teamBits.join("")}</span>`
-      : "";
-  }
-
-  const mediaClass = compact
-    ? "player-media player-media--compact"
-    : "player-media";
-  return `<span class="${mediaClass}">${headshotHtml}<span class="player-media-text"><span class="player-media-name">${display}</span>${teamHtml}</span></span>`;
-}
-
-function playerCellHtml(player, { name, liked = false, compact = false } = {}) {
+function playerCellHtml(player, { name, liked = false } = {}) {
   const id = sleeperIdOf(player);
   const star = id ? starButtonHtml(id, liked) : "";
-  return `<span class="draft-player-cell">${star}${playerMediaHtml(player, { name, compact })}</span>`;
+  return `<span class="draft-player-cell">${star}${playerLabelHtml(player, { name })}</span>`;
+}
+
+function updatePlayerCellLike(cell, liked) {
+  const star = cell?.querySelector(".draft-star");
+  if (!star) return;
+  star.classList.toggle("is-liked", liked);
+  star.setAttribute("aria-pressed", liked ? "true" : "false");
+  star.setAttribute(
+    "aria-label",
+    liked ? "Remove from favourites" : "Add to favourites"
+  );
+}
+
+/** Bind player label once per cell; later calls only update the star. */
+function bindPlayerCell(cell, player, { name, liked = false } = {}) {
+  if (!cell) return;
+  if (!cell.dataset.bound) {
+    cell.innerHTML = playerCellHtml(player, { name, liked });
+    cell.dataset.bound = "1";
+    return;
+  }
+  updatePlayerCellLike(cell, liked);
+}
+
+function matchesPlayerQuery(player, query) {
+  const q = String(query || "").trim().toLowerCase();
+  if (!q) return false;
+  const name = String(
+    player.player || player.name || player.player_name || ""
+  ).toLowerCase();
+  return name.includes(q);
 }
 
 export {
   escapeHtml,
   sleeperIdOf,
-  normalizeTeamAbbrev,
-  teamLogoUrl,
-  starButtonHtml,
-  playerMediaHtml,
+  playerLabelHtml,
   playerCellHtml,
+  bindPlayerCell,
+  updatePlayerCellLike,
+  matchesPlayerQuery,
 };

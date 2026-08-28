@@ -2,9 +2,9 @@
 
 Personal fantasy football reference site with RotoWire player news and a live Sleeper draft assistant.
 
-Data is pulled from [nflverse](https://github.com/nflverse) via [nflreadpy](https://github.com/nflverse/nflreadpy) and [Sleeper](https://docs.sleeper.com/), then published as static JSON for a GitHub Pages site in `/docs`. Player news is ingested from RotoWire’s Bluesky account (`rotowirenfl.bsky.social`) and grounded-summarized with Gemini.
+Data is pulled from [Sleeper](https://docs.sleeper.com/) and published as static JSON for a GitHub Pages site in `/docs`. Player news is ingested from RotoWire’s Bluesky account (`rotowirenfl.bsky.social`) with optional Gemini extraction for unmatched posts.
 
-Draft recommendations are **ADP-based**: lower ADP wins, adjusted for your positional need and the risk a player is taken before your next pick.
+Draft recommendations blend **VORP and ADP** (per position, shifting toward ADP as a position thins out), with a need multiplier for backup QB/TE and optional risk % when you're on the clock.
 
 ## Project structure
 
@@ -23,7 +23,7 @@ source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -e .
 
 python -m src.run_injuries         # state → data/injuries/; summaries → docs/
-python -m src.run_adp              # daily Sleeper ADP → docs/data/draft/adp-*.json
+python -m src.run_adp              # daily Sleeper ADP → docs/data/draft/adp-board.json
 python -m http.server 8000 --directory docs
 ```
 

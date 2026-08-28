@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark" />
     <title>Draft Companion</title>
-    <link rel="preconnect" href="https://static.www.nfl.com" crossorigin />
-    <link rel="preconnect" href="https://a.espncdn.com" crossorigin />
-    <link rel="stylesheet" href="../css/site.css?v=49" />
+    <link rel="stylesheet" href="../css/site.css?v=53" />
     <script>
       setTimeout(function () {
         document.body.classList.remove("is-page-loading");
@@ -57,7 +55,7 @@
           </div>
           <div class="draft-actions">
             <button type="button" id="draft-connect" class="draft-btn draft-btn--primary">Connect</button>
-            <button type="button" id="draft-pause" class="draft-btn">Pause</button>
+            <button type="button" id="draft-refresh" class="draft-btn" disabled>Refresh</button>
           </div>
         </div>
 
@@ -114,10 +112,10 @@
       </div>
     </main>
 
-    <script type="module" src="../js/site-boot.js?v=1"></script>
+    <script type="module" src="../js/site-boot.js?v=15"></script>
     <script type="module">
-      import { mountPage } from "../js/config.js?v=6";
-      import { mountDraftCompanionPage } from "../js/draft-companion.js?v=136";
+      import { mountPage } from "../js/config.js?v=15";
+      import { mountDraftCompanionPage } from "../js/draft-companion.js?v=27";
       mountPage(mountDraftCompanionPage, "draft-board");
     </script>
   </body>

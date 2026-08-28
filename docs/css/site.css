@@ -182,7 +182,7 @@ body.is-page-loading .site-main::before {
     justify-content: flex-start;
   }
 
-  .injury-card-title .player-media-name {
+  .injury-card-title .player-label-name {
     white-space: normal;
   }
 
@@ -253,7 +253,7 @@ table.draft-table > thead > tr > th {
   scroll-margin-top: 1.25rem;
 }
 
-.injury-card-target .injury-card-identity .player-media-name {
+.injury-card-target .injury-card-identity .player-label-name {
   text-decoration: underline;
   text-underline-offset: 0.15em;
 }
@@ -335,46 +335,15 @@ table.draft-table > thead > tr > th {
   margin-bottom: 0.15rem;
 }
 
-.player-media {
+.player-label {
   display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
+  flex-direction: column;
+  gap: 0.05rem;
   min-width: 0;
   max-width: 100%;
 }
 
-.player-headshot,
-.team-logo {
-  flex-shrink: 0;
-  object-fit: cover;
-  background: color-mix(in srgb, var(--border) 55%, transparent);
-}
-
-.player-headshot {
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 50%;
-}
-
-.player-headshot--empty {
-  display: inline-block;
-}
-
-.team-logo {
-  width: 0.95rem;
-  height: 0.95rem;
-  object-fit: contain;
-  background: transparent;
-}
-
-.player-media-text {
-  display: flex;
-  flex-direction: column;
-  gap: 0.05rem;
-  min-width: 0;
-}
-
-.player-media-name {
+.player-label-name {
   font-weight: 600;
   line-height: 1.15;
   overflow: hidden;
@@ -382,10 +351,7 @@ table.draft-table > thead > tr > th {
   white-space: nowrap;
 }
 
-.player-media-team {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
+.player-label-team {
   color: var(--muted);
   font-size: 0.72rem;
   line-height: 1.1;
@@ -400,35 +366,17 @@ table.draft-table > thead > tr > th {
   flex: 1;
 }
 
-.injury-card-identity .player-media {
+.injury-card-identity .player-label {
   min-width: 0;
 }
 
-.injury-card-identity .player-headshot {
-  width: 2.25rem;
-  height: 2.25rem;
-}
-
-.draft-roster-players .player-media {
-  gap: 0.35rem;
-}
-
-.draft-roster-players .player-headshot {
-  width: 1.35rem;
-  height: 1.35rem;
-}
-
-.draft-roster-players .player-media-name {
+.draft-roster-players .player-label-name {
   font-weight: 500;
   font-size: 0.85rem;
 }
 
-.draft-table td .player-media {
+.draft-table td .player-label {
   max-width: 100%;
-}
-
-.player-media--compact .player-media-name {
-  white-space: nowrap;
 }
 
 .injury-card-meta {

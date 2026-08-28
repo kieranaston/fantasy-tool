@@ -1,4 +1,4 @@
-/** Incremental table body sync — keeps stable rows (e.g. headshot imgs) when keyed. */
+/** Incremental table body sync — keeps stable rows when keyed. */
 
 export function ensureTableBody(container, { tableClass, theadHtml, emptyHtml }) {
   if (!container) return null;

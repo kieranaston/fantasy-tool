@@ -1,5 +1,12 @@
-import { fetchJSON, formatUpdated, showError, revealPage } from "./config.js?v=6";
-import { escapeHtml, sleeperIdOf, playerCellHtml } from "./shared.js?v=7";
+import { fetchJSON, formatUpdated, showError, revealPage } from "./config.js";
+import {
+  escapeHtml,
+  sleeperIdOf,
+  playerCellHtml,
+  bindPlayerCell,
+  updatePlayerCellLike,
+  matchesPlayerQuery,
+} from "./shared.js";
 import {
   scoreCandidates,
   annotateScore,
@@ -12,29 +19,23 @@ import {
   resolveScoringFormat,
   adpPathForFormat,
   playerAdpForFormat,
+  playerPtsForFormat,
   formatFromReceptionPoints,
+  formatFromScoringType,
   formatAdpRoundPick,
   slotForOverallPick,
   SKILL_POSITIONS,
   SCORING_FORMATS,
   FORMAT_LABELS,
   normalizePos,
-} from "./draft-scoring.js?v=115";
-import { createFavourites } from "./draft-liked.js?v=11";
-import { loadHeadshots, attachHeadshots } from "./media.js?v=1";
+} from "./draft-scoring.js?v=15";
+import { createFavourites } from "./draft-liked.js";
 import {
   ensureTableBody,
   showTableMessage,
   syncTableRows,
-} from "./table-diff.js?v=1";
+} from "./table-diff.js";
 
-/** Fast on your turn / on deck; slower while waiting. */
-const POLL_ON_CLOCK_MS = 1200;
-const POLL_ON_DECK_MS = 1500;
-const POLL_WAITING_MS = 2500;
-const POLL_IDLE_MS = 5000;
-/** How often to refresh draft status (not trades — those are fixed at connect). */
-const DRAFT_META_EVERY = 12;
 /** Score / recommend this many players; UI shows the same window. */
 const SCORE_LIMIT = 24;
 const SEARCH_LIMIT = 24;
@@ -42,15 +43,16 @@ const SEARCH_LIMIT = 24;
 const RECS_TABLE_HEAD = `<thead>
           <tr>
             <th>Player</th><th>Pos</th><th class="num">ADP</th>
-            <th class="num col-wide">Need</th><th class="num">Score</th>
-            <th class="num" title="Score minus the next player at this position">Δ</th>
+            <th class="num" title="Value over replacement">VORP</th>
+            <th class="num">Score</th>
             <th class="num" title="Chance taken before your next pick">Risk</th>
           </tr>
         </thead>`;
 const PICKS_TABLE_HEAD = `<thead><tr><th>Pick</th><th>Player</th><th>Pos</th></tr></thead>`;
 const SEARCH_TABLE_HEAD = `<thead>
           <tr>
-            <th>Player</th><th>Pos</th><th class="num">ADP</th><th class="num">Score</th>
+            <th>Player</th><th>Pos</th><th class="num">ADP</th>
+            <th class="num">VORP</th><th class="num">Score</th>
           </tr>
         </thead>`;
 
@@ -84,47 +86,35 @@ function applyRiskToResult(result, goneProbById = {}) {
   };
 }
 
+function formatRecMetaLine(result) {
+  const need = result.need_count || {};
+  const byPos = result.vorp_weight_by_pos || {};
+  const blendParts = SKILL_POSITIONS.filter(
+    (pos) => Number(need[pos]) > 0 && byPos[pos] != null
+  ).map((pos) => `${pos} ${Math.round(Number(byPos[pos]) * 100)}`);
+  const blendLabel = blendParts.length
+    ? `Blend (VORP%): ${blendParts.join(" · ")}`
+    : `Blend: ${Math.round((Number(result.vorp_weight) || 0) * 100)}% VORP`;
 
-function needBonusHtml(needBonus) {
-  const m = Number(needBonus);
-  if (!Number.isFinite(m) || m <= 1.001) return "—";
-  return `<span class="need-penalty">×${escapeHtml(m)}</span>`;
+  const needParts = SKILL_POSITIONS.filter((pos) => {
+    const m = Number(need[pos]);
+    return Number.isFinite(m) && m > 1.001;
+  }).map((pos) => `${pos} ×${Number(need[pos])}`);
+
+  if (!needParts.length) return blendLabel;
+  return `${blendLabel} · Penalty ${needParts.join(" · ")}`;
 }
 
-function scoreRowCells(r, { liked = false, teams = 12 } = {}) {
-  return `
-    <td>${playerCellHtml(r, { liked })}</td>
-    <td>${escapeHtml(r.position)}</td>
-    <td class="num">${adpHtml(r.adp, teams)}</td>
-    <td class="num col-wide">${needBonusHtml(r.need_bonus)}</td>
-    <td class="num">${escapeHtml(r.score)}</td>
-    <td class="num">${gapHtml(r.gap)}</td>
-    <td class="num">${riskHtml(r)}</td>`;
+function vorpHtml(vorp) {
+  const n = Number(vorp);
+  if (!Number.isFinite(n)) return "—";
+  return escapeHtml(String(n));
 }
 
-/** Score minus the next same-position player still on the board. */
-function withPosGaps(recs, scored) {
-  const source = scored?.length ? scored : recs;
-  const gapById = new Map();
-  const nextScoreAtPos = {};
-  for (let i = source.length - 1; i >= 0; i -= 1) {
-    const row = source[i];
-    const pos = String(row.position || "").toUpperCase();
-    const score = Number(row.score);
-    const next = nextScoreAtPos[pos];
-    const gap =
-      next != null && Number.isFinite(score) && Number.isFinite(next)
-        ? Math.round((score - next) * 10) / 10
-        : null;
-    gapById.set(sleeperIdOf(row), gap);
-    if (Number.isFinite(score)) nextScoreAtPos[pos] = score;
-  }
-  return recs.map((r) => ({ ...r, gap: gapById.get(sleeperIdOf(r)) ?? null }));
-}
-
-function gapHtml(gap) {
-  if (gap == null || !Number.isFinite(Number(gap))) return "—";
-  return Number(gap).toFixed(1);
+function scoreHtml(score) {
+  const n = Number(score);
+  if (!Number.isFinite(n)) return "—";
+  return escapeHtml(String(n));
 }
 
 function riskHtml(r) {
@@ -416,7 +406,7 @@ async function mountDraftCompanionPage() {
   const favsOnlyInput = document.getElementById("draft-favs-only");
   const posFilterSelect = document.getElementById("draft-pos-filter");
   const connectBtn = document.getElementById("draft-connect");
-  const pauseBtn = document.getElementById("draft-pause");
+  const refreshBtn = document.getElementById("draft-refresh");
   const draftInput = document.getElementById("draft-id-input");
   const leagueInput = document.getElementById("draft-league-input");
   const seatSelect = document.getElementById("draft-seat");
@@ -431,7 +421,6 @@ async function mountDraftCompanionPage() {
   const adpBoardCache = new Map();
 
   let takenIndex = new Set();
-  let pollTimer = null;
   let draftId = null;
   let draft = null;
   let league = null;
@@ -442,9 +431,7 @@ async function mountDraftCompanionPage() {
   let ownerSlotByPick = null;
   let lastFingerprint = "";
   let mySlot = 1;
-  let paused = false;
   let inFlight = false;
-  let pollTick = 0;
   let scoreGen = 0;
   let lastScoredFingerprint = "";
   let lastMyRosterFp = "";
@@ -453,13 +440,14 @@ async function mountDraftCompanionPage() {
   let lastScoreById = new Map();
   let searchTimer = null;
   let lastRosterForRender = [];
+  let lastRosterRenderKey = "";
 
   const favs = createFavourites({
     host: document.getElementById("sync-bar"),
     onChange: () => {
       if (lastScoreResult) renderRecommendationsFromCache();
       renderSearchResults();
-      renderRosterCounts();
+      updateRosterLikedState();
       if (picks?.length) renderRecentPicks();
     },
   });
@@ -704,35 +692,35 @@ async function mountDraftCompanionPage() {
     refreshHeader();
   }
 
-  function adpFormatKey(formatInfo, scoring = {}) {
+  function adpFormatKey(formatInfo, scoring = {}, draftMeta = {}) {
+    const fromRec = formatFromReceptionPoints(scoring.rec);
+    if (fromRec) return fromRec;
+    const fromType = formatFromScoringType(draftMeta?.scoring_type);
+    if (fromType) return fromType;
     const fromInfo =
       formatInfo?.format && SCORING_FORMATS.includes(formatInfo.format)
         ? formatInfo.format
         : null;
-    if (fromInfo) return fromInfo;
-    return formatFromReceptionPoints(scoring.rec) || "half_ppr";
+    return fromInfo || "half_ppr";
   }
 
   async function loadAdpBoard(formatInfo) {
-    const scoring = leagueForSettings()?.scoring_settings || {};
-    const formatKey = adpFormatKey(formatInfo, scoring);
+    const srcLeague = leagueForSettings();
+    const scoring = srcLeague?.scoring_settings || {};
+    const formatKey = adpFormatKey(formatInfo, scoring, draft?.metadata || {});
     let data;
     if (adpBoardCache.has("merged")) {
       data = adpBoardCache.get("merged");
     } else {
-      data = await fetchJSON(adpPathForFormat(formatKey), {
-        version: null,
-      });
+      data = await fetchJSON(adpPathForFormat(formatKey));
       adpBoardCache.set("merged", data);
-      await loadHeadshots(data.last_updated);
     }
-    const players = attachHeadshots(
-      (data.players || []).map((p) => ({
-        ...p,
-        sleeper_id: sleeperIdOf(p),
-        adp: playerAdpForFormat(p, formatKey),
-      }))
-    );
+    const players = (data.players || []).map((p) => ({
+      ...p,
+      sleeper_id: sleeperIdOf(p),
+      adp: playerAdpForFormat(p, formatKey),
+      pts: playerPtsForFormat(p, formatKey),
+    }));
     applyBoardPlayers(players, formatInfo, {
       source: data.source || "sleeper_adp",
       format: formatKey,
@@ -783,31 +771,31 @@ async function mountDraftCompanionPage() {
     return out;
   }
 
-  function stopTimers() {
-    if (pollTimer) clearTimeout(pollTimer);
-    pollTimer = null;
+  function setRefreshEnabled(on) {
+    if (refreshBtn) refreshBtn.disabled = !on;
   }
 
-  function pollDelay() {
-    const status = draft?.status;
-    if (status !== "drafting" && status !== "pre_draft") return POLL_IDLE_MS;
-    if (!draft) return POLL_WAITING_MS;
-    const timing = pickTiming();
-    if (timing.onClock) return POLL_ON_CLOCK_MS;
-    if (timing.until === 1) return POLL_ON_DECK_MS;
-    if (Number(timing.until) > 5) return POLL_IDLE_MS;
-    return POLL_WAITING_MS;
-  }
-
-  function schedulePoll() {
-    stopTimers();
-    pollTimer = setTimeout(() => {
-      refreshLive()
-        .catch((err) => setStatus(`Poll error: ${err.message}`))
-        .finally(() => {
-          if (draftId && !paused) schedulePoll();
-        });
-    }, pollDelay());
+  async function refreshLive() {
+    if (!draftId || inFlight) return;
+    inFlight = true;
+    if (refreshBtn) refreshBtn.disabled = true;
+    try {
+      const nextPicks = await sleeperGet(`/draft/${draftId}/picks`);
+      const next = nextPicks || [];
+      const teams = Number(leagueSettings?.teams || draft?.settings?.teams || 12);
+      const rounds = Number(draft?.settings?.rounds || leagueSettings?.rounds || 15);
+      const fingerprint = picksFingerprint(next, teams, rounds);
+      const changed = fingerprint !== lastFingerprint;
+      picks = next;
+      if (changed) lastFingerprint = fingerprint;
+      rebuildTaken();
+      renderRecentPicks();
+      refreshHeader();
+      queueScoreRender({ force: true });
+    } finally {
+      inFlight = false;
+      if (draftId && refreshBtn) refreshBtn.disabled = false;
+    }
   }
 
   function rebuildTaken() {
@@ -896,8 +884,28 @@ async function mountDraftCompanionPage() {
     lastScoreById = new Map(rows.map((r) => [sleeperIdOf(r), r]));
   }
 
+  function updateRosterLikedState() {
+    if (!needsEl) return;
+    for (const li of needsEl.querySelectorAll(".draft-roster-players li")) {
+      const cell = li.querySelector(".draft-player-cell");
+      const id = cell?.querySelector(".draft-star")?.getAttribute("data-player-id");
+      if (!id) continue;
+      const liked = isLiked(id);
+      li.classList.toggle("draft-liked", liked);
+      updatePlayerCellLike(cell, liked);
+    }
+  }
+
   function renderRosterCounts(roster = lastRosterForRender) {
     lastRosterForRender = roster;
+    const renderKey = `${mySlot}:${myRosterFingerprint(roster)}`;
+    if (
+      renderKey === lastRosterRenderKey &&
+      needsEl?.querySelector(".draft-roster-grid")
+    ) {
+      return;
+    }
+    lastRosterRenderKey = renderKey;
     const byPos = {};
     for (const p of roster) {
       const pos = normalizePos(p.position);
@@ -949,20 +957,7 @@ async function mountDraftCompanionPage() {
     const liked = isLiked(row.id);
     tr.className = liked ? "draft-liked" : "";
     tr.children[0].innerHTML = pickNoHtml(row.pick.pick_no, teams);
-    if (!tr.dataset.playerBound) {
-      tr.children[1].innerHTML = playerCellHtml(row.board, {
-        name: row.name,
-        liked,
-      });
-      tr.dataset.playerBound = "1";
-    } else {
-      tr.classList.toggle("draft-liked", liked);
-      const star = tr.querySelector(".draft-star");
-      if (star) {
-        star.classList.toggle("is-liked", liked);
-        star.setAttribute("aria-pressed", liked ? "true" : "false");
-      }
-    }
+    bindPlayerCell(tr.children[1], row.board, { name: row.name, liked });
     tr.children[2].textContent = row.meta.position || "";
   }
 
@@ -994,29 +989,25 @@ async function mountDraftCompanionPage() {
   function updateRecRow(tr, r, teams) {
     const liked = isLiked(sleeperIdOf(r));
     tr.className = liked ? "draft-liked" : "";
-    if (!tr.dataset.playerBound) {
-      tr.innerHTML = scoreRowCells(r, { liked, teams });
-      tr.dataset.playerBound = "1";
-      return;
+    if (!tr.children.length) {
+      tr.innerHTML =
+        `<td></td><td></td><td class="num"></td><td class="num"></td>` +
+        `<td class="num"></td><td class="num"></td>`;
     }
-    tr.classList.toggle("draft-liked", liked);
-    const star = tr.querySelector(".draft-star");
-    if (star) {
-      star.classList.toggle("is-liked", liked);
-      star.setAttribute("aria-pressed", liked ? "true" : "false");
-    }
+    bindPlayerCell(tr.children[0], r, { liked });
     tr.children[1].textContent = r.position || "";
     tr.children[2].innerHTML = adpHtml(r.adp, teams);
-    tr.children[3].innerHTML = needBonusHtml(r.need_bonus);
-    tr.children[4].textContent = String(r.score ?? "—");
-    tr.children[5].innerHTML = gapHtml(r.gap);
-    tr.children[6].innerHTML = riskHtml(r);
+    tr.children[3].innerHTML = vorpHtml(r.vorp);
+    tr.children[4].textContent = scoreHtml(r.score);
+    tr.children[5].innerHTML = riskHtml(r);
   }
 
   function renderRecommendationsFromCache() {
     if (!recEl) return;
     if (!draft) return;
     if (draft.status === "complete") {
+      const blendEl = document.getElementById("draft-rec-blend");
+      if (blendEl) blendEl.hidden = true;
       showTableMessage(recEl, `<p class="meta">Draft complete.</p>`);
       return;
     }
@@ -1025,6 +1016,8 @@ async function mountDraftCompanionPage() {
     const filters = boardFilters();
     const recs = filteredRecommendationRows(result);
     if (!recs.length) {
+      const blendEl = document.getElementById("draft-rec-blend");
+      if (blendEl) blendEl.hidden = true;
       const emptyMsg =
         filters.favsOnly || filters.position
           ? "No players match the current filters."
@@ -1033,14 +1026,21 @@ async function mountDraftCompanionPage() {
       return;
     }
     const teams = leagueTeamCount();
-    const gapSource =
-      filters.favsOnly || filters.position ? recs : result.scored || recs;
-    const rows = withPosGaps(recs, gapSource);
+    let blendEl = document.getElementById("draft-rec-blend");
+    if (!blendEl) {
+      blendEl = document.createElement("p");
+      blendEl.id = "draft-rec-blend";
+      blendEl.className = "meta";
+      recEl.parentNode.insertBefore(blendEl, recEl);
+    }
+    blendEl.hidden = false;
+    blendEl.textContent = formatRecMetaLine(result);
+
     const tbody = ensureTableBody(recEl, {
       tableClass: "draft-table",
       theadHtml: RECS_TABLE_HEAD,
     });
-    syncTableRows(tbody, rows, {
+    syncTableRows(tbody, recs, {
       key: (r) => sleeperIdOf(r),
       createRow: (r) => {
         const tr = document.createElement("tr");
@@ -1051,14 +1051,6 @@ async function mountDraftCompanionPage() {
     });
   }
 
-  function matchesSearch(player, query) {
-    if (!query) return false;
-    const name = String(player.player || player.name || "").toLowerCase();
-    const team = String(player.team || "").toLowerCase();
-    const pos = String(player.position || "").toLowerCase();
-    return name.includes(query) || team.includes(query) || pos === query;
-  }
-
   function updateSearchRow(tr, entry, teams) {
     const { player, scored, taken: isTaken } = entry;
     const id = sleeperIdOf(player);
@@ -1066,24 +1058,22 @@ async function mountDraftCompanionPage() {
     tr.className = [liked ? "draft-liked" : "", isTaken ? "draft-taken" : ""]
       .filter(Boolean)
       .join(" ");
-    if (!tr.dataset.playerBound) {
-      tr.innerHTML = `<td></td><td></td><td class="num"></td><td class="num"></td>`;
-      tr.dataset.playerBound = "1";
-      tr.children[0].innerHTML = playerCellHtml(player, { liked });
-    } else {
-      tr.classList.toggle("draft-liked", liked);
-      const star = tr.querySelector(".draft-star");
-      if (star) {
-        star.classList.toggle("is-liked", liked);
-        star.setAttribute("aria-pressed", liked ? "true" : "false");
-      }
+    if (!tr.children.length) {
+      tr.innerHTML =
+        `<td></td><td></td><td class="num"></td><td class="num"></td><td class="num"></td>`;
     }
+    bindPlayerCell(tr.children[0], player, { liked });
     tr.children[1].textContent = player.position || "";
     tr.children[2].innerHTML = adpHtml(player.adp, teams);
-    tr.children[3].innerHTML = isTaken
+    tr.children[3].innerHTML = isTaken ? "—" : vorpHtml(scored?.vorp);
+    tr.children[4].innerHTML = isTaken
       ? `<span class="draft-taken-label">Taken</span>`
-      : escapeHtml(String((scored || {}).score ?? "—"));
-    if (!isTaken) tr.children[3].className = "num";
+      : scoreHtml((scored || {}).score);
+    if (!isTaken) tr.children[4].className = "num";
+  }
+
+  function refreshSearchIfActive() {
+    if (String(searchInput?.value || "").trim()) renderSearchResults();
   }
 
   function renderSearchResults() {
@@ -1100,7 +1090,7 @@ async function mountDraftCompanionPage() {
     const available = [];
     const taken = [];
     for (const p of boardPlayers) {
-      if (!matchesSearch(p, query)) continue;
+      if (!matchesPlayerQuery(p, query)) continue;
       if (!matchesBoardFilters(p, filters)) continue;
       const id = sleeperIdOf(p);
       if (takenIndex.has(id)) taken.push(p);
@@ -1192,9 +1182,7 @@ async function mountDraftCompanionPage() {
       filledPickNos: timing.filledPickNos,
     };
 
-    // Paint rankings immediately; risk sim is the slow part and only matters
-    // on the clock for comparing pass-vs-take.
-    const result = scoreCandidates({ ...scoreArgs, includeRisk: false });
+    const result = scoreCandidates(scoreArgs);
 
     hasScoredOnce = true;
     lastScoredFingerprint = picksFingerprint(
@@ -1206,33 +1194,33 @@ async function mountDraftCompanionPage() {
 
     renderRosterCounts(myRoster);
     renderRecommendationsFromCache();
-    renderSearchResults();
+    refreshSearchIfActive();
 
     if (!timing.onClock) return;
 
     const gen = scoreGen;
     const jobId = ++riskJobSeq;
+    const scoredSnapshot = result;
     const worker = getRiskWorker();
     const onMessage = (event) => {
       if (event.data?.jobId !== jobId || gen !== scoreGen) return;
       worker.removeEventListener("message", onMessage);
       if (!event.data?.ok) return;
-      const base = scoreCandidates({ ...scoreArgs, includeRisk: false });
-      const withRisk = applyRiskToResult(base, event.data.goneProbById || {});
-      if (gen !== scoreGen) return;
+      const withRisk = applyRiskToResult(
+        scoredSnapshot,
+        event.data.goneProbById || {}
+      );
       cacheScoreResult(withRisk);
       renderRecommendationsFromCache();
-      renderSearchResults();
+      refreshSearchIfActive();
     };
     worker.addEventListener("message", onMessage);
-    requestAnimationFrame(() => {
-      worker.postMessage({ jobId, args: scoreArgs });
-    });
+    worker.postMessage({ jobId, args: scoreArgs });
   }
 
   function renderAll() {
     renderRecentPicks();
-    renderScores();
+    renderScores(scoreContext());
   }
 
   function queueScoreRender({ force = false } = {}) {
@@ -1250,11 +1238,8 @@ async function mountDraftCompanionPage() {
       return;
     }
 
-    const gen = ++scoreGen;
-    requestAnimationFrame(() => {
-      if (gen !== scoreGen) return;
-      renderScores(ctx);
-    });
+    scoreGen += 1;
+    renderScores(ctx);
   }
 
   function fillSeats() {
@@ -1265,46 +1250,12 @@ async function mountDraftCompanionPage() {
     }).join("");
   }
 
-  async function refreshLive() {
-    if (!draftId || paused || inFlight) return;
-    inFlight = true;
-    try {
-      pollTick += 1;
-      const wantMeta = pollTick === 1 || pollTick % DRAFT_META_EVERY === 0;
-      const nextPicks = await sleeperGet(`/draft/${draftId}/picks`);
-      if (wantMeta) {
-        // Status only — pick owners / trades were loaded at connect and do not
-        // change mid-draft.
-        draft = await sleeperGet(`/draft/${draftId}`);
-      }
-      const next = nextPicks || [];
-      const teams = Number(leagueSettings?.teams || draft?.settings?.teams || 12);
-      const rounds = Number(draft?.settings?.rounds || leagueSettings?.rounds || 15);
-      const fingerprint = picksFingerprint(next, teams, rounds);
-      const changed = fingerprint !== lastFingerprint;
-      picks = next;
-      if (changed) {
-        lastFingerprint = fingerprint;
-        rebuildTaken();
-        renderRecentPicks();
-        queueScoreRender();
-      } else if (draft) {
-        refreshHeader();
-      }
-    } finally {
-      inFlight = false;
-    }
-  }
-
   async function connectLive() {
-    stopTimers();
-    paused = false;
     inFlight = false;
-    pollTick = 0;
     hasScoredOnce = false;
     lastScoredFingerprint = "";
     lastMyRosterFp = "";
-    if (pauseBtn) pauseBtn.textContent = "Pause";
+    lastRosterRenderKey = "";
 
     await loadConfiguredLeague({ required: false });
     if (!draftInput?.value?.trim()) {
@@ -1317,6 +1268,11 @@ async function mountDraftCompanionPage() {
     ]);
     draft = draftData;
     league = await fetchLeagueForDraft(draft);
+    if (!resolveLeagueIdInput(leagueInput?.value || "") && league) {
+      configuredLeague = league;
+    }
+    refreshLeagueSettings();
+
     await Promise.all([
       loadLeagueRosters().catch(() => {
         leagueRosters = [];
@@ -1328,11 +1284,6 @@ async function mountDraftCompanionPage() {
     ]);
     picks = picksData || [];
 
-    if (!resolveLeagueIdInput(leagueInput?.value || "") && league) {
-      configuredLeague = league;
-    }
-
-    refreshLeagueSettings();
     rebuildPickOwners();
     lastFingerprint = picksFingerprint(
       picks,
@@ -1343,7 +1294,7 @@ async function mountDraftCompanionPage() {
     fillSeats();
     refreshHeader();
     renderAll();
-    schedulePoll();
+    setRefreshEnabled(true);
   }
 
   rootEl?.addEventListener("click", (event) => {
@@ -1365,23 +1316,23 @@ async function mountDraftCompanionPage() {
   favsOnlyInput?.addEventListener("change", onBoardFilterChange);
   posFilterSelect?.addEventListener("change", onBoardFilterChange);
 
+  refreshBtn?.addEventListener("click", () => {
+    refreshLive().catch((err) =>
+      setStatus(`Refresh failed: ${err.message}`)
+    );
+  });
   connectBtn?.addEventListener("click", () => {
     connectLive().catch((err) => {
       showError(recEl, err.message);
       setStatus(err.message);
     });
   });
-  pauseBtn?.addEventListener("click", () => {
-    paused = !paused;
-    pauseBtn.textContent = paused ? "Resume" : "Pause";
-    if (!paused && draftId) schedulePoll();
-    if (paused) stopTimers();
-  });
   seatSelect?.addEventListener("change", () => {
     mySlot = Number(seatSelect.value) || 1;
     hasScoredOnce = false;
     lastScoredFingerprint = "";
     lastMyRosterFp = "";
+    lastRosterRenderKey = "";
     queueScoreRender({ force: true });
   });
 
