@@ -26,7 +26,7 @@ const ADP_POS_LIMITS = { QB: 32, TE: 32, DEF: 32, K: 32 };
 
 const REC_TABLE_HEAD = `<thead>
           <tr>
-            <th class="num col-wide">#</th>
+            <th class="num adp-rank">#</th>
             <th>Player</th>
             <th>Pos</th>
             <th class="num">ADP</th>
@@ -147,7 +147,7 @@ async function mountAdpBoardPage() {
   function createAdpRow(p, index) {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td class="num col-wide">${index + 1}</td>
+      <td class="num adp-rank"></td>
       <td></td>
       <td></td>
       <td class="num"></td>

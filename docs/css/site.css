@@ -1194,6 +1194,13 @@ table.draft-table > thead > tr > th {
   white-space: nowrap;
 }
 
+.adp-table .adp-rank {
+  width: 1%;
+  padding-left: 0 !important;
+  padding-right: 0.55rem !important;
+  white-space: nowrap;
+}
+
 .num {
   text-align: right;
   white-space: nowrap;

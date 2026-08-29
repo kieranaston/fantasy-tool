@@ -6,7 +6,7 @@ const BSKY_FEED_URL =
 const BSKY_ACTOR = "rotowirenfl.bsky.social";
 const BSKY_PAGE_LIMIT = 30;
 /** Max player cards shown (newest first, after freshness filter). */
-const DISPLAY_LIMIT = 40;
+const DISPLAY_LIMIT = 25;
 /** RotoWire blurbs are almost always "Player Name: update …" */
 const ROTOWIRE_LINE =
   /^\s*([^:\n]{2,80}?)\s*:\s*(.+?)\s*$/m;
@@ -338,7 +338,7 @@ async function mountInjuriesPage() {
       fetchLiveRotowirePosts().catch(() => []),
     ]);
     const teamIndex = buildTeamIndex(adpData.players);
-    const maxAgeDays = Number(data.news_max_age_days) || 7;
+    const maxAgeDays = Number(data.news_max_age_days) || 28;
 
     const merged = mergeLivePosts(
       featuredPlayers(data.players || [], teamIndex),

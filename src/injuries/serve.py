@@ -9,9 +9,9 @@ from src.injuries.calendar import parse_iso_datetime
 from src.injuries.detect import group_reports_by_player
 
 # Drop players whose newest post/status is older than this.
-NEWS_MAX_AGE = timedelta(days=7)
+NEWS_MAX_AGE = timedelta(days=28)
 # Cap published source history — UI only expands on demand.
-TIMELINE_LIMIT = 4
+TIMELINE_LIMIT = 20
 # Card blurb only needs the start of the newest post; full text stays in pipeline.
 TIMELINE_TEXT_MAX = 280
 
