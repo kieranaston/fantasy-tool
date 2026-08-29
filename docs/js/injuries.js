@@ -1,5 +1,5 @@
 import { fetchJSON, formatTimestamp, formatUpdated, showError, revealPage } from "./config.js";
-import { escapeHtml, playerLabelHtml } from "./shared.js";
+import { escapeHtml, playerLabelHtml, sleeperIdOf } from "./shared.js";
 
 const BSKY_FEED_URL =
   "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed";
@@ -219,7 +219,51 @@ function findPlayerByName(players, name) {
   return null;
 }
 
-function mergeLivePosts(players, livePosts) {
+/** Name → team/id from the published ADP board (same pool as the ADP page). */
+function buildTeamIndex(adpPlayers) {
+  const byName = new Map();
+  for (const row of adpPlayers || []) {
+    const key = normName(row.player || row.name);
+    if (!key || byName.has(key)) continue;
+    byName.set(key, {
+      team: row.team || null,
+      player_id: sleeperIdOf(row) || null,
+    });
+  }
+  return byName;
+}
+
+function hasKnownTeam(player) {
+  const team = String(player?.team || "")
+    .trim()
+    .toUpperCase();
+  return team && team !== "FA" && team !== "NONE";
+}
+
+function enrichPlayerTeam(player, teamIndex) {
+  if (!player || !teamIndex?.size) return player;
+  const hit = teamIndex.get(normName(player.player_name));
+  if (!hit) return player;
+  const out = { ...player };
+  if (!out.team && hit.team) out.team = hit.team;
+  if (
+    hit.player_id &&
+    String(out.player_id || "").startsWith("live:")
+  ) {
+    out.player_id = hit.player_id;
+  }
+  return out;
+}
+
+function enrichPlayerList(players, teamIndex) {
+  return (players || []).map((p) => enrichPlayerTeam(p, teamIndex));
+}
+
+function featuredPlayers(players, teamIndex) {
+  return enrichPlayerList(players, teamIndex).filter(hasKnownTeam);
+}
+
+function mergeLivePosts(players, livePosts, teamIndex) {
   const list = players.map((p) => ({
     ...p,
     timeline: [...(p.timeline || [])],
@@ -250,17 +294,25 @@ function mergeLivePosts(players, livePosts) {
     let player = post.player_name
       ? findPlayerByName(list, post.player_name)
       : null;
-    if (!player) {
+    if (player) {
+      player = enrichPlayerTeam(player, teamIndex);
+    } else {
       if (!post.player_name) continue;
-      player = {
-        player_id: `live:${normName(post.player_name).replace(/\s+/g, "-")}`,
-        player_name: post.player_name,
-        last_updated: post.timestamp,
-        timeline: [],
-        team: null,
-      };
+      player = enrichPlayerTeam(
+        {
+          player_id: `live:${normName(post.player_name).replace(/\s+/g, "-")}`,
+          player_name: post.player_name,
+          last_updated: post.timestamp,
+          timeline: [],
+          team: null,
+        },
+        teamIndex
+      );
+      if (!hasKnownTeam(player)) continue;
       list.push(player);
     }
+
+    if (!hasKnownTeam(player)) continue;
 
     player.timeline.unshift(item);
     player.last_updated = post.timestamp || player.last_updated;
@@ -280,9 +332,13 @@ async function mountInjuriesPage() {
   const failsafe = setTimeout(() => revealPage(), 4000);
 
   try {
-    const data = await fetchJSON("injuries/summaries.json");
+    const [data, adpData] = await Promise.all([
+      fetchJSON("injuries/summaries.json"),
+      fetchJSON("draft/adp-board.json").catch(() => ({ players: [] })),
+    ]);
+    const teamIndex = buildTeamIndex(adpData.players);
 
-    let players = [...(data.players || [])].sort((a, b) =>
+    let players = featuredPlayers(data.players || [], teamIndex).sort((a, b) =>
       String(b.last_updated || "").localeCompare(String(a.last_updated || ""))
     );
     let liveNote = "";
@@ -295,7 +351,7 @@ async function mountInjuriesPage() {
 
     function visiblePlayers() {
       return players
-        .filter((p) => isFreshPlayer(p, maxAgeDays))
+        .filter((p) => isFreshPlayer(p, maxAgeDays) && hasKnownTeam(p))
         .slice(0, DISPLAY_LIMIT);
     }
 
@@ -332,9 +388,9 @@ async function mountInjuriesPage() {
 
     fetchLiveRotowirePosts()
       .then((livePosts) => {
-        const merged = mergeLivePosts(players, livePosts);
+        const merged = mergeLivePosts(players, livePosts, teamIndex);
         if (!merged.added) return;
-        players = merged.players;
+        players = featuredPlayers(merged.players, teamIndex);
         players.sort((a, b) =>
           String(b.last_updated || "").localeCompare(String(a.last_updated || ""))
         );

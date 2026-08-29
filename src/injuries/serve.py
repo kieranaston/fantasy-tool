@@ -117,6 +117,14 @@ def build_summaries(
     players = [p for p in players if _player_is_fresh(p, cutoff=cutoff)]
     dropped = before - len(players)
 
+    before_team = len(players)
+    players = [
+        p
+        for p in players
+        if str(p.get("team") or "").strip().upper() not in ("", "FA", "NONE")
+    ]
+    dropped += before_team - len(players)
+
     players.sort(
         key=lambda p: p.get("last_updated") or "",
         reverse=True,
