@@ -218,6 +218,13 @@ select {
     gap: 0.45rem 0.7rem;
   }
 
+  .draft-side .draft-roster-grid {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0.35rem;
+  }
+
   table.draft-table {
     font-size: 0.75rem;
   }
@@ -668,12 +675,6 @@ table.draft-table > thead > tr > th {
   min-width: 0;
 }
 
-.draft-panel--roster {
-  margin: 0;
-  padding: 0;
-  border-bottom: none;
-}
-
 .draft-section-title {
   margin: 0 0 0.3rem;
   font-size: 0.78rem;
@@ -705,31 +706,43 @@ table.draft-table > thead > tr > th {
   gap: 0.55rem 0.75rem;
 }
 
-/* Players left; Roster over Recent picks on the right */
+/* Players left; Roster (content height) over Recent picks on the right */
 .draft-board-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.55fr) minmax(15rem, 1fr);
-  grid-template-rows: minmax(10rem, 1.25fr) minmax(7rem, 0.7fr);
   gap: 0.75rem 1rem;
   align-items: stretch;
 }
 
 .draft-panel--players {
-  grid-column: 1;
-  grid-row: 1 / -1;
+  min-height: 16rem;
 }
 
-.draft-panel--roster {
-  grid-column: 2;
-  grid-row: 1;
+.draft-side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+  min-height: 16rem;
 }
 
-.draft-panel--picks {
-  grid-column: 2;
-  grid-row: 2;
+.draft-side > .draft-panel--roster {
+  flex: 0 0 auto;
+  height: fit-content;
+  min-height: 0;
+  max-height: none;
 }
 
-.draft-board-layout > .draft-panel {
+.draft-side > .draft-panel--roster .draft-panel-body {
+  flex: 0 0 auto;
+}
+
+.draft-side > .draft-panel--picks {
+  flex: 1 1 auto;
+  min-height: 8rem;
+}
+
+.draft-board-layout .draft-panel {
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -740,7 +753,7 @@ table.draft-table > thead > tr > th {
   background: var(--surface);
 }
 
-.draft-board-layout > .draft-panel > .draft-section-title {
+.draft-board-layout .draft-panel > .draft-section-title {
   margin: 0 0 0.45rem;
   line-height: 1.2;
   flex: 0 0 auto;
@@ -799,35 +812,31 @@ table.draft-table > thead > tr > th {
   margin-bottom: 0.4rem;
 }
 
-.draft-roster-grid {
+/* Roster slots stack vertically; panel height grows with content */
+.draft-side .draft-roster-grid {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  gap: 0.45rem;
+  gap: 0.35rem;
   font-size: 0.8rem;
 }
 
 @media (max-width: 960px) {
   .draft-board-layout {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: none;
   }
 
-  .draft-panel--players,
-  .draft-panel--picks,
-  .draft-panel--roster {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .draft-board-layout > .draft-panel {
+  .draft-side {
     min-height: 0;
   }
 
-  .draft-roster-grid {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.3rem 1.1rem;
+  .draft-panel--players,
+  .draft-panel--picks {
+    min-height: 0;
+  }
+
+  .draft-board-layout .draft-panel {
+    min-height: 0;
   }
 }
 
