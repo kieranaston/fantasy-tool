@@ -329,8 +329,6 @@ async function mountInjuriesPage() {
   const container = document.getElementById("injuries-container");
   const meta = document.querySelector("[data-injuries='summary']");
   const searchInput = document.getElementById("news-player-search");
-  const failsafe = setTimeout(() => revealPage(), 4000);
-
   try {
     const [data, adpData] = await Promise.all([
       fetchJSON("injuries/summaries.json"),
@@ -404,7 +402,6 @@ async function mountInjuriesPage() {
     if (container) showError(container, err.message || String(err));
     else if (meta) meta.textContent = err.message || String(err);
   } finally {
-    clearTimeout(failsafe);
     revealPage();
   }
 

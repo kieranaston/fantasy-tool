@@ -66,16 +66,13 @@ function showError(container, message) {
 /** Top-level mount wrapper: reveal page and show escaped errors on failure. */
 function mountPage(mountFn, containerId) {
   return mountFn().catch((err) => {
-    document.body.classList.remove("is-page-loading");
     const el = document.getElementById(containerId);
     if (el) showError(el, err?.message || String(err));
   });
 }
 
-/** Show main content after async page data has rendered. */
-function revealPage() {
-  document.body.classList.remove("is-page-loading");
-}
+/** No-op kept for callers that signal render complete. */
+function revealPage() {}
 
 export {
   dataPath,

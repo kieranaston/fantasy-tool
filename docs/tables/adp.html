@@ -5,14 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark" />
     <title>ADP Board</title>
-    <link rel="stylesheet" href="../css/site.css?v=53" />
-    <script>
-      setTimeout(function () {
-        document.body.classList.remove("is-page-loading");
-      }, 2500);
-    </script>
+    <link rel="stylesheet" href="../css/site.css?v=54" />
   </head>
-  <body class="is-page-loading">
+  <body>
     <nav class="site-nav" aria-label="Primary">
       <a href="../index.html">News</a>
       <a href="adp.html" class="is-active" aria-current="page">ADP</a>
@@ -21,7 +16,7 @@
     <main class="site-main">
       <div class="container">
         <div class="page-head">
-          <p class="meta" id="adp-summary">Loading…</p>
+          <p class="meta" id="adp-summary">Updated: —</p>
           <div id="sync-bar" class="sync-bar" hidden></div>
         </div>
 
@@ -59,7 +54,7 @@
 
     <script type="module" src="../js/site-boot.js?v=15"></script>
     <script type="module">
-      import { mountPage } from "../js/config.js?v=15";
+      import { mountPage } from "../js/config.js?v=16";
       import { mountAdpBoardPage } from "../js/adp-board.js?v=15";
       mountPage(mountAdpBoardPage, "adp-board");
     </script>
