@@ -28,7 +28,7 @@ import {
   SCORING_FORMATS,
   FORMAT_LABELS,
   normalizePos,
-} from "./draft-scoring.js?v=15";
+} from "./draft-scoring.js?v=16";
 import { createFavourites } from "./draft-liked.js";
 import {
   ensureTableBody,
@@ -172,9 +172,13 @@ function pickNoHtml(pickNo, teams = 12) {
 }
 
 async function sleeperGet(path) {
-  const response = await fetch(`https://api.sleeper.app/v1${path}`, {
-    cache: "no-store",
-  });
+  // Sleeper sits behind Cloudflare (s-maxage + stale-while-revalidate). Browser
+  // cache: "no-store" does not bypass the CDN — bust the URL so refresh sees live picks.
+  const sep = path.includes("?") ? "&" : "?";
+  const response = await fetch(
+    `https://api.sleeper.app/v1${path}${sep}_=${Date.now()}`,
+    { cache: "no-store" }
+  );
   if (!response.ok) throw new Error(`Sleeper ${path}: ${response.status}`);
   return response.json();
 }
@@ -778,7 +782,6 @@ async function mountDraftCompanionPage() {
   async function refreshLive() {
     if (!draftId || inFlight) return;
     inFlight = true;
-    if (refreshBtn) refreshBtn.disabled = true;
     try {
       const nextPicks = await sleeperGet(`/draft/${draftId}/picks`);
       const next = nextPicks || [];
@@ -794,7 +797,6 @@ async function mountDraftCompanionPage() {
       queueScoreRender({ force: true });
     } finally {
       inFlight = false;
-      if (draftId && refreshBtn) refreshBtn.disabled = false;
     }
   }
 

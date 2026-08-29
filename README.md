@@ -4,7 +4,7 @@ Personal fantasy football reference site with RotoWire player news and a live Sl
 
 Data is pulled from [Sleeper](https://docs.sleeper.com/) and published as static JSON for a GitHub Pages site in `/docs`. Player news is ingested from RotoWire’s Bluesky account (`rotowirenfl.bsky.social`) with optional Gemini extraction for unmatched posts.
 
-Draft recommendations blend **VORP and ADP** (per position, shifting toward ADP as a position thins out), with a need multiplier for backup QB/TE and optional risk % when you're on the clock.
+Draft recommendations blend **VORP and ADP** (per position, shifting toward ADP as a position thins out), with a need multiplier for backup QB/TE on your rankings. Risk % (when you're on the clock) uses plain ADP for opponent picks.
 
 ## Project structure
 

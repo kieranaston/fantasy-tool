@@ -12,6 +12,7 @@
  *
  * Risk (display-only, on the clock): same filtered board and sim pool as rankings.
  * Pool = top 60 ADP ∪ top 60 need-ADP ∪ top 10 VORP per position (deduped).
+ * Opponent picks use plain ADP (no backup QB/TE need penalty); filled DEF/K stay excluded.
  *
  * Live picks come from Sleeper — not simulated for rankings.
  */
@@ -20,7 +21,7 @@ const SKILL_POSITIONS = ["QB", "RB", "WR", "TE", "DEF", "K"];
 const NEED_POSITIONS = ["QB", "RB", "WR", "TE", "DEF", "K"];
 const FLEX_POSITIONS = ["RB", "WR", "TE"];
 
-/** Backup QB/TE multiplier for rankings and ADP risk sim. */
+/** Backup QB/TE multiplier for your rankings only (not opponent risk sim). */
 const QB_TE_BACKUP_M = 1.5;
 
 /**
@@ -259,8 +260,8 @@ function qbTeMultiplier(owned) {
 }
 
 /**
- * Per-position multiplier M for ADP risk sim. RB/WR/DEF/K stay 1.
- * QB/TE go to 1.5 after the first copy.
+ * Per-position multiplier M for your rankings. RB/WR stay 1.
+ * QB/TE go to 1.5 after the first copy. DEF/K are 0 when filled (also used by risk).
  */
 function needCounts(roster, settings = {}) {
   const counts = rosterPositionCounts(roster);
@@ -615,6 +616,14 @@ function needAdpScore(player, need_count) {
   return -adpValue(player) * multiplier;
 }
 
+/** Opponent risk sim: plain ADP, still skip filled DEF/K (M≤0). */
+function riskAdpScore(player, need_count) {
+  const pos = normalizePos(player.position);
+  const m = Number(need_count[pos]);
+  if (Number.isFinite(m) && m <= 0) return -Infinity;
+  return -adpValue(player);
+}
+
 function cloneRosters(rosters, teams) {
   const out = {};
   for (let slot = 1; slot <= teams; slot += 1) {
@@ -656,7 +665,7 @@ function simulateGoneProbabilities({
         scores[i] = -Infinity;
         continue;
       }
-      const s = needAdpScore(pool[i], need_count);
+      const s = riskAdpScore(pool[i], need_count);
       scores[i] = s;
       if (s > maxS) maxS = s;
     }
