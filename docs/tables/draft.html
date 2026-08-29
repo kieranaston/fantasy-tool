@@ -3,114 +3,111 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="color-scheme" content="light" />
     <title>Draft Companion</title>
-    <link rel="stylesheet" href="../css/site.css?v=56" />
+    <link rel="stylesheet" href="../css/site.css?v=69" />
   </head>
   <body>
     <nav class="site-nav" aria-label="Primary">
-      <a href="../index.html">News</a>
-      <a href="adp.html">ADP</a>
-      <a href="draft.html" class="is-active" aria-current="page">Draft</a>
+      <a href="../index.html" class="site-brand">FFB Reference</a>
+      <div class="site-nav-links">
+        <a href="../index.html">News</a>
+        <a href="adp.html">ADP</a>
+        <a href="draft.html" class="is-active" aria-current="page">Draft</a>
+      </div>
     </nav>
     <main class="site-main">
       <div class="container">
-        <div class="page-head">
-          <div class="page-head-meta">
+        <div class="draft-top">
+          <div class="draft-setup">
+            <div class="draft-setup-fields">
+              <div class="draft-connect-row">
+                <label for="draft-league-input">League</label>
+                <input
+                  id="draft-league-input"
+                  type="text"
+                  spellcheck="false"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="draft-connect-row">
+                <label for="draft-id-input">Draft</label>
+                <input
+                  id="draft-id-input"
+                  type="text"
+                  spellcheck="false"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="draft-connect-row draft-connect-row--seat">
+                <label for="draft-seat">Slot</label>
+                <select id="draft-seat"></select>
+              </div>
+            </div>
+            <div class="draft-actions">
+              <button type="button" id="draft-connect" class="draft-btn draft-btn--primary">Connect</button>
+              <button type="button" id="draft-refresh" class="draft-btn" disabled>Refresh</button>
+            </div>
+            <div id="sync-bar" class="sync-bar draft-setup-sync" hidden></div>
+          </div>
+          <div class="draft-status">
             <p class="meta" id="draft-league-summary" hidden></p>
             <p class="meta" data-draft-live="status"></p>
           </div>
-          <div id="sync-bar" class="sync-bar" hidden></div>
         </div>
 
-        <div class="draft-setup">
-          <div class="draft-setup-fields">
-            <div class="draft-connect-row">
-              <label for="draft-league-input">League</label>
+        <div class="draft-board-layout">
+          <section class="draft-panel draft-panel--players">
+            <h2 class="draft-section-title">Players</h2>
+            <div class="draft-players-toolbar">
+              <label class="draft-filter draft-filter--favs">
+                <input type="checkbox" id="draft-favs-only" />
+                <span>Favourites</span>
+              </label>
+              <label class="draft-filter">
+                <span class="visually-hidden">Position</span>
+                <select id="draft-pos-filter" aria-label="Position">
+                  <option value="">All positions</option>
+                  <option value="QB">QB</option>
+                  <option value="RB">RB</option>
+                  <option value="WR">WR</option>
+                  <option value="TE">TE</option>
+                  <option value="DEF">DEF</option>
+                  <option value="K">K</option>
+                </select>
+              </label>
+              <label for="draft-player-search" class="visually-hidden">Search players</label>
               <input
-                id="draft-league-input"
-                type="text"
+                id="draft-player-search"
+                type="search"
                 spellcheck="false"
                 autocomplete="off"
+                placeholder="search"
               />
             </div>
-            <div class="draft-connect-row">
-              <label for="draft-id-input">Draft</label>
-              <input
-                id="draft-id-input"
-                type="text"
-                spellcheck="false"
-                autocomplete="off"
-              />
-            </div>
-            <div class="draft-connect-row draft-connect-row--seat">
-              <label for="draft-seat">Slot</label>
-              <select id="draft-seat"></select>
-            </div>
-          </div>
-          <div class="draft-actions">
-            <button type="button" id="draft-connect" class="draft-btn draft-btn--primary">Connect</button>
-            <button type="button" id="draft-refresh" class="draft-btn" disabled>Refresh</button>
-          </div>
-        </div>
-
-        <section class="draft-panel">
-          <h2 class="draft-section-title">Roster</h2>
-          <div id="draft-needs"></div>
-        </section>
-
-        <div class="draft-columns">
-          <section class="draft-panel">
-            <div class="panel-head">
-              <h2 class="draft-section-title">Players</h2>
-              <div class="draft-search-row">
-                <label class="draft-filter draft-filter--favs">
-                  <input type="checkbox" id="draft-favs-only" />
-                  <span>Favourites</span>
-                </label>
-                <label class="draft-filter">
-                  <span class="visually-hidden">Position</span>
-                  <select id="draft-pos-filter" aria-label="Position">
-                    <option value="">All positions</option>
-                    <option value="QB">QB</option>
-                    <option value="RB">RB</option>
-                    <option value="WR">WR</option>
-                    <option value="TE">TE</option>
-                    <option value="DEF">DEF</option>
-                    <option value="K">K</option>
-                  </select>
-                </label>
-                <label for="draft-player-search" class="visually-hidden">Search players</label>
-                <input
-                  id="draft-player-search"
-                  type="search"
-                  spellcheck="false"
-                  autocomplete="off"
-                  placeholder="search"
-                />
-              </div>
-            </div>
-            <div class="draft-board-stack">
+            <div class="draft-board-stack draft-panel-body">
               <div id="draft-search-results" class="table-wrap"></div>
               <div id="draft-recommendations" class="table-wrap"></div>
             </div>
           </section>
 
-          <section class="draft-panel">
-            <div class="panel-head">
-              <h2 class="draft-section-title">Recent picks</h2>
-            </div>
-            <div id="draft-board" class="table-wrap"></div>
+          <section class="draft-panel draft-panel--roster">
+            <h2 class="draft-section-title">Roster</h2>
+            <div id="draft-needs" class="draft-panel-body"></div>
+          </section>
+
+          <section class="draft-panel draft-panel--picks">
+            <h2 class="draft-section-title">Recent picks</h2>
+            <div id="draft-board" class="table-wrap draft-panel-body"></div>
           </section>
         </div>
-
       </div>
     </main>
 
     <script type="module" src="../js/site-boot.js?v=15"></script>
     <script type="module">
       import { mountPage } from "../js/config.js?v=16";
-      import { mountDraftCompanionPage } from "../js/draft-companion.js?v=31";
+      import { mountDraftCompanionPage } from "../js/draft-companion.js?v=33";
       mountPage(mountDraftCompanionPage, "draft-board");
     </script>
   </body>

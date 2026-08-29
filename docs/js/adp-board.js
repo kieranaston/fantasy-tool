@@ -4,7 +4,7 @@ import {
   showError,
   revealPage,
 } from "./config.js";
-import { escapeHtml, sleeperIdOf, bindPlayerCell, matchesPlayerQuery } from "./shared.js";
+import { escapeHtml, sleeperIdOf, bindPlayerCell, matchesPlayerQuery } from "./shared.js?v=2";
 import {
   FORMAT_LABELS,
   SCORING_FORMATS,

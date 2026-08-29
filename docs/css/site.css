@@ -1,13 +1,21 @@
 :root {
-  color-scheme: dark;
-  --bg: #121418;
-  --surface: #1a1d24;
-  --text: #eceff4;
-  --muted: #8b93a7;
-  --accent: #7eb6ff;
-  --border: #2c3140;
-  --input-line: #4b5568;
-  --danger: #f07178;
+  color-scheme: light;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --text: #1a1a1a;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --cta: #f2d06b;
+  --cta-text: #1a1a1a;
+  --border: #e5e7eb;
+  --input-line: #d1d5db;
+  --pill-bg: #ffffff;
+  --pill-active: #374151;
+  --pill-active-text: #ffffff;
+  --danger: #dc2626;
+  --radius: 0.15rem;
+  --control-h: 2rem;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
 * {
@@ -16,10 +24,11 @@
 
 body {
   margin: 0;
-  font-family: 'Fira Mono', 'Cascadia Code', 'SF Mono', ui-monospace, monospace;
+  font-family: var(--font);
   background: var(--bg);
   color: var(--text);
-  line-height: 1.4;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -36,12 +45,24 @@ a:hover {
   opacity: 0.75;
 }
 
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: var(--surface);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b7280' d='M1.4 1.4 6 6l4.6-4.6L12 2.8 6 8.8 0 2.8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.65rem center;
+  background-size: 0.65rem 0.4rem;
+  padding-right: 1.75rem;
+}
+
 .site-nav {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.25rem 0.85rem;
-  padding: 0.45rem 0.9rem;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding: 0.45rem 1rem;
   border-bottom: 1px solid var(--border);
   background: var(--surface);
   position: sticky;
@@ -49,24 +70,46 @@ a:hover {
   z-index: 50;
 }
 
-.site-nav a {
-  color: var(--accent);
-  font-size: 0.82rem;
-  font-weight: 500;
-  text-decoration: none;
-  padding: 0.15rem 0;
+.site-brand {
+  color: var(--text) !important;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none !important;
   white-space: nowrap;
 }
 
-.site-nav a:hover {
-  text-decoration: underline;
+.site-brand:hover {
+  color: var(--text) !important;
+  text-decoration: none !important;
 }
 
-.site-nav a.is-active {
+.site-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15rem 1.1rem;
+}
+
+.site-nav-links a {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.35rem 0;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+
+.site-nav-links a:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-nav-links a.is-active {
   color: var(--text);
   font-weight: 700;
   text-decoration: none;
-  border-bottom: 2px solid var(--text);
+  border-bottom-color: var(--text);
 }
 
 .site-main {
@@ -75,17 +118,38 @@ a:hover {
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0.7rem 0.9rem 1.5rem;
+  padding: 0.75rem 1rem 1.5rem;
+}
+
+.page-hero {
+  margin: 0 0 1rem;
 }
 
 .page-title {
-  margin: 0 0 0.75rem;
-  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  margin: 0;
+  font-size: clamp(1.45rem, 3.5vw, 1.85rem);
   font-weight: 700;
-  line-height: 1.25;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   color: var(--text);
+}
+
+.page-subtitle {
+  margin: 0.35rem 0 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.page-intro {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.45;
+  max-width: 42rem;
 }
 
 @media (max-width: 640px) {
@@ -110,16 +174,24 @@ a:hover {
 
 @media (max-width: 520px) {
   .site-nav {
-    gap: 0.25rem 0.65rem;
-    padding: 0.4rem 0.7rem;
+    gap: 0.5rem 0.75rem;
+    padding: 0.65rem 0.85rem;
   }
 
-  .site-nav a {
-    font-size: 0.78rem;
+  .site-brand {
+    font-size: 0.85rem;
+  }
+
+  .site-nav-links {
+    gap: 0.1rem 0.85rem;
+  }
+
+  .site-nav-links a {
+    font-size: 0.82rem;
   }
 
   .container {
-    padding: 0.55rem 0.65rem 1.25rem;
+    padding: 0.65rem 0.75rem 1.25rem;
   }
 
   .sync-bar {
@@ -181,12 +253,13 @@ a:hover {
 
 .meta {
   color: var(--muted);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
   margin: 0 0 0.55rem;
 }
 
 .meta + .meta {
-  margin-top: -0.55rem;
+  margin-top: -0.35rem;
 }
 
 .table-wrap {
@@ -205,7 +278,7 @@ table.draft-table {
   border-collapse: collapse !important;
   color: var(--text);
   font-family: inherit;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   table-layout: auto;
 }
 
@@ -213,19 +286,21 @@ table.draft-table > thead > tr > th,
 table.draft-table > tbody > tr > td {
   border: none !important;
   border-bottom: 1px solid var(--border) !important;
-  padding: 0.22rem 0.32rem !important;
+  padding: 0.4rem 0.45rem !important;
   vertical-align: middle;
 }
 
 table.draft-table > thead > tr > th {
   font-weight: 600;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   text-align: left;
   background: var(--bg);
   color: var(--muted);
   border-bottom: 1px solid var(--text) !important;
   position: relative;
   white-space: nowrap;
+  padding-top: 0.3rem !important;
+  padding-bottom: 0.35rem !important;
 }
 
 .status-chip {
@@ -263,16 +338,15 @@ table.draft-table > thead > tr > th {
   font-family: inherit;
   font-size: inherit;
   color: var(--text);
-  background: var(--bg);
-  border: none;
-  border-bottom: 1px solid var(--input-line);
-  padding: 0.1rem 0.15rem;
-  border-radius: 0;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.3rem 1.75rem 0.3rem 0.45rem;
 }
 
 .controls select:focus {
   outline: none;
-  border-bottom-color: var(--accent);
+  border-color: var(--accent);
 }
 
 .injuries-list {
@@ -282,17 +356,17 @@ table.draft-table > thead > tr > th {
 }
 
 .injury-card {
-  padding: 0.7rem 0 0.55rem;
+  padding: 0.4rem 0 0.35rem;
   border-top: 1px solid var(--border);
 }
 
 .injury-card:first-child {
   border-top: none;
-  padding-top: 0.25rem;
+  padding-top: 0;
 }
 
 .injury-card-main {
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.15rem;
 }
 
 .injury-card-header {
@@ -324,15 +398,17 @@ table.draft-table > thead > tr > th {
 
 .player-label {
   display: inline-flex;
-  flex-direction: column;
-  gap: 0.05rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem;
   min-width: 0;
   max-width: 100%;
 }
 
 .player-label-name {
   font-weight: 600;
-  line-height: 1.15;
+  line-height: 1.2;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -340,8 +416,10 @@ table.draft-table > thead > tr > th {
 
 .player-label-team {
   color: var(--muted);
-  font-size: 0.72rem;
-  line-height: 1.1;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.2;
+  flex-shrink: 0;
 }
 
 .injury-card-identity {
@@ -401,13 +479,13 @@ table.draft-table > thead > tr > th {
 }
 
 .injury-card-body {
-  padding: 0.15rem 0 0.25rem;
+  padding: 0;
 }
 
 .injury-blurb {
-  margin: 0 0 0.2rem;
-  font-size: 0.85rem;
-  line-height: 1.4;
+  margin: 0 0 0.1rem;
+  font-size: 0.875rem;
+  line-height: 1.35;
 }
 
 .injury-blurb ul {
@@ -425,7 +503,7 @@ table.draft-table > thead > tr > th {
 
 .injury-post-link {
   display: inline-block;
-  margin-top: 0.15rem;
+  margin-top: 0;
   font-size: 0.75rem;
   color: var(--muted);
 }
@@ -470,18 +548,36 @@ table.draft-table > thead > tr > th {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
-  gap: 0.65rem 1rem;
-  margin: 0 0 0.85rem;
-  padding-bottom: 0.75rem;
+  gap: 0.45rem 0.55rem;
+  margin: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.draft-top {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0 0 0.55rem;
+  padding-bottom: 0.55rem;
   border-bottom: 1px solid var(--border);
+}
+
+.draft-status .meta {
+  margin: 0;
+}
+
+.draft-status .meta:empty {
+  display: none;
 }
 
 .draft-setup-fields {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
-  gap: 0.55rem 0.85rem;
-  flex: 1 1 18rem;
+  gap: 0.45rem 0.55rem;
+  flex: 0 1 auto;
+  min-width: 0;
 }
 
 .draft-controls {
@@ -491,12 +587,15 @@ table.draft-table > thead > tr > th {
 .draft-connect-row {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  flex: 1 1 12rem;
+  gap: 0.15rem;
+  flex: 1 1 7rem;
+  max-width: 12rem;
+  min-width: 0;
 }
 
 .draft-connect-row--seat {
-  flex: 0 1 8rem;
+  flex: 0 0 6rem;
+  max-width: 6rem;
 }
 
 .draft-connect-row label {
@@ -509,26 +608,33 @@ table.draft-table > thead > tr > th {
 .draft-connect-row select,
 #draft-seat {
   font-family: inherit;
-  font-size: 0.85rem;
-  padding: 0.25rem 0.4rem;
-  border: none;
-  border-bottom: 1px solid var(--input-line);
-  background: transparent;
+  font-size: 0.875rem;
+  height: var(--control-h);
+  padding: 0 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--surface);
   color: var(--text);
   min-width: 0;
   width: 100%;
+  line-height: 1.2;
+}
+
+.draft-connect-row select,
+#draft-seat {
+  padding-right: 1.75rem;
 }
 
 .draft-connect-row--seat select,
 #draft-seat {
-  min-width: 6rem;
+  min-width: 0;
 }
 
 .draft-connect-row input:focus,
 .draft-connect-row select:focus,
 #draft-seat:focus {
   outline: none;
-  border-bottom-color: var(--accent);
+  border-color: var(--accent);
 }
 
 @media (max-width: 520px) {
@@ -558,15 +664,20 @@ table.draft-table > thead > tr > th {
 }
 
 .draft-panel {
-  margin: 0.5rem 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.draft-panel--roster {
+  margin: 0;
+  padding: 0;
+  border-bottom: none;
 }
 
 .draft-section-title {
-  margin: 0 0 0.25rem;
-  font-size: 0.72rem;
+  margin: 0 0 0.3rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
   color: var(--muted);
 }
 
@@ -594,67 +705,153 @@ table.draft-table > thead > tr > th {
   gap: 0.55rem 0.75rem;
 }
 
-/* Recommendations and the live board sit side by side so the whole draft
-   fits on one screen. Recent picks needs enough width for pick/slot/player.
-   Panels use display:contents so both headers share a row and the tables
-   start on the same line. */
+/* Players left; Roster over Recent picks on the right */
+.draft-board-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(15rem, 1fr);
+  grid-template-rows: minmax(10rem, 1.25fr) minmax(7rem, 0.7fr);
+  gap: 0.75rem 1rem;
+  align-items: stretch;
+}
+
+.draft-panel--players {
+  grid-column: 1;
+  grid-row: 1 / -1;
+}
+
+.draft-panel--roster {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.draft-panel--picks {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.draft-board-layout > .draft-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.draft-board-layout > .draft-panel > .draft-section-title {
+  margin: 0 0 0.45rem;
+  line-height: 1.2;
+  flex: 0 0 auto;
+}
+
+.draft-players-toolbar {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.5rem 0.65rem;
+  margin: 0 0 0.5rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid var(--border);
+  flex: 0 0 auto;
+}
+
+.draft-players-toolbar .draft-filter {
+  margin: 0;
+  height: var(--control-h);
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.draft-players-toolbar .draft-filter select {
+  height: var(--control-h);
+}
+
+.draft-players-toolbar input[type="search"] {
+  width: auto;
+  max-width: none;
+  flex: 1 1 auto;
+  min-width: 5rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  height: var(--control-h);
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0 0.55rem;
+  line-height: 1.2;
+}
+
+.draft-players-toolbar input[type="search"]:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.draft-panel-body {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.draft-board-layout .panel-head {
+  margin-bottom: 0.4rem;
+}
+
+.draft-roster-grid {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 960px) {
+  .draft-board-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+  }
+
+  .draft-panel--players,
+  .draft-panel--picks,
+  .draft-panel--roster {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .draft-board-layout > .draft-panel {
+    min-height: 0;
+  }
+
+  .draft-roster-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.3rem 1.1rem;
+  }
+}
+
+/* Legacy two-column helper kept for safety if referenced elsewhere */
 .draft-columns {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(14rem, 0.85fr);
-  grid-template-rows: auto auto;
-  column-gap: 1rem;
+  grid-template-columns: minmax(0, 1.65fr) minmax(15rem, 0.85fr);
+  gap: 0.75rem 1.25rem;
   align-items: start;
 }
 
 .draft-columns > .draft-panel {
-  display: contents;
-}
-
-.draft-columns > .draft-panel:first-child > * {
-  grid-column: 1;
-}
-
-.draft-columns > .draft-panel:last-child > * {
-  grid-column: 2;
-}
-
-.draft-columns .panel-head {
-  grid-row: 1;
-  align-items: flex-end;
-  min-height: 1.55rem;
-}
-
-.draft-columns .draft-board-stack,
-.draft-columns #draft-board {
-  grid-row: 2;
+  margin: 0;
   min-width: 0;
 }
 
 .draft-columns .table-wrap {
-  overflow-x: visible;
+  overflow-x: auto;
 }
 
 @media (max-width: 960px) {
   .draft-columns {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: none;
   }
-
-  .draft-columns > .draft-panel {
-    display: block;
-    min-width: 0;
-  }
-
-  .draft-columns .table-wrap {
-    overflow-x: auto;
-  }
-}
-
-.draft-roster-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem 1.1rem;
-  font-size: 0.8rem;
 }
 
 .draft-roster-slot {
@@ -667,8 +864,8 @@ table.draft-table > thead > tr > th {
 
 .draft-roster-slot > strong {
   color: var(--muted);
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
+  font-size: 0.78rem;
+  font-weight: 600;
 }
 
 .draft-roster-players {
@@ -692,10 +889,10 @@ table.draft-table > thead > tr > th {
 .page-head {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  gap: 0.35rem 1rem;
-  margin: 0 0 0.55rem;
+  gap: 0.45rem 1rem;
+  margin: 0 0 0.65rem;
 }
 
 .page-head-meta {
@@ -706,8 +903,9 @@ table.draft-table > thead > tr > th {
   margin: 0;
 }
 
+.page-head .news-search-row,
 .page-head .sync-bar {
-  margin: 0;
+  margin-left: auto;
   width: auto;
 }
 
@@ -715,17 +913,19 @@ table.draft-table > thead > tr > th {
   width: 100%;
   max-width: 18rem;
   font-family: inherit;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
+  height: var(--control-h);
   color: var(--text);
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--input-line);
-  padding: 0.15rem 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0 0.65rem;
+  line-height: 1.2;
 }
 
 .news-search-row input:focus {
   outline: none;
-  border-bottom-color: var(--accent);
+  border-color: var(--accent);
 }
 
 .visually-hidden {
@@ -748,18 +948,20 @@ table.draft-table > thead > tr > th {
   width: 100%;
   max-width: 10rem;
   font-family: inherit;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
+  height: var(--control-h);
   color: var(--text);
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--input-line);
-  padding: 0.15rem 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0 0.55rem;
   flex: 1 1 6rem;
+  line-height: 1.2;
 }
 
 .draft-search-row input[type="search"]:focus {
   outline: none;
-  border-bottom-color: var(--accent);
+  border-color: var(--accent);
 }
 
 .draft-filter {
@@ -786,19 +988,21 @@ table.draft-table > thead > tr > th {
 
 .draft-filter select {
   font-family: inherit;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
+  height: var(--control-h);
   color: var(--text);
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--input-line);
-  padding: 0.15rem 0;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0 1.75rem 0 0.55rem;
   min-width: 7rem;
   cursor: pointer;
+  line-height: 1.2;
 }
 
 .draft-filter select:focus {
   outline: none;
-  border-bottom-color: var(--accent);
+  border-color: var(--accent);
 }
 
 .draft-player-cell {
@@ -831,7 +1035,7 @@ table.draft-table > thead > tr > th {
 }
 
 .draft-roster-players li.draft-liked {
-  border-radius: 0.25rem;
+  border-radius: var(--radius);
   padding: 0.1rem 0.2rem;
 }
 
@@ -858,7 +1062,7 @@ table.draft-table > thead > tr > th {
 }
 
 .risk-mid {
-  color: #e6c07b;
+  color: #b45309;
 }
 
 .risk-low {
@@ -867,10 +1071,10 @@ table.draft-table > thead > tr > th {
 
 .adp-toolbar {
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  gap: 0.65rem 1.25rem;
-  margin: 0.15rem 0 0.75rem;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  margin: 0 0 0.65rem;
   padding-bottom: 0.65rem;
   border-bottom: 1px solid var(--border);
 }
@@ -878,46 +1082,61 @@ table.draft-table > thead > tr > th {
 .toolbar-group {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.4rem 0.7rem;
+  align-items: center;
+  gap: 0.45rem 0.55rem;
 }
 
-.toolbar-group--filters {
-  margin-left: auto;
+.toolbar-group--labeled {
   align-items: center;
 }
 
-.adp-tab {
-  font-family: inherit;
-  font-size: 0.85rem;
+.toolbar-label {
+  flex: 0 0 auto;
+  min-width: 4.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
   color: var(--muted);
-  background: none;
-  border: none;
-  border-bottom: 1px solid transparent;
-  padding: 0.15rem 0;
-  cursor: pointer;
 }
 
+.toolbar-pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.toolbar-group--filters {
+  margin-left: 0;
+  align-items: center;
+  gap: 0.55rem 0.75rem;
+}
+
+.adp-tab,
 .adp-format-tab {
   font-family: inherit;
   font-size: 0.85rem;
-  color: var(--muted);
-  background: none;
-  border: none;
-  border-bottom: 1px solid transparent;
-  padding: 0.15rem 0;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--pill-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.35rem 0.75rem;
   cursor: pointer;
+  line-height: 1.2;
 }
 
 .adp-tab:hover,
 .adp-format-tab:hover {
+  border-color: #9ca3af;
   color: var(--text);
 }
 
 .adp-tab.is-active,
 .adp-format-tab.is-active {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
+  color: var(--pill-active-text);
+  background: var(--pill-active);
+  border-color: var(--pill-active);
+  font-weight: 600;
 }
 
 .adp-overall {
@@ -942,24 +1161,27 @@ table.draft-table > thead > tr > th {
 .adp-filter input,
 .adp-filter select {
   font-family: inherit;
-  font-size: 0.85rem;
+  font-size: 0.875rem;
+  height: var(--control-h);
   color: var(--text);
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--input-line);
-  padding: 0.2rem 0;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0 0.65rem;
   min-width: 12rem;
+  line-height: 1.2;
 }
 
 .adp-filter select {
   min-width: 7.5rem;
+  padding-right: 1.75rem;
   cursor: pointer;
 }
 
 .adp-filter input:focus,
 .adp-filter select:focus {
   outline: none;
-  border-bottom-color: var(--accent);
+  border-color: var(--accent);
 }
 
 .adp-table td:nth-child(1),
@@ -981,8 +1203,9 @@ table.draft-table > thead > tr > th {
 .draft-actions {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 0.65rem 1rem;
+  align-items: flex-end;
+  gap: 0.55rem;
+  min-height: var(--control-h);
 }
 
 .sync-bar {
@@ -996,27 +1219,37 @@ table.draft-table > thead > tr > th {
   color: var(--muted);
 }
 
+.draft-setup-sync.sync-bar {
+  width: auto;
+  margin: 0;
+  margin-left: auto;
+  align-self: flex-end;
+}
+
 .sync-login {
   display: inline-flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
-  gap: 0.4rem 0.6rem;
+  gap: 0.45rem;
 }
 
 .sync-login input[type="email"] {
   font-family: inherit;
-  font-size: 0.8rem;
-  padding: 0.2rem 0.4rem;
-  border: none;
-  border-bottom: 1px solid var(--input-line);
-  background: transparent;
+  font-size: 0.875rem;
+  height: var(--control-h);
+  padding: 0 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
   color: var(--text);
-  min-width: 14rem;
+  min-width: 10rem;
+  width: 10rem;
+  line-height: 1.2;
 }
 
 .sync-login input[type="email"]:focus {
   outline: none;
-  border-bottom-color: var(--accent);
+  border-color: var(--accent);
 }
 
 .sync-user {
@@ -1029,17 +1262,25 @@ table.draft-table > thead > tr > th {
 
 .draft-btn {
   font-family: inherit;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
+  font-weight: 500;
   color: var(--text);
-  background: none;
-  border: 1px solid var(--input-line);
-  padding: 0.35rem 0.7rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  height: var(--control-h);
+  padding: 0 0.9rem;
   cursor: pointer;
+  line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 .draft-btn:hover {
-  color: var(--accent);
-  border-color: var(--accent);
+  color: var(--text);
+  border-color: #9ca3af;
 }
 
 .draft-btn:disabled {
@@ -1055,15 +1296,15 @@ table.draft-table > thead > tr > th {
 }
 
 .draft-btn--primary {
-  background: var(--accent);
-  color: #121418;
-  border-color: var(--accent);
+  background: var(--cta);
+  color: var(--cta-text);
+  border-color: var(--cta);
   font-weight: 600;
 }
 
 .draft-btn--primary:hover {
-  color: #121418;
-  filter: brightness(1.08);
+  color: var(--cta-text);
+  filter: brightness(0.97);
 }
 
 .muted {

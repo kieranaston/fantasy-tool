@@ -3,37 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="color-scheme" content="light" />
     <title>ADP Board</title>
-    <link rel="stylesheet" href="../css/site.css?v=56" />
+    <link rel="stylesheet" href="../css/site.css?v=69" />
   </head>
   <body>
     <nav class="site-nav" aria-label="Primary">
-      <a href="../index.html">News</a>
-      <a href="adp.html" class="is-active" aria-current="page">ADP</a>
-      <a href="draft.html">Draft</a>
+      <a href="../index.html" class="site-brand">FFB Reference</a>
+      <div class="site-nav-links">
+        <a href="../index.html">News</a>
+        <a href="adp.html" class="is-active" aria-current="page">ADP</a>
+        <a href="draft.html">Draft</a>
+      </div>
     </nav>
     <main class="site-main">
       <div class="container">
         <div class="page-head">
-          <p class="meta" id="adp-summary">Updated: —</p>
           <div id="sync-bar" class="sync-bar" hidden></div>
         </div>
 
         <div class="adp-toolbar">
-          <div class="toolbar-group" role="group" aria-label="Scoring format">
-            <button type="button" class="adp-format-tab is-active" data-format="half_ppr" aria-pressed="true">Half PPR</button>
-            <button type="button" class="adp-format-tab" data-format="full_ppr" aria-pressed="false">Full PPR</button>
-            <button type="button" class="adp-format-tab" data-format="std" aria-pressed="false">Standard</button>
+          <div class="toolbar-group toolbar-group--labeled" role="group" aria-label="Scoring format">
+            <span class="toolbar-label">Format</span>
+            <div class="toolbar-pills">
+              <button type="button" class="adp-format-tab is-active" data-format="half_ppr" aria-pressed="true">Half PPR</button>
+              <button type="button" class="adp-format-tab" data-format="full_ppr" aria-pressed="false">Full PPR</button>
+              <button type="button" class="adp-format-tab" data-format="std" aria-pressed="false">Standard</button>
+            </div>
           </div>
-          <div class="toolbar-group" role="group" aria-label="Position">
-            <button type="button" class="adp-tab is-active" data-pos="overall" aria-pressed="true">Overall</button>
-            <button type="button" class="adp-tab" data-pos="QB" aria-pressed="false">QB</button>
-            <button type="button" class="adp-tab" data-pos="RB" aria-pressed="false">RB</button>
-            <button type="button" class="adp-tab" data-pos="WR" aria-pressed="false">WR</button>
-            <button type="button" class="adp-tab" data-pos="TE" aria-pressed="false">TE</button>
-            <button type="button" class="adp-tab" data-pos="DEF" aria-pressed="false">DEF</button>
-            <button type="button" class="adp-tab" data-pos="K" aria-pressed="false">K</button>
+          <div class="toolbar-group toolbar-group--labeled" role="group" aria-label="Position">
+            <span class="toolbar-label">Position</span>
+            <div class="toolbar-pills">
+              <button type="button" class="adp-tab is-active" data-pos="overall" aria-pressed="true">Overall</button>
+              <button type="button" class="adp-tab" data-pos="QB" aria-pressed="false">QB</button>
+              <button type="button" class="adp-tab" data-pos="RB" aria-pressed="false">RB</button>
+              <button type="button" class="adp-tab" data-pos="WR" aria-pressed="false">WR</button>
+              <button type="button" class="adp-tab" data-pos="TE" aria-pressed="false">TE</button>
+              <button type="button" class="adp-tab" data-pos="DEF" aria-pressed="false">DEF</button>
+              <button type="button" class="adp-tab" data-pos="K" aria-pressed="false">K</button>
+            </div>
           </div>
           <div class="toolbar-group toolbar-group--filters">
             <label class="adp-filter">
@@ -55,7 +63,7 @@
     <script type="module" src="../js/site-boot.js?v=15"></script>
     <script type="module">
       import { mountPage } from "../js/config.js?v=16";
-      import { mountAdpBoardPage } from "../js/adp-board.js?v=15";
+      import { mountAdpBoardPage } from "../js/adp-board.js?v=16";
       mountPage(mountAdpBoardPage, "adp-board");
     </script>
   </body>

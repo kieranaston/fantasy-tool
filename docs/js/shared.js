@@ -42,7 +42,7 @@ function playerDisplayName(player, name) {
 function playerLabelHtml(player, { name } = {}) {
   const team = normalizeTeamAbbrev(player?.team);
   const teamLine = team
-    ? `<span class="player-label-team">${escapeHtml(team)}</span>`
+    ? ` <span class="player-label-team">${escapeHtml(team)}</span>`
     : "";
   return `<span class="player-label"><span class="player-label-name">${playerDisplayName(player, name)}</span>${teamLine}</span>`;
 }

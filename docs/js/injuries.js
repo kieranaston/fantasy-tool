@@ -1,5 +1,5 @@
 import { fetchJSON, formatTimestamp, formatUpdated, showError, revealPage } from "./config.js";
-import { escapeHtml, playerLabelHtml, sleeperIdOf } from "./shared.js";
+import { escapeHtml, playerLabelHtml, sleeperIdOf } from "./shared.js?v=2";
 
 const BSKY_FEED_URL =
   "https://public.api.bsky.app/xrpc/app.bsky.feed.getAuthorFeed";
@@ -330,17 +330,25 @@ async function mountInjuriesPage() {
   const meta = document.querySelector("[data-injuries='summary']");
   const searchInput = document.getElementById("news-player-search");
   try {
-    const [data, adpData] = await Promise.all([
+    // Wait for static JSON + live Bluesky together so the list paints once
+    // (avoids a flash when live posts reorder the top of the feed).
+    const [data, adpData, livePosts] = await Promise.all([
       fetchJSON("injuries/summaries.json"),
       fetchJSON("draft/adp-board.json").catch(() => ({ players: [] })),
+      fetchLiveRotowirePosts().catch(() => []),
     ]);
     const teamIndex = buildTeamIndex(adpData.players);
+    const maxAgeDays = Number(data.news_max_age_days) || 7;
 
-    let players = featuredPlayers(data.players || [], teamIndex).sort((a, b) =>
+    const merged = mergeLivePosts(
+      featuredPlayers(data.players || [], teamIndex),
+      livePosts,
+      teamIndex
+    );
+    let players = featuredPlayers(merged.players, teamIndex).sort((a, b) =>
       String(b.last_updated || "").localeCompare(String(a.last_updated || ""))
     );
-    let liveNote = "";
-    const maxAgeDays = Number(data.news_max_age_days) || 7;
+    const liveNote = merged.added ? ` · ${merged.added} new` : "";
 
     const playersById = new Map(
       players.map((p) => [String(p.player_id), p])
@@ -383,21 +391,6 @@ async function mountInjuriesPage() {
 
     applyFilter();
     revealPage();
-
-    fetchLiveRotowirePosts()
-      .then((livePosts) => {
-        const merged = mergeLivePosts(players, livePosts, teamIndex);
-        if (!merged.added) return;
-        players = featuredPlayers(merged.players, teamIndex);
-        players.sort((a, b) =>
-          String(b.last_updated || "").localeCompare(String(a.last_updated || ""))
-        );
-        playersById.clear();
-        for (const p of players) playersById.set(String(p.player_id), p);
-        liveNote = ` · ${merged.added} new`;
-        applyFilter();
-      })
-      .catch(() => {});
   } catch (err) {
     if (container) showError(container, err.message || String(err));
     else if (meta) meta.textContent = err.message || String(err);

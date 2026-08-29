@@ -1,4 +1,4 @@
-import { fetchJSON, formatUpdated, showError, revealPage } from "./config.js";
+import { fetchJSON, showError, revealPage } from "./config.js";
 import {
   escapeHtml,
   sleeperIdOf,
@@ -6,7 +6,7 @@ import {
   bindPlayerCell,
   updatePlayerCellLike,
   matchesPlayerQuery,
-} from "./shared.js";
+} from "./shared.js?v=2";
 import {
   scoreCandidates,
   annotateScore,
@@ -531,15 +531,14 @@ async function mountDraftCompanionPage() {
     return count === 1 ? " · 1 pick between" : ` · ${count} picks between`;
   }
 
-  /** Top meta: ADP freshness, current pick, and your next pick. */
+  /** Top meta: current pick and your next pick. */
   function refreshHeader() {
-    const updated = formatUpdated(scoringFormat?.last_updated);
     if (!draft) {
-      setStatus(updated);
+      setStatus("");
       return;
     }
     if (draft.status === "complete") {
-      setStatus(`${updated} · Complete`);
+      setStatus("Complete");
       return;
     }
     const { teams, pickNo, nextMine, until, between, afterOwned, mine, onClock } =
@@ -551,7 +550,7 @@ async function mountDraftCompanionPage() {
       const nextBit = after
         ? ` · Next ${pickStatusLabel(after, teams)}${gap}`
         : "";
-      setStatus(`${updated} · On the clock · ${currentLabel}${nextBit}`);
+      setStatus(`On the clock · ${currentLabel}${nextBit}`);
       return;
     }
     const thenBit =
@@ -561,7 +560,7 @@ async function mountDraftCompanionPage() {
           ? gap
           : "";
     setStatus(
-      `${updated} · Pick ${currentLabel} · Next ${pickStatusLabel(nextMine, teams)} · ${until} away${thenBit}`
+      `Pick ${currentLabel} · Next ${pickStatusLabel(nextMine, teams)} · ${until} away${thenBit}`
     );
   }
 
