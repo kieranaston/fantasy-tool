@@ -1083,6 +1083,7 @@ export {
   annotateScore,
   formatAdpRoundPick,
   SKILL_POSITIONS,
+  FLEX_POSITIONS,
   SCORING_FORMATS,
   FORMAT_LABELS,
 };

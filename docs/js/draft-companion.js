@@ -25,10 +25,11 @@ import {
   formatAdpRoundPick,
   slotForOverallPick,
   SKILL_POSITIONS,
+  FLEX_POSITIONS,
   SCORING_FORMATS,
   FORMAT_LABELS,
   normalizePos,
-} from "./draft-scoring.js?v=16";
+} from "./draft-scoring.js?v=17";
 import { createFavourites } from "./draft-liked.js";
 import {
   ensureTableBody,
@@ -570,15 +571,23 @@ async function mountDraftCompanionPage() {
 
   function boardFilters() {
     const pos = String(posFilterSelect?.value || "").toUpperCase();
+    const valid = SKILL_POSITIONS.includes(pos) || pos === "FLEX";
     return {
       favsOnly: Boolean(favsOnlyInput?.checked),
-      position: SKILL_POSITIONS.includes(pos) ? pos : "",
+      position: valid ? pos : "",
     };
   }
 
   function matchesBoardFilters(player, { favsOnly, position } = boardFilters()) {
     if (favsOnly && !isLiked(sleeperIdOf(player))) return false;
-    if (position && normalizePos(player.position) !== position) return false;
+    if (position) {
+      const playerPos = normalizePos(player.position);
+      if (position === "FLEX") {
+        if (!FLEX_POSITIONS.includes(playerPos)) return false;
+      } else if (playerPos !== position) {
+        return false;
+      }
+    }
     return true;
   }
 
