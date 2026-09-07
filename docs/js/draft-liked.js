@@ -1,6 +1,7 @@
 /**
- * Favourites: localStorage always, optional email sync via Supabase.
- * Last write wins. A star tapped during a cloud fetch is kept.
+ * Favourites: per-user localStorage + optional email sync via Supabase.
+ * Signed-out UI shows no stars. Account switches load that user's list only.
+ * Last write wins within a user. A star tapped during a cloud fetch is kept.
  */
 
 import { escapeHtml } from "./shared.js";
@@ -10,18 +11,25 @@ import {
   isSyncConfigured,
 } from "./sync-config.js";
 
-const LS_KEY = "draft-companion:liked";
+/** Legacy single-bucket key (pre per-user scoping). */
+const LS_KEY_LEGACY = "draft-companion:liked";
+const LS_KEY_GUEST = "draft-companion:liked:guest";
+const LS_KEY_PREFIX = "draft-companion:liked:user:";
 const SAVE_MS = 400;
 const SB_SDK = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+function storageKey(userId) {
+  return userId ? `${LS_KEY_PREFIX}${userId}` : LS_KEY_GUEST;
+}
 
 function normalizeIds(ids) {
   const list = ids == null ? [] : Array.isArray(ids) ? ids : [...ids];
   return [...new Set(list.map(String).filter(Boolean))];
 }
 
-function loadState() {
+function readKey(key) {
   try {
-    const parsed = JSON.parse(localStorage.getItem(LS_KEY) || "null");
+    const parsed = JSON.parse(localStorage.getItem(key) || "null");
     return {
       ids: Array.isArray(parsed?.ids) ? normalizeIds(parsed.ids) : [],
       updated_at: parsed?.updated_at || null,
@@ -31,9 +39,27 @@ function loadState() {
   }
 }
 
-function saveState(ids, updatedAt = new Date().toISOString()) {
+function loadState(userId) {
+  const key = storageKey(userId);
+  const state = readKey(key);
+  if (userId || state.ids.length || state.updated_at) return state;
+  // One-time: adopt legacy guest bucket into the guest key.
+  const legacy = readKey(LS_KEY_LEGACY);
+  if (legacy.ids.length || legacy.updated_at) {
+    saveState(null, legacy.ids, legacy.updated_at || new Date().toISOString());
+    try {
+      localStorage.removeItem(LS_KEY_LEGACY);
+    } catch {
+      /* ignore */
+    }
+    return loadState(null);
+  }
+  return state;
+}
+
+function saveState(userId, ids, updatedAt = new Date().toISOString()) {
   const state = { ids: normalizeIds(ids), updated_at: updatedAt };
-  localStorage.setItem(LS_KEY, JSON.stringify(state));
+  localStorage.setItem(storageKey(userId), JSON.stringify(state));
   return state;
 }
 
@@ -77,7 +103,8 @@ async function getClient() {
  */
 export function createFavourites(options = {}) {
   const { host, onChange } = options;
-  let ids = new Set(loadState().ids);
+  let userId = null;
+  let ids = new Set();
   let email = null;
   /** True if the user starred/unstarred since the last cloud apply. */
   let dirty = false;
@@ -92,6 +119,19 @@ export function createFavourites(options = {}) {
     if (!el) return;
     el.textContent = status;
     el.hidden = !status;
+  }
+
+  function applyLocalIds(nextIds, updatedAt) {
+    ids = new Set(normalizeIds(nextIds));
+    saveState(userId, ids, updatedAt);
+  }
+
+  function clearFavourites() {
+    dirty = false;
+    pending = null;
+    clearTimeout(timer);
+    ids = new Set();
+    onChange?.();
   }
 
   async function currentUser() {
@@ -110,15 +150,27 @@ export function createFavourites(options = {}) {
     sb.auth.onAuthStateChange((event, session) => {
       queueMicrotask(async () => {
         if (event === "INITIAL_SESSION") return;
-        const next = session?.user?.email || null;
-        if (event === "SIGNED_OUT" || !next) {
+        const nextUser = session?.user || null;
+        const nextEmail = nextUser?.email || null;
+        const nextId = nextUser?.id || null;
+
+        if (event === "SIGNED_OUT" || !nextUser) {
+          userId = null;
           email = null;
+          clearFavourites();
           setStatus("");
           renderBar();
           return;
         }
-        if (event === "SIGNED_IN") {
-          email = next;
+
+        if (nextId !== userId || event === "SIGNED_IN") {
+          userId = nextId;
+          email = nextEmail;
+          dirty = false;
+          // Load only this user's bucket — never carry another account's stars.
+          const local = loadState(userId);
+          ids = new Set(local.ids);
+          onChange?.();
           renderBar();
           try {
             await applyRemote();
@@ -126,9 +178,9 @@ export function createFavourites(options = {}) {
             setStatus(err.message || "Sync failed");
           }
           renderBar();
-          return;
+        } else if (nextEmail) {
+          email = nextEmail;
         }
-        if (next) email = next;
       });
     });
     return sb;
@@ -168,8 +220,8 @@ export function createFavourites(options = {}) {
   }
 
   function schedulePush() {
-    if (!email) return;
-    pending = loadState();
+    if (!email || !userId) return;
+    pending = loadState(userId);
     clearTimeout(timer);
     timer = setTimeout(() => {
       const next = pending;
@@ -185,7 +237,7 @@ export function createFavourites(options = {}) {
 
   async function flush() {
     clearTimeout(timer);
-    if (pending) {
+    if (pending && userId) {
       const next = pending;
       pending = null;
       await writeRemote(next);
@@ -194,6 +246,7 @@ export function createFavourites(options = {}) {
   }
 
   async function applyRemote() {
+    if (!userId || !email) return;
     if (dirty) {
       dirty = false;
       schedulePush();
@@ -205,14 +258,18 @@ export function createFavourites(options = {}) {
       schedulePush();
       return;
     }
-    const local = loadState();
+    const local = loadState(userId);
     if (remote && ts(remote.updated_at) > ts(local.updated_at)) {
-      ids = new Set(normalizeIds(remote.ids));
-      saveState(remote.ids, remote.updated_at);
+      applyLocalIds(remote.ids, remote.updated_at);
       onChange?.();
       setStatus("");
-    } else if (email && local.ids.length) {
+    } else if (local.ids.length) {
+      // Push this user's local only — never another account's leftover stars.
       schedulePush();
+      setStatus("");
+    } else if (remote) {
+      applyLocalIds(remote.ids, remote.updated_at || new Date().toISOString());
+      onChange?.();
       setStatus("");
     } else {
       setStatus("");
@@ -238,7 +295,9 @@ export function createFavourites(options = {}) {
           await flush();
           const sb = await getClient();
           await sb?.auth.signOut();
+          userId = null;
           email = null;
+          clearFavourites();
           setStatus("");
           renderBar();
         } catch (err) {
@@ -276,33 +335,49 @@ export function createFavourites(options = {}) {
   function toggle(playerId) {
     const key = String(playerId || "");
     if (!key) return;
+    // Stars only stick while signed in (synced). Signed-out UI stays empty.
+    if (!userId || !email) {
+      setStatus("Sign in to save favourites");
+      renderBar();
+      return;
+    }
     dirty = true;
     if (ids.has(key)) ids.delete(key);
     else ids.add(key);
-    saveState(ids);
-    if (email) schedulePush();
+    saveState(userId, ids);
+    schedulePush();
     onChange?.();
   }
 
   async function hydrate() {
-    ids = new Set(loadState().ids);
     if (!isSyncConfigured()) {
+      ids = new Set();
       renderBar();
       onChange?.();
       return;
     }
     renderBar();
     if (!hasStoredSession()) {
+      userId = null;
+      email = null;
+      ids = new Set();
       onChange?.();
       return;
     }
     try {
       await ensureAuthListener();
       const user = await currentUser();
+      userId = user?.id || null;
       email = user?.email || null;
-      if (email) await applyRemote();
+      if (userId) {
+        ids = new Set(loadState(userId).ids);
+        await applyRemote();
+      } else {
+        ids = new Set();
+      }
     } catch (err) {
       setStatus(err.message || "Sync unavailable");
+      ids = new Set();
     }
     renderBar();
     onChange?.();
