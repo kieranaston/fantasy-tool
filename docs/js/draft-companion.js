@@ -29,7 +29,7 @@ import {
   SCORING_FORMATS,
   FORMAT_LABELS,
   normalizePos,
-} from "./draft-scoring.js?v=17";
+} from "./draft-scoring.js?v=18";
 import { createFavourites } from "./draft-liked.js";
 import {
   ensureTableBody,
@@ -40,22 +40,53 @@ import {
 /** Score / recommend this many players; UI shows the same window. */
 const SCORE_LIMIT = 24;
 const SEARCH_LIMIT = 24;
+const SORT_STORAGE_KEY = "draft-sort-by";
+const FP_RANKINGS_PATH = "draft/fp-rankings.json";
 
-const RECS_TABLE_HEAD = `<thead>
+function readStoredSortBy() {
+  try {
+    const raw = String(localStorage.getItem(SORT_STORAGE_KEY) || "vorp").toLowerCase();
+    if (raw === "adp" || raw === "rankings" || raw === "vorp") return raw;
+  } catch {
+    /* ignore */
+  }
+  return "vorp";
+}
+
+function recsTableHead(sortBy) {
+  const mid =
+    sortBy === "rankings"
+      ? `<th class="num" title="FantasyPros ECR">Rank</th>`
+      : sortBy === "adp"
+        ? ""
+        : `<th class="num" title="Value over replacement">VORP</th>`;
+  return `<thead>
           <tr>
             <th>Player</th><th>Pos</th><th class="num">ADP</th>
-            <th class="num" title="Value over replacement">VORP</th>
+            ${mid}
             <th class="num">Score</th>
             <th class="num" title="Chance taken before your next pick">Risk</th>
           </tr>
         </thead>`;
-const PICKS_TABLE_HEAD = `<thead><tr><th>Pick</th><th>Player</th><th>Pos</th></tr></thead>`;
-const SEARCH_TABLE_HEAD = `<thead>
+}
+
+function searchTableHead(sortBy) {
+  const mid =
+    sortBy === "rankings"
+      ? `<th class="num">Rank</th>`
+      : sortBy === "adp"
+        ? ""
+        : `<th class="num">VORP</th>`;
+  return `<thead>
           <tr>
             <th>Player</th><th>Pos</th><th class="num">ADP</th>
-            <th class="num">VORP</th><th class="num">Score</th>
+            ${mid}
+            <th class="num">Score</th>
           </tr>
         </thead>`;
+}
+
+const PICKS_TABLE_HEAD = `<thead><tr><th>Pick</th><th>Player</th><th>Pos</th></tr></thead>`;
 
 let riskWorker = null;
 let riskJobSeq = 0;
@@ -88,22 +119,28 @@ function applyRiskToResult(result, goneProbById = {}) {
 }
 
 function formatRecMetaLine(result) {
+  const sortBy = String(result?.sort_by || "vorp");
   const need = result.need_count || {};
-  const byPos = result.vorp_weight_by_pos || {};
-  const blendParts = SKILL_POSITIONS.filter(
-    (pos) => Number(need[pos]) > 0 && byPos[pos] != null
-  ).map((pos) => `${pos} ${Math.round(Number(byPos[pos]) * 100)}`);
-  const blendLabel = blendParts.length
-    ? `Blend (VORP%): ${blendParts.join(" · ")}`
-    : `Blend: ${Math.round((Number(result.vorp_weight) || 0) * 100)}% VORP`;
-
   const needParts = SKILL_POSITIONS.filter((pos) => {
     const m = Number(need[pos]);
     return Number.isFinite(m) && m > 1.001;
   }).map((pos) => `${pos} ×${Number(need[pos])}`);
 
-  if (!needParts.length) return blendLabel;
-  return `${blendLabel} · Penalty ${needParts.join(" · ")}`;
+  let label;
+  if (sortBy === "adp") label = "Sort: ADP";
+  else if (sortBy === "rankings") label = "Sort: FantasyPros rankings";
+  else {
+    const byPos = result.vorp_weight_by_pos || {};
+    const blendParts = SKILL_POSITIONS.filter(
+      (pos) => Number(need[pos]) > 0 && byPos[pos] != null
+    ).map((pos) => `${pos} ${Math.round(Number(byPos[pos]) * 100)}`);
+    label = blendParts.length
+      ? `Blend (VORP%): ${blendParts.join(" · ")}`
+      : `Blend: ${Math.round((Number(result.vorp_weight) || 0) * 100)}% VORP`;
+  }
+
+  if (!needParts.length) return label;
+  return `${label} · Penalty ${needParts.join(" · ")}`;
 }
 
 function vorpHtml(vorp) {
@@ -410,6 +447,7 @@ async function mountDraftCompanionPage() {
   const searchEl = document.getElementById("draft-search-results");
   const favsOnlyInput = document.getElementById("draft-favs-only");
   const posFilterSelect = document.getElementById("draft-pos-filter");
+  const sortSelect = document.getElementById("draft-sort");
   const connectBtn = document.getElementById("draft-connect");
   const refreshBtn = document.getElementById("draft-refresh");
   const draftInput = document.getElementById("draft-id-input");
@@ -420,10 +458,13 @@ async function mountDraftCompanionPage() {
   let boardPlayers = [];
   let boardByPos = { QB: [], RB: [], WR: [], TE: [] };
   let boardById = new Map();
+  let fpRankById = new Map();
   let scoringFormat = resolveScoringFormat();
   /** Active league for slots (entered league ID or draft-linked league). */
   let configuredLeague = null;
   const adpBoardCache = new Map();
+  let sortBy = readStoredSortBy();
+  if (sortSelect) sortSelect.value = sortBy;
 
   let takenIndex = new Set();
   let draftId = null;
@@ -569,6 +610,60 @@ async function mountDraftCompanionPage() {
     return favs.has(id);
   }
 
+  function currentSortBy() {
+    const raw = String(sortSelect?.value || sortBy || "vorp").toLowerCase();
+    if (raw === "adp" || raw === "rankings" || raw === "vorp") return raw;
+    return "vorp";
+  }
+
+  function setSortBy(next) {
+    const raw = String(next || "vorp").toLowerCase();
+    sortBy =
+      raw === "adp" || raw === "rankings" || raw === "vorp" ? raw : "vorp";
+    if (sortSelect) sortSelect.value = sortBy;
+    try {
+      localStorage.setItem(SORT_STORAGE_KEY, sortBy);
+    } catch {
+      /* ignore */
+    }
+  }
+
+  function applyFpRanks(players) {
+    return players.map((p) => {
+      const id = sleeperIdOf(p);
+      const fp = fpRankById.get(id);
+      if (!fp) return { ...p, fp_rank: null, fp_tier: null };
+      return {
+        ...p,
+        fp_rank: fp.rank,
+        fp_tier: fp.tier,
+      };
+    });
+  }
+
+  async function loadFpRankings() {
+    try {
+      const data = await fetchJSON(FP_RANKINGS_PATH);
+      const map = new Map();
+      for (const row of data.players || []) {
+        const id = sleeperIdOf(row);
+        if (!id) continue;
+        const rank = Number(row.rank);
+        if (!Number.isFinite(rank) || rank <= 0) continue;
+        map.set(id, {
+          rank,
+          tier:
+            row.tier == null || row.tier === ""
+              ? null
+              : Number(row.tier),
+        });
+      }
+      fpRankById = map;
+    } catch {
+      fpRankById = new Map();
+    }
+  }
+
   function boardFilters() {
     const pos = String(posFilterSelect?.value || "").toUpperCase();
     const valid = SKILL_POSITIONS.includes(pos) || pos === "FLEX";
@@ -612,7 +707,7 @@ async function mountDraftCompanionPage() {
         list.push(
           scoredById.get(id) ||
             lastScoreById.get(id) ||
-            annotateScore(p, needCount)
+            annotateScore(p, needCount, { sortBy: currentSortBy() })
         );
       }
       list.sort(
@@ -727,12 +822,14 @@ async function mountDraftCompanionPage() {
       data = await fetchJSON(adpPathForFormat(formatKey));
       adpBoardCache.set("merged", data);
     }
-    const players = (data.players || []).map((p) => ({
-      ...p,
-      sleeper_id: sleeperIdOf(p),
-      adp: playerAdpForFormat(p, formatKey),
-      pts: playerPtsForFormat(p, formatKey),
-    }));
+    const players = applyFpRanks(
+      (data.players || []).map((p) => ({
+        ...p,
+        sleeper_id: sleeperIdOf(p),
+        adp: playerAdpForFormat(p, formatKey),
+        pts: playerPtsForFormat(p, formatKey),
+      }))
+    );
     applyBoardPlayers(players, formatInfo, {
       source: data.source || "sleeper_adp",
       format: formatKey,
@@ -998,18 +1095,33 @@ async function mountDraftCompanionPage() {
 
   function updateRecRow(tr, r, teams) {
     const liked = isLiked(sleeperIdOf(r));
+    const mode = currentSortBy();
+    const showMid = mode !== "adp";
     tr.className = liked ? "draft-liked" : "";
-    if (!tr.children.length) {
-      tr.innerHTML =
-        `<td></td><td></td><td class="num"></td><td class="num"></td>` +
-        `<td class="num"></td><td class="num"></td>`;
+    const cells = showMid ? 6 : 5;
+    if (tr.children.length !== cells) {
+      tr.innerHTML = showMid
+        ? `<td></td><td></td><td class="num"></td><td class="num"></td>` +
+          `<td class="num"></td><td class="num"></td>`
+        : `<td></td><td></td><td class="num"></td>` +
+          `<td class="num"></td><td class="num"></td>`;
     }
     bindPlayerCell(tr.children[0], r, { liked });
     tr.children[1].textContent = r.position || "";
     tr.children[2].innerHTML = adpHtml(r.adp, teams);
-    tr.children[3].innerHTML = vorpHtml(r.vorp);
-    tr.children[4].textContent = scoreHtml(r.score);
-    tr.children[5].innerHTML = riskHtml(r);
+    if (mode === "rankings") {
+      const rank = Number(r.fp_rank);
+      tr.children[3].textContent = Number.isFinite(rank) ? String(rank) : "—";
+      tr.children[4].textContent = scoreHtml(r.score);
+      tr.children[5].innerHTML = riskHtml(r);
+    } else if (mode === "adp") {
+      tr.children[3].textContent = scoreHtml(r.score);
+      tr.children[4].innerHTML = riskHtml(r);
+    } else {
+      tr.children[3].innerHTML = vorpHtml(r.vorp);
+      tr.children[4].textContent = scoreHtml(r.score);
+      tr.children[5].innerHTML = riskHtml(r);
+    }
   }
 
   function renderRecommendationsFromCache() {
@@ -1046,9 +1158,10 @@ async function mountDraftCompanionPage() {
     blendEl.hidden = false;
     blendEl.textContent = formatRecMetaLine(result);
 
+    const mode = currentSortBy();
     const tbody = ensureTableBody(recEl, {
       tableClass: "draft-table",
-      theadHtml: RECS_TABLE_HEAD,
+      theadHtml: recsTableHead(mode),
     });
     syncTableRows(tbody, recs, {
       key: (r) => sleeperIdOf(r),
@@ -1065,21 +1178,40 @@ async function mountDraftCompanionPage() {
     const { player, scored, taken: isTaken } = entry;
     const id = sleeperIdOf(player);
     const liked = isLiked(id);
+    const mode = currentSortBy();
+    const showMid = mode !== "adp";
     tr.className = [liked ? "draft-liked" : "", isTaken ? "draft-taken" : ""]
       .filter(Boolean)
       .join(" ");
-    if (!tr.children.length) {
-      tr.innerHTML =
-        `<td></td><td></td><td class="num"></td><td class="num"></td><td class="num"></td>`;
+    const cells = showMid ? 5 : 4;
+    if (tr.children.length !== cells) {
+      tr.innerHTML = showMid
+        ? `<td></td><td></td><td class="num"></td><td class="num"></td><td class="num"></td>`
+        : `<td></td><td></td><td class="num"></td><td class="num"></td>`;
     }
     bindPlayerCell(tr.children[0], player, { liked });
     tr.children[1].textContent = player.position || "";
     tr.children[2].innerHTML = adpHtml(player.adp, teams);
-    tr.children[3].innerHTML = isTaken ? "—" : vorpHtml(scored?.vorp);
-    tr.children[4].innerHTML = isTaken
-      ? `<span class="draft-taken-label">Taken</span>`
-      : scoreHtml((scored || {}).score);
-    if (!isTaken) tr.children[4].className = "num";
+    if (mode === "rankings") {
+      const rank = Number(player.fp_rank ?? scored?.fp_rank);
+      tr.children[3].textContent =
+        !isTaken && Number.isFinite(rank) ? String(rank) : isTaken ? "—" : "—";
+      tr.children[4].innerHTML = isTaken
+        ? `<span class="draft-taken-label">Taken</span>`
+        : scoreHtml((scored || {}).score);
+      if (!isTaken) tr.children[4].className = "num";
+    } else if (mode === "adp") {
+      tr.children[3].innerHTML = isTaken
+        ? `<span class="draft-taken-label">Taken</span>`
+        : scoreHtml((scored || {}).score);
+      if (!isTaken) tr.children[3].className = "num";
+    } else {
+      tr.children[3].innerHTML = isTaken ? "—" : vorpHtml(scored?.vorp);
+      tr.children[4].innerHTML = isTaken
+        ? `<span class="draft-taken-label">Taken</span>`
+        : scoreHtml((scored || {}).score);
+      if (!isTaken) tr.children[4].className = "num";
+    }
   }
 
   function refreshSearchIfActive() {
@@ -1107,12 +1239,15 @@ async function mountDraftCompanionPage() {
       else available.push(p);
     }
 
+    const mode = currentSortBy();
     const rankedAvailable = available
       .map((p) => {
         const scored =
           lastScoreById.get(sleeperIdOf(p)) ||
           (lastScoreResult
-            ? annotateScore(p, lastScoreResult.need_count || {})
+            ? annotateScore(p, lastScoreResult.need_count || {}, {
+                sortBy: mode,
+              })
             : null);
         return {
           player: p,
@@ -1142,7 +1277,7 @@ async function mountDraftCompanionPage() {
     const teams = leagueTeamCount();
     const tbody = ensureTableBody(searchEl, {
       tableClass: "draft-table",
-      theadHtml: SEARCH_TABLE_HEAD,
+      theadHtml: searchTableHead(mode),
     });
     syncTableRows(tbody, rows, {
       key: (entry) => `${sleeperIdOf(entry.player)}:${entry.taken ? "t" : "a"}`,
@@ -1190,6 +1325,7 @@ async function mountDraftCompanionPage() {
       limit: SCORE_LIMIT,
       ownerSlotByPick,
       filledPickNos: timing.filledPickNos,
+      sortBy: currentSortBy(),
     };
 
     const result = scoreCandidates(scoreArgs);
@@ -1325,6 +1461,10 @@ async function mountDraftCompanionPage() {
   }
   favsOnlyInput?.addEventListener("change", onBoardFilterChange);
   posFilterSelect?.addEventListener("change", onBoardFilterChange);
+  sortSelect?.addEventListener("change", () => {
+    setSortBy(sortSelect.value);
+    queueScoreRender({ force: true });
+  });
 
   refreshBtn?.addEventListener("click", () => {
     refreshLive().catch((err) =>
@@ -1350,7 +1490,7 @@ async function mountDraftCompanionPage() {
     loadConfiguredLeague({ required: false })
       .then(() => {
         refreshLeagueSettings();
-        return loadAdpBoard(scoringFormat);
+        return loadFpRankings().then(() => loadAdpBoard(scoringFormat));
       })
       .then(() => {
         refreshHeader();
@@ -1368,6 +1508,7 @@ async function mountDraftCompanionPage() {
 
     await loadConfiguredLeague({ required: false });
     refreshLeagueSettings();
+    await loadFpRankings();
     await loadAdpBoard(scoringFormat);
     refreshHeader();
     renderSearchResults();

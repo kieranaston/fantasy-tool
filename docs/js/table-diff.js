@@ -8,8 +8,13 @@ export function ensureTableBody(container, { tableClass, theadHtml, emptyHtml })
     return container.querySelector("tbody");
   }
   const thead = table.querySelector("thead");
-  if (!thead && theadHtml) {
-    table.insertAdjacentHTML("afterbegin", theadHtml);
+  if (theadHtml) {
+    const next = String(theadHtml).trim();
+    if (!thead) {
+      table.insertAdjacentHTML("afterbegin", theadHtml);
+    } else if (thead.outerHTML.trim() !== next) {
+      thead.outerHTML = next;
+    }
   }
   let tbody = table.querySelector("tbody");
   if (!tbody) {

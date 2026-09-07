@@ -4,7 +4,7 @@ Personal fantasy football reference site with RotoWire player news and a live Sl
 
 Data is pulled from [Sleeper](https://docs.sleeper.com/) and published as static JSON for a GitHub Pages site in `/docs`. Player news is ingested from RotoWire’s Bluesky account (`rotowirenfl.bsky.social`) with optional Gemini extraction for unmatched posts.
 
-Draft recommendations blend **VORP and ADP** (per position, shifting toward ADP as a position thins out), with a need multiplier for backup QB/TE on your rankings. Risk % (when you're on the clock) uses plain ADP for opponent picks.
+Draft recommendations blend **VORP and ADP** by default (per position, shifting toward ADP as a position thins out), with a need multiplier for backup QB/TE. Use the draft board **Sort** control for VORP, ADP, or FantasyPros rankings. Risk % (when you're on the clock) uses plain ADP for opponent picks.
 
 ## Project structure
 
@@ -24,12 +24,15 @@ pip install -e .
 
 python -m src.run_injuries         # state → data/injuries/; summaries → docs/
 python -m src.run_adp              # daily Sleeper ADP → docs/data/draft/adp-board.json
+python -m src.run_fp_rankings      # FantasyPros CSV → docs/data/draft/fp-rankings.json
 python -m http.server 8000 --directory docs
 ```
 
 Open http://localhost:8000 to preview the site.
 
 Requires Python 3.10+.
+
+Draft recommendations default to a **VORP↔ADP blend**, with a need multiplier for backup QB/TE. On the draft board, use **Sort** to order remaining players by **VORP**, **ADP**, or FantasyPros **Rankings** (same need + risk math). Drop an ALL rankings CSV in `data/fantasypros/rankings/` and run `python -m src.run_fp_rankings` to refresh.
 
 ### Env vars
 

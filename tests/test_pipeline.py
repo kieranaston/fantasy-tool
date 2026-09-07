@@ -68,6 +68,54 @@ def test_adp_merged_board_shape() -> None:
     assert row["adp"]["half_ppr"] == 12.5
 
 
+def test_fp_rankings_parse_and_normalize(tmp_path: Path) -> None:
+    from src.loaders.fantasypros_rankings import (
+        _last_name,
+        normalize_fp_position,
+        parse_rankings_csv,
+    )
+
+    assert normalize_fp_position("WR12") == "WR"
+    assert normalize_fp_position("DST1") == "DEF"
+    assert _last_name("James Cook III") == "cook"
+    assert _last_name("Marvin Harrison Jr.") == "harrison"
+
+    csv_path = tmp_path / "ranks.csv"
+    csv_path.write_text(
+        '"RK",TIERS,"PLAYER NAME",TEAM,"POS","BYE WEEK"\n'
+        '"1",1,"Ja\'Marr Chase",CIN,"WR1","6"\n'
+        '"2",1,"Jahmyr Gibbs",DET,"RB1","6"\n',
+        encoding="utf-8",
+    )
+    rows = parse_rankings_csv(csv_path)
+    assert len(rows) == 2
+    assert rows[0].rank == 1
+    assert rows[0].position == "WR"
+    assert rows[1].name == "Jahmyr Gibbs"
+
+
+def test_published_fp_rankings_json_shape() -> None:
+    path = DRAFT_DIR / "fp-rankings.json"
+    if not path.exists():
+        pytest.skip("fp-rankings.json not generated locally")
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    for key in (
+        "season",
+        "source",
+        "file",
+        "last_updated",
+        "matched",
+        "unmatched",
+        "players",
+    ):
+        assert key in payload
+    assert isinstance(payload["players"], list)
+    if payload["players"]:
+        row = payload["players"][0]
+        for key in ("sleeper_id", "player", "position", "rank"):
+            assert key in row
+
+
 def test_published_adp_board_json_shape() -> None:
     path = DRAFT_DIR / "adp-board.json"
     if not path.exists():

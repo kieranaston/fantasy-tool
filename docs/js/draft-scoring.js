@@ -4,10 +4,8 @@
  * Your rankings (scoreCandidates):
  *  1. Baseline: empty starter slots leaguewide → replacement pts per position.
  *  2. VORP = pts − baseline[pos].
- *  3. Blend VORP ↔ ADP from remaining above-replacement surplus (see SURPLUS_FULL).
- *     Surplus, threshold, and VORP weight are per position (not global).
- *     Normalize VORP and ADP within each position, then blend on a 0–1 scale.
- *  4. score = blend / M. M is the positional need multiplier (×1 or ×1.5).
+ *  3. Sort signal (sortBy): vorp = surplus VORP↔ADP blend; adp = ADP only;
+ *     rankings = FantasyPros ECR (fp_rank). Normalize, then score = unit / M.
  *     Same M for every player at that position (backup QB/TE → 1.5).
  *
  * Risk (display-only, on the clock): same filtered board and sim pool as rankings.
@@ -808,8 +806,34 @@ function groupByPos(players) {
   return out;
 }
 
+const SORT_BY_VORP = "vorp";
+const SORT_BY_ADP = "adp";
+const SORT_BY_RANKINGS = "rankings";
+const SORT_BY_OPTIONS = [SORT_BY_VORP, SORT_BY_ADP, SORT_BY_RANKINGS];
+
+function normalizeSortBy(sortBy) {
+  const key = String(sortBy || SORT_BY_VORP).toLowerCase();
+  return SORT_BY_OPTIONS.includes(key) ? key : SORT_BY_VORP;
+}
+
+function fpRankValue(player) {
+  const n = Number(player?.fp_rank);
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+function rankUnitNormalize(rank, extent, { hasRank = true } = {}) {
+  if (!hasRank || rank == null) return 0;
+  if (!(extent.span > 0)) return 0.5;
+  return (extent.hi - Number(rank)) / extent.span;
+}
+
 /** Fallback for players outside the scored pool (filter / search). */
-function annotateScore(player, need_count, { risk = null } = {}) {
+function annotateScore(
+  player,
+  need_count,
+  { risk = null, sortBy = SORT_BY_VORP } = {}
+) {
+  const mode = normalizeSortBy(sortBy);
   const pos = normalizePos(player.position);
   const m = Number(need_count[pos]);
   const p = risk == null ? null : Number(risk);
@@ -827,13 +851,21 @@ function annotateScore(player, need_count, { risk = null } = {}) {
     };
   }
   const multiplier = Number.isFinite(m) && m > 0 ? m : 1;
+  let score;
+  if (mode === SORT_BY_RANKINGS) {
+    const rank = fpRankValue(player);
+    score =
+      rank == null ? -Infinity : round1((-rank * multiplier) / 1000);
+  } else {
+    score = round1(-adpValue(player) * multiplier);
+  }
   return {
     ...player,
     need_bonus: round1(multiplier),
     need_count: multiplier,
     vorp: null,
     risk: riskOut,
-    score: round1(-adpValue(player) * multiplier),
+    score,
   };
 }
 
@@ -849,7 +881,9 @@ function scoreCandidates({
   limit = 12,
   ownerSlotByPick = null,
   filledPickNos = null,
+  sortBy = SORT_BY_VORP,
 }) {
+  const mode = normalizeSortBy(sortBy);
   const recLimit = Math.max(1, Number(limit) || 12);
   const filteredAvailable = filterDraftBoard(
     availableByPosIn,
@@ -877,6 +911,8 @@ function scoreCandidates({
     SIM_POOL_RANK_DEPTH
   );
   const scoreFocus = new Set(simPool.map((p) => playerId(p)));
+  // Rankings order can diverge from ADP/VORP pool; score the full need board.
+  const scoreAllAvailable = mode === SORT_BY_RANKINGS;
 
   const pending = [];
   const surplusByPos = {};
@@ -892,7 +928,7 @@ function scoreCandidates({
       const pts = Number(player.pts) || 0;
       const vorp = pts - baseline;
       if (vorp > 0) surplusByPos[pos] += vorp;
-      if (!scoreFocus.has(playerId(player))) continue;
+      if (!scoreAllAvailable && !scoreFocus.has(playerId(player))) continue;
       pending.push({ player, pos, vorp, multiplier });
     }
   }
@@ -903,7 +939,10 @@ function scoreCandidates({
   let weightMass = 0;
   let weightSum = 0;
   for (const pos of NEED_POSITIONS) {
-    const w = vorpWeightFromSurplus(surplusByPos[pos], thresholdByPos[pos]);
+    const w =
+      mode === SORT_BY_VORP
+        ? vorpWeightFromSurplus(surplusByPos[pos], thresholdByPos[pos])
+        : 0;
     vorpWeightByPos[pos] = w;
     const s = surplusByPos[pos] || 0;
     surplusTotal += s;
@@ -914,6 +953,9 @@ function scoreCandidates({
   }
   const vorpWeightAvg = weightMass > 0 ? weightSum / weightMass : 0;
   const posExtents = positionExtents(pending);
+  const rankExtent = numericExtent(
+    pending.map((row) => fpRankValue(row.player)).filter((n) => n != null)
+  );
 
   const scored = [];
   for (const row of pending) {
@@ -930,20 +972,26 @@ function scoreCandidates({
     const adpN = adpUnitNormalize(row.player, ext.adp, {
       emptySample: ext.emptyAdp,
     });
-    const vorpWeight = vorpWeightByPos[row.pos] ?? 0;
+    const vorpWeight =
+      mode === SORT_BY_VORP ? vorpWeightByPos[row.pos] ?? 0 : 0;
     const adpWeight = 1 - vorpWeight;
     let blend;
-    if (flatVorp) {
+    if (mode === SORT_BY_RANKINGS) {
+      const rank = fpRankValue(row.player);
+      blend = rankUnitNormalize(rank, rankExtent, { hasRank: rank != null });
+    } else if (mode === SORT_BY_ADP || flatVorp) {
       blend = adpN;
     } else {
       const vorpN = unitNormalize(row.vorp, ext.vorp);
       blend = vorpWeight * vorpN + adpWeight * adpN;
     }
     const score = blend / m;
+    const fpRank = fpRankValue(row.player);
 
     scored.push({
       ...row.player,
       vorp: round1(row.vorp),
+      fp_rank: fpRank,
       need_bonus: round1(m),
       need_count: m,
       risk: null,
@@ -953,12 +1001,19 @@ function scoreCandidates({
     });
   }
 
-  scored.sort(
-    (a, b) =>
+  scored.sort((a, b) => {
+    if (mode === SORT_BY_RANKINGS) {
+      const ar = fpRankValue(a);
+      const br = fpRankValue(b);
+      if (ar == null && br != null) return 1;
+      if (br == null && ar != null) return -1;
+    }
+    return (
       b.score - a.score ||
       adpValue(a) - adpValue(b) ||
       (Number(b.pts) || 0) - (Number(a.pts) || 0)
-  );
+    );
+  });
 
   const capped = scored.slice(0, recLimit);
 
@@ -975,6 +1030,7 @@ function scoreCandidates({
     targets: draftTargets(settings),
     need_count: myNeed.need_count,
     openFlex: myNeed.openFlex,
+    sort_by: mode,
     vorp_surplus: round1(surplusTotal),
     vorp_surplus_by_pos: surplusRounded,
     vorp_surplus_full: thresholdRounded,
