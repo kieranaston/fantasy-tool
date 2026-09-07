@@ -110,7 +110,10 @@ function resolveScoringFormat(draft = {}, league = null) {
     };
   }
 
-  const rawType = draft?.metadata?.scoring_type;
+  const rawType =
+    draft?.metadata?.scoring_type ||
+    draft?.metadata?.scoring ||
+    draft?.settings?.scoring_type;
   const fromType = formatFromScoringType(rawType);
   if (fromType) {
     return {

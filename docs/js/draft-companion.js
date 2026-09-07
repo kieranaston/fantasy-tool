@@ -20,8 +20,6 @@ import {
   adpPathForFormat,
   playerAdpForFormat,
   playerPtsForFormat,
-  formatFromReceptionPoints,
-  formatFromScoringType,
   formatAdpRoundPick,
   slotForOverallPick,
   SKILL_POSITIONS,
@@ -29,7 +27,7 @@ import {
   SCORING_FORMATS,
   FORMAT_LABELS,
   normalizePos,
-} from "./draft-scoring.js?v=20";
+} from "./draft-scoring.js?v=21";
 import { createFavourites } from "./draft-liked.js";
 import {
   ensureTableBody,
@@ -226,6 +224,183 @@ async function sleeperGet(path) {
   );
   if (!response.ok) throw new Error(`Sleeper ${path}: ${response.status}`);
   return response.json();
+}
+
+/** Sleeper uses ~999 as a sentinel for "no ADP". */
+const ADP_SENTINEL = 900;
+const SLEEPER_ADP_FIELDS = {
+  half_ppr: "adp_half_ppr",
+  full_ppr: "adp_ppr",
+  std: "adp_std",
+};
+const SLEEPER_PTS_FIELDS = {
+  half_ppr: "pts_half_ppr",
+  full_ppr: "pts_ppr",
+  std: "pts_std",
+};
+const ADP_BOARD_OVERALL = 280;
+const ADP_BOARD_POS_LIMITS = {
+  QB: 32,
+  RB: 72,
+  WR: 72,
+  TE: 28,
+  DEF: 24,
+  K: 24,
+};
+
+function sleeperDisplayName(player, sleeperId) {
+  const full = String(player?.full_name || "").trim();
+  if (full) return full;
+  const name = `${player?.first_name || ""} ${player?.last_name || ""}`.trim();
+  return name || sleeperId;
+}
+
+function normalizeSleeperAdpRows(rows) {
+  const best = new Map();
+  for (const item of rows || []) {
+    const sleeperId = String(item?.player_id || "").trim();
+    if (!sleeperId) continue;
+    const player = item?.player || {};
+    let position = String(
+      player.position || item.position || ""
+    ).toUpperCase();
+    if (position === "DST") position = "DEF";
+    if (position === "PK") position = "K";
+    if (!SKILL_POSITIONS.includes(position)) continue;
+
+    const stats = item?.stats || {};
+    const adp = {};
+    for (const [formatKey, field] of Object.entries(SLEEPER_ADP_FIELDS)) {
+      const value = Number(stats[field]);
+      if (!Number.isFinite(value) || value >= ADP_SENTINEL) continue;
+      adp[formatKey] = value;
+    }
+    if (!Object.keys(adp).length) continue;
+
+    const pts = {};
+    for (const [formatKey, field] of Object.entries(SLEEPER_PTS_FIELDS)) {
+      const value = Number(stats[field]);
+      if (!Number.isFinite(value) || value <= 0) continue;
+      pts[formatKey] = Math.round(value * 10) / 10;
+    }
+
+    const team = String(
+      item.team || player.team || player.team_abbr || ""
+    ).toUpperCase();
+    const existing = best.get(sleeperId);
+    if (!existing) {
+      const row = {
+        sleeper_id: sleeperId,
+        player: sleeperDisplayName(player, sleeperId),
+        team,
+        position,
+        adp,
+      };
+      if (Object.keys(pts).length) row.pts = pts;
+      best.set(sleeperId, row);
+      continue;
+    }
+    for (const [formatKey, value] of Object.entries(adp)) {
+      const prev = existing.adp[formatKey];
+      if (prev == null || value < prev) existing.adp[formatKey] = value;
+    }
+    for (const [formatKey, value] of Object.entries(pts)) {
+      existing.pts = existing.pts || {};
+      const prev = existing.pts[formatKey];
+      if (prev == null || value > prev) existing.pts[formatKey] = value;
+    }
+    if (!existing.team && team) existing.team = team;
+  }
+  return [...best.values()];
+}
+
+function mergeSleeperAdpBoard(players) {
+  const ranked = players
+    .map((p) => ({
+      ...p,
+      _sortAdp: Number(p?.adp?.half_ppr),
+    }))
+    .filter((p) => Number.isFinite(p._sortAdp))
+    .sort(
+      (a, b) =>
+        a._sortAdp - b._sortAdp ||
+        String(a.player).localeCompare(String(b.player))
+    );
+
+  const kept = [];
+  const seen = new Set();
+  const posCounts = Object.fromEntries(
+    Object.keys(ADP_BOARD_POS_LIMITS).map((pos) => [pos, 0])
+  );
+  for (let index = 0; index < ranked.length; index += 1) {
+    const row = ranked[index];
+    const sid = String(row.sleeper_id);
+    if (seen.has(sid)) continue;
+    const pos = row.position;
+    const posLimit = ADP_BOARD_POS_LIMITS[pos];
+    const keep =
+      index < ADP_BOARD_OVERALL ||
+      (posLimit != null && (posCounts[pos] || 0) < posLimit);
+    if (!keep) continue;
+    seen.add(sid);
+    if (pos in posCounts) posCounts[pos] += 1;
+
+    const adpOut = {};
+    for (const formatKey of SCORING_FORMATS) {
+      const raw = row.adp?.[formatKey];
+      if (raw == null || !Number.isFinite(Number(raw))) continue;
+      adpOut[formatKey] = Math.round(Number(raw) * 10) / 10;
+    }
+    if (!Object.keys(adpOut).length) continue;
+    const out = {
+      sleeper_id: sid,
+      player: row.player,
+      team: row.team || "",
+      position: pos,
+      adp: adpOut,
+    };
+    if (row.pts) {
+      const ptsOut = {};
+      for (const formatKey of SCORING_FORMATS) {
+        const raw = row.pts[formatKey];
+        if (raw == null || !Number.isFinite(Number(raw))) continue;
+        ptsOut[formatKey] = Math.round(Number(raw) * 10) / 10;
+      }
+      if (Object.keys(ptsOut).length) out.pts = ptsOut;
+    }
+    kept.push(out);
+  }
+  return kept;
+}
+
+async function fetchSleeperAdpBoard() {
+  const state = await sleeperGet("/state/nfl");
+  const season = Number(state?.league_season || state?.season);
+  if (!Number.isFinite(season)) {
+    throw new Error("Could not resolve Sleeper season for ADP");
+  }
+  const url =
+    `https://api.sleeper.com/projections/nfl/${season}` +
+    `?season_type=regular` +
+    `&position[]=QB&position[]=RB&position[]=WR&position[]=TE` +
+    `&position[]=DEF&position[]=K` +
+    `&order_by=adp_half_ppr&_=${Date.now()}`;
+  const response = await fetch(url, { cache: "no-store" });
+  if (!response.ok) {
+    throw new Error(`Sleeper projections: ${response.status}`);
+  }
+  const rows = await response.json();
+  if (!Array.isArray(rows)) {
+    throw new Error("Unexpected Sleeper projections payload");
+  }
+  const players = mergeSleeperAdpBoard(normalizeSleeperAdpRows(rows));
+  if (!players.length) throw new Error("Sleeper ADP returned no players");
+  return {
+    season,
+    source: "sleeper_adp",
+    last_updated: new Date().toISOString(),
+    players,
+  };
 }
 
 function parseSleeperIdInput(raw, { prefer = "unknown" } = {}) {
@@ -730,8 +905,17 @@ async function mountDraftCompanionPage() {
     return list.slice(0, SCORE_LIMIT);
   }
 
-  /** Prefer user/configured league over the draft's linked league. */
+  /** Prefer user/configured league over the draft's linked league (roster slots). */
   function leagueForSettings() {
+    return configuredLeague || league;
+  }
+
+  /**
+   * Scoring/ADP must match the connected draft's league when available.
+   * A typed League ID can differ and must not override draft ADP format.
+   */
+  function leagueForScoring() {
+    if (draft && league) return league;
     return configuredLeague || league;
   }
 
@@ -756,10 +940,11 @@ async function mountDraftCompanionPage() {
   }
 
   function refreshLeagueSettings() {
-    const srcLeague = leagueForSettings();
-    leagueSettings = resolveLeagueSettings(draft || {}, srcLeague);
+    const rosterLeague = leagueForSettings();
+    const scoringLeague = leagueForScoring();
+    leagueSettings = resolveLeagueSettings(draft || {}, rosterLeague);
     scoringFormat = {
-      ...resolveScoringFormat(draft || {}, srcLeague),
+      ...resolveScoringFormat(draft || {}, scoringLeague),
       last_updated: scoringFormat?.last_updated || null,
       format_label: null,
     };
@@ -807,27 +992,33 @@ async function mountDraftCompanionPage() {
     refreshHeader();
   }
 
-  function adpFormatKey(formatInfo, scoring = {}, draftMeta = {}) {
-    const fromRec = formatFromReceptionPoints(scoring.rec);
-    if (fromRec) return fromRec;
-    const fromType = formatFromScoringType(draftMeta?.scoring_type);
-    if (fromType) return fromType;
-    const fromInfo =
-      formatInfo?.format && SCORING_FORMATS.includes(formatInfo.format)
-        ? formatInfo.format
-        : null;
-    return fromInfo || "half_ppr";
+  function adpFormatKey() {
+    const resolved = resolveScoringFormat(draft || {}, leagueForScoring());
+    if (SCORING_FORMATS.includes(resolved.format)) return resolved.format;
+    if (
+      scoringFormat?.format &&
+      SCORING_FORMATS.includes(scoringFormat.format)
+    ) {
+      return scoringFormat.format;
+    }
+    return "half_ppr";
   }
 
-  async function loadAdpBoard(formatInfo) {
-    const srcLeague = leagueForSettings();
-    const scoring = srcLeague?.scoring_settings || {};
-    const formatKey = adpFormatKey(formatInfo, scoring, draft?.metadata || {});
+  async function loadAdpBoard(formatInfo, { force = false } = {}) {
+    if (draft || leagueForScoring()) {
+      refreshLeagueSettings();
+    }
+    const formatKey = adpFormatKey();
+    if (force) adpBoardCache.delete("merged");
     let data;
     if (adpBoardCache.has("merged")) {
       data = adpBoardCache.get("merged");
     } else {
-      data = await fetchJSON(adpPathForFormat(formatKey));
+      try {
+        data = await fetchSleeperAdpBoard();
+      } catch {
+        data = await fetchJSON(adpPathForFormat(formatKey));
+      }
       adpBoardCache.set("merged", data);
     }
     const players = applyExternalRanks(
@@ -838,10 +1029,13 @@ async function mountDraftCompanionPage() {
         pts: playerPtsForFormat(p, formatKey),
       }))
     );
-    applyBoardPlayers(players, formatInfo, {
+    applyBoardPlayers(players, formatInfo || scoringFormat, {
       source: data.source || "sleeper_adp",
       format: formatKey,
-      league_id: configuredLeague?.league_id || null,
+      league_id:
+        leagueForScoring()?.league_id ||
+        configuredLeague?.league_id ||
+        null,
       last_updated: data.last_updated || null,
     });
   }
@@ -896,6 +1090,7 @@ async function mountDraftCompanionPage() {
     if (!draftId || inFlight) return;
     inFlight = true;
     try {
+      await loadAdpBoard(scoringFormat, { force: true });
       const nextPicks = await sleeperGet(`/draft/${draftId}/picks`);
       const next = nextPicks || [];
       const teams = Number(leagueSettings?.teams || draft?.settings?.teams || 12);
