@@ -13,7 +13,7 @@ import {
   playerAdpForFormat,
   formatAdpRoundPick,
 } from "./draft-scoring.js";
-import { createFavourites } from "./draft-liked.js?v=3";
+import { createFavourites } from "./draft-liked.js?v=4";
 import {
   ensureTableBody,
   showTableMessage,

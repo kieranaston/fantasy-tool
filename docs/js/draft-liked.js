@@ -1,7 +1,8 @@
 /**
- * Favourites: per-user localStorage + optional email sync via Supabase.
- * Signed-out UI shows no stars. Account switches load that user's list only.
- * Last write wins within a user. A star tapped during a cloud fetch is kept.
+ * Favourites: localStorage always (guest bucket when signed out), optional
+ * email sync via Supabase when signed in. Account switches load that user's
+ * list only. Last write wins within a user. A star tapped during a cloud
+ * fetch is kept.
  */
 
 import { escapeHtml } from "./shared.js";
@@ -161,11 +162,11 @@ export function createFavourites(options = {}) {
     saveState(userId, ids, updatedAt);
   }
 
-  function clearFavourites() {
+  function loadGuestFavourites() {
     dirty = false;
     pending = null;
     clearTimeout(timer);
-    ids = new Set();
+    ids = new Set(loadState(null).ids);
     onChange?.();
   }
 
@@ -192,7 +193,7 @@ export function createFavourites(options = {}) {
         if (event === "SIGNED_OUT" || !nextUser) {
           userId = null;
           email = null;
-          clearFavourites();
+          loadGuestFavourites();
           setStatus("");
           renderBar();
           return;
@@ -332,7 +333,7 @@ export function createFavourites(options = {}) {
           await sb?.auth.signOut();
           userId = null;
           email = null;
-          clearFavourites();
+          loadGuestFavourites();
           setStatus("");
           renderBar();
         } catch (err) {
@@ -380,23 +381,18 @@ export function createFavourites(options = {}) {
   function toggle(playerId) {
     const key = String(playerId || "");
     if (!key) return;
-    // Stars only stick while signed in (synced). Signed-out UI stays empty.
-    if (!userId || !email) {
-      setStatus("Sign in to save favourites");
-      renderBar();
-      return;
-    }
-    dirty = true;
+    dirty = Boolean(userId && email);
     if (ids.has(key)) ids.delete(key);
     else ids.add(key);
     saveState(userId, ids);
-    schedulePush();
+    if (userId && email) schedulePush();
     onChange?.();
   }
 
   async function hydrate() {
+    // Local favourites work without sign-in (guest bucket).
+    ids = new Set(loadState(null).ids);
     if (!isSyncConfigured()) {
-      ids = new Set();
       renderBar();
       onChange?.();
       return;
@@ -420,11 +416,13 @@ export function createFavourites(options = {}) {
         ids = new Set(loadState(userId).ids);
         await applyRemote();
       } else {
-        ids = new Set();
+        ids = new Set(loadState(null).ids);
       }
     } catch (err) {
       setStatus(formatAuthError(err) || "Sync unavailable");
-      ids = new Set();
+      userId = null;
+      email = null;
+      ids = new Set(loadState(null).ids);
     }
     renderBar();
     onChange?.();
