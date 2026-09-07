@@ -19,11 +19,6 @@ RANKING_SOURCES = (
         "out": "fp-rankings.json",
         "label": "FantasyPros ECR",
     },
-    {
-        "csv": "FantasyPros_2026_Draft_ALL_Rankings_hayden_josh.csv",
-        "out": "winks-rankings.json",
-        "label": "Winks",
-    },
 )
 
 

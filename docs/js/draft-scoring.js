@@ -809,18 +809,11 @@ function groupByPos(players) {
 const SORT_BY_VORP = "vorp";
 const SORT_BY_ADP = "adp";
 const SORT_BY_RANKINGS = "rankings";
-const SORT_BY_WINKS = "winks";
-const SORT_BY_OPTIONS = [
-  SORT_BY_VORP,
-  SORT_BY_ADP,
-  SORT_BY_RANKINGS,
-  SORT_BY_WINKS,
-];
+const SORT_BY_OPTIONS = [SORT_BY_VORP, SORT_BY_ADP, SORT_BY_RANKINGS];
 
 /** External expert/ECR sorts → player field holding overall rank. */
 const RANK_SORT_FIELDS = {
   [SORT_BY_RANKINGS]: "fp_rank",
-  [SORT_BY_WINKS]: "winks_rank",
 };
 
 function normalizeSortBy(sortBy) {
@@ -1009,7 +1002,6 @@ function scoreCandidates({
       ...row.player,
       vorp: round1(row.vorp),
       fp_rank: rankValue(row.player, SORT_BY_RANKINGS),
-      winks_rank: rankValue(row.player, SORT_BY_WINKS),
       need_bonus: round1(m),
       need_count: m,
       risk: null,

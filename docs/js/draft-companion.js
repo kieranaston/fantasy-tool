@@ -29,7 +29,7 @@ import {
   SCORING_FORMATS,
   FORMAT_LABELS,
   normalizePos,
-} from "./draft-scoring.js?v=19";
+} from "./draft-scoring.js?v=20";
 import { createFavourites } from "./draft-liked.js";
 import {
   ensureTableBody,
@@ -42,15 +42,13 @@ const SCORE_LIMIT = 24;
 const SEARCH_LIMIT = 24;
 const SORT_STORAGE_KEY = "draft-sort-by";
 const FP_RANKINGS_PATH = "draft/fp-rankings.json";
-const WINKS_RANKINGS_PATH = "draft/winks-rankings.json";
-const SORT_OPTIONS = new Set(["vorp", "adp", "rankings", "winks"]);
+const SORT_OPTIONS = new Set(["vorp", "adp", "rankings"]);
 
 function isRankSort(sortBy) {
-  return sortBy === "rankings" || sortBy === "winks";
+  return sortBy === "rankings";
 }
 
 function rankFieldForSort(sortBy) {
-  if (sortBy === "winks") return "winks_rank";
   if (sortBy === "rankings") return "fp_rank";
   return null;
 }
@@ -69,8 +67,6 @@ function recsTableHead(sortBy) {
   let mid = `<th class="num" title="Value over replacement">VORP</th>`;
   if (sortBy === "rankings") {
     mid = `<th class="num" title="FantasyPros ECR">Rank</th>`;
-  } else if (sortBy === "winks") {
-    mid = `<th class="num" title="Hayden Winks rankings">Rank</th>`;
   } else if (sortBy === "adp") {
     mid = "";
   }
@@ -140,7 +136,6 @@ function formatRecMetaLine(result) {
   let label;
   if (sortBy === "adp") label = "Sort: ADP";
   else if (sortBy === "rankings") label = "Sort: FantasyPros ECR";
-  else if (sortBy === "winks") label = "Sort: Winks rankings";
   else {
     const byPos = result.vorp_weight_by_pos || {};
     const blendParts = SKILL_POSITIONS.filter(
@@ -471,7 +466,6 @@ async function mountDraftCompanionPage() {
   let boardByPos = { QB: [], RB: [], WR: [], TE: [] };
   let boardById = new Map();
   let fpRankById = new Map();
-  let winksRankById = new Map();
   let scoringFormat = resolveScoringFormat();
   /** Active league for slots (entered league ID or draft-linked league). */
   let configuredLeague = null;
@@ -643,13 +637,10 @@ async function mountDraftCompanionPage() {
     return players.map((p) => {
       const id = sleeperIdOf(p);
       const fp = fpRankById.get(id);
-      const winks = winksRankById.get(id);
       return {
         ...p,
         fp_rank: fp?.rank ?? null,
         fp_tier: fp?.tier ?? null,
-        winks_rank: winks?.rank ?? null,
-        winks_tier: winks?.tier ?? null,
       };
     });
   }
@@ -678,12 +669,7 @@ async function mountDraftCompanionPage() {
   }
 
   async function loadFpRankings() {
-    const [fp, winks] = await Promise.all([
-      loadRankingsJson(FP_RANKINGS_PATH),
-      loadRankingsJson(WINKS_RANKINGS_PATH),
-    ]);
-    fpRankById = fp;
-    winksRankById = winks;
+    fpRankById = await loadRankingsJson(FP_RANKINGS_PATH);
   }
 
   function boardFilters() {
