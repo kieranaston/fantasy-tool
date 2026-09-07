@@ -116,6 +116,19 @@ def test_published_fp_rankings_json_shape() -> None:
             assert key in row
 
 
+def test_published_winks_rankings_json_shape() -> None:
+    path = DRAFT_DIR / "winks-rankings.json"
+    if not path.exists():
+        pytest.skip("winks-rankings.json not generated locally")
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    assert payload.get("source") == "fantasypros_csv"
+    assert isinstance(payload.get("players"), list)
+    if payload["players"]:
+        row = payload["players"][0]
+        assert "sleeper_id" in row
+        assert "rank" in row
+
+
 def test_published_adp_board_json_shape() -> None:
     path = DRAFT_DIR / "adp-board.json"
     if not path.exists():

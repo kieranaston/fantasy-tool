@@ -29,7 +29,7 @@ import {
   SCORING_FORMATS,
   FORMAT_LABELS,
   normalizePos,
-} from "./draft-scoring.js?v=18";
+} from "./draft-scoring.js?v=19";
 import { createFavourites } from "./draft-liked.js";
 import {
   ensureTableBody,
@@ -42,11 +42,23 @@ const SCORE_LIMIT = 24;
 const SEARCH_LIMIT = 24;
 const SORT_STORAGE_KEY = "draft-sort-by";
 const FP_RANKINGS_PATH = "draft/fp-rankings.json";
+const WINKS_RANKINGS_PATH = "draft/winks-rankings.json";
+const SORT_OPTIONS = new Set(["vorp", "adp", "rankings", "winks"]);
+
+function isRankSort(sortBy) {
+  return sortBy === "rankings" || sortBy === "winks";
+}
+
+function rankFieldForSort(sortBy) {
+  if (sortBy === "winks") return "winks_rank";
+  if (sortBy === "rankings") return "fp_rank";
+  return null;
+}
 
 function readStoredSortBy() {
   try {
     const raw = String(localStorage.getItem(SORT_STORAGE_KEY) || "vorp").toLowerCase();
-    if (raw === "adp" || raw === "rankings" || raw === "vorp") return raw;
+    if (SORT_OPTIONS.has(raw)) return raw;
   } catch {
     /* ignore */
   }
@@ -54,12 +66,14 @@ function readStoredSortBy() {
 }
 
 function recsTableHead(sortBy) {
-  const mid =
-    sortBy === "rankings"
-      ? `<th class="num" title="FantasyPros ECR">Rank</th>`
-      : sortBy === "adp"
-        ? ""
-        : `<th class="num" title="Value over replacement">VORP</th>`;
+  let mid = `<th class="num" title="Value over replacement">VORP</th>`;
+  if (sortBy === "rankings") {
+    mid = `<th class="num" title="FantasyPros ECR">Rank</th>`;
+  } else if (sortBy === "winks") {
+    mid = `<th class="num" title="Hayden Winks rankings">Rank</th>`;
+  } else if (sortBy === "adp") {
+    mid = "";
+  }
   return `<thead>
           <tr>
             <th>Player</th><th>Pos</th><th class="num">ADP</th>
@@ -71,12 +85,9 @@ function recsTableHead(sortBy) {
 }
 
 function searchTableHead(sortBy) {
-  const mid =
-    sortBy === "rankings"
-      ? `<th class="num">Rank</th>`
-      : sortBy === "adp"
-        ? ""
-        : `<th class="num">VORP</th>`;
+  let mid = `<th class="num">VORP</th>`;
+  if (isRankSort(sortBy)) mid = `<th class="num">Rank</th>`;
+  else if (sortBy === "adp") mid = "";
   return `<thead>
           <tr>
             <th>Player</th><th>Pos</th><th class="num">ADP</th>
@@ -128,7 +139,8 @@ function formatRecMetaLine(result) {
 
   let label;
   if (sortBy === "adp") label = "Sort: ADP";
-  else if (sortBy === "rankings") label = "Sort: FantasyPros rankings";
+  else if (sortBy === "rankings") label = "Sort: FantasyPros ECR";
+  else if (sortBy === "winks") label = "Sort: Winks rankings";
   else {
     const byPos = result.vorp_weight_by_pos || {};
     const blendParts = SKILL_POSITIONS.filter(
@@ -459,6 +471,7 @@ async function mountDraftCompanionPage() {
   let boardByPos = { QB: [], RB: [], WR: [], TE: [] };
   let boardById = new Map();
   let fpRankById = new Map();
+  let winksRankById = new Map();
   let scoringFormat = resolveScoringFormat();
   /** Active league for slots (entered league ID or draft-linked league). */
   let configuredLeague = null;
@@ -612,14 +625,12 @@ async function mountDraftCompanionPage() {
 
   function currentSortBy() {
     const raw = String(sortSelect?.value || sortBy || "vorp").toLowerCase();
-    if (raw === "adp" || raw === "rankings" || raw === "vorp") return raw;
-    return "vorp";
+    return SORT_OPTIONS.has(raw) ? raw : "vorp";
   }
 
   function setSortBy(next) {
     const raw = String(next || "vorp").toLowerCase();
-    sortBy =
-      raw === "adp" || raw === "rankings" || raw === "vorp" ? raw : "vorp";
+    sortBy = SORT_OPTIONS.has(raw) ? raw : "vorp";
     if (sortSelect) sortSelect.value = sortBy;
     try {
       localStorage.setItem(SORT_STORAGE_KEY, sortBy);
@@ -628,22 +639,24 @@ async function mountDraftCompanionPage() {
     }
   }
 
-  function applyFpRanks(players) {
+  function applyExternalRanks(players) {
     return players.map((p) => {
       const id = sleeperIdOf(p);
       const fp = fpRankById.get(id);
-      if (!fp) return { ...p, fp_rank: null, fp_tier: null };
+      const winks = winksRankById.get(id);
       return {
         ...p,
-        fp_rank: fp.rank,
-        fp_tier: fp.tier,
+        fp_rank: fp?.rank ?? null,
+        fp_tier: fp?.tier ?? null,
+        winks_rank: winks?.rank ?? null,
+        winks_tier: winks?.tier ?? null,
       };
     });
   }
 
-  async function loadFpRankings() {
+  async function loadRankingsJson(path) {
     try {
-      const data = await fetchJSON(FP_RANKINGS_PATH);
+      const data = await fetchJSON(path);
       const map = new Map();
       for (const row of data.players || []) {
         const id = sleeperIdOf(row);
@@ -658,10 +671,19 @@ async function mountDraftCompanionPage() {
               : Number(row.tier),
         });
       }
-      fpRankById = map;
+      return map;
     } catch {
-      fpRankById = new Map();
+      return new Map();
     }
+  }
+
+  async function loadFpRankings() {
+    const [fp, winks] = await Promise.all([
+      loadRankingsJson(FP_RANKINGS_PATH),
+      loadRankingsJson(WINKS_RANKINGS_PATH),
+    ]);
+    fpRankById = fp;
+    winksRankById = winks;
   }
 
   function boardFilters() {
@@ -822,7 +844,7 @@ async function mountDraftCompanionPage() {
       data = await fetchJSON(adpPathForFormat(formatKey));
       adpBoardCache.set("merged", data);
     }
-    const players = applyFpRanks(
+    const players = applyExternalRanks(
       (data.players || []).map((p) => ({
         ...p,
         sleeper_id: sleeperIdOf(p),
@@ -1109,8 +1131,9 @@ async function mountDraftCompanionPage() {
     bindPlayerCell(tr.children[0], r, { liked });
     tr.children[1].textContent = r.position || "";
     tr.children[2].innerHTML = adpHtml(r.adp, teams);
-    if (mode === "rankings") {
-      const rank = Number(r.fp_rank);
+    if (isRankSort(mode)) {
+      const field = rankFieldForSort(mode);
+      const rank = Number(r[field]);
       tr.children[3].textContent = Number.isFinite(rank) ? String(rank) : "—";
       tr.children[4].textContent = scoreHtml(r.score);
       tr.children[5].innerHTML = riskHtml(r);
@@ -1192,10 +1215,11 @@ async function mountDraftCompanionPage() {
     bindPlayerCell(tr.children[0], player, { liked });
     tr.children[1].textContent = player.position || "";
     tr.children[2].innerHTML = adpHtml(player.adp, teams);
-    if (mode === "rankings") {
-      const rank = Number(player.fp_rank ?? scored?.fp_rank);
+    if (isRankSort(mode)) {
+      const field = rankFieldForSort(mode);
+      const rank = Number(player[field] ?? scored?.[field]);
       tr.children[3].textContent =
-        !isTaken && Number.isFinite(rank) ? String(rank) : isTaken ? "—" : "—";
+        !isTaken && Number.isFinite(rank) ? String(rank) : "—";
       tr.children[4].innerHTML = isTaken
         ? `<span class="draft-taken-label">Taken</span>`
         : scoreHtml((scored || {}).score);

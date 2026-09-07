@@ -1,4 +1,4 @@
-import { computeRiskProbabilities } from "./draft-scoring.js?v=18";
+import { computeRiskProbabilities } from "./draft-scoring.js?v=19";
 
 self.onmessage = (event) => {
   const { jobId, args } = event.data || {};

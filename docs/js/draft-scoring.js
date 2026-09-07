@@ -809,15 +809,33 @@ function groupByPos(players) {
 const SORT_BY_VORP = "vorp";
 const SORT_BY_ADP = "adp";
 const SORT_BY_RANKINGS = "rankings";
-const SORT_BY_OPTIONS = [SORT_BY_VORP, SORT_BY_ADP, SORT_BY_RANKINGS];
+const SORT_BY_WINKS = "winks";
+const SORT_BY_OPTIONS = [
+  SORT_BY_VORP,
+  SORT_BY_ADP,
+  SORT_BY_RANKINGS,
+  SORT_BY_WINKS,
+];
+
+/** External expert/ECR sorts → player field holding overall rank. */
+const RANK_SORT_FIELDS = {
+  [SORT_BY_RANKINGS]: "fp_rank",
+  [SORT_BY_WINKS]: "winks_rank",
+};
 
 function normalizeSortBy(sortBy) {
   const key = String(sortBy || SORT_BY_VORP).toLowerCase();
   return SORT_BY_OPTIONS.includes(key) ? key : SORT_BY_VORP;
 }
 
-function fpRankValue(player) {
-  const n = Number(player?.fp_rank);
+function isRankSort(sortBy) {
+  return Boolean(RANK_SORT_FIELDS[normalizeSortBy(sortBy)]);
+}
+
+function rankValue(player, sortBy = SORT_BY_RANKINGS) {
+  const field = RANK_SORT_FIELDS[normalizeSortBy(sortBy)];
+  if (!field) return null;
+  const n = Number(player?.[field]);
   return Number.isFinite(n) && n > 0 ? n : null;
 }
 
@@ -852,8 +870,8 @@ function annotateScore(
   }
   const multiplier = Number.isFinite(m) && m > 0 ? m : 1;
   let score;
-  if (mode === SORT_BY_RANKINGS) {
-    const rank = fpRankValue(player);
+  if (isRankSort(mode)) {
+    const rank = rankValue(player, mode);
     score =
       rank == null ? -Infinity : round1((-rank * multiplier) / 1000);
   } else {
@@ -912,7 +930,7 @@ function scoreCandidates({
   );
   const scoreFocus = new Set(simPool.map((p) => playerId(p)));
   // Rankings order can diverge from ADP/VORP pool; score the full need board.
-  const scoreAllAvailable = mode === SORT_BY_RANKINGS;
+  const scoreAllAvailable = isRankSort(mode);
 
   const pending = [];
   const surplusByPos = {};
@@ -954,7 +972,7 @@ function scoreCandidates({
   const vorpWeightAvg = weightMass > 0 ? weightSum / weightMass : 0;
   const posExtents = positionExtents(pending);
   const rankExtent = numericExtent(
-    pending.map((row) => fpRankValue(row.player)).filter((n) => n != null)
+    pending.map((row) => rankValue(row.player, mode)).filter((n) => n != null)
   );
 
   const scored = [];
@@ -976,8 +994,8 @@ function scoreCandidates({
       mode === SORT_BY_VORP ? vorpWeightByPos[row.pos] ?? 0 : 0;
     const adpWeight = 1 - vorpWeight;
     let blend;
-    if (mode === SORT_BY_RANKINGS) {
-      const rank = fpRankValue(row.player);
+    if (isRankSort(mode)) {
+      const rank = rankValue(row.player, mode);
       blend = rankUnitNormalize(rank, rankExtent, { hasRank: rank != null });
     } else if (mode === SORT_BY_ADP || flatVorp) {
       blend = adpN;
@@ -986,12 +1004,12 @@ function scoreCandidates({
       blend = vorpWeight * vorpN + adpWeight * adpN;
     }
     const score = blend / m;
-    const fpRank = fpRankValue(row.player);
 
     scored.push({
       ...row.player,
       vorp: round1(row.vorp),
-      fp_rank: fpRank,
+      fp_rank: rankValue(row.player, SORT_BY_RANKINGS),
+      winks_rank: rankValue(row.player, SORT_BY_WINKS),
       need_bonus: round1(m),
       need_count: m,
       risk: null,
@@ -1002,9 +1020,9 @@ function scoreCandidates({
   }
 
   scored.sort((a, b) => {
-    if (mode === SORT_BY_RANKINGS) {
-      const ar = fpRankValue(a);
-      const br = fpRankValue(b);
+    if (isRankSort(mode)) {
+      const ar = rankValue(a, mode);
+      const br = rankValue(b, mode);
       if (ar == null && br != null) return 1;
       if (br == null && ar != null) return -1;
     }
