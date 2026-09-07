@@ -28,7 +28,7 @@ import {
   FORMAT_LABELS,
   normalizePos,
 } from "./draft-scoring.js?v=21";
-import { createFavourites } from "./draft-liked.js?v=2";
+import { createFavourites } from "./draft-liked.js?v=3";
 import {
   ensureTableBody,
   showTableMessage,

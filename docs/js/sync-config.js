@@ -5,10 +5,12 @@
  * 1. Create a project at https://supabase.com (or reuse the existing one)
  * 2. SQL Editor → run supabase/schema.sql
  * 3. Authentication → Providers → Email enabled
- * 4. Authentication → URL Configuration → add Redirect URLs:
+ * 4. Authentication → URL Configuration → Site URL + Redirect URLs must include:
  *    - http://127.0.0.1:8000/**
  *    - http://localhost:8000/**
  *    - https://kieranaston.github.io/fantasy-tool/**
+ *    Magic links must be opened in the same browser that requested them (PKCE).
+ *    Built-in email is heavily rate-limited (~a few sends/hour on free tier).
  * 5. Project URL + anon/publishable key are set below
  *
  * The publishable/anon key is safe to commit when Row Level Security is enabled.

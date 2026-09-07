@@ -70,16 +70,6 @@ function ts(iso) {
 
 let client = null;
 
-function hasStoredSession() {
-  try {
-    return Object.keys(localStorage).some(
-      (k) => k.startsWith("sb-") && k.includes("auth-token")
-    );
-  } catch {
-    return false;
-  }
-}
-
 async function getClient() {
   if (!isSyncConfigured()) return null;
   if (!client) {
@@ -88,11 +78,56 @@ async function getClient() {
       auth: {
         persistSession: true,
         autoRefreshToken: true,
-        detectSessionInUrl: true,
+        // We exchange ?code= ourselves in consumeAuthCallback (hydrate used to
+        // bail before the client ran when no session cookie existed yet).
+        detectSessionInUrl: false,
+        flowType: "pkce",
       },
     });
   }
   return client;
+}
+
+function authRedirectUrl() {
+  const { origin, pathname } = window.location;
+  return `${origin}${pathname}`;
+}
+
+function formatAuthError(err) {
+  const msg = String(err?.message || err || "Sign-in failed");
+  const lower = msg.toLowerCase();
+  if (lower.includes("rate limit") || lower.includes("email rate")) {
+    return "Email rate limit hit — wait about an hour, then try once. Open the link in this same browser.";
+  }
+  if (
+    lower.includes("code verifier") ||
+    lower.includes("both auth code") ||
+    lower.includes("pkce")
+  ) {
+    return "Sign-in link expired or was opened in a different browser. Request a new link here and open it in this browser.";
+  }
+  return msg;
+}
+
+/** Finish magic-link / PKCE redirect if the URL carries an auth code. */
+async function consumeAuthCallback(sb) {
+  if (!sb) return null;
+  const url = new URL(window.location.href);
+  const code = url.searchParams.get("code");
+  const flowId = url.searchParams.get("sb_flow_id");
+  if (code) {
+    const { error } = flowId
+      ? await sb.auth.exchangeCodeForSession(code, { flowId })
+      : await sb.auth.exchangeCodeForSession(code);
+    url.searchParams.delete("code");
+    url.searchParams.delete("sb_flow_id");
+    const clean = `${url.pathname}${url.search}${url.hash}`;
+    window.history.replaceState({}, document.title, clean || url.pathname);
+    if (error) throw error;
+  }
+  const { data, error } = await sb.auth.getSession();
+  if (error) throw error;
+  return data.session?.user || null;
 }
 
 /**
@@ -315,19 +350,29 @@ export function createFavourites(options = {}) {
     host.querySelector("[data-sync-login]")?.addEventListener("submit", async (event) => {
       event.preventDefault();
       const value = new FormData(event.target).get("email");
+      const submitBtn = event.target.querySelector('button[type="submit"]');
       try {
+        if (submitBtn) submitBtn.disabled = true;
         setStatus("Sending magic link…");
         await ensureAuthListener();
         const sb = await getClient();
-        const redirectTo = window.location.href.split("#")[0];
         const { error } = await sb.auth.signInWithOtp({
           email: String(value || "").trim(),
-          options: { emailRedirectTo: redirectTo },
+          options: { emailRedirectTo: authRedirectUrl() },
         });
         if (error) throw error;
-        setStatus("Check your email for the sign-in link");
+        setStatus(
+          "Check your email — open the newest link in this same browser (older links stop working)."
+        );
       } catch (err) {
-        setStatus(err.message || "Sign-in failed");
+        setStatus(formatAuthError(err));
+      } finally {
+        if (submitBtn) {
+          // Soft cooldown so we don't burn the free email quota.
+          setTimeout(() => {
+            submitBtn.disabled = false;
+          }, 60_000);
+        }
       }
     });
   }
@@ -357,16 +402,18 @@ export function createFavourites(options = {}) {
       return;
     }
     renderBar();
-    if (!hasStoredSession()) {
-      userId = null;
-      email = null;
-      ids = new Set();
-      onChange?.();
-      return;
-    }
     try {
       await ensureAuthListener();
-      const user = await currentUser();
+      const sb = await getClient();
+      // Must run even with no stored session — magic links land with ?code= first.
+      let user = null;
+      try {
+        user = await consumeAuthCallback(sb);
+      } catch (err) {
+        setStatus(formatAuthError(err));
+        user = await currentUser();
+      }
+      if (!user) user = await currentUser();
       userId = user?.id || null;
       email = user?.email || null;
       if (userId) {
@@ -376,7 +423,7 @@ export function createFavourites(options = {}) {
         ids = new Set();
       }
     } catch (err) {
-      setStatus(err.message || "Sync unavailable");
+      setStatus(formatAuthError(err) || "Sync unavailable");
       ids = new Set();
     }
     renderBar();
