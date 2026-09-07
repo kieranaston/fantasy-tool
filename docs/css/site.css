@@ -238,20 +238,6 @@ select {
     align-items: stretch;
   }
 
-  .injury-card-title {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.12rem;
-  }
-
-  .injury-card-meta {
-    justify-content: flex-start;
-  }
-
-  .injury-card-title .player-label-name {
-    white-space: normal;
-  }
-
   .news-search-row input,
   .draft-search-row input[type="search"] {
     max-width: none;
@@ -453,11 +439,11 @@ table.draft-table > thead > tr > th {
 
 .injury-card-meta {
   display: inline-flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
   align-items: baseline;
   justify-content: flex-end;
   gap: 0.35rem 0.55rem;
-  min-width: 0;
 }
 
 .injury-card-meta .update-tag {
