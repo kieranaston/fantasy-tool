@@ -43,7 +43,8 @@ SUMMARIES_PATH = PUBLIC_DIR / "summaries.json"
 
 NARRATIVE_CHUNK = 8
 # Cap Gemini one-liners per run (free-tier RPM); rest retry next day.
-MAX_NARRATIVE_PLAYERS = int(os.environ.get("MAX_NARRATIVE_PLAYERS", "24"))
+# Treat empty env (Actions unset vars) like missing → default 24.
+MAX_NARRATIVE_PLAYERS = int(os.environ.get("MAX_NARRATIVE_PLAYERS") or "24")
 
 
 def _newly_appended(before: list, after: list) -> list:
