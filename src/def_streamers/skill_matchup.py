@@ -5,6 +5,12 @@ from __future__ import annotations
 from statistics import median
 from typing import Any
 
+from src.def_streamers.projection_pool import (
+    STREAMER_PROJ_LIMITS,
+    canonical_team,
+    match_stats_for_projected,
+    top_projected_players,
+)
 from src.loaders.nflverse import (
     STATS_WINDOW_GAMES,
     defense_position_half_ppr_sos,
@@ -19,7 +25,6 @@ from src.loaders.nflverse import (
 from src.loaders.sleeper_adp import draft_season_from_sleeper_state
 
 GUIDE_SOS = 0.0
-MAX_PLAYERS = 32  # one starter per NFL team
 
 # Fixed X guide for RB charts (Hayden-style ~RB1/flex line). WR uses median.
 _POSITION_GUIDE_AVG: dict[str, float | None] = {
@@ -39,12 +44,19 @@ def build_skill_matchup_board(
     player_avgs: list[dict[str, Any]] | None = None,
     defense_sos: dict[str, dict[str, float]] | None = None,
     roster_teams: dict[str, str] | None = None,
+    projected_players: list[dict[str, Any]] | None = None,
     guide_avg_fp: float | None | object = ...,
-    max_players: int = MAX_PLAYERS,
+    max_players: int | None = None,
 ) -> dict[str, Any]:
-    """Assemble a weekly position matchup payload (RB/WR/…)."""
+    """Assemble a weekly position matchup payload (RB/WR/…).
+
+    Inclusion is the top N Sleeper projected half-PPR players at the position.
+    Chart placement still uses rolling half-PPR avg × opponent SOS.
+    """
     position = position.upper()
     allowed_key = f"{position.lower()}_half_ppr_allowed"
+    if max_players is None:
+        max_players = STREAMER_PROJ_LIMITS.get(position, 24)
 
     if season is None:
         season = draft_season_from_sleeper_state()
@@ -58,12 +70,21 @@ def build_skill_matchup_board(
         stats_season = resolve_sack_season(stat_seasons, season)
     if roster_teams is None:
         roster_teams = load_roster_teams(season)
+    if projected_players is None:
+        projected_players = top_projected_players(
+            position,
+            limit=max_players,
+            season=season,
+        )
     if player_avgs is None:
+        # Relax thresholds so projected names still place early in the season.
         player_avgs = position_avg_half_ppr(
             stat_seasons,
             position,
             window=STATS_WINDOW_GAMES,
             roster_teams=roster_teams,
+            min_games=1,
+            min_avg=0.0,
         )
     if defense_sos is None:
         defense_sos = defense_position_half_ppr_sos(stat_seasons, position)
@@ -87,16 +108,14 @@ def build_skill_matchup_board(
         raise ValueError(f"No REG matchups for {season} week {week}")
 
     players: list[dict[str, Any]] = []
-    seen_teams: set[str] = set()
-    for row in player_avgs:
-        team = row["team"]
-        if not team or team in seen_teams or team not in matchups:
+    for proj, row in match_stats_for_projected(projected_players, player_avgs):
+        team = canonical_team(row.get("team")) or canonical_team(proj.get("team"))
+        if not team or team not in matchups:
             continue
         opp, is_home, matchup_label = matchups[team]
         sos = defense_sos.get(opp)
         if not sos:
             continue
-        seen_teams.add(team)
         players.append(
             {
                 "player_id": row["player_id"],
@@ -110,12 +129,12 @@ def build_skill_matchup_board(
                 "games": int(row["games"]),
                 "sos_adj": round(float(sos["sos_adj"]), 3),
                 allowed_key: round(float(sos.get(allowed_key) or 0), 2),
+                "proj_half_ppr": proj.get("pts"),
                 "logo_url": espn_logo_url(team),
             }
         )
 
     players.sort(key=lambda r: (-r["avg_half_ppr"], -r["sos_adj"]))
-    players = players[:max_players]
     if not players:
         raise ValueError(f"No {position} rows built for slate")
 
@@ -135,8 +154,10 @@ def build_skill_matchup_board(
         "stat_seasons": stat_seasons,
         "stats_window_games": STATS_WINDOW_GAMES,
         "scoring": "half_ppr",
+        "proj_limit": max_players,
         "stats_note": (
-            f"Rolling {STATS_WINDOW_GAMES}-game half-PPR avg vs opponent "
+            f"Top {max_players} Sleeper projected {position}s; "
+            f"rolling {STATS_WINDOW_GAMES}-game half-PPR avg vs opponent "
             f"{position} FPs allowed (SOS adj)"
         ),
         "x_formula": (
@@ -145,7 +166,7 @@ def build_skill_matchup_board(
         "y_formula": (
             f"opponent SOS adj = opp {position} half-PPR allowed − league average"
         ),
-        "source": "nflverse_player_stats_schedules",
+        "source": "sleeper_projections_nflverse_player_stats",
         "guides": guides,
         "medians": {
             "avg_half_ppr": med_x,

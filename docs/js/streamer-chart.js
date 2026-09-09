@@ -15,6 +15,13 @@ export function axisFormulaHead(data) {
   return `${x}${y}`;
 }
 
+/** Inclusion note when the board is capped by Sleeper projected points. */
+export function projectionPoolHead(data) {
+  const n = Number(data.proj_limit);
+  if (!Number.isFinite(n) || n <= 0) return "";
+  return `<p class="def-formula">Includes top ${n} by Sleeper half-PPR projected points</p>`;
+}
+
 /** Title row with last-updated stamp (applies to the whole chart). */
 export function chartTitleHead(title, data, formatUpdated) {
   const updated = formatUpdated?.(data.last_updated) || "";
@@ -26,6 +33,7 @@ export function chartTitleHead(title, data, formatUpdated) {
       <h1 class="def-title">${escapeHtml(title)}</h1>
       ${stamp}
     </div>
+    ${projectionPoolHead(data)}
     ${axisFormulaHead(data)}
   `;
 }

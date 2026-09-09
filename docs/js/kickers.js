@@ -1,5 +1,5 @@
 import { fetchJSON, formatUpdated, revealPage } from "./config.js";
-import { chartTitleHead, drawStreamerChart } from "./streamer-chart.js";
+import { chartTitleHead, drawStreamerChart } from "./streamer-chart.js?v=2";
 
 export async function mountKStreamersPage() {
   const root = document.getElementById("k-streamers");
@@ -27,6 +27,7 @@ export async function mountKStreamersPage() {
     drawStreamerChart(svg, data, {
       xKey: "vegas_projected_points",
       yKey: "fg_attempts_per_game",
+      labelKey: "last_name",
       xTickStep: 2,
       yTickStep: 0.5,
       xFormat: (v) => v.toFixed(0),
@@ -40,7 +41,7 @@ export async function mountKStreamersPage() {
         bottomLeft: "Fade",
       },
       tooltip: (t) =>
-        `${t.team} ${t.matchup_label} · ${t.fg_attempts_per_game.toFixed(2)} FG/g · ${t.vegas_projected_points} pts`,
+        `${t.player_name || t.team} (${t.team}) ${t.matchup_label} · ${t.fg_attempts_per_game.toFixed(2)} FG/g · ${t.vegas_projected_points} pts`,
     });
   draw();
   revealPage();

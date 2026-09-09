@@ -443,12 +443,14 @@ def qb_rush_yards_per_game(
     min_pass_attempts: int = 10,
     roster_teams: dict[str, str] | None = None,
     depth_starters: dict[str, str] | None = None,
+    starters_only: bool = True,
     cache_dir: Path | None = None,
 ) -> list[dict[str, Any]]:
     """Rolling QB rush yards/game (last ``window`` games across ``seasons``).
 
-    Returns one starter per current team. Prefers depth-chart QB1 when provided;
-    otherwise falls back to most pass attempts in the window.
+    When ``starters_only`` is True (default), returns one starter per current
+    team — prefers depth-chart QB1 when provided, otherwise most pass attempts
+    in the window. When False, returns every QB meeting ``min_pass_attempts``.
     """
     df = _load_reg_player_week_stats(seasons, position="QB", cache_dir=cache_dir)
     df = df.with_columns(
@@ -481,6 +483,10 @@ def qb_rush_yards_per_game(
         )
 
     per_player = _apply_roster_teams(per_player, roster_teams)
+    if not starters_only:
+        per_player.sort(key=lambda r: -r["rush_yards_per_game"])
+        return per_player
+
     by_id = {row["player_id"]: row for row in per_player}
 
     by_team: dict[str, dict[str, Any]] = {}

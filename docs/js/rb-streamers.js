@@ -1,5 +1,5 @@
 import { fetchJSON, formatUpdated, revealPage } from "./config.js";
-import { chartTitleHead, drawStreamerChart } from "./streamer-chart.js";
+import { chartTitleHead, drawStreamerChart } from "./streamer-chart.js?v=2";
 
 export async function mountRbStreamersPage() {
   const root = document.getElementById("rb-streamers");

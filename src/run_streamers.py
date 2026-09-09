@@ -40,6 +40,7 @@ def main() -> None:
             "sack_season",
             "pbp_seasons",
             "sack_window_games",
+            "proj_limit",
             "sack_formula",
             "sack_note",
             "x_formula",

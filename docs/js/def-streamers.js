@@ -1,5 +1,5 @@
 import { fetchJSON, formatUpdated, revealPage } from "./config.js";
-import { chartTitleHead, drawStreamerChart } from "./streamer-chart.js";
+import { chartTitleHead, drawStreamerChart } from "./streamer-chart.js?v=2";
 
 function pct(rate) {
   return `${(rate * 100).toFixed(0)}%`;

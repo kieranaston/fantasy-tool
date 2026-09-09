@@ -5,11 +5,16 @@ from __future__ import annotations
 from statistics import median
 from typing import Any
 
+from src.def_streamers.projection_pool import (
+    STREAMER_PROJ_LIMITS,
+    canonical_team,
+    match_stats_for_projected,
+    top_projected_players,
+)
 from src.loaders.nflverse import (
     espn_logo_url,
     fetch_schedules,
     implied_team_totals,
-    load_depth_chart_starters,
     load_roster_teams,
     qb_rush_yards_per_game,
     resolve_player_stat_seasons,
@@ -19,6 +24,7 @@ from src.loaders.nflverse import (
 from src.loaders.sleeper_adp import draft_season_from_sleeper_state
 
 QB_RUSH_WINDOW = 8
+QB_PROJ_LIMIT = STREAMER_PROJ_LIMITS["QB"]
 
 
 def build_qb_board(
@@ -30,8 +36,14 @@ def build_qb_board(
     games: list[dict[str, Any]] | None = None,
     qb_rates: list[dict[str, Any]] | None = None,
     roster_teams: dict[str, str] | None = None,
+    projected_players: list[dict[str, Any]] | None = None,
+    max_players: int = QB_PROJ_LIMIT,
 ) -> dict[str, Any]:
-    """Assemble the weekly QB streamer payload for the static site."""
+    """Assemble the weekly QB streamer payload for the static site.
+
+    Inclusion is the top N Sleeper projected QBs. Placement still uses team
+    implied total × rolling rush yards per game.
+    """
     if season is None:
         season = draft_season_from_sleeper_state()
     if games is None:
@@ -44,12 +56,19 @@ def build_qb_board(
         stats_season = resolve_sack_season(stat_seasons, season)
     if roster_teams is None:
         roster_teams = load_roster_teams(season)
+    if projected_players is None:
+        projected_players = top_projected_players(
+            "QB",
+            limit=max_players,
+            season=season,
+        )
     if qb_rates is None:
         qb_rates = qb_rush_yards_per_game(
             stat_seasons,
             window=QB_RUSH_WINDOW,
             roster_teams=roster_teams,
-            depth_starters=load_depth_chart_starters(season, "QB"),
+            starters_only=False,
+            min_pass_attempts=1,
         )
 
     # team -> (opponent, home?, matchup_label, implied_team_total)
@@ -74,12 +93,12 @@ def build_qb_board(
     if not matchups:
         raise ValueError(f"No lined REG matchups for {season} week {week}")
 
-    by_team = {row["team"]: row for row in qb_rates if row.get("team")}
     players: list[dict[str, Any]] = []
-    for team, (opp, is_home, matchup_label, implied) in matchups.items():
-        row = by_team.get(team)
-        if not row:
+    for proj, row in match_stats_for_projected(projected_players, qb_rates):
+        team = canonical_team(row.get("team")) or canonical_team(proj.get("team"))
+        if not team or team not in matchups:
             continue
+        opp, is_home, matchup_label, implied = matchups[team]
         players.append(
             {
                 "player_id": row["player_id"],
@@ -92,6 +111,7 @@ def build_qb_board(
                 "implied_team_total": round(float(implied), 2),
                 "rush_yards_per_game": round(float(row["rush_yards_per_game"]), 2),
                 "games": int(row["games"]),
+                "proj_half_ppr": proj.get("pts"),
                 "logo_url": espn_logo_url(team),
             }
         )
@@ -110,15 +130,17 @@ def build_qb_board(
         "stats_season": stats_season,
         "stat_seasons": stat_seasons,
         "rush_window_games": QB_RUSH_WINDOW,
+        "proj_limit": max_players,
         "stats_note": (
-            f"Team implied total vs. rolling {QB_RUSH_WINDOW}-game "
+            f"Top {max_players} Sleeper projected QBs; "
+            f"team implied total vs. rolling {QB_RUSH_WINDOW}-game "
             "QB rushing yards per game"
         ),
         "x_formula": "team implied total = (game total ± spread) / 2",
         "y_formula": (
             f"QB rushing yards per game (last {QB_RUSH_WINDOW} games)"
         ),
-        "source": "nflverse_player_stats_schedules",
+        "source": "sleeper_projections_nflverse_player_stats_schedules",
         "guides": {
             "implied_team_total": round(med_x, 2),
             "rush_yards_per_game": round(med_y, 2),
