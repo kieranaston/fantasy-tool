@@ -442,6 +442,63 @@ def test_build_wr_board_uses_median_x_guide() -> None:
     assert board["guides"]["avg_half_ppr"] == board["medians"]["avg_half_ppr"]
 
 
+def test_build_te_board_sos_matchup() -> None:
+    from src.def_streamers.te_board import build_te_board
+
+    games = [
+        {
+            "season": 2026,
+            "game_type": "REG",
+            "week": 1,
+            "away_team": "NE",
+            "home_team": "SEA",
+            "away_score": None,
+            "home_score": None,
+            "spread_line": 3.0,
+            "total_line": 44.5,
+        }
+    ]
+    player_avgs = [
+        {
+            "player_id": "4",
+            "player_name": "AJ Barner",
+            "last_name": "Barner",
+            "team": "SEA",
+            "avg_half_ppr": 8.2,
+            "games": 12,
+        }
+    ]
+    defense_sos = {
+        "NE": {"te_half_ppr_allowed": 7.4, "sos_adj": 0.6, "n": 40},
+    }
+    board = build_te_board(
+        season=2026,
+        week=1,
+        stats_season=2025,
+        stat_seasons=[2025],
+        games=games,
+        player_avgs=player_avgs,
+        defense_sos=defense_sos,
+        projected_players=[
+            {
+                "sleeper_id": "s4",
+                "player": "AJ Barner",
+                "last_name": "Barner",
+                "team": "SEA",
+                "position": "TE",
+                "pts": 120.0,
+            }
+        ],
+    )
+    assert board["position"] == "TE"
+    row = board["players"][0]
+    assert row["last_name"] == "Barner"
+    assert row["sos_adj"] == 0.6
+    assert row["te_half_ppr_allowed"] == 7.4
+    # TE guide X falls back to the board median (same as WR).
+    assert board["guides"]["avg_half_ppr"] == board["medians"]["avg_half_ppr"]
+
+
 def test_build_qb_board_implied_and_rush() -> None:
     from src.def_streamers.qb_board import build_qb_board
 

@@ -26,10 +26,11 @@ from src.loaders.sleeper_adp import draft_season_from_sleeper_state
 
 GUIDE_SOS = 0.0
 
-# Fixed X guide for RB charts (Hayden-style ~RB1/flex line). WR uses median.
+# Fixed X guide for RB charts (Hayden-style ~RB1/flex line). WR/TE use median.
 _POSITION_GUIDE_AVG: dict[str, float | None] = {
     "RB": 10.0,
     "WR": None,
+    "TE": None,
 }
 
 
@@ -183,3 +184,7 @@ def build_rb_board(**kwargs: Any) -> dict[str, Any]:
 
 def build_wr_board(**kwargs: Any) -> dict[str, Any]:
     return build_skill_matchup_board("WR", **kwargs)
+
+
+def build_te_board(**kwargs: Any) -> dict[str, Any]:
+    return build_skill_matchup_board("TE", **kwargs)

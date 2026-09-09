@@ -8,6 +8,7 @@ from src.def_streamers.board import build_def_board
 from src.def_streamers.k_board import build_k_board
 from src.def_streamers.qb_board import build_qb_board
 from src.def_streamers.rb_board import build_rb_board
+from src.def_streamers.te_board import build_te_board
 from src.def_streamers.wr_board import build_wr_board
 from src.export.json_writer import utc_now_iso, write_json
 
@@ -165,6 +166,35 @@ def main() -> None:
     print(
         f"    stats_season={wr_board['stats_season']} "
         f"stats={wr_board['stat_seasons']} players={len(wr_board['players'])}"
+    )
+
+    te_board = build_te_board()
+    te_board["last_updated"] = now
+    _write(
+        "te-board.json",
+        te_board,
+        {
+            "season",
+            "week",
+            "position",
+            "stats_season",
+            "stat_seasons",
+            "stats_window_games",
+            "scoring",
+            "stats_note",
+            "x_formula",
+            "y_formula",
+            "source",
+            "last_updated",
+            "guides",
+            "medians",
+            "players",
+            "teams",
+        },
+    )
+    print(
+        f"    stats_season={te_board['stats_season']} "
+        f"stats={te_board['stat_seasons']} players={len(te_board['players'])}"
     )
     print("Done.")
 

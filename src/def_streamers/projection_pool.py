@@ -17,6 +17,7 @@ STREAMER_PROJ_LIMITS = {
     "QB": 16,
     "RB": 24,
     "WR": 24,
+    "TE": 16,
     "DEF": 12,
     "K": 12,
 }
