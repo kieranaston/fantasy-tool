@@ -1,10 +1,10 @@
 import { escapeHtml } from "./shared.js";
 
 /** Equal padding so the plot area stays square when the SVG is square. */
-const BASE_PAD = { top: 52, right: 52, bottom: 52, left: 52 };
-const LOGO = 26;
+const BASE_PAD = { top: 44, right: 44, bottom: 44, left: 48 };
+const LOGO = 34;
 
-/** X/Y formula lines under the chart title. */
+/** X/Y formula lines (shown under the chart). */
 export function axisFormulaHead(data) {
   const x = data.x_formula
     ? `<p class="def-formula"><span class="def-axis-key">X</span> ${escapeHtml(data.x_formula)}</p>`
@@ -22,7 +22,7 @@ export function projectionPoolHead(data) {
   return `<p class="def-formula">Includes top ${n} by Sleeper half-PPR projected points</p>`;
 }
 
-/** Title row with last-updated stamp (applies to the whole chart). */
+/** Title row with last-updated stamp only (keeps the chart higher in the viewport). */
 export function chartTitleHead(title, data, formatUpdated) {
   const updated = formatUpdated?.(data.last_updated) || "";
   const stamp = updated
@@ -33,10 +33,29 @@ export function chartTitleHead(title, data, formatUpdated) {
       <h1 class="def-title">${escapeHtml(title)}</h1>
       ${stamp}
     </div>
-    ${projectionPoolHead(data)}
-    ${axisFormulaHead(data)}
   `;
 }
+
+/** Projection + axis notes rendered under the chart. */
+export function chartMetaFoot(data) {
+  return `${projectionPoolHead(data)}${axisFormulaHead(data)}`;
+}
+
+/** Shared streamer page shell: title, chart, then meta underneath. */
+export function chartPageShell(title, data, formatUpdated, ariaLabel) {
+  return `
+    <div class="def-chart-head">
+      ${chartTitleHead(title, data, formatUpdated)}
+    </div>
+    <div class="def-chart-wrap">
+      <svg class="def-chart" role="img" aria-label="${escapeHtml(ariaLabel)}"></svg>
+    </div>
+    <div class="def-chart-foot">
+      ${chartMetaFoot(data)}
+    </div>
+  `;
+}
+
 
 function ticksByStep(domain, step) {
   const [a, b] = domain;
@@ -130,8 +149,8 @@ function median(vals) {
 }
 
 /** Margin (px) so logos/names clear the edge without emptying the plot. */
-const MARKER_PAD_X = 30;
-const MARKER_PAD_Y = 30;
+const MARKER_PAD_X = 36;
+const MARKER_PAD_Y = 36;
 
 /**
  * Draw a logo scatter chart with a square plot area.
@@ -164,12 +183,14 @@ const MARKER_PAD_Y = 30;
 export function drawStreamerChart(svg, data, opts) {
   if (!svg) return;
   const wrap = svg.parentElement;
-  const size = Math.max(360, Math.min(wrap?.clientWidth || 640, 800));
+  const cssW = wrap?.clientWidth || 0;
+  const cssH = wrap?.clientHeight || 0;
+  const size = Math.max(280, Math.min(cssW || 560, cssH || cssW || 560, 560));
   const width = size;
   const height = size;
   const quads = opts.quadrantLabels || null;
   const PAD = quads
-    ? { top: 64, right: BASE_PAD.right, bottom: 70, left: BASE_PAD.left }
+    ? { top: 56, right: BASE_PAD.right, bottom: 62, left: BASE_PAD.left }
     : { ...BASE_PAD };
   const innerW = width - PAD.left - PAD.right;
   const innerH = height - PAD.top - PAD.bottom;

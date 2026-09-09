@@ -1,5 +1,5 @@
 import { fetchJSON, formatUpdated, revealPage } from "./config.js";
-import { chartTitleHead, drawStreamerChart } from "./streamer-chart.js?v=2";
+import { chartPageShell, drawStreamerChart } from "./streamer-chart.js?v=3";
 
 export async function mountKStreamersPage() {
   const root = document.getElementById("k-streamers");
@@ -13,14 +13,12 @@ export async function mountKStreamersPage() {
     return;
   }
 
-  root.innerHTML = `
-    <div class="def-chart-head">
-      ${chartTitleHead(`Week ${data.week} Fantasy Kickers`, data, formatUpdated)}
-    </div>
-    <div class="def-chart-wrap">
-      <svg class="def-chart" role="img" aria-label="Kicker streamer scatter chart"></svg>
-    </div>
-  `;
+  root.innerHTML = chartPageShell(
+    `Week ${data.week} Fantasy Kickers`,
+    data,
+    formatUpdated,
+    "Kicker streamer scatter chart"
+  );
 
   const svg = root.querySelector(".def-chart");
   const draw = () =>

@@ -1,5 +1,5 @@
 import { fetchJSON, formatUpdated, revealPage } from "./config.js";
-import { chartTitleHead, drawStreamerChart } from "./streamer-chart.js?v=2";
+import { chartPageShell, drawStreamerChart } from "./streamer-chart.js?v=3";
 
 function pct(rate) {
   return `${(rate * 100).toFixed(0)}%`;
@@ -21,14 +21,12 @@ export async function mountDefStreamersPage() {
     return;
   }
 
-  root.innerHTML = `
-    <div class="def-chart-head">
-      ${chartTitleHead(`Week ${data.week} Fantasy Defenses`, data, formatUpdated)}
-    </div>
-    <div class="def-chart-wrap">
-      <svg class="def-chart" role="img" aria-label="Defense streamer scatter chart"></svg>
-    </div>
-  `;
+  root.innerHTML = chartPageShell(
+    `Week ${data.week} Fantasy Defenses`,
+    data,
+    formatUpdated,
+    "Defense streamer scatter chart"
+  );
 
   const svg = root.querySelector(".def-chart");
   const draw = () =>
