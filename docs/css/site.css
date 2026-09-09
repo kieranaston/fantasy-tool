@@ -733,13 +733,14 @@ table.draft-table > thead > tr > th {
 
 .draft-players-toolbar {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem 0.65rem;
   margin: 0 0 0.5rem;
   padding-top: 0.45rem;
   border-top: 1px solid var(--border);
   flex: 0 0 auto;
+  min-width: 0;
 }
 
 .draft-players-toolbar .draft-filter {
@@ -748,17 +749,20 @@ table.draft-table > thead > tr > th {
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
+  flex: 0 0 auto;
+  max-width: 100%;
 }
 
 .draft-players-toolbar .draft-filter select {
   height: var(--control-h);
+  max-width: 100%;
 }
 
 .draft-players-toolbar input[type="search"] {
-  width: auto;
-  max-width: none;
-  flex: 1 1 auto;
-  min-width: 5rem;
+  width: 0;
+  max-width: 100%;
+  flex: 1 1 8rem;
+  min-width: 0;
   font-family: inherit;
   font-size: 0.875rem;
   height: var(--control-h);
