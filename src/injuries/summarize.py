@@ -1,4 +1,4 @@
-"""Gemini grounded extraction (Step A) and narrative summaries (Step B)."""
+"""Gemini one-liner blurbs for player news cards."""
 
 from __future__ import annotations
 
@@ -10,76 +10,24 @@ from typing import Any
 
 from src.injuries.validate import EMOJI_RE
 
-EXTRACT_SYSTEM = (
-    "Extract only what is explicitly stated. No inference. No medical opinion."
-)
-
-BLUESKY_BATCH_INSTRUCTION = (
-    "These posts are from RotoWire's curated NFL news account. Treat every "
-    "post as useful fantasy-player news — do not drop posts for relevance. "
-    "For each post, extract one item per named player mentioned: "
-    "player_name, designation, date, direct_quote, post_url. "
-    "designation should be a short phrase from the post (e.g. PUP, cleared, "
-    "full practice, season-ending IR, signed, released, traded, expanded role) "
-    "— never only a team name. "
-    "direct_quote must be copied verbatim from the post text. "
-    "If no player can be confidently identified, return player_name as null "
-    "and set needs_review to true. "
-    "Return items for every post in the batch (one or more per post)."
-)
-
-NARRATIVE_SYSTEM = (
-    "You write short, source-faithful fantasy-football player-news notes "
-    "as bullet points.\n"
-    "Rules:\n"
-    "- Output ONLY a bullet list. Each line starts with '- '.\n"
-    "- One bullet per distinct fact from the source posts. Newest first.\n"
-    "- Stay close to the posts: paraphrase tightly; do not stitch a narrative "
-    "or add interpretation, medical opinion, or 'expected to' guesses.\n"
-    "- Skip fluff, hashtags, emojis, ALL-CAPS banners, and social formatting.\n"
-    "- Keep each bullet to one short clause. 2–5 bullets typical; never more "
-    "than 6. Drop older posts that add nothing new.\n"
-    "- Include a date in a bullet only when the post states one "
-    "(use July 24th style, not July 24).\n"
-    "- Do not use Google Search. Do not invent facts.\n"
-    "- Expand acronyms on first use only, briefly:\n"
-    "  • OTAs = Organized Team Activities (voluntary).\n"
-    "  • PUP = Physically Unable to Perform (no practice; typically out ≥4 weeks "
-    "until activated).\n"
-    "  • NFI = Non-Football Injury (similar to PUP).\n"
-    "  • IR = Injured Reserve (typically out ≥4 games).\n"
-    "  • DNP = Did Not Practice.\n"
-    "- Do not write placeholders like 'N ago', 'None', or 'null'."
-)
-
 DEFAULT_MODEL = "gemini-2.5-flash-lite"
 
-BLUESKY_ITEM_SCHEMA: dict[str, Any] = {
-    "type": "object",
-    "properties": {
-        "player_name": {"type": "string", "nullable": True},
-        "designation": {"type": "string"},
-        "date": {"type": "string"},
-        "direct_quote": {"type": "string"},
-        "post_url": {"type": "string"},
-        "needs_review": {"type": "boolean"},
-    },
-    "required": [
-        "designation",
-        "date",
-        "direct_quote",
-        "post_url",
-        "needs_review",
-    ],
-}
-
-BLUESKY_BATCH_SCHEMA: dict[str, Any] = {
-    "type": "object",
-    "properties": {
-        "items": {"type": "array", "items": BLUESKY_ITEM_SCHEMA},
-    },
-    "required": ["items"],
-}
+ONELINER_SYSTEM = (
+    "You write one-line fantasy-football player-news blurbs for a card UI.\n"
+    "Rules:\n"
+    "- Output exactly one short sentence or clause (aim ≤140 characters).\n"
+    "- Do NOT include the player's name, initials, or 'Player X' — the name is "
+    "already shown above the blurb.\n"
+    "- Prefer he/she/they, a role ('the WR'), or an implied subject "
+    "('Limited Wednesday; questionable for Sunday.').\n"
+    "- Stay faithful to the source posts: paraphrase tightly; no medical "
+    "opinion, no 'expected to' guesses, no invented facts.\n"
+    "- Emphasize the newest material; older posts only if still relevant.\n"
+    "- No bullets, emoji, hashtags, URLs, or ALL-CAPS banners.\n"
+    "- Expand acronyms briefly on first use when helpful:\n"
+    "  PUP, NFI, IR, DNP, OTAs.\n"
+    "- Do not write placeholders like 'None' or 'null'."
+)
 
 NARRATIVE_SCHEMA: dict[str, Any] = {
     "type": "object",
@@ -104,6 +52,9 @@ BATCH_NARRATIVE_SCHEMA: dict[str, Any] = {
     },
     "required": ["results"],
 }
+
+SUMMARY_METHOD = "gemini_oneliner"
+_URL_RE = re.compile(r"https?://\S+")
 
 
 def gemini_available() -> bool:
@@ -137,7 +88,6 @@ def _generate_json(
     user: str,
     schema: dict[str, Any],
     retries: int = 4,
-    use_search: bool = False,
 ) -> dict[str, Any] | list[Any]:
     from google.genai import types
 
@@ -145,31 +95,16 @@ def _generate_json(
     last_error: Exception | None = None
     for attempt in range(retries):
         try:
-            if use_search:
-                response = client.models.generate_content(
-                    model=_model_name(),
-                    contents=(
-                        user
-                        + "\n\nRespond with ONLY valid JSON matching this schema:\n"
-                        + json.dumps(schema)
-                    ),
-                    config=types.GenerateContentConfig(
-                        system_instruction=system,
-                        temperature=0.2,
-                        tools=[types.Tool(google_search=types.GoogleSearch())],
-                    ),
-                )
-            else:
-                response = client.models.generate_content(
-                    model=_model_name(),
-                    contents=user,
-                    config=types.GenerateContentConfig(
-                        system_instruction=system,
-                        response_mime_type="application/json",
-                        response_schema=schema,
-                        temperature=0.2,
-                    ),
-                )
+            response = client.models.generate_content(
+                model=_model_name(),
+                contents=user,
+                config=types.GenerateContentConfig(
+                    system_instruction=system,
+                    response_mime_type="application/json",
+                    response_schema=schema,
+                    temperature=0.2,
+                ),
+            )
             text = (response.text or "").strip()
             if not text:
                 raise RuntimeError("Gemini returned empty response")
@@ -191,7 +126,6 @@ def _generate_json(
                 break
             delay = 2 ** attempt
             if "429" in message or "RESOURCE_EXHAUSTED" in message:
-                # Free tier is often ~10 RPM; honor RetryInfo when present.
                 match = re.search(r"Please retry in ([0-9.]+)s", message)
                 if match:
                     delay = max(delay, float(match.group(1)) + 1.0)
@@ -202,100 +136,123 @@ def _generate_json(
     raise last_error
 
 
-def extract_bluesky_batch(posts: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Step A: extract player/designation fields from a RotoWire Bluesky batch."""
-    if not posts:
-        return []
-    payload = [
-        {
-            "post_url": p.get("url"),
-            "created_at": p.get("created_at"),
-            "text": p.get("text"),
-        }
-        for p in posts
-    ]
-    result = _generate_json(
-        system=EXTRACT_SYSTEM,
-        user=f"{BLUESKY_BATCH_INSTRUCTION}\n\nPosts JSON:\n{json.dumps(payload, indent=2)}",
-        schema=BLUESKY_BATCH_SCHEMA,
-    )
-    assert isinstance(result, dict)
-    return list(result.get("items") or [])
-
-
-def normalize_summary(summary: str) -> str:
-    """Strip leftover social formatting from a model summary."""
-    text = (summary or "").strip()
-    if not text:
-        return text
-    text = EMOJI_RE.sub("", text)
-    text = re.sub(
-        r"^(?:N|\d+)\s*ago:\s*(?:None|null|n/a)?\s*\.?\s*Now:\s*",
-        "",
-        text,
-        flags=re.IGNORECASE,
-    )
-    text = re.sub(r"[ \t]+\n", "\n", text)
-    text = re.sub(r"\n{3,}", "\n\n", text)
-    text = re.sub(r" {2,}", " ", text)
-    return text.strip()
-
-
 def _timeline_payload(reports: list[dict[str, Any]]) -> list[dict[str, str]]:
-    ordered = sorted(reports, key=lambda r: r.get("timestamp") or "")
+    ordered = sorted(reports, key=lambda r: r.get("timestamp") or "", reverse=True)
     payload: list[dict[str, str]] = []
-    for r in ordered:
-        text = (r.get("source_text") or "").strip()
+    for r in ordered[:12]:
+        text = _URL_RE.sub("", (r.get("source_text") or "").strip()).strip()
         if not text:
             continue
         payload.append(
             {
                 "date": r.get("timestamp") or "",
-                "url": r.get("url") or "",
-                "text": text,
+                "text": text[:400],
             }
         )
     return payload
 
 
-def build_player_narrative(
+def strip_leading_player_name(summary: str, player_name: str | None) -> str:
+    """Remove a leading 'Name:' / 'Name ' so the UI name isn't repeated."""
+    text = (summary or "").strip()
+    if not text or not player_name:
+        return text
+    name = player_name.strip()
+    if not name:
+        return text
+    candidates = [name]
+    parts = name.split()
+    if len(parts) >= 2:
+        candidates.append(parts[-1])
+    for candidate in candidates:
+        pattern = re.compile(
+            rf"^\s*{re.escape(candidate)}\s*[:\-–—,]?\s+",
+            re.IGNORECASE,
+        )
+        updated = pattern.sub("", text, count=1)
+        if updated != text:
+            return updated.strip()
+    return text
+
+
+def normalize_oneliner(summary: str, player_name: str | None = None) -> str:
+    """Clean model/fallback text into a single blurb line."""
+    text = (summary or "").strip()
+    if not text:
+        return text
+    text = EMOJI_RE.sub("", text)
+    text = re.sub(r"^[-*•]\s+", "", text)
+    text = re.sub(r"\s*\n\s*", " ", text)
+    text = re.sub(r"\s{2,}", " ", text).strip()
+    text = strip_leading_player_name(text, player_name)
+    if len(text) > 180:
+        cut = text[:177].rsplit(" ", 1)[0].rstrip(" ,;:")
+        text = f"{cut}…" if cut else text[:180]
+    return text.strip()
+
+
+def fallback_oneliner(
+    *,
+    player_name: str | None,
+    reports: list[dict[str, Any]],
+) -> str:
+    """Deterministic blurb from the newest post when Gemini is unavailable."""
+    if not reports:
+        return ""
+    newest = max(reports, key=lambda r: r.get("timestamp") or "")
+    text = _URL_RE.sub("", (newest.get("source_text") or "").strip()).strip()
+    if not text:
+        designation = (newest.get("designation") or "").strip()
+        return normalize_oneliner(designation, player_name)
+    if ":" in text.split("\n", 1)[0]:
+        head, _, body = text.partition(":")
+        body = body.strip().split("\n")[0].strip(" -–—")
+        last = (player_name or "").split()[-1].lower() if player_name else ""
+        if body and (
+            not player_name
+            or player_name.lower() in head.lower()
+            or (last and len(last) >= 3 and last in head.lower())
+        ):
+            return normalize_oneliner(body, player_name)
+    return normalize_oneliner(text.split("\n")[0], player_name)
+
+
+def build_player_oneliner(
     *,
     player_id: str,
     player_name: str | None,
     reports: list[dict[str, Any]],
 ) -> str:
-    """Step B: multi-source narrative via Gemini (+ Google Search when needed)."""
+    """Gemini one-liner for a single player's recent posts."""
     timeline = _timeline_payload(reports)
     if not timeline:
         return ""
 
     user = (
-        f"Player: {player_name or player_id}\n\n"
-        f"Source posts (chronological):\n{json.dumps(timeline, indent=2)}\n\n"
-        "Write a bullet-list player-news note as JSON field summary. "
-        "Each line starts with '- '. Facts only from these posts."
+        f"Player (do not repeat this name in the blurb): {player_name or player_id}\n\n"
+        f"Source posts (newest first):\n{json.dumps(timeline, indent=2)}\n\n"
+        "Write one JSON field summary with the one-line blurb."
     )
     result = _generate_json(
-        system=NARRATIVE_SYSTEM,
+        system=ONELINER_SYSTEM,
         user=user,
         schema=NARRATIVE_SCHEMA,
-        use_search=False,
     )
     assert isinstance(result, dict)
-    return normalize_summary(str(result.get("summary") or "").strip())
+    return normalize_oneliner(str(result.get("summary") or ""), player_name)
 
 
-def build_narratives_batch(
+def build_oneliners_batch(
     items: list[dict[str, Any]],
 ) -> dict[str, str]:
-    """Step B for multiple players. Each item: {player_id, player_name, reports}."""
+    """One-liners for multiple players. Each item: player_id, player_name, reports."""
     if not items:
         return {}
 
     if len(items) == 1:
         only = items[0]
         return {
-            only["player_id"]: build_player_narrative(
+            only["player_id"]: build_player_oneliner(
                 player_id=only["player_id"],
                 player_name=only.get("player_name"),
                 reports=only.get("reports") or [],
@@ -309,23 +266,29 @@ def build_narratives_batch(
             "sources": _timeline_payload(item.get("reports") or []),
         }
         for item in items
+        if item.get("reports")
     ]
+    if not payload:
+        return {}
+
     user = (
-        "For each player, write a bullet-list player-news note "
-        "(each line starts with '- '; facts only from that player's posts; "
-        "newest first; 2–5 bullets).\n\n"
+        "For each player, write one short blurb in JSON results[].summary. "
+        "Do not include the player's name in the blurb.\n\n"
         f"{json.dumps(payload, indent=2)}"
     )
     result = _generate_json(
-        system=NARRATIVE_SYSTEM,
+        system=ONELINER_SYSTEM,
         user=user,
         schema=BATCH_NARRATIVE_SCHEMA,
-        use_search=False,
     )
     assert isinstance(result, dict)
     out: dict[str, str] = {}
+    name_by_id = {item["player_id"]: item.get("player_name") for item in items}
     for row in result.get("results") or []:
         pid = row.get("player_id")
         if pid:
-            out[str(pid)] = normalize_summary(str(row.get("summary") or "").strip())
+            out[str(pid)] = normalize_oneliner(
+                str(row.get("summary") or ""),
+                name_by_id.get(str(pid)),
+            )
     return out

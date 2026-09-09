@@ -84,16 +84,36 @@ function sourcesHtml(timeline) {
     </ol>`;
 }
 
-/** Card body: only the newest post text. */
-function latestPostHtml(player) {
+/** Card body: Gemini one-liner (fallback: newest post without the name). */
+function summaryHtml(player) {
+  const summary = String(player.summary || "").trim();
+  if (summary) {
+    return `<p class="injury-blurb">${escapeHtml(summary)}</p>`;
+  }
   const timeline = player.timeline || [];
   const newest = timeline[0];
   const raw = String((newest && newest.source_text) || "").trim();
-  const text = stripUrls(raw).replace(/\n{2,}/g, "\n").trim();
+  let text = stripUrls(raw).replace(/\n{2,}/g, "\n").trim();
   if (!text) return `<p class="injury-blurb muted">No recent post yet.</p>`;
-  return `<div class="injury-blurb injury-latest-post"><p class="timeline-text">${escapeHtml(
-    text
-  )}</p></div>`;
+  const name = String(player.player_name || "").trim();
+  if (name) {
+    const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const nameRe = new RegExp(
+      `^\\s*${escapeRegExp(name)}\\s*[:\\-–—,]?\\s*`,
+      "i"
+    );
+    text = text.replace(nameRe, "").trim();
+    const last = name.split(/\s+/).pop();
+    if (last && last.length >= 3) {
+      const lastRe = new RegExp(
+        `^\\s*${escapeRegExp(last)}\\s*[:\\-–—,]?\\s*`,
+        "i"
+      );
+      text = text.replace(lastRe, "").trim();
+    }
+  }
+  if (!text) text = stripUrls(raw).trim();
+  return `<p class="injury-blurb">${escapeHtml(text)}</p>`;
 }
 
 function playerCard(player, maxAgeDays) {
@@ -115,7 +135,7 @@ function playerCard(player, maxAgeDays) {
           </div>
           <span class="injury-card-meta">${updateTag}</span>
         </div>
-        ${latestPostHtml(player)}
+        ${summaryHtml(player)}
       </div>
       <button type="button" class="injury-card-header" aria-expanded="false">
         <span class="sources-toggle-label">Sources (${sourceCount})</span>
@@ -153,7 +173,7 @@ function isFreshPlayer(player, maxAgeDays) {
 function matchesNewsQuery(player, query) {
   if (!query) return true;
   const newest = (player.timeline || [])[0];
-  const haystack = [player.player_name, player.team, newest?.source_text]
+  const haystack = [player.player_name, player.team, player.summary, newest?.source_text]
     .map((v) => String(v || "").toLowerCase())
     .join(" ");
   return haystack.includes(query);
@@ -316,6 +336,8 @@ function mergeLivePosts(players, livePosts, teamIndex) {
 
     player.timeline.unshift(item);
     player.last_updated = post.timestamp || player.last_updated;
+    // Wait for the next pipeline run for a fresh Gemini one-liner.
+    player.summary = null;
     added += 1;
   }
 

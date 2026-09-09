@@ -12,8 +12,7 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    # Caps in run_injuries keep Bluesky LLM matching small; this is a hard
-    # stop if the API stalls so the job cannot sit for hours.
+    # Caps in run_injuries keep Gemini one-liners small; hard stop if APIs stall.
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
@@ -29,6 +28,7 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: ${{ vars.GEMINI_MODEL }}
+          MAX_NARRATIVE_PLAYERS: ${{ vars.MAX_NARRATIVE_PLAYERS }}
         run: python -m src.run_injuries
 
       - name: Commit updated injury data

@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from typing import Any
 
+from src.injuries.summarize import SUMMARY_METHOD
+
 
 def group_reports_by_player(
     reports: list[dict[str, Any]],
@@ -39,9 +41,8 @@ def detect_changes(
     """Return players that need a (re)summary.
 
     Triggers when there is no status yet, the newest matched report differs
-    from stored ``last_report_*``, or a status is marked ``summary_fallback``
-    (quota/plain fill) so Gemini can replace it on a later run. An empty
-    ``last_diff_summary`` alone does **not** re-queue the whole pool.
+    from stored ``last_report_*``, the row is a quota/fallback fill, or the
+    stored blurb is not yet a Gemini one-liner (``summary_method``).
     """
     grouped = by_player
     if grouped is None:
@@ -67,16 +68,21 @@ def detect_changes(
                 (last_url and report_url and last_url == report_url)
                 or (last_id and report_id and last_id == report_id)
             )
-            if same_report and has_summary and not stored.get("summary_fallback"):
-                continue
-            # Empty summary alone is not enough to re-run Gemini unless this
-            # row was marked a quota/fallback fill. Prevents a wipe of
-            # last_diff_summary from regenerating the whole pool.
-            if same_report and not has_summary and not stored.get(
-                "summary_fallback"
+            needs_gemini = (
+                stored.get("summary_fallback")
+                or stored.get("summary_method") != SUMMARY_METHOD
+            )
+            if (
+                same_report
+                and has_summary
+                and not needs_gemini
             ):
                 continue
-            if not last_url and not last_id and has_summary:
+            # Empty summary alone is not enough to re-run Gemini unless this
+            # row was marked a quota/fallback fill or still needs a one-liner.
+            if same_report and not has_summary and not needs_gemini:
+                continue
+            if not last_url and not last_id and has_summary and not needs_gemini:
                 if (report.get("timestamp") or "") <= (
                     stored.get("last_updated") or ""
                 ):

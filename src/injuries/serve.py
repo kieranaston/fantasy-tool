@@ -8,16 +8,17 @@ from typing import Any
 from src.injuries.calendar import parse_iso_datetime
 from src.injuries.detect import group_reports_by_player
 
-# Drop players whose newest post/status is older than this.
+# Drop a player only when their *newest* update is older than this.
+# Older timeline rows for still-fresh players are kept (up to TIMELINE_LIMIT).
 NEWS_MAX_AGE = timedelta(days=28)
-# Cap published source history — UI only expands on demand.
+# Max source rows published per player (newest first). Not an age filter.
 TIMELINE_LIMIT = 20
-# Card blurb only needs the start of the newest post; full text stays in pipeline.
+# Card blurb / source preview length; full text stays in pipeline state.
 TIMELINE_TEXT_MAX = 280
 
 
 def _player_is_fresh(player: dict[str, Any], *, cutoff: datetime) -> bool:
-    """Keep players whose most recent update is on/after cutoff."""
+    """True when the player's most recent update is on/after cutoff."""
     ts = parse_iso_datetime(player.get("last_updated"))
     if ts is None:
         timeline = player.get("timeline") or []
@@ -67,6 +68,7 @@ def build_summaries(
     for pid, timeline in grouped.items():
         if timeline:
             name_by_player[pid] = timeline[0].get("player_name")
+        # Keep history for active players; only cap count (not age per row).
         by_player[pid] = [
             _timeline_item(report) for report in timeline[:TIMELINE_LIMIT]
         ]
@@ -84,7 +86,8 @@ def build_summaries(
         if allowed_player_ids is not None and player_id not in allowed_player_ids:
             continue
         timeline = by_player.get(player_id, [])
-        if not timeline and not status.get("last_diff_summary"):
+        summary = (status.get("last_diff_summary") or "").strip()
+        if not timeline and not summary:
             continue
         players.append(
             {
@@ -92,6 +95,7 @@ def build_summaries(
                 "player_name": status.get("player_name")
                 or name_by_player.get(player_id),
                 "last_updated": status.get("last_updated"),
+                "summary": summary or None,
                 "timeline": timeline,
                 **team_field(player_id, status.get("team")),
             }
@@ -107,6 +111,7 @@ def build_summaries(
                 "player_id": player_id,
                 "player_name": name_by_player.get(player_id),
                 "last_updated": newest.get("timestamp"),
+                "summary": None,
                 "timeline": timeline,
                 **team_field(player_id, None),
             }
