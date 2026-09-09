@@ -5,23 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light" />
     <title>ADP Board</title>
-    <link rel="stylesheet" href="../css/site.css?v=76" />
+    <link rel="stylesheet" href="../css/site.css?v=92" />
   </head>
   <body>
     <nav class="site-nav" aria-label="Primary">
       <a href="../index.html" class="site-brand">FFB Reference</a>
       <div class="site-nav-links">
         <a href="../index.html">News</a>
+        <a href="def.html">DEF</a>
+        <a href="kickers.html">Kickers</a>
+        <a href="qb.html">QBs</a>
+        <a href="rb.html">RBs</a>
+        <a href="wr.html">WRs</a>
         <a href="adp.html" class="is-active" aria-current="page">ADP</a>
         <a href="draft.html">Draft</a>
       </div>
     </nav>
     <main class="site-main">
       <div class="container">
-        <div class="page-head">
-          <div id="sync-bar" class="sync-bar" hidden></div>
-        </div>
-
         <div class="adp-toolbar">
           <div class="toolbar-group toolbar-group--labeled" role="group" aria-label="Scoring format">
             <span class="toolbar-label">Format</span>
@@ -63,7 +64,7 @@
     <script type="module" src="../js/site-boot.js?v=15"></script>
     <script type="module">
       import { mountPage } from "../js/config.js?v=16";
-      import { mountAdpBoardPage } from "../js/adp-board.js?v=21";
+      import { mountAdpBoardPage } from "../js/adp-board.js?v=22";
       mountPage(mountAdpBoardPage, "adp-board");
     </script>
   </body>

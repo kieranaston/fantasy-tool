@@ -13,7 +13,7 @@ import {
   playerAdpForFormat,
   formatAdpRoundPick,
 } from "./draft-scoring.js";
-import { createFavourites } from "./draft-liked.js?v=4";
+import { createFavourites } from "./draft-liked.js?v=5";
 import {
   ensureTableBody,
   showTableMessage,
@@ -79,7 +79,6 @@ async function mountAdpBoardPage() {
   let searchTimer = null;
 
   const favs = createFavourites({
-    host: document.getElementById("sync-bar"),
     onChange: () => render(),
   });
 

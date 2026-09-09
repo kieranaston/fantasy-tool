@@ -1,7 +1,9 @@
-name: Refresh ADP
+name: Refresh streamers
 
 on:
-  # Season started — ADP board is draft-era; run manually if needed.
+  schedule:
+    # Tuesdays 15:00 UTC — lines usually settled after MNF
+    - cron: "0 15 * * 2"
   workflow_dispatch:
 
 permissions:
@@ -10,7 +12,7 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
 
@@ -21,20 +23,17 @@ jobs:
       - name: Install dependencies
         run: pip install .
 
-      - name: Verify ADP pipeline imports
-        run: python -c "from src.run_adp import main; from src.loaders.sleeper_adp import adp_merged_board"
+      - name: Build streamer boards (DEF, K, QB, RB, WR)
+        run: python -m src.run_streamers
 
-      - name: Refresh Sleeper ADP
-        run: python -m src.run_adp
-
-      - name: Commit updated ADP data
+      - name: Commit updated streamer data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/data/draft/
+          git add docs/data/streamers/
           if git diff --staged --quiet; then
-            echo "No ADP changes to commit."
+            echo "No streamer changes to commit."
           else
-            git commit -m "chore: refresh Sleeper ADP [skip ci]"
+            git commit -m "chore: refresh streamer boards [skip ci]"
             git push
           fi

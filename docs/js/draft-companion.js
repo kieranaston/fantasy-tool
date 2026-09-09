@@ -28,7 +28,7 @@ import {
   FORMAT_LABELS,
   normalizePos,
 } from "./draft-scoring.js?v=21";
-import { createFavourites } from "./draft-liked.js?v=4";
+import { createFavourites } from "./draft-liked.js?v=5";
 import {
   ensureTableBody,
   showTableMessage,
@@ -442,13 +442,6 @@ async function resolveDraftId(raw) {
   return String(drafts[0].draft_id);
 }
 
-function resolveLeagueIdInput(raw) {
-  const parsed = parseSleeperIdInput(raw, { prefer: "league" });
-  if (!parsed) return null;
-  if (parsed.type === "league" || parsed.type === "unknown") return parsed.id;
-  return null;
-}
-
 function leagueIdFromDraft(draft) {
   if (!draft) return null;
   if (draft.league_id) return String(draft.league_id);
@@ -633,7 +626,6 @@ async function mountDraftCompanionPage() {
   const connectBtn = document.getElementById("draft-connect");
   const refreshBtn = document.getElementById("draft-refresh");
   const draftInput = document.getElementById("draft-id-input");
-  const leagueInput = document.getElementById("draft-league-input");
   const seatSelect = document.getElementById("draft-seat");
   const rootEl = document.querySelector(".container") || document.body;
 
@@ -642,8 +634,6 @@ async function mountDraftCompanionPage() {
   let boardById = new Map();
   let fpRankById = new Map();
   let scoringFormat = resolveScoringFormat();
-  /** Active league for slots (entered league ID or draft-linked league). */
-  let configuredLeague = null;
   const adpBoardCache = new Map();
   let sortBy = readStoredSortBy();
   if (sortSelect) sortSelect.value = sortBy;
@@ -671,7 +661,6 @@ async function mountDraftCompanionPage() {
   let lastRosterRenderKey = "";
 
   const favs = createFavourites({
-    host: document.getElementById("sync-bar"),
     onChange: () => {
       if (lastScoreResult) renderRecommendationsFromCache();
       renderSearchResults();
@@ -905,18 +894,13 @@ async function mountDraftCompanionPage() {
     return list.slice(0, SCORE_LIMIT);
   }
 
-  /** Prefer user/configured league over the draft's linked league (roster slots). */
+  /** League linked to the connected draft (roster slots + scoring). */
   function leagueForSettings() {
-    return configuredLeague || league;
+    return league;
   }
 
-  /**
-   * Scoring/ADP must match the connected draft's league when available.
-   * A typed League ID can differ and must not override draft ADP format.
-   */
   function leagueForScoring() {
-    if (draft && league) return league;
-    return configuredLeague || league;
+    return league;
   }
 
   function refreshLeagueSummary() {
@@ -987,7 +971,7 @@ async function mountDraftCompanionPage() {
       last_updated: meta.last_updated || null,
       label: formatLabel,
       board_source: meta.source || "sleeper_adp",
-      league_id: meta.league_id || configuredLeague?.league_id || null,
+      league_id: meta.league_id || league?.league_id || null,
     };
     refreshHeader();
   }
@@ -1032,34 +1016,9 @@ async function mountDraftCompanionPage() {
     applyBoardPlayers(players, formatInfo || scoringFormat, {
       source: data.source || "sleeper_adp",
       format: formatKey,
-      league_id:
-        leagueForScoring()?.league_id ||
-        configuredLeague?.league_id ||
-        null,
+      league_id: leagueForScoring()?.league_id || league?.league_id || null,
       last_updated: data.last_updated || null,
     });
-  }
-
-  /**
-   * Load slots from the league ID field (else draft-linked league / defaults).
-   */
-  async function loadConfiguredLeague({ required = false } = {}) {
-    const raw = leagueInput?.value?.trim() || "";
-    const leagueId = resolveLeagueIdInput(raw);
-    if (leagueId) {
-      try {
-        configuredLeague = await fetchLeagueById(leagueId);
-        return configuredLeague;
-      } catch (err) {
-        if (required) throw new Error(`League lookup failed: ${err.message}`);
-        setStatus(`League lookup failed (${err.message}); using defaults`);
-      }
-    }
-    configuredLeague = null;
-    if (required) {
-      throw new Error("Enter a Sleeper league ID for roster settings");
-    }
-    return configuredLeague;
   }
 
   function enrichRoster(roster = []) {
@@ -1129,13 +1088,7 @@ async function mountDraftCompanionPage() {
   }
 
   function activeLeagueId() {
-    return (
-      leagueIdFromDraft(draft) ||
-      resolveLeagueIdInput(leagueInput?.value || "") ||
-      league?.league_id ||
-      configuredLeague?.league_id ||
-      null
-    );
+    return leagueIdFromDraft(draft) || league?.league_id || null;
   }
 
   async function loadLeagueRosters() {
@@ -1608,7 +1561,6 @@ async function mountDraftCompanionPage() {
     lastMyRosterFp = "";
     lastRosterRenderKey = "";
 
-    await loadConfiguredLeague({ required: false });
     if (!draftInput?.value?.trim()) {
       throw new Error("Enter a Sleeper draft id or draft URL");
     }
@@ -1619,9 +1571,6 @@ async function mountDraftCompanionPage() {
     ]);
     draft = draftData;
     league = await fetchLeagueForDraft(draft);
-    if (!resolveLeagueIdInput(leagueInput?.value || "") && league) {
-      configuredLeague = league;
-    }
     refreshLeagueSettings();
 
     await Promise.all([
@@ -1691,27 +1640,11 @@ async function mountDraftCompanionPage() {
     queueScoreRender({ force: true });
   });
 
-  leagueInput?.addEventListener("change", () => {
-    loadConfiguredLeague({ required: false })
-      .then(() => {
-        refreshLeagueSettings();
-        return loadFpRankings().then(() => loadAdpBoard(scoringFormat));
-      })
-      .then(() => {
-        refreshHeader();
-        if (draftId) queueScoreRender({ force: true });
-        else renderSearchResults();
-      })
-      .catch((err) => setStatus(err.message));
-  });
-
   try {
     await favs.hydrate();
 
-    if (leagueInput) leagueInput.value = "";
     if (draftInput) draftInput.value = "";
 
-    await loadConfiguredLeague({ required: false });
     refreshLeagueSettings();
     await loadFpRankings();
     await loadAdpBoard(scoringFormat);
