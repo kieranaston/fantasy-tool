@@ -3,7 +3,7 @@
 Personal fantasy football reference site (GitHub Pages in `/docs`).
 
 **News** — RotoWire Bluesky posts matched to Sleeper players, with short Gemini blurbs.  
-**Streamers** — DEF / K / QB / RB / WR / TE matchup charts. Inclusion is top Sleeper half-PPR projections (QB·TE 16, RB·WR 24, DEF·K 12); axes use nflverse stats + Vegas lines.  
+**Streamers** — DEF / K / QB / RB / WR / TE matchup charts. Inclusion is top Sleeper half-PPR projections (QB·TE 18, RB·WR 30, DEF·K 14); axes use nflverse stats + Vegas lines.  
 **ADP / Draft** — Sleeper ADP board and live draft assistant (VORP↔ADP blend, optional FantasyPros ECR sort).
 
 ```

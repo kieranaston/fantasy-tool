@@ -57,7 +57,7 @@ def build_skill_matchup_board(
     position = position.upper()
     allowed_key = f"{position.lower()}_half_ppr_allowed"
     if max_players is None:
-        max_players = STREAMER_PROJ_LIMITS.get(position, 24)
+        max_players = STREAMER_PROJ_LIMITS.get(position, 30)
 
     if season is None:
         season = draft_season_from_sleeper_state()

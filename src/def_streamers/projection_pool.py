@@ -14,12 +14,12 @@ from src.loaders.sleeper_adp import (
 
 # Chart inclusion caps by Sleeper half-PPR projected points.
 STREAMER_PROJ_LIMITS = {
-    "QB": 16,
-    "RB": 24,
-    "WR": 24,
-    "TE": 16,
-    "DEF": 12,
-    "K": 12,
+    "QB": 18,
+    "RB": 30,
+    "WR": 30,
+    "TE": 18,
+    "DEF": 14,
+    "K": 14,
 }
 
 # Sleeper / ESPN / nflverse team code aliases → nflverse schedule codes.

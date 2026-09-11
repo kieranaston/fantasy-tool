@@ -102,7 +102,7 @@ def test_build_def_board_from_fixtures() -> None:
     assert board["week"] == 1
     assert board["sack_season"] == 2025
     assert board["sack_window_games"] == 17
-    assert board["proj_limit"] == 12
+    assert board["proj_limit"] == 14
     assert len(board["teams"]) == 2
     sea = next(t for t in board["teams"] if t["team"] == "SEA")
     assert sea["matchup_label"] == "vs NE"
@@ -198,7 +198,7 @@ def test_build_k_board_uses_own_team_total() -> None:
     )
     assert board["fg_season"] == 2025
     assert board["fg_window_games"] == 17
-    assert board["proj_limit"] == 12
+    assert board["proj_limit"] == 14
     sea = next(t for t in board["teams"] if t["team"] == "SEA")
     ne = next(t for t in board["teams"] if t["team"] == "NE")
     # Kickers use their own implied total (home 23.75 / away 20.75), not opponent.
@@ -305,7 +305,7 @@ def test_build_rb_board_sos_and_labels() -> None:
     assert row["sos_adj"] == 1.2
     assert row["avg_half_ppr"] == 12.5
     assert board["guides"]["avg_half_ppr"] == 10.0
-    assert board["proj_limit"] == 24
+    assert board["proj_limit"] == 30
 
 
 def test_skill_board_keeps_projected_players_only() -> None:
@@ -546,8 +546,8 @@ def test_build_qb_board_implied_and_rush() -> None:
     )
     assert board["position"] == "QB"
     assert board["rush_window_games"] == 8
-    assert board["proj_limit"] == 16
-    assert "Top 16 Sleeper projected QBs" in board["stats_note"]
+    assert board["proj_limit"] == 18
+    assert "Top 18 Sleeper projected QBs" in board["stats_note"]
     row = board["players"][0]
     assert row["last_name"] == "Darnold"
     assert row["implied_team_total"] == 23.75
