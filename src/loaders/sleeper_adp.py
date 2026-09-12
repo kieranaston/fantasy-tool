@@ -1,4 +1,4 @@
-"""Sleeper ADP helpers used to scope player-news to a draft-relevant pool.
+"""Sleeper ADP helpers.
 
 ADP is not a projection — Sleeper attaches draft ADP fields on the same
 player-season payload that also carries RotoWire projections.
@@ -6,8 +6,6 @@ player-season payload that also carries RotoWire projections.
 
 from __future__ import annotations
 
-import json
-from pathlib import Path
 from typing import Any
 
 import httpx
@@ -47,16 +45,6 @@ ADP_BOARD_POS_LIMITS = {
     "TE": 28,
     "DEF": 24,
     "K": 24,
-}
-
-# News-pool depth by position ADP rank.
-POSITION_LIMITS = {
-    "QB": 25,
-    "RB": 45,
-    "WR": 45,
-    "TE": 25,
-    "DEF": 32,
-    "K": 32,
 }
 
 # Sleeper uses ~999 as a sentinel for "no ADP".
@@ -266,86 +254,3 @@ def adp_merged_board(
                 out["pts"] = pts_out
         merged.append(out)
     return merged
-
-
-def _default_adp_dir() -> Path:
-    return Path(__file__).resolve().parents[2] / "docs" / "data" / "draft"
-
-
-def _load_published_boards(adp_dir: Path) -> dict[str, list[dict[str, Any]]] | None:
-    merged_path = adp_dir / "adp-board.json"
-    if merged_path.exists():
-        try:
-            payload = json.loads(merged_path.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
-            return None
-        rows = payload.get("players") if isinstance(payload, dict) else None
-        if not isinstance(rows, list):
-            return None
-        boards: dict[str, list[dict[str, Any]]] = {key: [] for key in FORMAT_KEYS}
-        for row in rows:
-            if not isinstance(row, dict):
-                continue
-            adp_map = row.get("adp") or {}
-            if not isinstance(adp_map, dict):
-                continue
-            base = {
-                "sleeper_id": row.get("sleeper_id"),
-                "player": row.get("player"),
-                "team": row.get("team"),
-                "position": row.get("position"),
-                "bye_week": row.get("bye_week"),
-            }
-            for format_key in FORMAT_KEYS:
-                adp = adp_map.get(format_key)
-                if adp is None:
-                    continue
-                boards[format_key].append({**base, "adp": adp})
-        for format_key in FORMAT_KEYS:
-            boards[format_key].sort(
-                key=lambda r: (float(r["adp"]), str(r.get("player") or ""))
-            )
-        return boards
-
-    return None
-
-
-def _position_pool_ids_from_board(
-    players: list[dict[str, Any]],
-) -> set[str]:
-    """Sleeper player IDs in the per-position ADP caps (board is ADP-sorted)."""
-    allowed: set[str] = set()
-    taken = {pos: 0 for pos in POSITION_LIMITS}
-    for row in players:
-        position = row.get("position")
-        limit = POSITION_LIMITS.get(position) if position else None
-        if limit is None or taken[position] >= limit:
-            continue
-        taken[position] += 1
-        sid = str(row.get("sleeper_id") or "").strip()
-        if sid:
-            allowed.add(sid)
-    return allowed
-
-
-def load_news_pool_ids(
-    *,
-    season: int | None = None,
-    adp_dir: Path | None = None,
-) -> set[str]:
-    """Sleeper player IDs in the ADP depth caps (overall union of position pools)."""
-    boards = _load_published_boards(adp_dir or _default_adp_dir())
-    if boards is None:
-        if season is None:
-            season = draft_season_from_sleeper_state()
-        raw = fetch_sleeper_projections(season=season, order_by="adp_ppr")
-        slim = normalize_adp_slim(raw)
-        boards = {
-            format_key: adp_board_for_format(slim, format_key=format_key)
-            for format_key in FORMAT_KEYS
-        }
-
-    ids: set[str] = set()
-    for players in boards.values():
-        ids |= _position_pool_ids_from_board(players)
-    return ids

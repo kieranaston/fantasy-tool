@@ -157,9 +157,6 @@ ENV/
 env.bak/
 venv.bak/
 
-# Pipeline-only Gemini review dump (local / CI; not published)
-data/injuries/review_queue.json
-
 # Leftover local FantasyPros CSV drops (unused)
 data/fantasypros/
 

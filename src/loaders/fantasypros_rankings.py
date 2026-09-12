@@ -10,7 +10,7 @@ from typing import Any
 
 from rapidfuzz import fuzz, process
 
-from src.injuries.match import MATCH_THRESHOLD, PlayerRef, PlayerTables, load_player_tables
+from src.loaders.sleeper_players import MATCH_THRESHOLD, PlayerRef, PlayerTables, load_player_tables
 
 _POS_DIGITS = re.compile(r"\d+$")
 _NAME_SUFFIX = re.compile(

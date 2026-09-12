@@ -4,14 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light" />
-    <title>Player News</title>
-    <link rel="stylesheet" href="css/site.css?v=93" />
+    <title>FFB Reference</title>
+    <link rel="stylesheet" href="css/site.css?v=94" />
   </head>
   <body>
     <nav class="site-nav" aria-label="Primary">
       <a href="index.html" class="site-brand">FFB Reference</a>
       <div class="site-nav-links">
-        <a href="index.html" class="is-active" aria-current="page">News</a>
         <a href="tables/def.html">DEF</a>
         <a href="tables/kickers.html">Kickers</a>
         <a href="tables/qb.html">QBs</a>
@@ -24,27 +23,47 @@
     </nav>
     <main class="site-main">
       <div class="container">
-        <div class="page-head">
-          <div class="news-search-row">
-            <label for="news-player-search" class="visually-hidden">Search</label>
-            <input
-              id="news-player-search"
-              type="search"
-              spellcheck="false"
-              autocomplete="off"
-              placeholder="search"
-            />
-          </div>
+        <div class="page-hero">
+          <h1 class="page-title">FFB Reference</h1>
+          <p class="page-subtitle">Personal fantasy football reference site.</p>
         </div>
-        <div id="injuries-container" class="injuries-list"></div>
+        <div class="home-link-grid">
+          <a href="tables/def.html" class="home-link-card">
+            <div class="home-link-card-title">DEF</div>
+            <div class="home-link-card-desc">Defense streamer matchups</div>
+          </a>
+          <a href="tables/kickers.html" class="home-link-card">
+            <div class="home-link-card-title">Kickers</div>
+            <div class="home-link-card-desc">Kicker streamer matchups</div>
+          </a>
+          <a href="tables/qb.html" class="home-link-card">
+            <div class="home-link-card-title">QBs</div>
+            <div class="home-link-card-desc">QB matchup chart</div>
+          </a>
+          <a href="tables/rb.html" class="home-link-card">
+            <div class="home-link-card-title">RBs</div>
+            <div class="home-link-card-desc">RB matchup chart</div>
+          </a>
+          <a href="tables/wr.html" class="home-link-card">
+            <div class="home-link-card-title">WRs</div>
+            <div class="home-link-card-desc">WR matchup chart</div>
+          </a>
+          <a href="tables/te.html" class="home-link-card">
+            <div class="home-link-card-title">TEs</div>
+            <div class="home-link-card-desc">TE matchup chart</div>
+          </a>
+          <a href="tables/adp.html" class="home-link-card">
+            <div class="home-link-card-title">ADP</div>
+            <div class="home-link-card-desc">Sleeper ADP board</div>
+          </a>
+          <a href="tables/draft.html" class="home-link-card">
+            <div class="home-link-card-title">Draft</div>
+            <div class="home-link-card-desc">Live draft assistant</div>
+          </a>
+        </div>
       </div>
     </main>
 
     <script type="module" src="./js/site-boot.js?v=15"></script>
-    <script type="module">
-      import { mountPage } from "./js/config.js?v=16";
-      import { mountInjuriesPage } from "./js/injuries.js?v=22";
-      mountPage(mountInjuriesPage, "injuries-container");
-    </script>
   </body>
 </html>

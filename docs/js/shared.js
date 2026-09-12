@@ -1,4 +1,4 @@
-/** Shared DOM / ID helpers for draft + ADP + news pages. */
+/** Shared DOM / ID helpers for draft + ADP pages. */
 
 function escapeHtml(value) {
   return String(value ?? "")
