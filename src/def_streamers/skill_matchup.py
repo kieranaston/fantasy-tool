@@ -79,6 +79,7 @@ def build_skill_matchup_board(
         )
     if player_avgs is None:
         # Relax thresholds so projected names still place early in the season.
+        # Exclude the slate week so same-week box scores cannot place rookies.
         player_avgs = position_avg_half_ppr(
             stat_seasons,
             position,
@@ -86,6 +87,8 @@ def build_skill_matchup_board(
             roster_teams=roster_teams,
             min_games=1,
             min_avg=0.0,
+            as_of_season=season,
+            as_of_week=week,
         )
     if defense_sos is None:
         defense_sos = defense_position_half_ppr_sos(stat_seasons, position)

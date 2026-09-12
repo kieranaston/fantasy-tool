@@ -331,6 +331,21 @@ def _load_reg_player_week_stats(
     )
 
 
+def _filter_before_slate(
+    df: pl.DataFrame,
+    *,
+    as_of_season: int | None,
+    as_of_week: int | None,
+) -> pl.DataFrame:
+    """Keep only games strictly before the chart slate (no same-week leakage)."""
+    if as_of_season is None or as_of_week is None:
+        return df
+    return df.filter(
+        (pl.col("season") < as_of_season)
+        | ((pl.col("season") == as_of_season) & (pl.col("week") < as_of_week))
+    )
+
+
 def position_avg_half_ppr(
     seasons: list[int],
     position: str,
@@ -339,10 +354,19 @@ def position_avg_half_ppr(
     min_games: int = 4,
     min_avg: float = 5.0,
     roster_teams: dict[str, str] | None = None,
+    as_of_season: int | None = None,
+    as_of_week: int | None = None,
     cache_dir: Path | None = None,
 ) -> list[dict[str, Any]]:
-    """Rolling half-PPR averages: last ``window`` games across ``seasons``."""
+    """Rolling half-PPR averages: last ``window`` games across ``seasons``.
+
+    When ``as_of_season``/``as_of_week`` are set, games from that slate onward
+    are excluded so a Week N chart never uses Week N (or later) box scores.
+    """
     df = _load_reg_player_week_stats(seasons, position=position, cache_dir=cache_dir)
+    df = _filter_before_slate(df, as_of_season=as_of_season, as_of_week=as_of_week)
+    if df.is_empty():
+        return []
     df = df.sort(["player_id", "season", "week", "game_id"])
 
     out: list[dict[str, Any]] = []
@@ -413,6 +437,8 @@ def rb_avg_half_ppr(
     min_games: int = 4,
     min_avg: float = 5.0,
     roster_teams: dict[str, str] | None = None,
+    as_of_season: int | None = None,
+    as_of_week: int | None = None,
     cache_dir: Path | None = None,
 ) -> list[dict[str, Any]]:
     """Rolling half-PPR averages for RBs."""
@@ -423,6 +449,8 @@ def rb_avg_half_ppr(
         min_games=min_games,
         min_avg=min_avg,
         roster_teams=roster_teams,
+        as_of_season=as_of_season,
+        as_of_week=as_of_week,
         cache_dir=cache_dir,
     )
 
@@ -444,6 +472,8 @@ def qb_rush_yards_per_game(
     roster_teams: dict[str, str] | None = None,
     depth_starters: dict[str, str] | None = None,
     starters_only: bool = True,
+    as_of_season: int | None = None,
+    as_of_week: int | None = None,
     cache_dir: Path | None = None,
 ) -> list[dict[str, Any]]:
     """Rolling QB rush yards/game (last ``window`` games across ``seasons``).
@@ -451,8 +481,13 @@ def qb_rush_yards_per_game(
     When ``starters_only`` is True (default), returns one starter per current
     team — prefers depth-chart QB1 when provided, otherwise most pass attempts
     in the window. When False, returns every QB meeting ``min_pass_attempts``.
+
+    ``as_of_season``/``as_of_week`` drop games from that slate onward.
     """
     df = _load_reg_player_week_stats(seasons, position="QB", cache_dir=cache_dir)
+    df = _filter_before_slate(df, as_of_season=as_of_season, as_of_week=as_of_week)
+    if df.is_empty():
+        return []
     df = df.with_columns(
         pl.col("attempts").fill_null(0),
         pl.col("rushing_yards").fill_null(0),

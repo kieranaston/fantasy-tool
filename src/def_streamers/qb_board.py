@@ -69,6 +69,8 @@ def build_qb_board(
             roster_teams=roster_teams,
             starters_only=False,
             min_pass_attempts=1,
+            as_of_season=season,
+            as_of_week=week,
         )
 
     # team -> (opponent, home?, matchup_label, implied_team_total)

@@ -54,6 +54,30 @@ def test_resolve_target_week_prefers_unfinished() -> None:
     assert resolve_target_week(games, 2026) == 2
 
 
+def test_filter_before_slate_excludes_target_week_and_later() -> None:
+    """Same-week box scores must not place players on that week's chart."""
+    import polars as pl
+
+    from src.loaders.nflverse import _filter_before_slate
+
+    df = pl.DataFrame(
+        {
+            "season": [2025, 2026, 2026, 2026],
+            "week": [17, 1, 2, 3],
+            "player_id": ["price", "price", "price", "price"],
+            "half_ppr": [0.0, 6.8, 8.0, 9.0],
+        }
+    )
+    # Week 1 chart: prior season only — a Week-1 debut has no usable history.
+    w1 = _filter_before_slate(df, as_of_season=2026, as_of_week=1)
+    assert w1.height == 1
+    assert w1["week"].to_list() == [17]
+
+    # Week 2 chart: Week 1 game is fair prior history.
+    w2 = _filter_before_slate(df, as_of_season=2026, as_of_week=2)
+    assert w2["week"].to_list() == [17, 1]
+
+
 def test_build_def_board_from_fixtures() -> None:
     games = [
         {

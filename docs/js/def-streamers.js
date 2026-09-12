@@ -1,5 +1,5 @@
 import { fetchJSON, formatUpdated, revealPage } from "./config.js";
-import { chartPageShell, drawStreamerChart } from "./streamer-chart.js?v=3";
+import { mountStreamerBoard } from "./streamer-chart.js?v=4";
 
 function pct(rate) {
   return `${(rate * 100).toFixed(0)}%`;
@@ -14,25 +14,17 @@ export async function mountDefStreamersPage() {
   if (!root) return;
 
   const data = await fetchJSON("streamers/def-board.json");
-  const teams = Array.isArray(data.teams) ? data.teams : [];
-  if (!teams.length) {
-    root.innerHTML = `<div class="error">No DEF matchups in board.</div>`;
-    revealPage();
-    return;
-  }
-
-  root.innerHTML = chartPageShell(
-    `Week ${data.week} Fantasy Defenses`,
+  mountStreamerBoard(root, {
+    title: `Week ${data.week} Fantasy Defenses`,
     data,
     formatUpdated,
-    "Defense streamer scatter chart"
-  );
-
-  const svg = root.querySelector(".def-chart");
-  const draw = () =>
-    drawStreamerChart(svg, data, {
+    ariaLabel: "Defense streamer scatter chart",
+    emptyMessage: "No DEF matchups in board.",
+    chartOpts: {
       xKey: "projected_sack_rate",
       yKey: "vegas_projected_points",
+      xSign: 1,
+      ySign: -1,
       xTickStep: 0.01,
       yTickStep: 2,
       xFormat: pct,
@@ -47,8 +39,7 @@ export async function mountDefStreamersPage() {
       },
       tooltip: (t) =>
         `${t.team} ${t.matchup_label} · sack ${pctExact(t.projected_sack_rate)} · opp implied ${t.vegas_projected_points}`,
-    });
-  draw();
+    },
+  });
   revealPage();
-  new ResizeObserver(draw).observe(root.querySelector(".def-chart-wrap"));
 }

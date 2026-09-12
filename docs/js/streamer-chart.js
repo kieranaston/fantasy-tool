@@ -41,19 +41,173 @@ export function chartMetaFoot(data) {
   return `${projectionPoolHead(data)}${axisFormulaHead(data)}`;
 }
 
-/** Shared streamer page shell: title, chart, then meta underneath. */
+/** Shared streamer page shell: title, chart + rank list, meta under chart. */
 export function chartPageShell(title, data, formatUpdated, ariaLabel) {
   return `
     <div class="def-chart-head">
       ${chartTitleHead(title, data, formatUpdated)}
     </div>
-    <div class="def-chart-wrap">
-      <svg class="def-chart" role="img" aria-label="${escapeHtml(ariaLabel)}"></svg>
-    </div>
-    <div class="def-chart-foot">
-      ${chartMetaFoot(data)}
+    <div class="def-chart-body">
+      <div class="def-chart-col">
+        <div class="def-chart-wrap">
+          <svg class="def-chart" role="img" aria-label="${escapeHtml(ariaLabel)}"></svg>
+        </div>
+        <div class="def-chart-foot">
+          ${chartMetaFoot(data)}
+        </div>
+      </div>
+      <aside class="def-rank-panel" aria-label="Chart ranking">
+        <div class="def-rank-cols" aria-hidden="true">
+          <span class="def-rank-col def-rank-col--num">#</span>
+          <span class="def-rank-col def-rank-col--name">Player</span>
+          <span class="def-rank-col def-rank-col--x">X</span>
+          <span class="def-rank-col def-rank-col--y">Y</span>
+        </div>
+        <div class="def-rank-list" role="listbox" aria-label="Ranked players"></div>
+      </aside>
     </div>
   `;
+}
+
+function playerId(t) {
+  return String(t.player_id || t.team || "");
+}
+
+function playerListName(t) {
+  return t.player_name || t.last_name || t.team || "Unknown";
+}
+
+/** Min–max normalize axes, score toward the good corner, sort best → worst. */
+export function rankChartPlayers(teams, opts) {
+  const xKey = opts.xKey;
+  const yKey = opts.yKey;
+  const xSign = opts.xSign ?? 1;
+  const ySign = opts.ySign ?? 1;
+  const xs = teams.map((t) => Number(t[xKey]));
+  const ys = teams.map((t) => Number(t[yKey]));
+  const xMin = Math.min(...xs);
+  const xMax = Math.max(...xs);
+  const yMin = Math.min(...ys);
+  const yMax = Math.max(...ys);
+  const xSpan = xMax - xMin || 1;
+  const ySpan = yMax - yMin || 1;
+
+  return teams
+    .map((t, i) => {
+      const xv = Number(t[xKey]);
+      const yv = Number(t[yKey]);
+      const normX = (xv - xMin) / xSpan;
+      const normY = (yv - yMin) / ySpan;
+      return {
+        item: t,
+        id: playerId(t) || `row-${i}`,
+        score: xSign * normX + ySign * normY,
+        x: xv,
+        y: yv,
+      };
+    })
+    .sort((a, b) => b.score - a.score || a.id.localeCompare(b.id));
+}
+
+function renderRankList(listEl, ranked, opts, selectedId) {
+  if (!listEl) return;
+  const xFormat = opts.xFormat || String;
+  const yFormat = opts.yFormat || String;
+  const xLabel = opts.xLabel || "X";
+  const yLabel = opts.yLabel || "Y";
+
+  const cols = listEl.previousElementSibling;
+  if (cols?.classList.contains("def-rank-cols")) {
+    const xCol = cols.querySelector(".def-rank-col--x");
+    const yCol = cols.querySelector(".def-rank-col--y");
+    if (xCol) {
+      xCol.textContent = "X";
+      xCol.title = xLabel;
+    }
+    if (yCol) {
+      yCol.textContent = "Y";
+      yCol.title = yLabel;
+    }
+  }
+
+  listEl.innerHTML = ranked
+    .map((row, i) => {
+      const t = row.item;
+      const name = playerListName(t);
+      const team = t.team && t.player_name ? t.team : "";
+      const teamHtml = team
+        ? ` <span class="def-rank-team">${escapeHtml(team)}</span>`
+        : "";
+      const selected = selectedId && row.id === selectedId;
+      return `
+        <button
+          type="button"
+          role="option"
+          class="def-rank-row${selected ? " is-selected" : ""}"
+          data-player-id="${escapeHtml(row.id)}"
+          aria-selected="${selected ? "true" : "false"}"
+        >
+          <span class="def-rank-num">${i + 1}</span>
+          <span class="def-rank-name">${escapeHtml(name)}${teamHtml}</span>
+          <span class="def-rank-x" title="${escapeHtml(xLabel)}">${escapeHtml(xFormat(row.x))}</span>
+          <span class="def-rank-y" title="${escapeHtml(yLabel)}">${escapeHtml(yFormat(row.y))}</span>
+        </button>
+      `;
+    })
+    .join("");
+}
+
+function syncRankSelection(listEl, selectedId) {
+  if (!listEl) return;
+  for (const row of listEl.querySelectorAll(".def-rank-row")) {
+    const on = selectedId != null && row.dataset.playerId === selectedId;
+    row.classList.toggle("is-selected", on);
+    row.setAttribute("aria-selected", on ? "true" : "false");
+  }
+}
+
+/**
+ * Mount a streamer board: shell, ranked side list, chart draw + selection.
+ * Returns false when the board is empty (caller should revealPage).
+ */
+export function mountStreamerBoard(root, {
+  title,
+  data,
+  formatUpdated,
+  ariaLabel,
+  emptyMessage,
+  chartOpts,
+}) {
+  const teams = data.players || data.teams || [];
+  if (!teams.length) {
+    root.innerHTML = `<div class="error">${escapeHtml(emptyMessage || "No matchups in board.")}</div>`;
+    return false;
+  }
+
+  root.innerHTML = chartPageShell(title, data, formatUpdated, ariaLabel);
+
+  let selectedId = null;
+  const svg = root.querySelector(".def-chart");
+  const listEl = root.querySelector(".def-rank-list");
+  const ranked = rankChartPlayers(teams, chartOpts);
+
+  const draw = () =>
+    drawStreamerChart(svg, data, { ...chartOpts, selectedId });
+
+  renderRankList(listEl, ranked, chartOpts, selectedId);
+  listEl?.addEventListener("click", (e) => {
+    const row = e.target.closest(".def-rank-row");
+    if (!row) return;
+    const id = row.dataset.playerId;
+    selectedId = selectedId === id ? null : id;
+    syncRankSelection(listEl, selectedId);
+    draw();
+  });
+
+  draw();
+  const wrap = root.querySelector(".def-chart-wrap");
+  if (wrap) new ResizeObserver(draw).observe(wrap);
+  return true;
 }
 
 
@@ -179,6 +333,9 @@ const MARKER_PAD_Y = 36;
  * @param {string} [opts.guideXLabel]
  * @param {string} [opts.guideYLabel]
  * @param {{topLeft?:string,topRight?:string,bottomLeft?:string,bottomRight?:string}} [opts.quadrantLabels]
+ * @param {number} [opts.xSign] +1 / -1 for ranking toward the good corner
+ * @param {number} [opts.ySign] +1 / -1 for ranking toward the good corner
+ * @param {string|null} [opts.selectedId] player_id or team to highlight
  */
 export function drawStreamerChart(svg, data, opts) {
   if (!svg) return;
@@ -307,13 +464,22 @@ export function drawStreamerChart(svg, data, opts) {
     <text class="def-axis-title" x="16" y="${PAD.top + innerH / 2}" text-anchor="middle" transform="rotate(-90 16 ${PAD.top + innerH / 2})">${escapeHtml(opts.yLabel)}</text>
   `;
 
-  const points = teams
-    .map((t) => {
-      const cx = x(t[opts.xKey]);
-      const cy = y(t[opts.yKey]);
-      const label = t[labelKey] || "";
-      return `
-        <g class="def-point" transform="translate(${cx}, ${cy})">
+  const selectedId = opts.selectedId != null ? String(opts.selectedId) : null;
+  const pointNodes = teams.map((t, i) => {
+    const cx = x(t[opts.xKey]);
+    const cy = y(t[opts.yKey]);
+    const label = t[labelKey] || "";
+    const id = playerId(t) || `row-${i}`;
+    const isFocus = selectedId != null && id === selectedId;
+    const isDim = selectedId != null && !isFocus;
+    const cls = ["def-point", isFocus ? "is-focus" : "", isDim ? "is-dim" : ""]
+      .filter(Boolean)
+      .join(" ");
+    return {
+      id,
+      isFocus,
+      html: `
+        <g class="${cls}" data-player-id="${escapeHtml(id)}" transform="translate(${cx}, ${cy})">
           <title>${escapeHtml(opts.tooltip(t))}</title>
           <image
             href="${escapeHtml(t.logo_url)}"
@@ -324,9 +490,12 @@ export function drawStreamerChart(svg, data, opts) {
           />
           <text class="def-matchup" x="0" y="${LOGO / 2 + 4}" text-anchor="middle" dominant-baseline="hanging">${escapeHtml(label)}</text>
         </g>
-      `;
-    })
-    .join("");
+      `,
+    };
+  });
+  // Selected marker last so it paints on top of overlaps.
+  pointNodes.sort((a, b) => Number(a.isFocus) - Number(b.isFocus));
+  const points = pointNodes.map((p) => p.html).join("");
 
   svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
   svg.setAttribute("width", String(width));
