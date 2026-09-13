@@ -36,5 +36,5 @@ Branch `main`, folder `/docs` → `https://<username>.github.io/fantasy-tool/`
 
 | Workflow | Schedule |
 |----------|----------|
-| Refresh streamers | Tuesdays 15:00 UTC |
+| Refresh streamers | Daily 15:00 UTC |
 | Refresh ADP | manual only |

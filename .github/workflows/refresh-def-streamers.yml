@@ -2,8 +2,8 @@ name: Refresh streamers
 
 on:
   schedule:
-    # Tuesdays 15:00 UTC — lines usually settled after MNF
-    - cron: "0 15 * * 2"
+    # Daily at 15:00 UTC
+    - cron: "0 15 * * *"
   workflow_dispatch:
 
 permissions:
