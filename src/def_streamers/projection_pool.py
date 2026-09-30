@@ -18,8 +18,8 @@ STREAMER_PROJ_LIMITS = {
     "RB": 30,
     "WR": 30,
     "TE": 18,
-    "DEF": 14,
-    "K": 14,
+    "DEF": 18,
+    "K": 18,
 }
 
 # Sleeper / ESPN / nflverse team code aliases → nflverse schedule codes.

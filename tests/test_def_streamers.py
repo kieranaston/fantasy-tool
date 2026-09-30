@@ -184,7 +184,7 @@ def test_build_def_board_from_fixtures() -> None:
     assert board["week"] == 1
     assert board["sack_season"] == 2025
     assert "before week 1" in board["sack_note"]
-    assert board["proj_limit"] == 14
+    assert board["proj_limit"] == 18
     assert len(board["teams"]) == 2
     sea = next(t for t in board["teams"] if t["team"] == "SEA")
     assert sea["matchup_label"] == "vs NE"
@@ -272,7 +272,7 @@ def test_build_k_board_uses_own_team_total() -> None:
     )
     assert board["fg_season"] == 2025
     assert "before week 1" in board["fg_note"]
-    assert board["proj_limit"] == 14
+    assert board["proj_limit"] == 18
     sea = next(t for t in board["teams"] if t["team"] == "SEA")
     ne = next(t for t in board["teams"] if t["team"] == "NE")
     # Kickers use their own implied total (home 23.75 / away 20.75), not opponent.
