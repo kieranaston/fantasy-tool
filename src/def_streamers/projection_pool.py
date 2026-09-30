@@ -62,8 +62,13 @@ def top_projected_players(
     season: int | None = None,
     format_key: str = "half_ppr",
     rows: list[dict[str, Any]] | None = None,
+    cap: bool = True,
 ) -> list[dict[str, Any]]:
-    """Top-N players at ``position`` by Sleeper projected points (desc)."""
+    """Players at ``position`` from Sleeper projections.
+
+    With ``cap``, keep the top ``limit`` by projected points. Without it,
+    return every player at the position so chart scoring can choose who appears.
+    """
     position = position.upper()
     if position == "DST":
         position = "DEF"
@@ -71,7 +76,7 @@ def top_projected_players(
         position = "K"
     if limit is None:
         limit = STREAMER_PROJ_LIMITS.get(position)
-    if not limit or limit <= 0:
+    if cap and (not limit or limit <= 0):
         raise ValueError(f"No streamer projection limit for {position}")
 
     pts_field = PTS_FORMATS.get(format_key)
@@ -127,9 +132,49 @@ def top_projected_players(
             continue
         seen.add(sid)
         out.append(row)
-        if len(out) >= limit:
+        if cap and limit is not None and len(out) >= limit:
             break
     return out
+
+
+def rank_by_chart(
+    rows: list[dict[str, Any]],
+    *,
+    x_key: str,
+    y_key: str,
+    x_sign: float = 1.0,
+    y_sign: float = 1.0,
+    limit: int | None = None,
+) -> list[dict[str, Any]]:
+    """Sort by a min–max composite toward the good corner of the chart.
+
+    Same idea as the on-page rank list: each axis is scaled to 0–1 across
+    ``rows``, then signed so the favorable direction scores higher.
+    """
+    if not rows:
+        return []
+    xs = [float(row[x_key]) for row in rows]
+    ys = [float(row[y_key]) for row in rows]
+    x_span = (max(xs) - min(xs)) or 1.0
+    y_span = (max(ys) - min(ys)) or 1.0
+    x0 = min(xs)
+    y0 = min(ys)
+    scored: list[dict[str, Any]] = []
+    for row in rows:
+        copy = dict(row)
+        norm_x = (float(row[x_key]) - x0) / x_span
+        norm_y = (float(row[y_key]) - y0) / y_span
+        copy["chart_score"] = round(x_sign * norm_x + y_sign * norm_y, 6)
+        scored.append(copy)
+    scored.sort(
+        key=lambda row: (
+            -float(row["chart_score"]),
+            str(row.get("player_id") or row.get("team") or ""),
+        )
+    )
+    if limit is not None:
+        return scored[:limit]
+    return scored
 
 
 def match_stats_for_projected(

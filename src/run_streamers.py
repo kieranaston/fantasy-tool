@@ -40,7 +40,6 @@ def main() -> None:
             "week",
             "sack_season",
             "pbp_seasons",
-            "sack_window_games",
             "proj_limit",
             "sack_formula",
             "sack_note",
@@ -54,7 +53,7 @@ def main() -> None:
     )
     print(
         f"    sack_season={def_board['sack_season']} "
-        f"pbp={def_board['pbp_seasons']} window={def_board['sack_window_games']}"
+        f"pbp={def_board['pbp_seasons']}"
     )
 
     k_board = build_k_board()
@@ -67,7 +66,6 @@ def main() -> None:
             "week",
             "fg_season",
             "pbp_seasons",
-            "fg_window_games",
             "fg_note",
             "x_formula",
             "y_formula",
@@ -79,7 +77,7 @@ def main() -> None:
     )
     print(
         f"    fg_season={k_board['fg_season']} "
-        f"pbp={k_board['pbp_seasons']} window={k_board['fg_window_games']}"
+        f"pbp={k_board['pbp_seasons']}"
     )
 
     qb_board = build_qb_board()
@@ -93,13 +91,13 @@ def main() -> None:
             "position",
             "stats_season",
             "stat_seasons",
-            "rush_window_games",
+            "scoring",
+            "proj_limit",
             "stats_note",
             "x_formula",
             "y_formula",
             "source",
             "last_updated",
-            "guides",
             "medians",
             "players",
             "teams",
@@ -121,14 +119,13 @@ def main() -> None:
             "position",
             "stats_season",
             "stat_seasons",
-            "stats_window_games",
             "scoring",
+            "proj_limit",
             "stats_note",
             "x_formula",
             "y_formula",
             "source",
             "last_updated",
-            "guides",
             "medians",
             "players",
             "teams",
@@ -150,14 +147,13 @@ def main() -> None:
             "position",
             "stats_season",
             "stat_seasons",
-            "stats_window_games",
             "scoring",
+            "proj_limit",
             "stats_note",
             "x_formula",
             "y_formula",
             "source",
             "last_updated",
-            "guides",
             "medians",
             "players",
             "teams",
@@ -179,14 +175,13 @@ def main() -> None:
             "position",
             "stats_season",
             "stat_seasons",
-            "stats_window_games",
             "scoring",
+            "proj_limit",
             "stats_note",
             "x_formula",
             "y_formula",
             "source",
             "last_updated",
-            "guides",
             "medians",
             "players",
             "teams",

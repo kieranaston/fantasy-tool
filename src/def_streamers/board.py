@@ -8,15 +8,12 @@ from typing import Any
 from src.def_streamers.projection_pool import (
     STREAMER_PROJ_LIMITS,
     canonical_team,
-    top_projected_players,
+    rank_by_chart,
 )
 from src.loaders.nflverse import (
-    STATS_WINDOW_GAMES,
     espn_logo_url,
     fetch_schedules,
     implied_team_totals,
-    resolve_pbp_seasons,
-    resolve_sack_season,
     resolve_target_week,
     team_sack_rates,
 )
@@ -40,13 +37,12 @@ def build_def_board(
     pbp_seasons: list[int] | None = None,
     games: list[dict[str, Any]] | None = None,
     rates: dict[str, dict[str, float]] | None = None,
-    projected_players: list[dict[str, Any]] | None = None,
     max_players: int = DEF_PROJ_LIMIT,
 ) -> dict[str, Any]:
     """Assemble the weekly DEF streamer payload for the static site.
 
-    Inclusion is the top N Sleeper projected defenses. Placement still uses
-    projected sack rate × opponent implied total.
+    Inclusion is the top N defenses by chart score: higher projected sack rate
+    and a lower opponent implied total.
     """
     if season is None:
         season = draft_season_from_sleeper_state()
@@ -55,24 +51,15 @@ def build_def_board(
     if week is None:
         week = resolve_target_week(games, season)
     if pbp_seasons is None:
-        pbp_seasons = resolve_pbp_seasons(season)
+        pbp_seasons = [season]
     if sack_season is None:
-        sack_season = resolve_sack_season(pbp_seasons, season)
+        sack_season = season
     if rates is None:
-        rates = team_sack_rates(pbp_seasons, window=STATS_WINDOW_GAMES)
-    if projected_players is None:
-        projected_players = top_projected_players(
-            "DEF",
-            limit=max_players,
-            season=season,
+        rates = team_sack_rates(
+            [season],
+            as_of_season=season,
+            as_of_week=week,
         )
-
-    allowed_teams: dict[str, dict[str, Any]] = {}
-    for proj in projected_players:
-        team = canonical_team(proj.get("team") or proj.get("sleeper_id"))
-        if not team or team in allowed_teams:
-            continue
-        allowed_teams[team] = proj
 
     slate = [
         g
@@ -96,9 +83,6 @@ def build_def_board(
             (away, home, False, home_imp),
         ):
             team_key = canonical_team(team)
-            proj_row = allowed_teams.get(team_key)
-            if not proj_row:
-                continue
             team_rates = rates.get(team) or rates.get(team_key)
             opp_rates = rates.get(opp) or rates.get(canonical_team(opp))
             if not team_rates or not opp_rates:
@@ -118,7 +102,6 @@ def build_def_board(
                     "vegas_projected_points": round(opp_points, 2),
                     "spread_line": float(g["spread_line"]),
                     "total_line": float(g["total_line"]),
-                    "proj_half_ppr": proj_row.get("pts"),
                     "logo_url": espn_logo_url(team),
                 }
             )
@@ -126,7 +109,13 @@ def build_def_board(
     if not teams:
         raise ValueError("No DEF rows built — sack-rate teams missing for slate")
 
-    teams.sort(key=lambda r: (-r["projected_sack_rate"], r["vegas_projected_points"]))
+    teams = rank_by_chart(
+        teams,
+        x_key="projected_sack_rate",
+        y_key="vegas_projected_points",
+        y_sign=-1,
+        limit=max_players,
+    )
     med_x = median(r["projected_sack_rate"] for r in teams)
     med_y = median(r["vegas_projected_points"] for r in teams)
 
@@ -135,20 +124,20 @@ def build_def_board(
         "week": week,
         "sack_season": sack_season,
         "pbp_seasons": pbp_seasons,
-        "sack_window_games": STATS_WINDOW_GAMES,
         "proj_limit": max_players,
         "sack_formula": (
             f"{OPP_OFFENSE_WEIGHT:.0%} opponent offense sack rate + "
             f"{DEFENSE_WEIGHT:.0%} defense sack rate"
         ),
         "sack_note": (
-            f"Top {max_players} Sleeper projected DEFs; "
-            f"rolling {STATS_WINDOW_GAMES}-game projected sack rates"
+            f"Top {max_players} defenses by chart score "
+            f"(sack rate, lower opponent total); "
+            f"{season} regular-season games before week {week}"
         ),
         "x_formula": (
             f"{OPP_OFFENSE_WEIGHT:.0%} × opponent offense sack rate + "
             f"{DEFENSE_WEIGHT:.0%} × this DEF sack rate "
-            f"(last {STATS_WINDOW_GAMES} games)"
+            f"({season} regular season, before week {week})"
         ),
         "y_formula": (
             "opponent implied team total = (game total ± spread) / 2"

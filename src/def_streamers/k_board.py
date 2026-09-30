@@ -8,15 +8,13 @@ from typing import Any
 from src.def_streamers.projection_pool import (
     STREAMER_PROJ_LIMITS,
     canonical_team,
+    rank_by_chart,
     top_projected_players,
 )
 from src.loaders.nflverse import (
-    STATS_WINDOW_GAMES,
     espn_logo_url,
     fetch_schedules,
     implied_team_totals,
-    resolve_pbp_seasons,
-    resolve_sack_season,
     resolve_target_week,
     team_fg_attempts_per_game,
 )
@@ -38,8 +36,8 @@ def build_k_board(
 ) -> dict[str, Any]:
     """Assemble the weekly kicker streamer payload for the static site.
 
-    Inclusion is the top N Sleeper projected kickers (by team). Placement still
-    uses team implied total × rolling FG attempts per game.
+    Inclusion uses the chart score (higher team total and more field-goal
+    attempts). Sleeper only supplies the kicker name on each team.
     """
     if season is None:
         season = draft_season_from_sleeper_state()
@@ -48,15 +46,19 @@ def build_k_board(
     if week is None:
         week = resolve_target_week(games, season)
     if pbp_seasons is None:
-        pbp_seasons = resolve_pbp_seasons(season)
+        pbp_seasons = [season]
     if fg_season is None:
-        fg_season = resolve_sack_season(pbp_seasons, season)
+        fg_season = season
     if rates is None:
-        rates = team_fg_attempts_per_game(pbp_seasons, window=STATS_WINDOW_GAMES)
+        rates = team_fg_attempts_per_game(
+            [season],
+            as_of_season=season,
+            as_of_week=week,
+        )
     if projected_players is None:
         projected_players = top_projected_players(
             "K",
-            limit=max_players,
+            cap=False,
             season=season,
         )
 
@@ -111,7 +113,6 @@ def build_k_board(
                     "vegas_projected_points": round(team_points, 2),
                     "spread_line": float(g["spread_line"]),
                     "total_line": float(g["total_line"]),
-                    "proj_half_ppr": kicker.get("pts"),
                     "logo_url": espn_logo_url(team),
                 }
             )
@@ -119,7 +120,12 @@ def build_k_board(
     if not teams:
         raise ValueError("No kicker rows built — FG-rate teams missing for slate")
 
-    teams.sort(key=lambda r: (-r["vegas_projected_points"], -r["fg_attempts_per_game"]))
+    teams = rank_by_chart(
+        teams,
+        x_key="vegas_projected_points",
+        y_key="fg_attempts_per_game",
+        limit=max_players,
+    )
     med_x = median(r["vegas_projected_points"] for r in teams)
     med_y = median(r["fg_attempts_per_game"] for r in teams)
     return {
@@ -127,16 +133,15 @@ def build_k_board(
         "week": week,
         "fg_season": fg_season,
         "pbp_seasons": pbp_seasons,
-        "fg_window_games": STATS_WINDOW_GAMES,
         "proj_limit": max_players,
         "fg_note": (
-            f"Top {max_players} Sleeper projected kickers; "
-            f"team implied total vs. rolling {STATS_WINDOW_GAMES}-game "
-            "FG attempts per game"
+            f"Top {max_players} kickers by chart score "
+            f"(implied total + FG attempts per game); "
+            f"{season} regular-season games before week {week}"
         ),
         "x_formula": "team implied total = (game total ± spread) / 2",
         "y_formula": (
-            f"team FG attempts per game (last {STATS_WINDOW_GAMES} games)"
+            f"team FG attempts per game ({season} regular season, before week {week})"
         ),
         "source": "sleeper_projections_nflverse_pbp_schedules",
         "medians": {

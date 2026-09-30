@@ -1,5 +1,5 @@
 import { fetchJSON, formatUpdated, revealPage } from "./config.js";
-import { mountStreamerBoard } from "./streamer-chart.js?v=4";
+import { mountStreamerBoard } from "./streamer-chart.js?v=11";
 
 function pct(rate) {
   return `${(rate * 100).toFixed(0)}%`;

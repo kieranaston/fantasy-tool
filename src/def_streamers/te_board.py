@@ -1,4 +1,4 @@
-"""Build weekly fantasy TE matchup board (avg FPs × opponent SOS)."""
+"""Weekly TE board (this-season expected vs actual half-PPR)."""
 
 from __future__ import annotations
 

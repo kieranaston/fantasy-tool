@@ -1106,6 +1106,46 @@ table.draft-table > thead > tr > th {
   background: #fcfcfc;
 }
 
+.def-quad-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding: 0.45rem 0.55rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.def-quad-filters[hidden] {
+  display: none;
+}
+
+.def-quad-filter {
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.28rem 0.5rem;
+  cursor: pointer;
+}
+
+.def-quad-filter:hover,
+.def-quad-label {
+  cursor: pointer;
+}
+
+.def-quad-filter.is-active {
+  background: #111827;
+  border-color: #111827;
+  color: #fff;
+}
+
+.def-quad-label.is-active {
+  fill: #111827;
+  font-weight: 800;
+}
+
 .def-rank-cols {
   display: grid;
   grid-template-columns: 1.75rem minmax(0, 1fr) 3.25rem 3.25rem;
@@ -1226,7 +1266,7 @@ table.draft-table > thead > tr > th {
   font-weight: 600;
   letter-spacing: 0.03em;
   font-family: var(--font);
-  pointer-events: none;
+  cursor: pointer;
 }
 
 .def-tick {

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import csv
 import io
+import time
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -28,6 +29,13 @@ DEPTH_CHART_URL = (
     "https://github.com/nflverse/nflverse-data/releases/download/depth_charts/"
     "depth_charts_{season}.parquet"
 )
+# ffopportunity weekly expected points (full PPR). Same release family as nflverse.
+FF_OPPORTUNITY_URL = (
+    "https://github.com/ffverse/ffopportunity/releases/download/latest-data/"
+    "ep_weekly_{season}.parquet"
+)
+# Published totals award 1 point per catch; half-PPR is that minus 0.5 per catch.
+HALF_PPR_CATCH_ADJUST = 0.5
 
 # Rolling opportunity window (≈ one NFL regular season).
 STATS_WINDOW_GAMES = 17
@@ -171,6 +179,156 @@ def resolve_player_stat_seasons(
             f"No player week stats for {current_season - 1} or {current_season}"
         )
     return seasons
+
+
+def fetch_ff_opportunity(season: int, *, cache_dir: Path | None = None) -> Path:
+    """Download (or reuse for 18h) ffopportunity weekly expected-points parquet."""
+    if cache_dir is None:
+        cache_dir = Path.home() / ".cache" / "fantasy-tool" / "ff_opportunity"
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    path = cache_dir / f"ep_weekly_{season}.parquet"
+    fresh = (
+        path.exists()
+        and path.stat().st_size > 100_000
+        and (time.time() - path.stat().st_mtime) < 18 * 3600
+    )
+    if fresh:
+        return path
+    url = FF_OPPORTUNITY_URL.format(season=season)
+    try:
+        path.write_bytes(_http_get(url, timeout=300))
+    except urllib.error.HTTPError as exc:
+        if path.exists() and path.stat().st_size > 100_000:
+            return path
+        raise FileNotFoundError(
+            f"Expected fantasy points unavailable for {season}: {url}"
+        ) from exc
+    return path
+
+
+def summarize_season_xfp(
+    df: pl.DataFrame,
+    position: str,
+    *,
+    season: int,
+    as_of_week: int,
+    window: int = 4,
+) -> list[dict[str, Any]]:
+    """This-season half-PPR per game vs expected over the last ``window`` games.
+
+    ``df`` is one ffopportunity weekly frame. Totals there are full PPR, so
+    half-PPR subtracts half a point per reception (and the same on expected).
+    Prior seasons and the chart week itself are left out. ``fpoe`` is actual
+    points per game minus expected points per game.
+    """
+    position = position.upper()
+    needed = [
+        "player_id",
+        "full_name",
+        "position",
+        "season",
+        "week",
+        "game_id",
+        "posteam",
+        "total_fantasy_points",
+        "total_fantasy_points_exp",
+        "receptions",
+        "receptions_exp",
+    ]
+    missing = [c for c in needed if c not in df.columns]
+    if missing:
+        raise ValueError(f"Expected-points frame missing columns: {missing}")
+
+    frame = df.select(needed).with_columns(
+        pl.col("player_id").cast(pl.Utf8),
+        pl.col("season").cast(pl.Int64, strict=False),
+        pl.col("week").cast(pl.Int64, strict=False),
+        pl.col("total_fantasy_points").cast(pl.Float64, strict=False).fill_null(0.0),
+        pl.col("total_fantasy_points_exp").cast(pl.Float64, strict=False).fill_null(0.0),
+        pl.col("receptions").cast(pl.Float64, strict=False).fill_null(0.0),
+        pl.col("receptions_exp").cast(pl.Float64, strict=False).fill_null(0.0),
+    )
+    frame = frame.filter(
+        (pl.col("season") == season)
+        & (pl.col("position") == position)
+        & (pl.col("week") >= 1)
+        & (pl.col("week") <= 18)
+        & (pl.col("week") < as_of_week)
+        & pl.col("player_id").is_not_null()
+        & (pl.col("player_id") != "")
+    )
+    if frame.is_empty():
+        return []
+
+    frame = frame.with_columns(
+        (
+            pl.col("total_fantasy_points")
+            - HALF_PPR_CATCH_ADJUST * pl.col("receptions")
+        ).alias("half_ppr"),
+        (
+            pl.col("total_fantasy_points_exp")
+            - HALF_PPR_CATCH_ADJUST * pl.col("receptions_exp")
+        ).alias("half_ppr_exp"),
+    ).sort(["player_id", "week", "game_id"])
+
+    recent: list[pl.DataFrame] = []
+    for player_key, group in frame.partition_by("player_id", as_dict=True).items():
+        player_id = player_key[0] if isinstance(player_key, tuple) else player_key
+        if not player_id:
+            continue
+        recent.append(group.sort(["week", "game_id"]).tail(window))
+    if not recent:
+        return []
+    frame = pl.concat(recent)
+
+    grouped = frame.group_by("player_id").agg(
+        pl.col("half_ppr").mean().alias("fantasy_points"),
+        pl.col("half_ppr_exp").mean().alias("xfpts"),
+        pl.col("game_id").n_unique().alias("games"),
+        pl.col("full_name").sort_by(["week", "game_id"]).last().alias("player_name"),
+        pl.col("posteam").sort_by(["week", "game_id"]).last().alias("team"),
+    )
+    out: list[dict[str, Any]] = []
+    for row in grouped.iter_rows(named=True):
+        name = str(row.get("player_name") or "")
+        xfpts = float(row["xfpts"])
+        fantasy_points = float(row["fantasy_points"])
+        out.append(
+            {
+                "player_id": str(row["player_id"]),
+                "player_name": name,
+                "last_name": _last_name(name),
+                "team": str(row.get("team") or ""),
+                "fantasy_points": fantasy_points,
+                "xfpts": xfpts,
+                "fpoe": fantasy_points - xfpts,
+                "games": int(row["games"]),
+            }
+        )
+    out.sort(key=lambda r: (-r["fantasy_points"], -r["xfpts"]))
+    return out
+
+
+def position_season_xfp(
+    season: int,
+    position: str,
+    *,
+    as_of_week: int,
+    window: int = 4,
+    roster_teams: dict[str, str] | None = None,
+    cache_dir: Path | None = None,
+) -> list[dict[str, Any]]:
+    """This-season expected points and points over expected for one position."""
+    path = fetch_ff_opportunity(season, cache_dir=cache_dir)
+    df = pl.read_parquet(path)
+    rows = summarize_season_xfp(
+        df,
+        position,
+        season=season,
+        as_of_week=as_of_week,
+        window=window,
+    )
+    return _apply_roster_teams(rows, roster_teams)
 
 
 def fetch_roster_parquet(season: int, *, cache_dir: Path | None = None) -> Path:
@@ -579,6 +737,21 @@ def _load_reg_pbp(
     return df
 
 
+def _filter_chart_season(
+    df: pl.DataFrame,
+    *,
+    season: int,
+    as_of_week: int,
+) -> pl.DataFrame:
+    """Keep one regular season's games strictly before the chart week."""
+    return df.filter(
+        (pl.col("season") == season)
+        & (pl.col("week") >= 1)
+        & (pl.col("week") <= 18)
+        & (pl.col("week") < as_of_week)
+    )
+
+
 def _tail_games_by_team(team_games: pl.DataFrame, window: int) -> pl.DataFrame:
     """Keep the last ``window`` games per team (ordered by season, week, game_id)."""
     parts: list[pl.DataFrame] = []
@@ -595,14 +768,17 @@ def _tail_games_by_team(team_games: pl.DataFrame, window: int) -> pl.DataFrame:
 def team_sack_rates(
     seasons: list[int] | int,
     *,
-    window: int = STATS_WINDOW_GAMES,
+    window: int | None = STATS_WINDOW_GAMES,
+    as_of_season: int | None = None,
+    as_of_week: int | None = None,
     cache_dir: Path | None = None,
 ) -> dict[str, dict[str, Any]]:
-    """Rolling REG sack rates by team from nflverse PBP (qb_dropback plays).
+    """REG sack rates by team from nflverse PBP (qb_dropback plays).
 
     Returns ``{team: {offense_sack_rate, defense_sack_rate, off_n, def_n, games, ...}}``.
     Offense = rate the team's QB was sacked; defense = rate the team recorded sacks.
-    Rates pool dropbacks from each team's last ``window`` games.
+    With ``as_of_season`` and ``as_of_week``, rates use that season's games before
+    the chart week. Otherwise they pool each team's last ``window`` games.
     """
     if isinstance(seasons, int):
         seasons = [seasons]
@@ -612,6 +788,9 @@ def team_sack_rates(
         ["posteam", "defteam", "sack", "qb_dropback"],
         cache_dir=cache_dir,
     ).filter(pl.col("qb_dropback") == 1)
+    if as_of_season is not None and as_of_week is not None:
+        df = _filter_chart_season(df, season=as_of_season, as_of_week=as_of_week)
+        window = None
     if df.is_empty():
         raise ValueError(f"No REG qb_dropback rows for seasons {seasons}")
 
@@ -625,8 +804,8 @@ def team_sack_rates(
         .select(["season", "week", "game_id", pl.col("defteam").alias("team")])
         .unique()
     )
-    off_tail = _tail_games_by_team(off_games, window)
-    def_tail = _tail_games_by_team(def_games, window)
+    off_tail = off_games if window is None else _tail_games_by_team(off_games, window)
+    def_tail = def_games if window is None else _tail_games_by_team(def_games, window)
 
     off = (
         df.join(
@@ -689,18 +868,28 @@ def team_sack_rates(
 def team_fg_attempts_per_game(
     seasons: list[int],
     *,
-    window: int = STATS_WINDOW_GAMES,
+    window: int | None = STATS_WINDOW_GAMES,
+    as_of_season: int | None = None,
+    as_of_week: int | None = None,
     cache_dir: Path | None = None,
 ) -> dict[str, dict[str, Any]]:
-    """Rolling FG attempts per game by team from REG PBP.
+    """FG attempts per game by team from REG PBP.
 
-    Uses the last ``window`` team-games across ``seasons`` (ordered by season, week).
+    With ``as_of_season`` and ``as_of_week``, uses that season's games before
+    the chart week. Otherwise uses the last ``window`` team-games.
     """
     df = _load_reg_pbp(
         seasons,
         ["posteam", "field_goal_attempt"],
         cache_dir=cache_dir,
     )
+    if as_of_season is not None and as_of_week is not None:
+        df = _filter_chart_season(df, season=as_of_season, as_of_week=as_of_week)
+        window = None
+        if df.is_empty():
+            raise ValueError(
+                f"No REG plays for {as_of_season} before week {as_of_week}"
+            )
 
     team_games = (
         df.filter(pl.col("posteam").is_not_null())
@@ -718,7 +907,7 @@ def team_fg_attempts_per_game(
         .with_columns(pl.col("fg_att").fill_null(0))
         .sort(["team", "season", "week", "game_id"])
     )
-    tail = _tail_games_by_team(rates, window)
+    tail = rates if window is None else _tail_games_by_team(rates, window)
 
     out: dict[str, dict[str, Any]] = {}
     for team_key, group in tail.partition_by("team", as_dict=True).items():

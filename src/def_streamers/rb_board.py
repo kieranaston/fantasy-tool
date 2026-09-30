@@ -1,4 +1,4 @@
-"""Build weekly fantasy RB matchup board (avg FPs × opponent SOS)."""
+"""Weekly RB board (this-season expected vs actual half-PPR)."""
 
 from __future__ import annotations
 
