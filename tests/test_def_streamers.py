@@ -366,7 +366,7 @@ def test_build_rb_board_xfp_and_labels() -> None:
     assert row["fantasy_points"] == 38.0
     assert board["stat_seasons"] == [2026]
     assert "before week 4" in board["stats_note"]
-    assert board["proj_limit"] == 30
+    assert board["proj_limit"] == 36
 
 
 def test_skill_board_keeps_best_chart_scores() -> None:

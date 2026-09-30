@@ -15,8 +15,8 @@ from src.loaders.sleeper_adp import (
 # Chart inclusion caps by Sleeper half-PPR projected points.
 STREAMER_PROJ_LIMITS = {
     "QB": 18,
-    "RB": 30,
-    "WR": 30,
+    "RB": 36,
+    "WR": 36,
     "TE": 18,
     "DEF": 18,
     "K": 18,
