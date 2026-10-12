@@ -82,9 +82,10 @@ def build_skill_matchup_board(
     players: list[dict[str, Any]] = []
     for row in player_rows:
         team = canonical_team(row.get("team"))
-        if not team or team not in matchups:
+        if not team:
             continue
-        opp, is_home, matchup_label = matchups[team]
+        # Skill charts rank on recent performance, so bye-week players stay.
+        opp, is_home, matchup_label = matchups.get(team, (None, None, ""))
         xfpts = round(float(row["xfpts"]), 2)
         actual = round(float(row["fantasy_points"]), 2)
         fpoe = round(float(row["fpoe"]) if "fpoe" in row else actual - xfpts, 2)
