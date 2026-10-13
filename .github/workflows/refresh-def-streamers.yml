@@ -2,8 +2,11 @@ name: Refresh streamers
 
 on:
   schedule:
-    # Daily at 15:00 UTC
-    - cron: "0 15 * * *"
+    # Daily ~05:23 ET (09:23 UTC). Off the hour to avoid GitHub cron delays;
+    # runs after the Monday night game's final score lands in nflverse.
+    - cron: "23 9 * * *"
+    # Backup run ~09:23 ET (13:23 UTC) in case nflverse hadn't posted yet.
+    - cron: "23 13 * * *"
   workflow_dispatch:
 
 permissions:
