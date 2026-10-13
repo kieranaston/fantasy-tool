@@ -3,7 +3,8 @@
 Personal fantasy football reference site (GitHub Pages in `/docs`).
 
 **Streamers** — DEF / K / QB / RB / WR / TE charts. Inclusion is top of the chart by a composite of its axes (QB·TE·DEF·K 18, RB·WR 36). QB/RB/WR/TE plot the last 4 games of expected points per game against points over expected. DEF and K keep sack rate and FG attempts against Vegas lines, also from this season only.  
-**ADP / Draft** — Sleeper ADP board and live draft assistant (VORP↔ADP blend, optional FantasyPros ECR sort).
+**ADP / Draft** — Sleeper ADP board and live draft assistant (VORP↔ADP blend, optional FantasyPros ECR sort).  
+**Trade** — Sleeper league trade finder: FantasyCalc values → per-team VORP → win-win trades (needs-aware bundles).
 
 ```
 docs/           published site + JSON
@@ -21,6 +22,7 @@ pip install -e .
 python -m src.run_streamers
 python -m src.run_adp              # manual; season ADP is frozen unless needed
 python -m src.run_fp_rankings      # optional: FantasyPros CSV → docs/data/draft/
+python -m src.run_trade_values     # FantasyCalc trade values → docs/data/trade/
 python -m http.server 8000 --directory docs
 ```
 

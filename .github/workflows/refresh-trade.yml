@@ -1,0 +1,38 @@
+name: Refresh trade values
+
+on:
+  schedule:
+    - cron: "0 14 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install .
+
+      - name: Refresh FantasyCalc trade values
+        run: python -m src.run_trade_values
+
+      - name: Commit updated trade values
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/trade/
+          if git diff --staged --quiet; then
+            echo "No trade value changes to commit."
+          else
+            git commit -m "chore: refresh trade values [skip ci]"
+            git push
+          fi

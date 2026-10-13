@@ -37,6 +37,13 @@ class FpRankRow:
     name: str
     team: str | None
     position: str | None
+    pos_rank: int | None = None
+
+
+def parse_pos_rank(raw: str | None) -> int | None:
+    """Positional rank from a FantasyPros POS cell (``WR12`` → 12)."""
+    match = _POS_DIGITS.search(str(raw or "").strip().upper())
+    return int(match.group()) if match else None
 
 
 def normalize_fp_position(raw: str | None) -> str | None:
@@ -79,6 +86,7 @@ def parse_rankings_csv(path: Path) -> list[FpRankRow]:
                     name=name,
                     team=team,
                     position=position,
+                    pos_rank=parse_pos_rank(raw.get("POS")),
                 )
             )
     rows.sort(key=lambda r: r.rank)
@@ -143,6 +151,8 @@ def build_fp_rankings_payload(
     season: int,
     last_updated: str,
     tables: PlayerTables | None = None,
+    include_pos_rank: bool = False,
+    source: str = "fantasypros_csv",
 ) -> dict[str, Any]:
     tables = tables or load_player_tables()
     parsed = parse_rankings_csv(csv_path)
@@ -177,20 +187,21 @@ def build_fp_rankings_payload(
             )
             continue
         seen_ids.add(ref.player_id)
-        players.append(
-            {
-                "sleeper_id": ref.player_id,
-                "player": ref.name,
-                "team": ref.team or row.team or "",
-                "position": ref.position or row.position or "",
-                "rank": row.rank,
-                "tier": row.tier,
-            }
-        )
+        player: dict[str, Any] = {
+            "sleeper_id": ref.player_id,
+            "player": ref.name,
+            "team": ref.team or row.team or "",
+            "position": ref.position or row.position or "",
+            "rank": row.rank,
+            "tier": row.tier,
+        }
+        if include_pos_rank:
+            player["pos_rank"] = row.pos_rank
+        players.append(player)
 
     return {
         "season": season,
-        "source": "fantasypros_csv",
+        "source": source,
         "file": csv_path.name,
         "last_updated": last_updated,
         "matched": len(players),
