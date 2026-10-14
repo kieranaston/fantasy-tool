@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light" />
     <title>Keeper Value</title>
-    <link rel="stylesheet" href="../css/site.css?v=97" />
+    <link rel="stylesheet" href="../css/site.css?v=99" />
   </head>
   <body>
     <nav class="site-nav" aria-label="Primary">
@@ -56,7 +56,8 @@
           Cost is the round the player was most recently drafted in (waivers
           cost round 10). Surplus = FantasyCalc value − pick value at the cost
           round. Players kept two seasons in a row must return to the draft
-          pool.
+          pool. A badge flags a keeper whose owner lacks the cost-round pick,
+          showing the round they'd actually pay instead.
         </p>
 
         <div id="keepers-results"></div>
@@ -66,7 +67,7 @@
     <script type="module" src="../js/site-boot.js?v=15"></script>
     <script type="module">
       import { mountPage } from "../js/config.js?v=16";
-      import { mountKeepersPage } from "../js/keeper-companion.js?v=1";
+      import { mountKeepersPage } from "../js/keeper-companion.js?v=2";
       mountPage(mountKeepersPage, "keepers-results");
     </script>
   </body>

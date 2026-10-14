@@ -19,7 +19,7 @@ import {
   expiringRows,
   keepersByTeam,
   rankBySurplus,
-} from "./keeper-scoring.js?v=1";
+} from "./keeper-scoring.js?v=2";
 
 /** Couper Alum — used when the input is left blank. */
 const DEFAULT_LEAGUE_ID = "1388966973332799488";
@@ -68,6 +68,15 @@ function playerCell(row) {
   )}</span>${chip}</span>`;
 }
 
+/** Cost cell: the round, plus a warning when the owner lacks that pick. */
+function costCell(row) {
+  const base = `R${row.round}`;
+  if (row.has_pick) return base;
+  return (
+    `${base} <span class="keeper-warn">no R${row.round} → pays R${row.pay_round}</span>`
+  );
+}
+
 /** Fetch the league and every ancestor league (newest → oldest). */
 async function loadLeagueChain(leagueId) {
   const chain = [];
@@ -80,15 +89,43 @@ async function loadLeagueChain(leagueId) {
   return chain;
 }
 
-/** Every pick from every draft a league held (usually one). */
+/** Every pick from every draft a league held, plus the draft round count. */
 async function loadLeaguePicks(leagueId) {
   const drafts = await sleeperGet(`/league/${leagueId}/drafts`);
   const picks = [];
+  let rounds = 0;
   for (const draft of drafts || []) {
+    rounds = Math.max(rounds, Number(draft?.settings?.rounds) || 0);
     const rows = await sleeperGet(`/draft/${draft.draft_id}/picks`);
     picks.push(...(rows || []));
   }
-  return picks;
+  return { picks, rounds };
+}
+
+function rangeRounds(rounds) {
+  const set = new Set();
+  for (let r = 1; r <= rounds; r += 1) set.add(r);
+  return set;
+}
+
+/** Rounds each roster owns in a season: defaults minus/plus traded picks. */
+function ownedRoundsForSeason(rosters, rounds, tradedPicks, season, userToRoster) {
+  const owned = new Map();
+  for (const roster of rosters) {
+    owned.set(String(roster.roster_id), rangeRounds(rounds));
+  }
+  for (const pick of tradedPicks || []) {
+    if (String(pick.season) !== String(season)) continue;
+    const from = String(pick.roster_id);
+    let to = String(pick.owner_id);
+    if (!owned.has(to) && userToRoster.has(to)) to = userToRoster.get(to);
+    const round = Number(pick.round);
+    if (!Number.isFinite(round)) continue;
+    owned.get(from)?.delete(round);
+    if (!owned.has(to)) owned.set(to, new Set());
+    owned.get(to).add(round);
+  }
+  return owned;
 }
 
 /**
@@ -128,7 +165,7 @@ function buildSeasonMaps(chain, picksBySeason) {
 function leaderboardHtml(rows, nameByRoster) {
   const thead =
     "<thead><tr><th>#</th><th>Player</th><th>Owner</th>" +
-    '<th class="num">Value</th><th>Keep</th><th class="num">Pick value</th>' +
+    '<th class="num">Value</th><th>Cost</th><th class="num">Pick value</th>' +
     '<th class="num">Surplus</th><th class="num">Kept</th></tr></thead>';
   const body = rows
     .map((row, i) => {
@@ -139,7 +176,7 @@ function leaderboardHtml(rows, nameByRoster) {
         `<td>${playerCell(row)}</td>` +
         `<td>${escapeHtml(owner)}</td>` +
         `<td class="num">${fmtInt(row.value)}</td>` +
-        `<td>R${row.round}</td>` +
+        `<td>${costCell(row)}</td>` +
         `<td class="num">${fmtInt(row.cost)}</td>` +
         `<td class="num">${signed(row.surplus)}</td>` +
         `<td class="num">${kept}</td></tr>`
@@ -157,7 +194,7 @@ function byTeamHtml(rosters, nameByRoster, rows) {
     )
   );
   const thead =
-    "<thead><tr><th>Team</th><th>Player</th><th>Keep</th>" +
+    "<thead><tr><th>Team</th><th>Player</th><th>Cost</th>" +
     '<th class="num">Value</th><th class="num">Surplus</th></tr></thead>';
   const body = [];
   for (const roster of ordered) {
@@ -181,7 +218,7 @@ function byTeamHtml(rosters, nameByRoster, rows) {
       body.push(
         `<tr${row._bubble ? ' class="keeper-bubble"' : ""}>${teamCell}` +
           `<td>${playerCell(row)}${marker}</td>` +
-          `<td>R${row.round}</td>` +
+          `<td>${costCell(row)}</td>` +
           `<td class="num">${fmtInt(row.value)}</td>` +
           `<td class="num">${signed(row.surplus)}</td></tr>`
       );
@@ -192,7 +229,7 @@ function byTeamHtml(rosters, nameByRoster, rows) {
 
 function expiringHtml(rows, nameByRoster) {
   const thead =
-    "<thead><tr><th>Player</th><th>Owner</th><th>Keep</th>" +
+    "<thead><tr><th>Player</th><th>Owner</th><th>Cost</th>" +
     '<th class="num">Value</th><th>Status</th></tr></thead>';
   const body = rows
     .map((row) => {
@@ -200,7 +237,7 @@ function expiringHtml(rows, nameByRoster) {
       return (
         `<tr><td>${playerCell(row)}</td>` +
         `<td>${escapeHtml(owner)}</td>` +
-        `<td>R${row.round}</td>` +
+        `<td>${costCell(row)}</td>` +
         `<td class="num">${fmtInt(row.value)}</td>` +
         `<td><span class="meta">2 yrs — back to pool</span></td></tr>`
       );
@@ -282,26 +319,45 @@ export async function mountKeepersPage() {
     setStatus("Loading league…");
     if (connectBtn) connectBtn.disabled = true;
     try {
-      const [chain, values, rosters, users] = await Promise.all([
+      const [chain, values, rosters, users, tradedPicks] = await Promise.all([
         loadLeagueChain(leagueId),
         fetchJSON("trade/values.json"),
         sleeperGet(`/league/${leagueId}/rosters`),
         sleeperGet(`/league/${leagueId}/users`),
+        sleeperGet(`/league/${leagueId}/traded_picks`),
       ]);
       if (!chain.length) throw new Error("League not found.");
 
       const picksBySeason = {};
+      const roundsBySeason = {};
       await Promise.all(
         chain.map(async (league) => {
-          picksBySeason[String(league.season)] = await loadLeaguePicks(
-            league.league_id
-          );
+          const season = String(league.season);
+          const { picks, rounds } = await loadLeaguePicks(league.league_id);
+          picksBySeason[season] = picks;
+          roundsBySeason[season] = rounds;
         })
       );
 
       const rosterList = rosters || [];
       const teams = Math.max(1, rosterList.length);
       const maps = buildSeasonMaps(chain, picksBySeason);
+      const rounds = Math.max(...Object.values(roundsBySeason), 0) || 16;
+      const current = Number(maps.seasons[0]);
+      const targetSeason = String(current + 1);
+      const userToRoster = new Map();
+      for (const roster of rosterList) {
+        if (roster.owner_id) {
+          userToRoster.set(String(roster.owner_id), String(roster.roster_id));
+        }
+      }
+      const ownedByTeam = ownedRoundsForSeason(
+        rosterList,
+        rounds,
+        tradedPicks,
+        targetSeason,
+        userToRoster
+      );
       const valueById = new Map();
       for (const player of values.players || []) {
         valueById.set(String(player.sleeper_id), player);
@@ -321,17 +377,17 @@ export async function mountKeepersPage() {
         seasons: maps.seasons,
         keeperBySeason: maps.keeperBySeason,
         costById: maps.costById,
+        ownedByTeam,
         valueById,
         metaById: maps.metaById,
         teams,
         curve,
       });
 
-      const current = Number(maps.seasons[0]);
       ctx = {
         chain,
         seasons: maps.seasons,
-        targetSeason: String(current + 1),
+        targetSeason,
         rosters: rosterList,
         nameByRoster,
         rows,

@@ -13,6 +13,8 @@
   --pill-active: #374151;
   --pill-active-text: #ffffff;
   --danger: #dc2626;
+  --warn-bg: #fef3c7;
+  --warn-text: #92610a;
   --radius: 0.15rem;
   --control-h: 2rem;
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif;
@@ -269,6 +271,19 @@ select {
 .error {
   color: var(--danger);
   padding: 0.75rem 0;
+}
+
+/* Keeper: owner lacks the pick for this cost round. */
+.keeper-warn {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  background: var(--warn-bg);
+  color: var(--warn-text);
+  font-size: 0.72rem;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 /* Draft boards */

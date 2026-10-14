@@ -44,6 +44,20 @@ function pickValueForRound(round, teams, curve) {
   return curve.valueAtRank(midpoint);
 }
 
+/**
+ * If the team does not own the round's pick, the next-highest pick it does own
+ * is what they'd actually pay. Display-only — the keeper's cost is unchanged.
+ */
+function escalateRound(round, owned) {
+  const r = Math.max(1, Math.round(Number(round) || 1));
+  if (!owned || owned.has(r)) return r;
+  let best = null;
+  for (const o of owned) {
+    if (o < r && (best === null || o > best)) best = o;
+  }
+  return best ?? r;
+}
+
 /** Consecutive seasons (ending at the current season) a player was kept. */
 function keepStreak(playerId, seasons, keeperBySeason) {
   let years = 0;
@@ -62,6 +76,7 @@ function keepStreak(playerId, seasons, keeperBySeason) {
  * @param {string[]} args.seasons  Seasons newest → oldest
  * @param {Object<string,Map>} args.keeperBySeason  season → (playerId → round)
  * @param {Map} args.costById  Sleeper id → most recent draft round
+ * @param {Map} args.ownedByTeam  roster id → Set of owned rounds (target season)
  * @param {Map} args.valueById  Sleeper id → published value row
  * @param {Map} args.metaById   Sleeper id → {name, position, team} from drafts
  * @param {number} args.teams
@@ -72,6 +87,7 @@ function buildKeeperRows({
   seasons = [],
   keeperBySeason = {},
   costById = new Map(),
+  ownedByTeam = new Map(),
   valueById = new Map(),
   metaById = new Map(),
   teams = 12,
@@ -80,6 +96,7 @@ function buildKeeperRows({
   const rows = [];
   for (const roster of rosters) {
     const rosterId = String(roster.roster_id);
+    const owned = ownedByTeam.get(rosterId);
     for (const raw of roster.players || []) {
       const playerId = String(raw || "");
       if (!playerId) continue;
@@ -89,6 +106,7 @@ function buildKeeperRows({
       const round = Number(costById.get(playerId) ?? WAIVER_ROUND);
       const cost = pickValueForRound(round, teams, curve);
       const used = keepStreak(playerId, seasons, keeperBySeason);
+      const hasPick = !owned || owned.has(round);
       rows.push({
         player_id: playerId,
         name: info.player || meta.name || `Player ${playerId}`,
@@ -100,6 +118,8 @@ function buildKeeperRows({
         surplus: Math.round(value - cost),
         used,
         expiring: used >= MAX_KEEP_YEARS,
+        has_pick: hasPick,
+        pay_round: hasPick ? round : escalateRound(round, owned),
         roster_id: rosterId,
       });
     }
@@ -147,6 +167,7 @@ export {
   normalizePos,
   buildValueCurve,
   pickValueForRound,
+  escalateRound,
   keepStreak,
   buildKeeperRows,
   rankBySurplus,
