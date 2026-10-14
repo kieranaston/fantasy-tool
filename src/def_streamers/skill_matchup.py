@@ -31,6 +31,15 @@ SKILL_MIN_GAMES = {
     "TE": 3,
 }
 
+# Minimum half-PPR points over that window. A volume floor so a thin role
+# with one efficient game can't chart on per-game averages alone.
+SKILL_MIN_TOTAL_POINTS = {
+    "QB": 50.0,
+    "RB": 35.0,
+    "WR": 35.0,
+    "TE": 30.0,
+}
+
 
 def build_skill_matchup_board(
     position: str,
@@ -117,11 +126,22 @@ def build_skill_matchup_board(
 
     # Drop small samples so one big game can't top the chart on average.
     # Early in the season count only the games the slate actually allows.
+    games_available = max(0, min(SKILL_ROLLING_GAMES, week - 1))
     min_games = min(
         SKILL_MIN_GAMES.get(position, SKILL_ROLLING_GAMES),
-        max(0, week - 1),
+        games_available,
     )
-    players = [p for p in players if p["games"] >= min_games]
+    min_total_points = round(
+        SKILL_MIN_TOTAL_POINTS.get(position, 0.0)
+        * (games_available / SKILL_ROLLING_GAMES),
+        1,
+    )
+    players = [
+        p
+        for p in players
+        if p["games"] >= min_games
+        and p["fantasy_points"] * p["games"] >= min_total_points
+    ]
 
     players = rank_by_chart(
         players,
@@ -142,6 +162,8 @@ def build_skill_matchup_board(
     )
     if min_games > 0:
         stats_note += f"; min {min_games} games"
+    if min_total_points > 0:
+        stats_note += f"; min {min_total_points:g} half-PPR points"
 
     return {
         "season": season,
@@ -152,6 +174,7 @@ def build_skill_matchup_board(
         "scoring": "half_ppr",
         "rolling_games": SKILL_ROLLING_GAMES,
         "min_games": min_games,
+        "min_total_points": min_total_points,
         "proj_limit": max_players,
         "stats_note": stats_note,
         "x_formula": (

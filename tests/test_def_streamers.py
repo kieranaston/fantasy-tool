@@ -475,6 +475,54 @@ def test_skill_board_drops_small_samples() -> None:
     assert "min 3 games" in board["stats_note"]
 
 
+def test_skill_board_drops_low_total_points() -> None:
+    from src.def_streamers.rb_board import build_rb_board
+
+    games = [
+        {
+            "season": 2026,
+            "game_type": "REG",
+            "week": 5,
+            "away_team": "NE",
+            "home_team": "SEA",
+            "away_score": None,
+            "home_score": None,
+            "spread_line": 3.0,
+            "total_line": 44.5,
+        }
+    ]
+    player_rows = [
+        {
+            "player_id": "1",
+            "player_name": "Quiet Volume",
+            "last_name": "Volume",
+            "team": "SEA",
+            "xfpts": 9.0,
+            "fantasy_points": 9.0,
+            "games": 4,
+        },
+        {
+            "player_id": "2",
+            "player_name": "Spike Game",
+            "last_name": "Spike",
+            "team": "NE",
+            "xfpts": 7.0,
+            "fantasy_points": 7.0,
+            "games": 4,
+        },
+    ]
+    board = build_rb_board(
+        season=2026,
+        week=5,
+        games=games,
+        player_rows=player_rows,
+    )
+    names = {p["last_name"] for p in board["players"]}
+    assert names == {"Volume"}
+    assert board["min_total_points"] == 35.0
+    assert "min 35 half-PPR points" in board["stats_note"]
+
+
 def test_build_wr_board_uses_this_season_xfp() -> None:
     from src.def_streamers.wr_board import build_wr_board
 
