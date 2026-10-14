@@ -1,19 +1,10 @@
 /**
  * Keeper value model.
  *
- * A keeper costs the draft round the player was acquired in — the round they
- * were drafted, or round 10 if they were added off waivers. Value is the
- * published FantasyCalc value. Keeper surplus is that value minus the value of
- * the pick you forfeit at the cost round, modelled as the midpoint pick of the
- * round.
- *
- * Two wrinkles the model handles:
- *  - Pick availability: if the team does not own a pick in the cost round, it
- *    pays with the next-highest pick it does own (a 7th-round cost becomes a
- *    6th). Applied per team using that season's pick ownership.
- *  - Waiver resets: a recorded keeper round that disagrees with the player's
- *    draft round + escalation means they were dropped and re-signed, so the
- *    cost resets to the waiver round.
+ * A keeper costs the round the player was most recently drafted in — or round
+ * 10 if they were added off waivers and never drafted. Value is the published
+ * FantasyCalc value. Keeper surplus is that value minus the value of the pick
+ * you forfeit at the cost round, modelled as the midpoint pick of the round.
  *
  * Players kept two seasons in a row are expiring: they cannot be kept again and
  * return to the draft pool.
@@ -53,33 +44,6 @@ function pickValueForRound(round, teams, curve) {
   return curve.valueAtRank(midpoint);
 }
 
-/** If the round's pick is not owned, pay the next-highest owned pick. */
-function escalateRound(round, owned) {
-  const r = Math.max(1, Math.round(Number(round) || 1));
-  if (!owned || owned.has(r)) return r;
-  let best = null;
-  for (const o of owned) {
-    if (o < r && (best === null || o > best)) best = o;
-  }
-  return best ?? r;
-}
-
-/**
- * Base acquisition round before pick-availability escalation.
- *
- * Uses the original draft round (waiver → R10). When a recorded keeper round
- * disagrees with draft + escalation, the player was re-signed off waivers, so
- * the recorded round wins.
- */
-function resolveBaseRound({ draftRound, keeperRound, currentOwned }) {
-  const draft = Number.isFinite(Number(draftRound)) ? Number(draftRound) : null;
-  const kept = Number.isFinite(Number(keeperRound)) ? Number(keeperRound) : null;
-  if (kept == null) return draft ?? WAIVER_ROUND;
-  const origin = draft ?? WAIVER_ROUND;
-  const expected = escalateRound(origin, currentOwned);
-  return kept === expected ? origin : kept;
-}
-
 /** Consecutive seasons (ending at the current season) a player was kept. */
 function keepStreak(playerId, seasons, keeperBySeason) {
   let years = 0;
@@ -97,8 +61,7 @@ function keepStreak(playerId, seasons, keeperBySeason) {
  * @param {Array} args.rosters  Sleeper rosters ({roster_id, players:[ids]})
  * @param {string[]} args.seasons  Seasons newest → oldest
  * @param {Object<string,Map>} args.keeperBySeason  season → (playerId → round)
- * @param {Map} args.baseById  Sleeper id → base acquisition round
- * @param {Map} args.ownedByTeam  roster id → Set of owned rounds (target season)
+ * @param {Map} args.costById  Sleeper id → most recent draft round
  * @param {Map} args.valueById  Sleeper id → published value row
  * @param {Map} args.metaById   Sleeper id → {name, position, team} from drafts
  * @param {number} args.teams
@@ -108,8 +71,7 @@ function buildKeeperRows({
   rosters = [],
   seasons = [],
   keeperBySeason = {},
-  baseById = new Map(),
-  ownedByTeam = new Map(),
+  costById = new Map(),
   valueById = new Map(),
   metaById = new Map(),
   teams = 12,
@@ -118,15 +80,13 @@ function buildKeeperRows({
   const rows = [];
   for (const roster of rosters) {
     const rosterId = String(roster.roster_id);
-    const owned = ownedByTeam.get(rosterId);
     for (const raw of roster.players || []) {
       const playerId = String(raw || "");
       if (!playerId) continue;
       const info = valueById.get(playerId) || {};
       const meta = metaById.get(playerId) || {};
       const value = Number(info.value) || 0;
-      const base = Number(baseById.get(playerId) ?? WAIVER_ROUND);
-      const round = escalateRound(base, owned);
+      const round = Number(costById.get(playerId) ?? WAIVER_ROUND);
       const cost = pickValueForRound(round, teams, curve);
       const used = keepStreak(playerId, seasons, keeperBySeason);
       rows.push({
@@ -135,9 +95,7 @@ function buildKeeperRows({
         pos: normalizePos(info.position || meta.position),
         team: info.team || meta.team || "",
         value: info.value != null ? Number(info.value) : null,
-        base_round: base,
         round,
-        escalated: round !== base,
         cost: Math.round(cost),
         surplus: Math.round(value - cost),
         used,
@@ -189,8 +147,6 @@ export {
   normalizePos,
   buildValueCurve,
   pickValueForRound,
-  escalateRound,
-  resolveBaseRound,
   keepStreak,
   buildKeeperRows,
   rankBySurplus,
