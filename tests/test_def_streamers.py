@@ -427,6 +427,54 @@ def test_skill_board_keeps_best_chart_scores() -> None:
     assert "Charbonnet" not in names
 
 
+def test_skill_board_drops_small_samples() -> None:
+    from src.def_streamers.rb_board import build_rb_board
+
+    games = [
+        {
+            "season": 2026,
+            "game_type": "REG",
+            "week": 4,
+            "away_team": "NE",
+            "home_team": "SEA",
+            "away_score": None,
+            "home_score": None,
+            "spread_line": 3.0,
+            "total_line": 44.5,
+        }
+    ]
+    player_rows = [
+        {
+            "player_id": "1",
+            "player_name": "Backup Scat",
+            "last_name": "Scat",
+            "team": "SEA",
+            "xfpts": 40.0,
+            "fantasy_points": 45.0,
+            "games": 1,
+        },
+        {
+            "player_id": "2",
+            "player_name": "Every Down",
+            "last_name": "Down",
+            "team": "NE",
+            "xfpts": 14.0,
+            "fantasy_points": 13.0,
+            "games": 3,
+        },
+    ]
+    board = build_rb_board(
+        season=2026,
+        week=4,
+        games=games,
+        player_rows=player_rows,
+    )
+    names = {p["last_name"] for p in board["players"]}
+    assert names == {"Down"}
+    assert board["min_games"] == 3
+    assert "min 3 games" in board["stats_note"]
+
+
 def test_build_wr_board_uses_this_season_xfp() -> None:
     from src.def_streamers.wr_board import build_wr_board
 

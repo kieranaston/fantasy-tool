@@ -22,6 +22,15 @@ from src.loaders.sleeper_adp import draft_season_from_sleeper_state
 # Last few games capture the current role without a one-game spike.
 SKILL_ROLLING_GAMES = 4
 
+# Minimum games played in the rolling window before a player can chart.
+# Filters small samples whose per-game average is inflated by one big game.
+SKILL_MIN_GAMES = {
+    "QB": 3,
+    "RB": 3,
+    "WR": 3,
+    "TE": 3,
+}
+
 
 def build_skill_matchup_board(
     position: str,
@@ -106,6 +115,14 @@ def build_skill_matchup_board(
             }
         )
 
+    # Drop small samples so one big game can't top the chart on average.
+    # Early in the season count only the games the slate actually allows.
+    min_games = min(
+        SKILL_MIN_GAMES.get(position, SKILL_ROLLING_GAMES),
+        max(0, week - 1),
+    )
+    players = [p for p in players if p["games"] >= min_games]
+
     players = rank_by_chart(
         players,
         x_key="xfpts",
@@ -118,6 +135,14 @@ def build_skill_matchup_board(
     med_x = round(median(r["xfpts"] for r in players), 2)
     med_y = round(median(r["fpoe"] for r in players), 2)
 
+    stats_note = (
+        f"Top {max_players} {position}s by chart score "
+        f"(xFP/G + FPOE/G); last {SKILL_ROLLING_GAMES} games "
+        f"in {stats_season} before week {week}"
+    )
+    if min_games > 0:
+        stats_note += f"; min {min_games} games"
+
     return {
         "season": season,
         "week": week,
@@ -126,12 +151,9 @@ def build_skill_matchup_board(
         "stat_seasons": [stats_season],
         "scoring": "half_ppr",
         "rolling_games": SKILL_ROLLING_GAMES,
+        "min_games": min_games,
         "proj_limit": max_players,
-        "stats_note": (
-            f"Top {max_players} {position}s by chart score "
-            f"(xFP/G + FPOE/G); last {SKILL_ROLLING_GAMES} games "
-            f"in {stats_season} before week {week}"
-        ),
+        "stats_note": stats_note,
         "x_formula": (
             f"expected half-PPR per game, last {SKILL_ROLLING_GAMES} games "
             f"this season before week {week}"
