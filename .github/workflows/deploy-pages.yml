@@ -9,7 +9,7 @@ on:
   # The refresh jobs commit with [skip ci], which suppresses the push trigger
   # above, so publish off their completion instead.
   workflow_run:
-    workflows: ["Refresh ADP", "Refresh streamers", "Refresh trade values"]
+    workflows: ["Refresh ADP", "Refresh streamers", "Refresh player values"]
     types: [completed]
   workflow_dispatch:
 

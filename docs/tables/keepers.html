@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light" />
-    <title>Trade Recommender</title>
+    <title>Keeper Value</title>
     <link rel="stylesheet" href="../css/site.css?v=97" />
   </head>
   <body>
@@ -19,7 +19,7 @@
         <a href="te.html">TEs</a>
         <a href="adp.html">ADP</a>
         <a href="draft.html">Draft</a>
-        <a href="trade.html" class="is-active" aria-current="page">Trade</a>
+        <a href="keepers.html" class="is-active" aria-current="page">Keepers</a>
       </div>
     </nav>
     <main class="site-main">
@@ -28,9 +28,9 @@
           <div class="draft-setup">
             <div class="draft-setup-fields">
               <div class="draft-connect-row">
-                <label for="trade-league-input">League</label>
+                <label for="keepers-league-input">League</label>
                 <input
-                  id="trade-league-input"
+                  id="keepers-league-input"
                   type="text"
                   spellcheck="false"
                   autocomplete="off"
@@ -38,32 +38,36 @@
                 />
               </div>
               <div class="draft-connect-row draft-connect-row--seat">
-                <label for="trade-team">Team</label>
-                <select id="trade-team" disabled></select>
+                <label for="keepers-team">Team</label>
+                <select id="keepers-team" disabled></select>
               </div>
             </div>
             <div class="draft-actions">
-              <button type="button" id="trade-connect" class="draft-btn draft-btn--primary">Connect</button>
+              <button type="button" id="keepers-connect" class="draft-btn draft-btn--primary">Connect</button>
             </div>
           </div>
           <div class="draft-status">
-            <p class="meta" id="trade-league-summary" hidden></p>
-            <p class="meta" id="trade-status"></p>
+            <p class="meta" id="keepers-league-summary" hidden></p>
+            <p class="meta" id="keepers-status"></p>
           </div>
         </div>
 
-        <section class="draft-panel">
-          <h2 class="draft-section-title">Recommended trades</h2>
-          <div id="trade-results" class="table-wrap draft-panel-body"></div>
-        </section>
+        <p class="meta">
+          Cost is the round the player was drafted (waivers cost round 10),
+          escalated to the next-highest pick the team owns if they lack that
+          round. Surplus = FantasyCalc value − pick value at the cost round.
+          Players kept two seasons in a row must return to the draft pool.
+        </p>
+
+        <div id="keepers-results"></div>
       </div>
     </main>
 
     <script type="module" src="../js/site-boot.js?v=15"></script>
     <script type="module">
       import { mountPage } from "../js/config.js?v=16";
-      import { mountTradePage } from "../js/trade-companion.js?v=3";
-      mountPage(mountTradePage, "trade-results");
+      import { mountKeepersPage } from "../js/keeper-companion.js?v=1";
+      mountPage(mountKeepersPage, "keepers-results");
     </script>
   </body>
 </html>

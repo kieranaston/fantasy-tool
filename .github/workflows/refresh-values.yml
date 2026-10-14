@@ -1,4 +1,4 @@
-name: Refresh trade values
+name: Refresh player values
 
 on:
   schedule:
@@ -22,17 +22,17 @@ jobs:
       - name: Install dependencies
         run: pip install .
 
-      - name: Refresh FantasyCalc trade values
-        run: python -m src.run_trade_values
+      - name: Refresh FantasyCalc player values
+        run: python -m src.run_trade_values --league 1388966973332799488
 
-      - name: Commit updated trade values
+      - name: Commit updated player values
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs/data/trade/
           if git diff --staged --quiet; then
-            echo "No trade value changes to commit."
+            echo "No player value changes to commit."
           else
-            git commit -m "chore: refresh trade values [skip ci]"
+            git commit -m "chore: refresh player values [skip ci]"
             git push
           fi
