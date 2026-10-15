@@ -18,7 +18,7 @@ import {
   eligibleRows,
   expiringRows,
   rankBySurplus,
-} from "./keeper-scoring.js?v=4";
+} from "./keeper-scoring.js?v=5";
 
 /** Couper Alum — used when the input is left blank. */
 const DEFAULT_LEAGUE_ID = "1388966973332799488";
@@ -214,14 +214,9 @@ function byTeamHtml(rosters, nameByRoster, rows, filter = "") {
       );
       continue;
     }
-    // Each team's best few options. Two can be kept, so value sums the top two.
+    // Each team's best few options.
     const options = eligible.slice(0, 3);
-    const total = options
-      .slice(0, 2)
-      .reduce((sum, row) => sum + (Number(row.value) || 0), 0);
-    const teamCell =
-      `<td rowspan="${options.length}">${escapeHtml(name)}` +
-      `<div class="meta">Top-2 value ${fmtInt(total)}</div></td>`;
+    const teamCell = `<td rowspan="${options.length}">${escapeHtml(name)}</td>`;
     options.forEach((row, idx) => {
       body.push(
         `<tr>${idx === 0 ? teamCell : ""}` +
