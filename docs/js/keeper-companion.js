@@ -18,7 +18,7 @@ import {
   eligibleRows,
   expiringRows,
   rankBySurplus,
-} from "./keeper-scoring.js?v=3";
+} from "./keeper-scoring.js?v=4";
 
 /** Couper Alum — used when the input is left blank. */
 const DEFAULT_LEAGUE_ID = "1388966973332799488";
@@ -214,22 +214,16 @@ function byTeamHtml(rosters, nameByRoster, rows, filter = "") {
       );
       continue;
     }
-    // The two keep slots, then everything else as alternates (unrestricted).
-    const keepers = eligible.slice(0, 2);
-    const alternates = eligible.slice(2);
-    const total = keepers.reduce((sum, row) => sum + (Number(row.value) || 0), 0);
-    const span = eligible.length + (alternates.length ? 1 : 0);
+    // Each team's best few options. Two can be kept, so value sums the top two.
+    const options = eligible.slice(0, 3);
+    const total = options
+      .slice(0, 2)
+      .reduce((sum, row) => sum + (Number(row.value) || 0), 0);
     const teamCell =
-      `<td rowspan="${span}">${escapeHtml(name)}` +
-      `<div class="meta">Total value ${fmtInt(total)}</div></td>`;
-    const cells = [];
-    eligible.forEach((row, idx) => {
-      if (idx === 2 && alternates.length) {
-        cells.push(
-          `<tr class="keeper-divider"><td colspan="4"><span class="meta">Alternates</span></td></tr>`
-        );
-      }
-      cells.push(
+      `<td rowspan="${options.length}">${escapeHtml(name)}` +
+      `<div class="meta">Top-2 value ${fmtInt(total)}</div></td>`;
+    options.forEach((row, idx) => {
+      body.push(
         `<tr>${idx === 0 ? teamCell : ""}` +
           `<td>${playerCell(row)}</td>` +
           `<td>${costCell(row)}</td>` +
@@ -237,7 +231,6 @@ function byTeamHtml(rosters, nameByRoster, rows, filter = "") {
           `<td class="num">${signed(row.surplus)}</td></tr>`
       );
     });
-    body.push(...cells);
   }
   return `<table class="draft-table">${thead}<tbody>${body.join("")}</tbody></table>`;
 }
