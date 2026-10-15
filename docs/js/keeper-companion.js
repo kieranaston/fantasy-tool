@@ -184,7 +184,7 @@ function leaderboardHtml(rows, nameByRoster) {
       );
     })
     .join("");
-  return `<table class="draft-table">${thead}<tbody>${body}</tbody></table>`;
+  return `<table class="draft-table keeper-table">${thead}<tbody>${body}</tbody></table>`;
 }
 
 function byTeamHtml(rosters, nameByRoster, rows, filter = "") {
@@ -227,13 +227,13 @@ function byTeamHtml(rosters, nameByRoster, rows, filter = "") {
       );
     });
   }
-  return `<table class="draft-table">${thead}<tbody>${body.join("")}</tbody></table>`;
+  return `<table class="draft-table keeper-table">${thead}<tbody>${body.join("")}</tbody></table>`;
 }
 
 function expiringHtml(rows, nameByRoster) {
   const thead =
     "<thead><tr><th>Player</th><th>Owner</th><th>Cost</th>" +
-    '<th class="num">Value</th><th>Status</th></tr></thead>';
+    '<th class="num">Value</th></tr></thead>';
   const body = rows
     .map((row) => {
       const owner = nameByRoster.get(row.roster_id) || `Roster ${row.roster_id}`;
@@ -241,12 +241,11 @@ function expiringHtml(rows, nameByRoster) {
         `<tr><td>${playerCell(row)}</td>` +
         `<td>${escapeHtml(owner)}</td>` +
         `<td>${costCell(row)}</td>` +
-        `<td class="num">${fmtInt(row.value)}</td>` +
-        `<td><span class="meta">2 yrs — back to pool</span></td></tr>`
+        `<td class="num">${fmtInt(row.value)}</td></tr>`
       );
     })
     .join("");
-  return `<table class="draft-table">${thead}<tbody>${body}</tbody></table>`;
+  return `<table class="draft-table keeper-table">${thead}<tbody>${body}</tbody></table>`;
 }
 
 export async function mountKeepersPage() {

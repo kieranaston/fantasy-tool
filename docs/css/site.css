@@ -291,6 +291,24 @@ select {
   margin-bottom: 0.75rem;
 }
 
+/* Keeper tables: roomier rows, zebra striping, hover highlight. */
+.keeper-table > tbody > tr > td {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+.keeper-table > thead > tr > th {
+  background: #f3f5f8;
+}
+
+.keeper-table > tbody > tr:nth-child(even) > td {
+  background: #f7f9fb;
+}
+
+.keeper-table > tbody > tr:hover > td {
+  background: #eef2f7;
+}
+
 /* Draft boards */
 table.draft-table {
   width: 100% !important;
