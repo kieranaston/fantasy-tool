@@ -142,25 +142,6 @@ function expiringRows(rows = []) {
   return rows.filter((row) => row.expiring);
 }
 
-/** Per roster: best ``perTeam`` keepers plus the first one left out. */
-function keepersByTeam(rows = [], perTeam = 2) {
-  const grouped = new Map();
-  for (const row of rows) {
-    if (!grouped.has(row.roster_id)) grouped.set(row.roster_id, []);
-    grouped.get(row.roster_id).push(row);
-  }
-  const out = new Map();
-  for (const [rosterId, list] of grouped) {
-    const ranked = rankBySurplus(eligibleRows(list));
-    out.set(rosterId, {
-      keepers: ranked.slice(0, perTeam),
-      bubble: ranked[perTeam] || null,
-      expiring: rankBySurplus(expiringRows(list)),
-    });
-  }
-  return out;
-}
-
 export {
   WAIVER_ROUND,
   MAX_KEEP_YEARS,
@@ -173,5 +154,4 @@ export {
   rankBySurplus,
   eligibleRows,
   expiringRows,
-  keepersByTeam,
 };

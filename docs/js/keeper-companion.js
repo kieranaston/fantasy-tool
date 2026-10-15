@@ -17,15 +17,16 @@ import {
   buildValueCurve,
   eligibleRows,
   expiringRows,
-  keepersByTeam,
   rankBySurplus,
-} from "./keeper-scoring.js?v=2";
+} from "./keeper-scoring.js?v=3";
 
 /** Couper Alum — used when the input is left blank. */
 const DEFAULT_LEAGUE_ID = "1388966973332799488";
 const LEAGUE_KEY = "ffb_keepers_league";
 const TEAM_KEY = "ffb_keepers_team";
 const MAX_SEASONS = 6;
+/** Leaderboard cap; the by-team view is not capped. */
+const LEADERBOARD_LIMIT = 50;
 
 async function sleeperGet(path) {
   const sep = path.includes("?") ? "&" : "?";
@@ -186,43 +187,57 @@ function leaderboardHtml(rows, nameByRoster) {
   return `<table class="draft-table">${thead}<tbody>${body}</tbody></table>`;
 }
 
-function byTeamHtml(rosters, nameByRoster, rows) {
-  const grouped = keepersByTeam(rows, 2);
-  const ordered = [...rosters].sort((a, b) =>
-    (nameByRoster.get(String(a.roster_id)) || "").localeCompare(
-      nameByRoster.get(String(b.roster_id)) || ""
-    )
-  );
+function byTeamHtml(rosters, nameByRoster, rows, filter = "") {
+  const grouped = new Map();
+  for (const row of rows) {
+    if (!grouped.has(row.roster_id)) grouped.set(row.roster_id, []);
+    grouped.get(row.roster_id).push(row);
+  }
+  const ordered = [...rosters]
+    .filter((roster) => !filter || String(roster.roster_id) === filter)
+    .sort((a, b) =>
+      (nameByRoster.get(String(a.roster_id)) || "").localeCompare(
+        nameByRoster.get(String(b.roster_id)) || ""
+      )
+    );
   const thead =
     "<thead><tr><th>Team</th><th>Player</th><th>Cost</th>" +
     '<th class="num">Value</th><th class="num">Surplus</th></tr></thead>';
   const body = [];
   for (const roster of ordered) {
     const rosterId = String(roster.roster_id);
-    const group = grouped.get(rosterId) || { keepers: [], bubble: null };
     const name = nameByRoster.get(rosterId) || `Roster ${rosterId}`;
-    const listed = [...group.keepers];
-    if (group.bubble) listed.push({ ...group.bubble, _bubble: true });
-    if (!listed.length) {
+    const eligible = rankBySurplus(eligibleRows(grouped.get(rosterId) || []));
+    if (!eligible.length) {
       body.push(
         `<tr><td>${escapeHtml(name)}</td><td colspan="4"><span class="meta">No eligible keepers</span></td></tr>`
       );
       continue;
     }
-    listed.forEach((row, idx) => {
-      const teamCell =
-        idx === 0
-          ? `<td rowspan="${listed.length}">${escapeHtml(name)}</td>`
-          : "";
-      const marker = row._bubble ? ' <span class="meta">(bubble)</span>' : "";
-      body.push(
-        `<tr${row._bubble ? ' class="keeper-bubble"' : ""}>${teamCell}` +
-          `<td>${playerCell(row)}${marker}</td>` +
+    // The two keep slots, then everything else as alternates (unrestricted).
+    const keepers = eligible.slice(0, 2);
+    const alternates = eligible.slice(2);
+    const total = keepers.reduce((sum, row) => sum + (Number(row.value) || 0), 0);
+    const span = eligible.length + (alternates.length ? 1 : 0);
+    const teamCell =
+      `<td rowspan="${span}">${escapeHtml(name)}` +
+      `<div class="meta">Total value ${fmtInt(total)}</div></td>`;
+    const cells = [];
+    eligible.forEach((row, idx) => {
+      if (idx === 2 && alternates.length) {
+        cells.push(
+          `<tr class="keeper-divider"><td colspan="4"><span class="meta">Alternates</span></td></tr>`
+        );
+      }
+      cells.push(
+        `<tr>${idx === 0 ? teamCell : ""}` +
+          `<td>${playerCell(row)}</td>` +
           `<td>${costCell(row)}</td>` +
           `<td class="num">${fmtInt(row.value)}</td>` +
           `<td class="num">${signed(row.surplus)}</td></tr>`
       );
     });
+    body.push(...cells);
   }
   return `<table class="draft-table">${thead}<tbody>${body.join("")}</tbody></table>`;
 }
@@ -281,36 +296,66 @@ export async function mountKeepersPage() {
     teamSelect.disabled = false;
   }
 
+  const VIEWS = [
+    { key: "leaderboard", label: "Leaderboard" },
+    { key: "team", label: "By team" },
+    { key: "expiring", label: "Expiring" },
+  ];
+  let activeView = "leaderboard";
+
   function render() {
     if (!ctx || !resultsEl) return;
     const filter = teamSelect?.value || "";
     localStorage.setItem(TEAM_KEY, filter);
+
     const eligible = rankBySurplus(eligibleRows(ctx.rows));
     const shown = filter
       ? eligible.filter((row) => row.roster_id === filter)
       : eligible;
-    const expiring = rankBySurplus(expiringRows(ctx.rows));
+    const leaderboard = shown.slice(0, LEADERBOARD_LIMIT);
+    const expiring = rankBySurplus(expiringRows(ctx.rows)).filter(
+      (row) => !filter || row.roster_id === filter
+    );
 
-    const sections = [];
-    sections.push(
-      `<section class="draft-panel"><h2 class="draft-section-title">Keeper leaderboard</h2>` +
-        `<div class="table-wrap">${
-          shown.length
-            ? leaderboardHtml(shown, ctx.nameByRoster)
-            : '<p class="meta">No eligible keepers for this filter.</p>'
-        }</div></section>`
-    );
-    sections.push(
-      `<section class="draft-panel"><h2 class="draft-section-title">Keepers by team</h2>` +
-        `<div class="table-wrap">${byTeamHtml(ctx.rosters, ctx.nameByRoster, ctx.rows)}</div></section>`
-    );
-    if (expiring.length) {
-      sections.push(
-        `<section class="draft-panel"><h2 class="draft-section-title">Expiring — back to the draft pool</h2>` +
-          `<div class="table-wrap">${expiringHtml(expiring, ctx.nameByRoster)}</div></section>`
-      );
-    }
-    resultsEl.innerHTML = sections.join("");
+    const tabs = `<div class="toolbar-pills keeper-tabs" role="tablist">${VIEWS.map(
+      (view) =>
+        `<button type="button" class="adp-tab${
+          activeView === view.key ? " is-active" : ""
+        }" data-view="${view.key}" role="tab" aria-selected="${
+          activeView === view.key
+        }">${view.label}</button>`
+    ).join("")}</div>`;
+
+    const panels = {
+      leaderboard: shown.length
+        ? leaderboardHtml(leaderboard, ctx.nameByRoster) +
+          (shown.length > leaderboard.length
+            ? `<p class="meta">Showing top ${leaderboard.length} of ${shown.length}.</p>`
+            : "")
+        : '<p class="meta">No eligible keepers for this filter.</p>',
+      team: byTeamHtml(ctx.rosters, ctx.nameByRoster, ctx.rows, filter),
+      expiring: expiring.length
+        ? expiringHtml(expiring, ctx.nameByRoster)
+        : '<p class="meta">No expiring keepers.</p>',
+    };
+
+    resultsEl.innerHTML =
+      tabs +
+      VIEWS.map(
+        (view) =>
+          `<div class="keeper-panel" role="tabpanel" data-view-panel="${view.key}"${
+            activeView === view.key ? "" : " hidden"
+          }><div class="table-wrap">${panels[view.key]}</div></div>`
+      ).join("");
+  }
+
+  if (resultsEl) {
+    resultsEl.addEventListener("click", (event) => {
+      const btn = event.target.closest?.(".adp-tab[data-view]");
+      if (!btn || !ctx) return;
+      activeView = btn.dataset.view;
+      render();
+    });
   }
 
   async function connectLeague() {
