@@ -1,5 +1,5 @@
 import { fetchJSON, formatUpdated, revealPage } from "./config.js";
-import { mountStreamerBoard } from "./streamer-chart.js?v=11";
+import { mountStreamerBoard } from "./streamer-chart.js?v=12";
 
 export async function mountKStreamersPage() {
   const root = document.getElementById("k-streamers");

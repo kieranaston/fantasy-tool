@@ -291,7 +291,7 @@ select {
   margin-bottom: 0.75rem;
 }
 
-/* Keeper tables: roomier rows, zebra striping, hover highlight. */
+/* Keeper tables: roomier rows. */
 .keeper-table > tbody > tr > td {
   padding-top: 0.5rem !important;
   padding-bottom: 0.5rem !important;
@@ -299,14 +299,6 @@ select {
 
 .keeper-table > thead > tr > th {
   background: #f3f5f8;
-}
-
-.keeper-table > tbody > tr:nth-child(even) > td {
-  background: #f7f9fb;
-}
-
-.keeper-table > tbody > tr:hover > td {
-  background: #eef2f7;
 }
 
 /* Draft boards */
@@ -1322,7 +1314,7 @@ table.draft-table > thead > tr > th {
 
 .def-matchup {
   fill: #111827;
-  font-size: 9.5px;
+  font-size: var(--def-label-size, 9px);
   font-weight: 500;
   font-family: var(--font);
   stroke: #fcfcfc;

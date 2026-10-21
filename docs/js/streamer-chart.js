@@ -2,7 +2,12 @@ import { escapeHtml } from "./shared.js";
 
 /** Equal padding so the plot area stays square when the SVG is square. */
 const BASE_PAD = { top: 44, right: 44, bottom: 44, left: 48 };
-const LOGO = 34;
+/** Markers scale with the plot so they stay small on narrow screens. */
+const LOGO_MAX = 30;
+const LOGO_MIN = 17;
+const LOGO_RATIO = 0.055;
+const LABEL_RATIO = 0.3;
+const LABEL_MIN_PX = 7;
 
 /** X/Y formula lines (shown under the chart). */
 export function axisFormulaHead(data) {
@@ -428,9 +433,17 @@ function median(vals) {
   return s.length % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2;
 }
 
-/** Margin (px) so logos/names clear the edge without emptying the plot. */
-const MARKER_PAD_X = 36;
-const MARKER_PAD_Y = 36;
+/** Logo and label px for a given plot size (smaller charts get smaller markers). */
+function markerSizes(size) {
+  const logo = Math.round(
+    Math.min(LOGO_MAX, Math.max(LOGO_MIN, size * LOGO_RATIO))
+  );
+  const labelPx = Math.max(
+    LABEL_MIN_PX,
+    Math.round(logo * LABEL_RATIO * 10) / 10
+  );
+  return { logo, labelPx };
+}
 
 /**
  * Draw a logo scatter chart with a square plot area.
@@ -471,6 +484,9 @@ export function drawStreamerChart(svg, data, opts) {
   const size = Math.max(280, Math.min(cssW || 560, cssH || cssW || 560, 560));
   const width = size;
   const height = size;
+  const { logo, labelPx } = markerSizes(size);
+  const markerPad = logo + 2;
+  svg.style.setProperty("--def-label-size", `${labelPx}px`);
   const quads = opts.quadrantLabels || null;
   const PAD = quads
     ? { top: 56, right: BASE_PAD.right, bottom: 62, left: BASE_PAD.left }
@@ -494,7 +510,7 @@ export function drawStreamerChart(svg, data, opts) {
       includeZero: opts.xIncludeZero,
     },
     innerW,
-    MARKER_PAD_X
+    markerPad
   );
   const yAxis = resolveAxis(
     axisVals || yVals,
@@ -505,7 +521,7 @@ export function drawStreamerChart(svg, data, opts) {
       includeZero: opts.yIncludeZero,
     },
     innerH,
-    MARKER_PAD_Y
+    markerPad
   );
   const xDom = xAxis.domain;
   const yDom = yAxis.domain;
@@ -632,12 +648,12 @@ export function drawStreamerChart(svg, data, opts) {
           <title>${escapeHtml(opts.tooltip(t))}</title>
           <image
             href="${escapeHtml(t.logo_url)}"
-            x="${-LOGO / 2}"
-            y="${-LOGO / 2}"
-            width="${LOGO}"
-            height="${LOGO}"
+            x="${-logo / 2}"
+            y="${-logo / 2}"
+            width="${logo}"
+            height="${logo}"
           />
-          <text class="def-matchup" x="0" y="${LOGO / 2 + 4}" text-anchor="middle" dominant-baseline="hanging">${escapeHtml(label)}</text>
+          <text class="def-matchup" x="0" y="${logo / 2 + 4}" text-anchor="middle" dominant-baseline="hanging">${escapeHtml(label)}</text>
         </g>
       `,
     };

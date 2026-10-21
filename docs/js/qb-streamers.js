@@ -1,5 +1,5 @@
 import { fetchJSON, formatUpdated, revealPage } from "./config.js";
-import { mountStreamerBoard, xfpVsActualOpts } from "./streamer-chart.js?v=11";
+import { mountStreamerBoard, xfpVsActualOpts } from "./streamer-chart.js?v=12";
 
 export async function mountQbStreamersPage() {
   const root = document.getElementById("qb-streamers");
