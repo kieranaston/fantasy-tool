@@ -507,7 +507,7 @@ def test_skill_board_drops_low_total_points() -> None:
             "last_name": "Spike",
             "team": "NE",
             "xfpts": 7.0,
-            "fantasy_points": 7.0,
+            "fantasy_points": 6.0,
             "games": 4,
         },
     ]
@@ -519,8 +519,8 @@ def test_skill_board_drops_low_total_points() -> None:
     )
     names = {p["last_name"] for p in board["players"]}
     assert names == {"Volume"}
-    assert board["min_total_points"] == 35.0
-    assert "min 35 half-PPR points" in board["stats_note"]
+    assert board["min_total_points"] == 26.2
+    assert "min 26.2 half-PPR points" in board["stats_note"]
 
 
 def test_build_wr_board_uses_this_season_xfp() -> None:

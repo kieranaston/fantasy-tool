@@ -20,7 +20,7 @@ from src.loaders.nflverse import (
 from src.loaders.sleeper_adp import draft_season_from_sleeper_state
 
 # Last few games capture the current role without a one-game spike.
-SKILL_ROLLING_GAMES = 4
+SKILL_ROLLING_GAMES = 3
 
 # Minimum games played in the rolling window before a player can chart.
 # Filters small samples whose per-game average is inflated by one big game.
@@ -32,12 +32,13 @@ SKILL_MIN_GAMES = {
 }
 
 # Minimum half-PPR points over that window. A volume floor so a thin role
-# with one efficient game can't chart on per-game averages alone.
+# with one efficient game can't chart on per-game averages alone. Scaled to
+# ``SKILL_ROLLING_GAMES`` so the per-game bar holds if the window changes.
 SKILL_MIN_TOTAL_POINTS = {
-    "QB": 50.0,
-    "RB": 35.0,
-    "WR": 35.0,
-    "TE": 30.0,
+    "QB": 37.5,
+    "RB": 26.25,
+    "WR": 26.25,
+    "TE": 22.5,
 }
 
 

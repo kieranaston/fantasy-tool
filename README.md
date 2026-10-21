@@ -2,7 +2,7 @@
 
 Personal fantasy football reference site (GitHub Pages in `/docs`).
 
-**Streamers** — DEF / K / QB / RB / WR / TE charts. Inclusion is top of the chart by a composite of its axes (QB·TE·DEF·K 18, RB·WR 32). QB/RB/WR/TE plot the last 4 games of expected points per game against points over expected. DEF and K keep sack rate and FG attempts against Vegas lines, also from this season only.  
+**Streamers** — DEF / K / QB / RB / WR / TE charts. Inclusion is top of the chart by a composite of its axes (QB·TE·DEF·K 18, RB·WR 32). QB/RB/WR/TE plot the last 3 games of expected points per game against points over expected. DEF and K keep sack rate and FG attempts against Vegas lines, also from this season only.  
 **ADP / Draft** — Sleeper ADP board and live draft assistant (VORP↔ADP blend, optional FantasyPros ECR sort).  
 **Keepers** — Sleeper league keeper rankings: FantasyCalc value − pick value at the cost round (most recent draft round, or R10 for waivers), with two-year eligibility.
 
