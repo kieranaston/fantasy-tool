@@ -22,6 +22,26 @@ STREAMER_PROJ_LIMITS = {
     "K": 18,
 }
 
+# Composite axis weights for the skill charts (QB/RB/WR/TE). Usage (xFP/G) is
+# far more predictive of next-week scoring than the efficiency residual
+# (FPOE/G), which mean-reverts, so the usage axis carries most of the weight.
+# From src/analysis/chart_weight_backtest.py and chart_param_sweep.py
+# (2021-2024 train / 2025 holdout): FPOE alone scores ~0.05-0.10, xFP alone
+# ~0.30-0.58, and the 0.8-1.0 weight plateau is flat, peaking near 0.9.
+SKILL_CHART_X_WEIGHT = 0.9
+SKILL_CHART_Y_WEIGHT = 0.1
+
+# DEF board: x = projected sack rate, y = opponent implied total (lower better).
+# The backtest shows the opponent implied total carries almost all the signal
+# (rho ~0.36 vs ~0.14 for sack rate), so the total is weighted heavily.
+DEF_CHART_X_WEIGHT = 0.2
+DEF_CHART_Y_WEIGHT = 0.8
+
+# K board: x = team implied total, y = team FG attempts per game. Again the
+# Vegas total dominates (rho ~0.18 vs ~0.03 for FG rate).
+K_CHART_X_WEIGHT = 0.8
+K_CHART_Y_WEIGHT = 0.2
+
 # Sleeper / ESPN / nflverse team code aliases → nflverse schedule codes.
 _TEAM_ALIASES = {
     "LAR": "LA",
@@ -137,6 +157,61 @@ def top_projected_players(
     return out
 
 
+def percentile_ranks(values: list[float]) -> list[float]:
+    """Average-rank percentile in 0–1 (higher value → higher rank, ties share).
+
+    Used instead of min–max so a single 3-game outlier can't compress every
+    other player toward zero.
+    """
+    n = len(values)
+    if n == 0:
+        return []
+    if n == 1:
+        return [0.5]
+    order = sorted(range(n), key=lambda i: values[i])
+    ranks = [0.0] * n
+    i = 0
+    while i < n:
+        j = i
+        while j + 1 < n and values[order[j + 1]] == values[order[i]]:
+            j += 1
+        pr = ((i + j) / 2.0) / (n - 1)
+        for k in range(i, j + 1):
+            ranks[order[k]] = pr
+        i = j + 1
+    return ranks
+
+
+def composite_scores(
+    xs: list[float],
+    ys: list[float],
+    *,
+    x_sign: float = 1.0,
+    y_sign: float = 1.0,
+    x_weight: float = 1.0,
+    y_weight: float = 1.0,
+) -> list[float]:
+    """Weighted percentile composite toward the good corner of the chart (0–1).
+
+    Each axis is ranked to a percentile, flipped so the favorable direction is
+    high, then blended with ``x_weight``/``y_weight`` (normalised to sum to 1).
+    """
+    n = len(xs)
+    if n == 0:
+        return []
+    total = (abs(x_weight) + abs(y_weight)) or 1.0
+    wx = abs(x_weight) / total
+    wy = abs(y_weight) / total
+    px = percentile_ranks(xs)
+    py = percentile_ranks(ys)
+    out: list[float] = []
+    for i in range(n):
+        gx = px[i] if x_sign >= 0 else 1.0 - px[i]
+        gy = py[i] if y_sign >= 0 else 1.0 - py[i]
+        out.append(round(wx * gx + wy * gy, 6))
+    return out
+
+
 def rank_by_chart(
     rows: list[dict[str, Any]],
     *,
@@ -144,27 +219,31 @@ def rank_by_chart(
     y_key: str,
     x_sign: float = 1.0,
     y_sign: float = 1.0,
+    x_weight: float = 1.0,
+    y_weight: float = 1.0,
     limit: int | None = None,
 ) -> list[dict[str, Any]]:
-    """Sort by a min–max composite toward the good corner of the chart.
+    """Sort by a weighted percentile composite toward the good corner.
 
-    Same idea as the on-page rank list: each axis is scaled to 0–1 across
-    ``rows``, then signed so the favorable direction scores higher.
+    The stored ``chart_score`` is the single source of truth for both board
+    inclusion and the on-page rank list, so the two can never disagree.
     """
     if not rows:
         return []
     xs = [float(row[x_key]) for row in rows]
     ys = [float(row[y_key]) for row in rows]
-    x_span = (max(xs) - min(xs)) or 1.0
-    y_span = (max(ys) - min(ys)) or 1.0
-    x0 = min(xs)
-    y0 = min(ys)
+    scores = composite_scores(
+        xs,
+        ys,
+        x_sign=x_sign,
+        y_sign=y_sign,
+        x_weight=x_weight,
+        y_weight=y_weight,
+    )
     scored: list[dict[str, Any]] = []
-    for row in rows:
+    for row, score in zip(rows, scores):
         copy = dict(row)
-        norm_x = (float(row[x_key]) - x0) / x_span
-        norm_y = (float(row[y_key]) - y0) / y_span
-        copy["chart_score"] = round(x_sign * norm_x + y_sign * norm_y, 6)
+        copy["chart_score"] = score
         scored.append(copy)
     scored.sort(
         key=lambda row: (

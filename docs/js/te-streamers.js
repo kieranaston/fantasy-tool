@@ -1,5 +1,5 @@
 import { fetchJSON, formatUpdated, revealPage } from "./config.js";
-import { mountStreamerBoard, xfpVsActualOpts } from "./streamer-chart.js?v=12";
+import { mountStreamerBoard, xfpVsActualOpts } from "./streamer-chart.js?v=14";
 
 export async function mountTeStreamersPage() {
   const root = document.getElementById("te-streamers");

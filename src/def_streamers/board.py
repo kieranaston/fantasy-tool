@@ -6,6 +6,8 @@ from statistics import median
 from typing import Any
 
 from src.def_streamers.projection_pool import (
+    DEF_CHART_X_WEIGHT,
+    DEF_CHART_Y_WEIGHT,
     STREAMER_PROJ_LIMITS,
     canonical_team,
     rank_by_chart,
@@ -115,13 +117,19 @@ def build_def_board(
     if not teams:
         raise ValueError("No DEF rows built — sack-rate teams missing for slate")
 
+    # Weighted percentiles: the opponent implied total carries most of the
+    # signal for DST scoring; sack rate is a smaller secondary tilt. See
+    # src/analysis/chart_weight_backtest.py (--target def).
     teams = rank_by_chart(
         teams,
         x_key="projected_sack_rate",
         y_key="vegas_projected_points",
         y_sign=-1,
+        x_weight=DEF_CHART_X_WEIGHT,
+        y_weight=DEF_CHART_Y_WEIGHT,
         limit=max_players,
     )
+
     med_x = median(r["projected_sack_rate"] for r in teams)
     med_y = median(r["vegas_projected_points"] for r in teams)
 
@@ -137,7 +145,8 @@ def build_def_board(
         ),
         "sack_note": (
             f"Top {max_players} defenses by chart score "
-            f"(sack rate, lower opponent total); "
+            f"({DEF_CHART_Y_WEIGHT:.0%} opponent implied total + "
+            f"{DEF_CHART_X_WEIGHT:.0%} sack rate); "
             f"{chart_window_label(season, week)}"
         ),
         "x_formula": (

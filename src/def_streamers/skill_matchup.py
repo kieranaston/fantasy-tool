@@ -6,12 +6,13 @@ from statistics import median
 from typing import Any
 
 from src.def_streamers.projection_pool import (
+    SKILL_CHART_X_WEIGHT,
+    SKILL_CHART_Y_WEIGHT,
     STREAMER_PROJ_LIMITS,
     canonical_team,
     rank_by_chart,
 )
 from src.loaders.nflverse import (
-    CHART_WINDOW_WEEKS,
     chart_min_games,
     chart_weeks_available,
     espn_logo_url,
@@ -22,28 +23,37 @@ from src.loaders.nflverse import (
 )
 from src.loaders.sleeper_adp import draft_season_from_sleeper_state
 
-# Last few calendar weeks capture the current role without a one-game spike —
-# and without stranding an injured player on stale games.
-SKILL_WINDOW_WEEKS = CHART_WINDOW_WEEKS
+# Rolling window for the skill charts. Swept against next-week points
+# (2021-2024 train, 2025 holdout): 5 weeks beat 3 (test Spearman 0.51 vs 0.43).
+# Longer windows kept helping but with diminishing returns, and a wider window
+# stops reflecting current role — 5 is the balance. See
+# src/analysis/chart_param_sweep.py.
+SKILL_WINDOW_WEEKS = 5
 
-# Minimum games played inside the window before a player can chart. Tolerates a
-# single bye or missed week; a longer absence drops the player off the chart.
+# Minimum games played inside the window before a player can chart. The sweep
+# found a one-game minimum predicts better than two (see
+# src/analysis/chart_param_sweep.py); the top-N cut is the real selector.
 SKILL_MIN_GAMES = {
-    "QB": 2,
-    "RB": 2,
-    "WR": 2,
-    "TE": 2,
+    "QB": 1,
+    "RB": 1,
+    "WR": 1,
+    "TE": 1,
 }
 
-# Minimum half-PPR points over the window. A volume floor so a thin role
-# with one efficient game can't chart on per-game averages alone. Scaled to
-# ``SKILL_WINDOW_WEEKS`` so the per-game bar holds if the window changes.
+# Reference total-points floors (half-PPR over a full 5-week window). These are
+# deliberately disabled in production: testing showed the floor shrinks the
+# candidate pool below the display limit, forcing weaker players onto the board
+# and lowering the actual-point percentile of the displayed set (0.53 with the
+# floor vs 0.66 without). The top-N cut already handles thin roles, and one-game
+# players are only ~2% of the board (near-average outcomes). Kept for the
+# gating experiment in src/analysis/matchup_signal_test.py.
 SKILL_MIN_TOTAL_POINTS = {
     "QB": 37.5,
     "RB": 26.25,
     "WR": 26.25,
     "TE": 22.5,
 }
+SKILL_FLOOR_MULTIPLIER = 0.0
 
 
 def build_skill_matchup_board(
@@ -130,7 +140,7 @@ def build_skill_matchup_board(
             }
         )
 
-    # Drop small samples so one big game can't top the chart on average.
+    # Keep anyone who has played; the top-N cut below is the real selector.
     # Early in the season count only the weeks the slate actually allows.
     weeks_available = chart_weeks_available(week, window=SKILL_WINDOW_WEEKS)
     min_games = chart_min_games(
@@ -140,6 +150,7 @@ def build_skill_matchup_board(
     )
     min_total_points = round(
         SKILL_MIN_TOTAL_POINTS.get(position, 0.0)
+        * SKILL_FLOOR_MULTIPLIER
         * (weeks_available / SKILL_WINDOW_WEEKS),
         1,
     )
@@ -154,6 +165,8 @@ def build_skill_matchup_board(
         players,
         x_key="xfpts",
         y_key="fpoe",
+        x_weight=SKILL_CHART_X_WEIGHT,
+        y_weight=SKILL_CHART_Y_WEIGHT,
         limit=max_players,
     )
     if not players:
@@ -164,8 +177,8 @@ def build_skill_matchup_board(
 
     stats_note = (
         f"Top {max_players} {position}s by chart score "
-        f"(xFP/G + FPOE/G); last {SKILL_WINDOW_WEEKS} weeks "
-        f"in {stats_season} before week {week}"
+        f"({SKILL_CHART_X_WEIGHT:.0%} xFP/G + {SKILL_CHART_Y_WEIGHT:.0%} FPOE/G); "
+        f"last {SKILL_WINDOW_WEEKS} weeks in {stats_season} before week {week}"
     )
     if min_games > 0:
         stats_note += f"; min {min_games} games"

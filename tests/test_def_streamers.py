@@ -476,7 +476,7 @@ def test_skill_board_keeps_best_chart_scores() -> None:
     assert "Charbonnet" not in names
 
 
-def test_skill_board_drops_small_samples() -> None:
+def test_skill_board_min_games_and_points_floor() -> None:
     from src.def_streamers.rb_board import build_rb_board
 
     games = [
@@ -495,11 +495,11 @@ def test_skill_board_drops_small_samples() -> None:
     player_rows = [
         {
             "player_id": "1",
-            "player_name": "Backup Scat",
-            "last_name": "Scat",
+            "player_name": "One Game",
+            "last_name": "One",
             "team": "SEA",
-            "xfpts": 40.0,
-            "fantasy_points": 45.0,
+            "xfpts": 8.0,
+            "fantasy_points": 9.0,
             "games": 1,
         },
         {
@@ -519,12 +519,15 @@ def test_skill_board_drops_small_samples() -> None:
         player_rows=player_rows,
     )
     names = {p["last_name"] for p in board["players"]}
-    assert names == {"Down"}
-    assert board["min_games"] == 2
-    assert "min 2 games" in board["stats_note"]
+    # One game is enough to chart; there is no volume floor.
+    assert names == {"One", "Down"}
+    assert board["min_games"] == 1
+    assert "min 1 games" in board["stats_note"]
 
 
-def test_skill_board_drops_low_total_points() -> None:
+def test_skill_board_total_points_floor_disabled() -> None:
+    """The pool floor is off; the top-N cut does the selecting (see
+    src/analysis/matchup_signal_test.py for the gating experiment)."""
     from src.def_streamers.rb_board import build_rb_board
 
     games = [
@@ -552,12 +555,12 @@ def test_skill_board_drops_low_total_points() -> None:
         },
         {
             "player_id": "2",
-            "player_name": "Spike Game",
-            "last_name": "Spike",
+            "player_name": "Low Volume",
+            "last_name": "Low",
             "team": "NE",
-            "xfpts": 7.0,
-            "fantasy_points": 6.0,
-            "games": 4,
+            "xfpts": 4.0,
+            "fantasy_points": 4.0,
+            "games": 2,
         },
     ]
     board = build_rb_board(
@@ -567,9 +570,9 @@ def test_skill_board_drops_low_total_points() -> None:
         player_rows=player_rows,
     )
     names = {p["last_name"] for p in board["players"]}
-    assert names == {"Volume"}
-    assert board["min_total_points"] == 26.2
-    assert "min 26.2 half-PPR points" in board["stats_note"]
+    assert names == {"Volume", "Low"}
+    assert board["min_total_points"] == 0.0
+    assert "half-PPR points" not in board["stats_note"]
 
 
 def test_build_wr_board_uses_this_season_xfp() -> None:

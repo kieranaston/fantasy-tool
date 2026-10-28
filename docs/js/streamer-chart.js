@@ -59,8 +59,12 @@ export function xfpVsActualOpts() {
     labelKey: "last_name",
     guideXKey: "xfpts",
     guideYKey: "fpoe",
-    guideXLabel: "Median",
-    guideYLabel: "Median",
+    // Must mirror SKILL_CHART_*_WEIGHT in src/def_streamers/projection_pool.py.
+    // The page sorts on the stored chart_score; these are only the fallback.
+    xWeight: 0.9,
+    yWeight: 0.1,
+    guideXLabel: "Charted median",
+    guideYLabel: "Charted median",
     xFormat: (v) => v.toFixed(0),
     yFormat: (v) => {
       const n = Math.round(v);
@@ -69,10 +73,12 @@ export function xfpVsActualOpts() {
     },
     xLabel: "xFP Per Game",
     yLabel: "FPOE Per Game",
+    // Descriptive, non-causal quadrant names: a 3-week FPOE is largely noise.
     quadrantLabels: {
-      topLeft: "Sell high",
-      topRight: "Elite studs",
-      bottomRight: "Buy low",
+      topLeft: "Low xFP · +FPOE",
+      topRight: "High xFP · +FPOE",
+      bottomLeft: "Low xFP · −FPOE",
+      bottomRight: "High xFP · −FPOE",
     },
     tooltip: (t) =>
       `${t.player_name} (${t.team}) ${t.matchup_label} · ${points(t.xfpts)} xFP/g · ${signed(t.fpoe)} FPOE/g · ${t.games}g`,
@@ -152,31 +158,57 @@ function labeledQuadrants(opts) {
     .map((key) => ({ key, label: labels[key] }));
 }
 
-/** Min–max normalize axes, score toward the good corner, sort best → worst. */
+/** Average-rank percentile in 0–1 (higher value → higher rank, ties share). */
+function percentileRanks(values) {
+  const n = values.length;
+  if (!n) return [];
+  if (n === 1) return [0.5];
+  const order = values.map((v, i) => i).sort((a, b) => values[a] - values[b]);
+  const ranks = new Array(n).fill(0);
+  let i = 0;
+  while (i < n) {
+    let j = i;
+    while (j + 1 < n && values[order[j + 1]] === values[order[i]]) j += 1;
+    const pr = (i + j) / 2 / (n - 1);
+    for (let k = i; k <= j; k += 1) ranks[order[k]] = pr;
+    i = j + 1;
+  }
+  return ranks;
+}
+
+/**
+ * Sort the board best → worst. Prefers the ``chart_score`` the builder stored
+ * (the same value used to pick who is on the board) so the side list can never
+ * rank by a different rule than the one that included the player. Falls back to
+ * a weighted percentile composite for any board without a stored score.
+ */
 export function rankChartPlayers(teams, opts) {
   const xKey = opts.xKey;
   const yKey = opts.yKey;
   const xSign = opts.xSign ?? 1;
   const ySign = opts.ySign ?? 1;
+  const xWeight = opts.xWeight ?? 1;
+  const yWeight = opts.yWeight ?? 1;
+  const hasStored = teams.every((t) => Number.isFinite(Number(t.chart_score)));
   const xs = teams.map((t) => Number(t[xKey]));
   const ys = teams.map((t) => Number(t[yKey]));
-  const xMin = Math.min(...xs);
-  const xMax = Math.max(...xs);
-  const yMin = Math.min(...ys);
-  const yMax = Math.max(...ys);
-  const xSpan = xMax - xMin || 1;
-  const ySpan = yMax - yMin || 1;
+  const px = percentileRanks(xs);
+  const py = percentileRanks(ys);
+  const total = Math.abs(xWeight) + Math.abs(yWeight) || 1;
+  const wx = Math.abs(xWeight) / total;
+  const wy = Math.abs(yWeight) / total;
 
   return teams
     .map((t, i) => {
       const xv = Number(t[xKey]);
       const yv = Number(t[yKey]);
-      const normX = (xv - xMin) / xSpan;
-      const normY = (yv - yMin) / ySpan;
+      const gx = xSign >= 0 ? px[i] : 1 - px[i];
+      const gy = ySign >= 0 ? py[i] : 1 - py[i];
+      const score = hasStored ? Number(t.chart_score) : wx * gx + wy * gy;
       return {
         item: t,
         id: playerId(t) || `row-${i}`,
-        score: xSign * normX + ySign * normY,
+        score,
         x: xv,
         y: yv,
       };

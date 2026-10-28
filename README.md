@@ -2,7 +2,7 @@
 
 Personal fantasy football reference site (GitHub Pages in `/docs`).
 
-**Streamers** — DEF / K / QB / RB / WR / TE charts. Inclusion is top of the chart by a composite of its axes (QB·TE·DEF·K 18, RB·WR 32). QB/RB/WR/TE plot the last 3 weeks of expected points per game against points over expected. DEF and K keep sack rate and FG attempts against Vegas lines, also from the last 3 weeks. Players need to have appeared in at least 2 of those 3 weeks (relaxed early season), so an injury ages them off the chart.
+**Streamers** — DEF / K / QB / RB / WR / TE charts. Inclusion is top of the chart by a weighted percentile composite of its axes (QB·TE·DEF·K 18, RB·WR 32). Weights and windows come from `src/analysis/chart_weight_backtest.py` + `chart_param_sweep.py` (next-week Spearman, 2021–24 train / 2025 holdout): QB/RB/WR/TE plot the last 5 weeks of expected points per game against points over expected (usage 90% / efficiency 10%, ≥1 game); DEF plots projected sack rate against the opponent implied total (opponent total 80% / sack rate 20%); K plots team implied total against team FG attempts per game (implied total 80% / FG rate 20%), both from the last 3 weeks. The top-N cut (not a volume floor) selects the board — testing showed a points floor shrank the pool and surfaced weaker players.
 **ADP / Draft** — Sleeper ADP board and live draft assistant (VORP↔ADP blend, optional FantasyPros ECR sort).  
 **Keepers** — Sleeper league keeper rankings: FantasyCalc value − pick value at the cost round (most recent draft round, or R10 for waivers), with two-year eligibility.
 

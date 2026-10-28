@@ -1,5 +1,5 @@
 import { fetchJSON, formatUpdated, revealPage } from "./config.js";
-import { mountStreamerBoard } from "./streamer-chart.js?v=12";
+import { mountStreamerBoard } from "./streamer-chart.js?v=14";
 
 function pct(rate) {
   return `${(rate * 100).toFixed(0)}%`;
@@ -25,17 +25,23 @@ export async function mountDefStreamersPage() {
       yKey: "vegas_projected_points",
       xSign: 1,
       ySign: -1,
+      // Must mirror DEF_CHART_*_WEIGHT in src/def_streamers/projection_pool.py.
+      // The page sorts on the stored chart_score; these are only the fallback.
+      xWeight: 0.2,
+      yWeight: 0.8,
       xTickStep: 0.01,
       yTickStep: 2,
       xFormat: pct,
       yFormat: (v) => v.toFixed(0),
       xLabel: "Projected Sack Rate",
       yLabel: "Opponent Implied Total",
-      guideXLabel: "Median",
-      guideYLabel: "Median",
+      guideXLabel: "Charted median",
+      guideYLabel: "Charted median",
       quadrantLabels: {
-        topLeft: "Bad spot",
-        bottomRight: "Good spot",
+        topLeft: "Low sack · high total",
+        topRight: "High sack · high total",
+        bottomLeft: "Low sack · low total",
+        bottomRight: "High sack · low total",
       },
       tooltip: (t) =>
         `${t.team} ${t.matchup_label} · sack ${pctExact(t.projected_sack_rate)} · opp implied ${t.vegas_projected_points}`,

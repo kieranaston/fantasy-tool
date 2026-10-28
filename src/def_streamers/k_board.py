@@ -6,6 +6,8 @@ from statistics import median
 from typing import Any
 
 from src.def_streamers.projection_pool import (
+    K_CHART_X_WEIGHT,
+    K_CHART_Y_WEIGHT,
     STREAMER_PROJ_LIMITS,
     canonical_team,
     rank_by_chart,
@@ -126,10 +128,15 @@ def build_k_board(
     if not teams:
         raise ValueError("No kicker rows built — FG-rate teams missing for slate")
 
+    # Weighted percentiles: the team implied total carries most of the signal
+    # for kicker scoring; FG attempts per game is a smaller secondary tilt. See
+    # src/analysis/chart_weight_backtest.py (--target k).
     teams = rank_by_chart(
         teams,
         x_key="vegas_projected_points",
         y_key="fg_attempts_per_game",
+        x_weight=K_CHART_X_WEIGHT,
+        y_weight=K_CHART_Y_WEIGHT,
         limit=max_players,
     )
     med_x = median(r["vegas_projected_points"] for r in teams)
@@ -142,7 +149,8 @@ def build_k_board(
         "proj_limit": max_players,
         "fg_note": (
             f"Top {max_players} kickers by chart score "
-            f"(implied total + FG attempts per game); "
+            f"({K_CHART_X_WEIGHT:.0%} team implied total + "
+            f"{K_CHART_Y_WEIGHT:.0%} FG attempts per game); "
             f"{chart_window_label(season, week)}"
         ),
         "x_formula": "team implied total = (game total ± spread) / 2",
