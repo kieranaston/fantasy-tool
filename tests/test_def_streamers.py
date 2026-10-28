@@ -476,6 +476,57 @@ def test_skill_board_keeps_best_chart_scores() -> None:
     assert "Charbonnet" not in names
 
 
+def test_skill_board_drops_stale_injured_player() -> None:
+    """A player whose last game is older than the recency window is dropped,
+    even though it falls inside the 5-week averaging window."""
+    from src.def_streamers.rb_board import build_rb_board
+
+    games = [
+        {
+            "season": 2026,
+            "game_type": "REG",
+            "week": 8,
+            "away_team": "LV",
+            "home_team": "NYJ",
+            "away_score": None,
+            "home_score": None,
+            "spread_line": 1.5,
+            "total_line": 45.5,
+        }
+    ]
+    player_rows = [
+        {
+            "player_id": "1",
+            "player_name": "Breece Hall",
+            "last_name": "Hall",
+            "team": "NYJ",
+            "xfpts": 15.1,
+            "fantasy_points": 8.5,
+            "games": 1,
+            "last_week": 3,  # out weeks 4-7
+        },
+        {
+            "player_id": "2",
+            "player_name": "Active Back",
+            "last_name": "Active",
+            "team": "NYJ",
+            "xfpts": 12.0,
+            "fantasy_points": 12.0,
+            "games": 3,
+            "last_week": 7,
+        },
+    ]
+    board = build_rb_board(
+        season=2026,
+        week=8,
+        games=games,
+        player_rows=player_rows,
+    )
+    names = {p["last_name"] for p in board["players"]}
+    assert names == {"Active"}
+    assert "played in the last 2 weeks" in board["stats_note"]
+
+
 def test_skill_board_min_games_and_points_floor() -> None:
     from src.def_streamers.rb_board import build_rb_board
 

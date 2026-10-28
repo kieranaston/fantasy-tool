@@ -285,6 +285,7 @@ def summarize_season_xfp(
         pl.col("half_ppr").mean().alias("fantasy_points"),
         pl.col("half_ppr_exp").mean().alias("xfpts"),
         pl.col("game_id").n_unique().alias("games"),
+        pl.col("week").max().alias("last_week"),
         pl.col("full_name").sort_by(["week", "game_id"]).last().alias("player_name"),
         pl.col("posteam").sort_by(["week", "game_id"]).last().alias("team"),
     )
@@ -303,6 +304,7 @@ def summarize_season_xfp(
                 "xfpts": xfpts,
                 "fpoe": fantasy_points - xfpts,
                 "games": int(row["games"]),
+                "last_week": int(row["last_week"]),
             }
         )
     out.sort(key=lambda r: (-r["fantasy_points"], -r["xfpts"]))

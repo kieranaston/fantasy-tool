@@ -40,6 +40,12 @@ SKILL_MIN_GAMES = {
     "TE": 1,
 }
 
+# Recency gate, independent of the averaging window: a player must have taken a
+# snap within the last ``SKILL_RECENT_WEEKS`` weeks. The 5-week window keeps
+# enough games for a stable rate, but without this an injured player who last
+# played 4 weeks ago can still chart on one stale game.
+SKILL_RECENT_WEEKS = 2
+
 # Reference total-points floors (half-PPR over a full 5-week window). These are
 # deliberately disabled in production: testing showed the floor shrinks the
 # candidate pool below the display limit, forcing weaker players onto the board
@@ -136,6 +142,7 @@ def build_skill_matchup_board(
                 "fantasy_points": actual,
                 "fpoe": fpoe,
                 "games": int(row["games"]),
+                "last_week": int(row.get("last_week", week)),
                 "logo_url": espn_logo_url(team),
             }
         )
@@ -154,10 +161,14 @@ def build_skill_matchup_board(
         * (weeks_available / SKILL_WINDOW_WEEKS),
         1,
     )
+    # Recency gate: drop players whose last appearance is older than the cutoff,
+    # so an injured player can't chart on a stale game inside the 5-week window.
+    recent_cutoff = week - SKILL_RECENT_WEEKS
     players = [
         p
         for p in players
         if p["games"] >= min_games
+        and p["last_week"] >= recent_cutoff
         and p["fantasy_points"] * p["games"] >= min_total_points
     ]
 
@@ -182,6 +193,7 @@ def build_skill_matchup_board(
     )
     if min_games > 0:
         stats_note += f"; min {min_games} games"
+    stats_note += f"; played in the last {SKILL_RECENT_WEEKS} weeks"
     if min_total_points > 0:
         stats_note += f"; min {min_total_points:g} half-PPR points"
 
