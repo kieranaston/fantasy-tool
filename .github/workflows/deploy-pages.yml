@@ -40,9 +40,17 @@ jobs:
         with:
           path: docs
 
+      # Retried because deploy-pages intermittently fails while fetching its
+      # OIDC ID token ("Request timeout: /37//idtoken/..."), which is a
+      # transient GitHub-side flake rather than a workflow problem.
       - id: deploy
-        uses: actions/deploy-pages@v5
+        uses: Wandalen/wretry.action@v3.8.0
         with:
-          # The action defaults to giving up after 10 minutes. Pages deployment
-          # lag can exceed that, which aborts a deploy that would have landed.
-          timeout: 1800000
+          action: actions/deploy-pages@v5
+          with: |
+            # The action defaults to giving up after 10 minutes. Pages
+            # deployment lag can exceed that, which aborts a deploy that
+            # would have landed.
+            timeout: 1800000
+          attempt_limit: 3
+          attempt_delay: 15000

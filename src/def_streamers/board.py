@@ -11,6 +11,8 @@ from src.def_streamers.projection_pool import (
     rank_by_chart,
 )
 from src.loaders.nflverse import (
+    chart_min_games,
+    chart_window_label,
     espn_logo_url,
     fetch_schedules,
     implied_team_totals,
@@ -73,6 +75,8 @@ def build_def_board(
     if not slate:
         raise ValueError(f"No lined REG games for {season} week {week}")
 
+    min_games = chart_min_games(week)
+
     teams: list[dict[str, Any]] = []
     for g in slate:
         away = str(g["away_team"])
@@ -86,6 +90,8 @@ def build_def_board(
             team_rates = rates.get(team) or rates.get(team_key)
             opp_rates = rates.get(opp) or rates.get(canonical_team(opp))
             if not team_rates or not opp_rates:
+                continue
+            if float(team_rates.get("games") or 0) < min_games:
                 continue
             def_sr = float(team_rates["defense_sack_rate"])
             opp_off_sr = float(opp_rates["offense_sack_rate"])
@@ -132,12 +138,12 @@ def build_def_board(
         "sack_note": (
             f"Top {max_players} defenses by chart score "
             f"(sack rate, lower opponent total); "
-            f"{season} regular-season games before week {week}"
+            f"{chart_window_label(season, week)}"
         ),
         "x_formula": (
             f"{OPP_OFFENSE_WEIGHT:.0%} × opponent offense sack rate + "
             f"{DEFENSE_WEIGHT:.0%} × this DEF sack rate "
-            f"({season} regular season, before week {week})"
+            f"({chart_window_label(season, week)})"
         ),
         "y_formula": (
             "opponent implied team total = (game total ± spread) / 2"

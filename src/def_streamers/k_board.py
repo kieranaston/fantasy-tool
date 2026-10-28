@@ -12,6 +12,8 @@ from src.def_streamers.projection_pool import (
     top_projected_players,
 )
 from src.loaders.nflverse import (
+    chart_min_games,
+    chart_window_label,
     espn_logo_url,
     fetch_schedules,
     implied_team_totals,
@@ -82,6 +84,8 @@ def build_k_board(
     if not slate:
         raise ValueError(f"No lined REG games for {season} week {week}")
 
+    min_games = chart_min_games(week)
+
     teams: list[dict[str, Any]] = []
     for g in slate:
         away = str(g["away_team"])
@@ -97,6 +101,8 @@ def build_k_board(
                 continue
             team_rates = rates.get(team) or rates.get(team_key)
             if not team_rates:
+                continue
+            if float(team_rates.get("games") or 0) < min_games:
                 continue
             fg_pg = float(team_rates["fg_attempts_per_game"])
             teams.append(
@@ -137,11 +143,11 @@ def build_k_board(
         "fg_note": (
             f"Top {max_players} kickers by chart score "
             f"(implied total + FG attempts per game); "
-            f"{season} regular-season games before week {week}"
+            f"{chart_window_label(season, week)}"
         ),
         "x_formula": "team implied total = (game total ± spread) / 2",
         "y_formula": (
-            f"team FG attempts per game ({season} regular season, before week {week})"
+            f"team FG attempts per game ({chart_window_label(season, week)})"
         ),
         "source": "sleeper_projections_nflverse_pbp_schedules",
         "medians": {

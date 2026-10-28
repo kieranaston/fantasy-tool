@@ -11,6 +11,9 @@ from src.def_streamers.projection_pool import (
     rank_by_chart,
 )
 from src.loaders.nflverse import (
+    CHART_WINDOW_WEEKS,
+    chart_min_games,
+    chart_weeks_available,
     espn_logo_url,
     fetch_schedules,
     load_roster_teams,
@@ -19,21 +22,22 @@ from src.loaders.nflverse import (
 )
 from src.loaders.sleeper_adp import draft_season_from_sleeper_state
 
-# Last few games capture the current role without a one-game spike.
-SKILL_ROLLING_GAMES = 3
+# Last few calendar weeks capture the current role without a one-game spike —
+# and without stranding an injured player on stale games.
+SKILL_WINDOW_WEEKS = CHART_WINDOW_WEEKS
 
-# Minimum games played in the rolling window before a player can chart.
-# Filters small samples whose per-game average is inflated by one big game.
+# Minimum games played inside the window before a player can chart. Tolerates a
+# single bye or missed week; a longer absence drops the player off the chart.
 SKILL_MIN_GAMES = {
-    "QB": 3,
-    "RB": 3,
-    "WR": 3,
-    "TE": 3,
+    "QB": 2,
+    "RB": 2,
+    "WR": 2,
+    "TE": 2,
 }
 
-# Minimum half-PPR points over that window. A volume floor so a thin role
+# Minimum half-PPR points over the window. A volume floor so a thin role
 # with one efficient game can't chart on per-game averages alone. Scaled to
-# ``SKILL_ROLLING_GAMES`` so the per-game bar holds if the window changes.
+# ``SKILL_WINDOW_WEEKS`` so the per-game bar holds if the window changes.
 SKILL_MIN_TOTAL_POINTS = {
     "QB": 37.5,
     "RB": 26.25,
@@ -57,7 +61,8 @@ def build_skill_matchup_board(
 
     Inclusion is the top N players by a composite of the chart axes
     (expected points per game and points over expected). Stats are the last
-    ``SKILL_ROLLING_GAMES`` games this season before the slate.
+    ``SKILL_WINDOW_WEEKS`` calendar weeks this season before the slate, so a
+    player who has not played recently ages off the chart.
     """
     position = position.upper()
     if max_players is None:
@@ -78,7 +83,7 @@ def build_skill_matchup_board(
             stats_season,
             position,
             as_of_week=week,
-            window=SKILL_ROLLING_GAMES,
+            window=SKILL_WINDOW_WEEKS,
             roster_teams=roster_teams,
         )
 
@@ -126,15 +131,16 @@ def build_skill_matchup_board(
         )
 
     # Drop small samples so one big game can't top the chart on average.
-    # Early in the season count only the games the slate actually allows.
-    games_available = max(0, min(SKILL_ROLLING_GAMES, week - 1))
-    min_games = min(
-        SKILL_MIN_GAMES.get(position, SKILL_ROLLING_GAMES),
-        games_available,
+    # Early in the season count only the weeks the slate actually allows.
+    weeks_available = chart_weeks_available(week, window=SKILL_WINDOW_WEEKS)
+    min_games = chart_min_games(
+        week,
+        window=SKILL_WINDOW_WEEKS,
+        floor=SKILL_MIN_GAMES.get(position, SKILL_WINDOW_WEEKS),
     )
     min_total_points = round(
         SKILL_MIN_TOTAL_POINTS.get(position, 0.0)
-        * (games_available / SKILL_ROLLING_GAMES),
+        * (weeks_available / SKILL_WINDOW_WEEKS),
         1,
     )
     players = [
@@ -158,7 +164,7 @@ def build_skill_matchup_board(
 
     stats_note = (
         f"Top {max_players} {position}s by chart score "
-        f"(xFP/G + FPOE/G); last {SKILL_ROLLING_GAMES} games "
+        f"(xFP/G + FPOE/G); last {SKILL_WINDOW_WEEKS} weeks "
         f"in {stats_season} before week {week}"
     )
     if min_games > 0:
@@ -173,13 +179,13 @@ def build_skill_matchup_board(
         "stats_season": stats_season,
         "stat_seasons": [stats_season],
         "scoring": "half_ppr",
-        "rolling_games": SKILL_ROLLING_GAMES,
+        "rolling_weeks": SKILL_WINDOW_WEEKS,
         "min_games": min_games,
         "min_total_points": min_total_points,
         "proj_limit": max_players,
         "stats_note": stats_note,
         "x_formula": (
-            f"expected half-PPR per game, last {SKILL_ROLLING_GAMES} games "
+            f"expected half-PPR per game, last {SKILL_WINDOW_WEEKS} weeks "
             f"this season before week {week}"
         ),
         "y_formula": (

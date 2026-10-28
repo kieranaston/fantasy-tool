@@ -116,6 +116,34 @@ def test_summarize_season_xfp_uses_last_four_games() -> None:
     assert abs(row["fpoe"] - 5.0) < 1e-9
 
 
+def test_summarize_season_xfp_drops_stale_players() -> None:
+    """Only the last ``window`` calendar weeks count; older games age a player off."""
+    import polars as pl
+
+    from src.loaders.nflverse import summarize_season_xfp
+
+    df = pl.DataFrame(
+        {
+            "player_id": ["stale", "stale", "active", "active", "active"],
+            "full_name": ["Stale Vet", "Stale Vet", "Active Guy", "Active Guy", "Active Guy"],
+            "position": ["WR"] * 5,
+            "season": [2026] * 5,
+            "week": [1, 2, 4, 5, 6],
+            "game_id": ["g1", "g2", "g3", "g4", "g5"],
+            "posteam": ["SEA"] * 5,
+            "total_fantasy_points": [30.0, 30.0, 10.0, 12.0, 14.0],
+            "total_fantasy_points_exp": [20.0, 20.0, 8.0, 8.0, 8.0],
+            "receptions": [0.0] * 5,
+            "receptions_exp": [0.0] * 5,
+        }
+    )
+    rows = summarize_season_xfp(df, "WR", season=2026, as_of_week=7, window=3)
+    # Weeks 4-6 only: the week 1-2 player (injured since) is gone.
+    assert [r["player_id"] for r in rows] == ["active"]
+    assert rows[0]["games"] == 3
+    assert abs(rows[0]["fantasy_points"] - 12.0) < 1e-9
+
+
 def test_filter_chart_season_drops_other_years_and_slate_week() -> None:
     import polars as pl
 
@@ -129,6 +157,27 @@ def test_filter_chart_season_drops_other_years_and_slate_week() -> None:
     )
     kept = _filter_chart_season(df, season=2026, as_of_week=4)
     assert kept["week"].to_list() == [1, 3]
+
+
+def test_filter_chart_season_window_limits_lookback() -> None:
+    import polars as pl
+
+    from src.loaders.nflverse import _filter_chart_season
+
+    df = pl.DataFrame({"season": [2026] * 6, "week": [1, 2, 3, 4, 5, 6]})
+    kept = _filter_chart_season(df, season=2026, as_of_week=7, window=3)
+    assert kept["week"].to_list() == [4, 5, 6]
+
+
+def test_chart_window_scales_early_season() -> None:
+    from src.loaders.nflverse import chart_min_games, chart_window_label
+
+    assert chart_min_games(7) == 2
+    assert chart_min_games(3) == 2
+    assert chart_min_games(2) == 1
+    assert chart_min_games(1) == 0
+    assert chart_window_label(2026, 7) == "2026 weeks 4\u20136"
+    assert chart_window_label(2026, 1) == "2026 season opener"
 
 
 def test_filter_before_slate_excludes_target_week_and_later() -> None:
@@ -183,7 +232,7 @@ def test_build_def_board_from_fixtures() -> None:
     )
     assert board["week"] == 1
     assert board["sack_season"] == 2025
-    assert "before week 1" in board["sack_note"]
+    assert "season opener" in board["sack_note"]
     assert board["proj_limit"] == 18
     assert len(board["teams"]) == 2
     sea = next(t for t in board["teams"] if t["team"] == "SEA")
@@ -271,7 +320,7 @@ def test_build_k_board_uses_own_team_total() -> None:
         projected_players=projected,
     )
     assert board["fg_season"] == 2025
-    assert "before week 1" in board["fg_note"]
+    assert "season opener" in board["fg_note"]
     assert board["proj_limit"] == 18
     sea = next(t for t in board["teams"] if t["team"] == "SEA")
     ne = next(t for t in board["teams"] if t["team"] == "NE")
@@ -471,8 +520,8 @@ def test_skill_board_drops_small_samples() -> None:
     )
     names = {p["last_name"] for p in board["players"]}
     assert names == {"Down"}
-    assert board["min_games"] == 3
-    assert "min 3 games" in board["stats_note"]
+    assert board["min_games"] == 2
+    assert "min 2 games" in board["stats_note"]
 
 
 def test_skill_board_drops_low_total_points() -> None:

@@ -40,6 +40,13 @@ HALF_PPR_CATCH_ADJUST = 0.5
 # Rolling opportunity window (≈ one NFL regular season).
 STATS_WINDOW_GAMES = 17
 
+# Streamer charts look back a fixed number of calendar weeks, not a player's
+# last N games — an injured player drops off once their games age out.
+CHART_WINDOW_WEEKS = 3
+# Minimum games inside that window before a player/team can chart. Tolerates a
+# single bye or missed week but drops a long absence.
+CHART_MIN_GAMES = 2
+
 USER_AGENT = "fantasy-tool/0.1 (+https://github.com/nflverse)"
 
 
@@ -214,12 +221,14 @@ def summarize_season_xfp(
     as_of_week: int,
     window: int = 4,
 ) -> list[dict[str, Any]]:
-    """This-season half-PPR per game vs expected over the last ``window`` games.
+    """This-season half-PPR per game vs expected over the last ``window`` weeks.
 
     ``df`` is one ffopportunity weekly frame. Totals there are full PPR, so
     half-PPR subtracts half a point per reception (and the same on expected).
-    Prior seasons and the chart week itself are left out. ``fpoe`` is actual
-    points per game minus expected points per game.
+    Prior seasons and the chart week itself are left out. Games are also
+    restricted to the ``window`` calendar weeks before the slate, so a player
+    who has not played recently ages off instead of staying on last month's
+    games. ``fpoe`` is actual points per game minus expected points per game.
     """
     position = position.upper()
     needed = [
@@ -254,6 +263,7 @@ def summarize_season_xfp(
         & (pl.col("week") >= 1)
         & (pl.col("week") <= 18)
         & (pl.col("week") < as_of_week)
+        & (pl.col("week") >= as_of_week - window)
         & pl.col("player_id").is_not_null()
         & (pl.col("player_id") != "")
     )
@@ -270,16 +280,6 @@ def summarize_season_xfp(
             - HALF_PPR_CATCH_ADJUST * pl.col("receptions_exp")
         ).alias("half_ppr_exp"),
     ).sort(["player_id", "week", "game_id"])
-
-    recent: list[pl.DataFrame] = []
-    for player_key, group in frame.partition_by("player_id", as_dict=True).items():
-        player_id = player_key[0] if isinstance(player_key, tuple) else player_key
-        if not player_id:
-            continue
-        recent.append(group.sort(["week", "game_id"]).tail(window))
-    if not recent:
-        return []
-    frame = pl.concat(recent)
 
     grouped = frame.group_by("player_id").agg(
         pl.col("half_ppr").mean().alias("fantasy_points"),
@@ -742,14 +742,57 @@ def _filter_chart_season(
     *,
     season: int,
     as_of_week: int,
+    window: int | None = None,
 ) -> pl.DataFrame:
-    """Keep one regular season's games strictly before the chart week."""
-    return df.filter(
+    """Keep one regular season's games strictly before the chart week.
+
+    With ``window``, also drop games older than the last ``window`` weeks so the
+    chart only reflects the recent calendar span.
+    """
+    condition = (
         (pl.col("season") == season)
         & (pl.col("week") >= 1)
         & (pl.col("week") <= 18)
         & (pl.col("week") < as_of_week)
     )
+    if window is not None:
+        condition = condition & (pl.col("week") >= as_of_week - window)
+    return df.filter(condition)
+
+
+def chart_weeks_available(
+    as_of_week: int,
+    *,
+    window: int = CHART_WINDOW_WEEKS,
+) -> int:
+    """Weeks of history a chart slate actually has (caps early-season windows)."""
+    return max(0, min(window, as_of_week - 1))
+
+
+def chart_min_games(
+    as_of_week: int,
+    *,
+    window: int = CHART_WINDOW_WEEKS,
+    floor: int = CHART_MIN_GAMES,
+) -> int:
+    """Games required inside the window, relaxed early in the season."""
+    return min(floor, chart_weeks_available(as_of_week, window=window))
+
+
+def chart_window_label(
+    season: int,
+    as_of_week: int,
+    *,
+    window: int = CHART_WINDOW_WEEKS,
+) -> str:
+    """Human label for the chart's lookback span, e.g. ``2026 weeks 4-6``."""
+    high = as_of_week - 1
+    if high < 1:
+        return f"{season} season opener"
+    low = max(1, as_of_week - window)
+    if low == high:
+        return f"{season} week {low}"
+    return f"{season} weeks {low}\u2013{high}"
 
 
 def _tail_games_by_team(team_games: pl.DataFrame, window: int) -> pl.DataFrame:
@@ -777,8 +820,9 @@ def team_sack_rates(
 
     Returns ``{team: {offense_sack_rate, defense_sack_rate, off_n, def_n, games, ...}}``.
     Offense = rate the team's QB was sacked; defense = rate the team recorded sacks.
-    With ``as_of_season`` and ``as_of_week``, rates use that season's games before
-    the chart week. Otherwise they pool each team's last ``window`` games.
+    With ``as_of_season`` and ``as_of_week``, rates use that season's last
+    ``CHART_WINDOW_WEEKS`` weeks before the chart week. Otherwise they pool each
+    team's last ``window`` games.
     """
     if isinstance(seasons, int):
         seasons = [seasons]
@@ -789,7 +833,12 @@ def team_sack_rates(
         cache_dir=cache_dir,
     ).filter(pl.col("qb_dropback") == 1)
     if as_of_season is not None and as_of_week is not None:
-        df = _filter_chart_season(df, season=as_of_season, as_of_week=as_of_week)
+        df = _filter_chart_season(
+            df,
+            season=as_of_season,
+            as_of_week=as_of_week,
+            window=CHART_WINDOW_WEEKS,
+        )
         window = None
     if df.is_empty():
         raise ValueError(f"No REG qb_dropback rows for seasons {seasons}")
@@ -875,8 +924,9 @@ def team_fg_attempts_per_game(
 ) -> dict[str, dict[str, Any]]:
     """FG attempts per game by team from REG PBP.
 
-    With ``as_of_season`` and ``as_of_week``, uses that season's games before
-    the chart week. Otherwise uses the last ``window`` team-games.
+    With ``as_of_season`` and ``as_of_week``, uses that season's last
+    ``CHART_WINDOW_WEEKS`` weeks before the chart week. Otherwise uses the last
+    ``window`` team-games.
     """
     df = _load_reg_pbp(
         seasons,
@@ -884,7 +934,12 @@ def team_fg_attempts_per_game(
         cache_dir=cache_dir,
     )
     if as_of_season is not None and as_of_week is not None:
-        df = _filter_chart_season(df, season=as_of_season, as_of_week=as_of_week)
+        df = _filter_chart_season(
+            df,
+            season=as_of_season,
+            as_of_week=as_of_week,
+            window=CHART_WINDOW_WEEKS,
+        )
         window = None
         if df.is_empty():
             raise ValueError(
