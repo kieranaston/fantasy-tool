@@ -37,10 +37,13 @@ SKILL_CHART_Y_WEIGHT = 0.1
 DEF_CHART_X_WEIGHT = 0.2
 DEF_CHART_Y_WEIGHT = 0.8
 
-# K board: x = team implied total, y = team FG attempts per game. Again the
-# Vegas total dominates (rho ~0.18 vs ~0.03 for FG rate).
-K_CHART_X_WEIGHT = 0.8
-K_CHART_Y_WEIGHT = 0.2
+# K board: x = team implied total, y = kickoff weather (wind, cold, dome).
+# Backtest rho: implied total ~0.18, weather ~0.16 beyond the total; the blend
+# peaks near 50-60% total. FG attempts per game (~0.03) and kicker accuracy
+# added nothing and were dropped. The forecast is noisier than the actual
+# weather the backtest used, so lean slightly toward the total.
+K_CHART_X_WEIGHT = 0.6
+K_CHART_Y_WEIGHT = 0.4
 
 # Sleeper / ESPN / nflverse team code aliases → nflverse schedule codes.
 _TEAM_ALIASES = {

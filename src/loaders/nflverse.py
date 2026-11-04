@@ -76,6 +76,10 @@ def fetch_schedules(*, seasons: list[int] | None = None) -> list[dict[str, Any]]
                 "home_score": _to_float(raw.get("home_score")),
                 "spread_line": _to_float(raw.get("spread_line")),
                 "total_line": _to_float(raw.get("total_line")),
+                "gameday": (raw.get("gameday") or "").strip(),
+                "gametime": (raw.get("gametime") or "").strip(),
+                "roof": (raw.get("roof") or "").strip().lower(),
+                "location": (raw.get("location") or "").strip(),
             }
         )
     return rows

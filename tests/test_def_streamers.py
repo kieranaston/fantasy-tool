@@ -286,11 +286,17 @@ def test_build_k_board_uses_own_team_total() -> None:
             "home_score": None,
             "spread_line": 3.0,
             "total_line": 44.5,
+            "game_id": "2026_01_NE_SEA",
         }
     ]
-    rates = {
-        "SEA": {"fg_attempts_per_game": 2.8, "games": 17},
-        "NE": {"fg_attempts_per_game": 1.9, "games": 17},
+    weather = {
+        "2026_01_NE_SEA": {
+            "roof": "open",
+            "temp_f": 40.0,
+            "wind_mph": 12.0,
+            "weather_index": -2.2,
+            "weather_source": "forecast",
+        }
     }
     projected = [
         {
@@ -313,21 +319,19 @@ def test_build_k_board_uses_own_team_total() -> None:
     board = build_k_board(
         season=2026,
         week=1,
-        fg_season=2025,
-        pbp_seasons=[2025],
         games=games,
-        rates=rates,
+        weather=weather,
         projected_players=projected,
     )
-    assert board["fg_season"] == 2025
-    assert "season opener" in board["fg_note"]
+    assert "kickoff weather" in board["weather_note"]
     assert board["proj_limit"] == 18
     sea = next(t for t in board["teams"] if t["team"] == "SEA")
     ne = next(t for t in board["teams"] if t["team"] == "NE")
     # Kickers use their own implied total (home 23.75 / away 20.75), not opponent.
     assert sea["vegas_projected_points"] == 23.75
     assert ne["vegas_projected_points"] == 20.75
-    assert sea["fg_attempts_per_game"] == 2.8
+    assert sea["weather_index"] == -2.2
+    assert sea["wind_mph"] == 12.0
     assert sea["last_name"] == "Myers"
 
 
@@ -345,19 +349,14 @@ def test_build_k_board_filters_to_projected_teams() -> None:
             "home_score": None,
             "spread_line": 3.0,
             "total_line": 44.5,
+            "game_id": "2026_01_NE_SEA",
         }
     ]
-    rates = {
-        "SEA": {"fg_attempts_per_game": 2.8, "games": 17},
-        "NE": {"fg_attempts_per_game": 1.9, "games": 17},
-    }
     board = build_k_board(
         season=2026,
         week=1,
-        fg_season=2025,
-        pbp_seasons=[2025],
         games=games,
-        rates=rates,
+        weather={},
         projected_players=[
             {
                 "sleeper_id": "1",

@@ -1,4 +1,4 @@
-"""Build weekly fantasy kicker streamer board (FG attempts × Vegas points)."""
+"""Build weekly fantasy kicker streamer board (Vegas points x kickoff weather)."""
 
 from __future__ import annotations
 
@@ -14,15 +14,13 @@ from src.def_streamers.projection_pool import (
     top_projected_players,
 )
 from src.loaders.nflverse import (
-    chart_min_games,
-    chart_window_label,
     espn_logo_url,
     fetch_schedules,
     implied_team_totals,
     resolve_target_week,
-    team_fg_attempts_per_game,
 )
 from src.loaders.sleeper_adp import draft_season_from_sleeper_state
+from src.loaders.weather import game_weather
 
 K_PROJ_LIMIT = STREAMER_PROJ_LIMITS["K"]
 
@@ -31,17 +29,17 @@ def build_k_board(
     *,
     season: int | None = None,
     week: int | None = None,
-    fg_season: int | None = None,
-    pbp_seasons: list[int] | None = None,
     games: list[dict[str, Any]] | None = None,
-    rates: dict[str, dict[str, float]] | None = None,
+    weather: dict[str, dict[str, Any]] | None = None,
     projected_players: list[dict[str, Any]] | None = None,
     max_players: int = K_PROJ_LIMIT,
 ) -> dict[str, Any]:
     """Assemble the weekly kicker streamer payload for the static site.
 
-    Inclusion uses the chart score (higher team total and more field-goal
-    attempts). Sleeper only supplies the kicker name on each team.
+    Inclusion uses the chart score (higher team total and kinder kickoff
+    weather). ``weather`` maps ``game_id`` to a ``game_weather`` result; when
+    omitted it is fetched from the forecast at build time. Sleeper only supplies
+    the kicker name on each team.
     """
     if season is None:
         season = draft_season_from_sleeper_state()
@@ -49,16 +47,6 @@ def build_k_board(
         games = fetch_schedules(seasons=[season - 1, season, season + 1])
     if week is None:
         week = resolve_target_week(games, season)
-    if pbp_seasons is None:
-        pbp_seasons = [season]
-    if fg_season is None:
-        fg_season = season
-    if rates is None:
-        rates = team_fg_attempts_per_game(
-            [season],
-            as_of_season=season,
-            as_of_week=week,
-        )
     if projected_players is None:
         projected_players = top_projected_players(
             "K",
@@ -86,12 +74,17 @@ def build_k_board(
     if not slate:
         raise ValueError(f"No lined REG games for {season} week {week}")
 
-    min_games = chart_min_games(week)
+    if weather is None:
+        forecasts: dict = {}
+        weather = {
+            str(g.get("game_id")): game_weather(g, forecasts=forecasts) for g in slate
+        }
 
     teams: list[dict[str, Any]] = []
     for g in slate:
         away = str(g["away_team"])
         home = str(g["home_team"])
+        wx = weather.get(str(g.get("game_id"))) or game_weather({})
         away_imp, home_imp = implied_team_totals(float(g["spread_line"]), float(g["total_line"]))
         for team, opp, is_home, team_points in (
             (home, away, True, home_imp),
@@ -101,12 +94,6 @@ def build_k_board(
             kicker = kickers_by_team.get(team_key)
             if not kicker:
                 continue
-            team_rates = rates.get(team) or rates.get(team_key)
-            if not team_rates:
-                continue
-            if float(team_rates.get("games") or 0) < min_games:
-                continue
-            fg_pg = float(team_rates["fg_attempts_per_game"])
             teams.append(
                 {
                     "player_id": kicker.get("sleeper_id"),
@@ -116,51 +103,61 @@ def build_k_board(
                     "opponent": opp,
                     "home": is_home,
                     "matchup_label": f"vs {opp}" if is_home else f"@ {opp}",
-                    "fg_attempts_per_game": round(fg_pg, 4),
-                    "fg_games": int(team_rates.get("games") or 0),
                     "vegas_projected_points": round(team_points, 2),
                     "spread_line": float(g["spread_line"]),
                     "total_line": float(g["total_line"]),
+                    "roof": wx.get("roof"),
+                    "temp_f": wx.get("temp_f"),
+                    "wind_mph": wx.get("wind_mph"),
+                    "weather_index": wx.get("weather_index"),
+                    "weather_source": wx.get("weather_source", "unavailable"),
                     "logo_url": espn_logo_url(team),
                 }
             )
 
     if not teams:
-        raise ValueError("No kicker rows built — FG-rate teams missing for slate")
+        raise ValueError("No kicker rows built — no projected kickers on the slate")
 
-    # Weighted percentiles: the team implied total carries most of the signal
-    # for kicker scoring; FG attempts per game is a smaller secondary tilt. See
-    # src/analysis/chart_weight_backtest.py (--target k).
+    # Games without a forecast (neutral sites, API down) sit at the slate's
+    # median weather so they are neither rewarded nor punished.
+    known = [t["weather_index"] for t in teams if t["weather_index"] is not None]
+    neutral = round(median(known), 3) if known else 0.0
+    for t in teams:
+        if t["weather_index"] is None:
+            t["weather_index"] = neutral
+
+    # Weighted percentiles: the team implied total is the strongest signal for
+    # kicker scoring; kickoff weather (wind, cold, dome) is the second. See
+    # src/analysis/k_weather_backtest.py.
     teams = rank_by_chart(
         teams,
         x_key="vegas_projected_points",
-        y_key="fg_attempts_per_game",
+        y_key="weather_index",
         x_weight=K_CHART_X_WEIGHT,
         y_weight=K_CHART_Y_WEIGHT,
         limit=max_players,
     )
     med_x = median(r["vegas_projected_points"] for r in teams)
-    med_y = median(r["fg_attempts_per_game"] for r in teams)
+    med_y = median(r["weather_index"] for r in teams)
     return {
         "season": season,
         "week": week,
-        "fg_season": fg_season,
-        "pbp_seasons": pbp_seasons,
         "proj_limit": max_players,
-        "fg_note": (
+        "weather_note": (
             f"Top {max_players} kickers by chart score "
             f"({K_CHART_X_WEIGHT:.0%} team implied total + "
-            f"{K_CHART_Y_WEIGHT:.0%} FG attempts per game); "
-            f"{chart_window_label(season, week)}"
+            f"{K_CHART_Y_WEIGHT:.0%} kickoff weather); "
+            "weather is the forecast at kickoff and is refreshed before games"
         ),
         "x_formula": "team implied total = (game total ± spread) / 2",
         "y_formula": (
-            f"team FG attempts per game ({chart_window_label(season, week)})"
+            "kickoff weather score = -(wind mph / 10) - (degrees below 50°F / 10); "
+            "0 is ideal, domes score 0"
         ),
-        "source": "sleeper_projections_nflverse_pbp_schedules",
+        "source": "sleeper_projections_nflverse_schedules_open_meteo",
         "medians": {
             "vegas_projected_points": round(med_x, 2),
-            "fg_attempts_per_game": round(med_y, 4),
+            "weather_index": round(med_y, 3),
         },
         "teams": teams,
     }

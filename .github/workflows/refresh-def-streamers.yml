@@ -7,7 +7,22 @@ on:
     - cron: "23 9 * * *"
     # Backup run ~09:23 ET (13:23 UTC) in case nflverse hadn't posted yet.
     - cron: "23 13 * * *"
+    # Kicker-only refreshes (UTC) to re-pull the kickoff weather forecast
+    # closer to game time: Thu afternoon (TNF), Sat, Sun before the London,
+    # 1pm and 4pm ET windows, and Mon afternoon (MNF). Keep these in sync with
+    # the "Pick refresh scope" step below.
+    - cron: "23 20 * * 4"
+    - cron: "23 15 * * 6"
+    - cron: "23 12 * * 0"
+    - cron: "53 15 * * 0"
+    - cron: "53 19 * * 0"
+    - cron: "23 19 * * 1"
   workflow_dispatch:
+
+# Streamer refreshes commit to the same files; never run two at once.
+concurrency:
+  group: streamers
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -26,8 +41,18 @@ jobs:
       - name: Install dependencies
         run: pip install .
 
-      - name: Build streamer boards (DEF, K, QB, RB, WR)
-        run: python -m src.run_streamers
+      - name: Pick refresh scope
+        id: scope
+        run: |
+          case "${{ github.event.schedule }}" in
+            "23 20 * * 4"|"23 15 * * 6"|"23 12 * * 0"|"53 15 * * 0"|"53 19 * * 0"|"23 19 * * 1")
+              echo "only=--only k" >> "$GITHUB_OUTPUT" ;;
+            *)
+              echo "only=" >> "$GITHUB_OUTPUT" ;;
+          esac
+
+      - name: Build streamer boards (all, or kicker weather only)
+        run: python -m src.run_streamers ${{ steps.scope.outputs.only }}
 
       - name: Commit updated streamer data
         run: |

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
 from src.def_streamers.board import build_def_board
@@ -25,9 +26,37 @@ def _write(name: str, board: dict, required: set[str]) -> None:
     )
 
 
-def main() -> None:
+def refresh_k_board(now: str) -> None:
+    """Rebuild only the kicker board (cheap; used to refresh the weather forecast)."""
+    k_board = build_k_board()
+    k_board["last_updated"] = now
+    _write(
+        "k-board.json",
+        k_board,
+        {
+            "season",
+            "week",
+            "weather_note",
+            "x_formula",
+            "y_formula",
+            "source",
+            "last_updated",
+            "medians",
+            "teams",
+        },
+    )
+
+
+def main(argv: list[str] | None = None) -> None:
+    args = sys.argv[1:] if argv is None else argv
     now = utc_now_iso()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    if args == ["--only", "k"]:
+        print("Refreshing kicker board (weather)…")
+        refresh_k_board(now)
+        print("Done.")
+        return
 
     print("Building streamer boards…")
     def_board = build_def_board()
@@ -56,29 +85,7 @@ def main() -> None:
         f"pbp={def_board['pbp_seasons']}"
     )
 
-    k_board = build_k_board()
-    k_board["last_updated"] = now
-    _write(
-        "k-board.json",
-        k_board,
-        {
-            "season",
-            "week",
-            "fg_season",
-            "pbp_seasons",
-            "fg_note",
-            "x_formula",
-            "y_formula",
-            "source",
-            "last_updated",
-            "medians",
-            "teams",
-        },
-    )
-    print(
-        f"    fg_season={k_board['fg_season']} "
-        f"pbp={k_board['pbp_seasons']}"
-    )
+    refresh_k_board(now)
 
     qb_board = build_qb_board()
     qb_board["last_updated"] = now
