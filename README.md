@@ -2,7 +2,7 @@
 
 **Live site: https://kieranaston.github.io/fantasy-tool/**
 
-A fantasy football reference site that picks weekly waiver streamers, assists live drafts, and ranks keepers. A Python pipeline builds the data each day and publishes it as JSON to a static site on GitHub Pages. No server needed.
+A fantasy football reference site that picks weekly waiver streamers, shows draft ADP, assists live drafts, and ranks keepers. A Python pipeline builds the data each day and publishes it as JSON to a static site on GitHub Pages. No server needed.
 
 ## Screenshots
 
@@ -25,6 +25,8 @@ A fantasy football reference site that picks weekly waiver streamers, assists li
 - Anyone who hasn't played in the last 2 weeks is dropped, so an injured player can't chart on a stale game.
 - Weights were tuned with a backtest (next-week Spearman correlation, trained on 2021–24 and checked on 2025). See `src/analysis/chart_weight_backtest.py` and `chart_param_sweep.py`.
 
+**ADP**: Sleeper ADP board with format (Half PPR, Full PPR, Standard), position and team filters.
+
 **Draft**: live draft assistant. Paste a Sleeper draft link to get best-available picks (VORP blended with ADP, optional FantasyPros ECR sort), your roster and recent picks.
 
 **Keepers**: ranks a Sleeper league's keepers by FantasyCalc value minus the value of the pick at the cost round, with two-year eligibility rules.
@@ -39,12 +41,13 @@ tests/          pytest suite
 .github/        scheduled refresh workflows
 ```
 
-Data comes from Sleeper (players, projections, leagues), nflverse and ffopportunity (usage and expected points), FantasyCalc (trade values) and FantasyPros (optional rankings). GitHub Actions refresh it on a schedule:
+Data comes from Sleeper (players, projections, ADP, leagues), nflverse and ffopportunity (usage and expected points), FantasyCalc (trade values) and FantasyPros (optional rankings). GitHub Actions refresh it on a schedule:
 
 | Workflow | Schedule |
 |----------|----------|
 | Refresh streamers | Daily 15:00 UTC |
 | Refresh player values | Daily 14:00 UTC |
+| Refresh ADP | Manual only |
 
 ## Run locally
 
@@ -55,6 +58,7 @@ python -m venv .venv && source .venv/bin/activate
 pip install -e .
 
 python -m src.run_streamers
+python -m src.run_adp              # manual; season ADP is frozen unless needed
 python -m src.run_fp_rankings      # optional: FantasyPros CSV → docs/data/draft/
 python -m src.run_trade_values     # FantasyCalc trade values → docs/data/trade/
 python -m http.server 8000 --directory docs
