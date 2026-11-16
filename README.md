@@ -8,11 +8,11 @@ A fantasy football reference site that picks weekly waiver streamers, shows draf
 
 | Defense | Kickers |
 |---|---|
-| ![Defense streamers](docs/screenshots/def.png) | ![Kicker streamers](docs/screenshots/kickers.png) |
+| ![Defense streamers](docs/screenshots/def-chart.png) | ![Kicker streamers](docs/screenshots/kickers-chart.png) |
 | **Quarterbacks** | **Running backs** |
-| ![QB streamers](docs/screenshots/qb.png) | ![RB streamers](docs/screenshots/rb.png) |
+| ![QB streamers](docs/screenshots/qb-chart.png) | ![RB streamers](docs/screenshots/rb-chart.png) |
 | **Wide receivers** | **Tight ends** |
-| ![WR streamers](docs/screenshots/wr.png) | ![TE streamers](docs/screenshots/te.png) |
+| ![WR streamers](docs/screenshots/wr-chart.png) | ![TE streamers](docs/screenshots/te-chart.png) |
 
 ## What it does
 
