@@ -4,6 +4,16 @@
 
 A fantasy football reference site that picks weekly waiver streamers, assists live drafts, and ranks keepers. A Python pipeline builds the data each day and publishes it as JSON to a static site on GitHub Pages. No server needed.
 
+## Screenshots
+
+| Defense | Kickers |
+|---|---|
+| ![Defense streamers](docs/screenshots/def.png) | ![Kicker streamers](docs/screenshots/kickers.png) |
+| **Quarterbacks** | **Running backs** |
+| ![QB streamers](docs/screenshots/qb.png) | ![RB streamers](docs/screenshots/rb.png) |
+| **Wide receivers** | **Tight ends** |
+| ![WR streamers](docs/screenshots/wr.png) | ![TE streamers](docs/screenshots/te.png) |
+
 ## What it does
 
 **Streamers** (DEF, K, QB, RB, WR, TE): a scatter chart plus ranked list for each position, showing who to pick up this week.
